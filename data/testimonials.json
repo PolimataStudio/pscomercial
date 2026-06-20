@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "author": "Pastor João Silva",
+    "role": "Líder da Igreja Viva",
+    "segment": "igrejas",
+    "quote": "A Polímata transformou nossa comunicação. Hoje temos 3.000 membros conectados e as doações cresceram 40%.",
+    "result": "+40% doações"
+  },
+  {
+    "id": "2",
+    "author": "Diretora Maria Oliveira",
+    "role": "Escola Horizonte",
+    "segment": "escolas",
+    "quote": "Com a plataforma da Polímata, reduzimos o tempo de matrícula de 3 semanas para 1 semana. Incrível!",
+    "result": "Matrícula 50% mais rápida"
+  }
+]

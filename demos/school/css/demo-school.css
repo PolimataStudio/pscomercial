@@ -1,0 +1,73 @@
+/* Demo School */
+.demo-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+.demo-calendar-month {
+  background: var(--surface);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+}
+.demo-calendar-month h3 {
+  margin-bottom: var(--space-3);
+  color: var(--accent-lime);
+}
+.demo-calendar-month ul {
+  list-style: none;
+}
+.demo-calendar-month ul li {
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+}
+.demo-calendar-month ul li:last-child {
+  border-bottom: none;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-5);
+}
+
+.demo-list-item {
+  background: var(--surface);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--accent-blue);
+}
+
+.demo-list-item .date {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.demo-list-item .title {
+  font-weight: 600;
+  margin: var(--space-1) 0;
+}
+.demo-list-item .content {
+  color: var(--muted);
+}
+
+.demo-cta-fixed {
+  position: fixed;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  padding: var(--space-2);
+  /* Remover right e ajustar para centralizar */
+}
+
+.demo-cta-fixed .btn {
+  display: inline-block;
+  padding: var(--space-2) var(--space-5);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}

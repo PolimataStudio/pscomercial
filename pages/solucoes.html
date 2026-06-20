@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <base href="/pscomercial/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soluções – Polímata</title>
+  <meta name="description" content="Conheça as soluções digitais da Polímata para igrejas, escolas, professores, escritores, clínicas, salões, academias e negócios.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Soluções – Polímata">
+  <meta property="og:description" content="Soluções digitais inteligentes para diversos segmentos.">
+  
+  <link rel="canonical" href="https://polimatastudio.github.io/pscomercial/pages/solucoes.html">
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest/manifest.json">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Soluções Polímata",
+    "description": "Soluções digitais para igrejas, escolas, professores, escritores, clínicas, salões, academias e negócios.",
+    "url": "https://polimatastudio.github.io/pscomercial/pages/solucoes.html"
+  }
+  </script>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 class="text-center">Soluções digitais inteligentes</h1>
+        <p class="text-center" style="max-width: 700px; margin: 0 auto var(--space-6);">
+          Cada solução é desenhada para resolver dores específicas, combinando tecnologia, design e estratégia.
+        </p>
+
+        <div class="solutions-grid" id="solutions-grid-full">
+          <!-- Preenchido via JavaScript -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script type="module" src="js/app.js"></script>
+  <script type="module">
+    import { renderSolutions } from 'js/components.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const solutions = await fetch('data/solutions.json').then(r => r.json());
+        renderSolutions(solutions, '#solutions-grid-full');
+      } catch (e) {
+        console.warn('Erro ao carregar soluções:', e);
+      }
+    });
+  </script>
+</body>
+</html>

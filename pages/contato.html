@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <base href="/pscomercial/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato – Polímata</title>
+  <meta name="description" content="Entre em contato com a Polímata para solicitar uma demonstração, tirar dúvidas ou iniciar um projeto.">
+  
+  <meta property="og:title" content="Contato – Polímata">
+  <meta property="og:description" content="Fale conosco e transforme sua ideia em experiência digital.">
+  
+  <link rel="canonical" href="https://polimatastudio.github.io/pscomercial/pages/contato.html">
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest/manifest.json">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 class="text-center">Vamos transformar sua ideia</h1>
+        <p class="text-center" style="max-width: 600px; margin: 0 auto var(--space-6);">
+          Preencha o formulário ou fale diretamente com a gente pelos canais abaixo.
+        </p>
+
+        <div class="contact-wrapper">
+          <!-- Formulário -->
+          <div>
+            <h3>Envie uma mensagem</h3>
+            <form class="contact-form" action="https://api.staticforms.dev/submit" method="POST">
+              <input type="hidden" name="apiKey" value="sf_81a2b0ca7d6a2c1f6709f558">
+              <div class="form-group">
+                <label for="name">Nome completo</label>
+                <input type="text" id="name" name="name" placeholder="Seu nome" required>
+              </div>
+              <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seu.melhor@email.com" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Mensagem</label>
+                <textarea id="message" name="message" placeholder="Conte sobre seu projeto ou dúvida..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+            </form>
+          </div>
+
+          <!-- Informações de contato -->
+          <div class="contact-info">
+            <h3>Fale conosco</h3>
+            <div class="contact-channel">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              <a href="mailto:polimatastudio.comercial@gmail.com">polimatastudio.comercial@gmail.com</a>
+            </div>
+            <div class="contact-channel">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              <a href="https://wa.link/lbx5vd" target="_blank">WhatsApp</a>
+            </div>
+            <div class="contact-social">
+              <a href="https://instagram.com/polimata" target="_blank">Instagram</a>
+              <a href="https://tiktok.com/@polimata" target="_blank">TikTok</a>
+              <a href="https://youtube.com/@Polímata-std" target="_blank">YouTube</a>
+            </div>
+            <div style="margin-top: var(--space-6); padding: var(--space-4); background: var(--surface); border-radius: var(--radius-md);">
+              <strong>Atendimento</strong><br>
+              <span class="text-muted">Segunda a sexta, 8h às 17h;</span>
+              <span class="text-muted">Sábados, 8h às 13h (horário de Brasília)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "name": "Escola Horizonte",
+  "slogan": "Educação com propósito",
+  "hero": {
+    "title": "Bem-vindo à Escola Horizonte",
+    "subtitle": "Construindo o futuro com excelência",
+    "image": "school-hero.jpg"
+  },
+  "calendar": [
+    { "month": "Julho 2026", "events": [
+      { "date": "2026-07-10", "title": "Prova de Matemática" },
+      { "date": "2026-07-15", "title": "Reunião de Pais" },
+      { "date": "2026-07-20", "title": "Feriado: Dia do Amigo" }
+    ]}
+  ],
+  "communications": [
+    { "date": "2026-07-01", "title": "Início do semestre", "content": "Atenção pais, início das aulas." },
+    { "date": "2026-07-05", "title": "Feira Cultural", "content": "Participe da nossa feira cultural." }
+  ],
+  "projects": [
+    { "title": "Projeto Sustentabilidade", "description": "Alunos aprendem sobre reciclagem.", "status": "Em andamento" },
+    { "title": "Clube de Leitura", "description": "Incentivo à leitura literária.", "status": "Finalizado" }
+  ],
+  "library": [
+    { "title": "Dom Casmurro", "author": "Machado de Assis", "cover": "dom-casmurro.jpg" },
+    { "title": "O Pequeno Príncipe", "author": "Saint-Exupéry", "cover": "pequeno-principe.jpg" }
+  ],
+  "gallery": [
+    { "title": "Aula de Ciências", "image": "ciencias.jpg" },
+    { "title": "Festival de Dança", "image": "danca.jpg" }
+  ],
+  "contact": {
+    "address": "Av. Educação, 456, Bairro, Cidade",
+    "phone": "(11) 88888-8888",
+    "email": "contato@escolahorizonte.com"
+  }
+}

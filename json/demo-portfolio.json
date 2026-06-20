@@ -1,0 +1,30 @@
+{
+  "name": "João Designer",
+  "role": "UI/UX Designer & Desenvolvedor Front-End",
+  "hero": {
+    "title": "Crio experiências digitais que encantam",
+    "subtitle": "Design com propósito, código com alma.",
+    "image": "profile.jpg"
+  },
+  "services": [
+    { "title": "UI Design", "description": "Interfaces visuais modernas e funcionais." },
+    { "title": "UX Design", "description": "Jornadas centradas no usuário." },
+    { "title": "Desenvolvimento Front-End", "description": "Código limpo e otimizado." }
+  ],
+  "projects": [
+    { "title": "E-commerce de Moda", "description": "Plataforma completa com PWA.", "thumbnail": "moda.jpg" },
+    { "title": "App de Saúde", "description": "Aplicativo para acompanhamento médico.", "thumbnail": "saude.jpg" }
+  ],
+  "testimonials": [
+    { "author": "Maria Oliveira", "role": "CEO, Moda Store", "quote": "João transformou nossa presença digital." },
+    { "author": "Dr. Pedro Santos", "role": "Médico", "quote": "App intuitivo e bem projetado." }
+  ],
+  "contact": {
+    "email": "joao@joaodesigner.com",
+    "phone": "(11) 77777-7777",
+    "social": {
+      "linkedin": "https://linkedin.com/in/joaodesigner",
+      "instagram": "https://instagram.com/joaodesigner"
+    }
+  }
+}

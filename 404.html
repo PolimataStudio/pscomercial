@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <base href="/pscomercial/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polímata – Inteligência digital multidisciplinar</title>
+  <meta name="description" content="Estúdio de inteligência digital que transforma ideias, serviços e conhecimentos em experiências digitais inteligentes. PWAs, IA e design premium para igrejas, escolas e negócios.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Polímata – Inteligência digital multidisciplinar">
+  <meta property="og:description" content="Experiências digitais inteligentes para igrejas, escolas e pequenos negócios.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://polimatastudio.github.io/pscomercial/">
+  <meta property="og:image" content="assets/images/og-image.jpg">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Polímata – Inteligência digital multidisciplinar">
+  <meta name="twitter:description" content="Experiências digitais inteligentes para igrejas, escolas e pequenos negócios.">
+  
+  <!-- Schema.org (Organization) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Polímata",
+    "url": "https://polimatastudio.github.io/pscomercial/",
+    "logo": "https://polimatastudio.github.io/pscomercial/assets/images/logo.png",
+    "sameAs": [
+      "https://instagram.com/polimata",
+      "https://tiktok.com/@polimata",
+      "https://youtube.com/@Polímata-std"
+    ],
+    "description": "Estúdio de inteligência digital que transforma ideias em experiências digitais inteligentes."
+  }
+  </script>
+  
+  <link rel="canonical" href="https://polimatastudio.github.io/pscomercial/">
+  <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest/manifest.json">
+  
+  <!-- Preload font (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+  <!-- Navbar placeholder -->
+  <div id="navbar-placeholder"></div>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Inteligência digital que transforma ideias em experiências</h1>
+        <p>PWAs, IA e design premium para igrejas, escolas, pequenos negócios e educadores. Tecnologia complexa, entregue de forma simples.</p>
+        <div class="cta-group">
+          <a href="pages/solucoes.html" class="btn btn-primary">Explorar soluções</a>
+          <a href="pages/contato.html" class="btn btn-secondary">Falar com especialista</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Explore (Categorias rápidas) -->
+    <section class="section explore">
+      <div class="container">
+        <h2 class="text-center">Para quem você quer transformar?</h2>
+        <div class="grid-4" style="margin-top: var(--space-6);">
+          <a href="pages/solucoes.html#igrejas" class="card text-center">
+            <span class="card-icon">⛪</span>
+            <h3>Igrejas</h3>
+          </a>
+          <a href="pages/solucoes.html#escolas" class="card text-center">
+            <span class="card-icon">🏫</span>
+            <h3>Escolas</h3>
+          </a>
+          <a href="pages/solucoes.html#professores" class="card text-center">
+            <span class="card-icon">👨‍🏫</span>
+            <h3>Professores</h3>
+          </a>
+          <a href="pages/solucoes.html#escritores" class="card text-center">
+            <span class="card-icon">📚</span>
+            <h3>Escritores</h3>
+          </a>
+          <a href="pages/solucoes.html#clinicas" class="card text-center">
+            <span class="card-icon">🏥</span>
+            <h3>Clínicas</h3>
+          </a>
+          <a href="pages/solucoes.html#saloes" class="card text-center">
+            <span class="card-icon">💇</span>
+            <h3>Salões</h3>
+          </a>
+          <a href="pages/solucoes.html#academias" class="card text-center">
+            <span class="card-icon">🏋️</span>
+            <h3>Academias</h3>
+          </a>
+          <a href="pages/solucoes.html#negocios" class="card text-center">
+            <span class="card-icon">💼</span>
+            <h3>Negócios</h3>
+          </a>
+        </div>
+        <div class="text-center" style="margin-top: var(--space-6);">
+          <a href="pages/solucoes.html" class="btn btn-outline">Ver todas as soluções</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Soluções em Destaque -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <div class="text-center">
+          <span class="badge">Destaque</span>
+          <h2>Soluções inteligentes</h2>
+          <p>Projetadas para resolver dores reais de cada segmento.</p>
+        </div>
+        <div class="solutions-grid" id="solutions-grid">
+          <!-- Preenchido via JavaScript com dados de /data/solutions.json -->
+        </div>
+        <div class="text-center" style="margin-top: var(--space-6);">
+          <a href="pages/solucoes.html" class="btn btn-primary">Conheça todas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Produções em Destaque -->
+    <section class="section">
+      <div class="container">
+        <div class="text-center">
+          <span class="badge">Portfólio</span>
+          <h2>Produções que entregam resultado</h2>
+          <p>Apps, livros, projetos e estudos de caso.</p>
+        </div>
+        <div class="productions-grid" id="productions-grid">
+          <!-- Preenchido via JavaScript -->
+        </div>
+        <div class="text-center" style="margin-top: var(--space-6);">
+          <a href="pages/producoes.html" class="btn btn-outline">Ver todas</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projetos em Evidência -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <div class="text-center">
+          <span class="badge">Cases</span>
+          <h2>Transformação real</h2>
+          <p>Projetos que geraram impacto mensurável.</p>
+        </div>
+        <div class="grid-3" id="projects-grid">
+          <!-- Preenchido via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Principal -->
+    <section class="section cta-section" style="background: var(--surface-light); text-align: center;">
+      <div class="container">
+        <h2>Pronto para transformar sua ideia em experiência digital?</h2>
+        <p>Fale com um especialista e descubra como a Polímata pode ajudar.</p>
+        <a href="pages/contato.html" class="btn btn-primary" style="margin-top: var(--space-4);">Solicitar demonstração</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer placeholder -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="js/app.js"></script>
+  <script type="module">
+    // Carregamento dinâmico dos dados para a Home
+    import { renderSolutions, renderProductions, renderProjects } from 'js/components.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        const [solutions, productions, projects] = await Promise.all([
+          fetch('data/solutions.json').then(r => r.json()),
+          fetch('data/productions.json').then(r => r.json()),
+          fetch('data/projects.json').then(r => r.json())
+        ]);
+        renderSolutions(solutions.slice(0, 4), '#solutions-grid');
+        renderProductions(productions.slice(0, 3), '#productions-grid');
+        renderProjects(projects, '#projects-grid');
+      } catch (e) {
+        console.warn('Erro ao carregar dados:', e);
+      }
+    });
+  </script>
+</body>
+</html>

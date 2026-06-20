@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <base href="/pscomercial/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EscolaPolímata – Demo | Polímata</title>
+  <meta name="description" content="Demonstração da plataforma educacional: calendário, comunicados, biblioteca, projetos e galeria.">
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest/manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .demo-hero {
+      padding: var(--space-8) 0;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+    }
+    .demo-hero h1 {
+      font-size: 2.5rem;
+    }
+    .demo-hero .subtitle {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .demo-card-simple {
+      background: var(--surface);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--accent-lime);
+      margin-bottom: var(--space-2);
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <main>
+    <section class="demo-hero">
+      <div class="container">
+        <h1>Escola Horizonte</h1>
+        <p class="subtitle">Educação com propósito</p>
+        <p class="text-muted" style="margin-top: var(--space-2);">Bem-vindo à Escola Horizonte. Construindo o futuro com excelência.</p>
+      </div>
+    </section>
+
+    <section class="section demo-section">
+      <div class="container">
+        <h2 class="demo-section-title">Calendário Escolar</h2>
+        <div id="school-calendar">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+
+    <section class="section demo-section" style="background: var(--surface);">
+      <div class="container">
+        <h2 class="demo-section-title">Comunicados</h2>
+        <div id="school-communications">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+
+    <section class="section demo-section">
+      <div class="container">
+        <h2 class="demo-section-title">Projetos</h2>
+        <div id="school-projects" class="demo-grid-2">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+
+    <section class="section demo-section" style="background: var(--surface);">
+      <div class="container">
+        <h2 class="demo-section-title">Biblioteca</h2>
+        <div id="school-library" class="demo-grid-2">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção Contribua -->
+    <section class="section demo-cta-section" style="background: var(--surface); border-top: 1px solid var(--border);">
+      <div class="container text-center">
+        <h2>Contribua</h2>
+        <p class="text-muted" style="max-width: 500px; margin: 0 auto var(--space-4);">Apoie nossa missão.</p>
+        <div style="display: flex; justify-content: center; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-4);">
+          <a href="#" class="btn btn-secondary" onclick="alert('Simulação de doação. Em breve disponível.'); return false;">Fazer Doação (Simulação)</a>
+          <a href="pages/contato.html" class="btn btn-outline">Quero uma versão assim</a>
+          <a href="pages/contato.html" class="btn btn-primary">Solicitar uma versão para meu projeto</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <div class="demo-cta-fixed">
+    <a href="pages/contato.html" class="btn btn-primary">Solicitar uma versão para meu projeto</a>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+  <script type="module">
+    // Simulação de dados
+    const calendar = [
+      { month: 'Julho 2026', events: [
+        { date: '2026-07-10', title: 'Prova de Matemática' },
+        { date: '2026-07-15', title: 'Reunião de Pais' },
+        { date: '2026-07-20', title: 'Feriado: Dia do Amigo' }
+      ]}
+    ];
+    const communications = [
+      { date: '2026-07-01', title: 'Início do semestre', content: 'Atenção pais, início das aulas.' },
+      { date: '2026-07-05', title: 'Feira Cultural', content: 'Participe da nossa feira cultural.' }
+    ];
+    const projects = [
+      { title: 'Projeto Sustentabilidade', description: 'Alunos aprendem sobre reciclagem.', status: 'Em andamento' },
+      { title: 'Clube de Leitura', description: 'Incentivo à leitura literária.', status: 'Finalizado' }
+    ];
+    const library = [
+      { title: 'Dom Casmurro', author: 'Machado de Assis' },
+      { title: 'O Pequeno Príncipe', author: 'Saint-Exupéry' }
+    ];
+
+    document.getElementById('school-calendar').innerHTML = calendar.map(c => `
+      <h4>${c.month}</h4>
+      ${c.events.map(e => `
+        <div class="demo-card-simple">
+          <strong>${e.date}</strong> – ${e.title}
+        </div>
+      `).join('')}
+    `).join('');
+
+    document.getElementById('school-communications').innerHTML = communications.map(c => `
+      <div class="demo-card-simple">
+        <strong>${c.date}</strong> – ${c.title}<br>
+        <span class="text-muted">${c.content}</span>
+      </div>
+    `).join('');
+
+    document.getElementById('school-projects').innerHTML = projects.map(p => `
+      <div class="card">
+        <h3>${p.title}</h3>
+        <p>${p.description}</p>
+        <span class="badge">${p.status}</span>
+      </div>
+    `).join('');
+
+    document.getElementById('school-library').innerHTML = library.map(b => `
+      <div class="card">
+        <h3>${b.title}</h3>
+        <p class="text-muted">${b.author}</p>
+      </div>
+    `).join('');
+  </script>
+</body>
+</html>

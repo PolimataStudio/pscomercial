@@ -1,0 +1,32 @@
+[
+  {
+    "id": "igreja-viva",
+    "slug": "igreja-viva",
+    "title": "Igreja Viva",
+    "segment": "igrejas",
+    "result": "3.000 membros conectados (5x)",
+    "proof": "Doações 40% maiores, eventos 60% mais participados",
+    "media": "igreja-viva-mockup.png",
+    "cta": "Ver projeto"
+  },
+  {
+    "id": "escola-horizonte",
+    "slug": "escola-horizonte",
+    "title": "Escola Horizonte",
+    "segment": "escolas",
+    "result": "Matrícula 50% mais rápida",
+    "proof": "90% menos boletos perdidos, 35% mais retenção",
+    "media": "escola-horizonte-mockup.png",
+    "cta": "Ver projeto"
+  },
+  {
+    "id": "salao-bella",
+    "slug": "salao-bella",
+    "title": "Salão Bella",
+    "segment": "saloes",
+    "result": "40% menos perda de agendamentos",
+    "proof": "30% mais clientes recorrentes",
+    "media": "salao-bella-mockup.png",
+    "cta": "Ver projeto"
+  }
+]

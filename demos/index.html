@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <base href="/pscomercial/">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demonstrações | Polímata</title>
+  <meta name="description" content="Conheça as demonstrações interativas da Polímata: Igreja, Escola, Autor e Portfólio.">
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest/manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+  <style>
+    .demos-hero {
+      padding: var(--space-8) 0;
+      text-align: center;
+      background: var(--surface);
+    }
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-6);
+      margin: var(--space-6) 0;
+    }
+    .demo-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      padding: var(--space-5);
+      transition: all var(--duration-medium) var(--ease-emphasized);
+      text-align: center;
+    }
+    .demo-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-lime);
+      box-shadow: var(--shadow-md);
+    }
+    .demo-card .card-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto var(--space-3);
+      color: var(--accent-lime);
+    }
+    .demo-card .card-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+    .demo-card h3 {
+      margin-bottom: var(--space-2);
+    }
+    .demo-card .card-cta {
+      margin-top: var(--space-4);
+    }
+    .badge-demo {
+      display: inline-block;
+      background: var(--accent-blue);
+      color: var(--bg);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: var(--space-2);
+    }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main>
+    <section class="demos-hero">
+      <div class="container">
+        <h1>Demonstrações Interativas</h1>
+        <p class="text-muted" style="max-width: 600px; margin: 0 auto var(--space-4);">
+          Explore soluções prontas para igrejas, escolas, autores e profissionais criativos.
+          Veja como a Polímata transforma ideias em experiências digitais.
+        </p>
+        <a href="pages/contato.html" class="btn btn-primary">Solicitar uma demonstração personalizada</a>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="demos-grid">
+          <div class="demo-card">
+            <div class="card-icon"><svg><use href="assets/icons/church.svg#icon"/></svg></div>
+            <span class="badge-demo">Aplicativo</span>
+            <h3>IgrejaPolímata</h3>
+            <p class="text-muted">Conecte membros, transmita sermões, gerencie eventos e pedidos de oração.</p>
+            <div class="card-cta"><a href="demos/church/" class="btn btn-primary">Ver demo</a></div>
+          </div>
+          <div class="demo-card">
+            <div class="card-icon"><svg><use href="assets/icons/school.svg#icon"/></svg></div>
+            <span class="badge-demo">Plataforma</span>
+            <h3>EscolaPolímata</h3>
+            <p class="text-muted">Calendário, comunicados, biblioteca, projetos e galeria para instituições de ensino.</p>
+            <div class="card-cta"><a href="demos/school/" class="btn btn-primary">Ver demo</a></div>
+          </div>
+          <div class="demo-card">
+            <div class="card-icon"><svg><use href="assets/icons/book.svg#icon"/></svg></div>
+            <span class="badge-demo">Portfólio</span>
+            <h3>AutorPolímata</h3>
+            <p class="text-muted">Livros, biografia, agenda, eventos e materiais para escritores e palestrantes.</p>
+            <div class="card-cta"><a href="demos/author/" class="btn btn-primary">Ver demo</a></div>
+          </div>
+          <div class="demo-card">
+            <div class="card-icon"><svg><use href="assets/icons/business.svg#icon"/></svg></div>
+            <span class="badge-demo">Site</span>
+            <h3>PortfólioPRO</h3>
+            <p class="text-muted">Serviços, projetos, depoimentos e contato para profissionais criativos.</p>
+            <div class="card-cta"><a href="demos/portfolio/" class="btn btn-primary">Ver demo</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" style="background: var(--surface);">
+      <div class="container text-center">
+        <h2>Pronto para levar essa solução ao seu projeto?</h2>
+        <p class="text-muted" style="max-width: 500px; margin: 0 auto var(--space-4);">
+          Entre em contato e descubra como a Polímata pode criar uma experiência digital sob medida para você.
+        </p>
+        <a href="pages/contato.html" class="btn btn-primary btn-lg">Solicitar uma versão para meu projeto</a>
+      </div>
+    </section>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

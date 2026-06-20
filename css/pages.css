@@ -1,0 +1,183 @@
+/* Página Soluções */
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+.solution-card .card-icon {
+  width: 48px;
+  height: 48px;
+}
+.solution-card .card-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Página Produções */
+.productions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+.production-card .production-type {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+/* Página Sobre */
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.about-content h2 {
+  margin-top: var(--space-6);
+}
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-4) 0;
+}
+.value-item {
+  background: var(--surface);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--accent-lime);
+}
+
+/* Página Contato */
+.contact-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+  margin-top: var(--space-6);
+}
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.contact-channel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.contact-channel svg {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.contact-channel a {
+  color: var(--text);
+}
+.contact-channel a:hover {
+  color: var(--accent-lime);
+}
+.contact-social {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+.contact-social a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--muted);
+}
+.contact-social a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 768px) {
+  .contact-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== ESTILOS PARA DEMONSTRAÇÕES ===== */
+
+/* CTA fixo comum a todas as demos */
+.demo-cta-fixed {
+  position: fixed;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  padding: var(--space-2);
+  /* Remover right e ajustar para centralizar */
+}
+
+.demo-cta-fixed .btn {
+  display: inline-block;
+  padding: var(--space-2) var(--space-5);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* Estilos internos das demos */
+.demo-section {
+  padding: var(--space-6) 0;
+  border-bottom: 1px solid var(--border);
+}
+.demo-section:last-child {
+  border-bottom: none;
+}
+
+.demo-section-title {
+  margin-bottom: var(--space-4);
+  font-size: 1.5rem;
+}
+
+.demo-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.demo-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.demo-card-simple {
+  background: var(--surface);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent-lime);
+  margin-bottom: var(--space-2);
+}
+
+/* Responsivo para demos */
+@media (max-width: 768px) {
+  .demo-grid-2, .demo-grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .demo-cta-fixed {
+    bottom: var(--space-2);
+    right: var(--space-2);
+    left: var(--space-2);
+    border-radius: var(--radius-md);
+  }
+  .demo-cta-fixed .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Botão da seção Contribua em mobile */
+@media (max-width: 768px) {
+  .demo-cta-section .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+}

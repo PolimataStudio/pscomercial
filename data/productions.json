@@ -1,0 +1,62 @@
+[
+  {
+    "id": "app-igreja-viva",
+    "slug": "igreja-viva",
+    "title": "Igreja Viva App",
+    "type": "app",
+    "summary": "Aplicativo PWA que conectou 3.000 membros de uma igreja de 500 pessoas.",
+    "format": "PWA",
+    "year": 2026,
+    "status": "active",
+    "cta": "Ver projeto",
+    "seo": { "title": "Igreja Viva App – Case Polímata", "description": "Case de sucesso com PWA para igrejas." }
+  },
+  {
+    "id": "livro-digital-educacao",
+    "slug": "educacao-digital",
+    "title": "Educação Digital com IA",
+    "type": "book",
+    "summary": "Livro sobre como integrar IA em plataformas educacionais para personalização.",
+    "format": "E-book",
+    "year": 2026,
+    "status": "active",
+    "cta": "Baixar",
+    "seo": { "title": "Educação Digital com IA – Livro", "description": "Livro sobre IA na educação." }
+  },
+  {
+    "id": "projeto-escola-horizonte",
+    "slug": "escola-horizonte",
+    "title": "Escola Horizonte Digital",
+    "type": "project",
+    "summary": "Plataforma educacional completa para escola de 350 alunos.",
+    "format": "Plataforma",
+    "year": 2025,
+    "status": "active",
+    "cta": "Ver case",
+    "seo": { "title": "Escola Horizonte – Case Polímata", "description": "Case de plataforma educacional." }
+  },
+  {
+    "id": "estudo-caso-salao-bella",
+    "slug": "salao-bella",
+    "title": "Salão Bella – Agendamento Automático",
+    "type": "case-study",
+    "summary": "PWA reduziu perda de agendamentos em 40% em um salão de 4 funcionários.",
+    "format": "Estudo de caso",
+    "year": 2026,
+    "status": "active",
+    "cta": "Ler estudo",
+    "seo": { "title": "Salão Bella – Estudo de caso", "description": "Case de PWA para salões." }
+  },
+  {
+    "id": "recurso-guia-pwa",
+    "slug": "guia-pwa",
+    "title": "Guia Completo de PWAs para Pequenos Negócios",
+    "type": "resource",
+    "summary": "Material gratuito com tudo que você precisa saber para adotar PWA.",
+    "format": "PDF",
+    "year": 2026,
+    "status": "active",
+    "cta": "Baixar guia",
+    "seo": { "title": "Guia de PWAs – Recurso Polímata", "description": "Guia gratuito sobre PWAs." }
+  }
+]

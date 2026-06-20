@@ -1,0 +1,41 @@
+{
+  "name": "Igreja Viva",
+  "slogan": "Uma comunidade de fé e amor",
+  "hero": {
+    "title": "Bem-vindo à Igreja Viva",
+    "subtitle": "Conecte-se, ore e cresça conosco",
+    "image": "church-hero.jpg"
+  },
+  "schedule": [
+    { "day": "Domingo", "time": "09:00", "event": "Culto Matutino" },
+    { "day": "Domingo", "time": "19:00", "event": "Culto Noturno" },
+    { "day": "Terça", "time": "20:00", "event": "Estudo Bíblico" },
+    { "day": "Quinta", "time": "19:30", "event": "Reunião de Oração" }
+  ],
+  "events": [
+    { "title": "Retiro Espiritual", "date": "2026-07-15", "description": "Um fim de semana de renovação.", "image": "retiro.jpg" },
+    { "title": "Culto de Jovens", "date": "2026-07-22", "description": "Noite de louvor e adoração.", "image": "jovens.jpg" }
+  ],
+  "prayerRequests": [
+    { "name": "Maria", "request": "Orem pela saúde da minha mãe." },
+    { "name": "João", "request": "Orem pela minha família." }
+  ],
+  "bibleStudies": [
+    { "title": "O Poder da Oração", "verse": "Mateus 6:6", "summary": "A importância da oração secreta." },
+    { "title": "Vida em Comunidade", "verse": "Atos 2:42-47", "summary": "A igreja primitiva como modelo." }
+  ],
+  "livestream": {
+    "youtube": "https://youtube.com/@igrejaviva",
+    "facebook": "https://facebook.com/igrejaviva"
+  },
+  "contact": {
+    "address": "Rua das Flores, 123, Centro, Cidade",
+    "phone": "(11) 99999-9999",
+    "email": "contato@igrejaviva.com"
+  },
+  "social": {
+    "instagram": "https://instagram.com/igrejaviva",
+    "facebook": "https://facebook.com/igrejaviva",
+    "youtube": "https://youtube.com/@igrejaviva"
+  }
+}

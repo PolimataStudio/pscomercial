@@ -1,0 +1,21 @@
+{
+  "name": "Polímata Demonstrações",
+  "short_name": "Polímata",
+  "description": "Experiências digitais inteligentes para igrejas, escolas, autores e profissionais.",
+  "start_url": "/pscomercial/",
+  "display": "standalone",
+  "background_color": "#070A0F",
+  "theme_color": "#B6FF3B",
+  "icons": [
+    {
+      "src": "/pscomercial/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/pscomercial/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
