@@ -1,4 +1,4 @@
-import { loadComponents } from '/js/components.js';
+import { loadComponents } from 'js/components.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   loadComponents();
