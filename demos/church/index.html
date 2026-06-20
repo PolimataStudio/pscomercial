@@ -1,160 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <base href="/pscomercial/">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IgrejaPolímata – Demo | Polímata</title>
-  <meta name="description" content="Demonstração do aplicativo para igrejas: conecte membros, transmita sermões, gerencie eventos e pedidos de oração.">
-  <link rel="icon" href="assets/icons/favicon.ico">
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-  <link rel="manifest" href="manifest/manifest.json">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/pages.css">
-  <style>
-    .demo-hero {
-      padding: var(--space-8) 0;
-      text-align: center;
-      background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
-    }
-    .demo-hero h1 {
-      font-size: 2.5rem;
-    }
-    .demo-hero .subtitle {
-      color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .demo-card-simple {
-      background: var(--surface);
-      padding: var(--space-4);
-      border-radius: var(--radius-md);
-      border-left: 3px solid var(--accent-lime);
-      margin-bottom: var(--space-2);
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Igreja Viva – IgrejaPolímata</title>
+  <meta name="description" content="Aplicativo PWA para igrejas: conecte membros, transmita sermões e gerencie eventos." />
+  <meta property="og:title" content="IgrejaPolímata – Igreja Viva" />
+  <meta property="og:description" content="Solução digital completa para sua igreja." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://polimata.com/demos/church/" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "IgrejaPolímata",
+    "description": "Aplicativo PWA para igrejas",
+    "applicationCategory": "Religious",
+    "operatingSystem": "All"
+  }
+  </script>
+  <link rel="canonical" href="https://polimata.com/demos/church/" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="demos/church/css/demo-church.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div id="navbar-placeholder"></div>
-
-  <main>
-    <section class="demo-hero">
+  <main id="demo-church">
+    <section id="home" class="demo-hero">
       <div class="container">
         <h1>Igreja Viva</h1>
-        <p class="subtitle">Uma comunidade de fé e amor</p>
-        <p class="text-muted" style="margin-top: var(--space-2);">Bem-vindo à Igreja Viva. Conecte-se, ore e cresça conosco.</p>
-      </div>
-    </section>
-
-    <section class="section demo-section">
-      <div class="container">
-        <h2 class="demo-section-title">Agenda</h2>
-        <div id="church-schedule">
-          <!-- Preenchido via JS -->
+        <p>Uma comunidade de fé e amor</p>
+        <div class="demo-hero-actions">
+          <a href="#schedule" class="btn btn-primary">Ver Agenda</a>
+          <a href="#contribute" class="btn btn-secondary">Contribuir</a>
         </div>
       </div>
     </section>
-
-    <section class="section demo-section" style="background: var(--surface);">
+    <section id="schedule" class="demo-section">
       <div class="container">
-        <h2 class="demo-section-title">Eventos</h2>
-        <div id="church-events" class="demo-grid-2">
-          <!-- Preenchido via JS -->
+        <h2>Agenda</h2>
+        <div class="demo-schedule-list" id="schedule-list"></div>
+      </div>
+    </section>
+    <section id="events" class="demo-section">
+      <div class="container">
+        <h2>Eventos</h2>
+        <div class="demo-grid" id="events-list"></div>
+      </div>
+    </section>
+    <section id="prayer" class="demo-section">
+      <div class="container">
+        <h2>Pedidos de Oração</h2>
+        <form id="prayer-form">
+          <input type="text" id="prayer-name" placeholder="Seu nome" required />
+          <textarea id="prayer-request" placeholder="Seu pedido" required></textarea>
+          <button type="submit" class="btn btn-primary">Enviar Pedido</button>
+        </form>
+        <div id="prayer-list"></div>
+      </div>
+    </section>
+    <section id="bible" class="demo-section">
+      <div class="container">
+        <h2>Estudos Bíblicos</h2>
+        <div class="demo-list" id="bible-list"></div>
+      </div>
+    </section>
+    <section id="livestream" class="demo-section">
+      <div class="container">
+        <h2>Transmissões</h2>
+        <div class="demo-livestream">
+          <p>Assista ao vivo no YouTube</p>
+          <a href="#" class="btn btn-outline">Acessar YouTube</a>
         </div>
       </div>
     </section>
-
-    <section class="section demo-section">
+    <section id="contact" class="demo-section">
       <div class="container">
-        <h2 class="demo-section-title">Pedidos de Oração</h2>
-        <div id="church-prayers">
-          <!-- Preenchido via JS -->
-        </div>
+        <h2>Contatos</h2>
+        <div id="contact-info"></div>
       </div>
     </section>
-
-    <section class="section demo-section" style="background: var(--surface);">
+    <section id="social" class="demo-section">
       <div class="container">
-        <h2 class="demo-section-title">Estudos Bíblicos</h2>
-        <div id="church-studies">
-          <!-- Preenchido via JS -->
-        </div>
+        <h2>Redes Sociais</h2>
+        <div class="demo-social-links" id="social-links"></div>
       </div>
     </section>
-
-    <!-- Seção Contribua -->
-    <section class="section demo-cta-section" style="background: var(--surface); border-top: 1px solid var(--border);">
-      <div class="container text-center">
+    <section id="location" class="demo-section">
+      <div class="container">
+        <h2>Localização</h2>
+        <div id="location-map"><p>Av. das Igrejas, 1000 – Centro</p></div>
+      </div>
+    </section>
+    <section id="contribute" class="demo-section">
+      <div class="container">
         <h2>Contribua</h2>
-        <p class="text-muted" style="max-width: 500px; margin: 0 auto var(--space-4);">Apoie nossa missão.</p>
-        <div style="display: flex; justify-content: center; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-4);">
-          <a href="#" class="btn btn-secondary" onclick="alert('Simulação de doação. Em breve disponível.'); return false;">Fazer Doação (Simulação)</a>
-          <a href="pages/contato.html" class="btn btn-outline">Quero uma versão assim</a>
-          <a href="pages/contato.html" class="btn btn-primary">Solicitar uma versão para meu projeto</a>
+        <p>Apoie nossa missão.</p>
+        <button class="btn btn-primary" id="contribute-btn">Fazer Doação (Simulação)</button>
+        <div class="text-center" style="margin-top: var(--space-4);">
+          <a href="pages/contato.html" class="btn btn-secondary">Quero uma versão assim</a>
         </div>
-      </div>
-    </section>
+      </section>
+    <div class="demo-cta-fixed">
+      <a href="pages/contato.html" class="btn btn-primary">Solicitar uma versão para meu projeto</a>
+    </div>
   </main>
-
-  <div id="footer-placeholder"></div>
-  <div class="demo-cta-fixed">
-    <a href="pages/contato.html" class="btn btn-primary">Solicitar uma versão para meu projeto</a>
-  </div>
-
   <script type="module" src="js/app.js"></script>
-  <script type="module">
-    // Simulação de dados
-    const schedule = [
-      { day: 'Domingo', time: '09:00', event: 'Culto Matutino' },
-      { day: 'Domingo', time: '19:00', event: 'Culto Noturno' },
-      { day: 'Terça', time: '20:00', event: 'Estudo Bíblico' },
-      { day: 'Quinta', time: '19:30', event: 'Reunião de Oração' }
-    ];
-    const events = [
-      { title: 'Retiro Espiritual', date: '2026-07-15', description: 'Um fim de semana de renovação.' },
-      { title: 'Culto de Jovens', date: '2026-07-22', description: 'Noite de louvor e adoração.' }
-    ];
-    const prayers = [
-      { name: 'Maria', request: 'Orem pela saúde da minha mãe.' },
-      { name: 'João', request: 'Orem pela minha família.' }
-    ];
-    const studies = [
-      { title: 'O Poder da Oração', verse: 'Mateus 6:6', summary: 'A importância da oração secreta.' },
-      { title: 'Vida em Comunidade', verse: 'Atos 2:42-47', summary: 'A igreja primitiva como modelo.' }
-    ];
-
-    document.getElementById('church-schedule').innerHTML = schedule.map(s => `
-      <div class="demo-card-simple">
-        <strong>${s.day}</strong> ${s.time} – ${s.event}
-      </div>
-    `).join('');
-
-    document.getElementById('church-events').innerHTML = events.map(e => `
-      <div class="card">
-        <h3>${e.title}</h3>
-        <p>${e.date}</p>
-        <p class="text-muted">${e.description}</p>
-      </div>
-    `).join('');
-
-    document.getElementById('church-prayers').innerHTML = prayers.map(p => `
-      <div class="demo-card-simple">
-        <strong>${p.name}</strong> – ${p.request}
-      </div>
-    `).join('');
-
-    document.getElementById('church-studies').innerHTML = studies.map(s => `
-      <div class="demo-card-simple">
-        <strong>${s.title}</strong> – ${s.verse}<br>
-        <span class="text-muted">${s.summary}</span>
-      </div>
-    `).join('');
-  </script>
+  <script type="module" src="demos/church/js/demo-church.js"></script>
+  <div id="footer-placeholder"></div>
 </body>
 </html>
