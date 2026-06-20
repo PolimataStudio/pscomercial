@@ -1,139 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <base href="/pscomercial/">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AutorPolímata – Demo | Polímata</title>
-  <meta name="description" content="Demonstração do site para autores: livros, biografia, agenda, eventos e galeria.">
-  <link rel="icon" href="assets/icons/favicon.ico">
-  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
-  <link rel="manifest" href="manifest/manifest.json">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/tokens.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/pages.css">
-  <style>
-    .demo-hero {
-      padding: var(--space-8) 0;
-      text-align: center;
-      background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
-    }
-    .demo-hero h1 {
-      font-size: 2.5rem;
-    }
-    .demo-hero .subtitle {
-      color: var(--muted);
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    .demo-card-simple {
-      background: var(--surface);
-      padding: var(--space-4);
-      border-radius: var(--radius-md);
-      border-left: 3px solid var(--accent-lime);
-      margin-bottom: var(--space-2);
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carlos Silva – AutorPolímata</title>
+  <meta name="description" content="PWA para autores: livros, eventos e comunidade." />
+  <link rel="canonical" href="https://polimata.com/demos/author/" />
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="demos/author/css/demo-author.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div id="navbar-placeholder"></div>
-
-  <main>
-    <section class="demo-hero">
+  <main id="demo-author">
+    <section id="home" class="demo-hero">
       <div class="container">
         <h1>Carlos Silva</h1>
-        <p class="subtitle">Autor | Palestrante | Mentor</p>
-        <p class="text-muted" style="margin-top: var(--space-2);">Escritor e palestrante com 15 anos de experiência em literatura e desenvolvimento pessoal.</p>
+        <p>Autor | Palestrante | Mentor</p>
+        <a href="#books" class="btn btn-primary">Ver Livros</a>
       </div>
     </section>
-
-    <section class="section demo-section">
+    <section id="bio" class="demo-section">
       <div class="container">
-        <h2 class="demo-section-title">Livros</h2>
-        <div id="author-books" class="demo-grid-2">
-          <!-- Preenchido via JS -->
-        </div>
+        <h2>Biografia</h2>
+        <p>Escritor e palestrante com 15 anos de experiência em literatura e desenvolvimento pessoal. Autor de 10 livros best-sellers.</p>
       </div>
     </section>
-
-    <section class="section demo-section" style="background: var(--surface);">
+    <section id="books" class="demo-section">
       <div class="container">
-        <h2 class="demo-section-title">Próximos Eventos</h2>
-        <div id="author-events">
-          <!-- Preenchido via JS -->
-        </div>
+        <h2>Livros</h2>
+        <div id="books-list" class="demo-grid"></div>
       </div>
     </section>
-
-    <section class="section demo-section">
+    <section id="events" class="demo-section">
       <div class="container">
-        <h2 class="demo-section-title">Galeria</h2>
-        <div id="author-gallery" class="demo-grid-2">
-          <!-- Preenchido via JS -->
-        </div>
+        <h2>Eventos</h2>
+        <div id="events-list" class="demo-list"></div>
       </div>
     </section>
-
-    <!-- Seção Contribua -->
-    <section class="section demo-cta-section" style="background: var(--surface); border-top: 1px solid var(--border);">
-      <div class="container text-center">
-        <h2>Contribua</h2>
-        <p class="text-muted" style="max-width: 500px; margin: 0 auto var(--space-4);">Apoie nossa missão.</p>
-        <div style="display: flex; justify-content: center; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-4);">
-          <a href="#" class="btn btn-secondary" onclick="alert('Simulação de doação. Em breve disponível.'); return false;">Fazer Doação (Simulação)</a>
-          <a href="pages/contato.html" class="btn btn-outline">Quero uma versão assim</a>
-          <a href="pages/contato.html" class="btn btn-primary">Solicitar uma versão para meu projeto</a>
-        </div>
+    <section id="gallery" class="demo-section">
+      <div class="container">
+        <h2>Galeria</h2>
+        <div id="gallery-list" class="demo-grid"></div>
       </div>
     </section>
+    <section id="contact" class="demo-section">
+      <div class="container">
+        <h2>Contato</h2>
+        <div id="contact-info"></div>
+      </div>
+    </section>
+    <div class="text-center" style="margin-top: var(--space-4);">
+      <a href="pages/contato.html" class="btn btn-secondary">Quero uma versão assim</a>
+    </div>
+    <div class="demo-cta-fixed">
+      <a href="pages/contato.html" class="btn btn-primary">Solicitar uma versão para meu projeto</a>
+    </div>
   </main>
-
+  <script type="module" src="js/app.js"></script>
+  <script type="module" src="demos/author/js/demo-author.js"></script>
   <div id="footer-placeholder"></div>
-  <div class="demo-cta-fixed">
-    <a href="pages/contato.html" class="btn btn-primary">Solicitar uma versão para meu projeto</a>
-  </div>
-
-  <script type="module" src="/js/app.js"></script>
-  <script type="module">
-    // Simulação de dados
-    const books = [
-      { title: 'O Poder da Disciplina', synopsis: 'Como a disciplina transforma vidas.' },
-      { title: 'Mindset Digital', synopsis: 'Adapte-se à era digital.' }
-    ];
-    const events = [
-      { title: 'Lançamento do livro Resiliência', date: '2026-08-10', location: 'Livraria Cultura' },
-      { title: 'Palestra na Feira do Livro', date: '2026-08-20', location: 'Centro de Convenções' }
-    ];
-    const gallery = [
-      { title: 'Palestra em SP' },
-      { title: 'Sessão de Autógrafos' }
-    ];
-
-    document.getElementById('author-books').innerHTML = books.map(b => `
-      <div class="card">
-        <h3>${b.title}</h3>
-        <p>${b.synopsis}</p>
-        <a href="#" class="btn btn-secondary">Saiba mais</a>
-      </div>
-    `).join('');
-
-    document.getElementById('author-events').innerHTML = events.map(e => `
-      <div class="demo-card-simple">
-        <strong>${e.title}</strong><br>
-        <span class="text-muted">${e.date} – ${e.location}</span>
-      </div>
-    `).join('');
-
-    document.getElementById('author-gallery').innerHTML = gallery.map(g => `
-      <div class="card" style="height: 150px; display: flex; align-items: center; justify-content: center; background: var(--surface-light);">
-        <span class="text-muted">📸 ${g.title}</span>
-      </div>
-    `).join('');
-  </script>
 </body>
 </html>
