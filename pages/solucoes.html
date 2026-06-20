@@ -12,19 +12,19 @@
   <meta property="og:description" content="Soluções digitais inteligentes para diversos segmentos.">
   
   <link rel="canonical" href="https://polimata.com/pages/solucoes.html">
-  <link rel="icon" href="/assets/icons/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
-  <link rel="manifest" href="/manifest/manifest.json">
+  <link rel="icon" href="assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="manifest/manifest.json">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="/css/tokens.css">
-  <link rel="stylesheet" href="/css/base.css">
-  <link rel="stylesheet" href="/css/layout.css">
-  <link rel="stylesheet" href="/css/components.css">
-  <link rel="stylesheet" href="/css/pages.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
   
   <script type="application/ld+json">
   {
@@ -32,7 +32,7 @@
     "@type": "CollectionPage",
     "name": "Soluções Polímata",
     "description": "Soluções digitais para igrejas, escolas, professores, escritores, clínicas, salões, academias e negócios.",
-    "url": "https://polimata.com/pages/solucoes.html"
+    "url": "https://polimatastudio.github.io/pscomercial/pages/solucoes.html"
   }
   </script>
 </head>
@@ -56,13 +56,13 @@
 
   <div id="footer-placeholder"></div>
 
-  <script type="module" src="/js/app.js"></script>
+  <script type="module" src="js/app.js"></script>
   <script type="module">
-    import { renderSolutions } from '/js/components.js';
+    import { renderSolutions } from 'js/components.js';
 
     document.addEventListener('DOMContentLoaded', async () => {
       try {
-        const solutions = await fetch('/data/solutions.json').then(r => r.json());
+        const solutions = await fetch('data/solutions.json').then(r => r.json());
         renderSolutions(solutions, '#solutions-grid-full');
       } catch (e) {
         console.warn('Erro ao carregar soluções:', e);
