@@ -60,7 +60,7 @@ export async function renderCategoryGrid(containerSelector, filterSegment = '') 
           <div class="category-card-inner">
             <div class="category-stack">
               ${previewDemos.map((d, i) => `
-                <div class="stack-layer" style="--stack-index: ${i}; background-image: url('${PATH.resolveAsset('assets/images/demo-placeholder.jpg')}');" role="img" aria-label="Pré-visualização de ${d.title}">
+                <div class="stack-layer" style="--stack-index: ${i}; background-image: url('${PATH.resolveAsset('assets/images/demo-placeholder.webp')}');" role="img" aria-label="Pré-visualização de ${d.title}">
                   <span class="stack-label">${d.title}</span>
                 </div>
               `).join('')}
