@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Click-to-Chat · Fale com a Clínica</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ============================================================
+           CSS CUSTOM PROPERTIES — Design System (Mobile First)
+           ============================================================ */
+        :root {
+            --color-primary: #0a3d5e;
+            --color-primary-light: #1a5a7a;
+            --color-whatsapp: #25D366;
+            --color-whatsapp-dark: #1da851;
+            --color-whatsapp-light: #e8f5ee;
+            --color-bg: #f7f9fa;
+            --color-card: #ffffff;
+            --color-text: #1a2a32;
+            --color-text-muted: #4a5a66;
+            --color-text-light: #8a9aa8;
+            --color-border: #e2e8ec;
+            --color-shadow: rgba(10, 61, 94, 0.04);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-xs: 6px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --max-width: 800px;
+            --header-height: 60px;
+            --shadow-card: 0 4px 16px rgba(10, 61, 94, 0.04);
+            --shadow-hover: 0 8px 28px rgba(10, 61, 94, 0.08);
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        /* ============================================================
+           HEADER / NAV (fixa, minimalista)
+           ============================================================ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            letter-spacing: -0.3px;
+        }
+        .logo span {
+            color: var(--color-whatsapp);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+        .nav-menu a.active {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 16px;
+            background: var(--color-whatsapp);
+            color: #fff;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font);
+        }
+        .nav-cta:hover {
+            background: var(--color-whatsapp-dark);
+            transform: scale(1.02);
+        }
+        .nav-cta i {
+            font-size: 0.9rem;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           SECTIONS (compactas)
+           ============================================================ */
+        section {
+            padding: 60px 0 40px;
+            scroll-margin-top: 70px;
+        }
+
+        .section-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-whatsapp);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--color-primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title .highlight {
+            color: var(--color-whatsapp);
+        }
+
+        .section-desc {
+            font-size: 0.95rem;
+            color: var(--color-text-muted);
+            max-width: 560px;
+            margin-bottom: 1.5rem;
+        }
+
+        .text-center {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================================
+           HERO — CTA gigante
+           ============================================================ */
+        #hero {
+            padding-top: 80px;
+            padding-bottom: 40px;
+            background: linear-gradient(160deg, #eef4f8 0%, #f7f9fa 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(37, 211, 102, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content .hero-badge {
+            display: inline-block;
+            background: var(--color-whatsapp-light);
+            color: var(--color-whatsapp-dark);
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 16px;
+            border-radius: 40px;
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-content h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--color-primary);
+            margin-bottom: 0.6rem;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--color-whatsapp);
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            color: var(--color-text-muted);
+            max-width: 440px;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* Botão WhatsApp gigante */
+        .whatsapp-hero {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 48px;
+            background: var(--color-whatsapp);
+            color: #fff;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font);
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.25);
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .whatsapp-hero:hover {
+            background: var(--color-whatsapp-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.35);
+        }
+
+        .whatsapp-hero i {
+            font-size: 1.8rem;
+        }
+
+        .hero-trust {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.2rem;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .hero-trust span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .hero-trust i {
+            color: var(--color-whatsapp);
+        }
+
+        /* ============================================================
+           BENEFÍCIOS (motivos para contato)
+           ============================================================ */
+        #beneficios {
+            background: var(--color-card);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .benefit-item {
+            text-align: center;
+            padding: 1rem 0.5rem;
+            background: var(--color-bg);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .benefit-item .icon {
+            font-size: 1.6rem;
+            color: var(--color-whatsapp);
+            margin-bottom: 0.3rem;
+        }
+
+        .benefit-item h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .benefit-item p {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           ESPECIALIDADES (compactas)
+           ============================================================ */
+        #especialidades {
+            background: var(--color-bg);
+        }
+
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .specialty-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1rem 0.8rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-whatsapp);
+        }
+
+        .specialty-card .icon {
+            font-size: 1.6rem;
+            color: var(--color-whatsapp);
+            margin-bottom: 0.2rem;
+        }
+
+        .specialty-card h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .specialty-card p {
+            font-size: 0.65rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           DEPOIMENTOS (compactos)
+           ============================================================ */
+        #depoimentos {
+            background: var(--color-card);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem 1.2rem;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .testimonial-card .stars {
+            color: #f5b342;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-card .quote {
+            font-size: 0.85rem;
+            color: var(--color-text);
+            font-style: italic;
+        }
+
+        .testimonial-card .author {
+            margin-top: 0.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.8rem;
+        }
+
+        .testimonial-card .author span {
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.7rem;
+        }
+
+        /* ============================================================
+           FAQ (compacta)
+           ============================================================ */
+        #faq {
+            background: var(--color-bg);
+        }
+
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .faq-item {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 0.9rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-align: left;
+            cursor: pointer;
+            font-family: var(--font);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--color-bg);
+        }
+
+        .faq-question .icon {
+            color: var(--color-whatsapp);
+            transition: var(--transition);
+            font-size: 0.8rem;
+        }
+
+        .faq-question.open .icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 1.2rem;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        .faq-answer.open {
+            max-height: 200px;
+            padding: 0 1.2rem 1.2rem;
+        }
+
+        /* ============================================================
+           LOCALIZAÇÃO (compacta)
+           ============================================================ */
+        #localizacao {
+            background: var(--color-card);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 140px;
+            background: #dde4e8;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            border: 1px solid var(--color-border);
+            margin-top: 0.5rem;
+        }
+
+        .map-placeholder i {
+            margin-right: 8px;
+            color: var(--color-whatsapp);
+        }
+
+        .loc-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        .loc-info span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .loc-info i {
+            color: var(--color-whatsapp);
+        }
+
+        /* ============================================================
+           FAIXA FIXA DE CONTATO (flutuante)
+           ============================================================ */
+        .floating-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-top: 1px solid var(--color-border);
+            padding: 10px 16px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .floating-cta .floating-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .floating-cta .floating-text .pulse-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--color-whatsapp);
+            border-radius: 50%;
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+        }
+
+        .floating-cta .floating-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: var(--color-whatsapp);
+            color: #fff;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font);
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.2);
+            flex-shrink: 0;
+        }
+
+        .floating-cta .floating-btn:hover {
+            background: var(--color-whatsapp-dark);
+            transform: scale(1.02);
+        }
+
+        .floating-cta .floating-btn i {
+            font-size: 1.2rem;
+        }
+
+        /* ============================================================
+           RODAPÉ
+           ============================================================ */
+        .site-footer {
+            background: var(--color-primary);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 1.5rem 0;
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .site-footer .footer-text {
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        .site-footer .footer-text a {
+            color: rgba(255, 255, 255, 0.6);
+            transition: var(--transition);
+        }
+        .site-footer .footer-text a:hover {
+            color: #fff;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+
+        /* Tablets e telas médias */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: var(--color-card);
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                padding: 1.2rem 1.5rem;
+                border-bottom: 1px solid var(--color-border);
+                box-shadow: var(--shadow-card);
+                gap: 0.8rem;
+                align-items: stretch;
+            }
+            .nav-menu.open {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .nav-cta {
+                display: none;
+            }
+
+            .benefits-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .specialties-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .whatsapp-hero {
+                font-size: 1rem;
+                padding: 16px 32px;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .floating-cta .floating-text {
+                font-size: 0.7rem;
+            }
+            .floating-cta .floating-btn {
+                font-size: 0.8rem;
+                padding: 8px 18px;
+            }
+            .floating-cta .floating-btn i {
+                font-size: 1rem;
+            }
+            .loc-info {
+                gap: 1rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.6rem;
+            }
+            .specialties-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.6rem;
+            }
+            .whatsapp-hero {
+                font-size: 0.9rem;
+                padding: 14px 24px;
+            }
+            .hero-trust {
+                font-size: 0.7rem;
+                gap: 0.8rem;
+            }
+            .container {
+                padding: 0 12px;
+            }
+            .floating-cta {
+                padding: 8px 12px;
+            }
+            .floating-cta .floating-text {
+                font-size: 0.65rem;
+            }
+            .floating-cta .floating-btn {
+                font-size: 0.7rem;
+                padding: 6px 14px;
+            }
+            .floating-cta .floating-btn i {
+                font-size: 0.9rem;
+            }
+            .faq-question {
+                font-size: 0.8rem;
+                padding: 0.7rem 1rem;
+            }
+            .faq-answer {
+                font-size: 0.8rem;
+            }
+            .site-footer {
+                margin-bottom: 60px;
+            }
+            .site-footer .footer-text {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Telas maiores (desktop) */
+        @media (min-width: 769px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .whatsapp-hero {
+                max-width: 420px;
+            }
+            .floating-cta {
+                display: none !important;
+            }
+            .site-footer {
+                margin-bottom: 0;
+            }
+            .benefits-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .specialties-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        /* ============================================================
+           UTILITÁRIOS
+           ============================================================ */
+        .mt-1 {
+            margin-top: 1rem;
+        }
+        .mb-1 {
+            margin-bottom: 1rem;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="header">
+        <div class="container">
+            <a href="#hero" class="logo">Click<span>Chat</span></a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="active">Início</a></li>
+                <li><a href="#beneficios">Vantagens</a></li>
+                <li><a href="#especialidades">Especialidades</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#localizacao">Localização</a></li>
+            </ul>
+            <a href="https://wa.me/5511987654321?text=Olá%2C%20gostaria%20de%20falar%20com%20a%20clínica." target="_blank" class="nav-cta">
+                <i class="fab fa-whatsapp"></i> Falar agora
+            </a>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    HERO — CTA gigante
+    ============================================================ -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-comment-dots"></i> Atendimento rápido</div>
+                <h1>Fale com a clínica <br /><span class="highlight">em 1 clique</span></h1>
+                <p>
+                    Tire dúvidas, agende consultas ou receba orientações — tudo pelo WhatsApp,
+                    de forma rápida e humanizada.
+                </p>
+                <a href="https://wa.me/5511987654321?text=Olá%2C%20gostaria%20de%20falar%20com%20a%20clínica." target="_blank" class="whatsapp-hero">
+                    <i class="fab fa-whatsapp"></i> Falar agora no WhatsApp
+                </a>
+                <div class="hero-trust">
+                    <span><i class="fas fa-check-circle"></i> Resposta rápida</span>
+                    <span><i class="fas fa-shield-alt"></i> Atendimento seguro</span>
+                    <span><i class="fas fa-user-md"></i> Equipe especializada</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    BENEFÍCIOS — Motivos para contato
+    ============================================================ -->
+    <section id="beneficios">
+        <div class="container">
+            <div class="section-label text-center">Vantagens</div>
+            <h2 class="section-title text-center">Por que <span class="highlight">falar conosco</span>?</h2>
+            <p class="section-desc text-center" style="max-width:460px;">
+                Motivos simples e claros para dar o primeiro passo.
+            </p>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="icon"><i class="fas fa-clock"></i></div>
+                    <h4>Resposta Rápida</h4>
+                    <p>Atendimento em minutos</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon"><i class="fas fa-calendar-check"></i></div>
+                    <h4>Agendamento Fácil</h4>
+                    <p>Marque sem burocracia</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon"><i class="fas fa-user-md"></i></div>
+                    <h4>Especialistas</h4>
+                    <p>Equipe qualificada</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon"><i class="fas fa-heart"></i></div>
+                    <h4>Cuidado Humano</h4>
+                    <p>Escuta e acolhimento</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ESPECIALIDADES (compactas)
+    ============================================================ -->
+    <section id="especialidades">
+        <div class="container">
+            <div class="section-label text-center">Especialidades</div>
+            <h2 class="section-title text-center">Áreas de <span class="highlight">atendimento</span></h2>
+            <p class="section-desc text-center" style="max-width:440px;">
+                Conheça nossas especialidades e fale com o profissional certo.
+            </p>
+
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-user-md"></i></div>
+                    <h4>Clínica Geral</h4>
+                    <p>Prevenção</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4>Cardiologia</h4>
+                    <p>Coração</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-female"></i></div>
+                    <h4>Ginecologia</h4>
+                    <p>Saúde da mulher</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-bone"></i></div>
+                    <h4>Ortopedia</h4>
+                    <p>Movimento</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-brain"></i></div>
+                    <h4>Psicologia</h4>
+                    <p>Equilíbrio</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-apple-alt"></i></div>
+                    <h4>Nutrição</h4>
+                    <p>Alimentação</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-allergies"></i></div>
+                    <h4>Dermatologia</h4>
+                    <p>Pele</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-child"></i></div>
+                    <h4>Pediatria</h4>
+                    <p>Infantil</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    DEPOIMENTOS (compactos)
+    ============================================================ -->
+    <section id="depoimentos">
+        <div class="container">
+            <div class="section-label text-center">Depoimentos</div>
+            <h2 class="section-title text-center">O que <span class="highlight">nossos pacientes</span> dizem</h2>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="quote">“Atendimento pelo WhatsApp foi super rápido e prático. Já marquei minha consulta em minutos.”</div>
+                    <div class="author">Mariana S. <span>· Paciente</span></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="quote">“Tirei todas as minhas dúvidas antes de ir à clínica. Me senti muito mais segura.”</div>
+                    <div class="author">Carlos E. <span>· Paciente</span></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="quote">“A equipe respondeu com atenção e já me orientou sobre o que levar para a consulta.”</div>
+                    <div class="author">Fernanda L. <span>· Paciente</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FAQ (compacta)
+    ============================================================ -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-label text-center">Dúvidas</div>
+            <h2 class="section-title text-center">Perguntas <span class="highlight">frequentes</span></h2>
+            <p class="section-desc text-center" style="max-width:440px;">
+                Esclarecemos rapidamente o que você precisa saber.
+            </p>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Como funciona o atendimento via WhatsApp?</span>
+                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        Você clica no botão, abre o WhatsApp e nossa equipe responde em poucos minutos. Simples, rápido e sem burocracia.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Posso agendar uma consulta pelo chat?</span>
+                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        Sim! Pelo WhatsApp você agenda consultas, tira dúvidas sobre horários e recebe confirmações de forma ágil.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Quanto tempo demora para responderem?</span>
+                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        Nossa equipe responde em até 15 minutos durante o horário de atendimento (seg–sex, 8h–20h).
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>O atendimento é gratuito?</span>
+                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        Sim, o contato inicial pelo WhatsApp é totalmente gratuito. Apenas a consulta agendada tem custo conforme o plano escolhido.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    LOCALIZAÇÃO (compacta)
+    ============================================================ -->
+    <section id="localizacao">
+        <div class="container">
+            <div class="section-label text-center">Localização</div>
+            <h2 class="section-title text-center">Onde <span class="highlight">estamos</span></h2>
+
+            <div class="map-placeholder">
+                <i class="fas fa-map-pin"></i> Rua das Clínicas, 200 · São Paulo, SP
+            </div>
+            <div class="loc-info">
+                <span><i class="fas fa-clock"></i> Seg–Sex: 8h–20h</span>
+                <span><i class="fas fa-clock"></i> Sáb: 8h–14h</span>
+                <span><i class="fas fa-phone-alt"></i> (11) 3456-7890</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FAIXA FIXA DE CONTATO (flutuante)
+    ============================================================ -->
+    <div class="floating-cta" id="floatingCta">
+        <span class="floating-text">
+            <span class="pulse-dot"></span> Atendimento rápido
+        </span>
+        <a href="https://wa.me/5511987654321?text=Olá%2C%20gostaria%20de%20falar%20com%20a%20clínica." target="_blank" class="floating-btn">
+            <i class="fab fa-whatsapp"></i> Falar agora
+        </a>
+    </div>
+
+    <!-- ============================================================
+    RODAPÉ
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-text">
+                &copy; 2026 Click-to-Chat · Todos os direitos reservados.
+                <br />
+                <a href="#hero">Início</a> · <a href="#beneficios">Vantagens</a> · <a href="#especialidades">Especialidades</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // MOBILE TOGGLE
+            // ============================================================
+            const toggleBtn = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = navMenu.querySelectorAll('a');
+
+            toggleBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('open');
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('open');
+                    const icon = toggleBtn.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                });
+            });
+
+            // ============================================================
+            // SCROLL SPY — active link
+            // ============================================================
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = navLinks;
+
+            function updateActiveLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 80;
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            window.addEventListener('load', updateActiveLink);
+
+            // ============================================================
+            // SMOOTH SCROLL
+            // ============================================================
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // ============================================================
+            // FAQ ACCORDION
+            // ============================================================
+            window.toggleFaq = function(button) {
+                const answer = button.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+
+                // Fecha todos os outros
+                document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('open'));
+                document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('open'));
+
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    button.classList.add('open');
+                }
+            };
+
+            // ============================================================
+            // KEYBOARD SHORTCUTS (1-6)
+            // ============================================================
+            document.addEventListener('keydown', (e) => {
+                const num = parseInt(e.key);
+                if (num >= 1 && num <= 6) {
+                    const ids = ['hero', 'beneficios', 'especialidades', 'depoimentos', 'faq', 'localizacao'];
+                    const target = document.getElementById(ids[num - 1]);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+
+            console.log('💬 Click-to-Chat Clinic Page — carregada com sucesso.');
+            console.log('📌 Use as teclas 1-6 para navegar pelas seções.');
+
+        })();
+    </script>
+
+</body>
+</html>

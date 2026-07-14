@@ -1,0 +1,2882 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1a33" />
+    <meta name="description" content="AulaFlow — Centro de comando para professores e escolas pequenas." />
+    <title>AulaFlow · PWA</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json" />
+    <!-- Apple touch icon -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📘</text></svg>" />
+
+    <!-- Font & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+                   CSS VARIABLES · DESIGN SYSTEM
+                   ============================================================ */
+        :root {
+            --color-primary: #0b1a33;
+            --color-primary-light: #1a2f4f;
+            --color-primary-dark: #060f1f;
+            --color-cyan: #00b4d8;
+            --color-cyan-light: #48cae4;
+            --color-cyan-dark: #0096b7;
+            --color-white: #ffffff;
+            --color-gray-50: #f8fafc;
+            --color-gray-100: #f1f5f9;
+            --color-gray-200: #e2e8f0;
+            --color-gray-300: #cbd5e1;
+            --color-gray-400: #94a3b8;
+            --color-gray-500: #64748b;
+            --color-gray-600: #475569;
+            --color-gray-700: #334155;
+            --color-gray-800: #1e293b;
+            --color-gray-900: #0f172a;
+            --color-success: #10b981;
+            --color-success-bg: #d1fae5;
+            --color-warning: #f59e0b;
+            --color-warning-bg: #fef3c7;
+            --color-danger: #ef4444;
+            --color-danger-bg: #fee2e2;
+            --color-info: #3b82f6;
+            --color-info-bg: #dbeafe;
+
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --radius-xl: 20px;
+
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12);
+            --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.15);
+
+            --sidebar-width: 260px;
+            --header-height: 64px;
+            --bottom-nav-height: 64px;
+
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background: var(--color-gray-50);
+            color: var(--color-gray-800);
+            line-height: 1.5;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-gray-100);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-gray-300);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--color-gray-400);
+        }
+
+        /* ============================================================
+                   SIDEBAR · DESKTOP
+                   ============================================================ */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            height: 100dvh;
+            background: var(--color-primary);
+            color: var(--color-white);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            transition: transform var(--transition);
+            overflow: hidden;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            flex-shrink: 0;
+        }
+        .sidebar-brand .logo-icon {
+            font-size: 28px;
+            line-height: 1;
+        }
+        .sidebar-brand .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #fff 60%, var(--color-cyan-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .sidebar-brand .logo-badge {
+            font-size: 9px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            background: var(--color-cyan);
+            color: var(--color-primary);
+            padding: 2px 8px;
+            border-radius: 20px;
+            -webkit-text-fill-color: var(--color-primary);
+            margin-left: auto;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 12px 20px;
+        }
+        .sidebar-nav .nav-label {
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: rgba(255, 255, 255, 0.3);
+            padding: 12px 12px 6px;
+        }
+        .sidebar-nav .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-size: 14px;
+            font-weight: 500;
+            position: relative;
+            margin-bottom: 2px;
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+        }
+        .sidebar-nav .nav-item i {
+            width: 20px;
+            font-size: 16px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .sidebar-nav .nav-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+        }
+        .sidebar-nav .nav-item.active {
+            background: rgba(0, 180, 216, 0.18);
+            color: #fff;
+            box-shadow: inset 3px 0 0 var(--color-cyan);
+        }
+        .sidebar-nav .nav-item .badge {
+            margin-left: auto;
+            font-size: 11px;
+            font-weight: 600;
+            background: var(--color-cyan);
+            color: var(--color-primary);
+            padding: 1px 10px;
+            border-radius: 20px;
+            -webkit-text-fill-color: var(--color-primary);
+        }
+        .sidebar-nav .nav-item .badge.danger {
+            background: var(--color-danger);
+            color: #fff;
+            -webkit-text-fill-color: #fff;
+        }
+
+        .sidebar-footer {
+            padding: 16px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            flex-shrink: 0;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sidebar-footer .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--color-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--color-primary);
+            flex-shrink: 0;
+        }
+        .sidebar-footer .user-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .sidebar-footer .user-name {
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
+        }
+        .sidebar-footer .user-role {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .sidebar-footer .version {
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ============================================================
+                   MAIN CONTENT
+                   ============================================================ */
+        .main-wrapper {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            min-height: 100dvh;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        /* Header */
+        .top-header {
+            height: var(--header-height);
+            background: var(--color-white);
+            border-bottom: 1px solid var(--color-gray-200);
+            display: flex;
+            align-items: center;
+            padding: 0 32px;
+            flex-shrink: 0;
+            gap: 16px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+        .top-header .page-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-gray-800);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .top-header .page-title i {
+            color: var(--color-cyan);
+        }
+        .top-header .header-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .top-header .header-actions .icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            background: var(--color-gray-100);
+            color: var(--color-gray-600);
+            font-size: 16px;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .top-header .header-actions .icon-btn:hover {
+            background: var(--color-gray-200);
+            color: var(--color-gray-800);
+        }
+        .top-header .header-actions .icon-btn .dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 8px;
+            height: 8px;
+            background: var(--color-danger);
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+        .top-header .header-actions .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--color-gray-100);
+            border-radius: 30px;
+            padding: 0 16px;
+            gap: 10px;
+            transition: all var(--transition);
+            border: 1px solid transparent;
+        }
+        .top-header .header-actions .search-box:focus-within {
+            background: #fff;
+            border-color: var(--color-cyan);
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.15);
+        }
+        .top-header .header-actions .search-box input {
+            border: none;
+            background: transparent;
+            padding: 8px 0;
+            font-size: 14px;
+            font-family: inherit;
+            outline: none;
+            width: 150px;
+            color: var(--color-gray-700);
+        }
+        .top-header .header-actions .search-box input::placeholder {
+            color: var(--color-gray-400);
+        }
+        .top-header .header-actions .search-box i {
+            color: var(--color-gray-400);
+            font-size: 14px;
+        }
+        .top-header .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: var(--color-gray-700);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* Page content */
+        .page-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 24px 32px 100px;
+        }
+
+        /* ============================================================
+                   VIEWS · PAGES
+                   ============================================================ */
+        .view {
+            display: none;
+            animation: fadeSlideIn 0.3s ease;
+        }
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+                   DASHBOARD
+                   ============================================================ */
+        .dashboard-greeting {
+            margin-bottom: 24px;
+        }
+        .dashboard-greeting h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-gray-900);
+        }
+        .dashboard-greeting h1 span {
+            color: var(--color-cyan);
+        }
+        .dashboard-greeting p {
+            color: var(--color-gray-500);
+            font-size: 14px;
+            margin-top: 2px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .stat-card {
+            background: #fff;
+            border-radius: var(--radius-md);
+            padding: 18px 20px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--color-gray-200);
+            transition: all var(--transition);
+        }
+        .stat-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .stat-card .stat-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--color-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .stat-card .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-top: 4px;
+        }
+        .stat-card .stat-change {
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .stat-card .stat-change.up {
+            color: var(--color-success);
+        }
+        .stat-card .stat-change.down {
+            color: var(--color-danger);
+        }
+        .stat-card .stat-icon {
+            float: right;
+            font-size: 28px;
+            opacity: 0.15;
+            color: var(--color-primary);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+        .card-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--color-gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .card-header h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-gray-800);
+        }
+        .card-header .card-action {
+            font-size: 13px;
+            color: var(--color-cyan);
+            font-weight: 500;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+        .card-header .card-action:hover {
+            text-decoration: underline;
+        }
+        .card-body {
+            padding: 16px 20px;
+        }
+
+        /* Agenda timeline */
+        .timeline-item {
+            display: flex;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-gray-100);
+            align-items: flex-start;
+        }
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        .timeline-item .time {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-gray-600);
+            min-width: 60px;
+            flex-shrink: 0;
+            padding-top: 2px;
+        }
+        .timeline-item .content {
+            flex: 1;
+        }
+        .timeline-item .content .title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--color-gray-800);
+        }
+        .timeline-item .content .sub {
+            font-size: 13px;
+            color: var(--color-gray-500);
+        }
+        .timeline-item .status-badge {
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .status-badge.confirmed {
+            background: var(--color-success-bg);
+            color: var(--color-success);
+        }
+        .status-badge.pending {
+            background: var(--color-warning-bg);
+            color: var(--color-warning);
+        }
+        .status-badge.canceled {
+            background: var(--color-danger-bg);
+            color: var(--color-danger);
+        }
+        .status-badge.info {
+            background: var(--color-info-bg);
+            color: var(--color-info);
+        }
+
+        /* Pending payments */
+        .payment-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-gray-100);
+        }
+        .payment-item:last-child {
+            border-bottom: none;
+        }
+        .payment-item .info .name {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .payment-item .info .detail {
+            font-size: 13px;
+            color: var(--color-gray-500);
+        }
+        .payment-item .amount {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--color-gray-900);
+        }
+        .payment-item .amount.overdue {
+            color: var(--color-danger);
+        }
+
+        /* Alerts */
+        .alert-item {
+            display: flex;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--color-gray-100);
+            align-items: flex-start;
+        }
+        .alert-item:last-child {
+            border-bottom: none;
+        }
+        .alert-item .alert-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 14px;
+        }
+        .alert-item .alert-icon.warning {
+            background: var(--color-warning-bg);
+            color: var(--color-warning);
+        }
+        .alert-item .alert-icon.info {
+            background: var(--color-info-bg);
+            color: var(--color-info);
+        }
+        .alert-item .alert-icon.success {
+            background: var(--color-success-bg);
+            color: var(--color-success);
+        }
+        .alert-item .alert-text {
+            font-size: 14px;
+            color: var(--color-gray-700);
+        }
+        .alert-item .alert-text strong {
+            color: var(--color-gray-900);
+        }
+        .alert-item .alert-time {
+            font-size: 12px;
+            color: var(--color-gray-400);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+                   AGENDA VIEW
+                   ============================================================ */
+        .agenda-toolbar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .agenda-toolbar .btn {
+            padding: 8px 18px;
+            border-radius: var(--radius-sm);
+            border: none;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .agenda-toolbar .btn-primary {
+            background: var(--color-primary);
+            color: #fff;
+        }
+        .agenda-toolbar .btn-primary:hover {
+            background: var(--color-primary-light);
+            box-shadow: var(--shadow-md);
+        }
+        .agenda-toolbar .btn-outline {
+            background: transparent;
+            color: var(--color-gray-600);
+            border: 1px solid var(--color-gray-300);
+        }
+        .agenda-toolbar .btn-outline:hover {
+            background: var(--color-gray-100);
+        }
+        .agenda-toolbar .btn-cyan {
+            background: var(--color-cyan);
+            color: #fff;
+        }
+        .agenda-toolbar .btn-cyan:hover {
+            background: var(--color-cyan-dark);
+            box-shadow: var(--shadow-md);
+        }
+        .agenda-toolbar .btn-sm {
+            padding: 5px 12px;
+            font-size: 12px;
+        }
+        .agenda-toolbar .date-nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-left: auto;
+        }
+        .agenda-toolbar .date-nav span {
+            font-weight: 500;
+            font-size: 14px;
+            min-width: 140px;
+            text-align: center;
+            color: var(--color-gray-700);
+        }
+        .agenda-toolbar .date-nav button {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--color-gray-200);
+            background: #fff;
+            cursor: pointer;
+            transition: all var(--transition);
+            color: var(--color-gray-600);
+        }
+        .agenda-toolbar .date-nav button:hover {
+            background: var(--color-gray-100);
+            border-color: var(--color-gray-300);
+        }
+
+        .agenda-list .timeline-item {
+            padding: 14px 0;
+        }
+        .agenda-list .timeline-item .time {
+            font-weight: 600;
+            color: var(--color-gray-700);
+        }
+        .agenda-list .timeline-item .content .title {
+            font-size: 15px;
+        }
+        .agenda-list .timeline-item .content .sub {
+            font-size: 13px;
+        }
+
+        /* ============================================================
+                   TURMAS · CLASSES
+                   ============================================================ */
+        .classes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+        .class-card {
+            background: #fff;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .class-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+        .class-card .class-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .class-card .class-header h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--color-gray-900);
+        }
+        .class-card .class-header .class-code {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--color-gray-400);
+            background: var(--color-gray-100);
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .class-card .class-meta {
+            font-size: 13px;
+            color: var(--color-gray-500);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 12px;
+        }
+        .class-card .class-meta i {
+            width: 18px;
+            color: var(--color-gray-400);
+        }
+        .class-card .class-progress {
+            margin-top: 8px;
+        }
+        .class-card .class-progress .bar {
+            height: 6px;
+            background: var(--color-gray-200);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 4px;
+        }
+        .class-card .class-progress .bar .fill {
+            height: 100%;
+            background: var(--color-cyan);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+        .class-card .class-progress .label {
+            font-size: 12px;
+            color: var(--color-gray-500);
+            display: flex;
+            justify-content: space-between;
+        }
+        .class-card .class-footer {
+            margin-top: 14px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .class-card .class-footer .chip {
+            font-size: 11px;
+            font-weight: 500;
+            padding: 3px 12px;
+            border-radius: 20px;
+            background: var(--color-gray-100);
+            color: var(--color-gray-600);
+        }
+        .class-card .class-footer .chip.cyan {
+            background: rgba(0, 180, 216, 0.12);
+            color: var(--color-cyan);
+        }
+
+        /* ============================================================
+                   ALUNOS · STUDENTS
+                   ============================================================ */
+        .students-toolbar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .students-toolbar .search-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 9px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-gray-300);
+            font-family: inherit;
+            font-size: 14px;
+            transition: all var(--transition);
+            background: #fff;
+        }
+        .students-toolbar .search-input:focus {
+            outline: none;
+            border-color: var(--color-cyan);
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.12);
+        }
+        .students-toolbar .filter-select {
+            padding: 9px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-gray-300);
+            font-family: inherit;
+            font-size: 14px;
+            background: #fff;
+            color: var(--color-gray-700);
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+        .student-card {
+            background: #fff;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+            padding: 18px 20px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .student-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+        .student-card .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-cyan);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        .student-card .info .name {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--color-gray-900);
+        }
+        .student-card .info .detail {
+            font-size: 13px;
+            color: var(--color-gray-500);
+        }
+        .student-card .student-status {
+            margin-left: auto;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 12px;
+            border-radius: 20px;
+        }
+        .student-card .student-status.active {
+            background: var(--color-success-bg);
+            color: var(--color-success);
+        }
+        .student-card .student-status.inactive {
+            background: var(--color-gray-200);
+            color: var(--color-gray-500);
+        }
+
+        /* ============================================================
+                   MENSAGENS · MESSAGES
+                   ============================================================ */
+        .messages-list .msg-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--color-gray-100);
+            align-items: flex-start;
+        }
+        .messages-list .msg-item:last-child {
+            border-bottom: none;
+        }
+        .messages-list .msg-item .msg-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--color-gray-600);
+            flex-shrink: 0;
+        }
+        .messages-list .msg-item .msg-content {
+            flex: 1;
+        }
+        .messages-list .msg-item .msg-content .sender {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--color-gray-900);
+        }
+        .messages-list .msg-item .msg-content .preview {
+            font-size: 14px;
+            color: var(--color-gray-500);
+        }
+        .messages-list .msg-item .msg-content .time {
+            font-size: 12px;
+            color: var(--color-gray-400);
+        }
+        .messages-list .msg-item .msg-badge {
+            font-size: 10px;
+            font-weight: 700;
+            background: var(--color-cyan);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 20px;
+            flex-shrink: 0;
+        }
+        .messages-list .msg-item.unread .msg-content .sender {
+            color: var(--color-primary);
+        }
+        .messages-list .msg-item.unread .msg-content .preview {
+            font-weight: 500;
+            color: var(--color-gray-700);
+        }
+
+        /* ============================================================
+                   FINANCEIRO · FINANCIAL
+                   ============================================================ */
+        .finance-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .finance-stat {
+            background: #fff;
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            border: 1px solid var(--color-gray-200);
+            text-align: center;
+        }
+        .finance-stat .label {
+            font-size: 12px;
+            color: var(--color-gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .finance-stat .value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-top: 2px;
+        }
+        .finance-stat .value.positive {
+            color: var(--color-success);
+        }
+        .finance-stat .value.negative {
+            color: var(--color-danger);
+        }
+
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .transactions-table th {
+            text-align: left;
+            padding: 10px 12px;
+            font-weight: 600;
+            color: var(--color-gray-500);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            border-bottom: 2px solid var(--color-gray-200);
+        }
+        .transactions-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--color-gray-100);
+            color: var(--color-gray-700);
+        }
+        .transactions-table tr:last-child td {
+            border-bottom: none;
+        }
+        .transactions-table .amount {
+            font-weight: 600;
+        }
+        .transactions-table .amount.positive {
+            color: var(--color-success);
+        }
+        .transactions-table .amount.negative {
+            color: var(--color-danger);
+        }
+
+        /* ============================================================
+                   RELATÓRIOS · REPORTS
+                   ============================================================ */
+        .reports-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        .report-card {
+            background: #fff;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+            padding: 20px;
+            text-align: center;
+            transition: all var(--transition);
+            cursor: pointer;
+        }
+        .report-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+            border-color: var(--color-cyan);
+        }
+        .report-card .icon {
+            font-size: 32px;
+            color: var(--color-cyan);
+            margin-bottom: 8px;
+        }
+        .report-card h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--color-gray-900);
+        }
+        .report-card p {
+            font-size: 13px;
+            color: var(--color-gray-500);
+        }
+
+        /* ============================================================
+                   CONFIGURAÇÕES · SETTINGS
+                   ============================================================ */
+        .settings-group {
+            background: #fff;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--color-gray-200);
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+        .settings-group .group-title {
+            padding: 14px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 1px solid var(--color-gray-100);
+            color: var(--color-gray-800);
+            background: var(--color-gray-50);
+        }
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--color-gray-100);
+        }
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+        .settings-item .label {
+            font-size: 14px;
+            color: var(--color-gray-700);
+        }
+        .settings-item .label small {
+            display: block;
+            font-size: 12px;
+            color: var(--color-gray-400);
+            font-weight: 400;
+        }
+        .settings-item .control {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        /* Toggle switch */
+        .toggle {
+            width: 44px;
+            height: 24px;
+            background: var(--color-gray-300);
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: all var(--transition);
+            flex-shrink: 0;
+            border: none;
+            padding: 0;
+        }
+        .toggle.active {
+            background: var(--color-cyan);
+        }
+        .toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            border-radius: 50%;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .toggle.active::after {
+            left: 23px;
+        }
+
+        /* ============================================================
+                   BOTTOM NAV · MOBILE
+                   ============================================================ */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--bottom-nav-height);
+            background: var(--color-white);
+            border-top: 1px solid var(--color-gray-200);
+            z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+        .bottom-nav .nav-items {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 100%;
+            padding: 0 8px;
+        }
+        .bottom-nav .nav-items .nav-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            background: none;
+            border: none;
+            font-family: inherit;
+            font-size: 10px;
+            color: var(--color-gray-400);
+            cursor: pointer;
+            transition: all var(--transition);
+            padding: 4px 12px;
+            position: relative;
+            min-width: 48px;
+        }
+        .bottom-nav .nav-items .nav-btn i {
+            font-size: 20px;
+        }
+        .bottom-nav .nav-items .nav-btn.active {
+            color: var(--color-cyan);
+        }
+        .bottom-nav .nav-items .nav-btn .badge {
+            position: absolute;
+            top: 0;
+            right: 4px;
+            font-size: 9px;
+            font-weight: 700;
+            background: var(--color-danger);
+            color: #fff;
+            padding: 1px 6px;
+            border-radius: 20px;
+            line-height: 1.4;
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-wrapper {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .top-header {
+                padding: 0 16px;
+                height: 56px;
+            }
+            .top-header .menu-toggle {
+                display: block;
+            }
+            .top-header .page-title {
+                font-size: 16px;
+            }
+            .top-header .header-actions .search-box input {
+                width: 100px;
+            }
+            .top-header .header-actions .search-box {
+                padding: 0 12px;
+            }
+
+            .page-content {
+                padding: 16px 16px 80px;
+            }
+
+            .bottom-nav {
+                display: block;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .stat-card .stat-value {
+                font-size: 22px;
+            }
+
+            .classes-grid {
+                grid-template-columns: 1fr;
+            }
+            .students-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .finance-summary {
+                grid-template-columns: 1fr 1fr;
+            }
+            .transactions-table {
+                font-size: 13px;
+            }
+            .transactions-table th,
+            .transactions-table td {
+                padding: 8px 10px;
+            }
+            .transactions-table .hide-mobile {
+                display: none;
+            }
+
+            .reports-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .agenda-toolbar {
+                flex-wrap: wrap;
+            }
+            .agenda-toolbar .date-nav {
+                margin-left: 0;
+                width: 100%;
+                justify-content: center;
+            }
+            .agenda-toolbar .date-nav span {
+                min-width: 120px;
+                font-size: 13px;
+            }
+
+            .dashboard-greeting h1 {
+                font-size: 20px;
+            }
+
+            .top-header .header-actions .icon-btn .dot {
+                top: 6px;
+                right: 6px;
+                width: 6px;
+                height: 6px;
+            }
+
+            .settings-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .settings-item .control {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .stat-card {
+                padding: 14px 16px;
+            }
+            .stat-card .stat-value {
+                font-size: 20px;
+            }
+            .top-header .header-actions .search-box input {
+                width: 70px;
+            }
+            .top-header .header-actions .search-box {
+                padding: 0 10px;
+            }
+            .top-header .header-actions .search-box i {
+                font-size: 12px;
+            }
+            .finance-summary {
+                grid-template-columns: 1fr 1fr;
+            }
+            .reports-grid {
+                grid-template-columns: 1fr;
+            }
+            .class-card {
+                padding: 16px;
+            }
+            .student-card {
+                padding: 14px 16px;
+            }
+        }
+
+        /* Overlay for mobile sidebar */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 999;
+            backdrop-filter: blur(2px);
+        }
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--color-gray-500);
+        }
+        .empty-state i {
+            font-size: 48px;
+            color: var(--color-gray-300);
+            margin-bottom: 12px;
+        }
+        .empty-state h4 {
+            font-size: 18px;
+            color: var(--color-gray-700);
+            margin-bottom: 4px;
+        }
+        .empty-state p {
+            font-size: 14px;
+        }
+
+        /* Offline indicator */
+        .offline-banner {
+            display: none;
+            background: var(--color-warning-bg);
+            color: var(--color-warning);
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .offline-banner.active {
+            display: block;
+        }
+        .offline-banner i {
+            margin-right: 8px;
+        }
+
+        /* Quick action button */
+        .fab {
+            position: fixed;
+            bottom: 84px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--color-cyan);
+            color: #fff;
+            border: none;
+            font-size: 24px;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            transition: all var(--transition);
+            z-index: 500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        .fab:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-xl);
+        }
+        .fab.active {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .fab {
+                bottom: 80px;
+                right: 16px;
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+        }
+
+        /* Toast notification */
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 360px;
+        }
+        .toast {
+            background: var(--color-gray-900);
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            font-size: 14px;
+            animation: slideInRight 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid var(--color-cyan);
+        }
+        .toast.success {
+            border-left-color: var(--color-success);
+        }
+        .toast.error {
+            border-left-color: var(--color-danger);
+        }
+        .toast.warning {
+            border-left-color: var(--color-warning);
+        }
+        .toast i {
+            font-size: 18px;
+        }
+        .toast .close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0 4px;
+        }
+        .toast .close:hover {
+            color: #fff;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    SIDEBAR OVERLAY (mobile)
+    ============================================================ -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ============================================================
+    SIDEBAR
+    ============================================================ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <span class="logo-icon">📘</span>
+            <span class="logo-text">AulaFlow</span>
+            <span class="logo-badge">PWA</span>
+        </div>
+
+        <nav class="sidebar-nav" id="sidebarNav">
+            <div class="nav-label">Navegação</div>
+
+            <button class="nav-item active" data-view="dashboard" data-label="Dashboard">
+                <i class="fas fa-th-large"></i> Dashboard
+            </button>
+            <button class="nav-item" data-view="agenda" data-label="Agenda">
+                <i class="fas fa-calendar-day"></i> Agenda
+                <span class="badge">8</span>
+            </button>
+            <button class="nav-item" data-view="turmas" data-label="Turmas">
+                <i class="fas fa-users"></i> Turmas
+                <span class="badge">4</span>
+            </button>
+            <button class="nav-item" data-view="alunos" data-label="Alunos">
+                <i class="fas fa-user-graduate"></i> Alunos
+                <span class="badge">32</span>
+            </button>
+            <button class="nav-item" data-view="mensagens" data-label="Mensagens">
+                <i class="fas fa-envelope"></i> Mensagens
+                <span class="badge danger">3</span>
+            </button>
+            <button class="nav-item" data-view="financeiro" data-label="Financeiro">
+                <i class="fas fa-coins"></i> Financeiro
+            </button>
+            <button class="nav-item" data-view="relatorios" data-label="Relatórios">
+                <i class="fas fa-chart-pie"></i> Relatórios
+            </button>
+
+            <div class="nav-label" style="margin-top:16px;">Sistema</div>
+            <button class="nav-item" data-view="configuracoes" data-label="Configurações">
+                <i class="fas fa-cog"></i> Configurações
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-avatar">PD</div>
+            <div class="user-info">
+                <div class="user-name">Prof. Diego</div>
+                <div class="user-role">Administrador</div>
+            </div>
+            <span class="version">v2.0</span>
+        </div>
+    </aside>
+
+    <!-- ============================================================
+    MAIN WRAPPER
+    ============================================================ -->
+    <div class="main-wrapper">
+
+        <!-- Offline banner -->
+        <div class="offline-banner" id="offlineBanner">
+            <i class="fas fa-wifi"></i> Modo offline — alguns dados podem estar desatualizados.
+        </div>
+
+        <!-- Top Header -->
+        <header class="top-header">
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="page-title" id="pageTitle">
+                <i class="fas fa-th-large"></i> <span>Dashboard</span>
+            </div>
+            <div class="header-actions">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar..." id="globalSearch" />
+                </div>
+                <button class="icon-btn" aria-label="Notificações">
+                    <i class="fas fa-bell"></i>
+                    <span class="dot"></span>
+                </button>
+                <button class="icon-btn" aria-label="Ajuda">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <main class="page-content" id="pageContent">
+
+            <!-- =============================================
+            VIEW: DASHBOARD
+            ============================================= -->
+            <section class="view active" id="view-dashboard">
+                <div class="dashboard-greeting">
+                    <h1>Olá, <span>Professor Diego</span> 👋</h1>
+                    <p>Hoje é <strong id="todayDate"></strong> — você tem 4 aulas agendadas.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-icon"><i class="fas fa-user-graduate"></i></span>
+                        <div class="stat-label">Alunos</div>
+                        <div class="stat-value">32</div>
+                        <div class="stat-change up"><i class="fas fa-arrow-up"></i> +3 este mês</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon"><i class="fas fa-users"></i></span>
+                        <div class="stat-label">Turmas</div>
+                        <div class="stat-value">4</div>
+                        <div class="stat-change up"><i class="fas fa-arrow-up"></i> +1 este mês</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon"><i class="fas fa-calendar-check"></i></span>
+                        <div class="stat-label">Aulas hoje</div>
+                        <div class="stat-value">4</div>
+                        <div class="stat-change up"><i class="fas fa-arrow-up"></i> 2 confirmadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-icon"><i class="fas fa-coins"></i></span>
+                        <div class="stat-label">Pendentes</div>
+                        <div class="stat-value">R$ 1.280</div>
+                        <div class="stat-change down"><i class="fas fa-arrow-down"></i> 3 alunos</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <!-- Agenda do dia -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-clock" style="color:var(--color-cyan);margin-right:8px;"></i> Agenda de hoje</h3>
+                            <button class="card-action" onclick="navigateTo('agenda')">Ver todas →</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="timeline-item">
+                                <span class="time">08:00</span>
+                                <div class="content">
+                                    <div class="title">Matemática · Turma A</div>
+                                    <div class="sub">Sala 101 · 12 alunos</div>
+                                </div>
+                                <span class="status-badge confirmed">Confirmada</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">10:30</span>
+                                <div class="content">
+                                    <div class="title">Física · Turma B</div>
+                                    <div class="sub">Sala 203 · 8 alunos</div>
+                                </div>
+                                <span class="status-badge pending">Pendente</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">13:30</span>
+                                <div class="content">
+                                    <div class="title">Química · Turma C</div>
+                                    <div class="sub">Laboratório · 6 alunos</div>
+                                </div>
+                                <span class="status-badge confirmed">Confirmada</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time">16:00</span>
+                                <div class="content">
+                                    <div class="title">Reforço · Aluno João</div>
+                                    <div class="sub">Individual · 1 aluno</div>
+                                </div>
+                                <span class="status-badge info">Aguardando</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagamentos e Alertas -->
+                    <div style="display:flex;flex-direction:column;gap:20px;">
+                        <!-- Pagamentos pendentes -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-exclamation-triangle" style="color:var(--color-warning);margin-right:8px;"></i> Pagamentos pendentes</h3>
+                                <button class="card-action" onclick="navigateTo('financeiro')">Ver todos →</button>
+                            </div>
+                            <div class="card-body">
+                                <div class="payment-item">
+                                    <div class="info">
+                                        <div class="name">Ana Silva</div>
+                                        <div class="detail">Vence há 3 dias</div>
+                                    </div>
+                                    <span class="amount overdue">R$ 320,00</span>
+                                </div>
+                                <div class="payment-item">
+                                    <div class="info">
+                                        <div class="name">Carlos Mendes</div>
+                                        <div class="detail">Vence amanhã</div>
+                                    </div>
+                                    <span class="amount">R$ 280,00</span>
+                                </div>
+                                <div class="payment-item">
+                                    <div class="info">
+                                        <div class="name">Mariana Costa</div>
+                                        <div class="detail">Vence em 3 dias</div>
+                                    </div>
+                                    <span class="amount">R$ 350,00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alertas -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3><i class="fas fa-bell" style="color:var(--color-info);margin-right:8px;"></i> Alertas</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="alert-item">
+                                    <div class="alert-icon warning"><i class="fas fa-exclamation"></i></div>
+                                    <div>
+                                        <div class="alert-text"><strong>Turma A</strong> — 2 alunos não confirmaram presença.</div>
+                                        <div class="alert-time">Há 1 hora</div>
+                                    </div>
+                                </div>
+                                <div class="alert-item">
+                                    <div class="alert-icon info"><i class="fas fa-info"></i></div>
+                                    <div>
+                                        <div class="alert-text"><strong>Novo aluno</strong> — Rafaela inscreveu-se no reforço.</div>
+                                        <div class="alert-time">Há 3 horas</div>
+                                    </div>
+                                </div>
+                                <div class="alert-item">
+                                    <div class="alert-icon success"><i class="fas fa-check"></i></div>
+                                    <div>
+                                        <div class="alert-text"><strong>Pagamento</strong> — R$ 420,00 recebido de Paulo.</div>
+                                        <div class="alert-time">Hoje, 09:32</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =============================================
+            VIEW: AGENDA
+            ============================================= -->
+            <section class="view" id="view-agenda">
+                <div class="agenda-toolbar">
+                    <button class="btn btn-cyan"><i class="fas fa-plus"></i> Novo evento</button>
+                    <button class="btn btn-outline"><i class="fas fa-filter"></i> Filtrar</button>
+                    <div class="date-nav">
+                        <button id="agendaPrev"><i class="fas fa-chevron-left"></i></button>
+                        <span id="agendaDate">Segunda, 7 de julho</span>
+                        <button id="agendaNext"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Agenda semanal</h3>
+                        <span style="font-size:13px;color:var(--color-gray-400);">4 eventos</span>
+                    </div>
+                    <div class="card-body agenda-list">
+                        <div class="timeline-item">
+                            <span class="time">08:00</span>
+                            <div class="content">
+                                <div class="title">Matemática · Turma A</div>
+                                <div class="sub">Sala 101 · 12 alunos · Prof. Diego</div>
+                            </div>
+                            <span class="status-badge confirmed">Confirmada</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">10:30</span>
+                            <div class="content">
+                                <div class="title">Física · Turma B</div>
+                                <div class="sub">Sala 203 · 8 alunos · Prof. Diego</div>
+                            </div>
+                            <span class="status-badge pending">Pendente</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">13:30</span>
+                            <div class="content">
+                                <div class="title">Química · Turma C</div>
+                                <div class="sub">Laboratório · 6 alunos · Prof. Diego</div>
+                            </div>
+                            <span class="status-badge confirmed">Confirmada</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">16:00</span>
+                            <div class="content">
+                                <div class="title">Reforço · Aluno João</div>
+                                <div class="sub">Individual · 1 aluno · Prof. Diego</div>
+                            </div>
+                            <span class="status-badge info">Aguardando</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">18:30</span>
+                            <div class="content">
+                                <div class="title">Inglês · Turma D</div>
+                                <div class="sub">Sala 305 · 5 alunos · Prof. Diego</div>
+                            </div>
+                            <span class="status-badge confirmed">Confirmada</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =============================================
+            VIEW: TURMAS
+            ============================================= -->
+            <section class="view" id="view-turmas">
+                <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+                    <button class="btn btn-cyan"><i class="fas fa-plus"></i> Nova turma</button>
+                    <button class="btn btn-outline"><i class="fas fa-download"></i> Exportar</button>
+                    <span style="margin-left:auto;font-size:14px;color:var(--color-gray-500);">4 turmas ativas</span>
+                </div>
+
+                <div class="classes-grid">
+                    <div class="class-card">
+                        <div class="class-header">
+                            <h4>Matemática · Turma A</h4>
+                            <span class="class-code">MAT-A</span>
+                        </div>
+                        <div class="class-meta">
+                            <span><i class="fas fa-user"></i> 12 alunos (máx. 15)</span>
+                            <span><i class="fas fa-clock"></i> Seg/Qua · 08:00 – 09:30</span>
+                            <span><i class="fas fa-map-pin"></i> Sala 101</span>
+                        </div>
+                        <div class="class-progress">
+                            <div class="label">
+                                <span>Ocupação</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="bar"><div class="fill" style="width:80%;"></div></div>
+                        </div>
+                        <div class="class-footer">
+                            <span class="chip cyan"><i class="fas fa-check-circle"></i> 10 presentes</span>
+                            <span class="chip">2 ausentes</span>
+                        </div>
+                    </div>
+
+                    <div class="class-card">
+                        <div class="class-header">
+                            <h4>Física · Turma B</h4>
+                            <span class="class-code">FIS-B</span>
+                        </div>
+                        <div class="class-meta">
+                            <span><i class="fas fa-user"></i> 8 alunos (máx. 12)</span>
+                            <span><i class="fas fa-clock"></i> Ter/Qui · 10:30 – 12:00</span>
+                            <span><i class="fas fa-map-pin"></i> Sala 203</span>
+                        </div>
+                        <div class="class-progress">
+                            <div class="label">
+                                <span>Ocupação</span>
+                                <span>67%</span>
+                            </div>
+                            <div class="bar"><div class="fill" style="width:67%;"></div></div>
+                        </div>
+                        <div class="class-footer">
+                            <span class="chip cyan"><i class="fas fa-check-circle"></i> 6 presentes</span>
+                            <span class="chip">2 ausentes</span>
+                        </div>
+                    </div>
+
+                    <div class="class-card">
+                        <div class="class-header">
+                            <h4>Química · Turma C</h4>
+                            <span class="class-code">QUI-C</span>
+                        </div>
+                        <div class="class-meta">
+                            <span><i class="fas fa-user"></i> 6 alunos (máx. 10)</span>
+                            <span><i class="fas fa-clock"></i> Ter/Qui · 13:30 – 15:00</span>
+                            <span><i class="fas fa-map-pin"></i> Laboratório</span>
+                        </div>
+                        <div class="class-progress">
+                            <div class="label">
+                                <span>Ocupação</span>
+                                <span>60%</span>
+                            </div>
+                            <div class="bar"><div class="fill" style="width:60%;"></div></div>
+                        </div>
+                        <div class="class-footer">
+                            <span class="chip cyan"><i class="fas fa-check-circle"></i> 5 presentes</span>
+                            <span class="chip">1 ausente</span>
+                        </div>
+                    </div>
+
+                    <div class="class-card">
+                        <div class="class-header">
+                            <h4>Inglês · Turma D</h4>
+                            <span class="class-code">ING-D</span>
+                        </div>
+                        <div class="class-meta">
+                            <span><i class="fas fa-user"></i> 5 alunos (máx. 8)</span>
+                            <span><i class="fas fa-clock"></i> Seg/Qua · 18:30 – 20:00</span>
+                            <span><i class="fas fa-map-pin"></i> Sala 305</span>
+                        </div>
+                        <div class="class-progress">
+                            <div class="label">
+                                <span>Ocupação</span>
+                                <span>63%</span>
+                            </div>
+                            <div class="bar"><div class="fill" style="width:63%;"></div></div>
+                        </div>
+                        <div class="class-footer">
+                            <span class="chip cyan"><i class="fas fa-check-circle"></i> 4 presentes</span>
+                            <span class="chip">1 ausente</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =============================================
+            VIEW: ALUNOS
+            ============================================= -->
+            <section class="view" id="view-alunos">
+                <div class="students-toolbar">
+                    <input type="text" class="search-input" placeholder="Buscar aluno por nome..." id="studentSearch" />
+                    <select class="filter-select" id="studentFilter">
+                        <option value="all">Todas as turmas</option>
+                        <option value="mat-a">Matemática A</option>
+                        <option value="fis-b">Física B</option>
+                        <option value="qui-c">Química C</option>
+                        <option value="ing-d">Inglês D</option>
+                    </select>
+                    <button class="btn btn-cyan"><i class="fas fa-plus"></i> Novo aluno</button>
+                </div>
+
+                <div class="students-grid" id="studentsGrid">
+                    <div class="student-card">
+                        <div class="avatar">AS</div>
+                        <div class="info">
+                            <div class="name">Ana Silva</div>
+                            <div class="detail">Matemática A · 12 anos</div>
+                        </div>
+                        <span class="student-status active">Ativo</span>
+                    </div>
+                    <div class="student-card">
+                        <div class="avatar">CM</div>
+                        <div class="info">
+                            <div class="name">Carlos Mendes</div>
+                            <div class="detail">Física B · 14 anos</div>
+                        </div>
+                        <span class="student-status active">Ativo</span>
+                    </div>
+                    <div class="student-card">
+                        <div class="avatar">MC</div>
+                        <div class="info">
+                            <div class="name">Mariana Costa</div>
+                            <div class="detail">Química C · 13 anos</div>
+                        </div>
+                        <span class="student-status active">Ativo</span>
+                    </div>
+                    <div class="student-card">
+                        <div class="avatar">JR</div>
+                        <div class="info">
+                            <div class="name">João Rodrigues</div>
+                            <div class="detail">Reforço · 11 anos</div>
+                        </div>
+                        <span class="student-status inactive">Inativo</span>
+                    </div>
+                    <div class="student-card">
+                        <div class="avatar">PL</div>
+                        <div class="info">
+                            <div class="name">Paula Lima</div>
+                            <div class="detail">Inglês D · 15 anos</div>
+                        </div>
+                        <span class="student-status active">Ativo</span>
+                    </div>
+                    <div class="student-card">
+                        <div class="avatar">RF</div>
+                        <div class="info">
+                            <div class="name">Rafaela Ferreira</div>
+                            <div class="detail">Matemática A · 12 anos</div>
+                        </div>
+                        <span class="student-status active">Ativo</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =============================================
+            VIEW: MENSAGENS
+            ============================================= -->
+            <section class="view" id="view-mensagens">
+                <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+                    <button class="btn btn-cyan"><i class="fas fa-pen"></i> Nova mensagem</button>
+                    <button class="btn btn-outline"><i class="fas fa-check-double"></i> Marcar todas lidas</button>
+                    <span style="margin-left:auto;font-size:14px;color:var(--color-gray-500);">3 não lidas</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-body messages-list">
+                        <div class="msg-item unread">
+                            <div class="msg-avatar">AS</div>
+                            <div class="msg-content">
+                                <div class="sender">Ana Silva</div>
+                                <div class="preview">Bom dia, professor! Gostaria de confirmar a aula de amanhã...</div>
+                                <div class="time">Hoje, 10:23</div>
+                            </div>
+                            <span class="msg-badge">Nova</span>
+                        </div>
+                        <div class="msg-item unread">
+                            <div class="msg-avatar">CM</div>
+                            <div class="msg-content">
+                                <div class="sender">Carlos Mendes</div>
+                                <div class="preview">Olá, estou com dúvida sobre o exercício da página 45...</div>
+                                <div class="time">Hoje, 09:15</div>
+                            </div>
+                            <span class="msg-badge">Nova</span>
+                        </div>
+                        <div class="msg-item">
+                            <div class="msg-avatar">MC</div>
+                            <div class="msg-content">
+                                <div class="sender">Mariana Costa</div>
+                                <div class="preview">Professora, já enviei o trabalho. Obrigada!</div>
+                                <div class="time">Ontem, 16:42</div>
+                            </div>
+                        </div>
+                        <div class="msg-item">
+                            <div class="msg-avatar">PL</div>
+                            <div class="msg-content">
+                                <div class="sender">Paula Lima</div>
+                                <div class="preview">Posso remarcar a aula de quinta-feira? Tenho uma consulta.</div>
+                                <div class="time">Ontem, 14:20</div>
+                            </div>
+                        </div>
+                        <div class="msg-item unread">
+                            <div class="msg-avatar">RF</div>
+                            <div class="msg-content">
+                                <div class="sender">Rafaela Ferreira</div>
+                                <div class="preview">Obrigada pela aula de hoje! Amei a explicação sobre funções.</div>
+                                <div class="time">Ontem, 12:05</div>
+                            </div>
+                            <span class="msg-badge">Nova</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =============================================
+            VIEW: FINANCEIRO
+            ============================================= -->
+            <section class="view" id="view-financeiro">
+                <div class="finance-summary">
+                    <div class="finance-stat">
+                        <div class="label">Receita total</div>
+                        <div class="value positive">R$ 8.420</div>
+                    </div>
+                    <div class="finance-stat">
+                        <div class="label">Pendente</div>
+                        <div class="value negative">R$ 1.280</div>
+                    </div>
+                    <div class="finance-stat">
+                        <div class="label">Recebido este mês</div>
+                        <div class="value positive">R$ 3.560</div>
+                    </div>
+                    <div class="finance-stat">
+                        <div class="label">Inadimplentes</div>
+                        <div class="value" style="color:var(--color-danger);">3</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Histórico de transações</h3>
+                        <button class="card-action"><i class="fas fa-download"></i> Exportar</button>
+                    </div>
+                    <div class="card-body" style="overflow-x:auto;">
+                        <table class="transactions-table">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Aluno</th>
+                                    <th class="hide-mobile">Descrição</th>
+                                    <th>Valor</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>07/07</td>
+                                    <td>Paulo S.</td>
+                                    <td class="hide-mobile">Mensalidade julho</td>
+                                    <td class="amount positive">R$ 420,00</td>
+                                    <td><span class="status-badge confirmed" style="font-size:11px;">Pago</span></td>
+                                </tr>
+                                <tr>
+                                    <td>06/07</td>
+                                    <td>Ana S.</td>
+                                    <td class="hide-mobile">Mensalidade julho</td>
+                                    <td class="amount negative">R$ 320,00</td>
+                                    <td><span class="status-badge pending" style="font-size:11px;">Pendente</span></td>
+                                </tr>
+                                <tr>
+                                    <td>05/07</td>
+                                    <td>Carlos M.</td>
+                                    <td class="hide-mobile">Material extra</td>
+                                    <td class="amount positive">R$ 85,00</td>
+                                    <td><span class="status-badge confirmed" style="font-size:11px;">Pago</span></td>
+                                </tr>
+                                <tr>
+                                    <td>04/07</td>
+                                    <td>Mariana C.</td>
+                                    <td class="hide-mobile">Mensalidade julho</td>
+                                    <td class="amount negative">R$ 350,00</td>
+                                    <td><span class="status-badge pending" style="font-size:11px;">Pendente</span></td>
+                                </tr>
+                                <tr>
+                                    <td>03/07</td>
+                                    <td>João R.</td>
+                                    <td class="hide-mobile">Aula avulsa</td>
+                                    <td class="amount positive">R$ 120,00</td>
+                                    <td><span class="status-badge confirmed" style="font-size:11px;">Pago</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =============================================
+            VIEW: RELATÓRIOS
+            ============================================= -->
+            <section class="view" id="view-relatorios">
+                <div style="display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;">
+                    <button class="btn btn-cyan"><i class="fas fa-file-pdf"></i> Gerar relatório</button>
+                    <button class="btn btn-outline"><i class="fas fa-calendar-alt"></i> Filtrar por período</button>
+                </div>
+
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <div class="icon"><i class="fas fa-user-graduate"></i></div>
+                        <h4>Desempenho alunos</h4>
+                        <p>Análise de notas e frequência</p>
+                    </div>
+                    <div class="report-card">
+                        <div class="icon"><i class="fas fa-coins"></i></div>
+                        <h4>Financeiro</h4>
+                        <p>Receitas, despesas e inadimplência</p>
+                    </div>
+                    <div class="report-card">
+                        <div class="icon"><i class="fas fa-calendar-check"></i></div>
+                        <h4>Ocupação</h4>
+                        <p>Taxa de ocupação por turma</p>
+                    </div>
+                    <div class="report-card">
+                        <div class="icon"><i class="fas fa-chart-line"></i></div>
+                        <h4>Evolução</h4>
+                        <p>Crescimento de alunos e aulas</p>
+                    </div>
+                    <div class="report-card">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <h4>Comunicação</h4>
+                        <p>Interações e respostas</p>
+                    </div>
+                    <div class="report-card">
+                        <div class="icon"><i class="fas fa-download"></i></div>
+                        <h4>Exportar dados</h4>
+                        <p>CSV, PDF ou Excel</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- =============================================
+            VIEW: CONFIGURAÇÕES
+            ============================================= -->
+            <section class="view" id="view-configuracoes">
+                <div class="settings-group">
+                    <div class="group-title">🔔 Notificações</div>
+                    <div class="settings-item">
+                        <div class="label">
+                            Lembretes de aula
+                            <small>Receba notificações 1 hora antes</small>
+                        </div>
+                        <div class="control">
+                            <button class="toggle active" id="toggleReminders" aria-label="Toggle lembretes"></button>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="label">
+                            Pagamentos pendentes
+                            <small>Alertas diários sobre inadimplência</small>
+                        </div>
+                        <div class="control">
+                            <button class="toggle active" id="togglePayments" aria-label="Toggle pagamentos"></button>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="label">
+                            Novos alunos
+                            <small>Notificação quando um aluno se inscreve</small>
+                        </div>
+                        <div class="control">
+                            <button class="toggle" id="toggleStudents" aria-label="Toggle novos alunos"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <div class="group-title">📱 Aparência</div>
+                    <div class="settings-item">
+                        <div class="label">
+                            Tema escuro
+                            <small>Alternar entre claro e escuro</small>
+                        </div>
+                        <div class="control">
+                            <button class="toggle" id="toggleDarkMode" aria-label="Toggle tema escuro"></button>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="label">
+                            Compacto
+                            <small>Reduzir espaçamentos para mais informação</small>
+                        </div>
+                        <div class="control">
+                            <button class="toggle" id="toggleCompact" aria-label="Toggle compacto"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <div class="group-title">💾 Dados</div>
+                    <div class="settings-item">
+                        <div class="label">
+                            Sincronização offline
+                            <small>Manter dados da agenda em cache</small>
+                        </div>
+                        <div class="control">
+                            <button class="toggle active" id="toggleOffline" aria-label="Toggle offline"></button>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="label">
+                            Exportar dados
+                            <small>Baixar todos os dados em formato JSON</small>
+                        </div>
+                        <div class="control">
+                            <button class="btn btn-outline btn-sm" onclick="exportData()">Exportar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ============================================================
+    BOTTOM NAV (mobile)
+    ============================================================ -->
+    <nav class="bottom-nav" id="bottomNav">
+        <div class="nav-items">
+            <button class="nav-btn active" data-view="dashboard">
+                <i class="fas fa-th-large"></i>
+                <span>Início</span>
+            </button>
+            <button class="nav-btn" data-view="agenda">
+                <i class="fas fa-calendar-day"></i>
+                <span>Agenda</span>
+                <span class="badge">8</span>
+            </button>
+            <button class="nav-btn" data-view="turmas">
+                <i class="fas fa-users"></i>
+                <span>Turmas</span>
+            </button>
+            <button class="nav-btn" data-view="mensagens">
+                <i class="fas fa-envelope"></i>
+                <span>Mensagens</span>
+                <span class="badge">3</span>
+            </button>
+            <button class="nav-btn" data-view="financeiro">
+                <i class="fas fa-coins"></i>
+                <span>Finanças</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    FAB - Quick action
+    ============================================================ -->
+    <button class="fab" id="fab" aria-label="Ação rápida">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- ============================================================
+    TOAST CONTAINER
+    ============================================================ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // STATE
+            // ============================================================
+            const state = {
+                currentView: 'dashboard',
+                isOffline: !navigator.onLine,
+                darkMode: false,
+                compact: false,
+                agendaDate: new Date(),
+            };
+
+            // ============================================================
+            // DOM REFS
+            // ============================================================
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const menuToggle = document.getElementById('menuToggle');
+            const pageTitle = document.getElementById('pageTitle');
+            const pageTitleSpan = pageTitle.querySelector('span');
+            const pageTitleIcon = pageTitle.querySelector('i');
+            const views = document.querySelectorAll('.view');
+            const navItems = document.querySelectorAll('.sidebar-nav .nav-item');
+            const bottomNavBtns = document.querySelectorAll('.bottom-nav .nav-btn');
+            const todayDateEl = document.getElementById('todayDate');
+            const offlineBanner = document.getElementById('offlineBanner');
+            const fab = document.getElementById('fab');
+
+            // ============================================================
+            // HELPERS
+            // ============================================================
+            function formatDate(date) {
+                return date.toLocaleDateString('pt-BR', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                });
+            }
+
+            function formatAgendaDate(date) {
+                return date.toLocaleDateString('pt-BR', {
+                    weekday: 'long',
+                    day: 'numeric',
+                    month: 'long'
+                });
+            }
+
+            function getViewLabel(viewId) {
+                const map = {
+                    dashboard: 'Dashboard',
+                    agenda: 'Agenda',
+                    turmas: 'Turmas',
+                    alunos: 'Alunos',
+                    mensagens: 'Mensagens',
+                    financeiro: 'Financeiro',
+                    relatorios: 'Relatórios',
+                    configuracoes: 'Configurações'
+                };
+                return map[viewId] || viewId;
+            }
+
+            function getViewIcon(viewId) {
+                const map = {
+                    dashboard: 'fa-th-large',
+                    agenda: 'fa-calendar-day',
+                    turmas: 'fa-users',
+                    alunos: 'fa-user-graduate',
+                    mensagens: 'fa-envelope',
+                    financeiro: 'fa-coins',
+                    relatorios: 'fa-chart-pie',
+                    configuracoes: 'fa-cog'
+                };
+                return map[viewId] || 'fa-circle';
+            }
+
+            // ============================================================
+            // NAVIGATION
+            // ============================================================
+            function navigateTo(viewId) {
+                if (viewId === state.currentView) return;
+
+                // Update state
+                state.currentView = viewId;
+
+                // Update views
+                views.forEach(v => v.classList.remove('active'));
+                const target = document.getElementById('view-' + viewId);
+                if (target) target.classList.add('active');
+
+                // Update sidebar nav
+                navItems.forEach(item => {
+                    item.classList.toggle('active', item.dataset.view === viewId);
+                });
+
+                // Update bottom nav
+                bottomNavBtns.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.view === viewId);
+                });
+
+                // Update page title
+                pageTitleSpan.textContent = getViewLabel(viewId);
+                pageTitleIcon.className = 'fas ' + getViewIcon(viewId);
+
+                // Close sidebar on mobile
+                closeSidebar();
+
+                // Scroll to top
+                document.getElementById('pageContent').scrollTop = 0;
+
+                // Update FAB visibility
+                const fabViews = ['dashboard', 'agenda', 'turmas', 'alunos'];
+                fab.classList.toggle('active', fabViews.includes(viewId));
+
+                // Update URL hash
+                if (history.pushState) {
+                    history.pushState(null, '', '#' + viewId);
+                }
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+            }
+
+            function toggleSidebar() {
+                sidebar.classList.toggle('open');
+                overlay.classList.toggle('active');
+            }
+
+            // ============================================================
+            // TOAST SYSTEM
+            // ============================================================
+            function showToast(message, type = 'info', duration = 4000) {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                const icons = {
+                    success: 'fa-check-circle',
+                    error: 'fa-times-circle',
+                    warning: 'fa-exclamation-circle',
+                    info: 'fa-info-circle'
+                };
+                toast.className = 'toast ' + type;
+                toast.innerHTML = `
+                            <i class="fas ${icons[type] || icons.info}"></i>
+                            <span>${message}</span>
+                            <button class="close">&times;</button>
+                        `;
+                container.appendChild(toast);
+
+                const close = () => {
+                    toast.style.animation = 'slideOutRight 0.25s ease forwards';
+                    setTimeout(() => toast.remove(), 300);
+                };
+
+                toast.querySelector('.close').addEventListener('click', close);
+                setTimeout(close, duration);
+            }
+
+            // ============================================================
+            // SETTINGS TOGGLES
+            // ============================================================
+            function setupToggle(id, callback) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    if (callback) callback(this.classList.contains('active'));
+                    // Show feedback
+                    const label = this.closest('.settings-item')?.querySelector('.label')?.childNodes[0]
+                        ?.textContent?.trim() || 'Configuração';
+                    showToast(`${label}: ${this.classList.contains('active') ? 'ativado' : 'desativado'}`, 'info');
+                });
+            }
+
+            // ============================================================
+            // EXPORT DATA
+            // ============================================================
+            function exportData() {
+                const data = {
+                    exportDate: new Date().toISOString(),
+                    version: '2.0',
+                    stats: {
+                        alunos: 32,
+                        turmas: 4,
+                        aulasHoje: 4,
+                        pendentes: 1280
+                    },
+                    // Simulated data
+                    alunos: ['Ana Silva', 'Carlos Mendes', 'Mariana Costa', 'João Rodrigues', 'Paula Lima',
+                        'Rafaela Ferreira'
+                    ],
+                    turmas: ['Matemática A', 'Física B', 'Química C', 'Inglês D']
+                };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `aulaflow-backup-${new Date().toISOString().slice(0,10)}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                showToast('Dados exportados com sucesso!', 'success');
+            }
+
+            // ============================================================
+            // AGENDA DATE NAV
+            // ============================================================
+            function updateAgendaDate() {
+                const el = document.getElementById('agendaDate');
+                if (el) el.textContent = formatAgendaDate(state.agendaDate);
+            }
+
+            // ============================================================
+            // OFFLINE / ONLINE
+            // ============================================================
+            function updateOnlineStatus() {
+                state.isOffline = !navigator.onLine;
+                offlineBanner.classList.toggle('active', state.isOffline);
+                if (state.isOffline) {
+                    showToast('Modo offline ativado. Alguns recursos podem estar indisponíveis.', 'warning', 3000);
+                } else {
+                    // Could show a reconnected toast
+                    // showToast('Conectado novamente!', 'success', 2000);
+                }
+            }
+
+            // ============================================================
+            // SEARCH (simple)
+            // ============================================================
+            function setupSearch() {
+                const input = document.getElementById('globalSearch');
+                if (!input) return;
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' && this.value.trim().length > 0) {
+                        showToast(`Buscando por "${this.value.trim()}"...`, 'info', 2000);
+                        // Simple search: look through visible view for text
+                        const activeView = document.querySelector('.view.active');
+                        if (activeView) {
+                            const text = activeView.textContent.toLowerCase();
+                            const query = this.value.trim().toLowerCase();
+                            if (text.includes(query)) {
+                                showToast(`Encontramos resultados para "${query}"`, 'success', 2000);
+                            } else {
+                                showToast(`Nenhum resultado encontrado para "${query}"`, 'warning', 2000);
+                            }
+                        }
+                        this.value = '';
+                    }
+                });
+            }
+
+            // ============================================================
+            // STUDENT SEARCH & FILTER
+            // ============================================================
+            function setupStudentFilters() {
+                const search = document.getElementById('studentSearch');
+                const filter = document.getElementById('studentFilter');
+                const grid = document.getElementById('studentsGrid');
+                if (!search || !filter || !grid) return;
+
+                function filterStudents() {
+                    const query = search.value.trim().toLowerCase();
+                    const filterVal = filter.value;
+                    const cards = grid.querySelectorAll('.student-card');
+                    cards.forEach(card => {
+                        const name = card.querySelector('.name')?.textContent?.toLowerCase() || '';
+                        const detail = card.querySelector('.detail')?.textContent?.toLowerCase() || '';
+                        const matchText = name.includes(query) || detail.includes(query);
+                        // Simple filter: just text match for now (would need real data)
+                        // For demo, we just use the text search
+                        card.style.display = matchText ? 'flex' : 'none';
+                    });
+                    const visible = grid.querySelectorAll('.student-card[style*="display: flex"]').length;
+                    if (visible === 0 && query.length > 0) {
+                        // Show empty state if needed
+                    }
+                }
+
+                search.addEventListener('input', filterStudents);
+                filter.addEventListener('change', filterStudents);
+            }
+
+            // ============================================================
+            // FAB ACTION
+            // ============================================================
+            function setupFab() {
+                fab.addEventListener('click', function() {
+                    const view = state.currentView;
+                    const actions = {
+                        dashboard: 'Adicione um novo aluno ou agende uma aula!',
+                        agenda: 'Criar novo evento na agenda',
+                        turmas: 'Criar nova turma',
+                        alunos: 'Adicionar novo aluno'
+                    };
+                    const msg = actions[view] || 'Ação rápida disponível!';
+                    showToast(msg, 'info', 2500);
+                });
+            }
+
+            // ============================================================
+            // DARK MODE (simulated)
+            // ============================================================
+            function applyDarkMode(enabled) {
+                state.darkMode = enabled;
+                if (enabled) {
+                    document.documentElement.style.setProperty('--color-gray-50', '#0f172a');
+                    document.documentElement.style.setProperty('--color-gray-100', '#1e293b');
+                    document.documentElement.style.setProperty('--color-gray-200', '#334155');
+                    document.documentElement.style.setProperty('--color-gray-300', '#475569');
+                    document.documentElement.style.setProperty('--color-gray-400', '#64748b');
+                    document.documentElement.style.setProperty('--color-gray-500', '#94a3b8');
+                    document.documentElement.style.setProperty('--color-gray-600', '#cbd5e1');
+                    document.documentElement.style.setProperty('--color-gray-700', '#e2e8f0');
+                    document.documentElement.style.setProperty('--color-gray-800', '#f1f5f9');
+                    document.documentElement.style.setProperty('--color-gray-900', '#f8fafc');
+                    document.documentElement.style.setProperty('--color-white', '#1e293b');
+                    document.querySelector('.top-header').style.background = 'rgba(15,23,42,0.85)';
+                    document.querySelector('.top-header').style.borderBottomColor = '#334155';
+                    document.querySelectorAll('.card').forEach(c => {
+                        c.style.background = '#1e293b';
+                        c.style.borderColor = '#334155';
+                    });
+                    document.querySelectorAll('.stat-card, .finance-stat, .report-card, .class-card, .student-card, .settings-group')
+                        .forEach(c => {
+                            c.style.background = '#1e293b';
+                            c.style.borderColor = '#334155';
+                        });
+                    document.querySelectorAll('.settings-item').forEach(c => {
+                        c.style.borderBottomColor = '#334155';
+                    });
+                    document.querySelector('.bottom-nav').style.background = '#1e293b';
+                    document.querySelector('.bottom-nav').style.borderTopColor = '#334155';
+                    document.querySelectorAll('.agenda-toolbar .btn-outline').forEach(b => {
+                        b.style.borderColor = '#334155';
+                        b.style.color = '#cbd5e1';
+                    });
+                    document.querySelectorAll('.transactions-table td').forEach(c => {
+                        c.style.borderBottomColor = '#334155';
+                    });
+                    document.querySelectorAll('.transactions-table th').forEach(c => {
+                        c.style.borderBottomColor = '#334155';
+                    });
+                } else {
+                    // Reset to defaults
+                    document.documentElement.style.removeProperty('--color-gray-50');
+                    document.documentElement.style.removeProperty('--color-gray-100');
+                    document.documentElement.style.removeProperty('--color-gray-200');
+                    document.documentElement.style.removeProperty('--color-gray-300');
+                    document.documentElement.style.removeProperty('--color-gray-400');
+                    document.documentElement.style.removeProperty('--color-gray-500');
+                    document.documentElement.style.removeProperty('--color-gray-600');
+                    document.documentElement.style.removeProperty('--color-gray-700');
+                    document.documentElement.style.removeProperty('--color-gray-800');
+                    document.documentElement.style.removeProperty('--color-gray-900');
+                    document.documentElement.style.removeProperty('--color-white');
+                    document.querySelector('.top-header').style.background = 'rgba(255,255,255,0.85)';
+                    document.querySelector('.top-header').style.borderBottomColor = '';
+                    document.querySelectorAll('.card').forEach(c => {
+                        c.style.background = '';
+                        c.style.borderColor = '';
+                    });
+                    document.querySelectorAll('.stat-card, .finance-stat, .report-card, .class-card, .student-card, .settings-group')
+                        .forEach(c => {
+                            c.style.background = '';
+                            c.style.borderColor = '';
+                        });
+                    document.querySelectorAll('.settings-item').forEach(c => {
+                        c.style.borderBottomColor = '';
+                    });
+                    document.querySelector('.bottom-nav').style.background = '';
+                    document.querySelector('.bottom-nav').style.borderTopColor = '';
+                    document.querySelectorAll('.agenda-toolbar .btn-outline').forEach(b => {
+                        b.style.borderColor = '';
+                        b.style.color = '';
+                    });
+                    document.querySelectorAll('.transactions-table td').forEach(c => {
+                        c.style.borderBottomColor = '';
+                    });
+                    document.querySelectorAll('.transactions-table th').forEach(c => {
+                        c.style.borderBottomColor = '';
+                    });
+                }
+            }
+
+            // ============================================================
+            // COMPACT MODE
+            // ============================================================
+            function applyCompact(enabled) {
+                state.compact = enabled;
+                const root = document.documentElement;
+                if (enabled) {
+                    root.style.setProperty('--sidebar-width', '220px');
+                    root.style.setProperty('--header-height', '52px');
+                    root.style.setProperty('--bottom-nav-height', '52px');
+                    document.querySelectorAll('.stat-card .stat-value').forEach(el => {
+                        el.style.fontSize = '22px';
+                    });
+                } else {
+                    root.style.removeProperty('--sidebar-width');
+                    root.style.removeProperty('--header-height');
+                    root.style.removeProperty('--bottom-nav-height');
+                    document.querySelectorAll('.stat-card .stat-value').forEach(el => {
+                        el.style.fontSize = '';
+                    });
+                }
+            }
+
+            // ============================================================
+            // HASH ROUTING
+            // ============================================================
+            function handleHash() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && document.getElementById('view-' + hash)) {
+                    navigateTo(hash);
+                } else {
+                    navigateTo('dashboard');
+                }
+            }
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            function init() {
+                // Set today's date
+                const now = new Date();
+                if (todayDateEl) {
+                    todayDateEl.textContent = formatDate(now);
+                }
+
+                // Update agenda date
+                updateAgendaDate();
+
+                // Handle hash
+                handleHash();
+
+                // Event listeners: sidebar nav
+                navItems.forEach(item => {
+                    item.addEventListener('click', function() {
+                        navigateTo(this.dataset.view);
+                    });
+                });
+
+                // Event listeners: bottom nav
+                bottomNavBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        navigateTo(this.dataset.view);
+                    });
+                });
+
+                // Menu toggle
+                menuToggle.addEventListener('click', toggleSidebar);
+                overlay.addEventListener('click', closeSidebar);
+
+                // Agenda nav
+                document.getElementById('agendaPrev')?.addEventListener('click', function() {
+                    state.agendaDate.setDate(state.agendaDate.getDate() - 7);
+                    updateAgendaDate();
+                    showToast('Semana anterior', 'info', 1500);
+                });
+                document.getElementById('agendaNext')?.addEventListener('click', function() {
+                    state.agendaDate.setDate(state.agendaDate.getDate() + 7);
+                    updateAgendaDate();
+                    showToast('Próxima semana', 'info', 1500);
+                });
+
+                // Online/offline
+                window.addEventListener('online', updateOnlineStatus);
+                window.addEventListener('offline', updateOnlineStatus);
+                updateOnlineStatus();
+
+                // Search
+                setupSearch();
+
+                // Student filters
+                setupStudentFilters();
+
+                // FAB
+                setupFab();
+
+                // Toggles
+                setupToggle('toggleReminders');
+                setupToggle('togglePayments');
+                setupToggle('toggleStudents');
+                setupToggle('toggleDarkMode', applyDarkMode);
+                setupToggle('toggleCompact', applyCompact);
+                setupToggle('toggleOffline');
+
+                // Hash change
+                window.addEventListener('hashchange', handleHash);
+
+                // Keyboard shortcut: Escape to close sidebar
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') closeSidebar();
+                });
+
+                // Service Worker registration
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('sw.js')
+                        .then(() => {
+                            // console.log('SW registered');
+                        })
+                        .catch(() => {
+                            // console.log('SW registration failed');
+                        });
+                }
+
+                // Initial toast
+                setTimeout(() => {
+                    showToast('Bem-vindo ao AulaFlow! 👋', 'success', 3000);
+                }, 600);
+
+                console.log('📘 AulaFlow PWA inicializado');
+                console.log('🔧 Modo:', state.isOffline ? 'offline' : 'online');
+                console.log('📊 ' + document.querySelectorAll('.student-card').length + ' alunos carregados');
+            }
+
+            // Expose to global
+            window.navigateTo = navigateTo;
+            window.exportData = exportData;
+
+            // Run when DOM ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,2594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkNvbW1hbmQgQ2VudGVyIiwKICAic2hvcnRfbmFtZSI6ICJDb21tYW5kIENlbnRlciIsCiAgImRlc2NyaXB0aW9uIjogIkNlbnRyYWwgZGUgY29tYW5kbyBwYXN0b3JhbCBlIGFkbWluaXN0cmF0aXZhIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGRkZGRkYiLAogICJ0aGVtZV9jb2xvciI6ICIjRkZGRkZGIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLDxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgNTEyIDUxMic+PHJlY3Qgd2lkdGg9JzUxMicgaGVpZ2h0PSc1MTInIHJ4PSc4MCcgZmlsbD0nJTIzRkVGQkVGJy8+PHRleHQgeD0nMjU2JyB5PSczNDAnIGZvbnQtc2l6ZT0nMjUwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmaWxsPSclMjMxQzNBN0EnIGZvbnQtZmFtaWx5PSdzYW5zLXNlcmlmJz5DQzwvdGV4dD48L3N2Zz4="LAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXQp9" />
+    <title>Command Center — Central Pastoral</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================================
+           WORSHIP + GLASSMORPHISM + CORPORATE PREMIUM
+           Design System — Reconstrução visual completa
+           ============================================================ */
+
+        /* ---------- TOKENS ---------- */
+        :root {
+            /* Cores base */
+            --bg-base: #F6F8FC;
+            --bg-surface: rgba(255, 255, 255, 0.72);
+            --bg-glass: rgba(255, 255, 255, 0.52);
+            --bg-glass-hover: rgba(255, 255, 255, 0.78);
+            --border-glass: rgba(255, 255, 255, 0.35);
+            --border-subtle: rgba(0, 0, 0, 0.04);
+            --shadow-glass: 0 12px 40px rgba(0, 20, 40, 0.06), 0 4px 16px rgba(0, 0, 0, 0.02);
+            --shadow-glass-hover: 0 20px 56px rgba(0, 20, 40, 0.10), 0 8px 24px rgba(0, 0, 0, 0.04);
+            --shadow-glow: 0 0 40px rgba(28, 78, 180, 0.08);
+
+            /* Paleta Corporate Premium */
+            --primary: #1C4EA8;
+            --primary-light: #3A7BD5;
+            --primary-dark: #123B7A;
+            --primary-surface: rgba(28, 78, 168, 0.08);
+            --primary-glow: rgba(28, 78, 168, 0.18);
+
+            --accent-gold: #C9A84C;
+            --accent-gold-light: #F5EDD6;
+            --accent-gold-glow: rgba(201, 168, 76, 0.20);
+
+            --green: #2AA876;
+            --green-light: #E2F3EA;
+            --amber: #E8A838;
+            --amber-light: #FCF3E0;
+            --red: #D65A5A;
+            --red-light: #F8E6E6;
+
+            --text-primary: #1A2634;
+            --text-secondary: #3E4A5A;
+            --text-tertiary: #7A879A;
+            --text-inverse: #FFFFFF;
+
+            --gray-50: #F9FAFC;
+            --gray-100: #F0F2F6;
+            --gray-200: #E4E8EE;
+            --gray-300: #D0D6DF;
+            --gray-400: #AEB8C6;
+            --gray-500: #8A95A8;
+            --gray-600: #5E6B7E;
+            --gray-700: #3E4A5A;
+            --gray-800: #1A2634;
+            --gray-900: #0D131C;
+
+            /* Glass defaults */
+            --glass-blur: 18px;
+            --glass-border: 1px solid rgba(255, 255, 255, 0.30);
+            --glass-bg: rgba(255, 255, 255, 0.48);
+
+            /* Espaçamento */
+            --space-1: 4px;
+            --space-2: 8px;
+            --space-3: 12px;
+            --space-4: 16px;
+            --space-5: 20px;
+            --space-6: 24px;
+            --space-7: 32px;
+            --space-8: 40px;
+            --space-9: 48px;
+            --space-10: 64px;
+
+            /* Tipografia */
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --radius-full: 9999px;
+
+            --transition: 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --sidebar-width: 270px;
+            --header-height: 68px;
+            --bottom-nav-height: 72px;
+        }
+
+        /* ---------- RESET & BASE ---------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg-base);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: inherit;
+        }
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+            font-size: inherit;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: var(--radius-full);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gray-400);
+        }
+
+        /* ---------- UTILITY ---------- */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ---------- GLASS CARD BASE ---------- */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: var(--glass-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+            box-shadow: var(--shadow-glass);
+        }
+
+        /* ---------- LAYOUT ---------- */
+        .app-wrapper {
+            display: flex;
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+
+        /* ---- SIDEBAR ---- */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background: var(--bg-glass);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-right: 1px solid rgba(255, 255, 255, 0.35);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+            box-shadow: var(--shadow-glass);
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            transition: transform var(--transition-bounce);
+            transform: translateX(0);
+            overflow-y: auto;
+        }
+        .sidebar-brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 20px 24px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+            flex-shrink: 0;
+        }
+        .sidebar-brand .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(145deg, var(--primary), var(--primary-dark));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 24px rgba(28, 78, 168, 0.25);
+        }
+        .sidebar-brand .logo-text {
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+        .sidebar-brand .logo-text span {
+            font-weight: 400;
+            color: var(--text-tertiary);
+            font-size: 15px;
+        }
+        .sidebar-nav {
+            flex: 1;
+            padding: 16px 14px 16px 18px;
+            overflow-y: auto;
+        }
+        .sidebar-nav .nav-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-tertiary);
+            padding: 12px 12px 8px 12px;
+            opacity: 0.7;
+        }
+        .sidebar-nav .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 14px;
+            transition: all var(--transition);
+            cursor: pointer;
+            position: relative;
+            margin-bottom: 2px;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+        .sidebar-nav .nav-item:hover {
+            background: var(--primary-surface);
+            color: var(--primary);
+            border-color: rgba(28, 78, 168, 0.08);
+        }
+        .sidebar-nav .nav-item.active {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 8px 24px rgba(28, 78, 168, 0.30);
+            border-color: transparent;
+        }
+        .sidebar-nav .nav-item .nav-icon {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .sidebar-nav .nav-item .nav-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .sidebar-nav .nav-item .nav-badge {
+            margin-left: auto;
+            background: var(--red);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 1px 12px;
+            border-radius: var(--radius-full);
+            line-height: 20px;
+            box-shadow: 0 4px 12px rgba(214, 90, 90, 0.25);
+        }
+        .sidebar-nav .nav-item .nav-badge.amber {
+            background: var(--amber);
+            box-shadow: 0 4px 12px rgba(232, 168, 56, 0.25);
+        }
+        .sidebar-nav .nav-item .nav-badge.green {
+            background: var(--green);
+            box-shadow: 0 4px 12px rgba(42, 168, 118, 0.25);
+        }
+        .sidebar-footer {
+            padding: 18px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            flex-shrink: 0;
+            font-size: 13px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .sidebar-footer .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--primary-light), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 16px rgba(28, 78, 168, 0.20);
+        }
+        .sidebar-footer .user-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .sidebar-footer .user-info .name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .sidebar-footer .user-info .role {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+        }
+        .sidebar-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* ---- MAIN ---- */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+
+        /* ---- HEADER ---- */
+        .header {
+            height: var(--header-height);
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 2px 24px rgba(0, 0, 0, 0.02);
+            display: flex;
+            align-items: center;
+            padding: 0 36px;
+            gap: 16px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: var(--text-secondary);
+            padding: 6px;
+            border-radius: var(--radius-sm);
+            transition: background var(--transition);
+        }
+        .header .menu-toggle:hover {
+            background: var(--gray-100);
+        }
+        .header .page-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.4px;
+        }
+        .header .page-title small {
+            font-weight: 400;
+            font-size: 15px;
+            color: var(--text-tertiary);
+            margin-left: 10px;
+        }
+        .header .header-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header .header-actions .action-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all var(--transition);
+            position: relative;
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.30);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+        .header .header-actions .action-btn:hover {
+            background: var(--primary-surface);
+            color: var(--primary);
+            border-color: var(--primary-glow);
+            box-shadow: 0 4px 16px rgba(28, 78, 168, 0.10);
+        }
+        .header .header-actions .action-btn .dot {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--red);
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(214, 90, 90, 0.30);
+        }
+        .header .header-actions .action-btn .dot.amber {
+            background: var(--amber);
+            box-shadow: 0 2px 8px rgba(232, 168, 56, 0.30);
+        }
+
+        /* ---- PAGE CONTENT ---- */
+        .page-content {
+            flex: 1;
+            padding: 32px 36px 48px;
+            overflow-y: auto;
+        }
+        .page-section {
+            display: none;
+            animation: fadeSlide 0.45s ease forwards;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ---- BOTTOM NAV (MOBILE) ---- */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--bottom-nav-height);
+            background: var(--bg-glass);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-top: 1px solid rgba(255, 255, 255, 0.35);
+            z-index: 1000;
+            padding: 0 8px 8px;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding-top: 8px;
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.04);
+        }
+        .bottom-nav .nav-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            padding: 4px 10px;
+            border-radius: var(--radius-md);
+            transition: all var(--transition);
+            min-width: 56px;
+            position: relative;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+        .bottom-nav .nav-btn .icon {
+            font-size: 22px;
+            line-height: 1;
+            transition: transform var(--transition);
+        }
+        .bottom-nav .nav-btn .icon svg {
+            width: 24px;
+            height: 24px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .bottom-nav .nav-btn span {
+            line-height: 1.2;
+        }
+        .bottom-nav .nav-btn.active {
+            color: var(--primary);
+            background: var(--primary-surface);
+            border-color: rgba(28, 78, 168, 0.12);
+        }
+        .bottom-nav .nav-btn.active .icon {
+            transform: scale(1.08);
+        }
+        .bottom-nav .nav-btn .badge-dot {
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--red);
+            border: 2px solid #fff;
+            box-shadow: 0 2px 8px rgba(214, 90, 90, 0.30);
+        }
+        .bottom-nav .nav-btn .badge-dot.amber {
+            background: var(--amber);
+            box-shadow: 0 2px 8px rgba(232, 168, 56, 0.30);
+        }
+        .bottom-nav .nav-btn .badge-dot.green {
+            background: var(--green);
+            box-shadow: 0 2px 8px rgba(42, 168, 118, 0.30);
+        }
+
+        /* ============================================================
+           COMPONENTES REINTERPRETADOS
+           ============================================================ */
+
+        /* --- Grid --- */
+        .grid-12 {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .col-span-3 {
+            grid-column: span 3;
+        }
+        .col-span-4 {
+            grid-column: span 4;
+        }
+        .col-span-5 {
+            grid-column: span 5;
+        }
+        .col-span-6 {
+            grid-column: span 6;
+        }
+        .col-span-7 {
+            grid-column: span 7;
+        }
+        .col-span-8 {
+            grid-column: span 8;
+        }
+        .col-span-9 {
+            grid-column: span 9;
+        }
+        .col-span-12 {
+            grid-column: span 12;
+        }
+
+        /* --- Cards (Glass) --- */
+        .card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: var(--glass-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+            border-radius: var(--radius-lg);
+            padding: 22px 26px;
+            box-shadow: var(--shadow-glass);
+            transition: all var(--transition);
+        }
+        .card:hover {
+            box-shadow: var(--shadow-glass-hover);
+            transform: translateY(-2px);
+            background: var(--bg-glass-hover);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+        .card-header h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: -0.2px;
+        }
+        .card-header .card-action {
+            font-size: 13px;
+            color: var(--primary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition);
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            background: var(--primary-surface);
+            border: 1px solid transparent;
+        }
+        .card-header .card-action:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px rgba(28, 78, 168, 0.20);
+        }
+
+        /* --- Metric Cards --- */
+        .metric-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: var(--glass-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
+            box-shadow: var(--shadow-glass);
+            transition: all var(--transition);
+        }
+        .metric-card:hover {
+            box-shadow: var(--shadow-glass-hover);
+            transform: translateY(-2px);
+        }
+        .metric-card .label {
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            margin-bottom: 4px;
+        }
+        .metric-card .value {
+            font-size: 30px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+        .metric-card .change {
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 2px 12px;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.50);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+        .metric-card .change.up {
+            color: var(--green);
+        }
+        .metric-card .change.down {
+            color: var(--red);
+        }
+        .metric-card .change.neutral {
+            color: var(--text-tertiary);
+        }
+
+        /* --- Buttons --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 22px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all var(--transition);
+            border: 1px solid transparent;
+            line-height: 1.2;
+            min-height: 44px;
+            min-width: 44px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: var(--shadow-glass);
+        }
+        .btn-primary {
+            background: linear-gradient(145deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            border: none;
+            box-shadow: 0 8px 24px rgba(28, 78, 168, 0.25);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 36px rgba(28, 78, 168, 0.35);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border-color: var(--primary);
+            box-shadow: none;
+        }
+        .btn-outline:hover {
+            background: var(--primary-surface);
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px rgba(28, 78, 168, 0.08);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            box-shadow: none;
+            border: 1px solid transparent;
+        }
+        .btn-ghost:hover {
+            background: var(--gray-100);
+            color: var(--text-primary);
+        }
+        .btn-danger {
+            background: linear-gradient(145deg, var(--red), #C0392B);
+            color: #fff;
+            border: none;
+            box-shadow: 0 8px 24px rgba(214, 90, 90, 0.25);
+        }
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 36px rgba(214, 90, 90, 0.35);
+        }
+        .btn-sm {
+            padding: 6px 16px;
+            font-size: 13px;
+            min-height: 36px;
+            min-width: 36px;
+        }
+        .btn-xs {
+            padding: 4px 12px;
+            font-size: 12px;
+            min-height: 28px;
+            min-width: 28px;
+            border-radius: var(--radius-sm);
+        }
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-icon {
+            width: 44px;
+            height: 44px;
+            padding: 0;
+            border-radius: 50%;
+            justify-content: center;
+        }
+        .btn-icon.btn-sm {
+            width: 36px;
+            height: 36px;
+        }
+
+        /* --- Badges --- */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 14px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 24px;
+            gap: 6px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.30);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+        .badge-green {
+            background: var(--green-light);
+            color: var(--green);
+            border-color: rgba(42, 168, 118, 0.20);
+        }
+        .badge-amber {
+            background: var(--amber-light);
+            color: #B8860B;
+            border-color: rgba(232, 168, 56, 0.20);
+        }
+        .badge-red {
+            background: var(--red-light);
+            color: var(--red);
+            border-color: rgba(214, 90, 90, 0.20);
+        }
+        .badge-gray {
+            background: var(--gray-100);
+            color: var(--text-tertiary);
+            border-color: rgba(0, 0, 0, 0.04);
+        }
+        .badge-primary {
+            background: var(--primary-surface);
+            color: var(--primary);
+            border-color: rgba(28, 78, 168, 0.12);
+        }
+
+        /* --- Inputs --- */
+        .input-group {
+            margin-bottom: 18px;
+        }
+        .input-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            transition: all var(--transition);
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: var(--text-primary);
+            min-height: 46px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-glow), 0 4px 16px rgba(28, 78, 168, 0.06);
+        }
+        .input-field::placeholder {
+            color: var(--gray-400);
+        }
+        .input-field-sm {
+            padding: 8px 12px;
+            font-size: 13px;
+            min-height: 36px;
+        }
+
+        /* --- Tables --- */
+        .table-wrap {
+            overflow-x: auto;
+            margin: 0 -4px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        .table th {
+            text-align: left;
+            padding: 14px 14px 14px 0;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .table td {
+            padding: 14px 14px 14px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            color: var(--text-primary);
+            vertical-align: middle;
+        }
+        .table tr:last-child td {
+            border-bottom: none;
+        }
+        .table .avatar-sm {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--primary-light), var(--primary));
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #fff;
+            font-size: 12px;
+            box-shadow: 0 4px 12px rgba(28, 78, 168, 0.15);
+        }
+
+        /* --- Alerts --- */
+        .alert {
+            padding: 16px 20px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            font-size: 14px;
+            border-left: 4px solid transparent;
+            margin-bottom: 14px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: var(--glass-border);
+            border-left-width: 4px;
+            box-shadow: var(--shadow-glass);
+        }
+        .alert-info {
+            border-left-color: var(--primary);
+            background: rgba(28, 78, 168, 0.04);
+        }
+        .alert-success {
+            border-left-color: var(--green);
+            background: rgba(42, 168, 118, 0.04);
+        }
+        .alert-warning {
+            border-left-color: var(--amber);
+            background: rgba(232, 168, 56, 0.04);
+        }
+        .alert-danger {
+            border-left-color: var(--red);
+            background: rgba(214, 90, 90, 0.04);
+        }
+        .alert .alert-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .alert .alert-content {
+            flex: 1;
+        }
+        .alert .alert-title {
+            font-weight: 600;
+        }
+
+        /* --- Bento Cards (Glass) --- */
+        .bento-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: var(--glass-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+            border-radius: var(--radius-lg);
+            padding: 22px 26px;
+            box-shadow: var(--shadow-glass);
+            transition: all var(--transition);
+            height: 100%;
+            min-height: 130px;
+        }
+        .bento-card:hover {
+            box-shadow: var(--shadow-glass-hover);
+            transform: translateY(-3px);
+            background: var(--bg-glass-hover);
+        }
+        .bento-card .bento-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .bento-card .bento-value {
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+        .bento-card .bento-desc {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+        }
+
+        /* --- Mini Chart --- */
+        .mini-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 5px;
+            height: 52px;
+            margin-top: 10px;
+        }
+        .mini-bars .bar {
+            flex: 1;
+            border-radius: 4px 4px 0 0;
+            background: linear-gradient(180deg, var(--primary-light), var(--primary));
+            min-height: 4px;
+            transition: height 0.4s ease;
+            opacity: 0.6;
+        }
+        .mini-bars .bar:nth-child(1) {
+            height: 22px;
+        }
+        .mini-bars .bar:nth-child(2) {
+            height: 34px;
+        }
+        .mini-bars .bar:nth-child(3) {
+            height: 18px;
+        }
+        .mini-bars .bar:nth-child(4) {
+            height: 46px;
+        }
+        .mini-bars .bar:nth-child(5) {
+            height: 30px;
+        }
+        .mini-bars .bar:nth-child(6) {
+            height: 40px;
+        }
+        .mini-bars .bar:nth-child(7) {
+            height: 24px;
+        }
+        .mini-bars .bar.highlight {
+            opacity: 1;
+            background: linear-gradient(180deg, var(--green), #1E8B5E);
+        }
+
+        /* --- Member Item --- */
+        .member-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .member-item:last-child {
+            border-bottom: none;
+        }
+        .member-item .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, var(--primary-light), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: #fff;
+            flex-shrink: 0;
+            font-size: 15px;
+            box-shadow: 0 4px 16px rgba(28, 78, 168, 0.12);
+        }
+        .member-item .info {
+            flex: 1;
+            min-width: 0;
+        }
+        .member-item .info .name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .member-item .info .detail {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        /* --- Finance --- */
+        .finance-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 18px;
+            margin-bottom: 24px;
+        }
+        .finance-item {
+            background: var(--bg-glass);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: var(--glass-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+            padding: 18px 22px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            box-shadow: var(--shadow-glass);
+            transition: all var(--transition);
+        }
+        .finance-item:hover {
+            box-shadow: var(--shadow-glass-hover);
+            transform: translateY(-2px);
+        }
+        .finance-item .label {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+        .finance-item .value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .finance-item .value.positive {
+            color: var(--green);
+        }
+        .finance-item .value.negative {
+            color: var(--red);
+        }
+
+        /* --- Messages --- */
+        .msg-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .msg-item:last-child {
+            border-bottom: none;
+        }
+        .msg-item .msg-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary-surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            color: var(--primary);
+            border: 1px solid rgba(28, 78, 168, 0.06);
+        }
+        .msg-item .msg-content {
+            flex: 1;
+        }
+        .msg-item .msg-content .title {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .msg-item .msg-content .preview {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .msg-item .msg-time {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            flex-shrink: 0;
+        }
+
+        /* --- Config --- */
+        .config-group {
+            margin-bottom: 28px;
+        }
+        .config-group h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+        }
+        .config-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            gap: 16px;
+        }
+        .config-row .info .title {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .config-row .info .desc {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+        .toggle {
+            width: 48px;
+            height: 28px;
+            background: var(--gray-300);
+            border-radius: 14px;
+            position: relative;
+            cursor: pointer;
+            transition: background var(--transition);
+            flex-shrink: 0;
+            border: none;
+            padding: 0;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+        }
+        .toggle.active {
+            background: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-glow);
+        }
+        .toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 22px;
+            height: 22px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform var(--transition-bounce);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.10);
+        }
+        .toggle.active::after {
+            transform: translateX(20px);
+        }
+
+        /* --- Modals --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.30);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+            padding: 20px;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal {
+            background: var(--bg-glass);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: var(--glass-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.50);
+            border-radius: var(--radius-lg);
+            max-width: 520px;
+            width: 100%;
+            padding: 36px;
+            box-shadow: var(--shadow-glass-hover);
+            transform: scale(0.94) translateY(16px);
+            transition: transform var(--transition-bounce);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-overlay.open .modal {
+            transform: scale(1) translateY(0);
+        }
+        .modal .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        .modal .modal-header h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+        .modal .modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--text-tertiary);
+            transition: all var(--transition);
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.30);
+        }
+        .modal .modal-close:hover {
+            background: var(--gray-100);
+            color: var(--text-primary);
+        }
+        .modal .modal-actions {
+            display: flex;
+            gap: 14px;
+            margin-top: 24px;
+            justify-content: flex-end;
+        }
+
+        /* --- Offline Banner --- */
+        .offline-banner {
+            display: none;
+            background: var(--amber-light);
+            color: #7A5F00;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            position: sticky;
+            top: var(--header-height);
+            z-index: 99;
+            border-bottom: 1px solid rgba(232, 168, 56, 0.20);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .offline-banner.show {
+            display: block;
+        }
+        .offline-banner .icon {
+            margin-right: 8px;
+        }
+
+        /* --- Priority Alert --- */
+        .alert-priority {
+            background: var(--bg-glass);
+            backdrop-filter: blur(var(--glass-blur));
+            -webkit-backdrop-filter: blur(var(--glass-blur));
+            border: var(--glass-border);
+            border-left: 4px solid var(--red);
+            border-radius: var(--radius-lg);
+            padding: 18px 24px;
+            box-shadow: var(--shadow-glass);
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            transition: all var(--transition);
+        }
+        .alert-priority:hover {
+            box-shadow: var(--shadow-glass-hover);
+        }
+        .alert-priority .alert-icon {
+            font-size: 28px;
+        }
+        .alert-priority .alert-text {
+            flex: 1;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .alert-priority .alert-text strong {
+            color: var(--text-primary);
+        }
+        .alert-priority .alert-text .highlight {
+            color: var(--red);
+        }
+
+        /* --- Welcome --- */
+        .welcome-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+        .welcome-row h2 {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+        .welcome-row h2 small {
+            font-weight: 400;
+            font-size: 16px;
+            color: var(--text-tertiary);
+            display: block;
+            margin-top: 2px;
+        }
+        .welcome-row .date-badge {
+            background: var(--bg-glass);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 8px 20px;
+            border-radius: var(--radius-full);
+            border: var(--glass-border);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            box-shadow: var(--shadow-glass);
+        }
+
+        /* ============================================================
+           RESPONSIVIDADE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .col-span-3 {
+                grid-column: span 4;
+            }
+            .col-span-4 {
+                grid-column: span 6;
+            }
+            .col-span-5 {
+                grid-column: span 6;
+            }
+            .col-span-6 {
+                grid-column: span 12;
+            }
+            .col-span-7 {
+                grid-column: span 12;
+            }
+            .col-span-8 {
+                grid-column: span 12;
+            }
+            .col-span-9 {
+                grid-column: span 12;
+            }
+            .page-content {
+                padding: 24px 24px 100px;
+            }
+            .header {
+                padding: 0 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 290px;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .sidebar-overlay.open {
+                opacity: 1;
+                pointer-events: auto;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .header .menu-toggle {
+                display: flex;
+            }
+            .bottom-nav {
+                display: flex;
+            }
+            .grid-12 {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 16px;
+            }
+            .col-span-3,
+            .col-span-4,
+            .col-span-5,
+            .col-span-6,
+            .col-span-7,
+            .col-span-8,
+            .col-span-9 {
+                grid-column: span 4;
+            }
+            .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .page-content {
+                padding: 18px 18px 100px;
+            }
+            .header {
+                padding: 0 16px;
+                height: 60px;
+            }
+            .header .page-title {
+                font-size: 18px;
+            }
+            .header .page-title small {
+                font-size: 12px;
+                display: block;
+                margin-left: 0;
+            }
+            .header .header-actions .action-btn {
+                width: 38px;
+                height: 38px;
+            }
+            .welcome-row h2 {
+                font-size: 22px;
+            }
+            .welcome-row .date-badge {
+                font-size: 12px;
+                padding: 4px 16px;
+            }
+            .metric-card .value {
+                font-size: 24px;
+            }
+            .modal {
+                padding: 24px 20px;
+                margin: 10px;
+            }
+            .finance-summary {
+                grid-template-columns: 1fr 1fr;
+            }
+            .alert-priority {
+                padding: 16px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .grid-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .metric-card {
+                padding: 16px 18px;
+            }
+            .card {
+                padding: 18px;
+            }
+            .bento-card {
+                padding: 18px;
+                min-height: 100px;
+            }
+            .bento-card .bento-value {
+                font-size: 26px;
+            }
+            .header .page-title {
+                font-size: 16px;
+            }
+            .bottom-nav .nav-btn {
+                font-size: 9px;
+                min-width: 44px;
+                padding: 2px 4px;
+            }
+            .bottom-nav .nav-btn .icon {
+                font-size: 18px;
+            }
+            .bottom-nav .nav-btn .icon svg {
+                width: 20px;
+                height: 20px;
+            }
+            .table {
+                font-size: 13px;
+            }
+            .table th,
+            .table td {
+                padding: 8px 8px 8px 0;
+            }
+            .finance-summary {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .finance-item {
+                padding: 14px 16px;
+            }
+            .finance-item .value {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+            .finance-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================================
+           MICROINTERAÇÕES E EXTRAS
+           ============================================================ */
+        .btn,
+        .card,
+        .metric-card,
+        .bento-card,
+        .finance-item,
+        .sidebar-nav .nav-item,
+        .bottom-nav .nav-btn,
+        .action-btn,
+        .toggle,
+        .modal .modal-close {
+            will-change: transform, box-shadow, background;
+        }
+
+        /* Ripple effect nos botões (sutil) */
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.15), transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        /* Loading dots */
+        .loading-dots {
+            display: inline-flex;
+            gap: 5px;
+        }
+        .loading-dots span {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gray-400);
+            animation: dotPulse 1.2s infinite;
+        }
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes dotPulse {
+            0%,
+            80%,
+            100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            40% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Scroll progress (sutil) */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.1s;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        /* Glassmorphism extra: glow on active */
+        .sidebar-nav .nav-item.active .nav-icon svg {
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.30));
+        }
+
+        /* Smooth hover on cards */
+        .card,
+        .metric-card,
+        .bento-card {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    SCROLL PROGRESS
+    ============================================================ -->
+    <div class="scroll-progress" id="scrollProgress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- ========== SIDEBAR OVERLAY ========== -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ========== APP WRAPPER ========== -->
+    <div class="app-wrapper">
+
+        <!-- ===== SIDEBAR ===== -->
+        <aside class="sidebar" id="sidebar" role="navigation" aria-label="Navegação principal">
+            <div class="sidebar-brand">
+                <div class="logo-icon">CC</div>
+                <div class="logo-text">Command <span>Center</span></div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-label">Principal</div>
+                <div class="nav-item active" data-section="dashboard">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    </span>
+                    Dashboard
+                </div>
+                <div class="nav-item" data-section="membros">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </span>
+                    Membros
+                    <span class="nav-badge green">128</span>
+                </div>
+                <div class="nav-item" data-section="visitantes">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </span>
+                    Visitantes
+                    <span class="nav-badge amber">7</span>
+                </div>
+                <div class="nav-item" data-section="grupos">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9h1"/><path d="M9 13h1"/><path d="M9 17h1"/></svg>
+                    </span>
+                    Pequenos Grupos
+                    <span class="nav-badge">14</span>
+                </div>
+                <div class="nav-item" data-section="eventos">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    </span>
+                    Eventos
+                    <span class="nav-badge amber">3</span>
+                </div>
+                <div class="nav-item" data-section="escalas">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    </span>
+                    Escalas
+                </div>
+
+                <div class="nav-label" style="margin-top:12px;">Gestão</div>
+                <div class="nav-item" data-section="financas">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </span>
+                    Finanças
+                </div>
+                <div class="nav-item" data-section="mensagens">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </span>
+                    Mensagens
+                    <span class="nav-badge red">4</span>
+                </div>
+                <div class="nav-item" data-section="relatorios">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    </span>
+                    Relatórios
+                </div>
+                <div class="nav-item" data-section="configuracoes">
+                    <span class="nav-icon">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2"/><path d="M12 21v2"/><path d="M4.22 4.22l1.42 1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M1 12h2"/><path d="M21 12h2"/><path d="M4.22 19.78l1.42-1.42"/><path d="M18.36 5.64l1.42-1.42"/></svg>
+                    </span>
+                    Configurações
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-avatar">PR</div>
+                <div class="user-info">
+                    <div class="name">Pastor Ricardo</div>
+                    <div class="role">Administrador</div>
+                </div>
+                <button class="btn btn-ghost btn-sm" style="padding:4px 8px;font-size:18px;" aria-label="Sair">⏻</button>
+            </div>
+        </aside>
+
+        <!-- ===== MAIN ===== -->
+        <main class="main-content" role="main">
+
+            <!-- ===== HEADER ===== -->
+            <header class="header" role="banner">
+                <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+                    ☰
+                </button>
+                <div class="page-title" id="pageTitle">
+                    Dashboard <small>visão geral</small>
+                </div>
+                <div class="header-actions">
+                    <button class="action-btn" aria-label="Notificações" title="Notificações">
+                        🔔
+                        <span class="dot"></span>
+                    </button>
+                    <button class="action-btn" aria-label="Sincronizar" title="Sincronizar" id="syncBtn">
+                        ⟳
+                    </button>
+                    <button class="btn btn-primary btn-sm" style="display:none;" id="installBtn" aria-label="Instalar app">
+                        📲 Instalar
+                    </button>
+                </div>
+            </header>
+
+            <!-- ===== OFFLINE BANNER ===== -->
+            <div class="offline-banner" id="offlineBanner">
+                <span class="icon">📡</span> Modo offline — alguns dados podem estar desatualizados.
+            </div>
+
+            <!-- ===== PAGE CONTENT ===== -->
+            <div class="page-content">
+
+                <!-- ============================================================ -->
+                <!-- SECTION: DASHBOARD -->
+                <!-- ============================================================ -->
+                <section class="page-section active" id="section-dashboard" aria-label="Dashboard">
+                    <div class="welcome-row">
+                        <div>
+                            <h2>Bom dia, Pastor Ricardo <small>aqui está o resumo da sua igreja hoje</small></h2>
+                        </div>
+                        <div class="date-badge" id="currentDate">📅 Carregando...</div>
+                    </div>
+
+                    <!-- Alerta prioritário -->
+                    <div class="alert-priority">
+                        <span class="alert-icon">🔴</span>
+                        <div class="alert-text">
+                            <strong>Alerta prioritário:</strong> 3 novos pedidos de oração aguardam sua atenção.
+                            <span class="highlight">• 2 visitantes sem acompanhamento há 5 dias.</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm">Ver agora</button>
+                    </div>
+
+                    <!-- Métricas -->
+                    <div class="grid-12" style="margin-bottom:28px;">
+                        <div class="col-span-3">
+                            <div class="metric-card">
+                                <div class="label">Membros ativos</div>
+                                <div class="value">128</div>
+                                <div class="change up">↑ 4% este mês</div>
+                            </div>
+                        </div>
+                        <div class="col-span-3">
+                            <div class="metric-card">
+                                <div class="label">Presentes (último culto)</div>
+                                <div class="value">94</div>
+                                <div class="change up">↑ 12% vs. semana passada</div>
+                            </div>
+                        </div>
+                        <div class="col-span-3">
+                            <div class="metric-card">
+                                <div class="label">Próximos eventos</div>
+                                <div class="value">3</div>
+                                <div class="change neutral">⏳ 2 esta semana</div>
+                            </div>
+                        </div>
+                        <div class="col-span-3">
+                            <div class="metric-card">
+                                <div class="label">Ofertas (mês)</div>
+                                <div class="value">R$ 8.240</div>
+                                <div class="change up">↑ 7% vs. mês anterior</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bento Grid -->
+                    <div class="grid-12" style="margin-bottom:28px;">
+                        <div class="col-span-4">
+                            <div class="bento-card">
+                                <div class="bento-title">📊 Participação semanal</div>
+                                <div class="bento-value">87%</div>
+                                <div class="bento-desc">Média de presença nos cultos</div>
+                                <div class="mini-bars">
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar highlight"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-4">
+                            <div class="bento-card">
+                                <div class="bento-title">👥 Pequenos grupos</div>
+                                <div class="bento-value">14</div>
+                                <div class="bento-desc">8 ativos · 6 com baixa frequência</div>
+                                <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;">
+                                    <span class="badge badge-green">● 8 ativos</span>
+                                    <span class="badge badge-amber">● 6 atenção</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-4">
+                            <div class="bento-card">
+                                <div class="bento-title">📬 Pedidos de oração</div>
+                                <div class="bento-value">12</div>
+                                <div class="bento-desc">3 urgentes · 9 em acompanhamento</div>
+                                <div style="margin-top:10px;">
+                                    <span class="badge badge-red">● 3 urgentes</span>
+                                    <span class="badge badge-primary">● 9 em andamento</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Membros a visitar + próximos eventos -->
+                    <div class="grid-12">
+                        <div class="col-span-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>👤 Membros a visitar</h3>
+                                    <span class="card-action">Ver todos →</span>
+                                </div>
+                                <div class="member-item">
+                                    <div class="avatar">MS</div>
+                                    <div class="info">
+                                        <div class="name">Maria Silva</div>
+                                        <div class="detail">Ausente há 3 semanas · 📍 Zona Norte</div>
+                                    </div>
+                                    <span class="badge badge-amber">Prioridade</span>
+                                </div>
+                                <div class="member-item">
+                                    <div class="avatar">JO</div>
+                                    <div class="info">
+                                        <div class="name">José Oliveira</div>
+                                        <div class="detail">Recém-hospitalizado · 📍 Centro</div>
+                                    </div>
+                                    <span class="badge badge-red">Urgente</span>
+                                </div>
+                                <div class="member-item">
+                                    <div class="avatar">AC</div>
+                                    <div class="info">
+                                        <div class="name">Ana Costa</div>
+                                        <div class="detail">Visitante novo · aguardando contato</div>
+                                    </div>
+                                    <span class="badge badge-primary">Novo</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3>📅 Próximos eventos</h3>
+                                    <span class="card-action">Criar evento →</span>
+                                </div>
+                                <div style="display:flex;flex-direction:column;gap:12px;">
+                                    <div style="display:flex;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.03);">
+                                        <span style="font-weight:700;font-size:22px;color:var(--primary);width:38px;">15</span>
+                                        <div style="flex:1;">
+                                            <div style="font-weight:600;">Culto de Jovens</div>
+                                            <div style="font-size:13px;color:var(--text-tertiary);">Sábado · 19h · Salão Principal</div>
+                                        </div>
+                                        <span class="badge badge-green">Confirmado</span>
+                                    </div>
+                                    <div style="display:flex;gap:14px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.03);">
+                                        <span style="font-weight:700;font-size:22px;color:var(--amber);width:38px;">17</span>
+                                        <div style="flex:1;">
+                                            <div style="font-weight:600;">Reunião de Líderes</div>
+                                            <div style="font-size:13px;color:var(--text-tertiary);">Segunda · 20h · Sala 2</div>
+                                        </div>
+                                        <span class="badge badge-amber">Em breve</span>
+                                    </div>
+                                    <div style="display:flex;gap:14px;align-items:center;padding:10px 0;">
+                                        <span style="font-weight:700;font-size:22px;color:var(--text-tertiary);width:38px;">22</span>
+                                        <div style="flex:1;">
+                                            <div style="font-weight:600;">Escola Bíblica</div>
+                                            <div style="font-size:13px;color:var(--text-tertiary);">Domingo · 9h · Auditório</div>
+                                        </div>
+                                        <span class="badge badge-gray">Agendado</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================================================ -->
+                <!-- SECTION: MEMBROS -->
+                <!-- ============================================================ -->
+                <section class="page-section" id="section-membros" aria-label="Membros">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px;">
+                        <h2 style="font-size:22px;font-weight:700;">👥 Membros <span style="font-weight:400;font-size:16px;color:var(--text-tertiary);">128 ativos</span></h2>
+                        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                            <button class="btn btn-primary btn-sm">+ Cadastrar membro</button>
+                            <button class="btn btn-outline btn-sm">Filtrar</button>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr><th>Membro</th><th>Ministério</th><th>Status</th><th>Última visita</th><th></th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><span class="avatar-sm">AR</span> André Rodrigues</td><td>Louvor</td><td><span class="badge badge-green">Ativo</span></td><td>Ontem</td><td><button class="btn btn-ghost btn-xs">...</button></td></tr>
+                                    <tr><td><span class="avatar-sm">MC</span> Mariana Costa</td><td>Infantil</td><td><span class="badge badge-green">Ativo</span></td><td>3 dias</td><td><button class="btn btn-ghost btn-xs">...</button></td></tr>
+                                    <tr><td><span class="avatar-sm">PF</span> Paulo Ferreira</td><td>Diaconia</td><td><span class="badge badge-amber">Ausente</span></td><td>2 semanas</td><td><button class="btn btn-ghost btn-xs">...</button></td></tr>
+                                    <tr><td><span class="avatar-sm">LS</span> Lúcia Santos</td><td>Intercessão</td><td><span class="badge badge-green">Ativo</span></td><td>Hoje</td><td><button class="btn btn-ghost btn-xs">...</button></td></tr>
+                                    <tr><td><span class="avatar-sm">RM</span> Ricardo Moura</td><td>Logística</td><td><span class="badge badge-red">Inativo</span></td><td>1 mês</td><td><button class="btn btn-ghost btn-xs">...</button></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================================================ -->
+                <!-- SECTION: VISITANTES -->
+                <!-- ============================================================ -->
+                <section class="page-section" id="section-visitantes" aria-label="Visitantes">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px;">
+                        <h2 style="font-size:22px;font-weight:700;">🚪 Visitantes <span style="font-weight:400;font-size:16px;color:var(--text-tertiary);">7 registrados</span></h2>
+                        <button class="btn btn-primary btn-sm">+ Registrar visita</button>
+                    </div>
+                    <div class="grid-12">
+                        <div class="col-span-6">
+                            <div class="card">
+                                <div class="card-header"><h3>Últimos visitantes</h3></div>
+                                <div class="member-item"><div class="avatar">CF</div><div class="info"><div class="name">Carlos Fernandes</div><div class="detail">Visitou em 28/06 · indicado por Ana</div></div><span class="badge badge-primary">Novo</span></div>
+                                <div class="member-item"><div class="avatar">JM</div><div class="info"><div class="name">Júlia Mendes</div><div class="detail">Visitou em 27/06 · indicado por Paulo</div></div><span class="badge badge-amber">Aguardando</span></div>
+                                <div class="member-item"><div class="avatar">RS</div><div class="info"><div class="name">Renato Silva</div><div class="detail">Visitou em 25/06 · sem indicação</div></div><span class="badge badge-gray">Sem vínculo</span></div>
+                            </div>
+                        </div>
+                        <div class="col-span-6">
+                            <div class="card">
+                                <div class="card-header"><h3>📊 Conversão de visitantes</h3></div>
+                                <div style="padding:12px 0;">
+                                    <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Este mês</span><strong>12 visitas</strong></div>
+                                    <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Média semanal</span><strong>3,4</strong></div>
+                                    <div style="display:flex;justify-content:space-between;margin-bottom:8px;"><span>Taxa de retorno</span><strong>42%</strong></div>
+                                    <div style="margin-top:14px;height:8px;background:rgba(0,0,0,0.04);border-radius:var(--radius-full);overflow:hidden;box-shadow:inset 0 1px 2px rgba(0,0,0,0.02);">
+                                        <div style="width:42%;height:100%;background:linear-gradient(90deg, var(--green), #1E8B5E);border-radius:var(--radius-full);"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================================================ -->
+                <!-- SECTION: GRUPOS -->
+                <!-- ============================================================ -->
+                <section class="page-section" id="section-grupos" aria-label="Pequenos grupos">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px;">
+                        <h2 style="font-size:22px;font-weight:700;">📚 Pequenos Grupos <span style="font-weight:400;font-size:16px;color:var(--text-tertiary);">14 grupos</span></h2>
+                        <button class="btn btn-primary btn-sm">+ Novo grupo</button>
+                    </div>
+                    <div class="grid-4">
+                        <div class="card"><h4 style="font-weight:600;">🔥 Jovens</h4><p style="font-size:13px;color:var(--text-tertiary);">Líder: André · 12 membros</p><span class="badge badge-green">Ativo</span></div>
+                        <div class="card"><h4 style="font-weight:600;">🙏 Intercessão</h4><p style="font-size:13px;color:var(--text-tertiary);">Líder: Lúcia · 8 membros</p><span class="badge badge-green">Ativo</span></div>
+                        <div class="card"><h4 style="font-weight:600;">👨‍👩‍👧‍👦 Famílias</h4><p style="font-size:13px;color:var(--text-tertiary);">Líder: Ricardo · 15 membros</p><span class="badge badge-amber">Atenção</span></div>
+                        <div class="card"><h4 style="font-weight:600;">🎶 Louvor</h4><p style="font-size:13px;color:var(--text-tertiary);">Líder: Mariana · 9 membros</p><span class="badge badge-green">Ativo</span></div>
+                    </div>
+                </section>
+
+                <!-- ============================================================ -->
+                <!-- SECTION: EVENTOS -->
+                <!-- ============================================================ -->
+                <section class="page-section" id="section-eventos" aria-label="Eventos">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px;">
+                        <h2 style="font-size:22px;font-weight:700;">📅 Eventos <span style="font-weight:400;font-size:16px;color:var(--text-tertiary);">3 próximos</span></h2>
+                        <button class="btn btn-primary btn-sm">+ Criar evento</button>
+                    </div>
+                    <div class="grid-12">
+                        <div class="col-span-4">
+                            <div class="card" style="border-left:4px solid var(--primary);">
+                                <h4>Culto de Jovens</h4>
+                                <p style="font-size:13px;color:var(--text-tertiary);">Sábado, 15/07 · 19h</p>
+                                <p style="font-size:13px;color:var(--text-tertiary);">Salão Principal · 45 confirmados</p>
+                                <span class="badge badge-green">Confirmado</span>
+                            </div>
+                        </div>
+                        <div class="col-span-4">
+                            <div class="card" style="border-left:4px solid var(--amber);">
+                                <h4>Reunião de Líderes</h4>
+                                <p style="font-size:13px;color:var(--text-tertiary);">Segunda, 17/07 · 20h</p>
+                                <p style="font-size:13px;color:var(--text-tertiary);">Sala 2 · 12 confirmados</p>
+                                <span class="badge badge-amber">Em breve</span>
+                            </div>
+                        </div>
+                        <div class="col-span-4">
+                            <div class="card" style="border-left:4px solid var(--gray-400);">
+                                <h4>Escola Bíblica</h4>
+                                <p style="font-size:13px;color:var(--text-tertiary);">Domingo, 22/07 · 9h</p>
+                                <p style="font-size:13px;color:var(--text-tertiary);">Auditório · 28 confirmados</p>
+                                <span class="badge badge-gray">Agendado</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================================================ -->
+                <!-- SECTION: ESCALAS -->
+                <!-- ============================================================ -->
+                <section class="page-section" id="section-escalas" aria-label="Escalas">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px;">
+                        <h2 style="font-size:22px;font-weight:700;">⏱️ Escalas de Serviço</h2>
+                        <button class="btn btn-primary btn-sm">+ Nova escala</button>
+                    </div>
+                    <div class="card">
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead><tr><th>Ministério</th><th>Responsável</th><th>Próxima data</th><th>Status</th></tr></thead>
+                                <tbody>
+                                    <tr><td>Louvor</td><td>André Rodrigues</td><td>15/07 · 19h</td><td><span class="badge badge-green">Coberto</span></td></tr>
+                                    <tr><td>Som</td><td>Paulo Ferreira</td><td>15/07 · 18h</td><td><span class="badge badge-amber">Pendente</span></td></tr>
+                                    <tr><td>Recepção</td><td>Mariana Costa</td><td>16/07 · 8h</td><td><span class="badge badge-green">Coberto</span></td></tr>
+                                    <tr><td>Infantil</td><td>Lúcia Santos</td><td>16/07 · 8h</td><td><span class="badge badge-red">Urgente</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================================================ -->
+                <!-- SECTION: FINANÇAS -->
+                <!-- ============================================================ -->
+                <section class="page-section" id="section-financas" aria-label="Finanças">
+                    <h2 style="font-size:22px;font-weight:700;margin-bottom:22px;">💰 Finanças</h2>
+                    <div class="finance-summary">
+                        <div class="finance-item"><div class="label">Entradas (mês)</div><div class="value positive">R$ 8.240</div></div>
+                        <div class="finance-item"><div class="label">Saídas (mês)</div><div class="value negative">R$ 5.120</div></div>
+                        <div class="finance-item"><div class="label">Saldo</div><div class="value">R$ 3.120</div></div>
+                        <div class="finance-item"><div class="label">Ofertas (último culto)</div><div class="value">R$ 2.450</div></div>
+                    </div>
+                    <div class="card"><h4 style="margin-bottom:14px;">📊 Resumo de doações por ministério</h4>
+                        <div style="display:flex;gap:28px;flex-wrap:wrap;">
+                            <div><span style="font-weight:500;">Louvor:</span> R$ 1.200</div>
+                            <div><span style="font-weight:500;">Infantil:</span> R$ 800</div>
+                            <div><span style="font-weight:500;">Missões:</span> R$ 2.100</div>
+                            <div><span style="font-weight:500;">Diaconia:</span> R$ 1.450</div>
+                            <div><span style="font-weight:500;">Outros:</span> R$ 2.690</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================================================ -->
+                <!-- SECTION: MENSAGENS -->
+                <!-- ============================================================ -->
+                <section class="page-section" id="section-mensagens" aria-label="Mensagens">
+                    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:22px;">
+                        <h2 style="font-size:22px;font-weight:700;">💬 Mensagens <span style="font-weight:400;font-size:16px;color:var(--text-tertiary);">4 não lidas</span></h2>
+                        <button class="btn btn-primary btn-sm">+ Enviar aviso</button>
+                    </div>
+                    <div class="card">
+                        <div class="msg-item"><div class="msg-icon">📩</div><div class="msg-content"><div class="title">Pedido de oração — Maria Silva</div><div class="preview">"Orem pela minha família, estamos passando por momentos difíceis..."</div></div><div class="msg-time">Há 10 min</div><span class="badge badge-red">Urgente</span></div>
+                        <div class="msg-item"><div class="msg-icon">📋</div><div class="msg-content"><div class="title">Confirmação de evento</div><div class="preview">Culto de jovens confirmado para sábado. 45 pessoas já confirmaram.</div></div><div class="msg-time">Há 2h</div><span class="badge badge-green">Lida</span></div>
+                        <div class="msg-item"><div class="msg-icon">📢</div><div class="msg-content"><div class="title">Aviso da liderança</div><div class="preview">Reunião de líderes remarcada para segunda-feira, 20h.</div></div><div class="msg-time">Há 5h</div><span class="badge badge-amber">Pendente</span></div>
+                        <div class="msg-item"><div class="msg-icon">🙏</div><div class="msg-content"><div class="title">Novo pedido de oração</div><div class="preview">"Minha mãe está no hospital, agradeço as orações de todos."</div></div><div class="msg-time">Há 1 dia</div><span class="badge badge-gray">Lida</span></div>
+                    </div>
+                </section>
+
+                <!-- ============================================================ -->
+                <!-- SECTION: RELATÓRIOS -->
+                <!-- ============================================================ -->
+                <section class="page-section" id="section-relatorios" aria-label="Relatórios">
+                    <h2 style="font-size:22px;font-weight:700;margin-bottom:22px;">📊 Relatórios</h2>
+                    <div class="grid-12">
+                        <div class="col-span-6">
+                            <div class="card"><h4>📈 Participação por ministério</h4>
+                                <div style="display:flex;flex-direction:column;gap:10px;margin-top:14px;">
+                                    <div><span>Louvor</span><div style="height:8px;background:rgba(0,0,0,0.04);border-radius:var(--radius-full);overflow:hidden;margin-top:4px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.02);"><div style="width:85%;height:100%;background:linear-gradient(90deg, var(--primary), var(--primary-light));border-radius:var(--radius-full);"></div></div></div>
+                                    <div><span>Infantil</span><div style="height:8px;background:rgba(0,0,0,0.04);border-radius:var(--radius-full);overflow:hidden;margin-top:4px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.02);"><div style="width:70%;height:100%;background:linear-gradient(90deg, var(--green), #1E8B5E);border-radius:var(--radius-full);"></div></div></div>
+                                    <div><span>Diaconia</span><div style="height:8px;background:rgba(0,0,0,0.04);border-radius:var(--radius-full);overflow:hidden;margin-top:4px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.02);"><div style="width:55%;height:100%;background:linear-gradient(90deg, var(--amber), #D4952A);border-radius:var(--radius-full);"></div></div></div>
+                                    <div><span>Intercessão</span><div style="height:8px;background:rgba(0,0,0,0.04);border-radius:var(--radius-full);overflow:hidden;margin-top:4px;box-shadow:inset 0 1px 2px rgba(0,0,0,0.02);"><div style="width:40%;height:100%;background:var(--gray-400);border-radius:var(--radius-full);"></div></div></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-span-6">
+                            <div class="card"><h4>📋 Resumo pastoral semanal</h4>
+                                <ul style="list-style:none;padding:0;margin-top:10px;font-size:14px;">
+                                    <li style="padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.03);">✅ Visitas realizadas: 4</li>
+                                    <li style="padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.03);">📞 Contatos novos: 7</li>
+                                    <li style="padding:8px 0;border-bottom:1px solid rgba(0,0,0,0.03);">🙏 Pedidos de oração: 12</li>
+                                    <li style="padding:8px 0;">📅 Eventos confirmados: 2</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================================================ -->
+                <!-- SECTION: CONFIGURAÇÕES -->
+                <!-- ============================================================ -->
+                <section class="page-section" id="section-configuracoes" aria-label="Configurações">
+                    <h2 style="font-size:22px;font-weight:700;margin-bottom:22px;">⚙️ Configurações</h2>
+                    <div class="card">
+                        <div class="config-group">
+                            <h4>Geral</h4>
+                            <div class="config-row"><div class="info"><div class="title">Idioma</div><div class="desc">Português (Brasil)</div></div><button class="btn btn-outline btn-sm">Alterar</button></div>
+                            <div class="config-row"><div class="info"><div class="title">Tema</div><div class="desc">Claro (padrão)</div></div><button class="btn btn-outline btn-sm">Alterar</button></div>
+                        </div>
+                        <div class="config-group">
+                            <h4>Notificações</h4>
+                            <div class="config-row"><div class="info"><div class="title">Push notifications</div><div class="desc">Receba alertas em tempo real</div></div><button class="toggle active" role="switch" aria-checked="true"></button></div>
+                            <div class="config-row"><div class="info"><div class="title">E-mail semanal</div><div class="desc">Resumo pastoral por e-mail</div></div><button class="toggle" role="switch" aria-checked="false"></button></div>
+                        </div>
+                        <div class="config-group">
+                            <h4>Offline</h4>
+                            <div class="config-row"><div class="info"><div class="title">Cache de dados</div><div class="desc">Mantém dados disponíveis offline</div></div><button class="toggle active" role="switch" aria-checked="true"></button></div>
+                            <div class="config-row"><div class="info"><div class="title">Sincronização automática</div><div class="desc">Sincroniza ao reconectar</div></div><button class="toggle active" role="switch" aria-checked="true"></button></div>
+                        </div>
+                        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(0,0,0,0.04);">
+                            <button class="btn btn-danger btn-sm">Sair da conta</button>
+                        </div>
+                    </div>
+                </section>
+
+            </div><!-- /page-content -->
+        </main>
+    </div><!-- /app-wrapper -->
+
+    <!-- ========== BOTTOM NAV (MOBILE) ========== -->
+    <nav class="bottom-nav" id="bottomNav" role="navigation" aria-label="Navegação mobile">
+        <button class="nav-btn active" data-section="dashboard" aria-label="Dashboard">
+            <span class="icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            </span>
+            <span>Início</span>
+        </button>
+        <button class="nav-btn" data-section="membros" aria-label="Membros">
+            <span class="icon">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <span>Membros</span>
+            <span class="badge-dot green"></span>
+        </button>
+        <button class="nav-btn" data-section="eventos" aria-label="Eventos">
+            <span class="icon">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </span>
+            <span>Eventos</span>
+            <span class="badge-dot amber"></span>
+        </button>
+        <button class="nav-btn" data-section="mensagens" aria-label="Mensagens">
+            <span class="icon">
+                <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </span>
+            <span>Mensagens</span>
+            <span class="badge-dot"></span>
+        </button>
+        <button class="nav-btn" data-section="configuracoes" aria-label="Configurações">
+            <span class="icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v2"/><path d="M12 21v2"/><path d="M4.22 4.22l1.42 1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M1 12h2"/><path d="M21 12h2"/><path d="M4.22 19.78l1.42-1.42"/><path d="M18.36 5.64l1.42-1.42"/></svg>
+            </span>
+            <span>Config</span>
+        </button>
+    </nav>
+
+    <!-- ========== MODAL (exemplo) ========== -->
+    <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="modalTitle">Criar novo evento</h3>
+                <button class="modal-close" id="modalClose" aria-label="Fechar">✕</button>
+            </div>
+            <div class="input-group">
+                <label for="eventName">Nome do evento</label>
+                <input class="input-field" id="eventName" placeholder="Ex: Culto de Jovens" />
+            </div>
+            <div class="input-group">
+                <label for="eventDate">Data</label>
+                <input class="input-field" id="eventDate" type="date" />
+            </div>
+            <div class="input-group">
+                <label for="eventDesc">Descrição</label>
+                <textarea class="input-field" id="eventDesc" rows="2" placeholder="Detalhes do evento..."></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-ghost" id="modalCancel">Cancelar</button>
+                <button class="btn btn-primary" id="modalConfirm">Criar evento</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ================================================================
+        //  PWA — SERVICE WORKER REGISTRATION
+        // ================================================================
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register(window.location.href + '?sw', { scope: '/' })
+                .then(() => console.log('[PWA] Service Worker registrado'))
+                .catch(err => console.warn('[PWA] SW não registrado:', err));
+        }
+
+        // ================================================================
+        //  OFFLINE DETECTION
+        // ================================================================
+        const offlineBanner = document.getElementById('offlineBanner');
+
+        function updateOfflineStatus() {
+            const isOffline = !navigator.onLine;
+            offlineBanner.classList.toggle('show', isOffline);
+            document.documentElement.style.setProperty('--header-height', isOffline ? '96px' : '68px');
+        }
+        window.addEventListener('online', updateOfflineStatus);
+        window.addEventListener('offline', updateOfflineStatus);
+        updateOfflineStatus();
+
+        // ================================================================
+        //  DATE DISPLAY
+        // ================================================================
+        function updateDate() {
+            const now = new Date();
+            const opts = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            document.getElementById('currentDate').textContent = '📅 ' + now.toLocaleDateString('pt-BR', opts);
+        }
+        updateDate();
+
+        // ================================================================
+        //  NAVIGATION
+        // ================================================================
+        const sections = {};
+
+        document.querySelectorAll('.page-section').forEach(el => {
+            sections[el.id.replace('section-', '')] = el;
+        });
+
+        const navItems = document.querySelectorAll('.sidebar-nav .nav-item, .bottom-nav .nav-btn');
+        const pageTitle = document.getElementById('pageTitle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebarOverlay');
+        const menuToggle = document.getElementById('menuToggle');
+
+        const titles = {
+            dashboard: 'Dashboard <small>visão geral</small>',
+            membros: 'Membros <small>gestão de pessoas</small>',
+            visitantes: 'Visitantes <small>acompanhamento</small>',
+            grupos: 'Pequenos Grupos <small>células e liderança</small>',
+            eventos: 'Eventos <small>agenda da igreja</small>',
+            escalas: 'Escalas <small>serviços e ministérios</small>',
+            financas: 'Finanças <small>gestão financeira</small>',
+            mensagens: 'Mensagens <small>comunicação e avisos</small>',
+            relatorios: 'Relatórios <small>análise e visão</small>',
+            configuracoes: 'Configurações <small>preferências do sistema</small>'
+        };
+
+        function navigateTo(sectionId) {
+            // Hide all sections
+            Object.values(sections).forEach(s => s.classList.remove('active'));
+
+            // Show target
+            const target = sections[sectionId];
+            if (target) {
+                target.classList.add('active');
+            }
+
+            // Update sidebar
+            document.querySelectorAll('.sidebar-nav .nav-item').forEach(el => {
+                el.classList.toggle('active', el.dataset.section === sectionId);
+            });
+
+            // Update bottom nav
+            document.querySelectorAll('.bottom-nav .nav-btn').forEach(el => {
+                el.classList.toggle('active', el.dataset.section === sectionId);
+            });
+
+            // Update title
+            pageTitle.innerHTML = titles[sectionId] || sectionId;
+
+            // Close sidebar on mobile
+            closeSidebar();
+
+            // Scroll to top
+            document.querySelector('.page-content').scrollTop = 0;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('open');
+            menuToggle.setAttribute('aria-expanded', 'true');
+        }
+
+        // Click handlers
+        navItems.forEach(el => {
+            el.addEventListener('click', function(e) {
+                const section = this.dataset.section;
+                if (section) navigateTo(section);
+            });
+        });
+
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (sidebar.classList.contains('open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+
+        overlay.addEventListener('click', closeSidebar);
+
+        // Close sidebar on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeSidebar();
+        });
+
+        // ================================================================
+        //  MODAL
+        // ================================================================
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalClose = document.getElementById('modalClose');
+        const modalCancel = document.getElementById('modalCancel');
+        const modalConfirm = document.getElementById('modalConfirm');
+
+        // Open modal from "Criar evento" buttons
+        document.querySelectorAll('[data-modal="event"]').forEach(btn => {
+            btn.addEventListener('click', () => modalOverlay.classList.add('open'));
+        });
+
+        // Manual: Any button with "Criar evento" text
+        document.querySelectorAll('.btn').forEach(btn => {
+            if (btn.textContent.trim().includes('Criar evento')) {
+                btn.addEventListener('click', () => modalOverlay.classList.add('open'));
+            }
+        });
+
+        function closeModal() {
+            modalOverlay.classList.remove('open');
+        }
+
+        modalClose.addEventListener('click', closeModal);
+        modalCancel.addEventListener('click', closeModal);
+        modalConfirm.addEventListener('click', () => {
+            alert('✅ Evento criado com sucesso! (demonstração)');
+            closeModal();
+        });
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal();
+        });
+
+        // ================================================================
+        //  TOGGLES (Config)
+        // ================================================================
+        document.querySelectorAll('.toggle').forEach(toggle => {
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const isActive = this.classList.contains('active');
+                this.setAttribute('aria-checked', isActive);
+            });
+        });
+
+        // ================================================================
+        //  SYNC BUTTON
+        // ================================================================
+        document.getElementById('syncBtn').addEventListener('click', function() {
+            this.textContent = '⏳';
+            setTimeout(() => {
+                this.textContent = '✓';
+                setTimeout(() => { this.textContent = '⟳'; }, 800);
+            }, 600);
+        });
+
+        // ================================================================
+        //  PWA — INSTALL PROMPT
+        // ================================================================
+        let deferredPrompt = null;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'inline-flex';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const result = await deferredPrompt.userChoice;
+                if (result.outcome === 'accepted') {
+                    installBtn.style.display = 'none';
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.style.display = 'none';
+            console.log('[PWA] App instalado');
+        });
+
+        // ================================================================
+        //  DEMO: Quick action buttons show alert
+        // ================================================================
+        document.querySelectorAll('.qa-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const action = this.textContent.trim();
+                alert(`⚡ Ação rápida: "${action}" (demonstração)`);
+            });
+        });
+
+        // ================================================================
+        //  DEMO: "Ver todos" links
+        // ================================================================
+        document.querySelectorAll('.card-action').forEach(el => {
+            el.addEventListener('click', function() {
+                const card = this.closest('.card');
+                const parentSection = card?.closest('.page-section');
+                if (parentSection) {
+                    const id = parentSection.id.replace('section-', '');
+                    navigateTo(id);
+                } else {
+                    alert('🔍 Navegando para a lista completa... (demonstração)');
+                }
+            });
+        });
+
+        // ================================================================
+        //  DEMO: "Ver agora" on priority alert
+        // ================================================================
+        document.querySelector('.alert-priority .btn')?.addEventListener('click', function() {
+            navigateTo('mensagens');
+        });
+
+        // ================================================================
+        //  KEYBOARD SHORTCUTS (accessibility)
+        // ================================================================
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key >= '1' && e.key <= '9') {
+                e.preventDefault();
+                const sections = ['dashboard', 'membros', 'visitantes', 'grupos', 'eventos', 'escalas', 'financas',
+                    'mensagens', 'relatorios'
+                ];
+                const idx = parseInt(e.key) - 1;
+                if (sections[idx]) navigateTo(sections[idx]);
+            }
+            if (e.ctrlKey && e.key === '0') {
+                e.preventDefault();
+                navigateTo('configuracoes');
+            }
+        });
+
+        // ================================================================
+        //  SCROLL PROGRESS
+        // ================================================================
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            scrollProgress.style.width = progress + '%';
+            scrollProgress.setAttribute('aria-valuenow', Math.round(progress));
+        });
+
+        // ================================================================
+        //  LOG — ready
+        // ================================================================
+        console.log('🚀 Command Center PWA — Visual Worship + Glassmorphism');
+        console.log('📌 Atalhos: Ctrl+1..9 para navegar entre seções');
+    </script>
+
+    <!-- ================================================================
+    SERVICE WORKER (inline via blob URL)
+    ================================================================ -->
+    <script>
+        (function registerSW() {
+            const swCode = `
+        const CACHE = 'command-center-v2';
+        const urls = [
+          '.',
+          'index.html',
+          '?',
+        ];
+
+        self.addEventListener('install', e => {
+          e.waitUntil(
+            caches.open(CACHE).then(c => c.addAll(urls))
+          );
+          self.skipWaiting();
+        });
+
+        self.addEventListener('activate', e => {
+          e.waitUntil(
+            caches.keys().then(keys => Promise.all(
+              keys.filter(k => k !== CACHE).map(k => caches.delete(k))
+            ))
+          );
+          self.clients.claim();
+        });
+
+        self.addEventListener('fetch', e => {
+          e.respondWith(
+            caches.match(e.request).then(res => res || fetch(e.request).catch(() => {
+              return new Response('Offline — Command Center', { status: 503 });
+            }))
+          );
+        });
+      `;
+            try {
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register(swUrl, { scope: '/' })
+                        .then(() => console.log('[PWA] SW registrado via blob'))
+                        .catch(() => {});
+                }
+            } catch (_) {}
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,2316 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="theme-color" content="#F4F6FA" />
+    <meta name="description" content="Beauty Hub Center - Seu hub digital de beleza" />
+
+    <title>Beauty Hub Center · Hub Digital</title>
+
+    <!-- Google Fonts: Space Grotesk + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES
+           ============================================================ */
+        :root {
+            --bg-body: #F4F6FA;
+            --bg-surface: #FFFFFF;
+            --bg-surface-soft: #EEF1F7;
+            --bg-primary: #1A5276;
+            --bg-primary-light: #D4E6F1;
+            --bg-primary-subtle: #EBF5FB;
+            --bg-secondary: #6C3483;
+            --bg-secondary-light: #EBDEF0;
+            --bg-accent: #D4A017;
+            --bg-accent-light: #FDF2D4;
+            --bg-teal: #1ABC9C;
+            --bg-teal-light: #D5F5E3;
+            --bg-coral: #E67E7E;
+            --bg-coral-light: #FADBD8;
+
+            --text-primary: #1A2A3A;
+            --text-secondary: #4A5A6A;
+            --text-muted: #8A9AAA;
+            --text-inverse: #FFFFFF;
+
+            --border-light: #E2E6EC;
+            --border-primary: #1A5276;
+
+            --shadow-sm: 0 1px 4px rgba(26, 42, 58, 0.04);
+            --shadow-md: 0 4px 16px rgba(26, 42, 58, 0.06);
+            --shadow-lg: 0 12px 40px rgba(26, 42, 58, 0.08);
+
+            --radius-card: 16px;
+            --radius-btn: 30px;
+            --radius-input: 10px;
+
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-display: 'Space Grotesk', 'Inter', sans-serif;
+
+            --transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition-smooth: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* ============================================================
+           RESET
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-body);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-primary);
+            border-radius: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ============================================================
+           TYPOGRAPHY
+           ============================================================ */
+        .heading-xl {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+        }
+        .heading-lg {
+            font-family: var(--font-display);
+            font-size: clamp(1.3rem, 3vw, 2rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        .heading-md {
+            font-family: var(--font-display);
+            font-size: 1.125rem;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        .heading-sm {
+            font-family: var(--font-display);
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .body-text {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+        .body-text-sm {
+            font-size: 0.8125rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .label-text {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 230, 236, 0.4);
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .site-header.scrolled {
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .site-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-display);
+            font-size: 0.9375rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            flex-shrink: 0;
+        }
+        .site-header .logo .hub {
+            color: var(--bg-primary);
+        }
+        .site-header .logo .icon {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 4px;
+            transition: var(--transition);
+            font-family: var(--font);
+        }
+        .nav-toggle:active {
+            transform: scale(0.92);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: var(--text-secondary);
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--bg-primary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--bg-primary);
+            color: var(--text-inverse) !important;
+            padding: 8px 22px !important;
+            border-radius: var(--radius-btn);
+            font-weight: 600 !important;
+            transition: var(--transition);
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+        .nav-cta:hover {
+            background: var(--bg-secondary) !important;
+            color: var(--text-inverse) !important;
+        }
+
+        /* ============================================================
+           PAGES
+           ============================================================ */
+        .page {
+            display: none;
+            padding-top: 72px;
+            animation: fadeUp 0.4s ease both;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero-section {
+            padding: 32px 0 48px;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content .hero-badge {
+            display: inline-block;
+            font-size: 0.5625rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--bg-primary);
+            background: var(--bg-primary-light);
+            padding: 4px 16px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+        }
+
+        .hero-content .hero-title {
+            margin-bottom: 12px;
+        }
+        .hero-content .hero-title .highlight {
+            color: var(--bg-primary);
+        }
+
+        .hero-content .hero-description {
+            max-width: 480px;
+            margin-bottom: 20px;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 28px;
+            font-family: var(--font);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: var(--radius-btn);
+            letter-spacing: 0.02em;
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-primary {
+            background: var(--bg-primary);
+            color: var(--text-inverse);
+        }
+        .btn-primary:hover {
+            background: var(--bg-secondary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-inverse);
+        }
+        .btn-secondary:hover {
+            background: var(--bg-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-teal {
+            background: var(--bg-teal);
+            color: var(--text-inverse);
+        }
+        .btn-teal:hover {
+            background: #16A085;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1.5px solid var(--border-light);
+        }
+        .btn-outline:hover {
+            border-color: var(--text-primary);
+            background: var(--text-primary);
+            color: var(--text-inverse);
+        }
+
+        .hero-image {
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--bg-primary-light), var(--bg-secondary-light));
+            border-radius: var(--radius-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            color: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            min-height: 220px;
+        }
+
+        .hero-image .image-label {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(26, 42, 58, 0.6);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            font-size: 0.625rem;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 30px;
+        }
+
+        /* ============================================================
+           HUB CARDS (Bento)
+           ============================================================ */
+        .hub-section {
+            padding: 40px 0 56px;
+        }
+
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+        }
+
+        .hub-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 24px 22px 26px;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            min-height: 160px;
+        }
+
+        .hub-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--bg-primary);
+        }
+
+        .hub-card .card-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .hub-card .card-title {
+            font-family: var(--font-display);
+            font-size: 1.0625rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .hub-card .card-desc {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .hub-card .card-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 12px;
+            border-radius: 30px;
+            background: var(--bg-accent);
+            color: #fff;
+        }
+        .hub-card .card-badge.primary {
+            background: var(--bg-primary);
+        }
+        .hub-card .card-badge.teal {
+            background: var(--bg-teal);
+        }
+        .hub-card .card-badge.coral {
+            background: var(--bg-coral);
+        }
+
+        .hub-card .card-cta {
+            margin-top: 12px;
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--bg-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition);
+            border-bottom: 2px solid transparent;
+            padding-bottom: 2px;
+        }
+
+        .hub-card:hover .card-cta {
+            gap: 8px;
+            border-bottom-color: var(--bg-primary);
+        }
+
+        /* Card sizes */
+        .hub-card.col-3 {
+            grid-column: span 3;
+        }
+        .hub-card.col-4 {
+            grid-column: span 4;
+        }
+        .hub-card.col-5 {
+            grid-column: span 5;
+        }
+        .hub-card.col-6 {
+            grid-column: span 6;
+        }
+        .hub-card.col-7 {
+            grid-column: span 7;
+        }
+        .hub-card.col-8 {
+            grid-column: span 8;
+        }
+        .hub-card.col-9 {
+            grid-column: span 9;
+        }
+        .hub-card.col-12 {
+            grid-column: span 12;
+        }
+
+        .hub-card.row-2 {
+            min-height: 280px;
+        }
+
+        /* Colored variants */
+        .hub-card.card-primary {
+            background: var(--bg-primary);
+            border-color: var(--bg-primary);
+            color: var(--text-inverse);
+        }
+        .hub-card.card-primary .card-desc {
+            color: rgba(255, 255, 255, 0.75);
+        }
+        .hub-card.card-primary .card-cta {
+            color: #fff;
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+        }
+        .hub-card.card-primary:hover .card-cta {
+            border-bottom-color: #fff;
+        }
+        .hub-card.card-primary .card-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .hub-card.card-secondary {
+            background: var(--bg-secondary);
+            border-color: var(--bg-secondary);
+            color: var(--text-inverse);
+        }
+        .hub-card.card-secondary .card-desc {
+            color: rgba(255, 255, 255, 0.75);
+        }
+        .hub-card.card-secondary .card-cta {
+            color: #fff;
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+        }
+        .hub-card.card-secondary:hover .card-cta {
+            border-bottom-color: #fff;
+        }
+
+        .hub-card.card-teal {
+            background: var(--bg-teal);
+            border-color: var(--bg-teal);
+            color: var(--text-inverse);
+        }
+        .hub-card.card-teal .card-desc {
+            color: rgba(255, 255, 255, 0.75);
+        }
+        .hub-card.card-teal .card-cta {
+            color: #fff;
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+        }
+        .hub-card.card-teal:hover .card-cta {
+            border-bottom-color: #fff;
+        }
+
+        .hub-card.card-accent {
+            background: var(--bg-accent);
+            border-color: var(--bg-accent);
+            color: var(--text-inverse);
+        }
+        .hub-card.card-accent .card-desc {
+            color: rgba(255, 255, 255, 0.75);
+        }
+        .hub-card.card-accent .card-cta {
+            color: #fff;
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+        }
+        .hub-card.card-accent:hover .card-cta {
+            border-bottom-color: #fff;
+        }
+
+        .hub-card.card-coral {
+            background: var(--bg-coral);
+            border-color: var(--bg-coral);
+            color: var(--text-inverse);
+        }
+        .hub-card.card-coral .card-desc {
+            color: rgba(255, 255, 255, 0.75);
+        }
+        .hub-card.card-coral .card-cta {
+            color: #fff;
+            border-bottom-color: rgba(255, 255, 255, 0.3);
+        }
+        .hub-card.card-coral:hover .card-cta {
+            border-bottom-color: #fff;
+        }
+
+        .hub-card.card-light {
+            background: var(--bg-primary-subtle);
+            border-color: var(--bg-primary-light);
+        }
+        .hub-card.card-light .card-title {
+            color: var(--bg-primary);
+        }
+
+        /* Status ribbon */
+        .status-ribbon {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .status-ribbon .status-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .status-ribbon .status-item .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .status-ribbon .status-item .dot.green {
+            background: var(--bg-teal);
+        }
+        .status-ribbon .status-item .dot.orange {
+            background: var(--bg-accent);
+        }
+        .status-ribbon .status-item .dot.red {
+            background: var(--bg-coral);
+        }
+        .status-ribbon .status-item .dot.purple {
+            background: var(--bg-secondary);
+        }
+
+        /* ============================================================
+           PORTFOLIO GALLERY
+           ============================================================ */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .portfolio-item {
+            aspect-ratio: 1;
+            background: var(--bg-primary-light);
+            border-radius: var(--radius-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 120px;
+        }
+
+        .portfolio-item:hover {
+            transform: scale(1.02);
+            border-color: var(--bg-primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .portfolio-item .tag {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(26, 42, 58, 0.6);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            font-size: 0.5rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            padding: 2px 12px;
+            border-radius: 30px;
+        }
+
+        /* ============================================================
+           PROMOTIONS
+           ============================================================ */
+        .promo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .promo-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 20px 18px 22px;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--bg-accent);
+            box-shadow: var(--shadow-md);
+        }
+
+        .promo-card .icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .promo-card .title {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .promo-card .desc {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            margin: 4px 0 8px;
+        }
+        .promo-card .discount {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--bg-accent);
+        }
+        .promo-card .valid {
+            font-size: 0.625rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .promo-card .btn {
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        /* ============================================================
+           ADMIN DASHBOARD DEMO
+           ============================================================ */
+        .admin-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .admin-stat {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 18px 16px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .admin-stat:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .admin-stat .number {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--bg-primary);
+        }
+        .admin-stat .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .admin-stat .trend {
+            font-size: 0.625rem;
+            font-weight: 600;
+            color: var(--bg-teal);
+        }
+        .admin-stat .trend.down {
+            color: var(--bg-coral);
+        }
+
+        .admin-chart {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 20px 22px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .admin-chart .chart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            height: 100px;
+            padding-top: 8px;
+        }
+
+        .admin-chart .chart-bars .bar {
+            flex: 1;
+            border-radius: 4px 4px 0 0;
+            min-height: 12px;
+            transition: height 0.6s ease;
+            background: var(--bg-primary-light);
+            position: relative;
+        }
+
+        .admin-chart .chart-bars .bar .label {
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.5rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .admin-chart .chart-bars .bar .val {
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.5625rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+           ABOUT / CONTACT
+           ============================================================ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .about-image {
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--bg-primary-light), var(--bg-secondary-light));
+            border-radius: var(--radius-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            min-height: 200px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .contact-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .contact-info .info-item:last-child {
+            border-bottom: none;
+        }
+        .contact-info .info-item .icon {
+            font-size: 1.1rem;
+            width: 28px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .contact-info .info-item .text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        .contact-info .info-item .text strong {
+            color: var(--text-primary);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 14px;
+        }
+        .contact-form .form-group label {
+            display: block;
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+        .contact-form .form-group input,
+        .contact-form .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font);
+            font-size: 0.875rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-input);
+            color: var(--text-primary);
+            transition: var(--transition);
+            outline: none;
+        }
+        .contact-form .form-group input:focus,
+        .contact-form .form-group textarea:focus {
+            border-color: var(--bg-primary);
+            box-shadow: 0 0 0 3px rgba(26, 82, 118, 0.08);
+        }
+        .contact-form .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .site-footer {
+            background: var(--text-primary);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 36px 0 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .site-footer .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 32px;
+        }
+
+        .site-footer .footer-brand .name {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        .site-footer .footer-brand .name .hub {
+            color: var(--bg-primary-light);
+        }
+        .site-footer .footer-brand .tagline {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .site-footer .footer-links h4 {
+            font-size: 0.5625rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 8px;
+        }
+        .site-footer .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .site-footer .footer-links ul a {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+            transition: var(--transition);
+        }
+        .site-footer .footer-links ul a:hover {
+            color: var(--bg-primary-light);
+        }
+
+        .site-footer .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            margin-top: 20px;
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6875rem;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ============================================================
+           TOAST
+           ============================================================ */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3000;
+            pointer-events: none;
+            max-width: 420px;
+            width: 90%;
+        }
+        .toast {
+            background: var(--text-primary);
+            color: var(--text-inverse);
+            padding: 12px 20px;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+            animation: toastIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+            border-left: 3px solid var(--bg-primary-light);
+        }
+        .toast .toast-icon {
+            font-size: 1.1rem;
+        }
+        .toast .toast-msg {
+            flex: 1;
+            font-weight: 500;
+            font-size: 0.8125rem;
+        }
+        @keyframes toastIn {
+            0% {
+                opacity: 0;
+                transform: translateY(16px) scale(0.94);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .toast.removing {
+            animation: toastOut 0.3s ease both;
+        }
+        @keyframes toastOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(12px) scale(0.94);
+            }
+        }
+
+        /* ============================================================
+           MODAL
+           ============================================================ */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(26, 42, 58, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            max-width: 520px;
+            width: 100%;
+            padding: 32px 32px 36px;
+            transform: scale(0.94) translateY(20px);
+            transition: var(--transition-smooth);
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-content .modal-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition);
+            font-family: var(--font);
+        }
+        .modal-content .modal-close:hover {
+            color: var(--text-primary);
+            transform: rotate(90deg);
+        }
+
+        .modal-content .modal-emoji {
+            font-size: 3.2rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .modal-content .modal-title {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .modal-content .modal-desc {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hub-card.col-3 {
+                grid-column: span 4;
+            }
+            .hub-card.col-4 {
+                grid-column: span 6;
+            }
+            .hub-card.col-5 {
+                grid-column: span 6;
+            }
+            .hub-card.col-6 {
+                grid-column: span 12;
+            }
+            .hub-card.col-7 {
+                grid-column: span 12;
+            }
+            .hub-card.col-8 {
+                grid-column: span 12;
+            }
+            .hub-card.col-9 {
+                grid-column: span 12;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .promo-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .admin-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 820px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .hero-content {
+                order: 2;
+            }
+            .hero-image {
+                aspect-ratio: 16/10;
+                order: 1;
+                min-height: 160px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .about-image {
+                aspect-ratio: 16/10;
+                min-height: 140px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .site-footer .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 280px;
+                height: 100vh;
+                background: var(--bg-surface);
+                flex-direction: column;
+                padding: 80px 24px 24px;
+                gap: 10px;
+                align-items: flex-start;
+                box-shadow: var(--shadow-lg);
+                transition: var(--transition-smooth);
+                border-left: 1px solid var(--border-light);
+                overflow-y: auto;
+            }
+            .nav-links.open {
+                right: 0;
+            }
+            .nav-links a {
+                font-size: 0.8125rem;
+                padding: 8px 0;
+            }
+            .nav-links a::after {
+                bottom: 0;
+            }
+            .nav-cta {
+                margin-top: 4px;
+                padding: 10px 24px !important;
+            }
+
+            .nav-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(26, 42, 58, 0.3);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition-smooth);
+            }
+            .nav-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 14px;
+            }
+
+            .hero-section {
+                padding: 24px 0 32px;
+            }
+            .hero-image {
+                font-size: 3rem;
+                min-height: 120px;
+            }
+
+            .hub-grid {
+                gap: 12px;
+            }
+            .hub-card.col-3,
+            .hub-card.col-4,
+            .hub-card.col-5,
+            .hub-card.col-6,
+            .hub-card.col-7,
+            .hub-card.col-8,
+            .hub-card.col-9 {
+                grid-column: span 12;
+            }
+            .hub-card.row-2 {
+                min-height: auto;
+            }
+
+            .hub-card {
+                padding: 18px 16px 20px;
+                min-height: 120px;
+            }
+            .hub-card .card-icon {
+                font-size: 1.6rem;
+            }
+            .hub-card .card-title {
+                font-size: 0.9375rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .portfolio-item {
+                min-height: 90px;
+                font-size: 2rem;
+            }
+
+            .promo-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .admin-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .admin-stat .number {
+                font-size: 1.4rem;
+            }
+
+            .admin-chart .chart-bars {
+                height: 70px;
+                gap: 8px;
+            }
+            .admin-chart .chart-bars .bar .label {
+                font-size: 0.4375rem;
+                bottom: -14px;
+            }
+            .admin-chart .chart-bars .bar .val {
+                font-size: 0.5rem;
+                top: -12px;
+            }
+
+            .site-footer .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .site-footer .footer-bottom {
+                flex-direction: column;
+                gap: 6px;
+                text-align: center;
+            }
+
+            .site-header {
+                padding: 10px 14px;
+            }
+            .site-header .logo {
+                font-size: 0.8125rem;
+            }
+
+            .modal-content {
+                padding: 24px 18px 28px;
+            }
+            .modal-content .modal-emoji {
+                font-size: 2.6rem;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-cta-group .btn {
+                justify-content: center;
+            }
+
+            .status-ribbon {
+                padding: 8px 12px;
+                gap: 8px;
+            }
+            .status-ribbon .status-item {
+                font-size: 0.6875rem;
+            }
+
+            .contact-info .info-item .text {
+                font-size: 0.8125rem;
+            }
+
+            .nav-links {
+                width: 80%;
+                padding: 72px 20px 20px;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .portfolio-item {
+                min-height: 70px;
+                font-size: 1.6rem;
+            }
+            .admin-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .admin-stat {
+                padding: 14px 10px;
+            }
+            .admin-stat .number {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-12 {
+            margin-bottom: 12px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.08s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.16s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.24s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.32s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="siteHeader">
+        <a href="#" class="logo" data-page="home">
+            <span class="icon">✦</span>
+            Beauty <span class="hub">Hub</span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#" data-page="home" class="active">Home</a>
+            <a href="#" data-page="agenda">Agenda</a>
+            <a href="#" data-page="portfolio">Portfólio</a>
+            <a href="#" data-page="promocoes">Promoções</a>
+            <a href="#" data-page="admin">Admin</a>
+            <a href="#" data-page="about">Sobre</a>
+            <a href="#" data-page="contact" class="nav-cta">Contato</a>
+        </nav>
+    </header>
+
+    <!-- Mobile overlay -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- ============================================================
+    TOAST
+    ============================================================ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+    MODAL
+    ============================================================ -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">✕</button>
+            <span class="modal-emoji" id="modalEmoji">✨</span>
+            <div class="modal-title" id="modalTitle">Título</div>
+            <div class="modal-desc" id="modalDesc">Descrição do item.</div>
+            <a href="#" class="btn btn-primary" id="modalCta" style="width:100%;">Acessar</a>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAGE: HOME (Hub)
+    ============================================================ -->
+    <div class="page active" id="page-home">
+
+        <!-- Hero -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-badge">✦ Hub Digital</div>
+                        <h1 class="hero-title heading-xl">
+                            Seu hub digital<br />
+                            de <span class="highlight">beleza</span>
+                        </h1>
+                        <p class="hero-description body-text">
+                            Tudo em um só lugar: agendamento, portfólio, promoções e gestão.
+                            Centralize sua experiência de beleza com um painel moderno e intuitivo.
+                        </p>
+                        <div class="hero-cta-group">
+                            <a href="#" class="btn btn-primary" data-page="agenda">📅 Agendar agora</a>
+                            <a href="#" class="btn btn-outline" data-page="portfolio">Ver portfólio</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        ✦
+                        <span class="image-label">Beauty Hub Center · Digital</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status Ribbon -->
+        <div class="container" style="margin-top:-12px;">
+            <div class="status-ribbon">
+                <span class="status-item"><span class="dot green"></span> Atendimento normal</span>
+                <span class="status-item"><span class="dot orange"></span> 2 vagas hoje</span>
+                <span class="status-item"><span class="dot purple"></span> Promo ativa: Corte + Escova</span>
+                <span class="status-item" style="margin-left:auto;"><span class="dot green"></span> 4.9 ★ (128 avaliações)</span>
+            </div>
+        </div>
+
+        <!-- Hub Cards -->
+        <section class="hub-section">
+            <div class="container">
+                <div class="hub-grid">
+
+                    <!-- Agenda -->
+                    <div class="hub-card col-4 row-2 card-primary reveal" data-page="agenda">
+                        <span class="card-icon">📅</span>
+                        <div class="card-title">Agendamento</div>
+                        <div class="card-desc">Agende seu horário de forma rápida e prática. Escolha serviço, profissional e data.</div>
+                        <span class="card-cta">Agendar agora →</span>
+                        <span class="card-badge">Integrado</span>
+                    </div>
+
+                    <!-- Portfólio -->
+                    <div class="hub-card col-4 reveal reveal-delay-1" data-page="portfolio">
+                        <span class="card-icon">📸</span>
+                        <div class="card-title">Portfólio</div>
+                        <div class="card-desc">Galeria de trabalhos realizados. Antes e depois, inspirações e muito mais.</div>
+                        <span class="card-cta">Explorar →</span>
+                        <span class="card-badge primary">Destaque</span>
+                    </div>
+
+                    <!-- Promoções -->
+                    <div class="hub-card col-4 card-accent reveal reveal-delay-2" data-page="promocoes">
+                        <span class="card-icon">🏷️</span>
+                        <div class="card-title">Promoções</div>
+                        <div class="card-desc">Ofertas especiais e pacotes com desconto. Aproveite enquanto dura!</div>
+                        <span class="card-cta">Ver ofertas →</span>
+                        <span class="card-badge">Ativo</span>
+                    </div>
+
+                    <!-- Admin Dashboard -->
+                    <div class="hub-card col-6 card-secondary reveal" data-page="admin">
+                        <span class="card-icon">📊</span>
+                        <div class="card-title">Painel Administrativo</div>
+                        <div class="card-desc">Acompanhe métricas do salão: atendimentos, faturamento, serviços mais vendidos e muito mais.</div>
+                        <span class="card-cta">Acessar painel →</span>
+                        <span class="card-badge">Demo</span>
+                    </div>
+
+                    <!-- Conteúdos -->
+                    <div class="hub-card col-6 card-light reveal reveal-delay-1">
+                        <span class="card-icon">📖</span>
+                        <div class="card-title">Conteúdos de Beleza</div>
+                        <div class="card-desc">Dicas, tendências e artigos sobre cuidados com cabelo, pele e bem-estar.</div>
+                        <span class="card-cta">Ler conteúdos →</span>
+                        <span class="card-badge teal">Novo</span>
+                    </div>
+
+                    <!-- Sobre / Contato -->
+                    <div class="hub-card col-4 reveal reveal-delay-2" data-page="about">
+                        <span class="card-icon">📍</span>
+                        <div class="card-title">Sobre o Hub</div>
+                        <div class="card-desc">Conheça a história, missão e a equipe por trás do Beauty Hub Center.</div>
+                        <span class="card-cta">Saiba mais →</span>
+                    </div>
+
+                    <div class="hub-card col-4 card-coral reveal reveal-delay-3" data-page="contact">
+                        <span class="card-icon">💬</span>
+                        <div class="card-title">Contato</div>
+                        <div class="card-desc">WhatsApp, telefone, e-mail e redes sociais. Fale conosco!</div>
+                        <span class="card-cta">Entrar em contato →</span>
+                    </div>
+
+                    <!-- Cliente (simulado) -->
+                    <div class="hub-card col-4 card-teal reveal reveal-delay-4">
+                        <span class="card-icon">👤</span>
+                        <div class="card-title">Área do Cliente</div>
+                        <div class="card-desc">Acompanhe seu histórico, pontos e agendamentos. (Simulação)</div>
+                        <span class="card-cta">Acessar →</span>
+                        <span class="card-badge">Premium</span>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================
+    PAGE: AGENDA (PWA mock)
+    ============================================================ -->
+    <div class="page" id="page-agenda">
+        <div class="container" style="padding-top:20px;">
+            <div class="section-header" style="margin-bottom:24px;">
+                <div class="label">✦ Agendamento</div>
+                <div class="title">Agende seu horário</div>
+                <div class="sub">Escolha o serviço, profissional e data. Simulação da PWA de agendamento.</div>
+            </div>
+
+            <div style="background:var(--bg-surface);border-radius:var(--radius-card);border:1px solid var(--border-light);padding:24px 28px;box-shadow:var(--shadow-sm);">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+                    <div>
+                        <label style="font-size:0.625rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:4px;">Serviço</label>
+                        <select style="width:100%;padding:12px 16px;border:1px solid var(--border-light);border-radius:var(--radius-input);font-family:var(--font);font-size:0.875rem;background:var(--bg-body);color:var(--text-primary);">
+                            <option>Corte e Escova</option>
+                            <option>Coloração</option>
+                            <option>Manicure e Pedicure</option>
+                            <option selected>Barba e Sobrancelha</option>
+                            <option>Limpeza de Pele</option>
+                            <option>Pacote Completo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.625rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:4px;">Profissional</label>
+                        <select style="width:100%;padding:12px 16px;border:1px solid var(--border-light);border-radius:var(--radius-input);font-family:var(--font);font-size:0.875rem;background:var(--bg-body);color:var(--text-primary);">
+                            <option>Ana (Cabelo & Cor)</option>
+                            <option selected>Beatriz (Maquiagem)</option>
+                            <option>Carla (Unhas & Estética)</option>
+                            <option>Daniel (Barbearia)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label style="font-size:0.625rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:4px;">Data</label>
+                        <input type="date" value="2026-07-20" style="width:100%;padding:12px 16px;border:1px solid var(--border-light);border-radius:var(--radius-input);font-family:var(--font);font-size:0.875rem;background:var(--bg-body);color:var(--text-primary);" />
+                    </div>
+                    <div>
+                        <label style="font-size:0.625rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:4px;">Horário</label>
+                        <select style="width:100%;padding:12px 16px;border:1px solid var(--border-light);border-radius:var(--radius-input);font-family:var(--font);font-size:0.875rem;background:var(--bg-body);color:var(--text-primary);">
+                            <option>09:00</option>
+                            <option>09:30</option>
+                            <option>10:00</option>
+                            <option selected>10:30</option>
+                            <option>11:00</option>
+                            <option>11:30</option>
+                            <option>14:00</option>
+                            <option>14:30</option>
+                            <option>15:00</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-top:16px;">
+                    <label style="font-size:0.625rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-muted);display:block;margin-bottom:4px;">Observações</label>
+                    <textarea placeholder="Alguma observação sobre o serviço…" style="width:100%;padding:12px 16px;border:1px solid var(--border-light);border-radius:var(--radius-input);font-family:var(--font);font-size:0.875rem;background:var(--bg-body);color:var(--text-primary);resize:vertical;min-height:60px;"></textarea>
+                </div>
+                <button class="btn btn-primary" style="margin-top:16px;width:100%;" id="agendarBtn">📅 Confirmar agendamento</button>
+                <div style="text-align:center;margin-top:12px;font-size:0.75rem;color:var(--text-muted);">Simulação da PWA de agendamento integrada ao hub.</div>
+            </div>
+
+            <div style="margin-top:16px;padding:16px 20px;background:var(--bg-primary-subtle);border-radius:var(--radius-card);border:1px solid var(--bg-primary-light);text-align:center;">
+                <span style="font-size:0.8125rem;color:var(--text-secondary);">💡 Esta é uma demonstração da integração com a PWA de agendamento.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAGE: PORTFOLIO
+    ============================================================ -->
+    <div class="page" id="page-portfolio">
+        <div class="container" style="padding-top:20px;">
+            <div class="section-header" style="margin-bottom:24px;">
+                <div class="label">✦ Portfólio</div>
+                <div class="title">Galeria de trabalhos</div>
+                <div class="sub">Transformações, inspirações e resultados dos nossos serviços.</div>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item reveal" data-emoji="💇" data-title="Transformação Capilar" data-desc="Corte e coloração que renovaram o visual da cliente.">
+                    💇
+                    <span class="tag">Cabelo</span>
+                </div>
+                <div class="portfolio-item reveal reveal-delay-1" data-emoji="🎨" data-title="Colorimetria" data-desc="Luzes e tonalização personalizada.">
+                    🎨
+                    <span class="tag">Cor</span>
+                </div>
+                <div class="portfolio-item reveal reveal-delay-2" data-emoji="💄" data-title="Maquiagem Social" data-desc="Look sofisticado para ocasiões especiais.">
+                    💄
+                    <span class="tag">Maquiagem</span>
+                </div>
+                <div class="portfolio-item reveal" data-emoji="💅" data-title="Unhas em Gel" data-desc="Alongamento e design com gel.">
+                    💅
+                    <span class="tag">Unhas</span>
+                </div>
+                <div class="portfolio-item reveal reveal-delay-1" data-emoji="✂️" data-title="Corte Radical" data-desc="Transformação completa com corte ousado.">
+                    ✂️
+                    <span class="tag">Radical</span>
+                </div>
+                <div class="portfolio-item reveal reveal-delay-2" data-emoji="✨" data-title="Limpeza de Pele" data-desc="Protocolo facial que renovou a pele.">
+                    ✨
+                    <span class="tag">Estética</span>
+                </div>
+            </div>
+
+            <div class="text-center mt-16" style="padding:8px 0 24px;">
+                <p class="body-text-sm" style="color:var(--text-muted);">Clique em uma foto para ver detalhes.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAGE: PROMOÇÕES
+    ============================================================ -->
+    <div class="page" id="page-promocoes">
+        <div class="container" style="padding-top:20px;">
+            <div class="section-header" style="margin-bottom:24px;">
+                <div class="label">✦ Promoções</div>
+                <div class="title">Ofertas especiais</div>
+                <div class="sub">Aproveite os descontos e pacotes exclusivos.</div>
+            </div>
+
+            <div class="promo-grid">
+                <div class="promo-card reveal">
+                    <span class="icon">✂️</span>
+                    <div class="title">Corte + Escova</div>
+                    <div class="desc">Combo completo com finalização</div>
+                    <div class="discount">R$ 84</div>
+                    <div style="font-size:0.6875rem;color:var(--text-muted);text-decoration:line-through;">R$ 120</div>
+                    <div class="valid">Válido até 31/07</div>
+                    <button class="btn btn-primary" style="font-size:0.75rem;padding:8px 16px;" data-promo="Corte + Escova">Agendar</button>
+                </div>
+                <div class="promo-card reveal reveal-delay-1">
+                    <span class="icon">💅</span>
+                    <div class="title">Manicure + Pedicure</div>
+                    <div class="desc">Tratamento completo para mãos e pés</div>
+                    <div class="discount">R$ 70</div>
+                    <div style="font-size:0.6875rem;color:var(--text-muted);text-decoration:line-through;">R$ 95</div>
+                    <div class="valid">Válido até 15/08</div>
+                    <button class="btn btn-primary" style="font-size:0.75rem;padding:8px 16px;" data-promo="Manicure + Pedicure">Agendar</button>
+                </div>
+                <div class="promo-card reveal reveal-delay-2">
+                    <span class="icon">🎨</span>
+                    <div class="title">Pacote Coloração</div>
+                    <div class="desc">Coloração + Corte com desconto</div>
+                    <div class="discount">R$ 150</div>
+                    <div style="font-size:0.6875rem;color:var(--text-muted);text-decoration:line-through;">R$ 200</div>
+                    <div class="valid">Válido até 10/08</div>
+                    <button class="btn btn-primary" style="font-size:0.75rem;padding:8px 16px;" data-promo="Pacote Coloração">Agendar</button>
+                </div>
+            </div>
+
+            <div style="margin-top:20px;padding:16px 20px;background:var(--bg-accent-light);border-radius:var(--radius-card);border:1px solid var(--bg-accent);text-align:center;">
+                <span style="font-size:0.875rem;font-weight:600;color:var(--bg-accent);">⭐ Promoção relâmpago: 20% off em pacotes completos até amanhã!</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAGE: ADMIN (Dashboard demo)
+    ============================================================ -->
+    <div class="page" id="page-admin">
+        <div class="container" style="padding-top:20px;">
+            <div class="section-header" style="margin-bottom:20px;">
+                <div class="label">✦ Painel Administrativo</div>
+                <div class="title">Dashboard do salão</div>
+                <div class="sub">Visão geral das métricas e desempenho. (Demonstração)</div>
+            </div>
+
+            <div class="admin-grid">
+                <div class="admin-stat reveal">
+                    <div class="number">347</div>
+                    <div class="label">Atendimentos (mês)</div>
+                    <div class="trend">↑ 12% vs mês anterior</div>
+                </div>
+                <div class="admin-stat reveal reveal-delay-1">
+                    <div class="number">R$ 28.450</div>
+                    <div class="label">Faturamento (mês)</div>
+                    <div class="trend">↑ 8.3% vs mês anterior</div>
+                </div>
+                <div class="admin-stat reveal reveal-delay-2">
+                    <div class="number">86</div>
+                    <div class="label">Serviço mais vendido</div>
+                    <div class="trend" style="color:var(--bg-primary);">Corte</div>
+                </div>
+                <div class="admin-stat reveal reveal-delay-3">
+                    <div class="number">4.9</div>
+                    <div class="label">Avaliação média</div>
+                    <div class="trend">★ 128 avaliações</div>
+                </div>
+            </div>
+
+            <div class="admin-chart reveal">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                    <span style="font-weight:600;font-size:0.875rem;">Atendimentos por dia (última semana)</span>
+                    <span style="font-size:0.6875rem;color:var(--text-muted);">⬆ Tendência positiva</span>
+                </div>
+                <div class="chart-bars" id="chartBars">
+                    <div class="bar" style="height:45px;background:var(--bg-primary-light);">
+                        <span class="val">12</span>
+                        <span class="label">Seg</span>
+                    </div>
+                    <div class="bar" style="height:35px;background:var(--bg-primary-light);">
+                        <span class="val">9</span>
+                        <span class="label">Ter</span>
+                    </div>
+                    <div class="bar" style="height:55px;background:var(--bg-primary-light);">
+                        <span class="val">14</span>
+                        <span class="label">Qua</span>
+                    </div>
+                    <div class="bar" style="height:40px;background:var(--bg-primary-light);">
+                        <span class="val">10</span>
+                        <span class="label">Qui</span>
+                    </div>
+                    <div class="bar" style="height:65px;background:var(--bg-primary);">
+                        <span class="val" style="color:#fff;">17</span>
+                        <span class="label" style="color:var(--text-muted);">Sex</span>
+                    </div>
+                    <div class="bar" style="height:80px;background:var(--bg-secondary);">
+                        <span class="val" style="color:#fff;">21</span>
+                        <span class="label" style="color:var(--text-muted);">Sáb</span>
+                    </div>
+                    <div class="bar" style="height:20px;background:var(--bg-primary-light);">
+                        <span class="val">5</span>
+                        <span class="label">Dom</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-chart mt-16 reveal">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                    <span style="font-weight:600;font-size:0.875rem;">Serviços mais procurados</span>
+                    <span style="font-size:0.6875rem;color:var(--text-muted);">Últimos 30 dias</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:0.75rem;font-weight:600;min-width:100px;">Corte</span>
+                        <div style="flex:1;height:8px;background:var(--border-light);border-radius:10px;overflow:hidden;">
+                            <div style="width:86%;height:100%;background:var(--bg-primary);border-radius:10px;"></div>
+                        </div>
+                        <span style="font-size:0.6875rem;color:var(--text-muted);min-width:40px;">86</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:0.75rem;font-weight:600;min-width:100px;">Corte + Escova</span>
+                        <div style="flex:1;height:8px;background:var(--border-light);border-radius:10px;overflow:hidden;">
+                            <div style="width:74%;height:100%;background:var(--bg-secondary);border-radius:10px;"></div>
+                        </div>
+                        <span style="font-size:0.6875rem;color:var(--text-muted);min-width:40px;">64</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:0.75rem;font-weight:600;min-width:100px;">Manicure</span>
+                        <div style="flex:1;height:8px;background:var(--border-light);border-radius:10px;overflow:hidden;">
+                            <div style="width:60%;height:100%;background:var(--bg-teal);border-radius:10px;"></div>
+                        </div>
+                        <span style="font-size:0.6875rem;color:var(--text-muted);min-width:40px;">52</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;">
+                        <span style="font-size:0.75rem;font-weight:600;min-width:100px;">Barba</span>
+                        <div style="flex:1;height:8px;background:var(--border-light);border-radius:10px;overflow:hidden;">
+                            <div style="width:40%;height:100%;background:var(--bg-accent);border-radius:10px;"></div>
+                        </div>
+                        <span style="font-size:0.6875rem;color:var(--text-muted);min-width:40px;">34</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:20px;padding:16px 20px;background:var(--bg-secondary-light);border-radius:var(--radius-card);border:1px solid var(--bg-secondary);text-align:center;">
+                <span style="font-size:0.8125rem;color:var(--text-secondary);">💡 Painel administrativo demonstrativo. Em um produto real, os dados seriam dinâmicos.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAGE: ABOUT
+    ============================================================ -->
+    <div class="page" id="page-about">
+        <div class="container" style="padding-top:20px;">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    ✦
+                    <span style="position:absolute;font-size:0.625rem;color:var(--text-muted);margin-top:70px;">Beauty Hub Center</span>
+                </div>
+                <div class="about-content reveal">
+                    <div class="label-text" style="margin-bottom:4px;">✦ Sobre o Hub</div>
+                    <h2 class="heading-lg" style="margin-bottom:8px;">
+                        O <span style="color:var(--bg-primary);">hub digital</span> da sua beleza
+                    </h2>
+                    <p class="body-text" style="margin-bottom:10px;">
+                        O Beauty Hub Center nasceu da necessidade de centralizar em um único
+                        lugar todas as ferramentas que um salão de beleza moderno precisa:
+                        agendamento, portfólio, promoções e gestão.
+                    </p>
+                    <p class="body-text" style="margin-bottom:12px;">
+                        Nossa missão é oferecer uma experiência digital integrada, que conecta
+                        clientes e salões de forma intuitiva e eficiente, elevando o padrão
+                        de atendimento e organização.
+                    </p>
+                    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;">
+                        <span style="background:var(--bg-primary-light);padding:4px 16px;border-radius:30px;font-size:0.75rem;font-weight:600;color:var(--bg-primary);">📅 Agenda integrada</span>
+                        <span style="background:var(--bg-secondary-light);padding:4px 16px;border-radius:30px;font-size:0.75rem;font-weight:600;color:var(--bg-secondary);">📸 Portfólio</span>
+                        <span style="background:var(--bg-accent-light);padding:4px 16px;border-radius:30px;font-size:0.75rem;font-weight:600;color:var(--bg-accent);">🏷️ Promoções</span>
+                        <span style="background:var(--bg-teal-light);padding:4px 16px;border-radius:30px;font-size:0.75rem;font-weight:600;color:var(--bg-teal);">📊 Dashboard</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAGE: CONTACT
+    ============================================================ -->
+    <div class="page" id="page-contact">
+        <div class="container" style="padding-top:20px;">
+            <div class="section-header" style="margin-bottom:24px;">
+                <div class="label">✦ Contato</div>
+                <div class="title">Fale conosco</div>
+                <div class="sub">Estamos aqui para ajudar. Entre em contato por qualquer canal.</div>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="info-item">
+                        <span class="icon">📍</span>
+                        <span class="text"><strong>Endereço</strong><br />Rua da Beleza, 123 · Jardins</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">📱</span>
+                        <span class="text"><strong>WhatsApp</strong><br />(11) 9 4444-3333</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">📞</span>
+                        <span class="text"><strong>Telefone</strong><br />(11) 2345-6789</span>
+                    </div>
+                    <div class="info-item" style="border-bottom:none;">
+                        <span class="icon">✉️</span>
+                        <span class="text"><strong>E-mail</strong><br />hub@beautyhubcenter.com</span>
+                    </div>
+                    <div style="display:flex;gap:10px;margin-top:16px;">
+                        <a href="#" style="font-size:1.2rem;color:var(--text-muted);transition:var(--transition);padding:6px;border-radius:50%;background:var(--bg-surface-soft);border:1px solid var(--border-light);width:40px;height:40px;display:flex;align-items:center;justify-content:center;">📸</a>
+                        <a href="#" style="font-size:1.2rem;color:var(--text-muted);transition:var(--transition);padding:6px;border-radius:50%;background:var(--bg-surface-soft);border:1px solid var(--border-light);width:40px;height:40px;display:flex;align-items:center;justify-content:center;">📘</a>
+                        <a href="#" style="font-size:1.2rem;color:var(--text-muted);transition:var(--transition);padding:6px;border-radius:50%;background:var(--bg-surface-soft);border:1px solid var(--border-light);width:40px;height:40px;display:flex;align-items:center;justify-content:center;">▶️</a>
+                        <a href="#" style="font-size:1.2rem;color:var(--text-muted);transition:var(--transition);padding:6px;border-radius:50%;background:var(--bg-surface-soft);border:1px solid var(--border-light);width:40px;height:40px;display:flex;align-items:center;justify-content:center;">🎵</a>
+                    </div>
+                </div>
+
+                <div class="contact-form reveal">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Nome</label>
+                            <input type="text" id="contactName" placeholder="Seu nome" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">WhatsApp</label>
+                            <input type="tel" id="contactPhone" placeholder="(11) 9 9999-9999" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Mensagem</label>
+                            <textarea id="contactMessage" placeholder="Conte o que você procura…" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="name">Beauty <span class="hub">Hub</span></div>
+                    <div class="tagline">Seu hub digital de beleza</div>
+                </div>
+                <div class="footer-links">
+                    <h4>Módulos</h4>
+                    <ul>
+                        <li><a href="#" data-page="agenda">Agenda</a></li>
+                        <li><a href="#" data-page="portfolio">Portfólio</a></li>
+                        <li><a href="#" data-page="promocoes">Promoções</a></li>
+                        <li><a href="#" data-page="admin">Admin</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Informações</h4>
+                    <ul>
+                        <li><a href="#" data-page="about">Sobre</a></li>
+                        <li><a href="#" data-page="contact">Contato</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Beauty Hub Center · Todos os direitos reservados</span>
+                <span>✦ Hub digital</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // NAVIGATION
+            // ============================================================
+            const pages = {
+                home: document.getElementById('page-home'),
+                agenda: document.getElementById('page-agenda'),
+                portfolio: document.getElementById('page-portfolio'),
+                promocoes: document.getElementById('page-promocoes'),
+                admin: document.getElementById('page-admin'),
+                about: document.getElementById('page-about'),
+                contact: document.getElementById('page-contact')
+            };
+
+            const navLinks = document.querySelectorAll('.nav-links a[data-page]');
+            const footerLinks = document.querySelectorAll('.footer-links a[data-page]');
+            const hubCards = document.querySelectorAll('.hub-card[data-page]');
+            const heroBtns = document.querySelectorAll('[data-page]');
+            const navToggle = document.getElementById('navToggle');
+            const navOverlay = document.getElementById('navOverlay');
+            const navList = document.getElementById('navLinks');
+
+            let currentPage = 'home';
+
+            function navigateTo(pageId) {
+                if (!pages[pageId]) return;
+
+                Object.keys(pages).forEach(key => {
+                    pages[key].classList.remove('active');
+                });
+
+                pages[pageId].classList.add('active');
+                currentPage = pageId;
+
+                document.querySelectorAll('.nav-links a[data-page]').forEach(link => {
+                    link.classList.toggle('active', link.dataset.page === pageId);
+                });
+
+                navList.classList.remove('open');
+                navOverlay.classList.remove('active');
+                navToggle.textContent = '☰';
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                setTimeout(() => {
+                    const page = pages[pageId];
+                    page.querySelectorAll('.reveal').forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight - 60) {
+                            el.classList.add('visible');
+                        }
+                    });
+                }, 200);
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    if (page) navigateTo(page);
+                });
+            });
+
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    if (page) navigateTo(page);
+                });
+            });
+
+            hubCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const page = this.dataset.page;
+                    if (page) navigateTo(page);
+                });
+            });
+
+            document.querySelectorAll('[data-page]').forEach(el => {
+                if (el.tagName === 'A' || el.tagName === 'BUTTON') {
+                    el.addEventListener('click', function(e) {
+                        const page = this.dataset.page;
+                        if (page && pages[page]) {
+                            e.preventDefault();
+                            navigateTo(page);
+                        }
+                    });
+                }
+            });
+
+            // ============================================================
+            // MOBILE NAV
+            // ============================================================
+            navToggle.addEventListener('click', function() {
+                navList.classList.toggle('open');
+                navOverlay.classList.toggle('active');
+                this.textContent = navList.classList.contains('open') ? '✕' : '☰';
+            });
+
+            navOverlay.addEventListener('click', function() {
+                navList.classList.remove('open');
+                navOverlay.classList.remove('active');
+                navToggle.textContent = '☰';
+            });
+
+            // ============================================================
+            // HEADER SCROLL
+            // ============================================================
+            const header = document.getElementById('siteHeader');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // ============================================================
+            // REVEAL
+            // ============================================================
+            function handleReveal() {
+                document.querySelectorAll('.page.active .reveal').forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 60) {
+                        el.classList.add('visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', handleReveal);
+            setTimeout(handleReveal, 300);
+
+            // ============================================================
+            // MODAL
+            // ============================================================
+            const modal = document.getElementById('modal');
+            const modalClose = document.getElementById('modalClose');
+            const modalEmoji = document.getElementById('modalEmoji');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDesc = document.getElementById('modalDesc');
+            const modalCta = document.getElementById('modalCta');
+
+            document.querySelectorAll('.portfolio-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const emoji = this.dataset.emoji || '✨';
+                    const title = this.dataset.title || 'Trabalho em destaque';
+                    const desc = this.dataset.desc || 'Clique para saber mais sobre este trabalho.';
+                    modalEmoji.textContent = emoji;
+                    modalTitle.textContent = title;
+                    modalDesc.textContent = desc;
+                    modalCta.textContent = '📅 Agendar';
+                    modalCta.href = '#';
+                    modalCta.dataset.page = 'agenda';
+                    modalCta.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                        navigateTo('agenda');
+                    });
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            modalClose.addEventListener('click', function() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // ============================================================
+            // AGENDAR BUTTON
+            // ============================================================
+            document.getElementById('agendarBtn').addEventListener('click', function() {
+                showToast('📅 Agendamento simulado com sucesso!', 'success');
+            });
+
+            // ============================================================
+            // PROMO BUTTONS
+            // ============================================================
+            document.querySelectorAll('[data-promo]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const promo = this.dataset.promo;
+                    showToast(`🏷️ Promoção "${promo}" selecionada! Agende agora.`, 'success');
+                    navigateTo('agenda');
+                });
+            });
+
+            // ============================================================
+            // CONTACT FORM
+            // ============================================================
+            const contactForm = document.getElementById('contactForm');
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('contactName').value.trim();
+                const phone = document.getElementById('contactPhone').value.trim();
+                const message = document.getElementById('contactMessage').value.trim();
+
+                if (!name || !phone || !message) {
+                    showToast('Por favor, preencha todos os campos.', 'error');
+                    return;
+                }
+
+                showToast(`✧ Mensagem enviada, ${name}! Entraremos em contato em breve.`, 'success');
+                this.reset();
+            });
+
+            // ============================================================
+            // TOAST
+            // ============================================================
+            let toastTimeout = null;
+
+            function showToast(message, type = 'success') {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                const icons = { success: '✓', error: '✕', info: 'ℹ' };
+                toast.innerHTML = `
+                        <span class="toast-icon">${icons[type] || '✦'}</span>
+                        <span class="toast-msg">${message}</span>
+                    `;
+                container.appendChild(toast);
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.add('removing');
+                    setTimeout(() => {
+                        if (toast.parentNode) toast.parentNode.removeChild(toast);
+                    }, 300);
+                    toastTimeout = null;
+                }, 3500);
+            }
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            console.log('✦ Beauty Hub Center · Hub Digital de Beleza');
+            console.log('📊 Módulos: Agenda, Portfólio, Promoções, Admin, Sobre, Contato');
+
+        })();
+    </script>
+
+</body>
+</html>

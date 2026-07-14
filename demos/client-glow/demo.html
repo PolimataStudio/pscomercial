@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="theme-color" content="#FDF8F5" />
+    <meta name="description" content="Client Glow - Seu clube de beleza premium" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <title>Client Glow</title>
+
+    <!-- Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkNsaWVudCBHbG93IiwKICAic2hvcnRfbmFtZSI6ICJDbGllbnQgR2xvdyIsCiAgImRlc2NyaXB0aW9uIjogIlNldSBjbHViaSBkZSBiZWxlemEgZW0gdW0gYXBwIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGREY4RjUiLAogICJ0aGVtZV9jb2xvciI6ICIjRkRGOEY1IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLDxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgNTEyIDUxMic+PHJlY3Qgd2lkdGg9JzUxMicgaGVpZ2h0PSc1MTInIHJ4PSc2MCcgZmlsbD0nJTIzRkRGOEY1Jy8+PHRleHQgeD0nMjU2JyB5PSczNDAnIGZvbnQtc2l6ZT0nMjUwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LWZhbWlseT0nc2Fucy1zZXJpZicgZmlsbD0nJTIzQzk3NjcxJz7iiI48L3RleHQ+PC9zdmc+IgogICAgfQogIF0KfQ==" />
+
+    <!-- Google Fonts: Playfair Display + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES / THEME (Rosa queimado, Dourado, Creme)
+           ============================================================ */
+        :root {
+            --bg-body: #FDF8F5;
+            --bg-surface: #FFFFFF;
+            --bg-surface-soft: #FBF5F0;
+            --bg-primary: #C97671;
+            --bg-primary-light: #F5E2DF;
+            --bg-primary-subtle: #FAEDEB;
+            --bg-gold: #D4AF8E;
+            --bg-gold-light: #F5EAE0;
+            --bg-gold-subtle: #F8F0E8;
+
+            --text-primary: #3D2C2A;
+            --text-secondary: #7A5E5A;
+            --text-muted: #B09691;
+            --text-inverse: #FFFFFF;
+
+            --border-light: #EDE3DF;
+            --border-gold: #D4AF8E;
+            --shadow-sm: 0 2px 8px rgba(60, 40, 35, 0.06), 0 1px 2px rgba(60, 40, 35, 0.04);
+            --shadow-md: 0 8px 28px rgba(60, 40, 35, 0.08), 0 2px 8px rgba(60, 40, 35, 0.04);
+            --shadow-lg: 0 16px 48px rgba(60, 40, 35, 0.12);
+
+            --radius-card: 18px;
+            --radius-btn: 30px;
+            --radius-input: 14px;
+
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --bottom-bar-height: 68px;
+            --header-height: 0px;
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding-bottom: calc(var(--bottom-bar-height) + var(--safe-bottom) + 12px);
+            padding-top: 8px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-primary);
+            border-radius: 20px;
+        }
+
+        /* ============================================================
+           TYPOGRAPHY
+           ============================================================ */
+        .serif {
+            font-family: var(--font-serif);
+        }
+        .heading-1 {
+            font-family: var(--font-serif);
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+        }
+        .heading-2 {
+            font-family: var(--font-serif);
+            font-size: 1.375rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+        }
+        .heading-3 {
+            font-family: var(--font-serif);
+            font-size: 1.0625rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .body-text {
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .body-text strong {
+            color: var(--text-primary);
+        }
+        .label-text {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .caption-text {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           LAYOUT HELPERS
+           ============================================================ */
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .page {
+            display: none;
+            padding-top: 4px;
+            padding-bottom: 16px;
+            animation: fadeSlideUp 0.4s ease both;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           BOTTOM NAVIGATION
+           ============================================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            align-items: stretch;
+            justify-content: space-around;
+            height: calc(var(--bottom-bar-height) + var(--safe-bottom));
+            padding-bottom: var(--safe-bottom);
+            z-index: 100;
+            box-shadow: 0 -4px 20px rgba(60, 40, 35, 0.06);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.92);
+        }
+        .bottom-nav .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            padding: 4px 0;
+            border: none;
+            background: transparent;
+            font-family: var(--font-sans);
+            font-size: 0.5625rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            position: relative;
+        }
+        .bottom-nav .nav-item .icon {
+            font-size: 1.25rem;
+            line-height: 1;
+            transition: var(--transition);
+        }
+        .bottom-nav .nav-item .label {
+            transition: var(--transition);
+        }
+        .bottom-nav .nav-item.active {
+            color: var(--bg-primary);
+        }
+        .bottom-nav .nav-item.active .icon {
+            transform: translateY(-1px);
+        }
+        .bottom-nav .nav-item:active {
+            transform: scale(0.92);
+        }
+        .bottom-nav .nav-item .badge-nav {
+            position: absolute;
+            top: 2px;
+            right: 50%;
+            transform: translateX(calc(50% + 18px));
+            background: var(--bg-gold);
+            color: #fff;
+            font-size: 0.5rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 20px;
+            line-height: 1.4;
+            min-width: 16px;
+            text-align: center;
+        }
+
+        /* ============================================================
+           CARDS
+           ============================================================ */
+        .card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            padding: 16px;
+            transition: var(--transition);
+        }
+        .card:active {
+            transform: scale(0.99);
+        }
+        .card-soft {
+            background: var(--bg-surface-soft);
+            border-color: transparent;
+        }
+        .card-gold {
+            background: var(--bg-gold-subtle);
+            border-color: var(--border-gold);
+        }
+        .card-primary {
+            background: var(--bg-primary);
+            color: #fff;
+            border-color: var(--bg-primary);
+        }
+        .card-primary .body-text {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .card-primary .caption-text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 0.625rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            line-height: 1.6;
+            background: var(--bg-primary-light);
+            color: var(--bg-primary);
+        }
+        .badge-gold {
+            background: var(--bg-gold-light);
+            color: var(--bg-gold);
+        }
+
+        /* ============================================================
+           HOME
+           ============================================================ */
+        .welcome-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .welcome-header .greeting .name {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .welcome-header .greeting .sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .welcome-header .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--bg-primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--bg-primary);
+            border: 2px solid var(--bg-gold-light);
+            flex-shrink: 0;
+        }
+
+        .points-bloom {
+            background: linear-gradient(135deg, var(--bg-primary-light), var(--bg-gold-light));
+            border-radius: var(--radius-card);
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid var(--border-gold);
+            margin-bottom: 16px;
+        }
+        .points-bloom .left .label {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .points-bloom .left .value {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--bg-primary);
+            line-height: 1.2;
+        }
+        .points-bloom .left .sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .points-bloom .right {
+            font-size: 2.2rem;
+            opacity: 0.6;
+        }
+
+        .next-glow {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            padding: 16px 18px;
+            border: 1px solid var(--border-gold);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .next-glow .icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        .next-glow .info {
+            flex: 1;
+            min-width: 0;
+        }
+        .next-glow .info .title {
+            font-weight: 600;
+            font-size: 0.9375rem;
+        }
+        .next-glow .info .desc {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+        .next-glow .info .date {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .next-glow .badge {
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 16px 0 10px;
+        }
+        .section-title .more {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--bg-primary);
+            cursor: pointer;
+        }
+
+        .horizontal-scroll {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 4px 0 12px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .horizontal-scroll::-webkit-scrollbar {
+            height: 3px;
+        }
+        .horizontal-scroll::-webkit-scrollbar-thumb {
+            background: var(--bg-primary-light);
+            border-radius: 10px;
+        }
+
+        .recommend-card {
+            flex: 0 0 200px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 14px 16px;
+            scroll-snap-align: start;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .recommend-card:active {
+            transform: scale(0.97);
+        }
+        .recommend-card .emoji {
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+        }
+        .recommend-card .name {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .recommend-card .desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .recommend-card .price {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--bg-primary);
+            margin-top: 6px;
+        }
+
+        /* ============================================================
+           JORNADA (Timeline)
+           ============================================================ */
+        .timeline {
+            position: relative;
+            padding-left: 28px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            background: var(--border-gold);
+            border-radius: 4px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 16px;
+            padding-left: 8px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--bg-primary-light);
+            border: 2px solid var(--bg-primary);
+        }
+        .timeline-item .card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            padding: 12px 16px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .timeline-item .card .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .timeline-item .card .service-name {
+            font-weight: 600;
+            font-size: 0.9375rem;
+        }
+        .timeline-item .card .service-date {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+        .timeline-item .card .service-detail {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .timeline-item .card .service-detail .prof {
+            background: var(--bg-body);
+            padding: 0 10px;
+            border-radius: 20px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           PONTOS & BENEFÍCIOS
+           ============================================================ */
+        .rewards-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .reward-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 14px 12px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .reward-card:active {
+            transform: scale(0.96);
+        }
+        .reward-card .icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .reward-card .name {
+            font-weight: 600;
+            font-size: 0.8125rem;
+        }
+        .reward-card .points {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+        .reward-card .points strong {
+            color: var(--bg-primary);
+        }
+        .reward-card.locked {
+            opacity: 0.5;
+            filter: grayscale(0.3);
+        }
+
+        /* ============================================================
+           AGENDAR
+           ============================================================ */
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 3px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            background: var(--bg-surface);
+            border: 1.5px solid var(--border-light);
+            border-radius: var(--radius-input);
+            color: var(--text-primary);
+            transition: var(--transition);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--bg-primary);
+            box-shadow: 0 0 0 3px rgba(201, 118, 113, 0.15);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 56px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-btn);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn-primary {
+            background: var(--bg-primary);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(201, 118, 113, 0.30);
+        }
+        .btn-primary:active {
+            box-shadow: 0 2px 8px rgba(201, 118, 113, 0.20);
+        }
+        .btn-gold {
+            background: var(--bg-gold);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(212, 175, 142, 0.30);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1.5px solid var(--border-light);
+        }
+
+        /* ============================================================
+           PERFIL
+           ============================================================ */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .profile-header .avatar-big {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--bg-primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--bg-primary);
+            border: 2px solid var(--bg-gold);
+            flex-shrink: 0;
+        }
+        .profile-header .info .name {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        .profile-header .info .email {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        .pref-tag {
+            display: inline-block;
+            background: var(--bg-primary-subtle);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--bg-primary);
+            margin: 2px 4px 2px 0;
+            border: 1px solid var(--border-light);
+        }
+
+        /* ============================================================
+           TOAST
+           ============================================================ */
+        .toast-container {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            pointer-events: none;
+            max-width: 400px;
+            width: 90%;
+        }
+        .toast {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            padding: 12px 18px;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+            animation: toastIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+            margin-bottom: 6px;
+        }
+        .toast.success {
+            border-left: 4px solid var(--bg-primary);
+        }
+        .toast .toast-icon {
+            font-size: 1.125rem;
+        }
+        .toast .toast-msg {
+            flex: 1;
+            font-weight: 500;
+            font-size: 0.8125rem;
+        }
+        @keyframes toastIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-16px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .toast.removing {
+            animation: toastOut 0.3s ease both;
+        }
+        @keyframes toastOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-12px) scale(0.94);
+            }
+        }
+
+        /* ============================================================
+           ONBOARDING
+           ============================================================ */
+        .onboarding-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(60, 40, 35, 0.50);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            animation: fadeIn 0.4s ease;
+        }
+        .onboarding-overlay.hidden {
+            display: none;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .onboarding-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            padding: 32px 24px 28px;
+            max-width: 380px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .onboarding-card .emoji-big {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+        }
+        .onboarding-card h2 {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .onboarding-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 2px;
+        }
+        .onboarding-card .dots {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin: 14px 0 18px;
+        }
+        .onboarding-card .dots .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-light);
+            transition: var(--transition);
+        }
+        .onboarding-card .dots .dot.active {
+            background: var(--bg-primary);
+            width: 24px;
+            border-radius: 20px;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (min-width: 600px) {
+            .container {
+                max-width: 560px;
+                padding: 0 24px;
+            }
+            .rewards-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .horizontal-scroll .recommend-card {
+                flex: 0 0 220px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .container {
+                max-width: 720px;
+                padding: 0 32px;
+            }
+            .rewards-grid {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .points-bloom .left .value {
+                font-size: 1.6rem;
+            }
+            .next-glow .icon {
+                font-size: 1.6rem;
+            }
+            .rewards-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-12 {
+            margin-bottom: 12px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-muted {
+            color: var(--text-muted);
+        }
+        .w-full {
+            width: 100%;
+        }
+
+        /* ============================================================
+           SERVICE WORKER REGISTRATION
+           ============================================================ */
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    ONBOARDING
+    ============================================================ -->
+    <div class="onboarding-overlay" id="onboardingOverlay">
+        <div class="onboarding-card" id="onboardingCard">
+            <div class="emoji-big" id="obEmoji">✨</div>
+            <h2 id="obTitle">Seu clube de beleza</h2>
+            <p id="obDesc">Client Glow transforma sua experiência em uma jornada VIP.</p>
+            <div class="dots" id="obDots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="btn btn-primary" id="obBtn">Começar</button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    TOAST
+    ============================================================ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <main class="container">
+
+        <!-- ========== RESUMO ========== -->
+        <section class="page active" id="pageResumo">
+            <!-- Welcome -->
+            <div class="welcome-header">
+                <div class="greeting">
+                    <div class="name">Olá, Camila ✨</div>
+                    <div class="sub">Bem-vinda ao seu clube de beleza</div>
+                </div>
+                <div class="avatar">CM</div>
+            </div>
+
+            <!-- Points Bloom -->
+            <div class="points-bloom">
+                <div class="left">
+                    <div class="label">Saldo de pontos</div>
+                    <div class="value">1.280</div>
+                    <div class="sub">Próximo nível: 2.000 pts</div>
+                </div>
+                <div class="right">🌸</div>
+            </div>
+
+            <!-- Next Glow -->
+            <div class="next-glow">
+                <div class="icon">💫</div>
+                <div class="info">
+                    <div class="title">Próximo agendamento</div>
+                    <div class="desc">Corte + Escova · com Ana</div>
+                    <div class="date">Sábado, 18 de julho · 14:30</div>
+                </div>
+                <span class="badge badge-gold">Confirmado</span>
+            </div>
+
+            <!-- Últimas visitas -->
+            <div class="section-title">
+                <span class="label-text">Últimas visitas</span>
+                <span class="more">Ver todas</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+                <div class="card" style="padding:12px 16px;display:flex;align-items:center;gap:12px;">
+                    <span style="font-size:1.4rem;">✂️</span>
+                    <div style="flex:1;min-width:0;">
+                        <div style="font-weight:600;font-size:0.875rem;">Corte + Escova</div>
+                        <div style="font-size:0.75rem;color:var(--text-muted);">10/07/2026 · Ana</div>
+                    </div>
+                    <span class="badge" style="background:var(--bg-gold-light);color:var(--bg-gold);">+80 pts</span>
+                </div>
+                <div class="card" style="padding:12px 16px;display:flex;align-items:center;gap:12px;">
+                    <span style="font-size:1.4rem;">💅</span>
+                    <div style="flex:1;min-width:0;">
+                        <div style="font-weight:600;font-size:0.875rem;">Manicure + Pedicure</div>
+                        <div style="font-size:0.75rem;color:var(--text-muted);">28/06/2026 · Carla</div>
+                    </div>
+                    <span class="badge" style="background:var(--bg-gold-light);color:var(--bg-gold);">+60 pts</span>
+                </div>
+            </div>
+
+            <!-- Recomendações -->
+            <div class="section-title">
+                <span class="label-text">Recomendações para você</span>
+                <span class="more">Ver mais</span>
+            </div>
+            <div class="horizontal-scroll" id="recommendScroll">
+                <div class="recommend-card">
+                    <div class="emoji">🌿</div>
+                    <div class="name">Tratamento Capilar</div>
+                    <div class="desc">Nutrição profunda para cabelos</div>
+                    <div class="price">A partir de R$ 120</div>
+                </div>
+                <div class="recommend-card">
+                    <div class="emoji">✨</div>
+                    <div class="name">Spa das Mãos</div>
+                    <div class="desc">Hidratação e massagem</div>
+                    <div class="price">A partir de R$ 80</div>
+                </div>
+                <div class="recommend-card">
+                    <div class="emoji">🌸</div>
+                    <div class="name">Design de Sobrancelhas</div>
+                    <div class="desc">Henna e modelagem</div>
+                    <div class="price">A partir de R$ 60</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== JORNADA ========== -->
+        <section class="page" id="pageJornada">
+            <h2 class="heading-2 mb-12">🌸 Minha Jornada</h2>
+            <div class="timeline" id="timelineContainer">
+                <!-- Rendered by JS -->
+            </div>
+        </section>
+
+        <!-- ========== PONTOS ========== -->
+        <section class="page" id="pagePontos">
+            <div class="flex-between mb-8">
+                <h2 class="heading-2">💎 Pontos & Benefícios</h2>
+                <span class="badge badge-gold">Nível Ouro</span>
+            </div>
+            <div class="card card-gold" style="margin-bottom:16px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <div>
+                        <div class="label-text">Saldo atual</div>
+                        <div style="font-family:var(--font-serif);font-size:2rem;font-weight:700;color:var(--bg-primary);">1.280</div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="label-text">Próximo nível</div>
+                        <div style="font-weight:600;font-size:0.9375rem;">2.000 pts</div>
+                        <div style="font-size:0.6875rem;color:var(--text-muted);">Faltam 720 pts</div>
+                    </div>
+                </div>
+                <div style="margin-top:10px;height:6px;background:var(--border-light);border-radius:10px;overflow:hidden;">
+                    <div style="width:64%;height:100%;background:var(--bg-gold);border-radius:10px;"></div>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <span class="label-text">Recompensas disponíveis</span>
+            </div>
+            <div class="rewards-grid" id="rewardsGrid">
+                <!-- Rendered by JS -->
+            </div>
+        </section>
+
+        <!-- ========== AGENDAR ========== -->
+        <section class="page" id="pageAgendar">
+            <h2 class="heading-2 mb-12">📅 Agendar serviço</h2>
+            <div class="card" style="padding:18px 16px;">
+                <form id="formAgendamento" autocomplete="off">
+                    <div class="form-group">
+                        <label for="agServico">Serviço *</label>
+                        <select id="agServico" required>
+                            <option value="">Selecione</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="agProfissional">Profissional *</label>
+                        <select id="agProfissional" required>
+                            <option value="">Selecione</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="agData">Data *</label>
+                            <input type="date" id="agData" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="agHora">Hora *</label>
+                            <input type="time" id="agHora" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="agObs">Observações</label>
+                        <textarea id="agObs" placeholder="Alguma observação para o profissional…"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">💫 Agendar</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ========== PERFIL ========== -->
+        <section class="page" id="pagePerfil">
+            <div class="profile-header">
+                <div class="avatar-big">CM</div>
+                <div class="info">
+                    <div class="name">Camila Mendes</div>
+                    <div class="email">camila.m@email.com</div>
+                    <div style="font-size:0.75rem;color:var(--text-muted);">(11) 98765-4321</div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-bottom:12px;padding:14px 16px;">
+                <div class="label-text mb-8">Preferências</div>
+                <div style="display:flex;flex-wrap:wrap;gap:4px;">
+                    <span class="pref-tag">✂️ Corte</span>
+                    <span class="pref-tag">💅 Manicure</span>
+                    <span class="pref-tag">👩‍🦱 Ana (profissional)</span>
+                    <span class="pref-tag">🌿 Produtos veganos</span>
+                </div>
+            </div>
+
+            <div class="card" style="padding:14px 16px;">
+                <div class="label-text mb-8">Dados da conta</div>
+                <div style="display:flex;flex-direction:column;gap:10px;">
+                    <div class="flex-between" style="font-size:0.875rem;border-bottom:1px solid var(--border-light);padding-bottom:8px;">
+                        <span style="color:var(--text-secondary);">Membro desde</span>
+                        <span style="font-weight:500;">Janeiro 2025</span>
+                    </div>
+                    <div class="flex-between" style="font-size:0.875rem;border-bottom:1px solid var(--border-light);padding-bottom:8px;">
+                        <span style="color:var(--text-secondary);">Total de visitas</span>
+                        <span style="font-weight:500;">12</span>
+                    </div>
+                    <div class="flex-between" style="font-size:0.875rem;border-bottom:1px solid var(--border-light);padding-bottom:8px;">
+                        <span style="color:var(--text-secondary);">Pontos acumulados</span>
+                        <span style="font-weight:500;color:var(--bg-primary);">1.280</span>
+                    </div>
+                    <div class="flex-between" style="font-size:0.875rem;">
+                        <span style="color:var(--text-secondary);">Nível</span>
+                        <span style="font-weight:500;background:var(--bg-gold-light);padding:0 12px;border-radius:20px;color:var(--bg-gold);">Ouro</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn btn-secondary mt-12" id="logoutBtn" style="width:auto;padding:10px 24px;margin:0 auto;display:block;">
+                🚪 Sair da conta
+            </button>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+    BOTTOM NAVIGATION
+    ============================================================ -->
+    <nav class="bottom-nav" id="bottomNav">
+        <button class="nav-item active" data-page="pageResumo" data-label="Resumo">
+            <span class="icon">🏠</span>
+            <span class="label">Resumo</span>
+        </button>
+        <button class="nav-item" data-page="pageJornada" data-label="Jornada">
+            <span class="icon">🌸</span>
+            <span class="label">Jornada</span>
+        </button>
+        <button class="nav-item" data-page="pagePontos" data-label="Pontos">
+            <span class="icon">💎</span>
+            <span class="label">Pontos</span>
+            <span class="badge-nav">1280</span>
+        </button>
+        <button class="nav-item" data-page="pageAgendar" data-label="Agendar">
+            <span class="icon">📅</span>
+            <span class="label">Agendar</span>
+        </button>
+        <button class="nav-item" data-page="pagePerfil" data-label="Perfil">
+            <span class="icon">👤</span>
+            <span class="label">Perfil</span>
+        </button>
+    </nav>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // DATA STORE (mock)
+            // ============================================================
+            const DEFAULT_DATA = {
+                client: {
+                    name: 'Camila Mendes',
+                    email: 'camila.m@email.com',
+                    phone: '(11) 98765-4321',
+                    since: 'Janeiro 2025',
+                    visits: 12,
+                    points: 1280,
+                    level: 'Ouro',
+                    nextLevel: 2000,
+                    preferences: ['Corte', 'Manicure', 'Ana (profissional)', 'Produtos veganos'],
+                    avatar: 'CM'
+                },
+                appointments: [{
+                    id: 'a1',
+                    service: 'Corte + Escova',
+                    professional: 'Ana',
+                    date: '2026-07-18',
+                    time: '14:30',
+                    status: 'confirmado',
+                    notes: ''
+                }],
+                history: [{
+                    id: 'h1',
+                    service: 'Corte + Escova',
+                    professional: 'Ana',
+                    date: '2026-07-10',
+                    points: 80,
+                    emoji: '✂️'
+                }, {
+                    id: 'h2',
+                    service: 'Manicure + Pedicure',
+                    professional: 'Carla',
+                    date: '2026-06-28',
+                    points: 60,
+                    emoji: '💅'
+                }, {
+                    id: 'h3',
+                    service: 'Design de Sobrancelhas',
+                    professional: 'Beatriz',
+                    date: '2026-06-15',
+                    points: 40,
+                    emoji: '🌸'
+                }, {
+                    id: 'h4',
+                    service: 'Tratamento Capilar',
+                    professional: 'Ana',
+                    date: '2026-06-01',
+                    points: 100,
+                    emoji: '🌿'
+                }],
+                rewards: [{
+                    id: 'r1',
+                    name: 'Corte + Escova',
+                    emoji: '✂️',
+                    points: 300,
+                    available: true
+                }, {
+                    id: 'r2',
+                    name: 'Manicure',
+                    emoji: '💅',
+                    points: 150,
+                    available: true
+                }, {
+                    id: 'r3',
+                    name: 'Spa das Mãos',
+                    emoji: '🌸',
+                    points: 200,
+                    available: true
+                }, {
+                    id: 'r4',
+                    name: 'Design de Sobrancelhas',
+                    emoji: '✨',
+                    points: 120,
+                    available: true
+                }, {
+                    id: 'r5',
+                    name: 'Corte + Cor',
+                    emoji: '🎨',
+                    points: 450,
+                    available: false
+                }, {
+                    id: 'r6',
+                    name: 'Depilação',
+                    emoji: '🪒',
+                    points: 180,
+                    available: false
+                }],
+                services: [
+                    { id: 's1', name: 'Corte', duration: 45 },
+                    { id: 's2', name: 'Corte + Escova', duration: 60 },
+                    { id: 's3', name: 'Corte + Cor', duration: 90 },
+                    { id: 's4', name: 'Manicure', duration: 30 },
+                    { id: 's5', name: 'Manicure + Pedicure', duration: 50 },
+                    { id: 's6', name: 'Design de Sobrancelhas', duration: 30 },
+                    { id: 's7', name: 'Tratamento Capilar', duration: 45 },
+                    { id: 's8', name: 'Spa das Mãos', duration: 40 },
+                ],
+                professionals: [
+                    { id: 'p1', name: 'Ana' },
+                    { id: 'p2', name: 'Carla' },
+                    { id: 'p3', name: 'Beatriz' },
+                ],
+                salonName: 'Glow Studio'
+            };
+
+            let store = loadData();
+
+            function loadData() {
+                try {
+                    const raw = localStorage.getItem('clientGlowData');
+                    if (raw) {
+                        const parsed = JSON.parse(raw);
+                        for (const key in DEFAULT_DATA) {
+                            if (!(key in parsed)) parsed[key] = DEFAULT_DATA[key];
+                        }
+                        return parsed;
+                    }
+                } catch (_) {}
+                return JSON.parse(JSON.stringify(DEFAULT_DATA));
+            }
+
+            function saveData() {
+                try {
+                    localStorage.setItem('clientGlowData', JSON.stringify(store));
+                } catch (_) {}
+            }
+
+            function resetData() {
+                store = JSON.parse(JSON.stringify(DEFAULT_DATA));
+                saveData();
+                renderAll();
+                showToast('Dados redefinidos', 'success');
+            }
+
+            function generateId() {
+                return 'id_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+            }
+
+            function getToday() {
+                return new Date().toISOString().slice(0, 10);
+            }
+
+            function getServiceName(id) {
+                const s = store.services.find(s => s.id === id);
+                return s ? s.name : id;
+            }
+
+            function getProfessionalName(id) {
+                const p = store.professionals.find(p => p.id === id);
+                return p ? p.name : id;
+            }
+
+            // ============================================================
+            // CRUD
+            // ============================================================
+            function createAppointment(data) {
+                const app = {
+                    id: generateId(),
+                    service: data.service,
+                    professional: data.professional,
+                    date: data.date,
+                    time: data.time,
+                    status: 'confirmado',
+                    notes: data.notes || ''
+                };
+                store.appointments.push(app);
+                // Add to history (simulate)
+                const serviceName = getServiceName(data.service);
+                const profName = getProfessionalName(data.professional);
+                store.history.unshift({
+                    id: generateId(),
+                    service: serviceName,
+                    professional: profName,
+                    date: data.date,
+                    points: Math.floor(Math.random() * 40) + 30,
+                    emoji: '✨'
+                });
+                // Add points
+                store.client.points += Math.floor(Math.random() * 50) + 40;
+                saveData();
+                renderAll();
+                showToast(`✅ Agendamento confirmado para ${data.date}`, 'success');
+                return app;
+            }
+
+            // ============================================================
+            // RENDER FUNCTIONS
+            // ============================================================
+            function renderHome() {
+                // Points
+                document.querySelector('.points-bloom .value').textContent = store.client.points;
+                document.querySelector('.points-bloom .sub').textContent =
+                    `Próximo nível: ${store.client.nextLevel} pts`;
+
+                // Next appointment
+                const next = store.appointments.find(a => a.status === 'confirmado' && a.date >= getToday());
+                const nextContainer = document.querySelector('.next-glow');
+                if (next) {
+                    const serviceName = getServiceName(next.service);
+                    const profName = getProfessionalName(next.professional);
+                    const dateObj = new Date(next.date + 'T00:00:00');
+                    const dateStr = dateObj.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long' });
+                    nextContainer.querySelector('.title').textContent = 'Próximo agendamento';
+                    nextContainer.querySelector('.desc').textContent = `${serviceName} · com ${profName}`;
+                    nextContainer.querySelector('.date').textContent = `${dateStr} · ${next.time}`;
+                    nextContainer.querySelector('.badge').textContent = 'Confirmado';
+                } else {
+                    nextContainer.querySelector('.title').textContent = 'Nenhum agendamento';
+                    nextContainer.querySelector('.desc').textContent = 'Agende seu próximo serviço';
+                    nextContainer.querySelector('.date').textContent = '';
+                    nextContainer.querySelector('.badge').textContent = '—';
+                }
+
+                // Recommendations - already static
+            }
+
+            function renderTimeline() {
+                const container = document.getElementById('timelineContainer');
+                const history = store.history;
+                if (history.length === 0) {
+                    container.innerHTML =
+                        `<div class="empty-state" style="text-align:center;padding:30px 0;color:var(--text-muted);">
+                            <div style="font-size:2rem;">🌸</div>
+                            <p style="margin-top:8px;">Sua jornada ainda não começou</p>
+                        </div>`;
+                    return;
+                }
+                container.innerHTML = history.map(item => {
+                    const dateObj = new Date(item.date + 'T00:00:00');
+                    const dateStr = dateObj.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+                    return `
+                        <div class="timeline-item">
+                            <div class="card">
+                                <div class="top">
+                                    <span style="font-size:1.2rem;">${item.emoji || '✨'}</span>
+                                    <span class="service-name">${item.service}</span>
+                                    <span class="service-date">${dateStr}</span>
+                                </div>
+                                <div class="service-detail">
+                                    <span>com ${item.professional}</span>
+                                    <span class="prof">+${item.points} pts</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            function renderRewards() {
+                const grid = document.getElementById('rewardsGrid');
+                const points = store.client.points;
+                grid.innerHTML = store.rewards.map(r => {
+                    const available = r.available && points >= r.points;
+                    return `
+                        <div class="reward-card ${!available ? 'locked' : ''}" data-id="${r.id}">
+                            <span class="icon">${r.emoji}</span>
+                            <div class="name">${r.name}</div>
+                            <div class="points">${r.points} pts</div>
+                            ${available ? '<div style="font-size:0.6rem;color:var(--bg-primary);font-weight:600;margin-top:4px;">✓ Disponível</div>' : ''}
+                        </div>
+                    `;
+                }).join('');
+
+                // Click to simulate redeem
+                document.querySelectorAll('.reward-card').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const id = this.dataset.id;
+                        const reward = store.rewards.find(r => r.id === id);
+                        if (!reward) return;
+                        if (store.client.points >= reward.points && reward.available) {
+                            store.client.points -= reward.points;
+                            reward.available = false;
+                            saveData();
+                            renderAll();
+                            showToast(`🎉 Você resgatou ${reward.name}!`, 'success');
+                        } else {
+                            showToast('Pontos insuficientes ou recompensa indisponível', 'error');
+                        }
+                    });
+                });
+            }
+
+            function renderFormSelects() {
+                const serviceSel = document.getElementById('agServico');
+                serviceSel.innerHTML = '<option value="">Selecione</option>' +
+                    store.services.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+
+                const profSel = document.getElementById('agProfissional');
+                profSel.innerHTML = '<option value="">Selecione</option>' +
+                    store.professionals.map(p => `<option value="${p.id}">${p.name}</option>`).join('');
+
+                // Set default date to tomorrow
+                const dateInput = document.getElementById('agData');
+                if (!dateInput.value) {
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    dateInput.value = tomorrow.toISOString().slice(0, 10);
+                }
+            }
+
+            function renderProfile() {
+                const c = store.client;
+                document.querySelector('.profile-header .avatar-big').textContent = c.avatar || 'CM';
+                document.querySelector('.profile-header .info .name').textContent = c.name;
+                document.querySelector('.profile-header .info .email').textContent = c.email;
+
+                const prefsContainer = document.querySelector('.pref-tag').parentElement;
+                prefsContainer.innerHTML = c.preferences.map(p =>
+                    `<span class="pref-tag">${p}</span>`
+                ).join('');
+
+                // Update details
+                const details = document.querySelectorAll('.card:last-child .flex-between');
+                if (details.length >= 4) {
+                    details[0].querySelector('span:last-child').textContent = c.since;
+                    details[1].querySelector('span:last-child').textContent = c.visits;
+                    details[2].querySelector('span:last-child').textContent = c.points;
+                    details[3].querySelector('span:last-child').textContent = c.level;
+                }
+            }
+
+            function renderAll() {
+                renderHome();
+                renderTimeline();
+                renderRewards();
+                renderFormSelects();
+                renderProfile();
+                updateBadge();
+            }
+
+            function updateBadge() {
+                const badge = document.querySelector('.bottom-nav .nav-item[data-page="pagePontos"] .badge-nav');
+                if (badge) badge.textContent = store.client.points;
+            }
+
+            // ============================================================
+            // NAVIGATION
+            // ============================================================
+            function navigateTo(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                const target = document.getElementById(pageId);
+                if (target) target.classList.add('active');
+
+                document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.page === pageId);
+                });
+
+                // Refresh content
+                if (pageId === 'pageResumo') renderHome();
+                if (pageId === 'pageJornada') renderTimeline();
+                if (pageId === 'pagePontos') renderRewards();
+                if (pageId === 'pageAgendar') renderFormSelects();
+                if (pageId === 'pagePerfil') renderProfile();
+            }
+
+            // ============================================================
+            // TOAST
+            // ============================================================
+            let toastTimeout = null;
+
+            function showToast(message, type = 'success') {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                const icons = { success: '✨', error: '❌', info: 'ℹ️' };
+                toast.innerHTML = `
+                    <span class="toast-icon">${icons[type] || 'ℹ️'}</span>
+                    <span class="toast-msg">${message}</span>
+                `;
+                container.appendChild(toast);
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.add('removing');
+                    setTimeout(() => {
+                        if (toast.parentNode) toast.parentNode.removeChild(toast);
+                    }, 300);
+                    toastTimeout = null;
+                }, 2800);
+            }
+
+            // ============================================================
+            // ONBOARDING
+            // ============================================================
+            function initOnboarding() {
+                const overlay = document.getElementById('onboardingOverlay');
+                const emoji = document.getElementById('obEmoji');
+                const title = document.getElementById('obTitle');
+                const desc = document.getElementById('obDesc');
+                const dots = document.getElementById('obDots');
+                const btn = document.getElementById('obBtn');
+
+                const steps = [{
+                    emoji: '✨',
+                    title: 'Seu clube de beleza',
+                    desc: 'Client Glow transforma sua experiência em uma jornada VIP.'
+                }, {
+                    emoji: '💎',
+                    title: 'Pontos e benefícios',
+                    desc: 'Acumule pontos a cada serviço e troque por recompensas exclusivas.'
+                }, {
+                    emoji: '🌸',
+                    title: 'Jornada personalizada',
+                    desc: 'Acompanhe seu histórico, preferências e próximos agendamentos.'
+                }];
+
+                let step = 0;
+
+                function updateStep(index) {
+                    step = index;
+                    emoji.textContent = steps[step].emoji;
+                    title.textContent = steps[step].title;
+                    desc.textContent = steps[step].desc;
+                    dots.querySelectorAll('.dot').forEach((d, i) => {
+                        d.classList.toggle('active', i === step);
+                    });
+                    btn.textContent = step === steps.length - 1 ? '🚀 Começar' : 'Próximo';
+                }
+
+                btn.addEventListener('click', function() {
+                    if (step < steps.length - 1) {
+                        updateStep(step + 1);
+                    } else {
+                        overlay.classList.add('hidden');
+                        localStorage.setItem('clientGlowOnboarded', 'true');
+                    }
+                });
+
+                if (localStorage.getItem('clientGlowOnboarded') === 'true') {
+                    overlay.classList.add('hidden');
+                } else {
+                    updateStep(0);
+                }
+            }
+
+            // ============================================================
+            // EVENT BINDING
+            // ============================================================
+            function bindEvents() {
+                // Bottom nav
+                document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const pageId = this.dataset.page;
+                        if (pageId) navigateTo(pageId);
+                    });
+                });
+
+                // Form submission
+                document.getElementById('formAgendamento').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const service = document.getElementById('agServico').value;
+                    const professional = document.getElementById('agProfissional').value;
+                    const date = document.getElementById('agData').value;
+                    const time = document.getElementById('agHora').value;
+                    const notes = document.getElementById('agObs').value.trim();
+
+                    if (!service || !professional || !date || !time) {
+                        showToast('Preencha todos os campos obrigatórios', 'error');
+                        return;
+                    }
+
+                    createAppointment({
+                        service,
+                        professional,
+                        date,
+                        time,
+                        notes
+                    });
+
+                    document.getElementById('agServico').value = '';
+                    document.getElementById('agProfissional').value = '';
+                    document.getElementById('agObs').value = '';
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    document.getElementById('agData').value = tomorrow.toISOString().slice(0, 10);
+                    document.getElementById('agHora').value = '';
+
+                    navigateTo('pageResumo');
+                });
+
+                // Logout
+                document.getElementById('logoutBtn').addEventListener('click', function() {
+                    if (confirm('Deseja sair da sua conta?')) {
+                        showToast('Até logo, Camila! 🌸', 'info');
+                        // Just reset to home
+                        navigateTo('pageResumo');
+                    }
+                });
+
+                // Keyboard shortcut: Ctrl+N for new booking
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'n' && (e.ctrlKey || e.metaKey)) {
+                        e.preventDefault();
+                        navigateTo('pageAgendar');
+                    }
+                });
+
+                // Reset data (hidden double-tap on logo)
+                let logoClickCount = 0;
+                document.querySelector('.welcome-header .avatar')?.addEventListener('click', function() {
+                    logoClickCount++;
+                    if (logoClickCount >= 5) {
+                        if (confirm('Resetar todos os dados para o estado inicial?')) {
+                            resetData();
+                        }
+                        logoClickCount = 0;
+                    }
+                    setTimeout(() => { logoClickCount = 0; }, 800);
+                });
+            }
+
+            // ============================================================
+            // PWA: SERVICE WORKER
+            // ============================================================
+            function registerServiceWorker() {
+                if ('serviceWorker' in navigator) {
+                    const swCode = `
+                        self.addEventListener('install', e => {
+                            e.waitUntil(
+                                caches.open('client-glow-v1').then(cache => {
+                                    return cache.addAll(['/', '/index.html']);
+                                })
+                            );
+                            self.skipWaiting();
+                        });
+                        self.addEventListener('activate', e => {
+                            e.waitUntil(clients.claim());
+                        });
+                        self.addEventListener('fetch', e => {
+                            e.respondWith(
+                                caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('/index.html')))
+                            );
+                        });
+                    `;
+                    try {
+                        const blob = new Blob([swCode], { type: 'application/javascript' });
+                        const swUrl = URL.createObjectURL(blob);
+                        navigator.serviceWorker.register(swUrl)
+                            .then(() => console.log('[PWA] Service Worker registrado'))
+                            .catch(() => console.log('[PWA] SW fallback'));
+                    } catch (_) {
+                        try {
+                            const minSW =
+                                'self.addEventListener("install",()=>self.skipWaiting());self.addEventListener("activate",()=>clients.claim());';
+                            const b2 = new Blob([minSW], { type: 'application/javascript' });
+                            navigator.serviceWorker.register(URL.createObjectURL(b2)).catch(() => {});
+                        } catch (_) {}
+                    }
+                }
+            }
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            function init() {
+                if (!localStorage.getItem('clientGlowData')) {
+                    saveData();
+                }
+                renderAll();
+                bindEvents();
+                initOnboarding();
+                registerServiceWorker();
+
+                // Auto-refresh
+                setInterval(() => {
+                    const active = document.querySelector('.page.active');
+                    if (active) {
+                        if (active.id === 'pageResumo') renderHome();
+                        if (active.id === 'pageJornada') renderTimeline();
+                        if (active.id === 'pagePontos') renderRewards();
+                    }
+                }, 30000);
+
+                console.log('🌸 Client Glow inicializado');
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+    </script>
+</body>
+</html>

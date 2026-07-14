@@ -1,0 +1,142 @@
+/* Demo Church - Estilos específicos */
+.demo-hero {
+  padding: var(--space-8) 0;
+  background: linear-gradient(135deg, var(--bg), var(--surface));
+  text-align: center;
+}
+.demo-hero h1 {
+  font-size: 3rem;
+  margin-bottom: var(--space-2);
+}
+.demo-hero p {
+  font-size: 1.25rem;
+  color: var(--muted);
+  margin-bottom: var(--space-4);
+}
+.demo-hero-actions {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.demo-section {
+  padding: var(--space-7) 0;
+  border-bottom: 1px solid var(--border);
+}
+.demo-section h2 {
+  margin-bottom: var(--space-5);
+  font-size: 2rem;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-5);
+}
+
+.demo-schedule-list,
+.demo-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.demo-schedule-item,
+.demo-list-item {
+  background: var(--surface);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--accent-lime);
+}
+
+.demo-schedule-item .day {
+  font-weight: 700;
+  color: var(--text);
+}
+.demo-schedule-item .time {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.demo-schedule-item .event {
+  margin-top: var(--space-1);
+}
+
+.demo-livestream {
+  background: var(--surface);
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+.demo-livestream p {
+  margin-bottom: var(--space-4);
+}
+
+.demo-social-links {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+.demo-social-links a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--muted);
+  padding: var(--space-2) var(--space-4);
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+}
+.demo-social-links a:hover {
+  color: var(--text);
+  border-color: var(--accent-lime);
+}
+
+#prayer-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 500px;
+  margin-bottom: var(--space-5);
+}
+#prayer-form input,
+#prayer-form textarea {
+  padding: var(--space-3);
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+}
+#prayer-form button {
+  align-self: flex-start;
+}
+
+.demo-cta-fixed {
+  position: fixed;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  padding: var(--space-2);
+  /* Remover right e ajustar para centralizar */
+}
+
+.demo-cta-fixed .btn {
+  display: inline-block;
+  padding: var(--space-2) var(--space-5);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .demo-hero h1 {
+    font-size: 2.25rem;
+  }
+  .demo-section h2 {
+    font-size: 1.5rem;
+  }
+}

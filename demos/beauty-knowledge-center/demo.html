@@ -1,0 +1,2713 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="theme-color" content="#0F1A2E" />
+    <meta name="description" content="Beauty Knowledge Center - Centro de conhecimento em cuidados de beleza" />
+
+    <title>Beauty Knowledge Center · Centro de Conhecimento</title>
+
+    <!-- Google Fonts: Merriweather + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES
+           ============================================================ */
+        :root {
+            --bg-body: #F5F7FA;
+            --bg-surface: #FFFFFF;
+            --bg-surface-soft: #EEF1F6;
+            --bg-primary: #0F1A2E;
+            --bg-primary-light: #1A2A44;
+            --bg-primary-subtle: #E8ECF3;
+            --bg-secondary: #2A6B5E;
+            --bg-secondary-light: #DDF0EB;
+            --bg-secondary-subtle: #F0F8F5;
+            --bg-mint: #5BBFA0;
+            --bg-mint-light: #DCF5EB;
+
+            --text-primary: #0F1A2E;
+            --text-secondary: #3A4A5E;
+            --text-muted: #7A8A9E;
+            --text-inverse: #FFFFFF;
+
+            --border-light: #E2E6EC;
+            --border-primary: #0F1A2E;
+
+            --shadow-sm: 0 1px 4px rgba(15, 26, 46, 0.04);
+            --shadow-md: 0 4px 16px rgba(15, 26, 46, 0.06);
+            --shadow-lg: 0 12px 40px rgba(15, 26, 46, 0.08);
+
+            --radius-card: 14px;
+            --radius-btn: 30px;
+            --radius-input: 10px;
+
+            --font-serif: 'Merriweather', Georgia, 'Times New Roman', serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+            --transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition-smooth: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* ============================================================
+           RESET
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-body);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ============================================================
+           TYPOGRAPHY
+           ============================================================ */
+        .serif {
+            font-family: var(--font-serif);
+        }
+        .sans {
+            font-family: var(--font-sans);
+        }
+
+        .heading-xl {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+        .heading-lg {
+            font-family: var(--font-serif);
+            font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+        }
+        .heading-md {
+            font-family: var(--font-serif);
+            font-size: 1.125rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .heading-sm {
+            font-family: var(--font-serif);
+            font-size: 0.9375rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .body-text {
+            font-size: 0.9375rem;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+        .body-text-sm {
+            font-size: 0.8125rem;
+            font-weight: 400;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+        .body-text-lg {
+            font-size: 1.0625rem;
+            font-weight: 400;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .label-text {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .text-mint {
+            color: var(--bg-mint);
+        }
+        .text-secondary {
+            color: var(--bg-secondary);
+        }
+
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .container-narrow {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 12px 20px;
+            background: rgba(15, 26, 46, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .site-header.scrolled {
+            background: rgba(15, 26, 46, 0.96);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .site-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-serif);
+            font-size: 0.9375rem;
+            font-weight: 900;
+            color: var(--text-inverse);
+            flex-shrink: 0;
+            letter-spacing: -0.02em;
+        }
+        .site-header .logo .knowledge {
+            color: var(--bg-mint);
+        }
+        .site-header .logo .icon {
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text-inverse);
+            padding: 4px;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+        }
+        .nav-toggle:active {
+            transform: scale(0.92);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, 0.6);
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--bg-mint);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-links a:hover {
+            color: #fff;
+        }
+        .nav-links a.active {
+            color: #fff;
+        }
+
+        .nav-cta {
+            background: var(--bg-mint);
+            color: var(--text-inverse) !important;
+            padding: 8px 22px !important;
+            border-radius: var(--radius-btn);
+            font-weight: 600 !important;
+            transition: var(--transition);
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+        .nav-cta:hover {
+            background: #4AA88C !important;
+            color: var(--text-inverse) !important;
+        }
+
+        /* ============================================================
+           PAGES
+           ============================================================ */
+        .page {
+            display: none;
+            padding-top: 72px;
+            animation: fadeUp 0.4s ease both;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero-section {
+            padding: 40px 0 56px;
+            background: var(--bg-primary);
+            color: var(--text-inverse);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .hero-section .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-content .hero-badge {
+            display: inline-block;
+            font-size: 0.5625rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--bg-mint);
+            background: rgba(91, 191, 160, 0.12);
+            padding: 4px 16px;
+            border-radius: 30px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(91, 191, 160, 0.15);
+        }
+
+        .hero-content .hero-title {
+            margin-bottom: 12px;
+        }
+        .hero-content .hero-title .highlight {
+            color: var(--bg-mint);
+        }
+
+        .hero-content .hero-description {
+            max-width: 480px;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .hero-cta-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 28px;
+            font-family: var(--font-sans);
+            font-size: 0.8125rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: var(--radius-btn);
+            letter-spacing: 0.02em;
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+
+        .btn-primary {
+            background: var(--bg-mint);
+            color: var(--text-inverse);
+        }
+        .btn-primary:hover {
+            background: #4AA88C;
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--text-inverse);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.16);
+        }
+
+        .btn-outline-dark {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1.5px solid var(--border-light);
+        }
+        .btn-outline-dark:hover {
+            border-color: var(--text-primary);
+            background: var(--text-primary);
+            color: var(--text-inverse);
+        }
+
+        .hero-image {
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, rgba(26, 42, 68, 0.6), rgba(42, 107, 94, 0.3));
+            border-radius: var(--radius-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4.5rem;
+            color: var(--bg-mint);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+            min-height: 220px;
+        }
+
+        .hero-image .image-label {
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            font-size: 0.625rem;
+            font-weight: 600;
+            padding: 4px 14px;
+            border-radius: 30px;
+        }
+
+        /* ============================================================
+           SEARCH BAR
+           ============================================================ */
+        .search-bar {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-sm);
+            max-width: 560px;
+            margin: -20px auto 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 12px 16px;
+            border: none;
+            outline: none;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            background: transparent;
+            min-width: 0;
+        }
+
+        .search-bar input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .search-bar .search-btn {
+            padding: 10px 20px;
+            background: var(--bg-primary);
+            color: #fff;
+            border: none;
+            border-radius: var(--radius-btn);
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .search-bar .search-btn:hover {
+            background: var(--bg-secondary);
+        }
+
+        /* ============================================================
+           CATEGORIES
+           ============================================================ */
+        .section {
+            padding: 48px 0 56px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-header {
+            margin-bottom: 28px;
+        }
+        .section-header .label {
+            font-size: 0.5625rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--bg-secondary);
+            margin-bottom: 4px;
+        }
+        .section-header .title {
+            font-family: var(--font-serif);
+            font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+        .section-header .sub {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        .section-header-centered {
+            text-align: center;
+            max-width: 560px;
+            margin: 0 auto 32px;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .category-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 24px 18px 22px;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--bg-secondary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-card .icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .category-card .name {
+            font-family: var(--font-serif);
+            font-size: 0.9375rem;
+            font-weight: 700;
+        }
+        .category-card .count {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           ARTICLE CARDS
+           ============================================================ */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .article-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--bg-secondary);
+        }
+
+        .article-card .card-image {
+            aspect-ratio: 16/10;
+            background: var(--bg-primary-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            color: var(--bg-primary);
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .article-card .card-image .badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 3px 12px;
+            border-radius: 30px;
+            background: var(--bg-secondary);
+            color: #fff;
+        }
+
+        .article-card .card-image .badge.mint {
+            background: var(--bg-mint);
+        }
+
+        .article-card .card-body {
+            padding: 16px 18px 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .article-card .card-body .card-category {
+            font-size: 0.5625rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--bg-secondary);
+            margin-bottom: 2px;
+        }
+
+        .article-card .card-body .card-title {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .article-card .card-body .card-excerpt {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .article-card .card-body .card-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+
+        .article-card .card-body .card-meta .read-time {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ============================================================
+           ARTICLE DETAIL (Full page)
+           ============================================================ */
+        .article-detail {
+            padding: 32px 0 48px;
+        }
+
+        .article-detail .detail-header {
+            margin-bottom: 24px;
+        }
+
+        .article-detail .detail-header .detail-category {
+            font-size: 0.5625rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--bg-secondary);
+            margin-bottom: 4px;
+        }
+
+        .article-detail .detail-header .detail-title {
+            font-family: var(--font-serif);
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+
+        .article-detail .detail-header .detail-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            flex-wrap: wrap;
+        }
+
+        .article-detail .detail-image {
+            aspect-ratio: 16/8;
+            background: var(--bg-primary-subtle);
+            border-radius: var(--radius-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--bg-primary);
+            margin-bottom: 24px;
+            border: 1px solid var(--border-light);
+        }
+
+        .article-detail .detail-body {
+            font-size: 1.0625rem;
+            line-height: 1.9;
+            color: var(--text-secondary);
+        }
+
+        .article-detail .detail-body h2 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 28px 0 10px;
+        }
+
+        .article-detail .detail-body h3 {
+            font-family: var(--font-serif);
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 20px 0 8px;
+        }
+
+        .article-detail .detail-body p {
+            margin-bottom: 14px;
+        }
+
+        .article-detail .detail-body ul,
+        .article-detail .detail-body ol {
+            margin: 10px 0 16px 24px;
+        }
+
+        .article-detail .detail-body ul li,
+        .article-detail .detail-body ol li {
+            margin-bottom: 6px;
+        }
+
+        .article-detail .detail-body .insight-box {
+            background: var(--bg-secondary-subtle);
+            border-left: 4px solid var(--bg-secondary);
+            padding: 16px 20px;
+            border-radius: var(--radius-card);
+            margin: 16px 0;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+        }
+
+        .article-detail .detail-body .insight-box strong {
+            color: var(--text-primary);
+        }
+
+        .article-detail .detail-cta-box {
+            background: var(--bg-primary);
+            color: var(--text-inverse);
+            border-radius: var(--radius-card);
+            padding: 28px 32px;
+            margin: 28px 0 16px;
+            text-align: center;
+        }
+
+        .article-detail .detail-cta-box .cta-title {
+            font-family: var(--font-serif);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .article-detail .detail-cta-box .cta-desc {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 16px;
+            font-size: 0.9375rem;
+        }
+
+        .article-detail .detail-cta-box .btn {
+            background: var(--bg-mint);
+            color: var(--text-inverse);
+        }
+        .article-detail .detail-cta-box .btn:hover {
+            background: #4AA88C;
+        }
+
+        /* Related services strip */
+        .related-strip {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--bg-surface-soft);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            flex-wrap: wrap;
+            margin: 16px 0 8px;
+        }
+
+        .related-strip .label {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .related-strip .tag {
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .related-strip .tag:hover {
+            border-color: var(--bg-secondary);
+            color: var(--bg-secondary);
+        }
+
+        /* ============================================================
+           SERVICES (linked to content)
+           ============================================================ */
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .service-item-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 20px 18px 22px;
+            transition: var(--transition-smooth);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .service-item-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--bg-secondary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .service-item-card .icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .service-item-card .name {
+            font-family: var(--font-serif);
+            font-size: 0.9375rem;
+            font-weight: 700;
+        }
+        .service-item-card .desc {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            margin: 4px 0 8px;
+        }
+        .service-item-card .link {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--bg-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition);
+        }
+        .service-item-card .link:hover {
+            gap: 8px;
+            color: var(--bg-mint);
+        }
+
+        /* ============================================================
+           ABOUT
+           ============================================================ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .about-image {
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--bg-primary-subtle), var(--bg-secondary-subtle));
+            border-radius: var(--radius-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            min-height: 200px;
+        }
+
+        .about-content .cert-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .about-content .cert-list .cert {
+            background: var(--bg-surface-soft);
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+        }
+
+        .about-content .cert-list .cert.mint {
+            background: var(--bg-secondary-subtle);
+            border-color: var(--bg-secondary);
+            color: var(--bg-secondary);
+        }
+
+        /* ============================================================
+           CONTACT
+           ============================================================ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .contact-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .contact-info .info-item:last-child {
+            border-bottom: none;
+        }
+        .contact-info .info-item .icon {
+            font-size: 1.1rem;
+            width: 28px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .contact-info .info-item .text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+        .contact-info .info-item .text strong {
+            color: var(--text-primary);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 14px;
+        }
+        .contact-form .form-group label {
+            display: block;
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+        .contact-form .form-group input,
+        .contact-form .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-input);
+            color: var(--text-primary);
+            transition: var(--transition);
+            outline: none;
+        }
+        .contact-form .form-group input:focus,
+        .contact-form .form-group textarea:focus {
+            border-color: var(--bg-secondary);
+            box-shadow: 0 0 0 3px rgba(42, 107, 94, 0.08);
+        }
+        .contact-form .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        /* ============================================================
+           APPOINTMENT (Booking)
+           ============================================================ */
+        .booking-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 28px 32px 32px;
+            box-shadow: var(--shadow-sm);
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .booking-card .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .booking-card .form-group {
+            margin-bottom: 14px;
+        }
+        .booking-card .form-group label {
+            display: block;
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
+        .booking-card .form-group input,
+        .booking-card .form-group select,
+        .booking-card .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            background: var(--bg-body);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-input);
+            color: var(--text-primary);
+            transition: var(--transition);
+            outline: none;
+        }
+        .booking-card .form-group input:focus,
+        .booking-card .form-group select:focus,
+        .booking-card .form-group textarea:focus {
+            border-color: var(--bg-secondary);
+            box-shadow: 0 0 0 3px rgba(42, 107, 94, 0.08);
+        }
+        .booking-card .form-group textarea {
+            resize: vertical;
+            min-height: 70px;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .site-footer {
+            background: var(--bg-primary);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 36px 0 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .site-footer .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 32px;
+        }
+
+        .site-footer .footer-brand .name {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        .site-footer .footer-brand .name .knowledge {
+            color: var(--bg-mint);
+        }
+        .site-footer .footer-brand .tagline {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .site-footer .footer-links h4 {
+            font-size: 0.5625rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 8px;
+        }
+        .site-footer .footer-links ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .site-footer .footer-links ul a {
+            font-size: 0.8125rem;
+            color: rgba(255, 255, 255, 0.5);
+            transition: var(--transition);
+        }
+        .site-footer .footer-links ul a:hover {
+            color: var(--bg-mint);
+        }
+
+        .site-footer .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            margin-top: 20px;
+            padding-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.6875rem;
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ============================================================
+           TOAST
+           ============================================================ */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3000;
+            pointer-events: none;
+            max-width: 420px;
+            width: 90%;
+        }
+        .toast {
+            background: var(--bg-primary);
+            color: var(--text-inverse);
+            padding: 12px 20px;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+            animation: toastIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+            border-left: 3px solid var(--bg-mint);
+        }
+        .toast .toast-icon {
+            font-size: 1.1rem;
+        }
+        .toast .toast-msg {
+            flex: 1;
+            font-weight: 500;
+            font-size: 0.8125rem;
+        }
+        @keyframes toastIn {
+            0% {
+                opacity: 0;
+                transform: translateY(16px) scale(0.94);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .toast.removing {
+            animation: toastOut 0.3s ease both;
+        }
+        @keyframes toastOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(12px) scale(0.94);
+            }
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .articles-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .services-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .about-image {
+                aspect-ratio: 16/10;
+                min-height: 160px;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 820px) {
+            .hero-section .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .hero-content {
+                order: 2;
+            }
+            .hero-image {
+                aspect-ratio: 16/10;
+                order: 1;
+                min-height: 140px;
+            }
+
+            .site-footer .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 280px;
+                height: 100vh;
+                background: var(--bg-primary);
+                flex-direction: column;
+                padding: 80px 24px 24px;
+                gap: 10px;
+                align-items: flex-start;
+                box-shadow: var(--shadow-lg);
+                transition: var(--transition-smooth);
+                border-left: 1px solid rgba(255, 255, 255, 0.04);
+                overflow-y: auto;
+            }
+            .nav-links.open {
+                right: 0;
+            }
+            .nav-links a {
+                font-size: 0.8125rem;
+                padding: 8px 0;
+                color: rgba(255, 255, 255, 0.6);
+            }
+            .nav-links a::after {
+                bottom: 0;
+            }
+            .nav-links a:hover,
+            .nav-links a.active {
+                color: #fff;
+            }
+            .nav-cta {
+                margin-top: 4px;
+                padding: 10px 24px !important;
+            }
+
+            .nav-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.4);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition-smooth);
+            }
+            .nav-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .search-bar {
+                margin: -12px auto 0;
+                flex-wrap: wrap;
+                padding: 8px;
+            }
+            .search-bar input {
+                width: 100%;
+                padding: 10px 14px;
+            }
+            .search-bar .search-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 10px;
+            }
+
+            .booking-card .form-row {
+                grid-template-columns: 1fr;
+            }
+            .booking-card {
+                padding: 20px 16px 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 14px;
+            }
+
+            .hero-section {
+                padding: 28px 0 40px;
+            }
+            .hero-image {
+                font-size: 3rem;
+                min-height: 110px;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .category-card {
+                padding: 16px 12px;
+            }
+            .category-card .icon {
+                font-size: 1.6rem;
+            }
+            .category-card .name {
+                font-size: 0.8125rem;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+
+            .services-list {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .service-item-card {
+                padding: 16px 14px;
+            }
+            .service-item-card .icon {
+                font-size: 1.6rem;
+            }
+
+            .site-footer .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .site-footer .footer-bottom {
+                flex-direction: column;
+                gap: 6px;
+                text-align: center;
+            }
+
+            .site-header {
+                padding: 10px 14px;
+            }
+            .site-header .logo {
+                font-size: 0.8125rem;
+            }
+
+            .article-detail .detail-image {
+                aspect-ratio: 16/10;
+                font-size: 2.6rem;
+            }
+            .article-detail .detail-body {
+                font-size: 0.9375rem;
+            }
+            .article-detail .detail-body h2 {
+                font-size: 1.125rem;
+            }
+            .article-detail .detail-cta-box {
+                padding: 20px 18px;
+            }
+
+            .contact-info .info-item .text {
+                font-size: 0.8125rem;
+            }
+
+            .nav-links {
+                width: 80%;
+                padding: 72px 20px 20px;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-cta-group .btn {
+                justify-content: center;
+            }
+
+            .section {
+                padding: 32px 0 40px;
+            }
+            .section-header .title {
+                font-size: 1.2rem;
+            }
+
+            .related-strip {
+                padding: 10px 12px;
+                gap: 8px;
+            }
+            .related-strip .tag {
+                font-size: 0.6875rem;
+                padding: 2px 10px;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .categories-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .services-list {
+                grid-template-columns: 1fr;
+            }
+            .booking-card .form-row {
+                grid-template-columns: 1fr;
+            }
+            .article-detail .detail-header .detail-title {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-12 {
+            margin-bottom: 12px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-muted {
+            color: var(--text-muted);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.08s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.16s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.24s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.32s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="siteHeader">
+        <a href="#" class="logo" data-page="home">
+            <span class="icon">📚</span>
+            Beauty <span class="knowledge">Knowledge</span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#" data-page="home" class="active">Home</a>
+            <a href="#" data-page="library">Biblioteca</a>
+            <a href="#" data-page="services">Serviços</a>
+            <a href="#" data-page="about">Sobre</a>
+            <a href="#" data-page="contact">Contato</a>
+            <a href="#" data-page="appointment" class="nav-cta">📅 Agendar</a>
+        </nav>
+    </header>
+
+    <!-- Mobile overlay -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
+    <!-- ============================================================
+    TOAST
+    ============================================================ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+    PAGE: HOME
+    ============================================================ -->
+    <div class="page active" id="page-home">
+
+        <!-- Hero -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <div class="hero-badge">✦ Centro de Conhecimento</div>
+                        <h1 class="hero-title heading-xl">
+                            Centro de conhecimento<br />
+                            em <span class="highlight">cuidados de beleza</span>
+                        </h1>
+                        <p class="hero-description">
+                            Artigos, guias e conteúdos técnicos sobre cabelos, pele, unhas e bem-estar.
+                            Aprenda com quem entende.
+                        </p>
+                        <div class="hero-cta-group">
+                            <a href="#" class="btn btn-primary" data-page="library">Explorar guias</a>
+                            <a href="#" class="btn btn-secondary" data-page="appointment">Agendar avaliação</a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        📖
+                        <span class="image-label">Conhecimento técnico em beleza</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Bar -->
+        <div class="container">
+            <div class="search-bar" id="searchBar">
+                <input type="text" id="searchInput" placeholder="Buscar artigos, guias, categorias…" />
+                <button class="search-btn" id="searchBtn">🔍 Buscar</button>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header">
+                    <div class="label">✦ Categorias</div>
+                    <div class="title">Explore por assunto</div>
+                    <div class="sub">Navegue pelos nossos guias organizados por tema.</div>
+                </div>
+
+                <div class="categories-grid" id="categoriesGrid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Guides -->
+        <section class="section" style="background:var(--bg-surface-soft);">
+            <div class="container">
+                <div class="section-header">
+                    <div class="label">✦ Destaques</div>
+                    <div class="title">Guias em destaque</div>
+                    <div class="sub">Conteúdos selecionados para você começar.</div>
+                </div>
+
+                <div class="articles-grid" id="featuredArticles">
+                    <!-- Rendered by JS -->
+                </div>
+
+                <div class="text-center mt-16">
+                    <a href="#" class="btn btn-primary" data-page="library">Ver todos os guias →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section style="padding:40px 0 48px;background:var(--bg-primary);color:var(--text-inverse);">
+            <div class="container text-center">
+                <h2 class="heading-lg" style="font-family:var(--font-serif);margin-bottom:8px;">
+                    Pronto para aplicar o conhecimento?
+                </h2>
+                <p style="color:rgba(255,255,255,0.7);max-width:480px;margin:0 auto 20px;">
+                    Agende uma avaliação com nossa equipe e transforme seu cuidado com a beleza.
+                </p>
+                <a href="#" class="btn btn-primary" data-page="appointment" style="background:var(--bg-mint);color:#fff;">📅 Agendar avaliação</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- ============================================================
+    PAGE: LIBRARY
+    ============================================================ -->
+    <div class="page" id="page-library">
+        <div class="container" style="padding-top:20px;">
+            <div class="section-header" style="margin-bottom:24px;">
+                <div class="label">✦ Biblioteca</div>
+                <div class="title">Todos os guias e artigos</div>
+                <div class="sub">Conteúdo técnico organizado por categoria para você aprender.</div>
+            </div>
+
+            <!-- Filter tabs -->
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;" id="libraryFilters">
+                <button class="filter-btn active" data-filter="all" style="padding:6px 18px;border-radius:30px;font-size:0.6875rem;font-weight:600;border:1px solid var(--border-light);background:var(--bg-surface);cursor:pointer;transition:var(--transition);font-family:var(--font-sans);">Todos</button>
+                <button class="filter-btn" data-filter="cabelo" style="padding:6px 18px;border-radius:30px;font-size:0.6875rem;font-weight:600;border:1px solid var(--border-light);background:var(--bg-surface);cursor:pointer;transition:var(--transition);font-family:var(--font-sans);">Cabelo</button>
+                <button class="filter-btn" data-filter="pele" style="padding:6px 18px;border-radius:30px;font-size:0.6875rem;font-weight:600;border:1px solid var(--border-light);background:var(--bg-surface);cursor:pointer;transition:var(--transition);font-family:var(--font-sans);">Pele</button>
+                <button class="filter-btn" data-filter="unhas" style="padding:6px 18px;border-radius:30px;font-size:0.6875rem;font-weight:600;border:1px solid var(--border-light);background:var(--bg-surface);cursor:pointer;transition:var(--transition);font-family:var(--font-sans);">Unhas</button>
+                <button class="filter-btn" data-filter="bem-estar" style="padding:6px 18px;border-radius:30px;font-size:0.6875rem;font-weight:600;border:1px solid var(--border-light);background:var(--bg-surface);cursor:pointer;transition:var(--transition);font-family:var(--font-sans);">Bem-estar</button>
+            </div>
+
+            <div class="articles-grid" id="libraryArticles">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAGE: ARTICLE DETAIL (dynamic)
+    ============================================================ -->
+    <div class="page" id="page-article">
+        <div class="container-narrow" style="padding-top:20px;">
+            <div id="articleContent">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAGE: SERVICES
+    ============================================================ -->
+    <div class="page" id="page-services">
+        <div class="container" style="padding-top:20px;">
+            <div class="section-header" style="margin-bottom:24px;">
+                <div class="label">✦ Serviços</div>
+                <div class="title">Serviços relacionados ao conhecimento</div>
+                <div class="sub">Cada serviço está conectado a um guia ou artigo para você entender melhor.</div>
+            </div>
+
+            <div class="services-list" id="servicesList">
+                <!-- Rendered by JS -->
+            </div>
+
+            <div style="margin-top:24px;padding:20px 24px;background:var(--bg-secondary-subtle);border-radius:var(--radius-card);border:1px solid var(--bg-secondary);text-align:center;">
+                <p style="font-size:0.875rem;color:var(--text-secondary);">
+                    💡 Quer saber mais sobre um serviço? Leia o guia relacionado e agende uma avaliação.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAGE: ABOUT
+    ============================================================ -->
+    <div class="page" id="page-about">
+        <div class="container" style="padding-top:20px;">
+            <div class="about-grid">
+                <div class="about-image reveal">
+                    📚
+                    <span style="position:absolute;font-size:0.625rem;color:var(--text-muted);margin-top:70px;">Conhecimento técnico</span>
+                </div>
+                <div class="about-content reveal">
+                    <div class="label-text" style="margin-bottom:4px;">✦ Sobre o Centro</div>
+                    <h2 class="heading-lg" style="margin-bottom:8px;">
+                        Referência técnica em <span style="color:var(--bg-secondary);">cuidados de beleza</span>
+                    </h2>
+                    <p class="body-text" style="margin-bottom:10px;">
+                        O Beauty Knowledge Center nasceu para ser uma referência técnica no setor
+                        de beleza. Nossa missão é democratizar o conhecimento sobre cuidados
+                        capilares, faciais, unhas e bem-estar, conectando informação de qualidade
+                        a serviços especializados.
+                    </p>
+                    <p class="body-text" style="margin-bottom:12px;">
+                        Cada guia e artigo é elaborado por profissionais com formação em estética,
+                        tricologia e áreas correlatas, garantindo precisão técnica e aplicabilidade
+                        prática.
+                    </p>
+                    <div style="font-weight:700;font-size:0.9375rem;color:var(--text-primary);margin-top:8px;">
+                        Formação e certificações da equipe:
+                    </div>
+                    <div class="cert-list">
+                        <span class="cert mint">🎓 Estética Avançada</span>
+                        <span class="cert">🧪 Tricologia</span>
+                        <span class="cert mint">💆 Cosmetologia</span>
+                        <span class="cert">📋 Dermofuncional</span>
+                        <span class="cert mint">🧬 Química Cosmética</span>
+                        <span class="cert">📖 Capilaridade</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="padding:32px 0 16px;border-top:1px solid var(--border-light);margin-top:24px;text-align:center;">
+                <p class="body-text" style="margin-bottom:8px;">Faça parte do nosso centro de conhecimento.</p>
+                <a href="#" class="btn btn-primary" data-page="appointment">📅 Agendar avaliação</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAGE: CONTACT
+    ============================================================ -->
+    <div class="page" id="page-contact">
+        <div class="container" style="padding-top:20px;">
+            <div class="section-header" style="margin-bottom:24px;">
+                <div class="label">✦ Contato</div>
+                <div class="title">Fale com a equipe</div>
+                <div class="sub">Tire dúvidas, sugira temas ou agende uma avaliação.</div>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="info-item">
+                        <span class="icon">📍</span>
+                        <span class="text"><strong>Centro de Conhecimento</strong><br />Rua do Saber, 789 · Vila Mariana</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">📱</span>
+                        <span class="text"><strong>WhatsApp</strong><br />(11) 9 3333-2222</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">📞</span>
+                        <span class="text"><strong>Telefone</strong><br />(11) 1234-5678</span>
+                    </div>
+                    <div class="info-item" style="border-bottom:none;">
+                        <span class="icon">✉️</span>
+                        <span class="text"><strong>E-mail</strong><br />conhecimento@beautyknowledge.com</span>
+                    </div>
+                    <div style="display:flex;gap:10px;margin-top:16px;">
+                        <a href="#" style="font-size:1.2rem;color:var(--text-muted);transition:var(--transition);padding:6px;border-radius:50%;background:var(--bg-surface-soft);border:1px solid var(--border-light);width:40px;height:40px;display:flex;align-items:center;justify-content:center;">📸</a>
+                        <a href="#" style="font-size:1.2rem;color:var(--text-muted);transition:var(--transition);padding:6px;border-radius:50%;background:var(--bg-surface-soft);border:1px solid var(--border-light);width:40px;height:40px;display:flex;align-items:center;justify-content:center;">📘</a>
+                        <a href="#" style="font-size:1.2rem;color:var(--text-muted);transition:var(--transition);padding:6px;border-radius:50%;background:var(--bg-surface-soft);border:1px solid var(--border-light);width:40px;height:40px;display:flex;align-items:center;justify-content:center;">▶️</a>
+                    </div>
+                </div>
+
+                <div class="contact-form reveal">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Nome</label>
+                            <input type="text" id="contactName" placeholder="Seu nome" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactPhone">WhatsApp</label>
+                            <input type="tel" id="contactPhone" placeholder="(11) 9 9999-9999" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Mensagem</label>
+                            <textarea id="contactMessage" placeholder="Conte o que você procura…" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;background:var(--bg-primary);">Enviar mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    PAGE: APPOINTMENT
+    ============================================================ -->
+    <div class="page" id="page-appointment">
+        <div class="container" style="padding-top:20px;">
+            <div class="section-header" style="margin-bottom:20px;text-align:center;">
+                <div class="label">✦ Agendamento</div>
+                <div class="title">Agende sua avaliação</div>
+                <div class="sub">Preencha os dados e agende uma avaliação técnica com nossa equipe.</div>
+            </div>
+
+            <div class="booking-card">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label for="bookName">Nome completo *</label>
+                        <input type="text" id="bookName" placeholder="Seu nome" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="bookPhone">WhatsApp *</label>
+                        <input type="tel" id="bookPhone" placeholder="(11) 9 9999-9999" required />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bookService">Serviço de interesse</label>
+                            <select id="bookService">
+                                <option value="">Selecione</option>
+                                <option value="cabelo">Avaliação Capilar</option>
+                                <option value="pele">Avaliação Facial</option>
+                                <option value="unhas">Avaliação de Unhas</option>
+                                <option value="bem-estar">Consulta de Bem-estar</option>
+                                <option value="geral">Avaliação Geral</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="bookDate">Data preferencial</label>
+                            <input type="date" id="bookDate" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookMessage">Observações</label>
+                        <textarea id="bookMessage" placeholder="Conte o que você gostaria de tratar…"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;background:var(--bg-primary);">📅 Solicitar agendamento</button>
+                </form>
+
+                <div style="margin-top:16px;padding:14px 18px;background:var(--bg-secondary-subtle);border-radius:var(--radius-card);border:1px solid var(--bg-secondary);text-align:center;font-size:0.8125rem;color:var(--text-secondary);">
+                    💡 Após o agendamento, você receberá uma confirmação por WhatsApp.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="name">Beauty <span class="knowledge">Knowledge</span></div>
+                    <div class="tagline">Centro de conhecimento em cuidados de beleza</div>
+                </div>
+                <div class="footer-links">
+                    <h4>Conteúdo</h4>
+                    <ul>
+                        <li><a href="#" data-page="library">Biblioteca</a></li>
+                        <li><a href="#" data-page="services">Serviços</a></li>
+                        <li><a href="#" data-page="about">Sobre</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#" data-page="contact">Contato</a></li>
+                        <li><a href="#" data-page="appointment">Agendar</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Beauty Knowledge Center · Todos os direitos reservados</span>
+                <span>📚 Conhecimento que transforma</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // DATA
+            // ============================================================
+            const CATEGORIES = [
+                { id: 'cabelo', name: 'Cabelo', icon: '💇', count: 12 },
+                { id: 'pele', name: 'Pele', icon: '✨', count: 9 },
+                { id: 'unhas', name: 'Unhas', icon: '💅', count: 7 },
+                { id: 'bem-estar', name: 'Bem-estar', icon: '🌿', count: 6 }
+            ];
+
+            const ARTICLES = [{
+                id: 'a1',
+                title: 'Recuperação capilar: guia completo para fios danificados',
+                category: 'cabelo',
+                excerpt: 'Aprenda a diagnosticar e tratar cabelos danificados por química, calor e outros fatores. Protocolos passo a passo.',
+                image: '💇',
+                readTime: '12 min',
+                badge: 'Guia completo',
+                badgeType: 'mint',
+                content: `
+                            <p>Os cabelos danificados são uma das maiores queixas nos salões de beleza. Seja por processos químicos, uso excessivo de calor ou fatores ambientais, a recuperação capilar exige um protocolo estruturado.</p>
+
+                            <h2>Diagnóstico capilar</h2>
+                            <p>Antes de iniciar qualquer tratamento, é fundamental entender o nível de dano dos fios. A avaliação deve considerar:</p>
+                            <ul>
+                                <li><strong>Porosidade:</strong> A capacidade do fio de absorver e reter água e nutrientes.</li>
+                                <li><strong>Elasticidade:</strong> A resistência do fio à quebra e sua capacidade de voltar ao formato original.</li>
+                                <li><strong>Densidade:</strong> A quantidade de fios por centímetro quadrado.</li>
+                            </ul>
+
+                            <div class="insight-box">
+                                <strong>💡 Dica técnica:</strong> O teste da porosidade é simples e pode ser feito em casa: coloque um fio de cabelo em um copo com água. Se boiar, a porosidade está alta.
+                            </div>
+
+                            <h2>Protocolo de recuperação</h2>
+                            <p>Um protocolo completo de recuperação capilar envolve três pilares:</p>
+                            <ol>
+                                <li><strong>Reconstrução:</strong> Reposição de massa capilar com queratina e aminoácidos.</li>
+                                <li><strong>Nutrição:</strong> Reposição de lipídios com óleos vegetais e manteigas.</li>
+                                <li><strong>Hidratação:</strong> Reposição de água com ativos umectantes.</li>
+                            </ol>
+                            <p>A frequência e ordem dessas etapas devem ser ajustadas conforme a necessidade de cada fio.</p>
+
+                            <div class="related-strip">
+                                <span class="label">Serviços relacionados:</span>
+                                <span class="tag" data-service="cabelo">Avaliação Capilar</span>
+                                <span class="tag" data-service="cabelo">Tratamento de Recuperação</span>
+                                <span class="tag" data-service="cabelo">Química Inteligente</span>
+                            </div>
+
+                            <h2>Cuidados pós-tratamento</h2>
+                            <p>Após o protocolo, a manutenção é essencial. Recomendamos:</p>
+                            <ul>
+                                <li>Uso de produtos específicos para o tipo de dano identificado.</li>
+                                <li>Redução do uso de ferramentas térmicas.</li>
+                                <li>Proteção solar capilar em dias de exposição intensa.</li>
+                            </ul>
+
+                            <div class="detail-cta-box">
+                                <div class="cta-title">📋 Agende uma avaliação capilar</div>
+                                <div class="cta-desc">Nossa equipe técnica está pronta para avaliar seus fios e indicar o melhor protocolo.</div>
+                                <a href="#" class="btn" data-page="appointment">Agendar avaliação</a>
+                            </div>
+                        `
+            }, {
+                id: 'a2',
+                title: 'Rotina de skincare: como escolher os produtos certos',
+                category: 'pele',
+                excerpt: 'Descubra como montar uma rotina de cuidados faciais baseada no seu tipo de pele e necessidades específicas.',
+                image: '✨',
+                readTime: '10 min',
+                badge: 'Guia',
+                badgeType: '',
+                content: `
+                            <p>Montar uma rotina de skincare pode parecer complicado com a enorme variedade de produtos disponíveis. O segredo está em entender seu tipo de pele e escolher ativos que atendam às suas necessidades específicas.</p>
+
+                            <h2>Conhecendo seu tipo de pele</h2>
+                            <p>Existem quatro tipos principais de pele: normal, seca, oleosa e mista. Além disso, há fatores como sensibilidade e acne que influenciam a escolha dos produtos.</p>
+
+                            <div class="insight-box">
+                                <strong>💡 Atenção:</strong> O tipo de pele pode mudar com o tempo, devido a fatores como idade, clima e uso de medicamentos.
+                            </div>
+
+                            <h2>Os 3 passos essenciais</h2>
+                            <p>Uma rotina básica e eficaz para todos os tipos de pele inclui:</p>
+                            <ol>
+                                <li><strong>Limpeza:</strong> Remover impurezas e resíduos do dia a dia.</li>
+                                <li><strong>Hidratação:</strong> Repor a água da pele.</li>
+                                <li><strong>Proteção:</strong> Usar protetor solar diariamente.</li>
+                            </ol>
+                            <p>A partir dessa base, você pode adicionar ativos específicos como vitamina C, retinol, ácido hialurônico, entre outros.</p>
+
+                            <div class="related-strip">
+                                <span class="label">Serviços relacionados:</span>
+                                <span class="tag" data-service="pele">Avaliação Facial</span>
+                                <span class="tag" data-service="pele">Tratamento de Pele</span>
+                            </div>
+
+                            <div class="detail-cta-box">
+                                <div class="cta-title">✨ Agende sua avaliação facial</div>
+                                <div class="cta-desc">Descubra quais produtos e tratamentos são ideais para sua pele.</div>
+                                <a href="#" class="btn" data-page="appointment">Agendar avaliação</a>
+                            </div>
+                        `
+            }, {
+                id: 'a3',
+                title: 'Manicure saudável: cuidados e prevenção de fungos',
+                category: 'unhas',
+                excerpt: 'Saiba como manter suas unhas saudáveis e prevenir problemas comuns como fungos e micoses.',
+                image: '💅',
+                readTime: '8 min',
+                badge: 'Mini artigo',
+                badgeType: '',
+                content: `
+                            <p>Unhas saudáveis são sinônimo de cuidado e bem-estar. No entanto, muitas pessoas negligenciam a saúde das unhas até que problemas como fungos e micoses apareçam.</p>
+
+                            <h2>Prevenção de fungos nas unhas</h2>
+                            <p>Os fungos nas unhas (onicomicose) são causados principalmente por dermatófitos. Para prevenir:</p>
+                            <ul>
+                                <li>Mantenha as unhas sempre limpas e secas.</li>
+                                <li>Evite andar descalço em locais úmidos como piscinas e academias.</li>
+                                <li>Use luvas ao manusear produtos químicos.</li>
+                            </ul>
+
+                            <h2>Cuidados na manicure</h2>
+                            <p>Na hora de fazer as unhas, alguns cuidados são essenciais:</p>
+                            <ul>
+                                <li>Esterilize os alicates antes de cada uso.</li>
+                                <li>Não corte demais as cutículas, elas protegem a região.</li>
+                                <li>Use bases fortalecedoras para prevenir quebras.</li>
+                            </ul>
+
+                            <div class="related-strip">
+                                <span class="label">Serviços relacionados:</span>
+                                <span class="tag" data-service="unhas">Manicure Especializada</span>
+                                <span class="tag" data-service="unhas">Tratamento de Unhas</span>
+                            </div>
+
+                            <div class="detail-cta-box">
+                                <div class="cta-title">💅 Agende sua avaliação de unhas</div>
+                                <div class="cta-desc">Nossa equipe especializada pode avaliar e tratar suas unhas.</div>
+                                <a href="#" class="btn" data-page="appointment">Agendar avaliação</a>
+                            </div>
+                        `
+            }, {
+                id: 'a4',
+                title: 'Cuidados com a pele no verão: proteção e hidratação',
+                category: 'pele',
+                excerpt: 'Proteja sua pele dos danos do sol com dicas práticas de hidratação e fotoproteção.',
+                image: '☀️',
+                readTime: '7 min',
+                badge: 'Sazonal',
+                badgeType: 'mint',
+                content: `
+                            <p>O verão é a estação que mais exige cuidados com a pele. A exposição ao sol, o calor e o cloro das piscinas podem comprometer a saúde da pele.</p>
+
+                            <h2>Fotoproteção: essencial o ano todo</h2>
+                            <p>O uso de protetor solar é indispensável, especialmente no verão. Recomendamos:</p>
+                            <ul>
+                                <li>Protetor com FPS 30 ou superior.</li>
+                                <li>Reaplicação a cada 2 horas ou após contato com água.</li>
+                                <li>Produtos com proteção UVA e UVB.</li>
+                            </ul>
+
+                            <h2>Hidratação pós-sol</h2>
+                            <p>Após a exposição ao sol, a pele precisa de hidratação intensa. Invista em:</p>
+                            <ul>
+                                <li>Loções pós-sol com aloe vera.</li>
+                                <li>Máscaras faciais hidratantes.</li>
+                                <li>Ingestão de água em abundância.</li>
+                            </ul>
+
+                            <div class="detail-cta-box">
+                                <div class="cta-title">☀️ Agende sua avaliação de pele</div>
+                                <div class="cta-desc">Descubra como cuidar da sua pele em todas as estações.</div>
+                                <a href="#" class="btn" data-page="appointment">Agendar avaliação</a>
+                            </div>
+                        `
+            }, {
+                id: 'a5',
+                title: 'Bem-estar e autocuidado: como integrar à rotina',
+                category: 'bem-estar',
+                excerpt: 'Pratique o autocuidado de forma integrada à sua rotina diária com dicas práticas e acessíveis.',
+                image: '🌿',
+                readTime: '10 min',
+                badge: 'Guia completo',
+                badgeType: 'mint',
+                content: `
+                            <p>O autocuidado vai além dos procedimentos estéticos. É um compromisso com seu bem-estar físico, mental e emocional.</p>
+
+                            <h2>O que é autocuidado integrado?</h2>
+                            <p>Autocuidado integrado significa conectar práticas que beneficiam sua beleza, sua saúde e sua mente, como:</p>
+                            <ul>
+                                <li>Cuidados com a pele e cabelos.</li>
+                                <li>Alimentação equilibrada.</li>
+                                <li>Prática de atividades físicas.</li>
+                                <li>Momentos de descanso e meditação.</li>
+                            </ul>
+
+                            <h2>Dicas práticas para o dia a dia</h2>
+                            <ul>
+                                <li><strong>Manhã:</strong> Reserve 10 minutos para uma rotina de skincare.</li>
+                                <li><strong>Tarde:</strong> Faça uma pausa para alongamento e hidratação.</li>
+                                <li><strong>Noite:</strong> Desconecte-se das telas e cuide da sua pele.</li>
+                            </ul>
+
+                            <div class="detail-cta-box">
+                                <div class="cta-title">🌿 Agende uma consulta de bem-estar</div>
+                                <div class="cta-desc">Nossa equipe pode ajudar a integrar o autocuidado à sua rotina.</div>
+                                <a href="#" class="btn" data-page="appointment">Agendar consulta</a>
+                            </div>
+                        `
+            }, {
+                id: 'a6',
+                title: 'Química inteligente: coloração que respeita os fios',
+                category: 'cabelo',
+                excerpt: 'Técnicas modernas de coloração que mantêm a saúde dos fios enquanto entregam cor e brilho.',
+                image: '🎨',
+                readTime: '9 min',
+                badge: 'Técnico',
+                badgeType: '',
+                content: `
+                            <p>A coloração capilar evoluiu muito nos últimos anos. Hoje, é possível ter uma cor incrível sem comprometer a saúde dos fios.</p>
+
+                            <h2>Colorimetria capilar</h2>
+                            <p>A colorimetria é a ciência que estuda a cor dos cabelos. Ela considera:</p>
+                            <ul>
+                                <li>Tom de pele do cliente.</li>
+                                <li>Cor natural dos fios.</li>
+                                <li>Histórico de químicas anteriores.</li>
+                            </ul>
+
+                            <h2>Técnicas de baixo dano</h2>
+                            <p>As técnicas modernas de coloração incluem:</p>
+                            <ul>
+                                <li><strong>Luzes com papel alumínio:</strong> Permite controle preciso da descoloração.</li>
+                                <li><strong>Coloração com baixa amônia:</strong> Menos agressiva aos fios.</li>
+                                <li><strong>Gloss capilar:</strong> Para manter o brilho e a cor entre as sessões.</li>
+                            </ul>
+
+                            <div class="detail-cta-box">
+                                <div class="cta-title">🎨 Agende sua avaliação de coloração</div>
+                                <div class="cta-desc">Descubra a cor ideal para você com técnica e cuidado.</div>
+                                <a href="#" class="btn" data-page="appointment">Agendar avaliação</a>
+                            </div>
+                        `
+            }];
+
+            const SERVICES_DATA = [{
+                id: 's1',
+                name: 'Avaliação Capilar',
+                icon: '💇',
+                desc: 'Diagnóstico completo da saúde dos seus fios.',
+                category: 'cabelo'
+            }, {
+                id: 's2',
+                name: 'Tratamento de Recuperação',
+                icon: '✨',
+                desc: 'Protocolo personalizado para fios danificados.',
+                category: 'cabelo'
+            }, {
+                id: 's3',
+                name: 'Avaliação Facial',
+                icon: '🧖',
+                desc: 'Análise detalhada do seu tipo de pele.',
+                category: 'pele'
+            }, {
+                id: 's4',
+                name: 'Tratamento de Pele',
+                icon: '💆',
+                desc: 'Protocolos faciais para pele saudável e radiante.',
+                category: 'pele'
+            }, {
+                id: 's5',
+                name: 'Manicure Especializada',
+                icon: '💅',
+                desc: 'Cuidados técnicos para unhas saudáveis.',
+                category: 'unhas'
+            }, {
+                id: 's6',
+                name: 'Consulta de Bem-estar',
+                icon: '🌿',
+                desc: 'Orientação para integrar autocuidado à rotina.',
+                category: 'bem-estar'
+            }];
+
+            // ============================================================
+            // NAVIGATION
+            // ============================================================
+            const pages = {
+                home: document.getElementById('page-home'),
+                library: document.getElementById('page-library'),
+                article: document.getElementById('page-article'),
+                services: document.getElementById('page-services'),
+                about: document.getElementById('page-about'),
+                contact: document.getElementById('page-contact'),
+                appointment: document.getElementById('page-appointment')
+            };
+
+            const navLinks = document.querySelectorAll('.nav-links a[data-page]');
+            const footerLinks = document.querySelectorAll('.footer-links a[data-page]');
+            const navToggle = document.getElementById('navToggle');
+            const navOverlay = document.getElementById('navOverlay');
+            const navList = document.getElementById('navLinks');
+
+            let currentPage = 'home';
+            let currentArticleId = null;
+
+            function navigateTo(pageId, params) {
+                if (!pages[pageId]) return;
+
+                // If navigating to article, store the article id
+                if (pageId === 'article' && params && params.id) {
+                    currentArticleId = params.id;
+                }
+
+                Object.keys(pages).forEach(key => {
+                    pages[key].classList.remove('active');
+                });
+
+                pages[pageId].classList.add('active');
+                currentPage = pageId;
+
+                document.querySelectorAll('.nav-links a[data-page]').forEach(link => {
+                    link.classList.toggle('active', link.dataset.page === pageId);
+                });
+
+                navList.classList.remove('open');
+                navOverlay.classList.remove('active');
+                navToggle.textContent = '☰';
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Render dynamic content
+                if (pageId === 'library') renderLibrary();
+                if (pageId === 'services') renderServices();
+                if (pageId === 'article') renderArticle(currentArticleId);
+                if (pageId === 'home') renderHome();
+
+                setTimeout(() => {
+                    const page = pages[pageId];
+                    page.querySelectorAll('.reveal').forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight - 60) {
+                            el.classList.add('visible');
+                        }
+                    });
+                }, 200);
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    if (page) navigateTo(page);
+                });
+            });
+
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.dataset.page;
+                    if (page) navigateTo(page);
+                });
+            });
+
+            document.querySelectorAll('[data-page]').forEach(el => {
+                if (el.tagName === 'A' || el.tagName === 'BUTTON') {
+                    el.addEventListener('click', function(e) {
+                        const page = this.dataset.page;
+                        if (page && pages[page]) {
+                            e.preventDefault();
+                            navigateTo(page);
+                        }
+                    });
+                }
+            });
+
+            // ============================================================
+            // RENDER: HOME
+            // ============================================================
+            function renderHome() {
+                // Categories
+                const catGrid = document.getElementById('categoriesGrid');
+                catGrid.innerHTML = CATEGORIES.map(c => `
+                        <div class="category-card reveal" data-category="${c.id}">
+                            <span class="icon">${c.icon}</span>
+                            <div class="name">${c.name}</div>
+                            <div class="count">${c.count} artigos</div>
+                        </div>
+                    `).join('');
+
+                catGrid.querySelectorAll('.category-card').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const cat = this.dataset.category;
+                        navigateTo('library');
+                        setTimeout(() => {
+                            const filterBtn = document.querySelector(`#libraryFilters .filter-btn[data-filter="${cat}"]`);
+                            if (filterBtn) filterBtn.click();
+                        }, 100);
+                    });
+                });
+
+                // Featured articles (3)
+                const featured = document.getElementById('featuredArticles');
+                const featuredArticles = ARTICLES.slice(0, 3);
+                featured.innerHTML = featuredArticles.map(a => renderArticleCard(a)).join('');
+
+                featured.querySelectorAll('.article-card').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const id = this.dataset.id;
+                        if (id) navigateTo('article', { id });
+                    });
+                });
+
+                // Reveal animations
+                setTimeout(() => {
+                    document.querySelectorAll('#page-home .reveal').forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight - 60) {
+                            el.classList.add('visible');
+                        }
+                    });
+                }, 200);
+            }
+
+            // ============================================================
+            // RENDER: LIBRARY
+            // ============================================================
+            let libraryFilter = 'all';
+
+            function renderLibrary() {
+                const container = document.getElementById('libraryArticles');
+                const filtered = libraryFilter === 'all' ?
+                    ARTICLES :
+                    ARTICLES.filter(a => a.category === libraryFilter);
+
+                if (filtered.length === 0) {
+                    container.innerHTML = `
+                            <div style="grid-column:1/-1;text-align:center;padding:40px 16px;color:var(--text-muted);">
+                                <div style="font-size:2.5rem;">📭</div>
+                                <p style="margin-top:8px;font-weight:600;">Nenhum artigo encontrado nesta categoria.</p>
+                            </div>
+                        `;
+                    return;
+                }
+
+                container.innerHTML = filtered.map(a => renderArticleCard(a)).join('');
+
+                container.querySelectorAll('.article-card').forEach(el => {
+                    el.addEventListener('click', function() {
+                        const id = this.dataset.id;
+                        if (id) navigateTo('article', { id });
+                    });
+                });
+
+                // Reveal
+                setTimeout(() => {
+                    container.querySelectorAll('.reveal').forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight - 60) {
+                            el.classList.add('visible');
+                        }
+                    });
+                }, 100);
+            }
+
+            // ============================================================
+            // RENDER: ARTICLE
+            // ============================================================
+            function renderArticle(id) {
+                const article = ARTICLES.find(a => a.id === id);
+                const container = document.getElementById('articleContent');
+
+                if (!article) {
+                    container.innerHTML = `
+                            <div style="text-align:center;padding:40px 0;color:var(--text-muted);">
+                                <div style="font-size:2.5rem;">📭</div>
+                                <p style="margin-top:8px;font-weight:600;">Artigo não encontrado.</p>
+                                <a href="#" class="btn btn-primary" style="margin-top:16px;" data-page="library">Voltar para biblioteca</a>
+                            </div>
+                        `;
+                    return;
+                }
+
+                const categoryName = CATEGORIES.find(c => c.id === article.category)?.name || article.category;
+
+                container.innerHTML = `
+                        <div class="article-detail">
+                            <div class="detail-header">
+                                <div class="detail-category">${categoryName}</div>
+                                <h1 class="detail-title">${article.title}</h1>
+                                <div class="detail-meta">
+                                    <span>📖 ${article.readTime} de leitura</span>
+                                    <span>•</span>
+                                    <span>📅 Atualizado recentemente</span>
+                                </div>
+                            </div>
+
+                            <div class="detail-image">
+                                ${article.image}
+                            </div>
+
+                            <div class="detail-body">
+                                ${article.content}
+                            </div>
+
+                            <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border-light);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+                                <span style="font-size:0.75rem;color:var(--text-muted);">Compartilhe este guia:</span>
+                                <div style="display:flex;gap:8px;">
+                                    <button class="btn btn-secondary" style="padding:4px 16px;font-size:0.6875rem;background:var(--bg-surface-soft);border:1px solid var(--border-light);border-radius:30px;cursor:pointer;">📤 Compartilhar</button>
+                                    <button class="btn btn-secondary" style="padding:4px 16px;font-size:0.6875rem;background:var(--bg-surface-soft);border:1px solid var(--border-light);border-radius:30px;cursor:pointer;">🔖 Salvar</button>
+                                </div>
+                            </div>
+
+                            <div style="margin-top:16px;text-align:center;">
+                                <a href="#" class="btn btn-outline-dark" data-page="library">← Voltar para biblioteca</a>
+                            </div>
+                        </div>
+                    `;
+
+                // Bind CTA buttons inside article
+                container.querySelectorAll('[data-page]').forEach(el => {
+                    el.addEventListener('click', function(e) {
+                        const page = this.dataset.page;
+                        if (page && pages[page]) {
+                            e.preventDefault();
+                            navigateTo(page);
+                        }
+                    });
+                });
+
+                // Bind related service tags
+                container.querySelectorAll('.related-strip .tag').forEach(tag => {
+                    tag.addEventListener('click', function() {
+                        const service = this.dataset.service;
+                        navigateTo('services');
+                        setTimeout(() => {
+                            const cards = document.querySelectorAll('#servicesList .service-item-card');
+                            cards.forEach(card => {
+                                if (card.dataset.category === service) {
+                                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                    card.style.borderColor = 'var(--bg-secondary)';
+                                    card.style.boxShadow = 'var(--shadow-md)';
+                                    setTimeout(() => {
+                                        card.style.borderColor = '';
+                                        card.style.boxShadow = '';
+                                    }, 3000);
+                                }
+                            });
+                        }, 200);
+                    });
+                });
+            }
+
+            // ============================================================
+            // RENDER: SERVICES
+            // ============================================================
+            function renderServices() {
+                const container = document.getElementById('servicesList');
+                container.innerHTML = SERVICES_DATA.map(s => {
+                    const article = ARTICLES.find(a => a.category === s.category);
+                    return `
+                            <div class="service-item-card reveal" data-category="${s.category}">
+                                <span class="icon">${s.icon}</span>
+                                <div class="name">${s.name}</div>
+                                <div class="desc">${s.desc}</div>
+                                ${article ? `<span class="link" data-article="${article.id}">📖 Ler guia relacionado →</span>` : ''}
+                            </div>
+                        `;
+                }).join('');
+
+                container.querySelectorAll('.service-item-card .link').forEach(el => {
+                    el.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const id = this.dataset.article;
+                        if (id) navigateTo('article', { id });
+                    });
+                });
+
+                container.querySelectorAll('.service-item-card').forEach(card => {
+                    card.addEventListener('click', function() {
+                        const category = this.dataset.category;
+                        const article = ARTICLES.find(a => a.category === category);
+                        if (article) navigateTo('article', { id: article.id });
+                    });
+                });
+
+                setTimeout(() => {
+                    container.querySelectorAll('.reveal').forEach(el => {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top < window.innerHeight - 60) {
+                            el.classList.add('visible');
+                        }
+                    });
+                }, 100);
+            }
+
+            // ============================================================
+            // RENDER: ARTICLE CARD (helper)
+            // ============================================================
+            function renderArticleCard(article) {
+                const category = CATEGORIES.find(c => c.id === article.category)?.name || article.category;
+                return `
+                        <div class="article-card reveal" data-id="${article.id}">
+                            <div class="card-image">
+                                ${article.image}
+                                ${article.badge ? `<span class="badge ${article.badgeType === 'mint' ? 'mint' : ''}">${article.badge}</span>` : ''}
+                            </div>
+                            <div class="card-body">
+                                <div class="card-category">${category}</div>
+                                <div class="card-title">${article.title}</div>
+                                <div class="card-excerpt">${article.excerpt}</div>
+                                <div class="card-meta">
+                                    <span class="read-time">⏱️ ${article.readTime}</span>
+                                    <span>📖 Ler mais →</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            // ============================================================
+            // LIBRARY FILTERS
+            // ============================================================
+            document.querySelectorAll('#libraryFilters .filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('#libraryFilters .filter-btn').forEach(b => b.classList.remove(
+                    'active'));
+                    this.classList.add('active');
+                    this.style.background = 'var(--bg-primary)';
+                    this.style.color = '#fff';
+                    this.style.borderColor = 'var(--bg-primary)';
+
+                    document.querySelectorAll('#libraryFilters .filter-btn').forEach(b => {
+                        if (!b.classList.contains('active')) {
+                            b.style.background = 'var(--bg-surface)';
+                            b.style.color = 'var(--text-secondary)';
+                            b.style.borderColor = 'var(--border-light)';
+                        }
+                    });
+
+                    libraryFilter = this.dataset.filter;
+                    renderLibrary();
+                });
+                // Initialize first button
+                if (btn.dataset.filter === 'all') {
+                    btn.style.background = 'var(--bg-primary)';
+                    btn.style.color = '#fff';
+                    btn.style.borderColor = 'var(--bg-primary)';
+                }
+            });
+
+            // ============================================================
+            // SEARCH
+            // ============================================================
+            const searchInput = document.getElementById('searchInput');
+            const searchBtn = document.getElementById('searchBtn');
+
+            function performSearch() {
+                const query = searchInput.value.toLowerCase().trim();
+                if (!query) {
+                    showToast('Digite um termo para buscar.', 'info');
+                    return;
+                }
+
+                const results = ARTICLES.filter(a =>
+                    a.title.toLowerCase().includes(query) ||
+                    a.excerpt.toLowerCase().includes(query) ||
+                    a.category.includes(query)
+                );
+
+                if (results.length === 0) {
+                    showToast('Nenhum resultado encontrado para "' + query + '"', 'info');
+                    return;
+                }
+
+                navigateTo('library');
+                setTimeout(() => {
+                    const container = document.getElementById('libraryArticles');
+                    container.innerHTML = results.map(a => renderArticleCard(a)).join('');
+
+                    container.querySelectorAll('.article-card').forEach(el => {
+                        el.addEventListener('click', function() {
+                            const id = this.dataset.id;
+                            if (id) navigateTo('article', { id });
+                        });
+                    });
+
+                    // Reset filter buttons
+                    document.querySelectorAll('#libraryFilters .filter-btn').forEach(b => {
+                        b.classList.remove('active');
+                        b.style.background = 'var(--bg-surface)';
+                        b.style.color = 'var(--text-secondary)';
+                        b.style.borderColor = 'var(--border-light)';
+                    });
+                    const allBtn = document.querySelector('#libraryFilters .filter-btn[data-filter="all"]');
+                    if (allBtn) {
+                        allBtn.classList.add('active');
+                        allBtn.style.background = 'var(--bg-primary)';
+                        allBtn.style.color = '#fff';
+                        allBtn.style.borderColor = 'var(--bg-primary)';
+                    }
+                    libraryFilter = 'all';
+
+                    showToast(`🔍 ${results.length} resultado(s) para "${query}"`, 'success');
+                }, 200);
+            }
+
+            searchBtn.addEventListener('click', performSearch);
+            searchInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') performSearch();
+            });
+
+            // ============================================================
+            // CONTACT FORM
+            // ============================================================
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('contactName').value.trim();
+                const phone = document.getElementById('contactPhone').value.trim();
+                const message = document.getElementById('contactMessage').value.trim();
+
+                if (!name || !phone || !message) {
+                    showToast('Por favor, preencha todos os campos.', 'error');
+                    return;
+                }
+
+                showToast(`📚 Mensagem enviada, ${name}! Nossa equipe responderá em breve.`, 'success');
+                this.reset();
+            });
+
+            // ============================================================
+            // BOOKING FORM
+            // ============================================================
+            document.getElementById('bookingForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const name = document.getElementById('bookName').value.trim();
+                const phone = document.getElementById('bookPhone').value.trim();
+
+                if (!name || !phone) {
+                    showToast('Por favor, preencha nome e telefone.', 'error');
+                    return;
+                }
+
+                showToast(`📅 Agendamento solicitado, ${name}! Você receberá uma confirmação por WhatsApp.`, 'success');
+                this.reset();
+                // Set default date to tomorrow
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                document.getElementById('bookDate').value = tomorrow.toISOString().slice(0, 10);
+            });
+
+            // ============================================================
+            // TOAST
+            // ============================================================
+            let toastTimeout = null;
+
+            function showToast(message, type = 'success') {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = 'toast';
+                const icons = { success: '✓', error: '✕', info: 'ℹ' };
+                toast.innerHTML = `
+                        <span class="toast-icon">${icons[type] || '📚'}</span>
+                        <span class="toast-msg">${message}</span>
+                    `;
+                container.appendChild(toast);
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.add('removing');
+                    setTimeout(() => {
+                        if (toast.parentNode) toast.parentNode.removeChild(toast);
+                    }, 300);
+                    toastTimeout = null;
+                }, 3500);
+            }
+
+            // ============================================================
+            // MOBILE NAV
+            // ============================================================
+            navToggle.addEventListener('click', function() {
+                navList.classList.toggle('open');
+                navOverlay.classList.toggle('active');
+                this.textContent = navList.classList.contains('open') ? '✕' : '☰';
+            });
+
+            navOverlay.addEventListener('click', function() {
+                navList.classList.remove('open');
+                navOverlay.classList.remove('active');
+                navToggle.textContent = '☰';
+            });
+
+            // ============================================================
+            // HEADER SCROLL
+            // ============================================================
+            const header = document.getElementById('siteHeader');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Reveal
+                document.querySelectorAll('.page.active .reveal').forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight - 60) {
+                        el.classList.add('visible');
+                    }
+                });
+            });
+
+            // ============================================================
+            // INIT - Set default date for booking
+            // ============================================================
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const dateInput = document.getElementById('bookDate');
+            if (dateInput) {
+                dateInput.value = tomorrow.toISOString().slice(0, 10);
+            }
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            renderHome();
+
+            console.log('📚 Beauty Knowledge Center · Centro de Conhecimento');
+            console.log('📖 Artigos, guias e conteúdo técnico em beleza');
+
+        })();
+    </script>
+
+</body>
+</html>

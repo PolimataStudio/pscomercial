@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#0a4b6b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <title>CliniFlow · Operação e Relacionamento</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+               CSS CUSTOM PROPERTIES — Design System
+               ============================================================ */
+        :root {
+            --color-primary: #0a4b6b;
+            --color-primary-light: #2a7a9a;
+            --color-primary-dark: #06304a;
+            --color-secondary: #4a9a8a;
+            --color-secondary-light: #6abaaa;
+            --color-accent-green: #2ecc71;
+            --color-accent-yellow: #f39c12;
+            --color-accent-red: #e74c3c;
+            --color-bg: #f0f4f6;
+            --color-card: #ffffff;
+            --color-text: #1a2a32;
+            --color-text-muted: #4a5a66;
+            --color-text-light: #8a9aa8;
+            --color-border: #dce4e8;
+            --color-shadow: rgba(10, 75, 107, 0.04);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-xs: 6px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --max-width: 800px;
+            --header-height: 56px;
+            --nav-height: 60px;
+            --shadow-card: 0 2px 12px rgba(10, 75, 107, 0.04);
+            --shadow-hover: 0 8px 28px rgba(10, 75, 107, 0.08);
+        }
+
+        /* ============================================================
+               RESET & BASE
+               ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.5;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            justify-content: center;
+            background: #e8eef0;
+        }
+
+        /* ============================================================
+               SCROLLBAR
+               ============================================================ */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-primary-light);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+               APP SHELL — Mobile First
+               ============================================================ */
+        #app {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: var(--max-width);
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: var(--color-bg);
+            position: relative;
+            margin: 0 auto;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.04);
+        }
+
+        /* ============================================================
+               INSTALL BANNER
+               ============================================================ */
+        .install-banner {
+            display: none;
+            background: var(--color-primary);
+            color: #fff;
+            padding: 10px 16px;
+            margin: 10px 12px 0;
+            border-radius: var(--radius-sm);
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 4px 16px rgba(10, 75, 107, 0.20);
+        }
+        .install-banner.visible {
+            display: flex;
+        }
+        .install-banner .ib-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .install-banner .ib-text i {
+            font-size: 1.1rem;
+        }
+        .install-banner .ib-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .install-banner .ib-actions button {
+            padding: 4px 16px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-family: var(--font);
+            transition: var(--transition);
+        }
+        .install-banner .ib-actions .ib-install {
+            background: #fff;
+            color: var(--color-primary);
+        }
+        .install-banner .ib-actions .ib-dismiss {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+
+        /* ============================================================
+               OFFLINE INDICATOR
+               ============================================================ */
+        .offline-indicator {
+            display: none;
+            background: var(--color-accent-yellow);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 12px 0;
+        }
+        .offline-indicator.visible {
+            display: flex;
+        }
+        .offline-indicator i {
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+               HEADER
+               ============================================================ */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px 10px;
+            background: var(--color-card);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            flex-shrink: 0;
+            min-height: var(--header-height);
+        }
+
+        .app-header .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--color-text);
+        }
+
+        .app-header .brand .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            border-radius: var(--radius-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            box-shadow: 0 2px 8px rgba(10, 75, 107, 0.15);
+        }
+
+        .app-header .brand .brand-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+        .app-header .brand .brand-name span {
+            color: var(--color-secondary);
+        }
+
+        .app-header .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .app-header .header-right .date-display {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            background: var(--color-bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .app-header .header-right .date-display i {
+            color: var(--color-primary-light);
+            font-size: 0.65rem;
+        }
+
+        .app-header .header-right .user-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-primary-light));
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.7rem;
+            box-shadow: 0 2px 8px rgba(10, 75, 107, 0.10);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid var(--color-card);
+        }
+        .app-header .header-right .user-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============================================================
+               NAVIGATION — Bottom Tabs
+               ============================================================ */
+        .app-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 4px 0 env(safe-area-inset-bottom);
+            background: var(--color-card);
+            border-top: 1px solid var(--color-border);
+            position: sticky;
+            bottom: 0;
+            z-index: 50;
+            flex-shrink: 0;
+            box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.02);
+            min-height: var(--nav-height);
+        }
+
+        .app-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            padding: 4px 8px;
+            border-radius: var(--radius-xs);
+            font-size: 0.55rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font);
+            min-width: 48px;
+            position: relative;
+        }
+
+        .app-nav .nav-item i {
+            font-size: 1.2rem;
+            margin-bottom: 0px;
+            transition: var(--transition);
+        }
+
+        .app-nav .nav-item span {
+            line-height: 1.2;
+        }
+
+        .app-nav .nav-item:hover {
+            color: var(--color-text);
+        }
+
+        .app-nav .nav-item.active {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .app-nav .nav-item.active i {
+            transform: translateY(-2px);
+            color: var(--color-primary);
+        }
+
+        .app-nav .nav-item .nav-badge {
+            position: absolute;
+            top: 0;
+            right: 4px;
+            background: var(--color-accent-red);
+            color: #fff;
+            font-size: 0.45rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 12px;
+            line-height: 1.3;
+            min-width: 16px;
+            text-align: center;
+        }
+
+        /* ============================================================
+               MAIN CONTENT
+               ============================================================ */
+        .app-content {
+            flex: 1;
+            padding: 12px 14px 16px;
+            overflow-y: auto;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeSlideUp 0.35s ease;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+               BENTO CARDS
+               ============================================================ */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .bento-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .bento-card .card-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        .bento-card .card-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--color-text);
+            margin-top: 2px;
+        }
+
+        .bento-card .card-value .unit {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--color-text-muted);
+            margin-left: 2px;
+        }
+
+        .bento-card .card-icon {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            font-size: 1.4rem;
+            opacity: 0.12;
+            color: var(--color-primary);
+        }
+
+        .bento-card.accent .card-value {
+            color: var(--color-secondary);
+        }
+        .bento-card.warning .card-value {
+            color: var(--color-accent-yellow);
+        }
+        .bento-card.danger .card-value {
+            color: var(--color-accent-red);
+        }
+        .bento-card.primary .card-value {
+            color: var(--color-primary);
+        }
+
+        .bento-card .card-change {
+            font-size: 0.6rem;
+            margin-top: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 1px 8px;
+            border-radius: 20px;
+            background: rgba(46, 204, 113, 0.08);
+            color: var(--color-accent-green);
+            font-weight: 600;
+        }
+        .bento-card .card-change.negative {
+            background: rgba(231, 76, 60, 0.08);
+            color: var(--color-accent-red);
+        }
+
+        /* Full width card */
+        .bento-full {
+            grid-column: 1 / -1;
+        }
+
+        /* ============================================================
+               LISTAS (Agenda, Retornos, Pacientes)
+               ============================================================ */
+        .list-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            margin-bottom: 6px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .list-item:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-primary-light);
+        }
+
+        .list-item .item-time {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            min-width: 44px;
+        }
+
+        .list-item .item-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .list-item .item-info .item-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-text);
+        }
+
+        .list-item .item-info .item-detail {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+        }
+
+        .list-item .item-status {
+            font-size: 0.55rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            flex-shrink: 0;
+        }
+
+        .item-status.confirmed {
+            background: rgba(46, 204, 113, 0.10);
+            color: var(--color-accent-green);
+        }
+        .item-status.pending {
+            background: rgba(243, 156, 18, 0.10);
+            color: var(--color-accent-yellow);
+        }
+        .item-status.waiting {
+            background: rgba(10, 75, 107, 0.08);
+            color: var(--color-primary-light);
+        }
+        .item-status.canceled {
+            background: rgba(231, 76, 60, 0.08);
+            color: var(--color-accent-red);
+        }
+        .item-status.done {
+            background: rgba(46, 204, 113, 0.06);
+            color: var(--color-accent-green);
+        }
+
+        .list-item .item-action {
+            font-size: 0.7rem;
+            color: var(--color-primary-light);
+            font-weight: 500;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font);
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .list-item .item-action:hover {
+            background: rgba(10, 75, 107, 0.06);
+        }
+
+        .list-item .item-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .item-dot.green {
+            background: var(--color-accent-green);
+        }
+        .item-dot.yellow {
+            background: var(--color-accent-yellow);
+        }
+        .item-dot.blue {
+            background: var(--color-primary-light);
+        }
+        .item-dot.red {
+            background: var(--color-accent-red);
+        }
+        .item-dot.gray {
+            background: var(--color-text-light);
+        }
+
+        /* ============================================================
+               TAB: HOJE (Dashboard)
+               ============================================================ */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin: 8px 0 12px;
+        }
+
+        .quick-action {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 12px 8px;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
+        }
+
+        .quick-action:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .quick-action i {
+            font-size: 1.4rem;
+            color: var(--color-primary-light);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .quick-action span {
+            font-size: 0.65rem;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        /* ============================================================
+               TAB: MENSAGENS
+               ============================================================ */
+        .msg-item {
+            display: flex;
+            gap: 12px;
+            padding: 10px 12px;
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            margin-bottom: 6px;
+            align-items: flex-start;
+            transition: var(--transition);
+        }
+
+        .msg-item:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .msg-item .msg-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        .msg-item .msg-content {
+            flex: 1;
+        }
+
+        .msg-item .msg-content .msg-title {
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .msg-item .msg-content .msg-title .msg-time {
+            font-weight: 400;
+            font-size: 0.65rem;
+            color: var(--color-text-muted);
+        }
+
+        .msg-item .msg-content .msg-text {
+            font-size: 0.78rem;
+            color: var(--color-text-muted);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .msg-item .msg-content .msg-badge {
+            font-size: 0.5rem;
+            background: var(--color-accent-red);
+            color: #fff;
+            padding: 1px 8px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+               TAB: RELATÓRIOS
+               ============================================================ */
+        .report-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .report-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .report-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .report-card .rc-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        .report-card .rc-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-top: 2px;
+        }
+
+        .report-card .rc-desc {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+               RESPONSIVE
+               ============================================================ */
+        @media (max-width: 420px) {
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .bento-card {
+                padding: 10px 12px;
+            }
+            .bento-card .card-value {
+                font-size: 1.3rem;
+            }
+            .bento-card .card-icon {
+                font-size: 1.1rem;
+                right: 8px;
+                top: 8px;
+            }
+            .quick-actions {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 6px;
+            }
+            .quick-action {
+                padding: 10px 4px;
+            }
+            .quick-action i {
+                font-size: 1.2rem;
+            }
+            .app-nav .nav-item {
+                min-width: 40px;
+                font-size: 0.5rem;
+                padding: 2px 4px;
+            }
+            .app-nav .nav-item i {
+                font-size: 1rem;
+            }
+            .app-header .brand .brand-name {
+                font-size: 0.9rem;
+            }
+            .app-header .header-right .date-display {
+                font-size: 0.6rem;
+                padding: 2px 8px;
+            }
+            .report-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .report-card .rc-value {
+                font-size: 1.2rem;
+            }
+            .list-item {
+                padding: 8px 10px;
+            }
+            .list-item .item-time {
+                min-width: 36px;
+                font-size: 0.6rem;
+            }
+            .list-item .item-info .item-name {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (min-width: 600px) {
+            #app {
+                border-radius: 20px;
+                margin: 16px auto;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04);
+                min-height: calc(100vh - 32px);
+                min-height: calc(100dvh - 32px);
+            }
+            body {
+                padding: 16px;
+                background: #e0e6e8;
+            }
+            .app-header {
+                border-radius: 20px 20px 0 0;
+                padding: 16px 24px 12px;
+            }
+            .app-content {
+                padding: 16px 20px 20px;
+            }
+            .app-nav {
+                border-radius: 0 0 20px 20px;
+                padding: 6px 0 env(safe-area-inset-bottom);
+            }
+            .app-nav .nav-item {
+                padding: 6px 14px;
+                font-size: 0.6rem;
+            }
+            .app-nav .nav-item i {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* ============================================================
+               UTILITÁRIOS
+               ============================================================ */
+        .text-muted {
+            color: var(--color-text-muted);
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .w-full {
+            width: 100%;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .section-header h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section-header h3 i {
+            color: var(--color-secondary);
+            font-size: 0.85rem;
+        }
+
+        .section-header .see-all {
+            font-size: 0.7rem;
+            color: var(--color-primary-light);
+            font-weight: 500;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font);
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        .section-header .see-all:hover {
+            background: rgba(10, 75, 107, 0.04);
+        }
+
+        /* Pulse dot para status ao vivo */
+        .pulse-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-accent-green);
+            animation: pulse-dot 1.8s ease-in-out infinite;
+            margin-right: 4px;
+        }
+
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+        }
+
+        /* Badge de confirmação visual */
+        .confirm-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(46, 204, 113, 0.08);
+            color: var(--color-accent-green);
+            font-size: 0.55rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+
+        .confirm-badge i {
+            font-size: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    APP
+    ============================================================ -->
+    <div id="app">
+
+        <!-- Install Banner -->
+        <div class="install-banner" id="installBanner">
+            <span class="ib-text"><i class="fas fa-mobile-alt"></i> Instale o CliniFlow</span>
+            <div class="ib-actions">
+                <button class="ib-install" id="installBtn">Instalar</button>
+                <button class="ib-dismiss" id="dismissInstall">Agora não</button>
+            </div>
+        </div>
+
+        <!-- Offline Indicator -->
+        <div class="offline-indicator" id="offlineIndicator">
+            <i class="fas fa-wifi-slash"></i> Modo offline — dados locais disponíveis
+        </div>
+
+        <!-- ============================================================
+        HEADER
+        ============================================================ -->
+        <header class="app-header">
+            <a href="#" class="brand" onclick="navigateTo('hoje')">
+                <div class="logo-icon">CF</div>
+                <span class="brand-name">Clini<span>Flow</span></span>
+            </a>
+            <div class="header-right">
+                <span class="date-display" id="headerDate">
+                    <i class="far fa-calendar-alt"></i>
+                    <span id="dateText">Carregando...</span>
+                </span>
+                <div class="user-avatar" title="Dr. Carlos Silva">CS</div>
+            </div>
+        </header>
+
+        <!-- ============================================================
+        CONTENT
+        ============================================================ -->
+        <main class="app-content">
+
+            <!-- ======== TAB: HOJE ======== -->
+            <section class="tab-panel active" id="tab-hoje" role="tabpanel">
+
+                <!-- Bento Stats -->
+                <div class="bento-grid">
+                    <div class="bento-card primary">
+                        <span class="card-label">Consultas Hoje</span>
+                        <div class="card-value" id="statConsultas">8</div>
+                        <span class="card-change"><i class="fas fa-arrow-up"></i> +2 vs ontem</span>
+                        <i class="fas fa-stethoscope card-icon"></i>
+                    </div>
+                    <div class="bento-card warning">
+                        <span class="card-label">Retornos Pendentes</span>
+                        <div class="card-value" id="statRetornos">4</div>
+                        <span class="card-change"><i class="fas fa-arrow-up"></i> +1 vs ontem</span>
+                        <i class="fas fa-undo-alt card-icon"></i>
+                    </div>
+                    <div class="bento-card accent">
+                        <span class="card-label">Confirmados</span>
+                        <div class="card-value" id="statConfirmados">6</div>
+                        <span class="card-change"><i class="fas fa-check-circle"></i> 75% taxa</span>
+                        <i class="fas fa-check-double card-icon"></i>
+                    </div>
+                    <div class="bento-card danger">
+                        <span class="card-label">Faltas</span>
+                        <div class="card-value" id="statFaltas">1</div>
+                        <span class="card-change negative"><i class="fas fa-arrow-up"></i> +1 vs ontem</span>
+                        <i class="fas fa-user-slash card-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Ações rápidas -->
+                <div class="quick-actions">
+                    <div class="quick-action" onclick="navigateTo('agenda')">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Nova Consulta</span>
+                    </div>
+                    <div class="quick-action" onclick="navigateTo('pacientes')">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Novo Paciente</span>
+                    </div>
+                    <div class="quick-action" onclick="navigateTo('mensagens')">
+                        <i class="fas fa-comment-dots"></i>
+                        <span>Enviar Mensagem</span>
+                    </div>
+                </div>
+
+                <!-- Agenda do dia -->
+                <div class="section-header">
+                    <h3><i class="fas fa-clock"></i> Agenda de Hoje</h3>
+                    <button class="see-all" onclick="navigateTo('agenda')">Ver todas</button>
+                </div>
+                <div id="timelineContainer">
+                    <!-- preenchido via JS -->
+                </div>
+
+                <!-- Retornos pendentes (destaque) -->
+                <div class="section-header" style="margin-top:12px;">
+                    <h3><i class="fas fa-undo-alt"></i> Retornos Pendentes</h3>
+                    <button class="see-all" onclick="navigateTo('retornos')">Ver todos</button>
+                </div>
+                <div id="returnsPreview">
+                    <!-- preenchido via JS -->
+                </div>
+
+            </section>
+
+            <!-- ======== TAB: AGENDA ======== -->
+            <section class="tab-panel" id="tab-agenda" role="tabpanel">
+                <div class="section-header">
+                    <h3><i class="fas fa-calendar-day"></i> Agenda Completa</h3>
+                    <button class="see-all" onclick="alert('Nova consulta')">+ Adicionar</button>
+                </div>
+                <div id="agendaContainer">
+                    <!-- preenchido via JS -->
+                </div>
+            </section>
+
+            <!-- ======== TAB: RETORNOS ======== -->
+            <section class="tab-panel" id="tab-retornos" role="tabpanel">
+                <div class="section-header">
+                    <h3><i class="fas fa-undo-alt"></i> Retornos Programados</h3>
+                    <span class="confirm-badge"><i class="fas fa-circle"></i> 4 pendentes</span>
+                </div>
+                <div id="returnsContainer">
+                    <!-- preenchido via JS -->
+                </div>
+            </section>
+
+            <!-- ======== TAB: PACIENTES ======== -->
+            <section class="tab-panel" id="tab-pacientes" role="tabpanel">
+                <div class="section-header">
+                    <h3><i class="fas fa-users"></i> Pacientes</h3>
+                    <button class="see-all" onclick="alert('Novo paciente')">+ Cadastrar</button>
+                </div>
+                <div style="display:flex; gap:8px; margin-bottom:10px;">
+                    <input type="text" placeholder="Buscar paciente..." id="patientSearch" style="flex:1; padding:8px 12px; border-radius:var(--radius-sm); border:1px solid var(--color-border); font-family:var(--font); font-size:0.85rem; outline:none; background:var(--color-card); transition:var(--transition);" />
+                    <button id="searchBtn" style="padding:8px 16px; background:var(--color-primary); color:#fff; border:none; border-radius:var(--radius-sm); font-weight:600; font-size:0.8rem; cursor:pointer; font-family:var(--font);">Buscar</button>
+                </div>
+                <div id="patientContainer">
+                    <!-- preenchido via JS -->
+                </div>
+            </section>
+
+            <!-- ======== TAB: MENSAGENS ======== -->
+            <section class="tab-panel" id="tab-mensagens" role="tabpanel">
+                <div class="section-header">
+                    <h3><i class="fas fa-envelope"></i> Mensagens</h3>
+                    <span class="confirm-badge"><i class="fas fa-circle"></i> 2 novas</span>
+                </div>
+                <div id="messagesContainer">
+                    <!-- preenchido via JS -->
+                </div>
+                <button class="quick-action" style="width:100%; margin-top:10px; padding:12px; border:none; background:var(--color-primary); color:#fff; border-radius:var(--radius-sm); font-weight:600; cursor:pointer; font-family:var(--font);" onclick="alert('Nova mensagem')">
+                    <i class="fas fa-plus-circle" style="color:#fff; display:inline; margin-right:8px;"></i> Nova Mensagem
+                </button>
+            </section>
+
+            <!-- ======== TAB: RELATÓRIOS ======== -->
+            <section class="tab-panel" id="tab-relatorios" role="tabpanel">
+                <div class="section-header">
+                    <h3><i class="fas fa-chart-bar"></i> Indicadores</h3>
+                </div>
+                <div class="report-grid">
+                    <div class="report-card">
+                        <div class="rc-label">Atendimentos (semana)</div>
+                        <div class="rc-value">32</div>
+                        <div class="rc-desc">+4 em relação à semana passada</div>
+                    </div>
+                    <div class="report-card">
+                        <div class="rc-label">Taxa de Comparecimento</div>
+                        <div class="rc-value">86%</div>
+                        <div class="rc-desc">+3% vs mês anterior</div>
+                    </div>
+                    <div class="report-card">
+                        <div class="rc-label">Retornos Realizados</div>
+                        <div class="rc-value">12</div>
+                        <div class="rc-desc">80% dos agendados</div>
+                    </div>
+                    <div class="report-card">
+                        <div class="rc-label">Pacientes Ativos</div>
+                        <div class="rc-value">47</div>
+                        <div class="rc-desc">+5 no último mês</div>
+                    </div>
+                </div>
+                <div style="margin-top:12px; background:var(--color-card); border-radius:var(--radius-sm); padding:14px 16px; border:1px solid var(--color-border);">
+                    <div style="font-size:0.8rem; font-weight:600; color:var(--color-primary);">Resumo do Mês</div>
+                    <div style="display:flex; justify-content:space-between; margin-top:6px; font-size:0.85rem;">
+                        <span>Total de consultas: <strong>42</strong></span>
+                        <span>Faltas: <strong style="color:var(--color-accent-red);">4</strong></span>
+                        <span>Retornos: <strong>16</strong></span>
+                    </div>
+                    <div style="margin-top:8px; background:var(--color-bg); border-radius:var(--radius-xs); height:6px; overflow:hidden;">
+                        <div style="height:100%; width:76%; background:linear-gradient(90deg, var(--color-secondary), var(--color-primary-light)); border-radius:var(--radius-xs);"></div>
+                    </div>
+                    <div style="font-size:0.65rem; color:var(--color-text-muted); margin-top:4px;">76% de ocupação da agenda</div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ============================================================
+        BOTTOM NAVIGATION
+        ============================================================ -->
+        <nav class="app-nav" id="appNav" role="tablist">
+            <button class="nav-item active" data-tab="hoje" role="tab" aria-selected="true">
+                <i class="fas fa-home"></i>
+                <span>Hoje</span>
+            </button>
+            <button class="nav-item" data-tab="agenda" role="tab" aria-selected="false">
+                <i class="fas fa-calendar-day"></i>
+                <span>Agenda</span>
+                <span class="nav-badge">8</span>
+            </button>
+            <button class="nav-item" data-tab="retornos" role="tab" aria-selected="false">
+                <i class="fas fa-undo-alt"></i>
+                <span>Retornos</span>
+                <span class="nav-badge">4</span>
+            </button>
+            <button class="nav-item" data-tab="pacientes" role="tab" aria-selected="false">
+                <i class="fas fa-users"></i>
+                <span>Pacientes</span>
+            </button>
+            <button class="nav-item" data-tab="mensagens" role="tab" aria-selected="false">
+                <i class="fas fa-envelope"></i>
+                <span>Mensagens</span>
+                <span class="nav-badge">2</span>
+            </button>
+            <button class="nav-item" data-tab="relatorios" role="tab" aria-selected="false">
+                <i class="fas fa-chart-bar"></i>
+                <span>Relatórios</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // DATA
+            // ============================================================
+            const appointments = [{
+                id: 1,
+                time: '09:00',
+                patient: 'Ana Paula',
+                doctor: 'Dr. Carlos',
+                status: 'confirmed',
+                statusLabel: 'Confirmado'
+            }, {
+                id: 2,
+                time: '09:30',
+                patient: 'João Pedro',
+                doctor: 'Dra. Mariana',
+                status: 'waiting',
+                statusLabel: 'Aguardando'
+            }, {
+                id: 3,
+                time: '10:00',
+                patient: 'Maria Oliveira',
+                doctor: 'Dr. Carlos',
+                status: 'confirmed',
+                statusLabel: 'Confirmado'
+            }, {
+                id: 4,
+                time: '10:30',
+                patient: 'Pedro Costa',
+                doctor: 'Dra. Mariana',
+                status: 'confirmed',
+                statusLabel: 'Confirmado'
+            }, {
+                id: 5,
+                time: '11:00',
+                patient: 'Sofia Lima',
+                doctor: 'Dr. Carlos',
+                status: 'done',
+                statusLabel: 'Atendido'
+            }, {
+                id: 6,
+                time: '11:30',
+                patient: 'Rafael Souza',
+                doctor: 'Dra. Mariana',
+                status: 'confirmed',
+                statusLabel: 'Confirmado'
+            }, {
+                id: 7,
+                time: '14:00',
+                patient: 'Amanda Ferreira',
+                doctor: 'Dr. Carlos',
+                status: 'pending',
+                statusLabel: 'Pendente'
+            }, {
+                id: 8,
+                time: '14:30',
+                patient: 'Bruno Rodrigues',
+                doctor: 'Dra. Mariana',
+                status: 'canceled',
+                statusLabel: 'Cancelado'
+            }, {
+                id: 9,
+                time: '15:00',
+                patient: 'Carla Mendes',
+                doctor: 'Dr. Carlos',
+                status: 'confirmed',
+                statusLabel: 'Confirmado'
+            }, {
+                id: 10,
+                time: '15:30',
+                patient: 'Diego Alves',
+                doctor: 'Dra. Mariana',
+                status: 'waiting',
+                statusLabel: 'Aguardando'
+            }];
+
+            const returns = [
+                { patient: 'Carlos Mendes', date: '10/07/2026', reason: 'Pós-operatório' },
+                { patient: 'Fernanda Lima', date: '12/07/2026', reason: 'Resultado de exames' },
+                { patient: 'Roberto Alves', date: '14/07/2026', reason: 'Avaliação de progresso' },
+                { patient: 'Juliana Costa', date: '15/07/2026', reason: 'Acompanhamento' },
+            ];
+
+            const patients = [
+                { name: 'Ana Paula', phone: '(11) 91234-5678', lastVisit: '10/07/2026', status: 'Ativo' },
+                { name: 'João Pedro', phone: '(11) 92345-6789', lastVisit: '09/07/2026', status: 'Ativo' },
+                { name: 'Maria Oliveira', phone: '(11) 93456-7890', lastVisit: '08/07/2026', status: 'Ativo' },
+                { name: 'Pedro Costa', phone: '(11) 94567-8901', lastVisit: '07/07/2026', status: 'Inativo' },
+                { name: 'Sofia Lima', phone: '(11) 95678-9012', lastVisit: '06/07/2026', status: 'Ativo' },
+                { name: 'Rafael Souza', phone: '(11) 96789-0123', lastVisit: '05/07/2026', status: 'Ativo' },
+                { name: 'Amanda Ferreira', phone: '(11) 97890-1234', lastVisit: '04/07/2026', status: 'Ativo' },
+                { name: 'Bruno Rodrigues', phone: '(11) 98901-2345', lastVisit: '03/07/2026', status: 'Inativo' },
+            ];
+
+            const messages = [
+                { from: 'Clínica', text: 'Sua consulta de amanhã foi confirmada. Chegue 15 minutos antes.', time: 'Hoje, 10:30',
+                    new: true },
+                { from: 'Dr. Carlos', text: 'Por favor, traga os exames de rotina para a consulta.', time: 'Hoje, 09:15',
+                    new: true },
+                { from: 'Sistema', text: 'Seu cadastro foi atualizado com sucesso.', time: 'Ontem, 16:45', new: false },
+                { from: 'Clínica', text: 'Lembrete: sua consulta está agendada para amanhã às 14h.', time: 'Ontem, 08:00',
+                    new: false },
+            ];
+
+            // ============================================================
+            // DOM REFS
+            // ============================================================
+            const tabs = document.querySelectorAll('.nav-item');
+            const panels = document.querySelectorAll('.tab-panel');
+            const timelineContainer = document.getElementById('timelineContainer');
+            const agendaContainer = document.getElementById('agendaContainer');
+            const returnsContainer = document.getElementById('returnsContainer');
+            const returnsPreview = document.getElementById('returnsPreview');
+            const patientContainer = document.getElementById('patientContainer');
+            const messagesContainer = document.getElementById('messagesContainer');
+            const patientSearch = document.getElementById('patientSearch');
+            const searchBtn = document.getElementById('searchBtn');
+            const installBanner = document.getElementById('installBanner');
+            const installBtn = document.getElementById('installBtn');
+            const dismissInstall = document.getElementById('dismissInstall');
+            const offlineIndicator = document.getElementById('offlineIndicator');
+
+            // ============================================================
+            // DATE
+            // ============================================================
+            function updateDate() {
+                const now = new Date();
+                const options = { weekday: 'short', day: 'numeric', month: 'short' };
+                const formatted = now.toLocaleDateString('pt-BR', options);
+                document.getElementById('dateText').textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+            }
+            updateDate();
+
+            // ============================================================
+            // RENDER: TIMELINE (Hoje - agenda do dia)
+            // ============================================================
+            function renderTimeline() {
+                const active = appointments.filter(a => a.status !== 'canceled' && a.status !== 'done');
+                const show = active.slice(0, 6);
+                timelineContainer.innerHTML = show.map(a => {
+                    const dotClass = a.status === 'confirmed' ? 'green' :
+                        a.status === 'waiting' ? 'yellow' :
+                        a.status === 'pending' ? 'yellow' : 'gray';
+                    return `
+                                <div class="list-item">
+                                    <span class="item-time">${a.time}</span>
+                                    <span class="item-dot ${dotClass}"></span>
+                                    <div class="item-info">
+                                        <span class="item-name">${a.patient}</span>
+                                        <span class="item-detail">${a.doctor}</span>
+                                    </div>
+                                    <span class="item-status ${a.status}">${a.statusLabel}</span>
+                                    <button class="item-action" onclick="confirmPatient(${a.id})"><i class="fas fa-check"></i></button>
+                                </div>
+                            `;
+                }).join('') || '<div style="text-align:center; padding:20px; color:var(--color-text-muted); font-size:0.85rem;">Nenhuma consulta pendente hoje 🎉</div>';
+            }
+
+            // ============================================================
+            // RENDER: AGENDA (completa)
+            // ============================================================
+            function renderAgenda() {
+                agendaContainer.innerHTML = appointments.map(a => `
+                            <div class="list-item">
+                                <span class="item-time">${a.time}</span>
+                                <span class="item-dot ${a.status === 'confirmed' ? 'green' : a.status === 'waiting' ? 'yellow' : a.status === 'canceled' ? 'red' : 'gray'}"></span>
+                                <div class="item-info">
+                                    <span class="item-name">${a.patient}</span>
+                                    <span class="item-detail">${a.doctor}</span>
+                                </div>
+                                <span class="item-status ${a.status}">${a.statusLabel}</span>
+                            </div>
+                        `).join('');
+            }
+
+            // ============================================================
+            // RENDER: RETORNOS
+            // ============================================================
+            function renderReturns() {
+                const html = returns.map(r => `
+                            <div class="list-item">
+                                <span class="item-dot yellow"></span>
+                                <div class="item-info">
+                                    <span class="item-name">${r.patient}</span>
+                                    <span class="item-detail">${r.reason} · ${r.date}</span>
+                                </div>
+                                <button class="item-action" onclick="alert('Confirmar retorno de ${r.patient}')">Confirmar</button>
+                            </div>
+                        `).join('');
+                returnsContainer.innerHTML = html;
+                returnsPreview.innerHTML = returns.slice(0, 3).map(r => `
+                            <div class="list-item">
+                                <span class="item-dot yellow"></span>
+                                <div class="item-info">
+                                    <span class="item-name">${r.patient}</span>
+                                    <span class="item-detail">${r.reason}</span>
+                                </div>
+                                <button class="item-action" onclick="alert('Confirmar retorno de ${r.patient}')">OK</button>
+                            </div>
+                        `).join('');
+            }
+
+            // ============================================================
+            // RENDER: PACIENTES
+            // ============================================================
+            function renderPatients(filter = '') {
+                const list = filter ?
+                    patients.filter(p => p.name.toLowerCase().includes(filter.toLowerCase())) :
+                    patients;
+                patientContainer.innerHTML = list.map(p => `
+                            <div class="list-item">
+                                <span class="item-dot ${p.status === 'Ativo' ? 'green' : 'gray'}"></span>
+                                <div class="item-info">
+                                    <span class="item-name">${p.name}</span>
+                                    <span class="item-detail">${p.phone} · Última visita: ${p.lastVisit}</span>
+                                </div>
+                                <span class="item-status ${p.status === 'Ativo' ? 'confirmed' : 'canceled'}">${p.status}</span>
+                            </div>
+                        `).join('');
+            }
+
+            // ============================================================
+            // RENDER: MENSAGENS
+            // ============================================================
+            function renderMessages() {
+                messagesContainer.innerHTML = messages.map(m => `
+                            <div class="msg-item">
+                                <div class="msg-avatar" style="${m.from === 'Clínica' ? 'background:var(--color-primary-light);color:#fff;' : m.from === 'Sistema' ? 'background:var(--color-border);color:var(--color-text-muted);' : 'background:var(--color-secondary);color:#fff;'}">
+                                    ${m.from.charAt(0)}
+                                </div>
+                                <div class="msg-content">
+                                    <div class="msg-title">
+                                        ${m.from}
+                                        <span class="msg-time">${m.time}</span>
+                                    </div>
+                                    <div class="msg-text">${m.text}</div>
+                                    ${m.new ? '<span class="msg-badge">Nova</span>' : ''}
+                                </div>
+                            </div>
+                        `).join('');
+            }
+
+            // ============================================================
+            // NAVIGATION
+            // ============================================================
+            function navigateTo(tabId) {
+                tabs.forEach(t => {
+                    const isActive = t.dataset.tab === tabId;
+                    t.classList.toggle('active', isActive);
+                    t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+                panels.forEach(p => {
+                    p.classList.toggle('active', p.id === `tab-${tabId}`);
+                });
+                // scroll to top of content
+                document.querySelector('.app-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    navigateTo(this.dataset.tab);
+                });
+            });
+
+            window.navigateTo = navigateTo;
+
+            // ============================================================
+            // CONFIRM PATIENT (ação rápida)
+            // ============================================================
+            window.confirmPatient = function(id) {
+                alert('✅ Paciente confirmado!');
+                // visual feedback no botão
+                const btns = document.querySelectorAll('.item-action');
+                btns.forEach(btn => {
+                    if (btn.textContent.trim() === '✓' || btn.innerHTML.includes('fa-check')) {
+                        btn.innerHTML = '<i class="fas fa-check-circle" style="color:var(--color-accent-green);"></i>';
+                        btn.style.color = 'var(--color-accent-green)';
+                        setTimeout(() => {
+                            btn.innerHTML = '<i class="fas fa-check"></i>';
+                            btn.style.color = '';
+                        }, 1500);
+                    }
+                });
+            };
+
+            // ============================================================
+            // PATIENT SEARCH
+            // ============================================================
+            function handleSearch() {
+                const query = patientSearch.value.trim();
+                renderPatients(query);
+            }
+
+            searchBtn.addEventListener('click', handleSearch);
+            patientSearch.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') handleSearch();
+                clearTimeout(window._searchTimer);
+                window._searchTimer = setTimeout(() => {
+                    renderPatients(this.value.trim());
+                }, 300);
+            });
+
+            // ============================================================
+            // PWA — INSTALL
+            // ============================================================
+            let deferredPrompt = null;
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                installBanner.classList.add('visible');
+            });
+
+            installBtn.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const result = await deferredPrompt.userChoice;
+                    if (result.outcome === 'accepted') {
+                        installBanner.classList.remove('visible');
+                    }
+                    deferredPrompt = null;
+                }
+            });
+
+            dismissInstall.addEventListener('click', () => {
+                installBanner.classList.remove('visible');
+            });
+
+            // ============================================================
+            // PWA — OFFLINE
+            // ============================================================
+            function updateOfflineStatus() {
+                offlineIndicator.classList.toggle('visible', !navigator.onLine);
+            }
+            window.addEventListener('online', updateOfflineStatus);
+            window.addEventListener('offline', updateOfflineStatus);
+            updateOfflineStatus();
+
+            // ============================================================
+            // PWA — REGISTER SERVICE WORKER
+            // ============================================================
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(() => console.log('✅ Service Worker registrado'))
+                    .catch(err => console.warn('⚠️ SW não registrado:', err));
+            }
+
+            // ============================================================
+            // UPDATE STATS
+            // ============================================================
+            function updateStats() {
+                const total = appointments.filter(a => a.status !== 'canceled' && a.status !== 'done').length;
+                const confirmados = appointments.filter(a => a.status === 'confirmed').length;
+                const faltas = appointments.filter(a => a.status === 'canceled' || a.status === 'done' && a.status ===
+                    'canceled').length;
+                const retornos = returns.length;
+
+                document.getElementById('statConsultas').textContent = total;
+                document.getElementById('statConfirmados').textContent = confirmados;
+                document.getElementById('statFaltas').textContent = appointments.filter(a => a.status === 'canceled').length;
+                document.getElementById('statRetornos').textContent = retornos;
+            }
+
+            // ============================================================
+            // KEYBOARD SHORTCUTS (1-6)
+            // ============================================================
+            document.addEventListener('keydown', (e) => {
+                const num = parseInt(e.key);
+                if (num >= 1 && num <= 6) {
+                    const tabIds = ['hoje', 'agenda', 'retornos', 'pacientes', 'mensagens', 'relatorios'];
+                    navigateTo(tabIds[num - 1]);
+                    e.preventDefault();
+                }
+            });
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            renderTimeline();
+            renderAgenda();
+            renderReturns();
+            renderPatients();
+            renderMessages();
+            updateStats();
+
+            console.log('🏥 CliniFlow PWA — carregado com sucesso!');
+            console.log('📌 Dica: Use as teclas 1-6 para navegar entre as abas.');
+
+        })();
+    </script>
+
+</body>
+</html>

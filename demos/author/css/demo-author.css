@@ -1,0 +1,71 @@
+/* Demo Author */
+.demo-hero {
+  padding: var(--space-8) 0;
+  background: linear-gradient(135deg, var(--bg), var(--surface));
+  text-align: center;
+}
+.demo-hero h1 {
+  font-size: 3rem;
+}
+.demo-hero p {
+  font-size: 1.25rem;
+  color: var(--muted);
+  margin-bottom: var(--space-4);
+}
+
+.demo-section {
+  padding: var(--space-7) 0;
+  border-bottom: 1px solid var(--border);
+}
+.demo-section h2 {
+  margin-bottom: var(--space-5);
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-5);
+}
+
+.demo-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.demo-list-item {
+  background: var(--surface);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--accent-pink);
+}
+.demo-list-item .date {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.demo-list-item .title {
+  font-weight: 600;
+}
+.demo-list-item .location {
+  color: var(--muted);
+}
+
+.demo-cta-fixed {
+  position: fixed;
+  bottom: var(--space-4);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  padding: var(--space-2);
+  /* Remover right e ajustar para centralizar */
+}
+
+.demo-cta-fixed .btn {
+  display: inline-block;
+  padding: var(--space-2) var(--space-5);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}

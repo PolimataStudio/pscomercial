@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Cutline · Barbearia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #1a1a1a;
+            --dark: #2a2a2a;
+            --white: #ffffff;
+            --gray: #888888;
+            --light-gray: #f5f5f5;
+            --green: #25D366;
+            --green-dark: #128C7E;
+            --green-hover: #1ebe5c;
+            --font: 'Inter', sans-serif;
+            --radius: 12px;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition: 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== TIPOGRAFIA ===== */
+        h1,
+        h2,
+        h3 {
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        .highlight {
+            color: var(--green);
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background: var(--white);
+            padding: 16px 0;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(6px);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: var(--green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .nav-links a {
+            color: var(--gray);
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--black);
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 60px 0;
+        }
+
+        /* ===== HERO ===== */
+        #hero {
+            padding: 40px 0 60px;
+            background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%);
+        }
+
+        #hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            margin-bottom: 16px;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: var(--gray);
+            max-width: 460px;
+            margin-bottom: 28px;
+        }
+
+        .hero-image {
+            background: var(--light-gray);
+            border-radius: var(--radius);
+            aspect-ratio: 4 / 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 0.9rem;
+            border: 1px solid #eee;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="%23f0f0f0"/><text x="50" y="55" font-family="Inter" font-size="14" fill="%23999" text-anchor="middle">Barbearia</text></svg>');
+            background-size: cover;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--green);
+            color: var(--white);
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+        }
+        .btn-primary:hover {
+            background: var(--green-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+        }
+        .btn-primary i {
+            font-size: 1.2rem;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 14px 32px;
+            border: 2px solid var(--black);
+            border-radius: 50px;
+            font-weight: 600;
+            color: var(--black);
+            transition: var(--transition);
+        }
+        .btn-outline:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        /* ===== SERVIÇOS ===== */
+        #servicos {
+            background: var(--white);
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .servico-card {
+            background: var(--light-gray);
+            padding: 24px 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: var(--transition);
+        }
+        .servico-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow);
+        }
+        .servico-card i {
+            font-size: 2.2rem;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+        .servico-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        .servico-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        .servico-card .preco {
+            font-weight: 700;
+            margin-top: 8px;
+            display: block;
+            color: var(--black);
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        #depoimentos {
+            background: var(--light-gray);
+        }
+
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 32px;
+        }
+
+        .depoimento-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .depoimento-card .estrelas {
+            color: #ffb800;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .depoimento-card blockquote {
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+        .depoimento-card .autor {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .depoimento-card .cargo {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* ===== DIFERENCIAIS ===== */
+        #diferenciais {
+            background: var(--white);
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .diferenciais-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 32px;
+        }
+
+        .diferencial-item {
+            text-align: center;
+        }
+        .diferencial-item i {
+            font-size: 2.4rem;
+            color: var(--green);
+            margin-bottom: 10px;
+        }
+        .diferencial-item h3 {
+            font-size: 1.1rem;
+        }
+        .diferencial-item p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== FAQ ===== */
+        #faq {
+            background: var(--light-gray);
+        }
+
+        .faq-list {
+            max-width: 700px;
+            margin: 32px auto 0;
+        }
+
+        .faq-item {
+            background: var(--white);
+            padding: 18px 24px;
+            border-radius: var(--radius);
+            margin-bottom: 12px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .faq-item:hover {
+            border-left: 4px solid var(--green);
+        }
+        .faq-item .pergunta {
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-item .pergunta i {
+            transition: var(--transition);
+        }
+        .faq-item .resposta {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--gray);
+        }
+        .faq-item.aberto .resposta {
+            max-height: 200px;
+            padding-top: 12px;
+        }
+        .faq-item.aberto .pergunta i {
+            transform: rotate(180deg);
+        }
+
+        /* ===== CONTATO FINAL ===== */
+        #contato {
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+
+        #contato h2 {
+            color: var(--white);
+        }
+        #contato .subtitle {
+            color: #aaa;
+        }
+
+        .contato-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin: 32px 0;
+        }
+        .contato-info div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+        }
+        .contato-info i {
+            color: var(--green);
+            font-size: 1.2rem;
+        }
+
+        .btn-primary.big {
+            padding: 18px 56px;
+            font-size: 1.2rem;
+        }
+
+        /* ===== BOTÃO FIXO WHATSAPP ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            background: var(--green);
+            color: var(--white);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .nav-links {
+                gap: 16px;
+                font-size: 0.8rem;
+            }
+
+            #hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .cta-group {
+                justify-content: center;
+            }
+            .hero-image {
+                aspect-ratio: 16 / 9;
+            }
+
+            .servicos-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .diferenciais-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .contato-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+            }
+
+            .whatsapp-float {
+                width: 56px;
+                height: 56px;
+                font-size: 1.8rem;
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .servicos-grid {
+                grid-template-columns: 1fr;
+            }
+            .diferenciais-grid {
+                grid-template-columns: 1fr;
+            }
+            .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
+            .btn-outline {
+                width: 100%;
+                text-align: center;
+            }
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        /* ===== UTILITÁRIOS ===== */
+        .text-center {
+            text-align: center;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">Cutline<span>.</span></div>
+            <nav class="nav-links">
+                <a href="#servicos">Serviços</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#diferenciais">Diferenciais</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Corte <span class="highlight">perfeito</span>,<br />sem fila.</h1>
+                <p>
+                    Agende seu horário em segundos e garanta o melhor corte da cidade.
+                    Atendimento rápido, preço justo e resultado impecável.
+                </p>
+                <div class="cta-group">
+                    <a href="#" class="btn-primary" onclick="agendar()">
+                        <i class="fab fa-whatsapp"></i> Agendar agora
+                    </a>
+                    <a href="#servicos" class="btn-outline">Ver serviços</a>
+                </div>
+                <div style="margin-top:20px;display:flex;gap:20px;font-size:0.85rem;color:var(--gray);">
+                    <span><i class="fas fa-check-circle" style="color:var(--green);"></i> Aberto hoje</span>
+                    <span><i class="fas fa-clock"></i> 09:00 – 20:00</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Imagem ilustrativa (pode substituir por uma imagem real) -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos">
+        <div class="container text-center">
+            <span class="subtitle">O que oferecemos</span>
+            <h2>Serviços <span class="highlight">principais</span></h2>
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <i class="fas fa-cut"></i>
+                    <h3>Corte masculino</h3>
+                    <p>Profissional e alinhado ao seu estilo</p>
+                    <span class="preco">R$ 45,00</span>
+                </div>
+                <div class="servico-card">
+                    <i class="fas fa-beard"></i>
+                    <h3>Barba completa</h3>
+                    <p>Modelagem e hidratação</p>
+                    <span class="preco">R$ 35,00</span>
+                </div>
+                <div class="servico-card">
+                    <i class="fas fa-hand-sparkles"></i>
+                    <h3>Combo Corte + Barba</h3>
+                    <p>Pacote completo com desconto</p>
+                    <span class="preco">R$ 70,00</span>
+                </div>
+                <div class="servico-card">
+                    <i class="fas fa-child"></i>
+                    <h3>Corte infantil</h3>
+                    <p>Atendimento especial para crianças</p>
+                    <span class="preco">R$ 35,00</span>
+                </div>
+            </div>
+            <div style="margin-top:24px;">
+                <a href="#" class="btn-primary" onclick="agendar()">
+                    <i class="fab fa-whatsapp"></i> Agendar via WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos">
+        <div class="container text-center">
+            <span class="subtitle">Provas sociais</span>
+            <h2>O que nossos <span class="highlight">clientes</span> dizem</h2>
+            <div class="depoimentos-grid">
+                <div class="depoimento-card">
+                    <div class="estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Melhor corte que já fiz. Atendimento rápido e ambiente muito agradável.”</blockquote>
+                    <div class="autor">— Rafael Souza</div>
+                    <div class="cargo">Cliente há 2 anos</div>
+                </div>
+                <div class="depoimento-card">
+                    <div class="estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Agendamento pelo WhatsApp é super prático. Cheguei, fui atendido na hora.”</blockquote>
+                    <div class="autor">— Mariana Lima</div>
+                    <div class="cargo">Cliente semanal</div>
+                </div>
+                <div class="depoimento-card">
+                    <div class="estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Preço justo e profissionais muito atenciosos. Recomendo a todos.”</blockquote>
+                    <div class="autor">— Carlos Mendes</div>
+                    <div class="cargo">Cliente fiel</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section id="diferenciais">
+        <div class="container text-center">
+            <span class="subtitle">Por que escolher</span>
+            <h2>Nossos <span class="highlight">diferenciais</span></h2>
+            <div class="diferenciais-grid">
+                <div class="diferencial-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Sem fila</h3>
+                    <p>Agendamento rápido e pontualidade garantida.</p>
+                </div>
+                <div class="diferencial-item">
+                    <i class="fas fa-user-check"></i>
+                    <h3>Profissionais experientes</h3>
+                    <p>Equipe treinada e atualizada com as últimas tendências.</p>
+                </div>
+                <div class="diferencial-item">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Atendimento personalizado</h3>
+                    <p>Cada cliente é único, e nosso serviço reflete isso.</p>
+                </div>
+                <div class="diferencial-item">
+                    <i class="fas fa-map-pin"></i>
+                    <h3>Localização central</h3>
+                    <p>Fácil acesso e estacionamento próximo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container text-center">
+            <span class="subtitle">Dúvidas frequentes</span>
+            <h2>Perguntas <span class="highlight">rápidas</span></h2>
+            <div class="faq-list">
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="pergunta">
+                        <span>Como faço para agendar?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="resposta">
+                        Clique no botão “Agendar agora” em qualquer lugar da página. Você será redirecionado ao nosso WhatsApp para escolher o horário.
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="pergunta">
+                        <span>Quais formas de pagamento?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="resposta">
+                        Aceitamos dinheiro, cartão de débito, crédito (à vista) e PIX.
+                    </div>
+                </div>
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="pergunta">
+                        <span>Precisa chegar com antecedência?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="resposta">
+                        Recomendamos chegar 5 minutos antes do horário agendado para não atrasar o próximo cliente.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO FINAL -->
+    <section id="contato">
+        <div class="container">
+            <span class="subtitle">Pronto para transformar seu visual?</span>
+            <h2>Agende seu <span class="highlight">horário</span> agora</h2>
+            <div class="contato-info">
+                <div><i class="fas fa-phone"></i> (11) 91234-5678</div>
+                <div><i class="fab fa-whatsapp"></i> (11) 91234-5678</div>
+                <div><i class="fas fa-map-marker-alt"></i> Rua Exemplo, 123 – Centro</div>
+            </div>
+            <a href="#" class="btn-primary big" onclick="agendar()">
+                <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+            </a>
+            <p style="margin-top: 16px; font-size: 0.85rem; color: #aaa;">
+                Respondemos em até 5 minutos.
+            </p>
+        </div>
+    </section>
+
+    <!-- BOTÃO FIXO WHATSAPP -->
+    <button class="whatsapp-float" onclick="agendar()" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Agendamento via WhatsApp
+        function agendar() {
+            const numero = '5511912345678'; // Substitua pelo número real
+            const mensagem = 'Olá! Gostaria de agendar um horário.';
+            const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+            window.open(url, '_blank');
+        }
+
+        // Toggle FAQ
+        function toggleFaq(element) {
+            element.classList.toggle('aberto');
+        }
+
+        // Fecha o FAQ ao clicar fora (opcional)
+        document.addEventListener('click', function(e) {
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                if (!item.contains(e.target)) {
+                    // não fecha automaticamente para manter UX, mas pode ser implementado
+                }
+            });
+        });
+
+        // Inicialização: garantir que o FAQ comece fechado
+        document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('aberto'));
+    </script>
+
+</body>
+</html>

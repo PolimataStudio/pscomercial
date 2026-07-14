@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Academy Core — Escola modelo</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0a1a2f;
+            --navy-light: #1a3456;
+            --navy-dark: #060f1c;
+            --white: #ffffff;
+            --gray-50: #f6f8fa;
+            --gray-100: #eef1f4;
+            --gray-200: #dce1e8;
+            --gray-300: #bcc4ce;
+            --gray-400: #8d99a8;
+            --gray-500: #6b7a8a;
+            --gray-600: #4a5a6a;
+            --gray-700: #2d3a48;
+            --gray-800: #1a2632;
+            --gray-900: #0d141c;
+            --green: #1a7a5a;
+            --green-light: #2a9d7a;
+            --green-pale: #e8f5ef;
+            --green-badge: #c8e6d9;
+            --shadow-sm: 0 1px 3px rgba(10, 26, 47, 0.06);
+            --shadow-md: 0 4px 20px rgba(10, 26, 47, 0.08);
+            --shadow-lg: 0 8px 40px rgba(10, 26, 47, 0.12);
+            --shadow-xl: 0 16px 56px rgba(10, 26, 47, 0.16);
+            --radius: 12px;
+            --radius-sm: 6px;
+            --transition: 0.3s ease;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--gray-700);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 32px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            line-height: 1.2;
+        }
+
+        .btn-primary {
+            background: var(--navy);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(10, 26, 47, 0.2);
+        }
+        .btn-primary:hover {
+            background: var(--navy-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(10, 26, 47, 0.25);
+        }
+
+        .btn-green {
+            background: var(--green);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(26, 122, 90, 0.3);
+        }
+        .btn-green:hover {
+            background: #146b4f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(26, 122, 90, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--navy);
+            border: 1.5px solid var(--navy);
+        }
+        .btn-outline:hover {
+            background: var(--navy);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--navy);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-white:hover {
+            background: var(--gray-50);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-sm {
+            padding: 10px 22px;
+            font-size: 0.85rem;
+        }
+
+        .btn-enroll {
+            background: var(--green);
+            color: var(--white);
+            padding: 12px 28px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 14px rgba(26, 122, 90, 0.3);
+        }
+        .btn-enroll:hover {
+            background: #146b4f;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(26, 122, 90, 0.35);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(220, 225, 232, 0.5);
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--navy);
+            letter-spacing: -0.3px;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--navy);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--green);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--navy);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 2.5px;
+            background: var(--navy);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 140px 0 72px;
+            background: linear-gradient(170deg, var(--gray-50) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -8%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(26, 122, 90, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--green);
+            position: relative;
+        }
+
+        .hero-content h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: rgba(26, 122, 90, 0.15);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 480px;
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 36px;
+            padding-top: 28px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-stat .number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-stat .label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        .hero-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+
+        .hero-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hero-card .title {
+            font-weight: 700;
+            color: var(--navy);
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .hero-card .desc {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+        }
+
+        .hero-card .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .hero-card .badge-row .badge {
+            background: var(--green-pale);
+            color: var(--green);
+            padding: 4px 14px;
+            border-radius: 60px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* ===== SECTION COMMON ===== */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            color: var(--green);
+            background: var(--green-pale);
+            padding: 4px 16px;
+            border-radius: 60px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--navy);
+            line-height: 1.2;
+        }
+
+        .section-title .highlight {
+            color: var(--green);
+        }
+
+        .section-sub {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin-top: 10px;
+            line-height: 1.7;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 52px;
+        }
+
+        .section-header .section-sub {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== ABOUT ===== */
+        #sobre {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .about-content h2 .highlight {
+            color: var(--green);
+        }
+
+        .about-content p {
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-content p:last-of-type {
+            margin-bottom: 24px;
+        }
+
+        .about-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .about-value {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+
+        .about-value i {
+            color: var(--green);
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .about-image {
+            background: var(--gray-100);
+            border-radius: var(--radius);
+            height: 340px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            font-size: 1rem;
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .about-image .placeholder-icon {
+            font-size: 4rem;
+            color: var(--gray-300);
+            margin-bottom: 8px;
+        }
+
+        .about-image .placeholder-text {
+            font-weight: 500;
+            color: var(--gray-400);
+        }
+
+        /* ===== PEDAGOGICAL ===== */
+        #pedagogica {
+            background: var(--gray-50);
+        }
+
+        .pedagogica-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .pedagogica-card {
+            background: var(--white);
+            padding: 32px 28px;
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .pedagogica-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--green);
+        }
+
+        .pedagogica-card .icon {
+            width: 52px;
+            height: 52px;
+            background: var(--green-pale);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 1.3rem;
+            color: var(--green);
+        }
+
+        .pedagogica-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .pedagogica-card p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        /* ===== STRUCTURE ===== */
+        #estrutura {
+            background: var(--white);
+        }
+
+        .estrutura-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .estrutura-item {
+            text-align: center;
+            padding: 28px 16px;
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            background: var(--gray-50);
+        }
+
+        .estrutura-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--green);
+        }
+
+        .estrutura-item i {
+            font-size: 2rem;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+
+        .estrutura-item h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .estrutura-item p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        /* ===== SEGMENTS ===== */
+        #segmentos {
+            background: var(--gray-50);
+        }
+
+        .segmentos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .segmento-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .segmento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .segmento-card .tag {
+            display: inline-block;
+            background: var(--green-pale);
+            color: var(--green);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 14px;
+            border-radius: 60px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .segmento-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .segmento-card p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .segmento-card .age {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-600);
+        }
+
+        /* ===== NEWS ===== */
+        #noticias {
+            background: var(--white);
+        }
+
+        .noticias-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .noticia-card {
+            background: var(--gray-50);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+
+        .noticia-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .noticia-card .thumb {
+            height: 180px;
+            background: var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            font-size: 0.85rem;
+        }
+
+        .noticia-card .thumb i {
+            font-size: 2.4rem;
+            color: var(--gray-300);
+            margin-right: 8px;
+        }
+
+        .noticia-card .body {
+            padding: 20px 24px 24px;
+        }
+
+        .noticia-card .date {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .noticia-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 6px 0 8px;
+        }
+
+        .noticia-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .noticia-card .read-more {
+            display: inline-block;
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--green);
+            transition: var(--transition);
+        }
+
+        .noticia-card .read-more:hover {
+            color: var(--navy);
+        }
+
+        /* ===== ENROLLMENT ===== */
+        #matriculas {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        #matriculas .section-title {
+            color: var(--white);
+        }
+
+        #matriculas .section-sub {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        #matriculas .section-label {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--green-light);
+        }
+
+        .matriculas-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .matriculas-info h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .matriculas-info p {
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .matriculas-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .matriculas-step {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .matriculas-step .num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--green);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .matriculas-step span {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .matriculas-form {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 36px 32px;
+            color: var(--gray-700);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .matriculas-form h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+        }
+
+        .matriculas-form .form-desc {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 4px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            transition: var(--transition);
+            background: var(--gray-50);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(26, 122, 90, 0.15);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* ===== CONTACT ===== */
+        #contato {
+            background: var(--gray-50);
+        }
+
+        .contato-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+        }
+
+        .contato-info h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .contato-info h2 .highlight {
+            color: var(--green);
+        }
+
+        .contato-info>p {
+            color: var(--gray-500);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .contato-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contato-item .icon {
+            width: 44px;
+            height: 44px;
+            background: var(--green-pale);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contato-item h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .contato-item p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        .contato-form {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 36px 32px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contato-form h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 16px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--navy-dark);
+            color: rgba(255, 255, 255, 0.65);
+            padding: 56px 0 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 36px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            max-width: 320px;
+            line-height: 1.7;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-col ul a {
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .footer-col ul a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.8rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-socials a:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--white);
+        }
+
+        /* ===== PERSISTENT CTA ===== */
+        .persistent-cta {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+        }
+
+        .persistent-cta .btn-enroll {
+            box-shadow: 0 8px 32px rgba(26, 122, 90, 0.35);
+            padding: 14px 32px;
+            font-size: 0.95rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.6rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .pedagogica-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .estrutura-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .segmentos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .noticias-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .matriculas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contato-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header .container {
+                height: 64px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 24px;
+                gap: 14px;
+                border-bottom: 1px solid var(--gray-200);
+                box-shadow: var(--shadow-md);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-cta {
+                display: inline-flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 112px 0 48px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-sub {
+                font-size: 1rem;
+            }
+
+            .hero-stats {
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+
+            .hero-stat .number {
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .pedagogica-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .estrutura-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .segmentos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .noticias-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-values {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .persistent-cta {
+                bottom: 16px;
+                right: 16px;
+            }
+
+            .persistent-cta .btn-enroll {
+                padding: 12px 20px;
+                font-size: 0.85rem;
+            }
+
+            .hero-card {
+                padding: 20px 20px;
+            }
+
+            .matriculas-form {
+                padding: 24px 20px;
+            }
+
+            .contato-form {
+                padding: 24px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .estrutura-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .persistent-cta .btn-enroll {
+                padding: 10px 16px;
+                font-size: 0.8rem;
+            }
+
+            .persistent-cta .btn-enroll span {
+                display: none;
+            }
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#home" class="logo">
+                <span class="logo-icon">AC</span>
+                Academy Core
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#pedagogica">Proposta</a></li>
+                <li><a href="#estrutura">Estrutura</a></li>
+                <li><a href="#segmentos">Segmentos</a></li>
+                <li><a href="#noticias">Notícias</a></li>
+                <li><a href="#matriculas">Matrículas</a></li>
+                <li><a href="#contato">Contato</a></li>
+                <li><a href="#matriculas" class="nav-cta btn btn-green btn-sm">Matricular <i class="fas fa-arrow-right"></i></a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <span class="section-label" style="background:var(--green-pale);color:var(--green);">Instituição de referência</span>
+                    <h1>
+                        Educação que<br />
+                        <span class="highlight">transforma vidas</span>
+                    </h1>
+                    <p class="hero-sub">
+                        Há mais de 20 anos formando cidadãos críticos, criativos e preparados
+                        para os desafios do futuro. Uma escola que acolhe, ensina e inspira.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#matriculas" class="btn btn-green">Matrículas abertas <i class="fas fa-arrow-right"></i></a>
+                        <a href="#sobre" class="btn btn-outline">Conheça a escola</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <span class="number">+2.500</span>
+                            <span class="label">alunos formados</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="number">98%</span>
+                            <span class="label">aprovação no ENEM</span>
+                        </div>
+                        <div class="hero-stat">
+                            <span class="number">35</span>
+                            <span class="label">prêmios educacionais</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div class="title"><i class="fas fa-graduation-cap" style="color:var(--green);margin-right:8px;"></i> Diferenciais Academy Core</div>
+                        <div class="desc">Metodologia ativa, corpo docente qualificado e estrutura completa para o desenvolvimento integral.</div>
+                        <div class="badge-row">
+                            <span class="badge"><i class="fas fa-check-circle"></i> MEC 5 estrelas</span>
+                            <span class="badge"><i class="fas fa-check-circle"></i> Certificação ISO</span>
+                            <span class="badge"><i class="fas fa-check-circle"></i> Escola Bilíngue</span>
+                        </div>
+                    </div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                        <div class="hero-card" style="padding:20px 24px;">
+                            <div style="display:flex; align-items:center; gap:12px;">
+                                <i class="fas fa-users" style="color:var(--green);font-size:1.4rem;"></i>
+                                <div>
+                                    <div style="font-weight:700;color:var(--navy);">+120</div>
+                                    <div style="font-size:0.75rem;color:var(--gray-500);">professores</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-card" style="padding:20px 24px;">
+                            <div style="display:flex; align-items:center; gap:12px;">
+                                <i class="fas fa-building" style="color:var(--green);font-size:1.4rem;"></i>
+                                <div>
+                                    <div style="font-weight:700;color:var(--navy);">8.000 m²</div>
+                                    <div style="font-size:0.75rem;color:var(--gray-500);">área construída</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="sobre">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content fade-up">
+                    <span class="section-label">Quem somos</span>
+                    <h2>Uma escola com <span class="highlight">propósito e tradição</span></h2>
+                    <p>
+                        Fundada em 2004, a Academy Core nasceu com a missão de oferecer uma
+                        educação de excelência, que valoriza o indivíduo e prepara para a vida.
+                        Nossa proposta combina rigor acadêmico com formação humana e cidadã.
+                    </p>
+                    <p>
+                        Acreditamos que cada aluno é único e merece um ambiente que estimule
+                        sua curiosidade, criatividade e autonomia. Por isso, investimos em
+                        formação continuada, infraestrutura moderna e metodologias inovadoras.
+                    </p>
+                    <div class="about-values">
+                        <div class="about-value"><i class="fas fa-check-circle"></i> Missão: educar para a vida</div>
+                        <div class="about-value"><i class="fas fa-check-circle"></i> Visão: ser referência em inovação</div>
+                        <div class="about-value"><i class="fas fa-check-circle"></i> Valores: respeito, ética e excelência</div>
+                        <div class="about-value"><i class="fas fa-check-circle"></i> Compromisso: formação integral</div>
+                    </div>
+                </div>
+                <div class="about-image fade-up">
+                    <div style="text-align:center;">
+                        <div class="placeholder-icon"><i class="fas fa-school"></i></div>
+                        <div class="placeholder-text">Imagem institucional da escola</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PEDAGOGICAL ===== -->
+    <section id="pedagogica">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-label">Proposta pedagógica</span>
+                <h2 class="section-title">Um jeito <span class="highlight">de ensinar que faz diferença</span></h2>
+                <p class="section-sub">Nossa abordagem coloca o aluno no centro do processo, estimulando autonomia e pensamento crítico.</p>
+            </div>
+
+            <div class="pedagogica-grid">
+                <div class="pedagogica-card fade-up">
+                    <div class="icon"><i class="fas fa-lightbulb"></i></div>
+                    <h4>Metodologia ativa</h4>
+                    <p>Projetos interdisciplinares, aprendizagem baseada em problemas e protagonismo estudantil em todas as etapas.</p>
+                </div>
+                <div class="pedagogica-card fade-up">
+                    <div class="icon"><i class="fas fa-globe-americas"></i></div>
+                    <h4>Educação bilíngue</h4>
+                    <p>Imersão em inglês desde os primeiros anos, com professores nativos e certificações internacionais.</p>
+                </div>
+                <div class="pedagogica-card fade-up">
+                    <div class="icon"><i class="fas fa-heart"></i></div>
+                    <h4>Formação humana</h4>
+                    <p>Programa de educação socioemocional, ética e cidadania, preparando para os desafios do mundo contemporâneo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STRUCTURE ===== -->
+    <section id="estrutura">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-label">Estrutura</span>
+                <h2 class="section-title">Espaços <span class="highlight">projetados para aprender</span></h2>
+                <p class="section-sub">Ambientes que estimulam a criatividade, o movimento e a concentração.</p>
+            </div>
+
+            <div class="estrutura-grid">
+                <div class="estrutura-item fade-up">
+                    <i class="fas fa-book-open"></i>
+                    <h4>Biblioteca</h4>
+                    <p>Acervo de 8.000 títulos e salas de leitura</p>
+                </div>
+                <div class="estrutura-item fade-up">
+                    <i class="fas fa-flask"></i>
+                    <h4>Laboratórios</h4>
+                    <p>Ciências, robótica e maker space</p>
+                </div>
+                <div class="estrutura-item fade-up">
+                    <i class="fas fa-futbol"></i>
+                    <h4>Área esportiva</h4>
+                    <p>Quadras, piscina e ginásio poliesportivo</p>
+                </div>
+                <div class="estrutura-item fade-up">
+                    <i class="fas fa-music"></i>
+                    <h4>Espaços culturais</h4>
+                    <p>Teatro, estúdio de música e sala de artes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SEGMENTS ===== -->
+    <section id="segmentos">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-label">Segmentos</span>
+                <h2 class="section-title">Etapas <span class="highlight">de ensino</span></h2>
+                <p class="section-sub">Da educação infantil ao ensino médio, uma trajetória de aprendizado contínuo e integrado.</p>
+            </div>
+
+            <div class="segmentos-grid">
+                <div class="segmento-card fade-up">
+                    <span class="tag">Educação Infantil</span>
+                    <h4>Berçário ao Pré II</h4>
+                    <p>Ambiente acolhedor e lúdico, com foco no desenvolvimento motor, social e cognitivo.</p>
+                    <div class="age">👶 0 a 5 anos</div>
+                </div>
+                <div class="segmento-card fade-up">
+                    <span class="tag">Ensino Fundamental I</span>
+                    <h4>1º ao 5º ano</h4>
+                    <p>Alfabetização sólida, letramento matemático e iniciação científica com projetos interdisciplinares.</p>
+                    <div class="age">📚 6 a 10 anos</div>
+                </div>
+                <div class="segmento-card fade-up">
+                    <span class="tag">Ensino Fundamental II</span>
+                    <h4>6º ao 9º ano</h4>
+                    <p>Aprofundamento em áreas do conhecimento, protagonismo e preparação para o ensino médio.</p>
+                    <div class="age">🧪 11 a 14 anos</div>
+                </div>
+                <div class="segmento-card fade-up" style="grid-column: span 1;">
+                    <span class="tag">Ensino Médio</span>
+                    <h4>1ª à 3ª série</h4>
+                    <p>Formação crítica e preparação para o ENEM e vestibulares, com trilhas de aprofundamento.</p>
+                    <div class="age">🎓 15 a 17 anos</div>
+                </div>
+                <div class="segmento-card fade-up" style="grid-column: span 1;">
+                    <span class="tag">Integral</span>
+                    <h4>Período estendido</h4>
+                    <p>Jornada completa com acompanhamento pedagógico, oficinas e alimentação balanceada.</p>
+                    <div class="age">⏰ 7h às 18h</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEWS ===== -->
+    <section id="noticias">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-label">Notícias e eventos</span>
+                <h2 class="section-title">Acompanhe <span class="highlight">nossas atualizações</span></h2>
+                <p class="section-sub">Fique por dentro do que acontece na Academy Core e participe da nossa comunidade.</p>
+            </div>
+
+            <div class="noticias-grid">
+                <div class="noticia-card fade-up">
+                    <div class="thumb"><i class="fas fa-calendar-alt"></i> Evento</div>
+                    <div class="body">
+                        <div class="date">15 de maio, 2026</div>
+                        <h4>Feira de Ciências 2026</h4>
+                        <p>Alunos do Fundamental II e Ensino Médio apresentam projetos inovadores nas áreas de robótica, biotecnologia e sustentabilidade.</p>
+                        <a href="#" class="read-more">Leia mais →</a>
+                    </div>
+                </div>
+                <div class="noticia-card fade-up">
+                    <div class="thumb"><i class="fas fa-trophy"></i> Conquista</div>
+                    <div class="body">
+                        <div class="date">2 de maio, 2026</div>
+                        <h4>Ouro na Olimpíada de Matemática</h4>
+                        <p>Nossos alunos conquistaram 12 medalhas, sendo 3 de ouro, na Olimpíada Brasileira de Matemática das Escolas Públicas e Privadas.</p>
+                        <a href="#" class="read-more">Leia mais →</a>
+                    </div>
+                </div>
+                <div class="noticia-card fade-up">
+                    <div class="thumb"><i class="fas fa-users"></i> Comunidade</div>
+                    <div class="body">
+                        <div class="date">18 de abril, 2026</div>
+                        <h4>Dia da Família na Escola</h4>
+                        <p>Um sábado de integração com oficinas, apresentações culturais e atividades esportivas para toda a comunidade escolar.</p>
+                        <a href="#" class="read-more">Leia mais →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ENROLLMENT ===== -->
+    <section id="matriculas">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-label">Matrículas</span>
+                <h2 class="section-title">Garanta a <span class="highlight">vaga do seu filho</span></h2>
+                <p class="section-sub">Processo simples e transparente. Entre em contato e agende uma visita.</p>
+            </div>
+
+            <div class="matriculas-grid">
+                <div class="matriculas-info fade-up">
+                    <h3>Como fazer a matrícula?</h3>
+                    <p>
+                        São apenas 4 passos para garantir a vaga na Academy Core.
+                        Nossa equipe está pronta para atender você com todo o suporte necessário.
+                    </p>
+                    <div class="matriculas-steps">
+                        <div class="matriculas-step">
+                            <div class="num">1</div>
+                            <span>Preencha o formulário ao lado com seus dados</span>
+                        </div>
+                        <div class="matriculas-step">
+                            <div class="num">2</div>
+                            <span>Agende uma visita para conhecer a estrutura</span>
+                        </div>
+                        <div class="matriculas-step">
+                            <div class="num">3</div>
+                            <span>Realize a entrevista com a coordenação pedagógica</span>
+                        </div>
+                        <div class="matriculas-step">
+                            <div class="num">4</div>
+                            <span>Efetue a matrícula e inicie a jornada educacional</span>
+                        </div>
+                    </div>
+                    <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+                        <span class="badge" style="background:rgba(255,255,255,0.1);color:var(--green-light);padding:4px 16px;border-radius:60px;font-size:0.8rem;font-weight:600;"><i class="fas fa-check-circle"></i> Vagas limitadas</span>
+                        <span class="badge" style="background:rgba(255,255,255,0.1);color:var(--green-light);padding:4px 16px;border-radius:60px;font-size:0.8rem;font-weight:600;"><i class="fas fa-check-circle"></i> Bolsas disponíveis</span>
+                    </div>
+                </div>
+
+                <div class="matriculas-form fade-up">
+                    <h4>Pré-matrícula</h4>
+                    <p class="form-desc">Preencha e nossa equipe entrará em contato em até 24h.</p>
+                    <form id="enrollForm">
+                        <div class="form-group">
+                            <label for="enrollName">Nome completo</label>
+                            <input type="text" id="enrollName" placeholder="Ex: João Silva" />
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="enrollEmail">E-mail</label>
+                                <input type="email" id="enrollEmail" placeholder="joao@email.com" />
+                            </div>
+                            <div class="form-group">
+                                <label for="enrollPhone">Telefone</label>
+                                <input type="tel" id="enrollPhone" placeholder="(11) 99999-9999" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="enrollSegment">Segmento de interesse</label>
+                            <select id="enrollSegment">
+                                <option value="">Selecione...</option>
+                                <option>Educação Infantil</option>
+                                <option>Ensino Fundamental I</option>
+                                <option>Ensino Fundamental II</option>
+                                <option>Ensino Médio</option>
+                                <option>Período Integral</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="enrollMessage">Mensagem (opcional)</label>
+                            <textarea id="enrollMessage" placeholder="Gostaria de saber mais sobre a metodologia..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-green" style="width:100%;">Solicitar matrícula <i class="fas fa-arrow-right"></i></button>
+                        <p style="font-size:0.75rem;color:var(--gray-400);margin-top:12px;text-align:center;">
+                            <i class="fas fa-lock" style="margin-right:4px;"></i> Seus dados estão seguros e não serão compartilhados.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contato">
+        <div class="container">
+            <div class="contato-grid">
+                <div class="contato-info fade-up">
+                    <span class="section-label">Contato</span>
+                    <h2>Fale <span class="highlight">conosco</span></h2>
+                    <p>
+                        Estamos prontos para atender você. Tire dúvidas, agende uma visita
+                        ou solicite informações sobre nossa proposta pedagógica.
+                    </p>
+
+                    <div class="contato-item">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <h4>Endereço</h4>
+                            <p>Rua da Educação, 123 — Vila Acadêmica, São Paulo — SP</p>
+                        </div>
+                    </div>
+
+                    <div class="contato-item">
+                        <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p>(11) 3456-7890 · (11) 98765-4321</p>
+                        </div>
+                    </div>
+
+                    <div class="contato-item">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4>E-mail</h4>
+                            <p>contato@academycore.edu.br</p>
+                        </div>
+                    </div>
+
+                    <div class="contato-item">
+                        <div class="icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4>Horário de atendimento</h4>
+                            <p>Segunda a sexta, das 7h às 18h</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contato-form fade-up">
+                    <h4>Envie uma mensagem</h4>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contactName">Nome</label>
+                            <input type="text" id="contactName" placeholder="Seu nome" />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">E-mail</label>
+                            <input type="email" id="contactEmail" placeholder="seu@email.com" />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Assunto</label>
+                            <input type="text" id="contactSubject" placeholder="Assunto da mensagem" />
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Mensagem</label>
+                            <textarea id="contactMessage" rows="4" placeholder="Escreva sua mensagem aqui..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensagem <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#home" class="logo">
+                        <span class="logo-icon">AC</span>
+                        Academy Core
+                    </a>
+                    <p>
+                        Uma instituição de ensino comprometida com a formação integral,
+                        a excelência acadêmica e o desenvolvimento de cidadãos conscientes.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Institucional</h4>
+                    <ul>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#pedagogica">Proposta</a></li>
+                        <li><a href="#estrutura">Estrutura</a></li>
+                        <li><a href="#segmentos">Segmentos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Para famílias</h4>
+                    <ul>
+                        <li><a href="#matriculas">Matrículas</a></li>
+                        <li><a href="#noticias">Notícias</a></li>
+                        <li><a href="#">Calendário</a></li>
+                        <li><a href="#">Portal da família</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="#contato">Fale conosco</a></li>
+                        <li><a href="mailto:contato@academycore.edu.br">contato@academycore.edu.br</a></li>
+                        <li><a href="#">(11) 3456-7890</a></li>
+                        <li><a href="#">São Paulo, SP</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 Academy Core. Todos os direitos reservados.</span>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== PERSISTENT CTA ===== -->
+    <div class="persistent-cta">
+        <a href="#matriculas" class="btn-enroll">
+            <i class="fas fa-user-plus"></i>
+            <span>Matrícula aberta</span>
+        </a>
+    </div>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ----- HAMBURGER -----
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                });
+            });
+
+            // ----- HEADER SCROLL + ACTIVE NAV -----
+            const header = document.getElementById('header');
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = document.querySelectorAll('.nav-links a');
+
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+                // Header shadow
+                if (currentScroll > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+
+                // Active nav link
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (currentScroll >= sectionTop) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + currentSection) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // ----- FADE-UP ON SCROLL -----
+            const fadeElements = document.querySelectorAll('.fade-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+            fadeElements.forEach(el => observer.observe(el));
+
+            // ----- SMOOTH SCROLL -----
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        const offset = 72;
+                        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // ----- FORM SUBMISSIONS (demo) -----
+            const enrollForm = document.getElementById('enrollForm');
+            const contactForm = document.getElementById('contactForm');
+
+            enrollForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Pré-matrícula enviada! Em breve nossa equipe entrará em contato.');
+                this.reset();
+            });
+
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Mensagem enviada com sucesso! Responderemos em até 24h.');
+                this.reset();
+            });
+
+        })();
+    </script>
+
+</body>
+</html>

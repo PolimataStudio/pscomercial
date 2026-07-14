@@ -1,0 +1,2499 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dental Hub · Centro de conhecimento e cuidado</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+                   RESET & BASE – hub editorial moderno
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0A2A3A;
+            --primary-dark: #061A26;
+            --primary-light: #1A4055;
+            --secondary: #2A9D8F;
+            --secondary-light: #D4F0E8;
+            --accent: #F4A261;
+            --accent-light: #FCE8D6;
+            --white: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            --shadow-sm: 0 2px 12px rgba(10, 42, 58, 0.04);
+            --shadow-md: 0 8px 32px rgba(10, 42, 58, 0.07);
+            --shadow-lg: 0 20px 56px rgba(10, 42, 58, 0.10);
+            --shadow-xl: 0 30px 80px rgba(10, 42, 58, 0.14);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-full: 50px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font: 'Inter', sans-serif;
+            --max-width: 1200px;
+            --nav-height: 72px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+                   TYPOGRAPHY – forte e editorial
+                   ============================================================ */
+        .section-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            background: var(--secondary-light);
+            padding: 4px 18px;
+            border-radius: var(--radius-full);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+        .section-title span {
+            color: var(--secondary);
+            position: relative;
+        }
+        .section-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: rgba(42, 157, 143, 0.12);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 560px;
+            margin-bottom: 28px;
+        }
+        .section-subtitle.centered {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        .text-center .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================================
+                   BUTTONS – claros e acionáveis
+                   ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 14px 34px;
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--secondary);
+            color: var(--white);
+            box-shadow: 0 4px 24px rgba(42, 157, 143, 0.20);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 60%);
+            pointer-events: none;
+        }
+        .btn:hover {
+            background: #21867A;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 36px rgba(42, 157, 143, 0.25);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 24px rgba(10, 42, 58, 0.15);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 8px 36px rgba(10, 42, 58, 0.20);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            box-shadow: none;
+            border: 2px solid var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--gray-900);
+            box-shadow: 0 4px 24px rgba(244, 162, 97, 0.20);
+        }
+        .btn-accent:hover {
+            background: #E8934A;
+            box-shadow: 0 8px 36px rgba(244, 162, 97, 0.25);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: none;
+        }
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-lg {
+            font-size: 1.05rem;
+            padding: 16px 44px;
+        }
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-sm {
+            font-size: 0.8rem;
+            padding: 8px 20px;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--white);
+            box-shadow: 0 4px 24px rgba(37, 211, 102, 0.20);
+        }
+        .btn-whatsapp:hover {
+            background: #1DA851;
+            box-shadow: 0 8px 36px rgba(37, 211, 102, 0.25);
+        }
+
+        /* ============================================================
+                   NAVBAR – hub editorial
+                   ============================================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(18px) saturate(180%);
+            -webkit-backdrop-filter: blur(18px) saturate(180%);
+            border-bottom: 1px solid rgba(10, 42, 58, 0.03);
+            padding: 0 24px;
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            box-shadow: 0 4px 28px rgba(0, 0, 0, 0.03);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--primary);
+            letter-spacing: -0.3px;
+            cursor: pointer;
+        }
+        .nav-logo i {
+            font-size: 1.4rem;
+            color: var(--secondary);
+        }
+        .nav-logo span {
+            color: var(--gray-900);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .nav-links .nav-item {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            padding: 8px 18px;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font);
+            position: relative;
+        }
+        .nav-links .nav-item:hover {
+            color: var(--primary);
+            background: rgba(10, 42, 58, 0.03);
+        }
+        .nav-links .nav-item.active {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        .nav-links .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 3px;
+            border-radius: 4px;
+            background: var(--secondary);
+        }
+        .nav-links .nav-item.cta-btn {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 8px 24px;
+        }
+        .nav-links .nav-item.cta-btn::after {
+            display: none;
+        }
+        .nav-links .nav-item.cta-btn:hover {
+            background: #21867A;
+            color: var(--white);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 6px;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--gray-800);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .nav-hamburger.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .nav-hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .nav-hamburger.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* ============================================================
+                   SEARCH BAR – componente exclusivo
+                   ============================================================ */
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: var(--gray-50);
+            border-radius: var(--radius-full);
+            border: 1.5px solid var(--gray-200);
+            padding: 4px 6px 4px 18px;
+            transition: var(--transition);
+            max-width: 280px;
+            width: 100%;
+        }
+        .search-bar:focus-within {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.06);
+            background: var(--white);
+        }
+        .search-bar input {
+            border: none;
+            background: transparent;
+            font-family: var(--font);
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            padding: 8px 0;
+            width: 100%;
+            outline: none;
+        }
+        .search-bar input::placeholder {
+            color: var(--gray-400);
+        }
+        .search-bar button {
+            background: var(--secondary);
+            border: none;
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .search-bar button:hover {
+            background: #21867A;
+        }
+        .search-bar button i {
+            font-size: 0.8rem;
+        }
+
+        /* ============================================================
+                   PAGE SYSTEM
+                   ============================================================ */
+        .page {
+            display: none;
+            animation: pageIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            padding-top: var(--nav-height);
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+                   HERO – hub editorial
+                   ============================================================ */
+        .hero-home {
+            padding: 40px 0 60px;
+            background: linear-gradient(170deg, #F0F5FA 0%, #E8EFF5 30%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 82vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-home::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(42, 157, 143, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-home::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(244, 162, 97, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-home .container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.08;
+            color: var(--gray-900);
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+        .hero-content h1 span {
+            color: var(--secondary);
+            position: relative;
+        }
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: rgba(42, 157, 143, 0.12);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .hero-content .hero-desc {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 480px;
+            margin-bottom: 20px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 32px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(10, 42, 58, 0.04);
+        }
+        .hero-stats span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+        .hero-stats span i {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Hero visual – hub cards */
+        .hero-hub {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .hero-hub .hub-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 20px 18px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+        .hero-hub .hub-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-md);
+        }
+        .hero-hub .hub-card .hc-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--secondary-light);
+            color: var(--secondary);
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .hero-hub .hub-card h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 2px;
+        }
+        .hero-hub .hub-card p {
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+        .hero-hub .hub-card .hc-arrow {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 0.7rem;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        .hero-hub .hub-card.featured {
+            grid-column: span 2;
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--white);
+        }
+        .hero-hub .hub-card.featured .hc-icon {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--white);
+        }
+        .hero-hub .hub-card.featured h4 {
+            color: var(--white);
+        }
+        .hero-hub .hub-card.featured p {
+            color: rgba(255, 255, 255, 0.60);
+        }
+        .hero-hub .hub-card.featured .hc-arrow {
+            color: var(--accent);
+        }
+        .hero-hub .hub-card.featured:hover {
+            border-color: var(--accent);
+        }
+
+        /* ============================================================
+                   PAGE: CONHEÇA (SOBRE)
+                   ============================================================ */
+        .page-about {
+            padding: 40px 0 60px;
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-content .section-title {
+            font-size: 2.2rem;
+        }
+        .about-content .about-text {
+            color: var(--gray-600);
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .about-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+        .about-values .av-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            transition: var(--transition);
+        }
+        .about-values .av-item:hover {
+            border-color: var(--secondary);
+        }
+        .about-values .av-item i {
+            color: var(--secondary);
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--gray-100);
+            min-height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            color: var(--gray-400);
+            padding: 40px;
+            border: 1px solid var(--gray-200);
+        }
+        .about-image i {
+            font-size: 4rem;
+            color: var(--secondary);
+            opacity: 0.3;
+        }
+
+        /* ============================================================
+                   PAGE: APRENDA (BLOG / CONTEÚDO)
+                   ============================================================ */
+        .page-learn {
+            padding: 40px 0 60px;
+            background: var(--gray-50);
+        }
+
+        .learn-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 24px 20px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .blog-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+        .blog-card .bc-tag {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--secondary);
+            background: var(--secondary-light);
+            padding: 2px 14px;
+            border-radius: var(--radius-full);
+            margin-bottom: 8px;
+        }
+        .blog-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .blog-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 10px;
+        }
+        .blog-card .bc-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 0.7rem;
+            color: var(--gray-400);
+        }
+        .blog-card .bc-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .blog-card .bc-meta i {
+            color: var(--secondary);
+        }
+
+        .blog-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .blog-sidebar .bs-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 20px 18px;
+            border: 1px solid var(--gray-200);
+        }
+        .blog-sidebar .bs-card h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+        }
+        .blog-sidebar .bs-card ul {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .blog-sidebar .bs-card ul li {
+            font-size: 0.85rem;
+            color: var(--gray-600);
+            padding: 6px 10px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .blog-sidebar .bs-card ul li:hover {
+            background: var(--gray-50);
+            color: var(--primary);
+        }
+        .blog-sidebar .bs-card ul li i {
+            color: var(--secondary);
+            font-size: 0.7rem;
+            width: 16px;
+        }
+
+        /* ============================================================
+                   PAGE: TRATE (TRATAMENTOS)
+                   ============================================================ */
+        .page-treat {
+            padding: 40px 0 60px;
+            background: var(--white);
+        }
+
+        .treat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .treat-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            padding: 28px 22px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .treat-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-md);
+            background: var(--white);
+        }
+        .treat-card .tc-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        .treat-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 2px;
+        }
+        .treat-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin: 0 0 8px;
+        }
+        .treat-card .tc-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: rgba(10, 42, 58, 0.04);
+            padding: 2px 14px;
+            border-radius: var(--radius-full);
+        }
+        .treat-card .tc-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--secondary);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .treat-card .tc-link:hover {
+            transform: translateX(4px);
+        }
+
+        /* Specialties Panel – componente exclusivo */
+        .specialties-panel {
+            background: var(--primary);
+            border-radius: var(--radius);
+            padding: 36px 32px;
+            margin-top: 32px;
+            color: var(--white);
+        }
+        .specialties-panel h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .specialties-panel h3 i {
+            color: var(--accent);
+        }
+        .specialties-panel .sp-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+        .specialties-panel .sp-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-sm);
+            padding: 16px 14px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .specialties-panel .sp-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.10);
+            transform: translateY(-2px);
+        }
+        .specialties-panel .sp-item .sp-icon {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+        .specialties-panel .sp-item h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+        .specialties-panel .sp-item p {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.40);
+            margin: 0;
+        }
+
+        /* ============================================================
+                   PAGE: AGENDE (BOOKING)
+                   ============================================================ */
+        .page-book {
+            padding: 40px 0 60px;
+            background: var(--gray-50);
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .book-info .bi-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+        .book-info .bi-item:hover {
+            border-color: var(--secondary);
+            transform: translateX(4px);
+        }
+        .book-info .bi-item i {
+            font-size: 1rem;
+            color: var(--secondary);
+            width: 22px;
+            text-align: center;
+        }
+        .book-info .bi-item .bi-text {
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+        .book-info .bi-item .bi-text strong {
+            color: var(--gray-900);
+        }
+
+        .book-map {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            background: var(--gray-100);
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 6px;
+            color: var(--gray-400);
+            padding: 20px;
+            margin-top: 10px;
+        }
+        .book-map i {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            opacity: 0.3;
+        }
+
+        .book-form {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+        .book-form h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .book-form .form-sub {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 18px;
+        }
+        .book-form .form-group {
+            margin-bottom: 12px;
+        }
+        .book-form .form-group input,
+        .book-form .form-group select,
+        .book-form .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.9rem;
+            color: var(--gray-800);
+            background: var(--gray-50);
+            transition: var(--transition);
+            outline: none;
+        }
+        .book-form .form-group input:focus,
+        .book-form .form-group select:focus,
+        .book-form .form-group textarea:focus {
+            border-color: var(--secondary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.06);
+        }
+        .book-form .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .book-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* ============================================================
+                   PAGE: CONTATO
+                   ============================================================ */
+        .page-contact {
+            padding: 40px 0 60px;
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-info .ci-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+        .contact-info .ci-item:hover {
+            border-color: var(--secondary);
+        }
+        .contact-info .ci-item i {
+            font-size: 1rem;
+            color: var(--secondary);
+            width: 22px;
+            text-align: center;
+        }
+        .contact-info .ci-item .ci-text {
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+        .contact-info .ci-item .ci-text strong {
+            color: var(--gray-900);
+        }
+
+        .contact-map {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            background: var(--gray-100);
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 6px;
+            color: var(--gray-400);
+            padding: 20px;
+            margin-top: 10px;
+        }
+        .contact-map i {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            opacity: 0.3;
+        }
+
+        .contact-form {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+        }
+        .contact-form h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .contact-form .form-sub {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 18px;
+        }
+        .contact-form .form-group {
+            margin-bottom: 12px;
+        }
+        .contact-form .form-group input,
+        .contact-form .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.9rem;
+            color: var(--gray-800);
+            background: var(--white);
+            transition: var(--transition);
+            outline: none;
+        }
+        .contact-form .form-group input:focus,
+        .contact-form .form-group textarea:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.06);
+        }
+        .contact-form .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
+        .footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.50);
+            padding: 32px 0 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-brand {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-brand i {
+            color: var(--secondary);
+        }
+        .footer-links {
+            display: flex;
+            gap: 16px;
+        }
+        .footer-links .nav-item {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.40);
+            transition: var(--transition);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font);
+        }
+        .footer-links .nav-item:hover {
+            color: var(--white);
+        }
+        .footer-copy {
+            font-size: 0.7rem;
+            width: 100%;
+            text-align: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ============================================================
+                   WHATSAPP FLOATING
+                   ============================================================ */
+        .wa-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+        }
+        .wa-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25D366;
+            color: var(--white);
+            font-size: 1.6rem;
+            box-shadow: 0 4px 28px rgba(37, 211, 102, 0.20);
+            transition: var(--transition);
+        }
+        .wa-float a:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 48px rgba(37, 211, 102, 0.25);
+        }
+
+        @media (max-width: 640px) {
+            .wa-float {
+                bottom: 16px;
+                right: 16px;
+            }
+            .wa-float a {
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+            }
+        }
+
+        /* ============================================================
+                   BACK TO TOP
+                   ============================================================ */
+        .back-top {
+            position: fixed;
+            bottom: 90px;
+            right: 28px;
+            z-index: 99;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        .back-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .back-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 640px) {
+            .back-top {
+                bottom: 76px;
+                right: 20px;
+                width: 36px;
+                height: 36px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-home .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+            }
+            .hero-content .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .hero-hub {
+                max-width: 480px;
+                margin: 0 auto;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-values {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .learn-grid {
+                grid-template-columns: 1fr;
+            }
+            .blog-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .book-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specialties-panel .sp-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --nav-height: 64px;
+            }
+
+            .navbar {
+                padding: 0 16px;
+                height: var(--nav-height);
+            }
+
+            .search-bar {
+                display: none;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 16px 20px;
+                gap: 2px;
+                transform: translateY(-120%);
+                transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                box-shadow: var(--shadow-md);
+                border-bottom: 1px solid var(--gray-200);
+            }
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            .nav-links .nav-item {
+                width: 100%;
+                padding: 10px 16px;
+                font-size: 0.95rem;
+                text-align: left;
+            }
+            .nav-links .nav-item.active::after {
+                left: 16px;
+                transform: none;
+                width: 16px;
+            }
+            .nav-links .nav-item.cta-btn {
+                text-align: center;
+                margin-top: 4px;
+            }
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .hero-home {
+                padding: 24px 0 40px;
+                min-height: auto;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .hero-content .hero-desc {
+                font-size: 1rem;
+            }
+            .hero-hub {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .hero-hub .hub-card.featured {
+                grid-column: span 2;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .book-form .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .specialties-panel {
+                padding: 24px 18px;
+            }
+            .specialties-panel .sp-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+
+            .page {
+                padding-top: var(--nav-height);
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.7rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .hero-stats {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .hero-hub {
+                grid-template-columns: 1fr;
+            }
+            .hero-hub .hub-card.featured {
+                grid-column: span 1;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .about-values {
+                grid-template-columns: 1fr;
+            }
+
+            .treat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specialties-panel .sp-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .book-form {
+                padding: 20px 16px;
+            }
+            .contact-form {
+                padding: 20px 16px;
+            }
+
+            .search-bar {
+                display: none;
+            }
+        }
+
+        /* ============================================================
+                   REVEAL ANIMATIONS
+                   ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.06s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.12s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.18s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.24s;
+        }
+        .reveal-delay-5 {
+            transition-delay: 0.30s;
+        }
+
+        /* ============================================================
+                   PAGE FOOTER (interno)
+                   ============================================================ */
+        .page-footer {
+            padding: 16px 0 8px;
+            border-top: 1px solid var(--gray-200);
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        /* ============================================================
+                   LEARNING TRAIL – componente exclusivo
+                   ============================================================ */
+        .learning-trail {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            border: 1px solid var(--gray-200);
+            margin: 28px 0;
+            box-shadow: var(--shadow-sm);
+        }
+        .learning-trail .lt-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .learning-trail .lt-title i {
+            color: var(--accent);
+        }
+        .learning-trail .lt-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+        .learning-trail .lt-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 16px 12px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .learning-trail .lt-step:hover {
+            border-color: var(--secondary);
+            background: var(--white);
+            transform: translateY(-3px);
+        }
+        .learning-trail .lt-step .lt-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--secondary);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .learning-trail .lt-step h4 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .learning-trail .lt-step p {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .learning-trail .lt-steps {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .learning-trail .lt-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    WHATSAPP FLOATING
+    ============================================================ -->
+    <div class="wa-float">
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- ============================================================
+    BACK TO TOP
+    ============================================================ -->
+    <button class="back-top" id="backTop" aria-label="Voltar ao topo">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Navegação">
+        <div class="nav-inner">
+            <div class="nav-logo" data-page="home">
+                <i class="fas fa-tooth"></i>
+                Dental<span>Hub</span>
+            </div>
+
+            <!-- Search Bar – componente exclusivo -->
+            <div class="search-bar">
+                <input type="text" placeholder="Buscar conteúdo..." aria-label="Buscar" />
+                <button><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="nav-links" id="navLinks">
+                <button class="nav-item active" data-page="home">Conheça</button>
+                <button class="nav-item" data-page="learn">Aprenda</button>
+                <button class="nav-item" data-page="treat">Trate</button>
+                <button class="nav-item cta-btn" data-page="book">
+                    <i class="fas fa-calendar-check"></i> Agende
+                </button>
+                <button class="nav-item" data-page="contact">Contato</button>
+            </div>
+
+            <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    /* ============================================================
+    PAGE: HOME (Conheça)
+    ============================================================ */
+    <section class="page active" id="page-home" role="tabpanel">
+
+        <!-- Hero -->
+        <div class="hero-home">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="section-tag"><i class="fas fa-book-open"></i> Hub de conhecimento</span>
+                    <h1>Conhecimento e cuidado <span>em um só lugar</span></h1>
+                    <p class="hero-desc">
+                        Um centro completo de informação odontológica. Aprenda, tire dúvidas,
+                        conheça tratamentos e agende sua consulta com quem realmente entende
+                        de sorrisos.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button class="btn btn-secondary btn-lg" data-page="learn">
+                            <i class="fas fa-arrow-right"></i> Explorar conteúdo
+                        </button>
+                        <button class="btn btn-primary btn-lg" data-page="book">
+                            <i class="fas fa-calendar-check"></i> Agendar consulta
+                        </button>
+                    </div>
+
+                    <div class="hero-stats">
+                        <span><i class="fas fa-newspaper"></i> 45+ artigos</span>
+                        <span><i class="fas fa-tooth"></i> 8 especialidades</span>
+                        <span><i class="fas fa-star"></i> 4.9 · 320 avaliações</span>
+                        <span><i class="fas fa-users"></i> +2.800 pacientes</span>
+                    </div>
+                </div>
+
+                <!-- Hero Hub Cards -->
+                <div class="hero-hub">
+                    <div class="hub-card" data-page="learn">
+                        <div class="hc-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <h4>Aprenda</h4>
+                        <p>Guias e artigos para entender sua saúde bucal</p>
+                        <span class="hc-arrow">Explorar →</span>
+                    </div>
+                    <div class="hub-card" data-page="treat">
+                        <div class="hc-icon"><i class="fas fa-tooth"></i></div>
+                        <h4>Trate</h4>
+                        <p>Conheça nossos tratamentos e especialidades</p>
+                        <span class="hc-arrow">Ver serviços →</span>
+                    </div>
+                    <div class="hub-card featured" data-page="book">
+                        <div class="hc-icon"><i class="fas fa-calendar-check"></i></div>
+                        <h4>Agende sua consulta</h4>
+                        <p>Marque seu horário em minutos — retorno em até 2h</p>
+                        <span class="hc-arrow">Agendar agora →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Learning Trail – componente exclusivo -->
+        <div class="container">
+            <div class="learning-trail reveal">
+                <div class="lt-title">
+                    <i class="fas fa-route"></i>
+                    Trilha de aprendizado
+                </div>
+                <div class="lt-steps">
+                    <div class="lt-step" data-page="learn">
+                        <div class="lt-num">1</div>
+                        <h4>Entenda</h4>
+                        <p>Conceitos e cuidados básicos</p>
+                    </div>
+                    <div class="lt-step" data-page="treat">
+                        <div class="lt-num">2</div>
+                        <h4>Conheça</h4>
+                        <p>Tratamentos disponíveis</p>
+                    </div>
+                    <div class="lt-step" data-page="book">
+                        <div class="lt-num">3</div>
+                        <h4>Agende</h4>
+                        <p>Marque sua consulta</p>
+                    </div>
+                    <div class="lt-step" data-page="home">
+                        <div class="lt-num">4</div>
+                        <h4>Confie</h4>
+                        <p>Atendimento de excelência</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="page-footer">
+                <span>© 2026 Dental Hub · Todos os direitos reservados.</span>
+                <span>Centro de conhecimento e cuidado</span>
+            </div>
+        </div>
+    </section>
+
+    /* ============================================================
+    PAGE: APRENDA (Blog / Conteúdo)
+    ============================================================ */
+    <section class="page page-learn" id="page-learn" role="tabpanel">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag"><i class="fas fa-graduation-cap"></i> Conteúdo</span>
+                <h2 class="section-title">Aprenda sobre <span>saúde bucal</span></h2>
+                <p class="section-subtitle">
+                    Artigos, guias e conteúdos produzidos por especialistas para ajudar você
+                    a entender melhor sua saúde e tratamentos.
+                </p>
+            </div>
+
+            <div class="learn-grid">
+                <div class="blog-grid">
+                    <div class="blog-card reveal reveal-delay-1">
+                        <span class="bc-tag">Guia</span>
+                        <h4>Como escolher o melhor tratamento para seu sorriso</h4>
+                        <p>Entenda os fatores que influenciam a decisão e como planejar seu tratamento ideal.</p>
+                        <div class="bc-meta">
+                            <span><i class="fas fa-calendar"></i> 12/03/2026</span>
+                            <span><i class="fas fa-clock"></i> 8 min de leitura</span>
+                        </div>
+                    </div>
+                    <div class="blog-card reveal reveal-delay-2">
+                        <span class="bc-tag">Cuidados</span>
+                        <h4>7 hábitos para manter seus dentes saudáveis</h4>
+                        <p>Rotina simples e eficaz para prevenir cáries e doenças gengivais no dia a dia.</p>
+                        <div class="bc-meta">
+                            <span><i class="fas fa-calendar"></i> 08/03/2026</span>
+                            <span><i class="fas fa-clock"></i> 5 min de leitura</span>
+                        </div>
+                    </div>
+                    <div class="blog-card reveal reveal-delay-3">
+                        <span class="bc-tag">Especialidade</span>
+                        <h4>Implantes dentários: tudo o que você precisa saber</h4>
+                        <p>Como funciona o procedimento, recuperação, custos e benefícios dos implantes.</p>
+                        <div class="bc-meta">
+                            <span><i class="fas fa-calendar"></i> 05/03/2026</span>
+                            <span><i class="fas fa-clock"></i> 10 min de leitura</span>
+                        </div>
+                    </div>
+                    <div class="blog-card reveal reveal-delay-4">
+                        <span class="bc-tag">Dúvida</span>
+                        <h4>Clareamento dental: mitos e verdades</h4>
+                        <p>Descubra o que é real e o que é mito sobre o clareamento dental profissional.</p>
+                        <div class="bc-meta">
+                            <span><i class="fas fa-calendar"></i> 01/03/2026</span>
+                            <span><i class="fas fa-clock"></i> 6 min de leitura</span>
+                        </div>
+                    </div>
+                    <div class="blog-card reveal reveal-delay-1">
+                        <span class="bc-tag">Prevenção</span>
+                        <h4>Ortodontia infantil: quando começar o tratamento</h4>
+                        <p>Idade ideal, sinais de alerta e benefícios do tratamento precoce.</p>
+                        <div class="bc-meta">
+                            <span><i class="fas fa-calendar"></i> 25/02/2026</span>
+                            <span><i class="fas fa-clock"></i> 7 min de leitura</span>
+                        </div>
+                    </div>
+                    <div class="blog-card reveal reveal-delay-2">
+                        <span class="bc-tag">Bem-estar</span>
+                        <h4>Alimentação e saúde bucal: o que comer para proteger</h4>
+                        <p>Alimentos que fortalecem os dentes e gengivas e melhoram sua saúde geral.</p>
+                        <div class="bc-meta">
+                            <span><i class="fas fa-calendar"></i> 20/02/2026</span>
+                            <span><i class="fas fa-clock"></i> 6 min de leitura</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="blog-sidebar reveal reveal-delay-3">
+                    <div class="bs-card">
+                        <h4>📚 Categorias</h4>
+                        <ul>
+                            <li><i class="fas fa-chevron-right"></i> Guias completos</li>
+                            <li><i class="fas fa-chevron-right"></i> Cuidados diários</li>
+                            <li><i class="fas fa-chevron-right"></i> Tratamentos</li>
+                            <li><i class="fas fa-chevron-right"></i> Odontopediatria</li>
+                            <li><i class="fas fa-chevron-right"></i> Estética dental</li>
+                            <li><i class="fas fa-chevron-right"></i> Prevenção</li>
+                        </ul>
+                    </div>
+                    <div class="bs-card" style="background:var(--secondary-light);border-color:rgba(42,157,143,0.10);">
+                        <h4 style="color:var(--primary);">💡 Dica do especialista</h4>
+                        <p style="font-size:0.85rem;color:var(--gray-600);margin-bottom:10px;">
+                            "A melhor forma de cuidar do seu sorriso é com informação e prevenção.
+                            Agende uma avaliação anual para manter sua saúde bucal em dia."
+                        </p>
+                        <button class="btn btn-secondary btn-sm btn-block" data-page="book">
+                            <i class="fas fa-calendar-check"></i> Agendar avaliação
+                        </button>
+                    </div>
+                    <div class="bs-card">
+                        <h4>🔍 Buscar conteúdo</h4>
+                        <div style="display:flex;gap:8px;">
+                            <input type="text" placeholder="Digite um tema..." style="flex:1;padding:10px 14px;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-family:var(--font);font-size:0.85rem;outline:none;background:var(--gray-50);transition:var(--transition);" />
+                            <button style="background:var(--secondary);color:var(--white);border:none;padding:10px 16px;border-radius:var(--radius-sm);cursor:pointer;font-weight:600;transition:var(--transition);"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Dental Hub</span>
+                <span>6 artigos · Conteúdo atualizado</span>
+            </div>
+        </div>
+    </section>
+
+    /* ============================================================
+    PAGE: TRATE (Tratamentos)
+    ============================================================ */
+    <section class="page page-treat" id="page-treat" role="tabpanel">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag"><i class="fas fa-tooth"></i> Especialidades</span>
+                <h2 class="section-title">Tratamentos <span>para você</span></h2>
+                <p class="section-subtitle">
+                    Conheça nossas especialidades e encontre o tratamento ideal para suas necessidades.
+                </p>
+            </div>
+
+            <div class="treat-grid">
+                <div class="treat-card reveal reveal-delay-1">
+                    <div class="tc-icon"><i class="fas fa-stethoscope"></i></div>
+                    <h4>Avaliação completa</h4>
+                    <p>Diagnóstico preciso com exames clínicos e radiográficos.</p>
+                    <span class="tc-tag">50 min · Especialista</span>
+                    <div class="tc-link">Saiba mais →</div>
+                </div>
+                <div class="treat-card reveal reveal-delay-2">
+                    <div class="tc-icon"><i class="fas fa-spa"></i></div>
+                    <h4>Limpeza &amp; profilaxia</h4>
+                    <p>Remoção de tártaro e polimento para um sorriso saudável.</p>
+                    <span class="tc-tag">40 min · Semestral</span>
+                    <div class="tc-link">Saiba mais →</div>
+                </div>
+                <div class="treat-card reveal reveal-delay-3">
+                    <div class="tc-icon"><i class="fas fa-sun"></i></div>
+                    <h4>Clareamento dental</h4>
+                    <p>Procedimento seguro e eficaz para dentes mais brancos.</p>
+                    <span class="tc-tag">2 sessões · Resultado imediato</span>
+                    <div class="tc-link">Saiba mais →</div>
+                </div>
+                <div class="treat-card reveal reveal-delay-4">
+                    <div class="tc-icon"><i class="fas fa-crown"></i></div>
+                    <h4>Implantes dentários</h4>
+                    <p>Recuperação estética com implantes de alta durabilidade.</p>
+                    <span class="tc-tag">2-4 meses · 98% sucesso</span>
+                    <div class="tc-link">Saiba mais →</div>
+                </div>
+                <div class="treat-card reveal reveal-delay-1">
+                    <div class="tc-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Ortodontia</h4>
+                    <p>Aparelhos fixos, removíveis e alinhadores transparentes.</p>
+                    <span class="tc-tag">12-24 meses · Acompanhamento</span>
+                    <div class="tc-link">Saiba mais →</div>
+                </div>
+                <div class="treat-card reveal reveal-delay-2">
+                    <div class="tc-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4>Urgência odontológica</h4>
+                    <p>Atendimento rápido para dores e emergências.</p>
+                    <span class="tc-tag">Atendimento imediato · 24h</span>
+                    <div class="tc-link">Saiba mais →</div>
+                </div>
+                <div class="treat-card reveal reveal-delay-3">
+                    <div class="tc-icon"><i class="fas fa-baby"></i></div>
+                    <h4>Odontopediatria</h4>
+                    <p>Atendimento lúdico e especializado para crianças.</p>
+                    <span class="tc-tag">30-40 min · Ambiente acolhedor</span>
+                    <div class="tc-link">Saiba mais →</div>
+                </div>
+                <div class="treat-card reveal reveal-delay-4">
+                    <div class="tc-icon"><i class="fas fa-smile"></i></div>
+                    <h4>Harmonização orofacial</h4>
+                    <p>Equilíbrio estético do sorriso e harmonia facial.</p>
+                    <span class="tc-tag">1-2 sessões · Resultados naturais</span>
+                    <div class="tc-link">Saiba mais →</div>
+                </div>
+            </div>
+
+            <!-- Specialties Panel – componente exclusivo -->
+            <div class="specialties-panel reveal">
+                <h3><i class="fas fa-th-large"></i> Painel de especialidades</h3>
+                <div class="sp-grid">
+                    <div class="sp-item">
+                        <div class="sp-icon"><i class="fas fa-stethoscope"></i></div>
+                        <h4>Diagnóstico</h4>
+                        <p>Exames precisos</p>
+                    </div>
+                    <div class="sp-item">
+                        <div class="sp-icon"><i class="fas fa-teeth"></i></div>
+                        <h4>Restauração</h4>
+                        <p>Próteses e coroas</p>
+                    </div>
+                    <div class="sp-item">
+                        <div class="sp-icon"><i class="fas fa-smile"></i></div>
+                        <h4>Estética</h4>
+                        <p>Clareamento e lentes</p>
+                    </div>
+                    <div class="sp-item">
+                        <div class="sp-icon"><i class="fas fa-heart"></i></div>
+                        <h4>Prevenção</h4>
+                        <p>Cuidados contínuos</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Dental Hub</span>
+                <span>8 tratamentos · Especialidades completas</span>
+            </div>
+        </div>
+    </section>
+
+    /* ============================================================
+    PAGE: AGENDE (Booking)
+    ============================================================ */
+    <section class="page page-book" id="page-book" role="tabpanel">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag"><i class="fas fa-calendar-check"></i> Agendamento</span>
+                <h2 class="section-title">Agende sua <span>consulta</span></h2>
+                <p class="section-subtitle">
+                    Preencha os campos abaixo e nossa equipe retornará em até 2 horas para
+                    confirmar seu horário.
+                </p>
+            </div>
+
+            <div class="book-grid">
+                <div class="book-info reveal">
+                    <div class="bi-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="bi-text"><strong>Telefone</strong><br />(11) 99999-9999</div>
+                    </div>
+                    <div class="bi-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div class="bi-text"><strong>WhatsApp</strong><br />(11) 99999-9999</div>
+                    </div>
+                    <div class="bi-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="bi-text"><strong>E-mail</strong><br />contato@dentalhub.com.br</div>
+                    </div>
+                    <div class="bi-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="bi-text"><strong>Endereço</strong><br />Rua dos Sorrisos, 123 · São Paulo, SP</div>
+                    </div>
+                    <div class="bi-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="bi-text"><strong>Horário</strong><br />Seg–Sex: 8h–20h · Sáb: 8h–14h</div>
+                    </div>
+
+                    <div class="book-map">
+                        <i class="fas fa-map"></i>
+                        <span style="font-weight:500;color:var(--gray-600);">📍 Nossa localização</span>
+                        <span style="font-size:0.75rem;color:var(--gray-400);">Clique para abrir no Google Maps</span>
+                        <div style="display:flex;gap:8px;margin-top:4px;">
+                            <a href="#" style="background:var(--primary);color:var(--white);padding:6px 18px;border-radius:50px;font-size:0.7rem;font-weight:600;">Abrir no Maps</a>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:12px;padding:14px 18px;background:var(--secondary-light);border-radius:var(--radius-sm);border:1px solid rgba(42,157,143,0.10);">
+                        <p style="font-size:0.85rem;color:var(--gray-700);margin:0;">
+                            <i class="fas fa-info-circle" style="color:var(--secondary);"></i>
+                            <strong>Retorno garantido</strong> em até 2 horas úteis.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="book-form reveal reveal-delay-2">
+                    <h3>✉️ Solicitar agendamento</h3>
+                    <p class="form-sub">Preencha e nossa equipe confirma seu horário.</p>
+
+                    <form id="bookForm" novalidate>
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu nome completo" required />
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="tel" placeholder="Telefone" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="E-mail" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Qual serviço você procura?</option>
+                                <option value="avaliacao">Avaliação completa</option>
+                                <option value="limpeza">Limpeza / Profilaxia</option>
+                                <option value="clareamento">Clareamento dental</option>
+                                <option value="implante">Implante dentário</option>
+                                <option value="ortodontia">Ortodontia</option>
+                                <option value="urgencia">Urgência odontológica</option>
+                                <option value="pediatria">Odontopediatria</option>
+                                <option value="harmonizacao">Harmonização orofacial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Mensagem ou observações (opcional)"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-secondary btn-block">
+                            <i class="fas fa-paper-plane"></i> Solicitar agendamento
+                        </button>
+                        <p style="font-size:0.7rem;color:var(--gray-400);text-align:center;margin-top:10px;">
+                            <i class="fas fa-lock"></i> Seus dados estão seguros.
+                        </p>
+                    </form>
+
+                    <div style="margin-top:14px;padding:12px 16px;background:var(--gray-50);border-radius:var(--radius-sm);border:1px solid var(--gray-200);">
+                        <p style="font-size:0.8rem;color:var(--gray-600);margin:0;">
+                            <i class="fas fa-heart" style="color:var(--accent);"></i>
+                            Quer um atendimento mais rápido? <strong>Fale conosco pelo WhatsApp</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Dental Hub</span>
+                <span>Agendamento rápido · Retorno em até 2h</span>
+            </div>
+        </div>
+    </section>
+
+    /* ============================================================
+    PAGE: CONTATO
+    ============================================================ */
+    <section class="page page-contact" id="page-contact" role="tabpanel">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag"><i class="fas fa-envelope"></i> Contato</span>
+                <h2 class="section-title">Fale <span>conosco</span></h2>
+                <p class="section-subtitle">
+                    Tire dúvidas, agende consultas ou solicite mais informações.
+                    Nossa equipe está pronta para ajudar.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="ci-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="ci-text"><strong>Telefone</strong><br />(11) 99999-9999</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div class="ci-text"><strong>WhatsApp</strong><br />(11) 99999-9999</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="ci-text"><strong>E-mail</strong><br />contato@dentalhub.com.br</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="ci-text"><strong>Endereço</strong><br />Rua dos Sorrisos, 123 · São Paulo, SP</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="ci-text"><strong>Horário</strong><br />Seg–Sex: 8h–20h · Sáb: 8h–14h</div>
+                    </div>
+
+                    <div class="contact-map">
+                        <i class="fas fa-map"></i>
+                        <span style="font-weight:500;color:var(--gray-600);">📍 Nossa localização</span>
+                        <span style="font-size:0.75rem;color:var(--gray-400);">Clique para abrir no Google Maps</span>
+                        <div style="display:flex;gap:8px;margin-top:4px;">
+                            <a href="#" style="background:var(--primary);color:var(--white);padding:6px 18px;border-radius:50px;font-size:0.7rem;font-weight:600;">Abrir no Maps</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form reveal reveal-delay-2">
+                    <h3>✉️ Envie uma mensagem</h3>
+                    <p class="form-sub">Respondemos com agilidade e atenção.</p>
+
+                    <form id="contactForm" novalidate>
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu nome" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Seu e-mail" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Telefone (opcional)" />
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Sua mensagem" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-paper-plane"></i> Enviar mensagem
+                        </button>
+                        <p style="font-size:0.7rem;color:var(--gray-400);text-align:center;margin-top:10px;">
+                            <i class="fas fa-lock"></i> Seus dados estão seguros.
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Dental Hub</span>
+                <span>Disponível 24/7 via WhatsApp</span>
+            </div>
+        </div>
+    </section>
+
+    /* ============================================================
+    FOOTER
+    ============================================================ */
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <i class="fas fa-tooth"></i>
+                    DentalHub
+                </div>
+                <div class="footer-links">
+                    <button class="nav-item" data-page="home">Conheça</button>
+                    <button class="nav-item" data-page="learn">Aprenda</button>
+                    <button class="nav-item" data-page="treat">Trate</button>
+                    <button class="nav-item" data-page="book">Agende</button>
+                    <button class="nav-item" data-page="contact">Contato</button>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2026 Dental Hub · Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    /* ============================================================
+    SCRIPTS
+    ============================================================ */
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // PAGE NAVIGATION SYSTEM
+            // ============================================================
+            const pageMap = {
+                home: document.getElementById('page-home'),
+                learn: document.getElementById('page-learn'),
+                treat: document.getElementById('page-treat'),
+                book: document.getElementById('page-book'),
+                contact: document.getElementById('page-contact')
+            };
+
+            const navButtons = document.querySelectorAll('.nav-item[data-page]');
+            const allNavItems = document.querySelectorAll('[data-page]');
+            const logo = document.querySelector('.nav-logo');
+            const footerNavButtons = document.querySelectorAll('.footer-links .nav-item');
+
+            let currentPage = 'home';
+
+            function navigateTo(pageId) {
+                if (!pageId || !pageMap[pageId]) return;
+
+                // Hide all pages
+                Object.keys(pageMap).forEach(key => {
+                    if (pageMap[key]) pageMap[key].classList.remove('active');
+                });
+
+                // Show target
+                pageMap[pageId].classList.add('active');
+                currentPage = pageId;
+
+                // Update nav buttons
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.page === pageId) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Update footer nav
+                footerNavButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.page === pageId) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Close mobile menu
+                navLinks.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Update URL hash
+                if (pageId === 'home') {
+                    history.pushState(null, '', window.location.pathname);
+                } else {
+                    history.pushState(null, '', '#' + pageId);
+                }
+
+                // Trigger reveal animations on new page
+                setTimeout(() => {
+                    const reveals = pageMap[pageId].querySelectorAll('.reveal');
+                    reveals.forEach(el => {
+                        void el.offsetWidth;
+                        el.classList.add('visible');
+                    });
+                }, 200);
+            }
+
+            // Event listeners
+            allNavItems.forEach(el => {
+                el.addEventListener('click', function(e) {
+                    const page = this.dataset.page;
+                    if (page) {
+                        e.preventDefault();
+                        navigateTo(page);
+                    }
+                });
+            });
+
+            logo.addEventListener('click', function() {
+                navigateTo('home');
+            });
+
+            // ============================================================
+            // BROWSER BACK/FORWARD
+            // ============================================================
+            window.addEventListener('popstate', function() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && pageMap[hash]) {
+                    navigateTo(hash);
+                } else {
+                    navigateTo('home');
+                }
+            });
+
+            // ============================================================
+            // INITIAL LOAD
+            // ============================================================
+            window.addEventListener('DOMContentLoaded', function() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && pageMap[hash]) {
+                    navigateTo(hash);
+                } else {
+                    navigateTo('home');
+                }
+            });
+
+            // ============================================================
+            // NAVBAR SCROLL
+            // ============================================================
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // ============================================================
+            // HAMBURGER
+            // ============================================================
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', function() {
+                const isOpen = navLinks.classList.toggle('open');
+                hamburger.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', isOpen);
+            });
+
+            // Close menu on nav click
+            document.querySelectorAll('.nav-links .nav-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    navLinks.classList.remove('open');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // ============================================================
+            // BACK TO TOP
+            // ============================================================
+            const backTop = document.getElementById('backTop');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    backTop.classList.add('visible');
+                } else {
+                    backTop.classList.remove('visible');
+                }
+            });
+
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ============================================================
+            // FORMS
+            // ============================================================
+            const bookForm = document.getElementById('bookForm');
+            if (bookForm) {
+                bookForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = this.querySelector('button[type="submit"]');
+                    const original = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                    btn.disabled = true;
+
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-check"></i> Solicitação enviada!';
+                        btn.style.background = '#21867A';
+                        this.reset();
+
+                        setTimeout(() => {
+                            btn.innerHTML = original;
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }, 3000);
+                    }, 1500);
+                });
+            }
+
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = this.querySelector('button[type="submit"]');
+                    const original = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                    btn.disabled = true;
+
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-check"></i> Mensagem enviada!';
+                        btn.style.background = '#0A2A3A';
+                        this.reset();
+
+                        setTimeout(() => {
+                            btn.innerHTML = original;
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }, 3000);
+                    }, 1500);
+                });
+            }
+
+            // ============================================================
+            // SEARCH BAR – comportamento básico
+            // ============================================================
+            const searchInputs = document.querySelectorAll('.search-bar input');
+            searchInputs.forEach(input => {
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        const query = this.value.trim();
+                        if (query) {
+                            alert('🔍 Buscando por: "' + query + '"\n\n(Esta é uma demonstração. Em produção, esta busca seria integrada a um sistema de conteúdo.)');
+                        }
+                    }
+                });
+            });
+
+            document.querySelectorAll('.search-bar button').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const input = this.closest('.search-bar').querySelector('input');
+                    const query = input.value.trim();
+                    if (query) {
+                        alert('🔍 Buscando por: "' + query + '"\n\n(Esta é uma demonstração. Em produção, esta busca seria integrada a um sistema de conteúdo.)');
+                    }
+                });
+            });
+
+            // ============================================================
+            // REVEAL ON SCROLL
+            // ============================================================
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.08,
+                rootMargin: '0px 0px -20px 0px'
+            });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // ============================================================
+            // KEYBOARD: ESC close menu
+            // ============================================================
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.focus();
+                }
+            });
+
+            console.log('🚀 Dental Hub — Website carregado com sucesso!');
+            console.log('📚 Centro de conhecimento, serviço e relacionamento.');
+
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barber House – Demonstração Interativa</title>
+  <meta name="description" content="Website institucional para barbearia com design clássico e confiável.">
+  <meta property="og:title" content="Barber House – Demonstração Interativa">
+  <meta property="og:description" content="Website institucional para barbearia com design clássico e confiável.">
+  <link rel="canonical" href="https://polimatastudio.github.io/pscomercial/demos/barber-house/">
+
+<!-- ===== PATH RESOLVER INLINE (mecanismo primário) - VERSÃO 3 ===== -->
+<script>
+(function(global) {
+  'use strict';
+  let BASE_PATH = global.PROJECT_BASE || null;
+  if (!BASE_PATH) {
+    const path = global.location.pathname;
+    const match = path.match(/^(.*?)\/(?:demos|pages|js|css|assets|data|themes)\//);
+    if (match) {
+      BASE_PATH = match[1] + '/';
+    } else {
+      let base = path.substring(0, path.lastIndexOf('/') + 1);
+      if (!base.endsWith('/')) base += '/';
+      BASE_PATH = base;
+    }
+  }
+  if (!BASE_PATH.endsWith('/')) BASE_PATH += '/';
+
+  function resolve(relativePath) {
+    if (relativePath.startsWith(BASE_PATH)) return relativePath;
+    if (relativePath.startsWith('/')) return BASE_PATH + relativePath.slice(1);
+    let clean = relativePath.replace(/^\.\//, '').replace(/^\.\.\//, '');
+    while (clean.startsWith('../')) clean = clean.replace(/^\.\.\//, '');
+    return BASE_PATH + clean;
+  }
+  function resolveData(dataPath) { return resolve('data/' + dataPath); }
+  function resolveComponent(componentName) {
+    if (!componentName.endsWith('.html')) componentName += '.html';
+    return resolve('components/' + componentName);
+  }
+  function resolveLink(linkPath) { return resolve(linkPath); }
+  function resolveAsset(assetPath) { return resolve(assetPath); }
+  function resolveDemoUrl(demo) {
+    let url = (typeof demo === 'string') ? demo : (demo?.url || '');
+    if (!url) return BASE_PATH + 'demos/fallback/index.html';
+    if (url.startsWith('http')) return url;
+    let clean = url.replace(/^\.\//, '').replace(/^\.\.\//, '');
+    if (!clean.startsWith('demos/')) clean = 'demos/' + clean;
+    if (!clean.endsWith('.html') && !clean.endsWith('/')) clean += '.html';
+    if (clean.endsWith('index.html')) {
+      const demoHtml = clean.replace(/index\.html$/, 'demo.html');
+      return resolve(demoHtml);
+    }
+    return resolve(clean);
+  }
+  function prefetchDemo(demo) {
+    const url = resolveDemoUrl(demo);
+    if ('prefetch' in document.createElement('link')) {
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = url;
+      link.as = 'document';
+      document.head.appendChild(link);
+    }
+  }
+  function getBasePath() { return BASE_PATH; }
+  function isDebug() { return localStorage.getItem('path-debug') === 'true' || new URLSearchParams(window.location.search).get('debug') === 'paths'; }
+  function log(...args) { if (isDebug()) console.log('[PathResolver]', ...args); }
+
+  global.PathResolver = { resolve, resolveData, resolveComponent, resolveLink, resolveAsset, resolveDemoUrl, prefetchDemo, getBasePath, isDebug, log };
+  global.PathManager = global.PathResolver;
+  console.log('[PathResolver Inline] Base definida:', BASE_PATH);
+})(window);
+</script>
+<!-- ===== FIM PATH RESOLVER ===== -->
+
+  <link rel="icon" href="../../assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="../../assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="../../manifest/manifest.json">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/layout.css">
+  <link rel="stylesheet" href="../../css/components.css">
+  <link rel="stylesheet" href="../../css/pages.css">
+</head>
+<body data-demo-id="barber-house">
+
+  <div id="navbar-placeholder"></div>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="demo-header">
+          <h1>Barber House</h1>
+          <p>Website institucional para barbearia com design clássico e confiável.</p>
+          <a href="../../pages/contato.html" class="btn btn-primary">Solicitar uma demonstração personalizada</a>
+          <button class="btn btn-secondary spm-expand-btn" aria-label="Expandir demonstração">⛶ Expandir</button>
+        </div>
+
+        <div class="demo-showcase-wrapper">
+          <div class="demo-showcase">
+            <iframe src="demo.html" title="Barber House" loading="lazy"></iframe>
+          </div>
+        </div>
+
+        <div class="demo-cta-section">
+          <h2>Pronto para levar essa solução ao seu projeto?</h2>
+          <p>Entre em contato e descubra como a Polímata pode criar uma experiência digital sob medida para você.</p>
+          <a href="../../pages/contato.html" class="btn btn-primary">Solicitar uma versão para meu projeto</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script type="module" src="../../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Care Story · Uma história de cuidado</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ============================================================
+           CSS CUSTOM PROPERTIES — Design System
+           ============================================================ */
+        :root {
+            --color-primary: #1a4b6b;
+            --color-primary-light: #3a7a9a;
+            --color-secondary: #d48a6a;
+            --color-secondary-light: #e8b098;
+            --color-accent: #8bb8b0;
+            --color-bg: #f7f5f2;
+            --color-card: #ffffff;
+            --color-text: #1a2a32;
+            --color-text-muted: #4a5a66;
+            --color-text-light: #8a9aa6;
+            --color-border: #e4e0da;
+            --color-shadow: rgba(26, 75, 107, 0.04);
+            --radius: 24px;
+            --radius-sm: 14px;
+            --radius-xs: 8px;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            --max-width: 1120px;
+            --header-height: 68px;
+            --shadow-card: 0 4px 24px rgba(26, 75, 107, 0.04);
+            --shadow-hover: 0 12px 40px rgba(26, 75, 107, 0.08);
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+           HEADER / NAV
+           ============================================================ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(247, 245, 242, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -0.3px;
+        }
+        .logo span {
+            color: var(--color-secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        .nav-menu a.active {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: inline-block;
+            padding: 8px 22px;
+            background: var(--color-secondary);
+            color: #fff;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+        }
+        .nav-cta:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(212, 138, 106, 0.2);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           SECTIONS
+           ============================================================ */
+        section {
+            padding: 80px 0 60px;
+            scroll-margin-top: 80px;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-secondary);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .highlight {
+            color: var(--color-secondary);
+            font-style: italic;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================================
+           HERO — Narrativo
+           ============================================================ */
+        #hero {
+            padding-top: 100px;
+            padding-bottom: 60px;
+            background: linear-gradient(160deg, #eef3f0 0%, #f7f5f2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(212, 138, 106, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content .hero-badge {
+            display: inline-block;
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.05;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--color-secondary);
+            font-style: italic;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            max-width: 460px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: var(--color-secondary);
+            color: #fff;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            box-shadow: 0 8px 28px rgba(212, 138, 106, 0.2);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(212, 138, 106, 0.3);
+            background: var(--color-secondary-light);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image .placeholder {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1/1;
+            background: linear-gradient(145deg, var(--color-primary-light), var(--color-primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.06);
+            font-size: 4rem;
+            font-weight: 300;
+            box-shadow: 0 20px 60px rgba(26, 75, 107, 0.10);
+            position: relative;
+        }
+
+        .hero-image .placeholder span {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.12);
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-image .placeholder::after {
+            content: '✦';
+            font-size: 5rem;
+            opacity: 0.04;
+            position: absolute;
+            bottom: 8%;
+            right: 8%;
+        }
+
+        /* ============================================================
+           PROBLEMA — Seção narrativa
+           ============================================================ */
+        #problema {
+            background: var(--color-card);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .problema-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .problema-text .section-title {
+            font-size: 2.2rem;
+        }
+
+        .problema-text p {
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .problema-text .quote-block {
+            background: var(--color-bg);
+            border-left: 4px solid var(--color-secondary);
+            padding: 1.5rem 2rem;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin: 1.5rem 0;
+        }
+
+        .problema-text .quote-block p {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin-bottom: 0;
+        }
+
+        .problema-image .placeholder-rect {
+            width: 100%;
+            max-width: 460px;
+            aspect-ratio: 4/3;
+            background: linear-gradient(145deg, #dce4e0, #c8d2ce);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            font-size: 1.2rem;
+            font-weight: 300;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--color-border);
+        }
+
+        /* ============================================================
+           SOLUÇÃO — O método
+           ============================================================ */
+        #solucao {
+            background: var(--color-bg);
+        }
+
+        .solucao-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .solucao-text .section-title {
+            font-size: 2.2rem;
+        }
+
+        .solucao-text p {
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .solucao-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .solucao-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--color-text);
+        }
+
+        .solucao-feature i {
+            color: var(--color-secondary);
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .solucao-image .placeholder-rect {
+            width: 100%;
+            max-width: 460px;
+            aspect-ratio: 4/3;
+            background: linear-gradient(145deg, var(--color-accent), var(--color-primary-light));
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 2rem;
+            font-weight: 300;
+            box-shadow: var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solucao-image .placeholder-rect span {
+            font-family: var(--font-serif);
+            color: rgba(255, 255, 255, 0.12);
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+        }
+
+        /* ============================================================
+           PROCESSO — Linha do cuidado
+           ============================================================ */
+        #processo {
+            background: var(--color-card);
+        }
+
+        .processo-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .processo-step {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--color-bg);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .processo-step:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .processo-step .step-number {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            opacity: 0.2;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+
+        .processo-step .icon {
+            font-size: 2rem;
+            color: var(--color-primary-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .processo-step h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .processo-step p {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+           ESPECIALIDADES
+           ============================================================ */
+        #especialidades {
+            background: var(--color-bg);
+        }
+
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .specialty-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.8rem 1.2rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-secondary-light);
+        }
+
+        .specialty-card .icon {
+            font-size: 2.2rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .specialty-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .specialty-card p {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           EQUIPE
+           ============================================================ */
+        #equipe {
+            background: var(--color-card);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .team-member {
+            background: var(--color-bg);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+        }
+
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-member .avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary));
+            margin: 0 auto 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        .team-member h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .team-member .role {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+
+        .team-member .bio {
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+            margin-top: 6px;
+        }
+
+        /* ============================================================
+           BASTIDORES — Mito vs Verdade
+           ============================================================ */
+        #bastidores {
+            background: var(--color-bg);
+        }
+
+        .myth-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .myth-item {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem 2rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .myth-item:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .myth-item .myth-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .myth-item .myth-label.truth {
+            color: var(--color-accent);
+        }
+
+        .myth-item p {
+            font-size: 0.95rem;
+        }
+
+        .myth-item .icon {
+            margin-right: 8px;
+        }
+
+        .myth-item .icon.myth {
+            color: var(--color-secondary-light);
+        }
+        .myth-item .icon.truth {
+            color: var(--color-accent);
+        }
+
+        /* ============================================================
+           DEPOIMENTOS
+           ============================================================ */
+        #depoimentos {
+            background: var(--color-card);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .testimonial-card {
+            background: var(--color-bg);
+            border-radius: var(--radius-sm);
+            padding: 1.8rem 2rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .testimonial-card .stars {
+            color: #d4a373;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-card .quote {
+            font-size: 0.95rem;
+            color: var(--color-text);
+            font-style: italic;
+        }
+
+        .testimonial-card .author {
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-card .author span {
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* ============================================================
+           FAQ
+           ============================================================ */
+        #faq {
+            background: var(--color-bg);
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .faq-item {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.2rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-align: left;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--color-bg);
+        }
+
+        .faq-question .icon {
+            color: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .faq-question.open .icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 1.5rem;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .faq-answer.open {
+            max-height: 300px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        /* ============================================================
+           CTA FINAL
+           ============================================================ */
+        #cta-final {
+            background: var(--color-primary);
+            color: #fff;
+            padding: 80px 0 60px;
+        }
+
+        #cta-final .section-title {
+            color: #fff;
+        }
+        #cta-final .section-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        #cta-final .section-label {
+            color: var(--color-secondary-light);
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .cta-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .cta-info .info-item .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-secondary-light);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .cta-info .info-item .text strong {
+            display: block;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .cta-info .info-item .text span {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .cta-form {
+            background: var(--color-card);
+            border-radius: var(--radius);
+            padding: 2rem 2rem;
+            color: var(--color-text);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+
+        .cta-form .form-title {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-bottom: 4px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            background: var(--color-bg);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(212, 138, 106, 0.06);
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--color-secondary);
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+            box-shadow: 0 4px 16px rgba(212, 138, 106, 0.15);
+        }
+
+        .form-submit:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(212, 138, 106, 0.25);
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            margin-top: 0.5rem;
+        }
+        .btn-whatsapp:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.2);
+        }
+        .btn-whatsapp-dark {
+            background: #25D366;
+            color: #fff;
+        }
+        .btn-whatsapp-dark:hover {
+            background: #20b85a;
+        }
+
+        /* ============================================================
+           RODAPÉ
+           ============================================================ */
+        .site-footer {
+            background: #0a1a26;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .site-footer .footer-text {
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+        }
+
+        .site-footer .footer-text a {
+            color: rgba(255, 255, 255, 0.6);
+            transition: var(--transition);
+        }
+        .site-footer .footer-text a:hover {
+            color: #fff;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-image .placeholder {
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            .problema-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .solucao-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .solucao-features {
+                justify-items: center;
+            }
+            .processo-steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .specialties-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .cta-grid {
+                grid-template-columns: 1fr;
+            }
+            .myth-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.6rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: var(--color-card);
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid var(--color-border);
+                box-shadow: var(--shadow-card);
+                gap: 1rem;
+            }
+            .nav-menu.open {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .nav-cta {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .processo-steps {
+                grid-template-columns: 1fr 1fr;
+            }
+            .specialties-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .solucao-features {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .processo-steps {
+                grid-template-columns: 1fr;
+            }
+            .specialties-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .hero-cta {
+                width: 100%;
+                justify-content: center;
+            }
+            .cta-form {
+                padding: 1.5rem;
+            }
+            .problema-text .quote-block {
+                padding: 1rem 1.2rem;
+            }
+        }
+
+        /* ============================================================
+           UTILITÁRIOS
+           ============================================================ */
+        .mt-2 {
+            margin-top: 2rem;
+        }
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+
+        /* Animações suaves */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-up {
+            animation: fadeUp 0.6s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="header">
+        <div class="container">
+            <a href="#hero" class="logo">Care<span>Story</span></a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#hero" class="active">Início</a></li>
+                <li><a href="#problema">Nossa História</a></li>
+                <li><a href="#processo">Como Funciona</a></li>
+                <li><a href="#especialidades">Especialidades</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#cta-final">Contato</a></li>
+            </ul>
+            <a href="#cta-final" class="nav-cta">Agendar</a>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    HERO — Narrativo
+    ============================================================ -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">— Uma história de cuidado</div>
+                    <h1>Saúde que <span class="highlight">acolhe</span> e <span class="highlight">transforma</span></h1>
+                    <p>
+                        Na Care Story, cada consulta é uma jornada de escuta, confiança e
+                        cuidado humanizado. Descubra um jeito diferente de cuidar da sua saúde.
+                    </p>
+                    <a href="#cta-final" class="hero-cta">
+                        <i class="fas fa-heart"></i> Começar minha história
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <div class="placeholder">
+                        <span>Care</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PROBLEMA — Narrativa
+    ============================================================ -->
+    <section id="problema">
+        <div class="container">
+            <div class="problema-grid">
+                <div class="problema-text">
+                    <div class="section-label">Nossa história</div>
+                    <h2 class="section-title">Por que a <span class="highlight">confiança</span> é o primeiro passo</h2>
+                    <p>
+                        Acreditamos que a saúde começa com a confiança. Por isso, construímos
+                        cada etapa do nosso cuidado com transparência, escuta ativa e respeito
+                        pela sua história.
+                    </p>
+                    <div class="quote-block">
+                        <p>
+                            “Cuidar não é apenas tratar uma condição. É entender a pessoa por trás
+                            dela, suas angústias, suas dúvidas e suas esperanças.”
+                        </p>
+                    </div>
+                    <p>
+                        Nossa jornada começou com a vontade de transformar a experiência em saúde,
+                        tornando-a mais humana, menos burocrática e verdadeiramente acolhedora.
+                    </p>
+                </div>
+                <div class="problema-image">
+                    <div class="placeholder-rect">
+                        <i class="fas fa-hand-holding-heart" style="font-size:3rem; opacity:0.2; margin-right:8px;"></i>
+                        Cuidado que acolhe
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SOLUÇÃO — O método
+    ============================================================ -->
+    <section id="solucao">
+        <div class="container">
+            <div class="solucao-grid">
+                <div class="solucao-image">
+                    <div class="placeholder-rect">
+                        <span>Nosso método</span>
+                    </div>
+                </div>
+                <div class="solucao-text">
+                    <div class="section-label">Nosso método</div>
+                    <h2 class="section-title">Um cuidado <span class="highlight">que faz sentido</span></h2>
+                    <p>
+                        Desenvolvemos uma abordagem que combina excelência técnica com
+                        acolhimento humano. Cada paciente é único, e nosso método reflete isso.
+                    </p>
+                    <div class="solucao-features">
+                        <div class="solucao-feature">
+                            <i class="fas fa-user-check"></i> Escuta ativa
+                        </div>
+                        <div class="solucao-feature">
+                            <i class="fas fa-clipboard-list"></i> Plano personalizado
+                        </div>
+                        <div class="solucao-feature">
+                            <i class="fas fa-sync-alt"></i> Acompanhamento contínuo
+                        </div>
+                        <div class="solucao-feature">
+                            <i class="fas fa-shield-alt"></i> Transparência total
+                        </div>
+                        <div class="solucao-feature">
+                            <i class="fas fa-hand-holding-heart"></i> Cuidado humanizado
+                        </div>
+                        <div class="solucao-feature">
+                            <i class="fas fa-clock"></i> Tempo para você
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PROCESSO — Linha do cuidado
+    ============================================================ -->
+    <section id="processo">
+        <div class="container">
+            <div class="section-label text-center">Linha do cuidado</div>
+            <h2 class="section-title text-center">Sua jornada <span class="highlight">passo a passo</span></h2>
+            <p class="section-desc text-center" style="max-width:520px;">
+                Cada etapa foi pensada para que você se sinta seguro, informado e acolhido.
+            </p>
+
+            <div class="processo-steps">
+                <div class="processo-step">
+                    <div class="step-number">01</div>
+                    <div class="icon"><i class="fas fa-headset"></i></div>
+                    <h4>Primeiro contato</h4>
+                    <p>Você chega, compartilha sua história e somos ouvimos com atenção.</p>
+                </div>
+                <div class="processo-step">
+                    <div class="step-number">02</div>
+                    <div class="icon"><i class="fas fa-clipboard-check"></i></div>
+                    <h4>Avaliação e planejamento</h4>
+                    <p>Construímos juntos um plano de cuidado que faz sentido para você.</p>
+                </div>
+                <div class="processo-step">
+                    <div class="step-number">03</div>
+                    <div class="icon"><i class="fas fa-user-md"></i></div>
+                    <h4>Atendimento personalizado</h4>
+                    <p>Consultas com tempo e qualidade, focadas nas suas necessidades.</p>
+                </div>
+                <div class="processo-step">
+                    <div class="step-number">04</div>
+                    <div class="icon"><i class="fas fa-heart"></i></div>
+                    <h4>Acompanhamento contínuo</h4>
+                    <p>Retornos programados e orientações para sua saúde a longo prazo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ESPECIALIDADES
+    ============================================================ -->
+    <section id="especialidades">
+        <div class="container">
+            <div class="section-label text-center">Especialidades</div>
+            <h2 class="section-title text-center">Cuidado <span class="highlight">multidisciplinar</span></h2>
+            <p class="section-desc text-center" style="max-width:520px;">
+                Uma equipe completa para atender você em todas as dimensões da saúde.
+            </p>
+
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-user-md"></i></div>
+                    <h4>Clínica Geral</h4>
+                    <p>Prevenção e diagnóstico</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4>Cardiologia</h4>
+                    <p>Saúde do coração</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-female"></i></div>
+                    <h4>Ginecologia</h4>
+                    <p>Saúde da mulher</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-bone"></i></div>
+                    <h4>Ortopedia</h4>
+                    <p>Movimento e qualidade</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-brain"></i></div>
+                    <h4>Psicologia</h4>
+                    <p>Equilíbrio emocional</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-apple-alt"></i></div>
+                    <h4>Nutrição</h4>
+                    <p>Alimentação saudável</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-allergies"></i></div>
+                    <h4>Dermatologia</h4>
+                    <p>Cuidados com a pele</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-child"></i></div>
+                    <h4>Pediatria</h4>
+                    <p>Saúde infantil</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    EQUIPE
+    ============================================================ -->
+    <section id="equipe">
+        <div class="container">
+            <div class="section-label text-center">Equipe</div>
+            <h2 class="section-title text-center">Profissionais <span class="highlight">que cuidam</span></h2>
+            <p class="section-desc text-center" style="max-width:480px;">
+                Conheça quem está pronto para acolher sua história com dedicação e experiência.
+            </p>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="avatar">AS</div>
+                    <h4>Dra. Ana Silva</h4>
+                    <div class="role">Clínica Geral · CRM 12345</div>
+                    <div class="bio">14 anos de experiência em medicina preventiva e humanizada.</div>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">RM</div>
+                    <h4>Dr. Rodrigo Martins</h4>
+                    <div class="role">Cardiologia · CRM 67890</div>
+                    <div class="bio">Especialista em hipertensão e medicina do estilo de vida.</div>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">CL</div>
+                    <h4>Dra. Camila Lima</h4>
+                    <div class="role">Ginecologia · CRM 11223</div>
+                    <div class="bio">Referência em saúde da mulher e atendimento humanizado.</div>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">PF</div>
+                    <h4>Dr. Paulo Ferreira</h4>
+                    <div class="role">Psicologia · CRP 44556</div>
+                    <div class="bio">Especialista em terapia cognitivo-comportamental e ansiedade.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    BASTIDORES — Mito vs Verdade
+    ============================================================ -->
+    <section id="bastidores">
+        <div class="container">
+            <div class="section-label text-center">Bastidores</div>
+            <h2 class="section-title text-center">Mito <span class="highlight">vs</span> Verdade</h2>
+            <p class="section-desc text-center" style="max-width:480px;">
+                Desmistificamos crenças comuns sobre saúde e atendimento para você se sentir mais seguro.
+            </p>
+
+            <div class="myth-grid">
+                <div class="myth-item">
+                    <div class="myth-label"><span class="icon myth"><i class="fas fa-times-circle"></i></span> MITO</div>
+                    <p>“Toda consulta precisa ser rápida para ser eficiente.”</p>
+                </div>
+                <div class="myth-item">
+                    <div class="myth-label truth"><span class="icon truth"><i class="fas fa-check-circle"></i></span> VERDADE</div>
+                    <p>Consultas com tempo adequado permitem escuta ativa e diagnósticos mais precisos.</p>
+                </div>
+                <div class="myth-item">
+                    <div class="myth-label"><span class="icon myth"><i class="fas fa-times-circle"></i></span> MITO</div>
+                    <p>“Cuidado humanizado é menos técnico.”</p>
+                </div>
+                <div class="myth-item">
+                    <div class="myth-label truth"><span class="icon truth"><i class="fas fa-check-circle"></i></span> VERDADE</div>
+                    <p>Humanização e excelência técnica andam juntas. Uma não existe sem a outra.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    DEPOIMENTOS
+    ============================================================ -->
+    <section id="depoimentos">
+        <div class="container">
+            <div class="section-label text-center">Depoimentos</div>
+            <h2 class="section-title text-center">Histórias reais, <span class="highlight">cuidado real</span></h2>
+            <p class="section-desc text-center" style="max-width:480px;">
+                Quem já viveu a experiência Care Story compartilha sua jornada.
+            </p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="quote">“Pela primeira vez me senti verdadeiramente ouvida. A equipe cuidou de mim como pessoa, não como um número.”</div>
+                    <div class="author">Mariana Oliveira <span>· Paciente</span></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="quote">“O processo foi tão claro e acolhedor que minha ansiedade com consultas médicas simplesmente sumiu.”</div>
+                    <div class="author">Carlos Eduardo <span>· Paciente</span></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="quote">“Cuidado que transforma. A Care Story me deu não apenas um diagnóstico, mas um novo olhar sobre minha saúde.”</div>
+                    <div class="author">Fernanda Lima <span>· Paciente</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FAQ
+    ============================================================ -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-label text-center">Dúvidas</div>
+            <h2 class="section-title text-center">Perguntas <span class="highlight">frequentes</span></h2>
+            <p class="section-desc text-center" style="max-width:480px;">
+                Esclarecemos as principais dúvidas para que você se sinta pronto para começar.
+            </p>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Como funciona o primeiro atendimento?</span>
+                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        O primeiro atendimento é uma conversa acolhedora para entender sua história, suas necessidades e construir juntos um plano de cuidado personalizado.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Vocês atendem convênios?</span>
+                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        Sim, trabalhamos com os principais convênios e também atendemos particulares com valores acessíveis e transparentes.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Como posso agendar uma consulta?</span>
+                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        Você pode agendar pelo formulário abaixo, pelo WhatsApp ou telefone. Nossa equipe retorna em até 2 horas úteis.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>O atendimento é presencial ou online?</span>
+                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        Oferecemos ambas as modalidades. Você pode escolher o que for mais confortável para você.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Preciso de encaminhamento para marcar?</span>
+                        <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+                    <div class="faq-answer">
+                        Não. Você pode agendar diretamente com a especialidade desejada. Nossa equipe faz a triagem para direcionar corretamente.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CTA FINAL
+    ============================================================ -->
+    <section id="cta-final">
+        <div class="container">
+            <div class="section-label text-center">Comece sua história</div>
+            <h2 class="section-title text-center">Pronto para <span class="highlight">cuidar</span> de você?</h2>
+            <p class="section-desc text-center" style="max-width:480px;">
+                Agende sua consulta e comece uma jornada de cuidado que faz a diferença.
+            </p>
+
+            <div class="cta-grid">
+                <div class="cta-info">
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="text">
+                            <strong>Telefone</strong>
+                            <span>(11) 3456-7890</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="text">
+                            <strong>WhatsApp</strong>
+                            <span>(11) 98765-4321</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div class="text">
+                            <strong>E-mail</strong>
+                            <span>contato@carestory.com</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="text">
+                            <strong>Endereço</strong>
+                            <span>Rua das Histórias, 150 · São Paulo, SP</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-clock"></i></div>
+                        <div class="text">
+                            <strong>Horário</strong>
+                            <span>Seg–Sex: 8h–20h · Sáb: 8h–14h</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/5511987654321?text=Olá%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn-whatsapp btn-whatsapp-dark">
+                        <i class="fab fa-whatsapp"></i> Falar agora no WhatsApp
+                    </a>
+                </div>
+
+                <div class="cta-form">
+                    <div class="form-title"><i class="fas fa-pen-fancy"></i> Vamos conversar?</div>
+                    <form onsubmit="event.preventDefault(); alert('✅ Mensagem enviada! Entraremos em contato em breve para cuidar de você.');">
+                        <div class="form-group">
+                            <label for="nome">Seu nome</label>
+                            <input type="text" id="nome" placeholder="Seu nome completo" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" placeholder="(11) 99999-9999" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" placeholder="seu@email.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="especialidade">Especialidade desejada</label>
+                            <select id="especialidade">
+                                <option value="">Selecione...</option>
+                                <option>Clínica Geral</option>
+                                <option>Cardiologia</option>
+                                <option>Ginecologia</option>
+                                <option>Ortopedia</option>
+                                <option>Psicologia</option>
+                                <option>Nutrição</option>
+                                <option>Dermatologia</option>
+                                <option>Pediatria</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mensagem">Como podemos ajudar?</label>
+                            <textarea id="mensagem" placeholder="Compartilhe o que você gostaria de cuidar..."></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">
+                            <i class="fas fa-heart"></i> Quero cuidar de mim
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    RODAPÉ
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-text">
+                &copy; 2026 Care Story · Todos os direitos reservados.
+                <br />
+                <a href="#hero">Início</a> · <a href="#problema">Nossa História</a> · <a href="#cta-final">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // MOBILE TOGGLE
+            // ============================================================
+            const toggleBtn = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = navMenu.querySelectorAll('a');
+
+            toggleBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('open');
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('open');
+                    const icon = toggleBtn.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                });
+            });
+
+            // ============================================================
+            // SCROLL SPY — active link
+            // ============================================================
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = navLinks;
+
+            function updateActiveLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 90;
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            window.addEventListener('load', updateActiveLink);
+
+            // ============================================================
+            // SMOOTH SCROLL
+            // ============================================================
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // ============================================================
+            // FAQ ACCORDION
+            // ============================================================
+            window.toggleFaq = function(button) {
+                const answer = button.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+
+                // Fecha todos os outros
+                document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('open'));
+                document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('open'));
+
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    button.classList.add('open');
+                }
+            };
+
+            // ============================================================
+            // KEYBOARD SHORTCUTS (1-6)
+            // ============================================================
+            document.addEventListener('keydown', (e) => {
+                const num = parseInt(e.key);
+                if (num >= 1 && num <= 6) {
+                    const ids = ['hero', 'problema', 'processo', 'especialidades', 'depoimentos', 'cta-final'];
+                    const target = document.getElementById(ids[num - 1]);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+
+            console.log('📖 Care Story Landing — carregada com sucesso.');
+            console.log('📌 Use as teclas 1-6 para navegar pelas seções.');
+
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ateliê Negro · Portfólio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&display=swap" rel="stylesheet" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #f7f5f2;
+            --warm-gray: #d4cfc8;
+            --gold: #c9a959;
+            --gold-light: #e3d4b0;
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', sans-serif;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--black);
+            color: var(--white);
+            font-family: var(--font-sans);
+            font-weight: 300;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== TIPOGRAFIA ===== */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-family: var(--font-sans);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .gold {
+            color: var(--gold);
+        }
+
+        /* ===== HEADER / NAV ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(201, 169, 89, 0.15);
+            transition: var(--transition);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+        .logo span {
+            color: var(--gold);
+        }
+
+        nav {
+            display: flex;
+            gap: 32px;
+        }
+        nav a {
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--warm-gray);
+            transition: var(--transition);
+            position: relative;
+        }
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+        nav a:hover {
+            color: var(--white);
+        }
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            padding: 100px 0 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ===== HERO ===== */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            background: radial-gradient(circle at 30% 40%, #1a1816, var(--black) 70%);
+            position: relative;
+            border-bottom: 1px solid rgba(201, 169, 89, 0.1);
+        }
+
+        #hero .hero-content {
+            max-width: 820px;
+        }
+
+        #hero .hero-sub {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        #hero h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+        }
+        #hero h1 .gold {
+            display: block;
+        }
+
+        #hero p {
+            font-size: 1.2rem;
+            color: var(--warm-gray);
+            max-width: 540px;
+            margin: 0 auto 2.5rem;
+            font-weight: 300;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 14px 40px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: var(--transition);
+            background: transparent;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        /* ===== MANIFESTO / SOBRE ===== */
+        #sobre {
+            background: var(--black);
+            border-bottom: 1px solid rgba(201, 169, 89, 0.05);
+        }
+        #sobre .container {
+            max-width: 900px;
+        }
+        #sobre h2 {
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            margin-bottom: 2rem;
+        }
+        #sobre p {
+            font-size: 1.15rem;
+            color: var(--warm-gray);
+            margin-bottom: 1.8rem;
+            max-width: 700px;
+        }
+        #sobre .assinatura {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* ===== PROJETOS ===== */
+        #projetos {
+            background: #0d0d0d;
+            border-bottom: 1px solid rgba(201, 169, 89, 0.05);
+        }
+        #projetos .container {
+            max-width: 1100px;
+        }
+        .section-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            margin-bottom: 3rem;
+        }
+
+        .projeto-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .projeto-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding-bottom: 60px;
+        }
+        .projeto-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .projeto-imagem {
+            background: #1c1a18;
+            aspect-ratio: 16 / 9;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--warm-gray);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid rgba(201, 169, 89, 0.1);
+            transition: var(--transition);
+        }
+        .projeto-imagem:hover {
+            border-color: var(--gold);
+        }
+
+        .projeto-info h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .projeto-info .categoria {
+            font-size: 0.75rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+        .projeto-info p {
+            color: var(--warm-gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+        .projeto-info .metricas {
+            display: flex;
+            gap: 24px;
+            font-size: 0.85rem;
+            color: var(--warm-gray);
+        }
+        .projeto-info .metricas span {
+            display: block;
+            font-weight: 400;
+        }
+        .projeto-info .metricas strong {
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .link-projeto {
+            display: inline-block;
+            margin-top: 1.2rem;
+            color: var(--gold);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 4px;
+            transition: var(--transition);
+        }
+        .link-projeto:hover {
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        /* ===== PROCESSO ===== */
+        #processo {
+            background: var(--black);
+            border-bottom: 1px solid rgba(201, 169, 89, 0.05);
+        }
+        #processo .container {
+            max-width: 1000px;
+        }
+        .processo-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 2rem;
+        }
+        .processo-card {
+            border-top: 2px solid var(--gold);
+            padding-top: 1.5rem;
+        }
+        .processo-card .numero {
+            font-family: var(--font-serif);
+            font-size: 2.4rem;
+            color: var(--gold);
+            opacity: 0.6;
+            margin-bottom: 0.25rem;
+        }
+        .processo-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+        .processo-card p {
+            color: var(--warm-gray);
+            font-size: 0.95rem;
+        }
+
+        /* ===== SERVIÇOS ===== */
+        #servicos {
+            background: #0d0d0d;
+            border-bottom: 1px solid rgba(201, 169, 89, 0.05);
+        }
+        #servicos .container {
+            max-width: 1000px;
+        }
+        .servicos-lista {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px 50px;
+            margin-top: 2rem;
+        }
+        .servico-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            padding-bottom: 1rem;
+        }
+        .servico-item h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .servico-item p {
+            color: var(--warm-gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        #depoimentos {
+            background: var(--black);
+            border-bottom: 1px solid rgba(201, 169, 89, 0.05);
+        }
+        #depoimentos .container {
+            max-width: 900px;
+        }
+        .depoimento {
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .depoimento blockquote {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-style: italic;
+            color: var(--warm-gray);
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+        .depoimento .autor {
+            font-size: 0.9rem;
+            color: var(--gold);
+            letter-spacing: 0.05em;
+        }
+        .depoimento .cargo {
+            font-size: 0.75rem;
+            color: var(--warm-gray);
+        }
+
+        /* ===== CONTATO ===== */
+        #contato {
+            background: #0d0d0d;
+            min-height: 60vh;
+        }
+        #contato .container {
+            max-width: 800px;
+            text-align: center;
+        }
+        #contato h2 {
+            font-size: clamp(2.6rem, 6vw, 4rem);
+            margin-bottom: 1.5rem;
+        }
+        #contato p {
+            color: var(--warm-gray);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+        .contato-email {
+            font-size: 1.6rem;
+            font-family: var(--font-serif);
+            color: var(--gold);
+            border-bottom: 1px solid var(--gold);
+            display: inline-block;
+            padding-bottom: 6px;
+            transition: var(--transition);
+        }
+        .contato-email:hover {
+            color: var(--white);
+            border-color: var(--white);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            padding: 40px 0;
+            border-top: 1px solid rgba(201, 169, 89, 0.05);
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--warm-gray);
+            letter-spacing: 0.04em;
+        }
+        footer .gold {
+            color: var(--gold);
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 1024px) {
+            .projeto-item {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding-bottom: 40px;
+            }
+            .projeto-imagem {
+                aspect-ratio: 16 / 10;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 12px;
+            }
+            nav {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            nav a {
+                font-size: 0.7rem;
+            }
+
+            section {
+                padding: 80px 0 60px;
+                min-height: auto;
+            }
+            #hero {
+                min-height: 100vh;
+                padding: 140px 24px 60px;
+            }
+            #hero h1 {
+                font-size: clamp(2.8rem, 12vw, 4rem);
+            }
+
+            .processo-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .servicos-lista {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .depoimento blockquote {
+                font-size: 1.4rem;
+            }
+            .contato-email {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            .projeto-info h3 {
+                font-size: 1.6rem;
+            }
+            #sobre p {
+                font-size: 1rem;
+            }
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-light);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">Ateliê <span>Negro</span></div>
+            <nav>
+                <a href="#projetos">Trabalho</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#processo">Processo</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-content">
+            <div class="hero-sub">Design · Identidade · Estratégia</div>
+            <h1>
+                Criamos <br />
+                <span class="gold">presença</span>
+            </h1>
+            <p>
+                Ateliê Negro é um estúdio de design e desenvolvimento focado em
+                posicionamento premium. Projetos que contam histórias, com
+                silêncio visual e alma editorial.
+            </p>
+            <a href="#projetos" class="btn-outline">Ver trabalhos</a>
+        </div>
+    </section>
+
+    <!-- SOBRE / MANIFESTO -->
+    <section id="sobre">
+        <div class="container">
+            <span class="subtitle">Manifesto</span>
+            <h2>Design como <span class="gold">autoridade</span></h2>
+            <p>
+                Não acreditamos em excesso. Acreditamos na força do essencial,
+                na tipografia que respira e no espaço que convida à contemplação.
+                Cada projeto é tratado como uma peça de autor — onde a estética
+                é estratégica e cada detalhe comunica valor.
+            </p>
+            <p>
+                Atendemos marcas e profissionais que entendem que investir em
+                design é investir em percepção. Nosso trabalho não é sobre
+                agradar, é sobre posicionar.
+            </p>
+            <div class="assinatura">— Ateliê Negro</div>
+        </div>
+    </section>
+
+    <!-- PROJETOS -->
+    <section id="projetos">
+        <div class="container">
+            <span class="section-label">Seleção</span>
+            <h2 class="section-title">Projetos <span class="gold">recentes</span></h2>
+
+            <div class="projeto-grid">
+
+                <div class="projeto-item fade-in">
+                    <div class="projeto-imagem">
+                        <span>Identidade visual · Studio A</span>
+                    </div>
+                    <div class="projeto-info">
+                        <span class="categoria">Branding</span>
+                        <h3>Studio A</h3>
+                        <p>
+                            Rebranding completo para um estúdio de arquitetura
+                            boutique. Do naming à identidade visual, com foco em
+                            minimalismo tátil e materialidade.
+                        </p>
+                        <div class="metricas">
+                            <span><strong>+32%</strong> engajamento</span>
+                            <span><strong>12</strong> prêmios</span>
+                        </div>
+                        <a href="#" class="link-projeto">Ver estudo →</a>
+                    </div>
+                </div>
+
+                <div class="projeto-item fade-in">
+                    <div class="projeto-imagem">
+                        <span>E-commerce · Objetos</span>
+                    </div>
+                    <div class="projeto-info">
+                        <span class="categoria">UX/UI + Front-end</span>
+                        <h3>Objetos</h3>
+                        <p>
+                            Loja virtual para uma marca de mobiliário autoral.
+                            Experiência de compra fluida, com ênfase em
+                            narrativa visual e curadoria digital.
+                        </p>
+                        <div class="metricas">
+                            <span><strong>+48%</strong> conversão</span>
+                            <span><strong>3.2s</strong> tempo médio</span>
+                        </div>
+                        <a href="#" class="link-projeto">Ver estudo →</a>
+                    </div>
+                </div>
+
+                <div class="projeto-item fade-in">
+                    <div class="projeto-imagem">
+                        <span>Editorial · Revista N</span>
+                    </div>
+                    <div class="projeto-info">
+                        <span class="categoria">Design editorial</span>
+                        <h3>Revista N</h3>
+                        <p>
+                            Projeto gráfico e diagramação para uma revista
+                            independente de cultura e tendências. Uso de
+                            grid expressivo e tipografia contrastante.
+                        </p>
+                        <div class="metricas">
+                            <span><strong>5k</strong> tiragem</span>
+                            <span><strong>92%</strong> retenção</span>
+                        </div>
+                        <a href="#" class="link-projeto">Ver estudo →</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESSO -->
+    <section id="processo">
+        <div class="container">
+            <span class="section-label">Como trabalhamos</span>
+            <h2 class="section-title">Processo <span class="gold">criativo</span></h2>
+            <div class="processo-grid">
+                <div class="processo-card fade-in">
+                    <div class="numero">01</div>
+                    <h3>Imersão</h3>
+                    <p>Entendemos o negócio, o mercado e o público. Mapeamos oportunidades e definimos a bússola estratégica do projeto.</p>
+                </div>
+                <div class="processo-card fade-in">
+                    <div class="numero">02</div>
+                    <h3>Concepção</h3>
+                    <p>Exploramos caminhos criativos com liberdade, mas sempre ancorados na funcionalidade e na identidade da marca.</p>
+                </div>
+                <div class="processo-card fade-in">
+                    <div class="numero">03</div>
+                    <h3>Entrega</h3>
+                    <p>Refinamos cada detalhe até que a peça respire autoridade. Entregamos com documentação e guia de aplicação.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos">
+        <div class="container">
+            <span class="section-label">O que oferecemos</span>
+            <h2 class="section-title">Serviços <span class="gold">premium</span></h2>
+            <div class="servicos-lista">
+                <div class="servico-item">
+                    <h3>Branding</h3>
+                    <p>Identidade visual, posicionamento, naming e diretrizes para marcas que querem se destacar.</p>
+                </div>
+                <div class="servico-item">
+                    <h3>UI/UX Design</h3>
+                    <p>Experiências digitais intuitivas e visualmente refinadas, com foco em conversão e usabilidade.</p>
+                </div>
+                <div class="servico-item">
+                    <h3>Front-end</h3>
+                    <p>Desenvolvimento de interfaces responsivas, performáticas e com identidade visual impecável.</p>
+                </div>
+                <div class="servico-item">
+                    <h3>Design Editorial</h3>
+                    <p>Revistas, livros, relatórios e materiais impressos com linguagem gráfica de alto padrão.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos">
+        <div class="container">
+            <span class="section-label">Vozes</span>
+            <h2 class="section-title">O que dizem <span class="gold">sobre nós</span></h2>
+            <div class="depoimento fade-in">
+                <blockquote>
+                    “O Ateliê Negro transformou a percepção da nossa marca.
+                    Cada elemento foi pensado com uma precisão que vai além do estético.”
+                </blockquote>
+                <div class="autor">— Mariana Torres</div>
+                <div class="cargo">CEO, Studio A</div>
+            </div>
+            <div class="depoimento fade-in">
+                <blockquote>
+                    “Um dos processos criativos mais maduros que já vivenciei.
+                    Eles não entregam design, entregam posicionamento.”
+                </blockquote>
+                <div class="autor">— Rafael Siqueira</div>
+                <div class="cargo">Diretor de Marketing, Objetos</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+        <div class="container">
+            <span class="section-label">Vamos conversar</span>
+            <h2>Pronto para <span class="gold">elevar</span> sua presença?</h2>
+            <p>
+                Se você busca um projeto com identidade forte e execução impecável,
+                entre em contato. Atendemos projetos selecionados.
+            </p>
+            <a href="mailto:contato@atelie negro.com" class="contato-email">contato@atelienegro.com</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>© 2026 <span class="gold">Ateliê Negro</span> · Design e estratégia premium</p>
+        </div>
+    </footer>
+
+    <script>
+        // ===== SCROLL REVEAL (fade-in) =====
+        const fadeEls = document.querySelectorAll('.fade-in');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        });
+
+        fadeEls.forEach(el => observer.observe(el));
+
+        // ===== NAVEGAÇÃO SUAVE (já tem scroll-behavior) =====
+        // Adiciona classe active no link do menu conforme scroll
+        const sections = ['hero', 'sobre', 'projetos', 'processo', 'servicos', 'depoimentos', 'contato'];
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = 'hero';
+            sections.forEach(id => {
+                const section = document.getElementById(id);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 100) {
+                        current = id;
+                    }
+                }
+            });
+            navLinks.forEach(link => {
+                link.style.opacity = '0.5';
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.style.opacity = '1';
+                }
+            });
+        });
+
+        // Inicializa com o link correto
+        document.querySelector('nav a[href="#projetos"]').style.opacity = '1';
+
+        // Pequeno ajuste: garantir que o link "Trabalho" fique ativo quando em projetos
+        // (já tratado pelo scroll)
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,2188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Care Portal · Ecossistema digital para sua clínica</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0A2647;
+            --primary-dark: #051525;
+            --primary-light: #1A3A5C;
+            --secondary: #2A9D8F;
+            --secondary-light: #D4F0E8;
+            --teal: #2A9D8F;
+            --teal-light: #E8F5F0;
+            --accent: #F5A623;
+            --accent-light: #FCE4C8;
+            --white: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            --shadow-sm: 0 2px 8px rgba(10, 38, 71, 0.04);
+            --shadow-md: 0 8px 28px rgba(10, 38, 71, 0.07);
+            --shadow-lg: 0 20px 56px rgba(10, 38, 71, 0.10);
+            --shadow-xl: 0 30px 80px rgba(10, 38, 71, 0.14);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-full: 50px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font: 'Inter', sans-serif;
+            --sidebar-width: 260px;
+            --header-height: 64px;
+            --max-width: 1360px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ============================================================
+                   SIDEBAR – navegação única estilo portal
+                   ============================================================ */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--white);
+            border-right: 1px solid var(--gray-200);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow-y: auto;
+            overflow-x: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-header {
+            padding: 20px 20px 16px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        .sidebar-header .logo i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        .sidebar-header .logo span {
+            color: var(--gray-900);
+            font-weight: 300;
+        }
+
+        .sidebar-header .close-sidebar {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: var(--gray-500);
+            cursor: pointer;
+            padding: 4px;
+            margin-left: auto;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 16px 12px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .sidebar-nav .nav-label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--gray-400);
+            padding: 8px 12px 4px;
+        }
+
+        .sidebar-nav .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            transition: var(--transition);
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font);
+            position: relative;
+        }
+
+        .sidebar-nav .nav-item:hover {
+            background: var(--gray-50);
+            color: var(--primary);
+        }
+
+        .sidebar-nav .nav-item.active {
+            background: rgba(42, 157, 143, 0.08);
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .sidebar-nav .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 8px;
+            width: 3px;
+            background: var(--secondary);
+            border-radius: 0 4px 4px 0;
+        }
+
+        .sidebar-nav .nav-item i {
+            width: 20px;
+            text-align: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            color: var(--gray-400);
+        }
+
+        .sidebar-nav .nav-item.active i {
+            color: var(--secondary);
+        }
+
+        .sidebar-nav .nav-item .badge {
+            margin-left: auto;
+            background: var(--secondary-light);
+            color: var(--secondary);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: var(--radius-full);
+        }
+
+        .sidebar-nav .nav-item .badge.warning {
+            background: var(--accent-light);
+            color: #B7791F;
+        }
+
+        .sidebar-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--gray-200);
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer .user-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .sidebar-footer .user-card .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .sidebar-footer .user-card .user-info {
+            font-size: 0.85rem;
+        }
+        .sidebar-footer .user-card .user-info .name {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        .sidebar-footer .user-card .user-info .role {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+        }
+
+        /* ============================================================
+                   MAIN CONTENT
+                   ============================================================ */
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ============================================================
+                   TOP HEADER (mobile toggle)
+                   ============================================================ */
+        .top-header {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: var(--header-height);
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-shrink: 0;
+        }
+
+        .top-header .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--gray-700);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .top-header .logo-mobile {
+            font-weight: 800;
+            font-size: 1rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .top-header .logo-mobile i {
+            color: var(--secondary);
+        }
+
+        .top-header .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .top-header .top-actions .wa-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #25D366;
+            color: var(--white);
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .top-header .top-actions .wa-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============================================================
+                   PAGE SYSTEM
+                   ============================================================ */
+        .page {
+            display: none;
+            animation: pageIn 0.5s ease forwards;
+            padding: 28px 32px 40px;
+            flex: 1;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+                   DASHBOARD – bento grid
+                   ============================================================ */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .dash-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 20px 22px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .dash-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .dash-card .dc-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .dash-card .dc-icon.blue {
+            background: rgba(10, 38, 71, 0.06);
+            color: var(--primary);
+        }
+        .dash-card .dc-icon.teal {
+            background: var(--secondary-light);
+            color: var(--secondary);
+        }
+        .dash-card .dc-icon.gold {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+        .dash-card .dc-icon.purple {
+            background: #EDE4FF;
+            color: #7C3AED;
+        }
+
+        .dash-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 2px;
+        }
+        .dash-card p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+        .dash-card .dc-meta {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .dash-card .dc-meta i {
+            font-size: 0.6rem;
+        }
+
+        /* Bento widgets */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .bento-item {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 22px 24px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .bento-item:hover {
+            border-color: var(--gray-300);
+        }
+
+        .bento-item .bi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .bento-item .bi-header h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .bento-item .bi-header .bi-link {
+            font-size: 0.75rem;
+            color: var(--secondary);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .bento-item .bi-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bento-item .bi-list .bi-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .bento-item .bi-list .bi-item:hover {
+            background: var(--gray-100);
+        }
+        .bento-item .bi-list .bi-item .bi-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .bento-item .bi-list .bi-item .bi-dot.green {
+            background: #22C55E;
+        }
+        .bento-item .bi-list .bi-item .bi-dot.blue {
+            background: var(--primary);
+        }
+        .bento-item .bi-list .bi-item .bi-dot.gold {
+            background: var(--accent);
+        }
+        .bento-item .bi-list .bi-item .bi-dot.gray {
+            background: var(--gray-400);
+        }
+
+        .bento-item .bi-list .bi-item .bi-text {
+            font-size: 0.85rem;
+            color: var(--gray-700);
+        }
+        .bento-item .bi-list .bi-item .bi-text strong {
+            color: var(--gray-900);
+        }
+        .bento-item .bi-list .bi-item .bi-time {
+            margin-left: auto;
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            flex-shrink: 0;
+        }
+
+        /* Quick actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .quick-actions .qa-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 12px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font);
+            color: var(--gray-700);
+        }
+        .quick-actions .qa-btn:hover {
+            background: var(--white);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-2px);
+        }
+        .quick-actions .qa-btn i {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 4px;
+        }
+        .quick-actions .qa-btn span {
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* ============================================================
+                   PAGE: SERVICES
+                   ============================================================ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 22px 20px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+        .service-card .sc-icon {
+            font-size: 1.6rem;
+            color: var(--secondary);
+            margin-bottom: 6px;
+        }
+        .service-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .service-card p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin: 4px 0 8px;
+        }
+        .service-card .sc-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--secondary);
+            background: var(--secondary-light);
+            padding: 2px 12px;
+            border-radius: var(--radius-full);
+        }
+
+        /* ============================================================
+                   PAGE: RETURNS
+                   ============================================================ */
+        .returns-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .return-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 20px 22px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .return-card:hover {
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+        .return-card .rc-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--secondary-light);
+            color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .return-card .rc-info h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .return-card .rc-info p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+        .return-card .rc-status {
+            margin-left: auto;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+        }
+        .return-card .rc-status.done {
+            background: var(--secondary-light);
+            color: var(--secondary);
+        }
+        .return-card .rc-status.pending {
+            background: var(--accent-light);
+            color: #B7791F;
+        }
+        .return-card .rc-status.soon {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        /* ============================================================
+                   PAGE: GUIDANCE / ORIENTAÇÕES
+                   ============================================================ */
+        .guidance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .guidance-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 22px 20px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .guidance-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+        .guidance-card .gc-icon {
+            font-size: 1.4rem;
+            color: var(--secondary);
+            margin-bottom: 6px;
+        }
+        .guidance-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .guidance-card p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin: 4px 0 0;
+        }
+        .guidance-card .gc-badge {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--gray-100);
+            padding: 2px 12px;
+            border-radius: var(--radius-full);
+        }
+
+        /* ============================================================
+                   PAGE: TEAM
+                   ============================================================ */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 22px 16px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .team-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+        .team-card .tc-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--gray-500);
+        }
+        .team-card h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .team-card p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+        .team-card .tc-tag {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--secondary);
+            background: var(--secondary-light);
+            padding: 2px 12px;
+            border-radius: var(--radius-full);
+        }
+
+        /* ============================================================
+                   PAGE: FAQ
+                   ============================================================ */
+        .faq-list {
+            max-width: 820px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .faq-item:hover {
+            border-color: var(--gray-300);
+        }
+        .faq-item.active {
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gray-900);
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font);
+            gap: 12px;
+            transition: var(--transition);
+        }
+        .faq-question:hover {
+            color: var(--secondary);
+        }
+        .faq-question i {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--secondary);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s ease;
+            padding: 0 20px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 20px 20px;
+        }
+        .faq-answer p {
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* ============================================================
+                   PAGE: CONTACT
+                   ============================================================ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+
+        .contact-info .ci-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+        .contact-info .ci-item:hover {
+            border-color: var(--secondary);
+        }
+        .contact-info .ci-item i {
+            font-size: 1rem;
+            color: var(--secondary);
+            width: 22px;
+            text-align: center;
+        }
+        .contact-info .ci-item .ci-text {
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+        .contact-info .ci-item .ci-text strong {
+            color: var(--gray-900);
+        }
+
+        .contact-map {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            background: var(--gray-100);
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 6px;
+            color: var(--gray-400);
+            padding: 24px;
+            margin-top: 10px;
+        }
+        .contact-map i {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            opacity: 0.5;
+        }
+
+        .contact-form {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+        }
+        .contact-form h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .contact-form .form-sub {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 18px;
+        }
+        .contact-form .form-group {
+            margin-bottom: 12px;
+        }
+        .contact-form .form-group input,
+        .contact-form .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.9rem;
+            color: var(--gray-800);
+            background: var(--gray-50);
+            transition: var(--transition);
+            outline: none;
+        }
+        .contact-form .form-group input:focus,
+        .contact-form .form-group textarea:focus {
+            border-color: var(--secondary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.06);
+        }
+        .contact-form .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 12px 28px;
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--secondary);
+            color: var(--white);
+            box-shadow: 0 4px 16px rgba(42, 157, 143, 0.25);
+        }
+        .btn:hover {
+            background: #21867A;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(42, 157, 143, 0.30);
+        }
+        .btn-primary {
+            background: var(--primary);
+            box-shadow: 0 4px 16px rgba(10, 38, 71, 0.20);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ============================================================
+                   SECTION HEADERS
+                   ============================================================ */
+        .section-header {
+            margin-bottom: 24px;
+        }
+
+        .section-header .section-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            background: var(--secondary-light);
+            padding: 3px 14px;
+            border-radius: var(--radius-full);
+            margin-bottom: 4px;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--gray-900);
+            line-height: 1.2;
+        }
+        .section-header h2 span {
+            color: var(--secondary);
+        }
+        .section-header p {
+            font-size: 0.95rem;
+            color: var(--gray-500);
+            max-width: 480px;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+                   FOOTER (interno)
+                   ============================================================ */
+        .page-footer {
+            margin-top: auto;
+            padding: 16px 0 8px;
+            border-top: 1px solid var(--gray-200);
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .returns-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 280px;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-header .close-sidebar {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .top-header {
+                display: flex;
+            }
+
+            .page {
+                padding: 20px 16px 32px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+
+            .dash-card {
+                padding: 16px 18px;
+            }
+
+            .bento-item {
+                padding: 18px 18px;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-header h2 {
+                font-size: 1.4rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+
+            .guidance-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+
+            .returns-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 20px 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .quick-actions .qa-btn {
+                padding: 14px 8px;
+                font-size: 0.7rem;
+            }
+            .quick-actions .qa-btn i {
+                font-size: 1.1rem;
+            }
+
+            .dash-card .dc-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .page {
+                padding: 16px 12px 24px;
+            }
+
+            .top-header {
+                padding: 0 12px;
+            }
+
+            .return-card {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            .return-card .rc-status {
+                margin-left: 0;
+            }
+        }
+
+        /* ============================================================
+                   UTILITY: scrollbar
+                   ============================================================ */
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: 4px;
+        }
+
+        /* ============================================================
+                   REVEAL ANIMATIONS
+                   ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.06s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.12s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.18s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.24s;
+        }
+
+        /* ============================================================
+                   OVERLAY para mobile
+                   ============================================================ */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.20);
+            z-index: 999;
+            backdrop-filter: blur(2px);
+        }
+        .sidebar-overlay.active {
+            display: block;
+        }
+
+        /* ============================================================
+                   WHATSAPP FLOATING
+                   ============================================================ */
+        .wa-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+        }
+        .wa-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25D366;
+            color: var(--white);
+            font-size: 1.6rem;
+            box-shadow: 0 4px 28px rgba(37, 211, 102, 0.35);
+            transition: var(--transition);
+        }
+        .wa-float a:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 48px rgba(37, 211, 102, 0.45);
+        }
+
+        @media (max-width: 768px) {
+            .wa-float {
+                bottom: 16px;
+                right: 16px;
+            }
+            .wa-float a {
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    SIDEBAR OVERLAY (mobile)
+    ============================================================ -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ============================================================
+    SIDEBAR – navegação única estilo portal
+    ============================================================ -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Navegação do portal">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-tooth"></i>
+                Care<span>Portal</span>
+            </div>
+            <button class="close-sidebar" id="closeSidebar" aria-label="Fechar menu">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <span class="nav-label">Principal</span>
+
+            <button class="nav-item active" data-page="dashboard">
+                <i class="fas fa-th-large"></i>
+                Dashboard
+            </button>
+            <button class="nav-item" data-page="services">
+                <i class="fas fa-tooth"></i>
+                Serviços
+            </button>
+            <button class="nav-item" data-page="returns">
+                <i class="fas fa-rotate-left"></i>
+                Retornos
+                <span class="badge warning">3</span>
+            </button>
+            <button class="nav-item" data-page="guidance">
+                <i class="fas fa-lightbulb"></i>
+                Orientações
+            </button>
+
+            <span class="nav-label" style="margin-top:12px;">Conteúdo</span>
+
+            <button class="nav-item" data-page="team">
+                <i class="fas fa-users"></i>
+                Equipe
+            </button>
+            <button class="nav-item" data-page="faq">
+                <i class="fas fa-question-circle"></i>
+                Perguntas Frequentes
+            </button>
+            <button class="nav-item" data-page="contact">
+                <i class="fas fa-envelope"></i>
+                Contato
+            </button>
+
+            <span class="nav-label" style="margin-top:12px;">Ações rápidas</span>
+
+            <button class="nav-item" data-page="schedule" style="background:var(--secondary-light);color:var(--secondary);font-weight:600;margin-top:4px;">
+                <i class="fas fa-calendar-check" style="color:var(--secondary);"></i>
+                Agendar consulta
+                <span class="badge" style="background:var(--secondary);color:var(--white);">+</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="avatar">DR</div>
+                <div class="user-info">
+                    <div class="name">Dra. Renata</div>
+                    <div class="role">Clínica Sorriso &amp; Saúde</div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <div class="main-content">
+
+        <!-- TOP HEADER (mobile) -->
+        <header class="top-header">
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="logo-mobile">
+                <i class="fas fa-tooth"></i>
+                CarePortal
+            </div>
+            <div class="top-actions">
+                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" class="wa-btn" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- ============================================================
+        PAGE: DASHBOARD
+        ============================================================ -->
+        <section class="page active" id="page-dashboard" role="tabpanel">
+
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-home"></i> Visão geral</span>
+                <h2>Bem-vindo ao <span>seu portal</span></h2>
+                <p>Gerencie sua saúde bucal com agilidade e transparência.</p>
+            </div>
+
+            <!-- Dashboard cards -->
+            <div class="dashboard-grid">
+                <div class="dash-card reveal reveal-delay-1" data-page="schedule">
+                    <div class="dc-icon teal"><i class="fas fa-calendar-check"></i></div>
+                    <h4>Agendar consulta</h4>
+                    <p>Marque seu horário em minutos</p>
+                    <div class="dc-meta"><i class="fas fa-arrow-right"></i> Disponível agora</div>
+                </div>
+                <div class="dash-card reveal reveal-delay-2" data-page="returns">
+                    <div class="dc-icon gold"><i class="fas fa-rotate-left"></i></div>
+                    <h4>Retornos pendentes</h4>
+                    <p>3 agendamentos para acompanhamento</p>
+                    <div class="dc-meta"><i class="fas fa-clock"></i> Atualize seu retorno</div>
+                </div>
+                <div class="dash-card reveal reveal-delay-3" data-page="guidance">
+                    <div class="dc-icon blue"><i class="fas fa-lightbulb"></i></div>
+                    <h4>Orientações</h4>
+                    <p>Dicas e cuidados pós-tratamento</p>
+                    <div class="dc-meta"><i class="fas fa-book-open"></i> 4 guias disponíveis</div>
+                </div>
+                <div class="dash-card reveal reveal-delay-4" data-page="services">
+                    <div class="dc-icon purple"><i class="fas fa-tooth"></i></div>
+                    <h4>Serviços</h4>
+                    <p>Conheça nossos tratamentos</p>
+                    <div class="dc-meta"><i class="fas fa-arrow-right"></i> 8 especialidades</div>
+                </div>
+            </div>
+
+            <!-- Bento grid -->
+            <div class="bento-grid">
+                <div class="bento-item reveal reveal-delay-1">
+                    <div class="bi-header">
+                        <h4>📋 Próximos compromissos</h4>
+                        <span class="bi-link" data-page="returns">Ver todos <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                    <div class="bi-list">
+                        <div class="bi-item">
+                            <span class="bi-dot green"></span>
+                            <div class="bi-text"><strong>Limpeza</strong> · Dra. Renata</div>
+                            <span class="bi-time">Hoje, 14:30</span>
+                        </div>
+                        <div class="bi-item">
+                            <span class="bi-dot blue"></span>
+                            <div class="bi-text"><strong>Consulta retorno</strong> · Dr. Carlos</div>
+                            <span class="bi-time">Amanhã, 10:00</span>
+                        </div>
+                        <div class="bi-item">
+                            <span class="bi-dot gold"></span>
+                            <div class="bi-text"><strong>Clareamento</strong> · Dra. Beatriz</div>
+                            <span class="bi-time">Qua, 16:20</span>
+                        </div>
+                        <div class="bi-item">
+                            <span class="bi-dot gray"></span>
+                            <div class="bi-text"><strong>Ortodontia</strong> · Dr. Felipe</div>
+                            <span class="bi-time">Sex, 09:30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-item reveal reveal-delay-2">
+                    <div class="bi-header">
+                        <h4>⚡ Ações rápidas</h4>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="qa-btn" data-page="schedule">
+                            <i class="fas fa-calendar-plus"></i>
+                            <span>Nova consulta</span>
+                        </button>
+                        <button class="qa-btn" data-page="returns">
+                            <i class="fas fa-rotate-left"></i>
+                            <span>Retorno</span>
+                        </button>
+                        <button class="qa-btn" data-page="guidance">
+                            <i class="fas fa-book"></i>
+                            <span>Orientações</span>
+                        </button>
+                        <button class="qa-btn" data-page="contact">
+                            <i class="fas fa-headset"></i>
+                            <span>Suporte</span>
+                        </button>
+                    </div>
+                    <div style="margin-top:14px;padding:12px 16px;background:var(--secondary-light);border-radius:var(--radius-sm);border:1px solid rgba(42,157,143,0.10);">
+                        <p style="font-size:0.8rem;color:var(--gray-700);margin:0;">
+                            <i class="fas fa-info-circle" style="color:var(--secondary);"></i>
+                            <strong>Precisa de ajuda?</strong> Nossa equipe está disponível no WhatsApp.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Care Portal · Todos os direitos reservados.</span>
+                <span>Versão 2.0 · Atualizado em março de 2026</span>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE: SERVICES
+        ============================================================ -->
+        <section class="page" id="page-services" role="tabpanel">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-tooth"></i> Especialidades</span>
+                <h2>Nossos <span>serviços</span></h2>
+                <p>Tratamentos odontológicos com excelência e tecnologia moderna.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="sc-icon"><i class="fas fa-stethoscope"></i></div>
+                    <h4>Avaliação completa</h4>
+                    <p>Diagnóstico preciso com exames clínicos e radiográficos.</p>
+                    <span class="sc-tag">50 min</span>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="sc-icon"><i class="fas fa-spa"></i></div>
+                    <h4>Limpeza &amp; profilaxia</h4>
+                    <p>Remoção de tártaro, polimento e orientação de higiene.</p>
+                    <span class="sc-tag">40 min</span>
+                </div>
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="sc-icon"><i class="fas fa-sun"></i></div>
+                    <h4>Clareamento dental</h4>
+                    <p>Procedimento seguro e eficaz para dentes mais brancos.</p>
+                    <span class="sc-tag">2 sessões</span>
+                </div>
+                <div class="service-card reveal reveal-delay-4">
+                    <div class="sc-icon"><i class="fas fa-crown"></i></div>
+                    <h4>Implantes dentários</h4>
+                    <p>Recuperação estética e funcional com implantes de titânio.</p>
+                    <span class="sc-tag">2-4 meses</span>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="sc-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Ortodontia</h4>
+                    <p>Aparelhos fixos, removíveis e alinhadores transparentes.</p>
+                    <span class="sc-tag">12-24 meses</span>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="sc-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4>Urgência odontológica</h4>
+                    <p>Atendimento rápido para dores e emergências.</p>
+                    <span class="sc-tag">Atendimento imediato</span>
+                </div>
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="sc-icon"><i class="fas fa-baby"></i></div>
+                    <h4>Odontopediatria</h4>
+                    <p>Atendimento lúdico e especializado para crianças.</p>
+                    <span class="sc-tag">30-40 min</span>
+                </div>
+                <div class="service-card reveal reveal-delay-4">
+                    <div class="sc-icon"><i class="fas fa-smile"></i></div>
+                    <h4>Harmonização orofacial</h4>
+                    <p>Equilíbrio estético do sorriso e harmonia facial.</p>
+                    <span class="sc-tag">1-2 sessões</span>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Care Portal · Todos os direitos reservados.</span>
+                <span>Versão 2.0</span>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE: RETURNS
+        ============================================================ -->
+        <section class="page" id="page-returns" role="tabpanel">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-rotate-left"></i> Acompanhamento</span>
+                <h2>Seus <span>retornos</span></h2>
+                <p>Gerencie suas consultas de acompanhamento e mantenha sua saúde bucal em dia.</p>
+            </div>
+
+            <div class="returns-grid">
+                <div class="return-card reveal reveal-delay-1">
+                    <div class="rc-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="rc-info">
+                        <h4>Limpeza de rotina</h4>
+                        <p>Dr. Carlos · 15/04/2026</p>
+                    </div>
+                    <span class="rc-status pending">Pendente</span>
+                </div>
+                <div class="return-card reveal reveal-delay-2">
+                    <div class="rc-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="rc-info">
+                        <h4>Retorno de ortodontia</h4>
+                        <p>Dra. Beatriz · 22/04/2026</p>
+                    </div>
+                    <span class="rc-status soon">Em breve</span>
+                </div>
+                <div class="return-card reveal reveal-delay-3">
+                    <div class="rc-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="rc-info">
+                        <h4>Pós-implante</h4>
+                        <p>Dr. Felipe · 10/05/2026</p>
+                    </div>
+                    <span class="rc-status done">Realizado</span>
+                </div>
+                <div class="return-card reveal reveal-delay-4">
+                    <div class="rc-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div class="rc-info">
+                        <h4>Clareamento - 2ª sessão</h4>
+                        <p>Dra. Renata · 18/04/2026</p>
+                    </div>
+                    <span class="rc-status pending">Pendente</span>
+                </div>
+            </div>
+
+            <div style="margin-top:20px;padding:16px 20px;background:var(--white);border-radius:var(--radius-sm);border:1px solid var(--gray-200);">
+                <p style="font-size:0.85rem;color:var(--gray-600);margin:0;">
+                    <i class="fas fa-info-circle" style="color:var(--secondary);"></i>
+                    Mantenha seus retornos em dia para garantir a eficácia do tratamento.
+                </p>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Care Portal</span>
+                <span>3 retornos pendentes</span>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE: GUIDANCE
+        ============================================================ -->
+        <section class="page" id="page-guidance" role="tabpanel">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-lightbulb"></i> Orientações</span>
+                <h2>Guias e <span>cuidados</span></h2>
+                <p>Informações úteis para cada etapa do seu tratamento odontológico.</p>
+            </div>
+
+            <div class="guidance-grid">
+                <div class="guidance-card reveal reveal-delay-1">
+                    <div class="gc-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h4>Cuidados pós-implante</h4>
+                    <p>Orientações para recuperação após colocação de implantes dentários.</p>
+                    <span class="gc-badge">📄 5 passos</span>
+                </div>
+                <div class="guidance-card reveal reveal-delay-2">
+                    <div class="gc-icon"><i class="fas fa-tooth"></i></div>
+                    <h4>Como escovar os dentes corretamente</h4>
+                    <p>Técnica adequada para prevenir cáries e doenças gengivais.</p>
+                    <span class="gc-badge">🎥 Vídeo + guia</span>
+                </div>
+                <div class="guidance-card reveal reveal-delay-3">
+                    <div class="gc-icon"><i class="fas fa-sun"></i></div>
+                    <h4>Pós-clareamento dental</h4>
+                    <p>Dicas para manter os dentes brancos e evitar sensibilidades.</p>
+                    <span class="gc-badge">📋 Checklist</span>
+                </div>
+                <div class="guidance-card reveal reveal-delay-4">
+                    <div class="gc-icon"><i class="fas fa-baby"></i></div>
+                    <h4>Odontopediatria: preparo infantil</h4>
+                    <p>Como preparar seu filho para a primeira consulta odontológica.</p>
+                    <span class="gc-badge">👶 Guia para pais</span>
+                </div>
+                <div class="guidance-card reveal reveal-delay-1">
+                    <div class="gc-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4>Sinais de alerta</h4>
+                    <p>Quando buscar atendimento odontológico de urgência.</p>
+                    <span class="gc-badge">🚨 Sintomas</span>
+                </div>
+                <div class="guidance-card reveal reveal-delay-2">
+                    <div class="gc-icon"><i class="fas fa-utensils"></i></div>
+                    <h4>Alimentação e saúde bucal</h4>
+                    <p>Alimentos que fortalecem os dentes e previnem problemas.</p>
+                    <span class="gc-badge">🥗 Nutrição</span>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Care Portal</span>
+                <span>6 guias disponíveis</span>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE: TEAM
+        ============================================================ -->
+        <section class="page" id="page-team" role="tabpanel">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-users"></i> Profissionais</span>
+                <h2>Nossa <span>equipe</span></h2>
+                <p>Especialistas dedicados a cuidar do seu sorriso com excelência e humanidade.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card reveal reveal-delay-1">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dra. Renata Lima</h4>
+                    <p>CEO · Implantodontia</p>
+                    <span class="tc-tag">12 anos</span>
+                </div>
+                <div class="team-card reveal reveal-delay-2">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dr. Carlos Mendes</h4>
+                    <p>Ortodontia &amp; Harmonização</p>
+                    <span class="tc-tag">9 anos</span>
+                </div>
+                <div class="team-card reveal reveal-delay-3">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dra. Beatriz Torres</h4>
+                    <p>Odontopediatria</p>
+                    <span class="tc-tag">7 anos</span>
+                </div>
+                <div class="team-card reveal reveal-delay-4">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dr. Felipe Andrade</h4>
+                    <p>Próteses &amp; Estética</p>
+                    <span class="tc-tag">10 anos</span>
+                </div>
+                <div class="team-card reveal reveal-delay-1">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dra. Marina Costa</h4>
+                    <p>Endodontia</p>
+                    <span class="tc-tag">6 anos</span>
+                </div>
+                <div class="team-card reveal reveal-delay-2">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dr. André Oliveira</h4>
+                    <p>Periodontia</p>
+                    <span class="tc-tag">8 anos</span>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Care Portal</span>
+                <span>6 profissionais</span>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE: FAQ
+        ============================================================ -->
+        <section class="page" id="page-faq" role="tabpanel">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-question-circle"></i> Dúvidas</span>
+                <h2>Perguntas <span>frequentes</span></h2>
+                <p>Encontre respostas rápidas para as principais dúvidas.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item active reveal reveal-delay-1">
+                    <button class="faq-question">
+                        <span>Como funciona o agendamento pelo portal?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Você pode agendar sua consulta diretamente pelo portal, clicando em "Agendar consulta" no menu ou nos atalhos. Nossa equipe retorna em até 2 horas para confirmar o horário.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-2">
+                    <button class="faq-question">
+                        <span>Vocês aceitam planos de saúde?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim, trabalhamos com os principais planos odontológicos. Entre em contato para verificar a cobertura do seu plano.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-3">
+                    <button class="faq-question">
+                        <span>Como funciona o retorno pós-tratamento?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Após cada procedimento, agendamos um retorno para avaliar a evolução do tratamento. Você pode gerenciar seus retornos na seção "Retornos" do portal.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-4">
+                    <button class="faq-question">
+                        <span>O que fazer em caso de urgência?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Para urgências, entre em contato pelo telefone (11) 99999-9999 ou pelo WhatsApp. Nossa equipe está disponível para atender emergências.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-1">
+                    <button class="faq-question">
+                        <span>Posso cancelar ou remarcar minha consulta?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim, entre em contato com nossa equipe com até 24h de antecedência para remarcar ou cancelar sua consulta sem custos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Care Portal</span>
+                <span>5 perguntas frequentes</span>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE: CONTACT
+        ============================================================ -->
+        <section class="page" id="page-contact" role="tabpanel">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-envelope"></i> Contato</span>
+                <h2>Fale <span>conosco</span></h2>
+                <p>Estamos disponíveis para tirar dúvidas e agendar sua consulta.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="ci-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="ci-text"><strong>Telefone</strong><br />(11) 99999-9999</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div class="ci-text"><strong>WhatsApp</strong><br />(11) 99999-9999</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="ci-text"><strong>E-mail</strong><br />contato@careportal.com.br</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="ci-text"><strong>Endereço</strong><br />Rua dos Sorrisos, 123 · São Paulo, SP</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="ci-text"><strong>Horário</strong><br />Seg–Sex: 8h–20h · Sáb: 8h–14h</div>
+                    </div>
+
+                    <div class="contact-map">
+                        <i class="fas fa-map"></i>
+                        <span style="font-weight:500;color:var(--gray-600);">📍 Nossa localização</span>
+                        <span style="font-size:0.75rem;color:var(--gray-400);">Clique para abrir no Google Maps</span>
+                        <div style="display:flex;gap:8px;margin-top:4px;">
+                            <a href="#" style="background:var(--primary);color:var(--white);padding:6px 18px;border-radius:50px;font-size:0.7rem;font-weight:600;">Abrir no Maps</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form reveal reveal-delay-2">
+                    <h3>✉️ Envie uma mensagem</h3>
+                    <p class="form-sub">Respondemos em até 2 horas.</p>
+
+                    <form id="contactForm" novalidate>
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu nome" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Seu e-mail" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Telefone (opcional)" />
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Sua mensagem" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-paper-plane"></i> Enviar mensagem
+                        </button>
+                        <p style="font-size:0.7rem;color:var(--gray-400);text-align:center;margin-top:10px;">
+                            <i class="fas fa-lock"></i> Seus dados estão seguros.
+                        </p>
+                    </form>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Care Portal</span>
+                <span>Disponível 24/7 via WhatsApp</span>
+            </div>
+        </section>
+
+        <!-- ============================================================
+        PAGE: SCHEDULE (quick action - compartilha conteúdo com agenda)
+        ============================================================ -->
+        <section class="page" id="page-schedule" role="tabpanel">
+            <div class="section-header">
+                <span class="section-tag"><i class="fas fa-calendar-check"></i> Agendamento</span>
+                <h2>Marque sua <span>consulta</span></h2>
+                <p>Preencha os campos e nossa equipe retorna em até 2 horas.</p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start;">
+                <div style="background:var(--white);border-radius:var(--radius-sm);padding:28px 24px;border:1px solid var(--gray-200);">
+                    <h3 style="font-size:1.1rem;font-weight:700;margin-bottom:4px;">📋 Solicitar agendamento</h3>
+                    <p style="font-size:0.85rem;color:var(--gray-500);margin-bottom:18px;">Agendamento rápido e sem burocracia.</p>
+
+                    <form id="scheduleForm" novalidate>
+                        <div class="form-group" style="margin-bottom:12px;">
+                            <input type="text" placeholder="Seu nome completo" required style="width:100%;padding:12px 16px;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-family:var(--font);font-size:0.9rem;background:var(--gray-50);transition:var(--transition);outline:none;" />
+                        </div>
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                            <div class="form-group" style="margin-bottom:12px;">
+                                <input type="tel" placeholder="Telefone" required style="width:100%;padding:12px 16px;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-family:var(--font);font-size:0.9rem;background:var(--gray-50);transition:var(--transition);outline:none;" />
+                            </div>
+                            <div class="form-group" style="margin-bottom:12px;">
+                                <input type="email" placeholder="E-mail" style="width:100%;padding:12px 16px;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-family:var(--font);font-size:0.9rem;background:var(--gray-50);transition:var(--transition);outline:none;" />
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-bottom:12px;">
+                            <select required style="width:100%;padding:12px 16px;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-family:var(--font);font-size:0.9rem;background:var(--gray-50);transition:var(--transition);outline:none;">
+                                <option value="">Selecione o serviço</option>
+                                <option value="avaliacao">Avaliação completa</option>
+                                <option value="limpeza">Limpeza / Profilaxia</option>
+                                <option value="clareamento">Clareamento dental</option>
+                                <option value="implante">Implante dentário</option>
+                                <option value="ortodontia">Ortodontia</option>
+                                <option value="urgencia">Urgência odontológica</option>
+                                <option value="pediatria">Odontopediatria</option>
+                                <option value="harmonizacao">Harmonização orofacial</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom:12px;">
+                            <textarea placeholder="Observações (opcional)" style="width:100%;padding:12px 16px;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-family:var(--font);font-size:0.9rem;background:var(--gray-50);transition:var(--transition);outline:none;min-height:70px;resize:vertical;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-paper-plane"></i> Solicitar agendamento
+                        </button>
+                        <p style="font-size:0.7rem;color:var(--gray-400);text-align:center;margin-top:10px;">
+                            <i class="fas fa-lock"></i> Seus dados estão seguros.
+                        </p>
+                    </form>
+                </div>
+
+                <div style="display:flex;flex-direction:column;gap:14px;">
+                    <div style="background:var(--white);border-radius:var(--radius-sm);padding:20px 22px;border:1px solid var(--gray-200);">
+                        <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:6px;"><i class="fas fa-clock" style="color:var(--secondary);"></i> Horário de funcionamento</h4>
+                        <p style="font-size:0.9rem;color:var(--gray-600);">Seg–Sex: 8h – 20h<br />Sáb: 8h – 14h</p>
+                    </div>
+                    <div style="background:var(--white);border-radius:var(--radius-sm);padding:20px 22px;border:1px solid var(--gray-200);">
+                        <h4 style="font-size:0.95rem;font-weight:700;margin-bottom:6px;"><i class="fas fa-phone-alt" style="color:var(--secondary);"></i> Contato direto</h4>
+                        <p style="font-size:0.9rem;color:var(--gray-600);">(11) 99999-9999<br /><a href="https://wa.me/5511999999999" target="_blank" style="color:var(--secondary);font-weight:600;">WhatsApp</a></p>
+                    </div>
+                    <div style="background:var(--secondary-light);border-radius:var(--radius-sm);padding:16px 20px;border:1px solid rgba(42,157,143,0.10);">
+                        <p style="font-size:0.85rem;color:var(--gray-700);margin:0;">
+                            <i class="fas fa-info-circle" style="color:var(--secondary);"></i>
+                            <strong>Retorno garantido</strong> em até 2 horas úteis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer">
+                <span>© 2026 Care Portal</span>
+                <span>Agendamento rápido</span>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ============================================================
+    WHATSAPP FLOATING
+    ============================================================ -->
+    <div class="wa-float">
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // PAGE NAVIGATION SYSTEM
+            // ============================================================
+            const pageIds = [
+                'dashboard', 'services', 'returns', 'guidance',
+                'team', 'faq', 'contact', 'schedule'
+            ];
+
+            const pages = {};
+            pageIds.forEach(id => {
+                pages[id] = document.getElementById('page-' + id);
+            });
+
+            const navButtons = document.querySelectorAll('.sidebar-nav .nav-item');
+            const allNavItems = document.querySelectorAll('[data-page]');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            const menuToggle = document.getElementById('menuToggle');
+            const closeSidebar = document.getElementById('closeSidebar');
+
+            let currentPage = 'dashboard';
+
+            function navigateTo(pageId) {
+                if (!pageId || !pages[pageId]) return;
+
+                // Hide all pages
+                Object.keys(pages).forEach(key => {
+                    if (pages[key]) pages[key].classList.remove('active');
+                });
+
+                // Show target
+                pages[pageId].classList.add('active');
+                currentPage = pageId;
+
+                // Update nav items
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.page === pageId) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Close sidebar on mobile
+                closeSidebarMobile();
+
+                // Update URL hash
+                if (pageId === 'dashboard') {
+                    history.pushState(null, '', window.location.pathname);
+                } else {
+                    history.pushState(null, '', '#' + pageId);
+                }
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Trigger reveal animations on new page
+                setTimeout(() => {
+                    const reveals = pages[pageId].querySelectorAll('.reveal');
+                    reveals.forEach(el => {
+                        // Force reflow then add visible
+                        void el.offsetWidth;
+                        el.classList.add('visible');
+                    });
+                }, 100);
+            }
+
+            // Event listeners for all data-page elements
+            allNavItems.forEach(el => {
+                el.addEventListener('click', function(e) {
+                    const page = this.dataset.page;
+                    if (page) {
+                        e.preventDefault();
+                        navigateTo(page);
+                    }
+                });
+            });
+
+            // ============================================================
+            // SIDEBAR TOGGLE (mobile)
+            // ============================================================
+            function openSidebar() {
+                sidebar.classList.add('open');
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeSidebarMobile() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            menuToggle.addEventListener('click', openSidebar);
+            closeSidebar.addEventListener('click', closeSidebarMobile);
+            overlay.addEventListener('click', closeSidebarMobile);
+
+            // Close sidebar on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                    closeSidebarMobile();
+                }
+            });
+
+            // ============================================================
+            // BACK/ FORWARD BROWSER
+            // ============================================================
+            window.addEventListener('popstate', function() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && pages[hash]) {
+                    navigateTo(hash);
+                } else {
+                    navigateTo('dashboard');
+                }
+            });
+
+            // ============================================================
+            // INITIAL LOAD
+            // ============================================================
+            window.addEventListener('DOMContentLoaded', function() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && pages[hash]) {
+                    navigateTo(hash);
+                } else {
+                    navigateTo('dashboard');
+                }
+            });
+
+            // ============================================================
+            // FAQ ACCORDION
+            // ============================================================
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                if (question) {
+                    question.addEventListener('click', function() {
+                        const isActive = item.classList.contains('active');
+                        const parent = item.closest('.faq-list');
+                        if (parent) {
+                            parent.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                        }
+                        if (!isActive) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+
+            // ============================================================
+            // FORMS
+            // ============================================================
+            const scheduleForm = document.getElementById('scheduleForm');
+            if (scheduleForm) {
+                scheduleForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = this.querySelector('button[type="submit"]');
+                    const original = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                    btn.disabled = true;
+
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-check"></i> Solicitação enviada!';
+                        btn.style.background = '#2A9D8F';
+                        this.reset();
+
+                        setTimeout(() => {
+                            btn.innerHTML = original;
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }, 3000);
+                    }, 1500);
+                });
+            }
+
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = this.querySelector('button[type="submit"]');
+                    const original = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                    btn.disabled = true;
+
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-check"></i> Mensagem enviada!';
+                        btn.style.background = '#2A9D8F';
+                        this.reset();
+
+                        setTimeout(() => {
+                            btn.innerHTML = original;
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }, 3000);
+                    }, 1500);
+                });
+            }
+
+            // ============================================================
+            // REVEAL ON SCROLL (Intersection Observer)
+            // ============================================================
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.08,
+                rootMargin: '0px 0px -20px 0px'
+            });
+
+            // Observe all reveals across all pages
+            document.querySelectorAll('.reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // ============================================================
+            // KEYBOARD: close sidebar with Escape
+            // ============================================================
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                    closeSidebarMobile();
+                }
+            });
+
+            console.log('🚀 Care Portal — Website carregado com sucesso!');
+            console.log('📌 Navegação única via sidebar com experiência de portal.');
+
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AutorPolímata – Demo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/layout.css">
+  <link rel="stylesheet" href="../../css/components.css">
+
+  <style>
+    .demo-author {
+      padding: var(--space-6) 0;
+      background: var(--bg);
+    }
+    .demo-author .hero {
+      text-align: center;
+      padding: var(--space-8) 0;
+      background: linear-gradient(135deg, var(--bg), var(--surface));
+    }
+    .demo-author .hero h1 {
+      font-size: 2.8rem;
+      color: var(--text);
+    }
+    .demo-author .hero p {
+      color: var(--muted);
+      font-size: 1.2rem;
+    }
+    .demo-author .section-title {
+      font-size: 1.8rem;
+      margin-bottom: var(--space-4);
+    }
+    .demo-author .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-4);
+    }
+    .demo-author .list-item {
+      background: var(--surface);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      border-left: 4px solid var(--accent-pink);
+    }
+    .demo-author .list-item .date {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .demo-author .list-item .title {
+      font-weight: 600;
+    }
+    .demo-author .list-item .location {
+      color: var(--muted);
+    }
+    .demo-author .social-links {
+      display: flex;
+      gap: var(--space-4);
+      margin-top: var(--space-3);
+    }
+    .demo-author .social-links a {
+      color: var(--muted);
+      padding: var(--space-2) var(--space-4);
+      background: var(--surface);
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      text-decoration: none;
+    }
+    .demo-author .social-links a:hover {
+      color: var(--text);
+      border-color: var(--accent-lime);
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-author">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Carlos Silva</h1>
+        <p>Escritor · Palestrante · Criador de conteúdo</p>
+        <a href="#" class="btn btn-primary" style="margin-top: var(--space-4);">Conheça meu trabalho</a>
+      </div>
+    </section>
+
+    <!-- Livros -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">📚 Livros Publicados</h2>
+        <div id="books-list" class="grid">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Eventos -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <h2 class="section-title">📅 Próximos Eventos</h2>
+        <div id="events-list" style="display:flex;flex-direction:column;gap:var(--space-3);">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">📬 Contato</h2>
+        <div id="contact-info" style="padding:var(--space-4);background:var(--surface);border-radius:var(--radius-md);">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const data = {
+      books: [
+        { title: 'O Poder da Disciplina', synopsis: 'Como a disciplina transforma vidas.', link: '#' },
+        { title: 'Mindset Digital', synopsis: 'Adapte-se à era digital.', link: '#' }
+      ],
+      events: [
+        { title: 'Lançamento do livro "Resiliência"', date: '10/08/2026', location: 'Livraria Cultura' },
+        { title: 'Palestra na Feira do Livro', date: '20/08/2026', location: 'Centro de Convenções' }
+      ],
+      contact: {
+        email: 'carlos@carlossilva.com',
+        social: {
+          instagram: 'https://instagram.com/carlossilva',
+          youtube: 'https://youtube.com/@carlossilva'
+        }
+      }
+    };
+
+    function renderBooks() {
+      const container = document.getElementById('books-list');
+      if (!container) return;
+      container.innerHTML = data.books.map(item => `
+        <div class="card">
+          <h3>${item.title}</h3>
+          <p>${item.synopsis}</p>
+          <a href="${item.link}" class="btn btn-secondary">Comprar</a>
+        </div>
+      `).join('');
+    }
+
+    function renderEvents() {
+      const container = document.getElementById('events-list');
+      if (!container) return;
+      container.innerHTML = data.events.map(item => `
+        <div class="list-item">
+          <div class="date">${item.date}</div>
+          <div class="title">${item.title}</div>
+          <div class="location">${item.location}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderContact() {
+      const container = document.getElementById('contact-info');
+      if (!container) return;
+      container.innerHTML = `
+        <p><strong>Email:</strong> ${data.contact.email}</p>
+        <div class="social-links">
+          ${Object.entries(data.contact.social).map(([key, url]) => `<a href="${url}" target="_blank" rel="noopener">${key.charAt(0).toUpperCase() + key.slice(1)}</a>`).join('')}
+        </div>
+      `;
+    }
+
+    renderBooks();
+    renderEvents();
+    renderContact();
+  </script>
+</body>
+</html>

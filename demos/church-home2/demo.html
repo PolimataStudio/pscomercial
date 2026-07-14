@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Igreja Home 2 – Demo Polímata</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
+
+  <!-- Estilos globais -->
+  <link rel="stylesheet" href="../../css/tokens.css">
+  <link rel="stylesheet" href="../../css/base.css">
+  <link rel="stylesheet" href="../../css/layout.css">
+
+  <!-- Estilos específicos da demo (se houver) -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- Navegação fixa -->
+  <nav class="demo-nav" id="demoNav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">✝ Igreja</a>
+      <ul class="nav-links">
+        <li><a href="#hero">Início</a></li>
+        <li><a href="#sermons">Sermões</a></li>
+        <li><a href="#about">Sobre</a></li>
+        <li><a href="#testimonials">Testemunhos</a></li>
+        <li><a href="#media">Mídia</a></li>
+        <li><a href="#giving">Doar</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Abrir menu" id="navToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="section hero">
+    <div class="hero-bg" style="background-image: url('../../assets/images/rawpixel-769319-unsplash.jpg');"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1 class="hero-title" data-animate>Together we can<br> make a difference</h1>
+      <div class="hero-video" data-animate>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/9uOETcuFjbE" title="Vídeo da igreja" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+      <p class="hero-text" data-animate>Senectus erat sem tincidunt mi duis vehicula, est diam molestie.</p>
+      <a href="#" class="btn btn-primary hero-btn" data-animate onclick="alert('Funcionalidade em demonstração – Junte-se a nós!')">Junte-se a nós</a>
+    </div>
+  </section>
+
+  <!-- SERMÕES -->
+  <section id="sermons" class="section sermons">
+    <div class="container">
+      <h2 class="section-title" data-animate>Nossos Sermões</h2>
+      <div class="sermons-grid" data-animate>
+        <div class="sermon-card">
+          <h3>Senectus erat sem tincidunt.</h3>
+          <p>Senectus erat sem tincidunt mi duis vehicula, est diam molestie. Mauris in ut eget wisi, et mollis bibendum nulla.</p>
+          <a href="#" class="sermon-link" onclick="alert('Demonstração – Assista ao sermão completo.')">Ver sermão</a>
+        </div>
+        <div class="sermon-card">
+          <h3>Lorem ipsum dolor sit amet.</h3>
+          <p>Senectus erat sem tincidunt mi duis vehicula, est diam molestie. Mauris in ut eget wisi, et mollis bibendum nulla.</p>
+          <a href="#" class="sermon-link" onclick="alert('Demonstração – Assista ao sermão completo.')">Ver sermão</a>
+        </div>
+        <!-- ... (mais cards, repetir até 6) ... -->
+        <div class="sermon-card">
+          <h3>Senectus erat sem tincidunt.</h3>
+          <p>Senectus erat sem tincidunt mi duis vehicula, est diam molestie. Mauris in ut eget wisi, et mollis bibendum nulla.</p>
+          <a href="#" class="sermon-link" onclick="alert('Demonstração – Assista ao sermão completo.')">Ver sermão</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section about">
+    <div class="container about-grid">
+      <div class="about-stats">
+        <div class="stat-card" data-animate>
+          <div class="stat-number" data-count="84090">0</div>
+          <span class="stat-suffix">+</span>
+          <span class="stat-label">Arrecadado</span>
+        </div>
+        <div class="stat-card" data-animate>
+          <div class="stat-number" data-count="1245">0</div>
+          <span class="stat-label">Voluntários</span>
+        </div>
+      </div>
+      <div class="about-text" data-animate>
+        <h2>Um lugar para<br>todos</h2>
+        <p>Senectus erat sem tincidunt mi duis vehicula, est diam molestie. Mauris in ut eget wisi, et mollis bibendum nulla, amet malesuada pharetra, cras libero. Urna netus, diam tellus aliquet, morbi est magna augue natoque sed, in nec. Tempus massa accumsan eros non mauris.</p>
+        <ul class="about-list">
+          <li><span class="check">✓</span> Senectus erat sem.</li>
+          <li><span class="check">✓</span> Tempus massa accumsan eros.</li>
+          <li><span class="check">✓</span> Lorem sed, luctus.</li>
+          <li><span class="check">✓</span> Enim commodo vitae.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTEMUNHOS -->
+  <section id="testimonials" class="section testimonials">
+    <div class="container">
+      <h2 class="section-title" data-animate>O que dizem</h2>
+      <div class="testimonial-carousel" data-animate>
+        <div class="testimonial-slide active">
+          <blockquote>“Let us not become weary in doing good, for at the proper time, we will reap a harvest if we do not give up.”</blockquote>
+          <cite>Galatas — <span>6:9</span></cite>
+        </div>
+        <div class="testimonial-slide">
+          <blockquote>“Don’t use foul or abusive language. Let everything you say be good and helpful, so that your words will be an encouragement to those who hear them.”</blockquote>
+          <cite>Efésios — <span>4:29</span></cite>
+        </div>
+        <div class="testimonial-slide">
+          <blockquote>“Be strong and courageous, do not be afraid or tremble at them, for the LORD your God is the one who goes with you.”</blockquote>
+          <cite>Deuteronômio — <span>31:6</span></cite>
+        </div>
+        <div class="testimonial-controls">
+          <button class="prev" aria-label="Anterior">‹</button>
+          <button class="next" aria-label="Próximo">›</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÍDIA -->
+  <section id="media" class="section media">
+    <div class="container">
+      <h2 class="section-title" data-animate>Galeria de Mídia</h2>
+      <div class="media-carousel" data-animate>
+        <div class="media-track">
+          <div class="media-slide"><img src="../../assets/images/ben-white-146947-unsplash.jpg" alt="Imagem 1"></div>
+          <div class="media-slide"><img src="../../assets/images/landscape-nature-man-person.jpg" alt="Imagem 2"></div>
+          <div class="media-slide"><img src="../../assets/images/nicole-honeywill-703542-unsplash.jpg" alt="Imagem 3"></div>
+          <div class="media-slide"><img src="../../assets/images/pexels-photo-977460.jpeg" alt="Imagem 4"></div>
+          <div class="media-slide"><img src="../../assets/images/pexels-photo-1073097.jpeg" alt="Imagem 5"></div>
+        </div>
+        <button class="media-prev" aria-label="Anterior">‹</button>
+        <button class="media-next" aria-label="Próximo">›</button>
+        <div class="media-progress"><span style="width:20%"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GIVING -->
+  <section id="giving" class="section giving">
+    <div class="giving-bg" style="background-image: url('../../assets/images/priscilla-du-preez-172593-unsplash.jpg');"></div>
+    <div class="giving-overlay"></div>
+    <div class="container giving-content" data-animate>
+      <h2>ninguém jamais ficou pobre por doar</h2>
+      <p>Senectus erat sem tincidunt mi duis vehicula, est diam molestie. Mauris in ut eget wisi, et mollis bibendum nulla, amet malesuada.</p>
+      <a href="#" class="btn btn-primary" onclick="alert('Demonstração – Obrigado por se envolver!')">Envolva-se agora</a>
+    </div>
+  </section>
+
+  <!-- Rodapé da demo -->
+  <footer class="demo-footer">
+    <div class="container">
+      <p>© 2026 Igreja Home 2 – Todos os direitos reservados.</p>
+      <p>Demonstração para fins ilustrativos.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts da demo -->
+  <script src="js/script.js" defer></script>
+</body>
+</html>

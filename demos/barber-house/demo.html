@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barber House · Barbearia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #1a1a1a;
+            --dark: #2c2c2c;
+            --white: #ffffff;
+            --light-gray: #f5f5f5;
+            --gray: #888888;
+            --warm: #c89b6a;
+            --warm-dark: #b08752;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --radius: 8px;
+            --transition: 0.3s ease;
+            --font: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== TIPOGRAFIA ===== */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.4rem, 6vw, 3.8rem);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 0.5rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            font-weight: 400;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            color: var(--warm);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-1 {
+            margin-bottom: 0.5rem;
+        }
+        .mb-2 {
+            margin-bottom: 1.5rem;
+        }
+        .mb-3 {
+            margin-bottom: 2.5rem;
+        }
+        .mt-2 {
+            margin-top: 1.5rem;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(26, 26, 26, 0.92);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 12px 0;
+            transition: var(--transition);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+        .logo span {
+            color: var(--warm);
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--warm);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--white);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .menu-toggle span {
+            width: 28px;
+            height: 2px;
+            background: var(--white);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ===== HERO ===== */
+        #hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(135deg, var(--black) 0%, #2a2a2a 100%);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            right: -10%;
+            top: -20%;
+            width: 60%;
+            height: 140%;
+            background: radial-gradient(circle at 70% 50%, rgba(200, 155, 106, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        #hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            margin-bottom: 16px;
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 480px;
+            margin-bottom: 28px;
+        }
+
+        .hero-image {
+            background: var(--dark);
+            border-radius: var(--radius);
+            aspect-ratio: 4 / 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="%23333"/><text x="50" y="55" font-family="Inter" font-size="14" fill="%23666" text-anchor="middle">Barbearia</text></svg>');
+            background-size: cover;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--warm);
+            color: var(--white);
+            padding: 14px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background: var(--warm-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(200, 155, 106, 0.3);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            padding: 12px 32px;
+            border: 2px solid var(--warm);
+            border-radius: 50px;
+            color: var(--warm);
+            font-weight: 600;
+            transition: var(--transition);
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background: var(--warm);
+            color: var(--white);
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 28px;
+            margin-top: 24px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .hero-badges i {
+            color: var(--warm);
+            margin-right: 6px;
+        }
+
+        /* ===== SEÇÕES ===== */
+        section {
+            padding: 80px 0;
+        }
+
+        section:nth-child(even) {
+            background: var(--light-gray);
+        }
+
+        /* ===== SOBRE ===== */
+        #sobre .container {
+            max-width: 900px;
+        }
+
+        #sobre p {
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 1.2rem;
+        }
+
+        /* ===== SERVIÇOS ===== */
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .servico-card {
+            background: var(--white);
+            padding: 28px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+        .servico-card:hover {
+            transform: translateY(-6px);
+            border-bottom-color: var(--warm);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+        .servico-card i {
+            font-size: 2.4rem;
+            color: var(--warm);
+            margin-bottom: 12px;
+        }
+        .servico-card h3 {
+            margin-bottom: 4px;
+        }
+        .servico-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* ===== PROFISSIONAIS ===== */
+        .equipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 32px;
+        }
+
+        .profissional-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        .profissional-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+        }
+        .profissional-card .foto {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: var(--light-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 0.8rem;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="%23eaeaea"/><circle cx="50" cy="40" r="20" fill="%23ccc"/><rect x="30" y="70" width="40" height="20" rx="10" fill="%23ccc"/></svg>');
+            background-size: cover;
+        }
+        .profissional-card .info {
+            padding: 16px;
+        }
+        .profissional-card .info h3 {
+            font-size: 1.1rem;
+        }
+        .profissional-card .info .cargo {
+            color: var(--warm);
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .profissional-card .info p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 4px;
+        }
+
+        /* ===== GALERIA ===== */
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .galeria-item {
+            aspect-ratio: 1/1;
+            background: var(--light-gray);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 0.8rem;
+            border: 1px solid #e0e0e0;
+            transition: var(--transition);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="%23f0f0f0"/><text x="50" y="55" font-family="Inter" font-size="12" fill="%23aaa" text-anchor="middle">Foto</text></svg>');
+            background-size: cover;
+        }
+        .galeria-item:hover {
+            transform: scale(1.03);
+            box-shadow: var(--shadow);
+        }
+
+        /* ===== DEPOIMENTOS ===== */
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 32px;
+        }
+
+        .depoimento-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--warm);
+        }
+        .depoimento-card .estrelas {
+            color: #f5b342;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .depoimento-card blockquote {
+            font-style: italic;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .depoimento-card .autor {
+            font-weight: 600;
+        }
+        .depoimento-card .cargo {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* ===== CONTATO ===== */
+        .contato-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 32px;
+        }
+
+        .contato-info p {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .contato-info i {
+            width: 24px;
+            color: var(--warm);
+            font-size: 1.1rem;
+        }
+
+        .contato-form input,
+        .contato-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+        }
+        .contato-form input:focus,
+        .contato-form textarea:focus {
+            outline: none;
+            border-color: var(--warm);
+            box-shadow: 0 0 0 3px rgba(200, 155, 106, 0.15);
+        }
+        .contato-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .contato-form .form-group {
+            margin-bottom: 16px;
+        }
+
+        /* ===== LOCALIZAÇÃO (mapa simulado) ===== */
+        #localizacao .mapa-placeholder {
+            background: var(--light-gray);
+            border-radius: var(--radius);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            border: 1px solid #e0e0e0;
+            margin-top: 24px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><rect width="100" height="100" fill="%23eaeaea"/><circle cx="50" cy="50" r="15" fill="%23c89b6a"/><text x="50" y="75" font-family="Inter" font-size="10" fill="%23999" text-anchor="middle">Rua Exemplo, 123</text></svg>');
+            background-size: cover;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: var(--black);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 40px 0 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        footer .container {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+        footer h4 {
+            color: var(--white);
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+        footer a {
+            color: rgba(255, 255, 255, 0.5);
+            transition: var(--transition);
+        }
+        footer a:hover {
+            color: var(--warm);
+        }
+        footer .social {
+            display: flex;
+            gap: 16px;
+            font-size: 1.2rem;
+        }
+        footer .copy {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            margin-top: 20px;
+        }
+
+        /* ===== RESPONSIVO ===== */
+        @media (max-width: 992px) {
+            #hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin: 0 auto 28px;
+            }
+            .hero-badges {
+                justify-content: center;
+            }
+            .contato-wrapper {
+                grid-template-columns: 1fr;
+            }
+            footer .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+                flex-direction: column;
+                background: var(--black);
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                padding: 20px 24px;
+                gap: 16px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            nav.aberto {
+                display: flex;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .hero-badges {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            .servicos-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .equipe-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .galeria-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            footer .container {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .servicos-grid {
+                grid-template-columns: 1fr;
+            }
+            .equipe-grid {
+                grid-template-columns: 1fr;
+            }
+            .galeria-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="logo">Barber <span>House</span></div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+            <nav id="mainNav">
+                <a href="#hero">Início</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#equipe">Equipe</a>
+                <a href="#galeria">Galeria</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Estilo que <span class="highlight">conversa</span></h1>
+                <p>
+                    Mais que um corte, uma experiência. Na Barber House, cada detalhe é pensado para realçar sua personalidade com excelência e tradição.
+                </p>
+                <div>
+                    <a href="#contato" class="btn-primary">Agende seu horário</a>
+                    <a href="#servicos" class="btn-outline" style="margin-left:12px;">Conheça</a>
+                </div>
+                <div class="hero-badges">
+                    <span><i class="fas fa-check-circle"></i> Aberto hoje</span>
+                    <span><i class="fas fa-clock"></i> 09:00 – 20:00</span>
+                    <span><i class="fas fa-map-pin"></i> Centro</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- imagem ilustrativa -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre">
+        <div class="container text-center">
+            <span class="section-subtitle">Quem somos</span>
+            <h2>Sobre a <span class="highlight">Barber House</span></h2>
+            <p>
+                Fundada em 2015, a Barber House nasceu da paixão por barbearia de qualidade e atendimento personalizado. Aqui, cada cliente é recebido como parte da família, em um ambiente acolhedor e descontraído.
+            </p>
+            <p>
+                Nossa equipe é formada por profissionais experientes que dominam as técnicas clássicas e as tendências mais atuais. Valorizamos a tradição, mas estamos sempre atentos às novidades do mundo da moda masculina.
+            </p>
+            <p>
+                Mais do que um serviço, oferecemos uma pausa no dia a dia – um momento de cuidado e autoestima que faz toda a diferença.
+            </p>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section id="servicos">
+        <div class="container text-center">
+            <span class="section-subtitle">O que oferecemos</span>
+            <h2>Nossos <span class="highlight">serviços</span></h2>
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <i class="fas fa-cut"></i>
+                    <h3>Corte masculino</h3>
+                    <p>Profissional e alinhado ao seu estilo</p>
+                </div>
+                <div class="servico-card">
+                    <i class="fas fa-beard"></i>
+                    <h3>Barba completa</h3>
+                    <p>Modelagem, hidratação e acabamento</p>
+                </div>
+                <div class="servico-card">
+                    <i class="fas fa-hand-sparkles"></i>
+                    <h3>Combo Corte + Barba</h3>
+                    <p>Pacote completo com desconto especial</p>
+                </div>
+                <div class="servico-card">
+                    <i class="fas fa-child"></i>
+                    <h3>Corte infantil</h3>
+                    <p>Atendimento especial para os pequenos</p>
+                </div>
+                <div class="servico-card">
+                    <i class="fas fa-water"></i>
+                    <h3>Lavagem & Acabamento</h3>
+                    <p>Toalha quente e produtos premium</p>
+                </div>
+                <div class="servico-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Tratamento capilar</h3>
+                    <p>Hidratação e revitalização dos fios</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EQUIPE -->
+    <section id="equipe">
+        <div class="container text-center">
+            <span class="section-subtitle">Nossa equipe</span>
+            <h2>Profissionais <span class="highlight">dedicados</span></h2>
+            <div class="equipe-grid">
+                <div class="profissional-card">
+                    <div class="foto"></div>
+                    <div class="info">
+                        <h3>Carlos Mendes</h3>
+                        <span class="cargo">Barbeiro sênior</span>
+                        <p>12 anos de experiência, especialista em cortes clássicos.</p>
+                    </div>
+                </div>
+                <div class="profissional-card">
+                    <div class="foto"></div>
+                    <div class="info">
+                        <h3>Rafael Souza</h3>
+                        <span class="cargo">Barbeiro</span>
+                        <p>Especialista em barba e tendências modernas.</p>
+                    </div>
+                </div>
+                <div class="profissional-card">
+                    <div class="foto"></div>
+                    <div class="info">
+                        <h3>Ana Paula</h3>
+                        <span class="cargo">Barbeira</span>
+                        <p>Atendimento feminino e cortes infantis com maestria.</p>
+                    </div>
+                </div>
+                <div class="profissional-card">
+                    <div class="foto"></div>
+                    <div class="info">
+                        <h3>Lucas Almeida</h3>
+                        <span class="cargo">Barbeiro</span>
+                        <p>Focado em acabamento e técnicas de navalha.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria">
+        <div class="container text-center">
+            <span class="section-subtitle">Ambiente</span>
+            <h2>Galeria <span class="highlight">de fotos</span></h2>
+            <div class="galeria-grid">
+                <div class="galeria-item"></div>
+                <div class="galeria-item"></div>
+                <div class="galeria-item"></div>
+                <div class="galeria-item"></div>
+                <div class="galeria-item"></div>
+                <div class="galeria-item"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section id="depoimentos">
+        <div class="container text-center">
+            <span class="section-subtitle">O que dizem</span>
+            <h2>Depoimentos <span class="highlight">reais</span></h2>
+            <div class="depoimentos-grid">
+                <div class="depoimento-card">
+                    <div class="estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Atendimento impecável, ambiente agradável e o melhor corte que já fiz. Recomendo a todos!”</blockquote>
+                    <div class="autor">— João Pereira</div>
+                    <div class="cargo">Cliente há 3 anos</div>
+                </div>
+                <div class="depoimento-card">
+                    <div class="estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“A Barber House é minha segunda casa. Profissionais atenciosos e sempre com sugestões incríveis.”</blockquote>
+                    <div class="autor">— Marcos Silva</div>
+                    <div class="cargo">Cliente semanal</div>
+                </div>
+                <div class="depoimento-card">
+                    <div class="estrelas"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Levei meu filho para o primeiro corte e a equipe foi super paciente e carinhosa. Experiência nota 10.”</blockquote>
+                    <div class="autor">— Fernanda Lima</div>
+                    <div class="cargo">Mãe do Arthur</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato">
+        <div class="container text-center">
+            <span class="section-subtitle">Fale conosco</span>
+            <h2>Entre em <span class="highlight">contato</span></h2>
+            <div class="contato-wrapper">
+                <div class="contato-info">
+                    <p><i class="fas fa-phone"></i> (11) 91234-5678</p>
+                    <p><i class="fab fa-whatsapp"></i> (11) 91234-5678</p>
+                    <p><i class="fas fa-envelope"></i> contato@barberhouse.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Rua Exemplo, 123 – Centro, São Paulo</p>
+                    <p><i class="fas fa-clock"></i> Seg–Sáb: 09:00 – 20:00</p>
+                    <div style="margin-top:16px;">
+                        <a href="#" class="btn-primary" onclick="window.open('https://wa.me/5511912345678','_blank')">
+                            <i class="fab fa-whatsapp"></i> Fale no WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="contato-form">
+                    <form id="formContato" onsubmit="event.preventDefault(); alert('Mensagem enviada (demonstração)!');">
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu nome" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Seu e-mail" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Telefone (opcional)" />
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Sua mensagem..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width:100%;">Enviar mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOCALIZAÇÃO -->
+    <section id="localizacao">
+        <div class="container text-center">
+            <span class="section-subtitle">Onde estamos</span>
+            <h2>Nossa <span class="highlight">localização</span></h2>
+            <div class="mapa-placeholder">
+                <!-- Mapa simulado -->
+            </div>
+            <p style="margin-top:12px; color:var(--gray);">
+                Rua Exemplo, 123 – Centro, São Paulo – SP
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div>
+                <h4>Barber House</h4>
+                <p style="font-size:0.9rem;">
+                    Tradição e estilo em cada detalhe. Há mais de 10 anos cuidando da sua autoestima.
+                </p>
+                <div class="social">
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4>Navegação</h4>
+                <p><a href="#hero">Início</a></p>
+                <p><a href="#sobre">Sobre</a></p>
+                <p><a href="#servicos">Serviços</a></p>
+                <p><a href="#equipe">Equipe</a></p>
+                <p><a href="#galeria">Galeria</a></p>
+                <p><a href="#contato">Contato</a></p>
+            </div>
+            <div>
+                <h4>Contato</h4>
+                <p><i class="fas fa-phone" style="margin-right:8px;"></i> (11) 91234-5678</p>
+                <p><i class="fab fa-whatsapp" style="margin-right:8px;"></i> (11) 91234-5678</p>
+                <p><i class="fas fa-envelope" style="margin-right:8px;"></i> contato@barberhouse.com</p>
+                <p><i class="fas fa-clock" style="margin-right:8px;"></i> Seg–Sáb 09–20h</p>
+            </div>
+            <div class="copy">
+                &copy; 2026 Barber House – Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+
+        menuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('aberto');
+        });
+
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('aberto');
+            });
+        });
+
+        // Fade-up ao rolar
+        const fadeElements = document.querySelectorAll('.fade-up');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -30px 0px'
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Adiciona classe fade-up a alguns elementos (já estão no HTML)
+        // Para os que não têm, podemos adicionar dinamicamente, mas é opcional
+        // Vamos adicionar aos cards de serviço, equipe, galeria, depoimentos
+        document.querySelectorAll('.servico-card, .profissional-card, .galeria-item, .depoimento-card').forEach(el => {
+            el.classList.add('fade-up');
+        });
+
+        // Forçar verificação após carregamento
+        window.addEventListener('load', () => {
+            // Disparar observer para elementos já visíveis
+            setTimeout(() => {
+                fadeElements.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < window.innerHeight) {
+                        el.classList.add('visible');
+                    }
+                });
+            }, 100);
+        });
+    </script>
+
+</body>
+</html>
