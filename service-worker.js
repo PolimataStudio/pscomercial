@@ -1,12 +1,11 @@
 // service-worker.js
-// Polímata PWA – Cache de recursos estáticos
-// Versão: v4 (PARP 3.0 – escopo dinâmico)
+// Polímata PWA – Cache com stale-while-revalidate para imagens e fontes
+// Versão: v5 (PPF – Performance Foundation)
 
-const CACHE_NAME = 'polimata-v4';
+const CACHE_NAME = 'polimata-v5';
+const BASE = self.location.pathname.replace(/\/[^/]*$/, '/') || '/';
 
-// A base será definida dinamicamente no momento do registro
-// Usamos um caminho relativo para o cache, mas o escopo será definido no registro
-
+// Recursos estáticos a serem cacheados na instalação
 const urlsToCache = [
   // Páginas principais
   './',
@@ -103,21 +102,17 @@ const urlsToCache = [
   './manifest.json'
 ];
 
+// Instalação: cacheia recursos estáticos
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(urlsToCache))
       .catch(err => console.error('[ServiceWorker] Erro ao adicionar ao cache:', err))
   );
+  self.skipWaiting();
 });
 
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
-  );
-});
-
+// Ativação: limpa caches antigos
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -127,5 +122,51 @@ self.addEventListener('activate', event => {
         })
       );
     })
+  );
+  self.clients.claim();
+});
+
+// Interceptação de requisições com estratégia stale-while-revalidate para imagens e fontes
+self.addEventListener('fetch', event => {
+  const request = event.request;
+  const url = new URL(request.url);
+
+  // Estratégia stale-while-revalidate para imagens e fontes
+  if (request.destination === 'image' || request.destination === 'font') {
+    event.respondWith(
+      caches.match(request).then(cachedResponse => {
+        // Se tiver em cache, retorna imediatamente (stale)
+        const fetchPromise = fetch(request).then(networkResponse => {
+          // Atualiza o cache com a resposta da rede (revalidate)
+          if (networkResponse && networkResponse.status === 200) {
+            const clone = networkResponse.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(request, clone);
+            });
+          }
+          return networkResponse;
+        }).catch(() => {
+          // Se falhar, retorna o cache mesmo que esteja vazio (fallback)
+          return cachedResponse;
+        });
+
+        // Se tiver cache, devolve o cache e atualiza em segundo plano
+        if (cachedResponse) {
+          // Inicia a atualização em segundo plano sem bloquear
+          fetchPromise.catch(() => {}); // ignora erros
+          return cachedResponse;
+        } else {
+          // Se não tem cache, espera a rede
+          return fetchPromise;
+        }
+      })
+    );
+    return;
+  }
+
+  // Para os demais recursos (HTML, CSS, JS, etc.) usa cache-first (fallback para rede)
+  event.respondWith(
+    caches.match(request)
+      .then(response => response || fetch(request))
   );
 });
