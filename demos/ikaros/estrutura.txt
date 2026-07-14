@@ -1,0 +1,36 @@
+ikaros-landing/
+├── index.html
+├── manifest.json
+├── service-worker.js
+├── README.md
+├── robots.txt
+├── sitemap.xml
+├── css/
+│   ├── reset.css
+│   ├── variables.css
+│   ├── style.css
+│   ├── layout.css
+│   ├── components.css
+│   ├── animations.css
+│   ├── responsive.css
+│   └── utilities.css
+├── js/
+│   ├── script.js
+│   ├── animations.js
+│   ├── interactions.js
+│   ├── navigation.js
+│   └── effects.js
+├── assets/
+│   ├── images/
+│   │   ├── hero-bg.jpg
+│   │   ├── book-cover.png
+│   │   ├── profile.jpg
+│   │   ├── logos/
+│   │   └── icons/
+│   ├── svg/
+│   │   ├── gear-pattern.svg
+│   │   ├── spiral.svg
+│   │   └── dividers/
+│   └── fonts/
+└── data/
+    └── content.json

@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Guia em 3 passos · Salão Bella · Recuperação capilar</title>
+    <meta name="description" content="Guia em 3 passos para recuperar seu cabelo danificado. Diagnóstico, tratamento e manutenção com a ajuda de profissionais do Salão Bella." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --verde-escuro: #1A6B5A;
+            --verde: #2A8E7A;
+            --verde-claro: #E6F4F0;
+            --verde-pale: #F2FAF7;
+            --azul-suave: #D4E7F0;
+            --azul-claro: #E8F2F7;
+            --cinza-100: #F7F9FA;
+            --cinza-200: #E9EDF0;
+            --cinza-300: #D0D7DD;
+            --cinza-400: #9AA8B5;
+            --cinza-500: #6B7A88;
+            --cinza-600: #4A5A66;
+            --cinza-700: #2E3A44;
+            --cinza-800: #1A242E;
+            --cinza-900: #0E141A;
+            --branco: #FFFFFF;
+            --shadow-sm: 0 1px 4px rgba(26, 107, 90, 0.06);
+            --shadow-md: 0 4px 16px rgba(26, 107, 90, 0.08);
+            --shadow-lg: 0 8px 32px rgba(26, 107, 90, 0.12);
+            --shadow-xl: 0 12px 48px rgba(26, 107, 90, 0.16);
+            --radius: 18px;
+            --radius-sm: 10px;
+            --radius-xs: 6px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --header-h: 64px;
+            --cta-bar-h: 72px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--cinza-100);
+            color: var(--cinza-800);
+            line-height: 1.6;
+            padding-top: var(--header-h);
+            padding-bottom: calc(var(--cta-bar-h) + 16px);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-h);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--cinza-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 100;
+            transition: box-shadow var(--transition);
+        }
+        .header.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--cinza-900);
+            letter-spacing: -0.3px;
+        }
+        .logo .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--verde);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .logo span {
+            color: var(--verde);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+        .nav-links a {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--cinza-500);
+            padding: 6px 12px;
+            border-radius: 40px;
+            transition: all var(--transition);
+        }
+        .nav-links a:hover {
+            background: var(--verde-claro);
+            color: var(--verde-escuro);
+        }
+        .nav-links a.cta-nav {
+            background: var(--verde);
+            color: #fff;
+            padding: 6px 16px;
+        }
+        .nav-links a.cta-nav:hover {
+            background: var(--verde-escuro);
+            transform: scale(0.96);
+        }
+
+        @media (max-width: 580px) {
+            .nav-links a {
+                font-size: 0.65rem;
+                padding: 4px 10px;
+            }
+            .nav-links a.cta-nav {
+                padding: 4px 12px;
+            }
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            padding: 40px 0 32px;
+            background: linear-gradient(165deg, var(--verde-pale) 0%, var(--branco) 80%);
+            border-bottom: 1px solid var(--cinza-200);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--verde-claro);
+            color: var(--verde-escuro);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 50px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--cinza-900);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .hero h1 em {
+            color: var(--verde);
+            font-style: normal;
+        }
+
+        .hero p {
+            font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+            color: var(--cinza-500);
+            max-width: 540px;
+            margin-bottom: 24px;
+            font-weight: 400;
+        }
+
+        .hero .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            color: var(--verde-escuro);
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 12px 28px;
+            border-radius: 60px;
+            border: 1.5px solid var(--verde);
+            transition: all var(--transition);
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .hero .btn-secondary:hover {
+            background: var(--verde-claro);
+            transform: translateY(-2px);
+        }
+
+        .hero .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--verde);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 36px;
+            border-radius: 60px;
+            box-shadow: 0 8px 28px rgba(42, 142, 122, 0.30);
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .hero .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(42, 142, 122, 0.40);
+            background: var(--verde-escuro);
+        }
+        .hero .btn-primary:active {
+            transform: scale(0.96);
+        }
+
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .hero .progress-indicator {
+            margin-top: 20px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--cinza-400);
+            font-weight: 500;
+        }
+        .hero .progress-indicator .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--cinza-300);
+            transition: background var(--transition);
+        }
+        .hero .progress-indicator .dot.active {
+            background: var(--verde);
+        }
+        .hero .progress-indicator .dot.done {
+            background: var(--verde-claro);
+            border: 1px solid var(--verde);
+        }
+
+        /* ============================================================
+           SEÇÕES NUMERADAS (PASSOS)
+           ============================================================ */
+        .section-step {
+            padding: 48px 0;
+            border-bottom: 1px solid var(--cinza-200);
+        }
+        .section-step:last-of-type {
+            border-bottom: none;
+        }
+        .section-step:nth-child(even) {
+            background: var(--branco);
+        }
+        .section-step:nth-child(odd) {
+            background: var(--cinza-100);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font);
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: var(--verde);
+            background: var(--verde-claro);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+
+        .step-title {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            color: var(--cinza-900);
+            letter-spacing: -0.3px;
+            margin-bottom: 6px;
+        }
+        .step-title em {
+            color: var(--verde);
+            font-style: normal;
+        }
+
+        .step-sub {
+            color: var(--cinza-500);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            font-weight: 400;
+        }
+
+        .step-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            align-items: start;
+        }
+        .step-content .text-block p {
+            color: var(--cinza-600);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .step-content .text-block p:last-child {
+            margin-bottom: 0;
+        }
+        .step-content .text-block strong {
+            color: var(--verde-escuro);
+        }
+
+        .step-content .illustration {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            background: var(--verde-claro);
+            aspect-ratio: 4/3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--verde);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--cinza-200);
+            min-height: 180px;
+        }
+        .step-content .illustration img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Checklist interativa (sintomas) */
+        .symptom-checklist {
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--cinza-200);
+            padding: 20px 24px;
+            margin-top: 12px;
+            box-shadow: var(--shadow-sm);
+        }
+        .symptom-checklist h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--cinza-700);
+            margin-bottom: 10px;
+        }
+        .symptom-checklist label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            font-size: 0.88rem;
+            color: var(--cinza-600);
+            cursor: pointer;
+            transition: color var(--transition);
+            border-bottom: 1px solid var(--cinza-200);
+        }
+        .symptom-checklist label:last-child {
+            border-bottom: none;
+        }
+        .symptom-checklist label:hover {
+            color: var(--verde-escuro);
+        }
+        .symptom-checklist input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--verde);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .symptom-checklist .check-result {
+            margin-top: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--cinza-400);
+            text-align: center;
+            padding: 6px;
+            border-radius: var(--radius-xs);
+            background: var(--cinza-100);
+            transition: all var(--transition);
+        }
+        .symptom-checklist .check-result.highlight {
+            background: var(--verde-claro);
+            color: var(--verde-escuro);
+        }
+
+        @media (max-width: 720px) {
+            .step-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .step-content .illustration {
+                aspect-ratio: 16/9;
+                min-height: 140px;
+                order: -1;
+            }
+            .symptom-checklist {
+                padding: 16px;
+            }
+        }
+
+        /* ============================================================
+           AUTORIDADE
+           ============================================================ */
+        .section-authority {
+            padding: 48px 0;
+            background: var(--verde-pale);
+            border-top: 1px solid var(--cinza-200);
+            border-bottom: 1px solid var(--cinza-200);
+        }
+
+        .authority-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .authority-grid .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .authority-grid .badges span {
+            background: var(--branco);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--verde-escuro);
+            border: 1px solid var(--cinza-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .authority-grid .image-wrap {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            aspect-ratio: 4/3;
+            background: var(--cinza-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--verde);
+        }
+        .authority-grid .image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @media (max-width: 640px) {
+            .authority-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .authority-grid .image-wrap {
+                order: -1;
+                aspect-ratio: 16/9;
+            }
+        }
+
+        /* ============================================================
+           OFERTA (CTA principal)
+           ============================================================ */
+        .section-offer {
+            padding: 48px 0;
+            background: linear-gradient(135deg, var(--verde-escuro), var(--verde));
+            color: #fff;
+        }
+        .section-offer .container {
+            text-align: center;
+        }
+        .section-offer h2 {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.3px;
+            margin-bottom: 8px;
+        }
+        .section-offer h2 em {
+            font-style: normal;
+            color: #c4e6d0;
+        }
+        .section-offer p {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 520px;
+            margin: 0 auto 20px;
+            line-height: 1.7;
+        }
+        .section-offer .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            color: var(--verde-escuro);
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 16px 40px;
+            border-radius: 60px;
+            transition: all var(--transition);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            border: none;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .section-offer .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 36px rgba(0, 0, 0, 0.25);
+        }
+        .section-offer .btn-white:active {
+            transform: scale(0.96);
+        }
+        .section-offer .badge-gratis {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 4px 18px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        /* ============================================================
+           DEPOIMENTOS
+           ============================================================ */
+        .section-testimonials {
+            padding: 48px 0;
+            background: var(--branco);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .testimonial-card {
+            background: var(--cinza-100);
+            border-radius: var(--radius-sm);
+            padding: 20px 20px;
+            border: 1px solid var(--cinza-200);
+            transition: all var(--transition);
+        }
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-sm);
+        }
+        .testimonial-card .stars {
+            color: #F5B342;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .testimonial-card blockquote {
+            font-size: 0.9rem;
+            color: var(--cinza-600);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .testimonial-card .author .avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--verde-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--verde-escuro);
+            flex-shrink: 0;
+        }
+        .testimonial-card .author .name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--cinza-800);
+        }
+        .testimonial-card .author .role {
+            font-size: 0.7rem;
+            color: var(--cinza-400);
+            display: block;
+        }
+
+        @media (max-width: 640px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* ============================================================
+           FAQ TÉCNICA
+           ============================================================ */
+        .section-faq {
+            padding: 48px 0;
+            background: var(--cinza-100);
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--cinza-200);
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .faq-item:hover {
+            border-color: var(--verde-claro);
+        }
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--cinza-800);
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font);
+            transition: background var(--transition);
+            touch-action: manipulation;
+        }
+        .faq-question:hover {
+            background: var(--cinza-100);
+        }
+        .faq-question .arrow {
+            font-size: 0.75rem;
+            color: var(--cinza-400);
+            transition: transform var(--transition);
+            flex-shrink: 0;
+            margin-left: 12px;
+        }
+        .faq-item.open .faq-question .arrow {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            padding: 0 18px;
+            color: var(--cinza-500);
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 18px 16px;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            padding: 24px 0 12px;
+            border-top: 1px solid var(--cinza-200);
+            background: var(--branco);
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--cinza-400);
+        }
+        .footer-content .socials {
+            display: flex;
+            gap: 12px;
+        }
+        .footer-content .socials a {
+            color: var(--cinza-400);
+            transition: color var(--transition);
+            font-size: 1.1rem;
+        }
+        .footer-content .socials a:hover {
+            color: var(--verde);
+        }
+
+        /* ============================================================
+           WHATSAPP BAR FIXA
+           ============================================================ */
+        .whatsapp-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--cta-bar-h);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-top: 1px solid var(--cinza-200);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 99;
+        }
+        .whatsapp-bar .btn-whatsapp {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--verde);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 12px 0;
+            border-radius: 60px;
+            box-shadow: 0 4px 20px rgba(42, 142, 122, 0.30);
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .whatsapp-bar .btn-whatsapp:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 28px rgba(42, 142, 122, 0.40);
+        }
+        .whatsapp-bar .btn-whatsapp:active {
+            transform: scale(0.96);
+        }
+        .whatsapp-bar .btn-whatsapp .whatsapp-icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+        .whatsapp-bar .bar-label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--cinza-400);
+            text-align: center;
+            line-height: 1.2;
+            flex-shrink: 0;
+            max-width: 56px;
+        }
+
+        /* ============================================================
+           ANIMAÇÕES
+           ============================================================ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+           UTILITÁRIOS
+           ============================================================ */
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ============================================================
+           RESPONSIVIDADE
+           ============================================================ */
+        @media (max-width: 640px) {
+            .header {
+                padding: 0 16px;
+            }
+            .logo {
+                font-size: 1rem;
+            }
+            .logo .icon {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+            .hero {
+                padding: 24px 0 20px;
+            }
+            .section-step {
+                padding: 32px 0;
+            }
+            .section-authority,
+            .section-offer,
+            .section-testimonials,
+            .section-faq {
+                padding: 32px 0;
+            }
+            .hero .btn-primary {
+                font-size: 0.9rem;
+                padding: 12px 28px;
+            }
+            .hero .btn-secondary {
+                font-size: 0.85rem;
+                padding: 10px 22px;
+            }
+            .section-offer .btn-white {
+                font-size: 0.95rem;
+                padding: 14px 28px;
+            }
+            .whatsapp-bar .btn-whatsapp {
+                font-size: 0.85rem;
+                padding: 10px 0;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .container {
+                padding: 0 14px;
+            }
+            .step-number {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="logo">
+            <span class="icon">✦</span>
+            Salão<span>Bella</span>
+        </div>
+        <nav class="nav-links" aria-label="Navegação">
+            <a href="#passo1">Passo 1</a>
+            <a href="#passo2">Passo 2</a>
+            <a href="#passo3">Passo 3</a>
+            <a href="#oferta" class="cta-nav">Avaliação</a>
+        </nav>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-badge">📘 Guia educacional</div>
+            <h1>Guia em 3 passos para <em>recuperar</em> seu cabelo danificado</h1>
+            <p>Entenda o que está acontecendo com seus fios, descubra o tratamento certo e aprenda a manter os resultados — tudo com o apoio de profissionais.</p>
+            <div class="hero-cta-group">
+                <a href="#passo1" class="btn-secondary">Ver passo 1 →</a>
+                <a href="#oferta" class="btn-primary">Agendar avaliação gratuita</a>
+            </div>
+            <div class="progress-indicator" id="progressHero">
+                <span class="dot active" data-step="1"></span>
+                <span class="dot" data-step="2"></span>
+                <span class="dot" data-step="3"></span>
+                <span style="margin-left:8px;">Passo <span id="currentStepDisplay">1</span> de 3</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PASSO 1 — DIAGNÓSTICO ===== -->
+    <section class="section-step" id="passo1">
+        <div class="container">
+            <div class="step-number">1</div>
+            <h2 class="step-title">Diagnóstico: <em>identifique</em> o nível de dano</h2>
+            <p class="step-sub">Entenda os sinais que seu cabelo está dando e descubra a causa raiz do problema.</p>
+            <div class="step-content">
+                <div class="text-block">
+                    <p><strong>🔍 O que observar:</strong> Cabelos quebradiços, pontas duplas, frizz excessivo, falta de brilho e elasticidade reduzida são os principais indicadores de danos.</p>
+                    <p><strong>⚡ Causas comuns:</strong> Uso frequente de secador/ chapinha, químicas agressivas (descoloração, progressiva), exposição solar sem proteção e falta de hidratação regular.</p>
+                    <p><strong>📊 Níveis de dano:</strong> Identificar se o dano é <strong>superficial</strong> (cutícula aberta), <strong>médio</strong> (córtex comprometido) ou <strong>profundo</strong> (perda de massa capilar) ajuda a escolher o tratamento ideal.</p>
+
+                    <!-- Checklist interativa -->
+                    <div class="symptom-checklist" id="checklist">
+                        <h4>✋ Marque os sintomas que você reconhece:</h4>
+                        <label>
+                            <input type="checkbox" data-symptom="frizz" />
+                            Frizz constante e difícil de controlar
+                        </label>
+                        <label>
+                            <input type="checkbox" data-symptom="pontas" />
+                            Pontas duplas ou quebradiças
+                        </label>
+                        <label>
+                            <input type="checkbox" data-symptom="brilho" />
+                            Falta de brilho e aparência opaca
+                        </label>
+                        <label>
+                            <input type="checkbox" data-symptom="elasticidade" />
+                            Fios que esticam e não voltam ao normal
+                        </label>
+                        <label>
+                            <input type="checkbox" data-symptom="queda" />
+                            Queda excessiva ou afinamento
+                        </label>
+                        <div class="check-result" id="checkResult">Selecione os sintomas para uma análise preliminar.</div>
+                    </div>
+                </div>
+                <div class="illustration">
+                    <span style="font-size:3rem;">🔬</span>
+                    <!-- imagem ilustrativa: poderia ser substituída por <img> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PASSO 2 — TRATAMENTO ===== -->
+    <section class="section-step" id="passo2" style="background:var(--branco);">
+        <div class="container">
+            <div class="step-number">2</div>
+            <h2 class="step-title">Tratamento correto: <em>como</em> restaurar os fios</h2>
+            <p class="step-sub">Conheça as abordagens que realmente funcionam, os mitos que atrapalham e como o Salão Bella aplica cada técnica.</p>
+            <div class="step-content">
+                <div class="text-block">
+                    <p><strong>💧 Hidratação profunda:</strong> Repõe a água perdida e devolve a elasticidade. No salão, usamos máscaras com ativos de alta penetração.</p>
+                    <p><strong>🧬 Reconstrução capilar:</strong> Repara a estrutura interna com queratina e aminoácidos. Essencial para cabelos muito danificados.</p>
+                    <p><strong>🌿 Nutrição:</strong> Óleos vegetais e manteigas restauram a camada lipídica, selando a cutícula e devolvendo o brilho.</p>
+                    <p><strong>🚫 Mitos comuns:</strong> "Cortar resolve tudo" — verdade parcial. O corte elimina pontas, mas a estrutura interna precisa ser tratada. "Produto caro é sempre melhor" — o que importa é a combinação certa para seu caso.</p>
+                    <p style="background:var(--verde-claro); padding:12px 16px; border-radius:var(--radius-xs); margin-top:8px;">
+                        💡 No Salão Bella, fazemos uma <strong>análise personalizada</strong> para definir o protocolo exato para seu cabelo.
+                    </p>
+                </div>
+                <div class="illustration">
+                    <span style="font-size:3rem;">💆‍♀️</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PASSO 3 — MANUTENÇÃO ===== -->
+    <section class="section-step" id="passo3">
+        <div class="container">
+            <div class="step-number">3</div>
+            <h2 class="step-title">Manutenção em casa: <em>checklist</em> para manter os resultados</h2>
+            <p class="step-sub">Pequenos hábitos diários que prolongam o efeito do tratamento e mantêm seu cabelo saudável.</p>
+            <div class="step-content">
+                <div class="text-block">
+                    <p><strong>🧴 Produtos certos:</strong> Use shampoo e condicionador adequados ao seu tipo de cabelo. Prefira linhas com pH balanceado e sem sulfatos agressivos.</p>
+                    <p><strong>🌡️ Proteção térmica:</strong> Sempre aplique um protetor térmico antes de usar secador, chapinha ou babyliss.</p>
+                    <p><strong>💤 Cuidado noturno:</strong> Fronhas de cetim ou seda reduzem o atrito e evitam a quebra dos fios durante o sono.</p>
+                    <p><strong>📅 Cronograma capilar:</strong> Alterne entre hidratação, nutrição e reconstrução conforme a necessidade do seu cabelo.</p>
+                    <p><strong>✂️ Manutenção regular:</strong> Corte as pontas a cada 2–3 meses para evitar que o dano se espalhe.</p>
+                </div>
+                <div class="illustration">
+                    <span style="font-size:3rem;">✨</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== AUTORIDADE ===== -->
+    <section class="section-authority" id="autoridade">
+        <div class="container">
+            <div class="authority-grid">
+                <div>
+                    <span style="font-size:0.75rem; font-weight:700; color:var(--verde); letter-spacing:1px; text-transform:uppercase;">Autoridade</span>
+                    <h2 style="font-size:clamp(1.3rem, 2.5vw, 1.8rem); font-weight:800; color:var(--cinza-900); margin:4px 0 8px;">
+                        Por que o <em>Salão Bella</em> é referência?
+                    </h2>
+                    <p style="color:var(--cinza-600); font-size:0.95rem; line-height:1.8;">
+                        Somos especialistas em recuperação capilar com <strong>mais de 6 anos de experiência</strong> e uma equipe
+                        constantemente atualizada em técnicas avançadas de tratamento. Nossa abordagem combina ciência e cuidado
+                        personalizado — cada cliente recebe um protocolo único, baseado em uma análise detalhada.
+                    </p>
+                    <p style="color:var(--cinza-600); font-size:0.95rem; line-height:1.8; margin-top:8px;">
+                        <strong>🧑‍🏫 Formação contínua:</strong> Nossos profissionais participam de workshops e cursos com
+                        referências nacionais em tricologia e cosmetologia capilar.
+                    </p>
+                    <div class="badges">
+                        <span>🏆 6 anos de experiência</span>
+                        <span>🧬 Especialistas em reconstrução</span>
+                        <span>📜 Certificação em tricologia</span>
+                    </div>
+                </div>
+                <div class="image-wrap">
+                    <span style="font-size:2.8rem;">👩‍⚕️</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OFERTA (CTA PRINCIPAL) ===== -->
+    <section class="section-offer" id="oferta">
+        <div class="container">
+            <span class="badge-gratis">🎯 Sem compromisso</span>
+            <h2>Agende uma <em>avaliação gratuita</em> do seu cabelo</h2>
+            <p>
+                Descubra exatamente o que seu cabelo precisa com uma análise feita por nossos especialistas.
+                Você receberá um diagnóstico completo e um plano de tratamento personalizado.
+            </p>
+            <button class="btn-white" onclick="window.open('https://wa.me/5511999999999?text=Olá!%20Quero%20agendar%20minha%20avaliação%20gratuita%20no%20Salão%20Bella.', '_blank')">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#25D366" style="flex-shrink:0;"><path d="M12.032 21.965c-1.917 0-3.775-.563-5.378-1.62l-4.65 1.524 1.552-4.525a9.923 9.923 0 0 1-1.708-5.54c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm0-18.5c-4.687 0-8.5 3.813-8.5 8.5 0 1.714.51 3.363 1.475 4.75l-.967 2.82 2.917-.956a8.48 8.48 0 0 0 5.075 1.68c4.687 0 8.5-3.813 8.5-8.5s-3.813-8.5-8.5-8.5zm4.932 10.557c-.288-.144-1.703-.84-1.967-.936-.264-.096-.456-.144-.647.144s-.742.936-.91 1.128-.335.216-.623.072c-.288-.144-1.217-.448-2.318-1.428-.857-.764-1.436-1.707-1.603-1.996-.168-.288-.018-.444.126-.587.13-.13.288-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504s-.623-1.5-.853-2.054c-.225-.54-.454-.447-.623-.456-.168-.008-.36-.008-.552-.008s-.504.072-.768.36c-.264.288-1.008.984-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.03 3.096 4.915 4.34 2.885 1.244 2.885.828 3.406.776.521-.052 1.68-.686 1.916-1.348.236-.662.236-1.23.168-1.348-.072-.12-.264-.192-.552-.336z"/></svg>
+                Agendar avaliação gratuita
+            </button>
+            <p style="font-size:0.8rem; opacity:0.7; margin-top:12px;">
+                ⏱️ Análise detalhada · 🔒 Sem compromisso · 💚 Profissionais qualificados
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section class="section-testimonials" id="depoimentos">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:24px;">
+                <h2 style="font-size:clamp(1.3rem, 2.5vw, 1.8rem); font-weight:800; color:var(--cinza-900);">
+                    Clientes que <em>transformaram</em> seus cabelos
+                </h2>
+                <p style="color:var(--cinza-500); font-size:0.95rem;">Histórias reais de quem seguiu o caminho da recuperação</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <span class="stars">★★★★★</span>
+                    <blockquote>"Meu cabelo estava tão danificado que eu pensava em cortar tudo. A avaliação gratuita me mostrou que era possível recuperar. Hoje tenho fios fortes e brilhantes!"</blockquote>
+                    <div class="author">
+                        <div class="avatar">JM</div>
+                        <div><span class="name">Juliana M.</span><span class="role">cliente desde 2024</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <span class="stars">★★★★★</span>
+                    <blockquote>"O passo a passo que me ensinaram no salão mudou completamente minha rotina. Entendi o que meu cabelo precisava e nunca mais tive frizz."</blockquote>
+                    <div class="author">
+                        <div class="avatar">RF</div>
+                        <div><span class="name">Renata F.</span><span class="role">cliente desde 2023</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ TÉCNICA ===== -->
+    <section class="section-faq" id="faq">
+        <div class="container">
+            <div style="text-align:center; margin-bottom:20px;">
+                <h2 style="font-size:clamp(1.3rem, 2.5vw, 1.8rem); font-weight:800; color:var(--cinza-900);">
+                    Dúvidas <em>técnicas</em>
+                </h2>
+                <p style="color:var(--cinza-500); font-size:0.9rem;">Esclareça suas perguntas antes de agendar</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Qual a diferença entre hidratação, nutrição e reconstrução?</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">A hidratação repõe a água perdida (use máscaras com ativos como pantenol e aloe vera). A nutrição repõe os lipídios (óleos vegetais, manteigas). A reconstrução devolve a massa capilar com queratina e aminoácidos. O salão indica a ordem certa para cada caso.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Com que frequência devo fazer tratamentos no salão?</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">Depende do nível de dano. Em geral, recomendamos uma sessão a cada 15–30 dias para manutenção. Durante o período de recuperação intensa, as visitas podem ser semanais. Na avaliação gratuita, definimos um cronograma personalizado.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>A avaliação gratuita realmente é sem custo?</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">Sim! A avaliação é completamente gratuita e sem compromisso. Você recebe uma análise capilar detalhada e um plano de tratamento sugerido. Só agendamos os serviços se você decidir dar o próximo passo.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Quais produtos vocês utilizam nos tratamentos?</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">Trabalhamos com marcas de alta performance, como L'Oréal Professionnel, Kérastase e linhas específicas para reconstrução. Sempre adequamos o produto ao tipo e condição do seu cabelo, evitando ativos agressivos desnecessários.</div>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:16px; font-size:0.8rem; color:var(--cinza-400);">
+                ⚠️ Este guia é informativo e não substitui uma consulta presencial com um profissional.
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <span>© 2026 Salão Bella · Todos os direitos reservados</span>
+                <span>📍 Rua das Flores, 123 · Centro</span>
+                <div class="socials">
+                    <a href="#" aria-label="Instagram">📸</a>
+                    <a href="#" aria-label="Facebook">👍</a>
+                    <a href="#" aria-label="YouTube">▶️</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== WHATSAPP BAR FIXA ===== -->
+    <div class="whatsapp-bar">
+        <span class="bar-label">📲 direto</span>
+        <button class="btn-whatsapp" onclick="window.open('https://wa.me/5511999999999?text=Olá!%20Quero%20agendar%20minha%20avaliação%20gratuita%20no%20Salão%20Bella.', '_blank')">
+            <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M12.032 21.965c-1.917 0-3.775-.563-5.378-1.62l-4.65 1.524 1.552-4.525a9.923 9.923 0 0 1-1.708-5.54c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm0-18.5c-4.687 0-8.5 3.813-8.5 8.5 0 1.714.51 3.363 1.475 4.75l-.967 2.82 2.917-.956a8.48 8.48 0 0 0 5.075 1.68c4.687 0 8.5-3.813 8.5-8.5s-3.813-8.5-8.5-8.5zm4.932 10.557c-.288-.144-1.703-.84-1.967-.936-.264-.096-.456-.144-.647.144s-.742.936-.91 1.128-.335.216-.623.072c-.288-.144-1.217-.448-2.318-1.428-.857-.764-1.436-1.707-1.603-1.996-.168-.288-.018-.444.126-.587.13-.13.288-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504s-.623-1.5-.853-2.054c-.225-.54-.454-.447-.623-.456-.168-.008-.36-.008-.552-.008s-.504.072-.768.36c-.264.288-1.008.984-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.03 3.096 4.915 4.34 2.885 1.244 2.885.828 3.406.776.521-.052 1.68-.686 1.916-1.348.236-.662.236-1.23.168-1.348-.072-.12-.264-.192-.552-.336z"/></svg>
+            Agendar avaliação
+        </button>
+    </div>
+
+    <!-- ============================================================
+    SCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- HEADER SHADOW ----
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 20);
+            }, { passive: true });
+
+            // ---- FAQ TOGGLE ----
+            window.toggleFaq = function(btn) {
+                const item = btn.closest('.faq-item');
+                if (!item) return;
+                const isOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+                if (!isOpen) item.classList.add('open');
+            };
+
+            // ---- FADE-IN ON SCROLL ----
+            const fadeElements = document.querySelectorAll('.fade-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+            fadeElements.forEach(el => observer.observe(el));
+
+            // ---- SMOOTH ANCHOR SCROLL ----
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        const offsetTop = target.getBoundingClientRect().top + window.scrollY - 80;
+                        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                        history.pushState(null, null, targetId);
+                    }
+                });
+            });
+
+            // ---- CHECKLIST INTERATIVA ----
+            const checkboxes = document.querySelectorAll('#checklist input[type="checkbox"]');
+            const resultDiv = document.getElementById('checkResult');
+
+            function updateChecklist() {
+                const checked = document.querySelectorAll('#checklist input[type="checkbox"]:checked');
+                const count = checked.length;
+                if (count === 0) {
+                    resultDiv.textContent = 'Selecione os sintomas para uma análise preliminar.';
+                    resultDiv.classList.remove('highlight');
+                    return;
+                }
+                let level = '';
+                if (count <= 2) level = '🔹 Dano leve — hidratação e nutrição já podem trazer ótimos resultados.';
+                else if (count <= 4) level = '🔸 Dano moderado — recomendamos uma avaliação para um protocolo de reconstrução.';
+                else level = '🔴 Dano avançado — agende uma avaliação gratuita para um plano completo de recuperação.';
+                resultDiv.textContent = '📊 Diagnóstico preliminar: ' + level;
+                resultDiv.classList.add('highlight');
+            }
+
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', updateChecklist);
+            });
+
+            // ---- PROGRESSO DO PASSO (scroll spy básico) ----
+            const steps = [
+                { id: 'passo1', index: 1 },
+                { id: 'passo2', index: 2 },
+                { id: 'passo3', index: 3 },
+            ];
+            const dots = document.querySelectorAll('.progress-indicator .dot');
+            const stepDisplay = document.getElementById('currentStepDisplay');
+
+            function updateProgress() {
+                let current = 1;
+                for (const s of steps) {
+                    const el = document.getElementById(s.id);
+                    if (el) {
+                        const rect = el.getBoundingClientRect();
+                        if (rect.top <= window.innerHeight * 0.5) {
+                            current = s.index;
+                        }
+                    }
+                }
+                dots.forEach((dot, i) => {
+                    const stepNum = i + 1;
+                    dot.classList.toggle('active', stepNum === current);
+                    dot.classList.toggle('done', stepNum < current);
+                });
+                if (stepDisplay) stepDisplay.textContent = current;
+            }
+
+            window.addEventListener('scroll', updateProgress, { passive: true });
+            window.addEventListener('load', updateProgress);
+
+            // ---- BONUS: clique nas imagens para abrir modal? (não implementado para manter leveza) ----
+
+            console.log('📘 Beauty Learning Path — Salão Bella');
+            console.log('🧬 Guia em 3 passos para recuperação capilar.');
+        })();
+    </script>
+
+</body>
+</html>

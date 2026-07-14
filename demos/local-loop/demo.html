@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#1B2A3B" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Local Loop · Barbearia</title>
+
+    <!-- Google Fonts: humanist, friendly -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Paleta */
+            --blue-dark: #1B2A3B;
+            --blue-dark-light: #2A3F55;
+            --green-dark: #2D5A3D;
+            --green-light: #3D7A52;
+            --sand: #F5E6D3;
+            --sand-light: #FBF3EA;
+            --white: #FFFFFF;
+            --cream: #FDF8F2;
+            --gray-light: #F0EDE8;
+            --gray-mid: #B8AFA6;
+            --gray-dark: #5A524A;
+            --text-primary: #1B2A3B;
+            --text-secondary: #3D3A36;
+            --shadow-sm: 0 2px 8px rgba(27, 42, 59, 0.06);
+            --shadow-md: 0 4px 20px rgba(27, 42, 59, 0.10);
+            --shadow-lg: 0 8px 40px rgba(27, 42, 59, 0.14);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --transition: 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html {
+            font-family: var(--font);
+            background: var(--sand);
+            color: var(--text-primary);
+            -webkit-tap-highlight-color: transparent;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--sand-light);
+            min-height: 100vh;
+            min-height: 100dvh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 60px rgba(27, 42, 59, 0.08);
+        }
+
+        /* ============================================================
+                   SCROLLBAR
+                   ============================================================ */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-mid);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+                   APP SHELL
+                   ============================================================ */
+        #app {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            height: 100dvh;
+            overflow: hidden;
+            background: var(--sand-light);
+        }
+
+        /* Header */
+        .app-header {
+            flex-shrink: 0;
+            padding: 16px 20px 12px;
+            background: var(--white);
+            border-bottom: 1px solid rgba(27, 42, 59, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.92);
+        }
+
+        .app-header .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-header .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--green-dark);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: -0.5px;
+        }
+
+        .app-header .logo-text {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--blue-dark);
+            letter-spacing: -0.3px;
+        }
+        .app-header .logo-text span {
+            color: var(--green-dark);
+        }
+
+        .app-header .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .app-header .header-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: var(--sand-light);
+            color: var(--text-secondary);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background var(--transition);
+            position: relative;
+        }
+        .app-header .header-btn:active {
+            transform: scale(0.92);
+        }
+        .app-header .header-btn .badge {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 18px;
+            height: 18px;
+            background: #D94A4A;
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        /* ============================================================
+                   MAIN CONTENT
+                   ============================================================ */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 16px 16px 100px;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* ============================================================
+                   PAGES
+                   ============================================================ */
+        .page {
+            display: none;
+            animation: fadeUp 0.35s ease;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+                   BOTTOM NAV
+                   ============================================================ */
+        .bottom-nav {
+            flex-shrink: 0;
+            background: var(--white);
+            border-top: 1px solid rgba(27, 42, 59, 0.06);
+            display: flex;
+            align-items: stretch;
+            justify-content: space-around;
+            padding: 4px 0 env(safe-area-inset-bottom, 8px) 0;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: 0 -4px 20px rgba(27, 42, 59, 0.04);
+            z-index: 20;
+            position: relative;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 2px 4px;
+            border: none;
+            background: transparent;
+            color: var(--gray-mid);
+            font-family: var(--font);
+            font-size: 10px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: color var(--transition);
+            gap: 2px;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 52px;
+        }
+        .nav-item .nav-icon {
+            font-size: 22px;
+            line-height: 1;
+            transition: transform var(--transition);
+        }
+        .nav-item .nav-label {
+            font-size: 9px;
+            letter-spacing: 0.3px;
+            opacity: 0.7;
+        }
+        .nav-item.active {
+            color: var(--green-dark);
+        }
+        .nav-item.active .nav-icon {
+            transform: scale(1.05);
+        }
+        .nav-item.active .nav-label {
+            opacity: 1;
+            font-weight: 600;
+        }
+        .nav-item:active {
+            transform: scale(0.94);
+        }
+        .nav-item .nav-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--green-dark);
+            position: absolute;
+            top: 4px;
+            right: 50%;
+            transform: translateX(16px);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .nav-item.active .nav-dot {
+            opacity: 1;
+        }
+
+        /* ============================================================
+                   HOME PAGE
+                   ============================================================ */
+        /* Fidelity Card */
+        .fidelity-card {
+            background: var(--blue-dark);
+            border-radius: var(--radius-lg);
+            padding: 24px 20px 20px;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+        .fidelity-card::after {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(45, 90, 61, 0.20);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .fidelity-card .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            position: relative;
+            z-index: 1;
+        }
+        .fidelity-card .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.8;
+            letter-spacing: 0.3px;
+        }
+        .fidelity-card .card-tier {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .fidelity-card .card-points {
+            font-size: 38px;
+            font-weight: 800;
+            margin: 8px 0 2px;
+            letter-spacing: -1px;
+            position: relative;
+            z-index: 1;
+        }
+        .fidelity-card .card-points small {
+            font-size: 16px;
+            font-weight: 500;
+            opacity: 0.7;
+        }
+        .fidelity-card .card-sub {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-bottom: 14px;
+            position: relative;
+            z-index: 1;
+        }
+        .fidelity-card .progress-track {
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 20px;
+            height: 6px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 10px;
+        }
+        .fidelity-card .progress-track .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green-light), #5BAF7A);
+            border-radius: 20px;
+            width: 68%;
+            transition: width 0.6s ease;
+        }
+        .fidelity-card .card-footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            opacity: 0.6;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 0.2px;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        .quick-action {
+            background: var(--white);
+            border: none;
+            border-radius: var(--radius-md);
+            padding: 14px 6px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--font);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            border: 1px solid transparent;
+        }
+        .quick-action:active {
+            transform: scale(0.94);
+        }
+        .quick-action .qa-icon {
+            font-size: 26px;
+            line-height: 1;
+        }
+        .quick-action.primary {
+            background: var(--green-dark);
+            color: white;
+            border-color: var(--green-dark);
+        }
+        .quick-action.primary:active {
+            background: var(--green-light);
+        }
+
+        /* Campaign Banner */
+        .campaign-banner {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--green-dark);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .campaign-banner:active {
+            transform: scale(0.98);
+        }
+        .campaign-banner .cb-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+        .campaign-banner .cb-content {
+            flex: 1;
+        }
+        .campaign-banner .cb-title {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--blue-dark);
+        }
+        .campaign-banner .cb-desc {
+            font-size: 13px;
+            color: var(--gray-dark);
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+        .campaign-banner .cb-cta {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--green-dark);
+            flex-shrink: 0;
+        }
+
+        /* Feed */
+        .feed-section {
+            margin-bottom: 8px;
+        }
+        .feed-section .feed-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .feed-item {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .feed-item:active {
+            transform: scale(0.98);
+        }
+        .feed-item .fi-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--sand);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .feed-item .fi-info {
+            flex: 1;
+        }
+        .feed-item .fi-name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--blue-dark);
+        }
+        .feed-item .fi-action {
+            font-size: 13px;
+            color: var(--gray-dark);
+            opacity: 0.7;
+        }
+        .feed-item .fi-time {
+            font-size: 11px;
+            color: var(--gray-mid);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+                   PERFIL PAGE
+                   ============================================================ */
+        .profile-header {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 24px 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 20px;
+        }
+        .profile-header .ph-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--sand);
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            border: 3px solid var(--green-dark);
+        }
+        .profile-header .ph-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--blue-dark);
+        }
+        .profile-header .ph-since {
+            font-size: 13px;
+            color: var(--gray-dark);
+            opacity: 0.6;
+        }
+        .profile-header .ph-stats {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--sand);
+        }
+        .profile-header .ph-stat {
+            text-align: center;
+        }
+        .profile-header .ph-stat .num {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--blue-dark);
+        }
+        .profile-header .ph-stat .label {
+            font-size: 11px;
+            color: var(--gray-dark);
+            opacity: 0.6;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+        .timeline-section .tl-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            color: var(--blue-dark);
+        }
+        .timeline-item {
+            display: flex;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--sand);
+        }
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        .timeline-item .tl-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--green-dark);
+            margin-top: 5px;
+            flex-shrink: 0;
+        }
+        .timeline-item .tl-dot.past {
+            background: var(--gray-mid);
+        }
+        .timeline-item .tl-info {
+            flex: 1;
+        }
+        .timeline-item .tl-date {
+            font-size: 12px;
+            color: var(--gray-mid);
+        }
+        .timeline-item .tl-desc {
+            font-weight: 500;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .timeline-item .tl-service {
+            font-size: 13px;
+            color: var(--gray-dark);
+            opacity: 0.7;
+        }
+
+        /* ============================================================
+                   BENEFÍCIOS PAGE
+                   ============================================================ */
+        .benefit-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .benefit-card:active {
+            transform: scale(0.98);
+        }
+        .benefit-card .bc-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+        .benefit-card .bc-info {
+            flex: 1;
+        }
+        .benefit-card .bc-name {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--blue-dark);
+        }
+        .benefit-card .bc-desc {
+            font-size: 13px;
+            color: var(--gray-dark);
+            opacity: 0.7;
+        }
+        .benefit-card .bc-status {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--green-dark);
+            background: rgba(45, 90, 61, 0.08);
+            padding: 4px 12px;
+            border-radius: 20px;
+            flex-shrink: 0;
+        }
+        .benefit-card .bc-status.locked {
+            color: var(--gray-mid);
+            background: var(--sand);
+        }
+
+        /* ============================================================
+                   AGENDA PAGE
+                   ============================================================ */
+        .agenda-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 16px;
+        }
+        .agenda-card .ag-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 14px;
+        }
+        .agenda-card .service-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--sand);
+            cursor: pointer;
+        }
+        .agenda-card .service-option:last-child {
+            border-bottom: none;
+        }
+        .agenda-card .service-option .so-name {
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .agenda-card .service-option .so-price {
+            font-weight: 600;
+            color: var(--green-dark);
+            font-size: 14px;
+        }
+        .agenda-card .service-option .so-radio {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--gray-mid);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all var(--transition);
+        }
+        .agenda-card .service-option .so-radio.selected {
+            border-color: var(--green-dark);
+            background: var(--green-dark);
+        }
+        .agenda-card .service-option .so-radio.selected::after {
+            content: '✓';
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .date-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin: 12px 0 16px;
+        }
+        .date-grid .day-label {
+            text-align: center;
+            font-size: 10px;
+            color: var(--gray-mid);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .date-grid .date-btn {
+            aspect-ratio: 1;
+            border: none;
+            border-radius: 50%;
+            background: transparent;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .date-grid .date-btn:active {
+            transform: scale(0.88);
+        }
+        .date-grid .date-btn.selected {
+            background: var(--green-dark);
+            color: white;
+        }
+        .date-grid .date-btn.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 16px;
+        }
+        .time-slots .time-btn {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1.5px solid var(--sand);
+            background: transparent;
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .time-slots .time-btn:active {
+            transform: scale(0.92);
+        }
+        .time-slots .time-btn.selected {
+            background: var(--green-dark);
+            color: white;
+            border-color: var(--green-dark);
+        }
+
+        .btn-book {
+            width: 100%;
+            padding: 14px;
+            background: var(--green-dark);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: 0 4px 16px rgba(45, 90, 61, 0.25);
+        }
+        .btn-book:active {
+            transform: scale(0.96);
+            background: var(--green-light);
+        }
+
+        /* ============================================================
+                   INDIQUE PAGE
+                   ============================================================ */
+        .referral-hero {
+            background: var(--blue-dark);
+            border-radius: var(--radius-lg);
+            padding: 28px 20px;
+            color: white;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 20px;
+        }
+        .referral-hero .rh-icon {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+        .referral-hero .rh-title {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .referral-hero .rh-desc {
+            font-size: 14px;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+        .referral-hero .rh-code {
+            margin-top: 16px;
+            background: rgba(255, 255, 255, 0.10);
+            padding: 12px 20px;
+            border-radius: var(--radius-sm);
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            border: 1px dashed rgba(255, 255, 255, 0.20);
+            display: inline-block;
+        }
+
+        .share-actions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .share-actions .share-btn {
+            padding: 14px 8px;
+            border: none;
+            border-radius: var(--radius-md);
+            background: var(--white);
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .share-actions .share-btn:active {
+            transform: scale(0.94);
+        }
+        .share-actions .share-btn .sb-icon {
+            font-size: 28px;
+        }
+
+        /* ============================================================
+                   MENSAGENS PAGE
+                   ============================================================ */
+        .msg-item {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 14px 16px;
+            margin-bottom: 10px;
+            display: flex;
+            gap: 12px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            border-left: 3px solid transparent;
+        }
+        .msg-item:active {
+            transform: scale(0.98);
+        }
+        .msg-item.unread {
+            border-left-color: var(--green-dark);
+        }
+        .msg-item .msg-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .msg-item .msg-info {
+            flex: 1;
+        }
+        .msg-item .msg-title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--blue-dark);
+        }
+        .msg-item .msg-preview {
+            font-size: 13px;
+            color: var(--gray-dark);
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+        .msg-item .msg-time {
+            font-size: 11px;
+            color: var(--gray-mid);
+            margin-top: 4px;
+        }
+        .msg-item .msg-unread-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green-dark);
+            flex-shrink: 0;
+            margin-top: 6px;
+        }
+
+        /* ============================================================
+                   UTILITY
+                   ============================================================ */
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 14px;
+            letter-spacing: -0.3px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray-mid);
+        }
+        .empty-state .es-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+        .empty-state .es-title {
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+        .empty-state .es-desc {
+            font-size: 14px;
+            opacity: 0.6;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+                   INSTALL BANNER (PWA)
+                   ============================================================ */
+        .install-banner {
+            display: none;
+            background: var(--blue-dark);
+            color: white;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow-md);
+        }
+        .install-banner.show {
+            display: flex;
+        }
+        .install-banner .ib-icon {
+            font-size: 28px;
+        }
+        .install-banner .ib-info {
+            flex: 1;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .install-banner .ib-info small {
+            opacity: 0.6;
+            font-weight: 400;
+            display: block;
+            font-size: 12px;
+        }
+        .install-banner .ib-btn {
+            background: var(--green-dark);
+            border: none;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            font-family: var(--font);
+            transition: all var(--transition);
+        }
+        .install-banner .ib-btn:active {
+            transform: scale(0.92);
+        }
+        .install-banner .ib-close {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 20px;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 400px) {
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .fidelity-card .card-points {
+                font-size: 30px;
+            }
+            .app-header .logo-text {
+                font-size: 16px;
+            }
+            .nav-item .nav-label {
+                font-size: 8px;
+            }
+            .nav-item .nav-icon {
+                font-size: 20px;
+            }
+        }
+
+        @media (min-width: 481px) {
+            body {
+                border-left: 1px solid rgba(27, 42, 59, 0.04);
+                border-right: 1px solid rgba(27, 42, 59, 0.04);
+            }
+        }
+
+        /* ============================================================
+                   SCROLL INDICATOR (suave)
+                   ============================================================ */
+        .scroll-hint {
+            text-align: center;
+            font-size: 12px;
+            color: var(--gray-mid);
+            padding: 8px 0 4px;
+            opacity: 0.5;
+            letter-spacing: 0.3px;
+        }
+
+        /* ============================================================
+                   TOAST
+                   ============================================================ */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--blue-dark);
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 14px;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s ease;
+            z-index: 100;
+            max-width: 90%;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- ==================== HEADER ==================== -->
+        <header class="app-header">
+            <div class="logo-area">
+                <div class="logo-icon">LL</div>
+                <span class="logo-text">Local<span>Loop</span></span>
+            </div>
+            <div class="header-actions">
+                <button class="header-btn" id="notifBtn" aria-label="Notificações">
+                    🔔
+                    <span class="badge">3</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- ==================== MAIN ==================== -->
+        <main class="main-content" id="mainContent">
+
+            <!-- Install Banner -->
+            <div class="install-banner" id="installBanner">
+                <span class="ib-icon">📲</span>
+                <div class="ib-info">
+                    Instale o Local Loop
+                    <small>Adicione à tela inicial para acesso rápido</small>
+                </div>
+                <button class="ib-btn" id="installBtn">Instalar</button>
+                <button class="ib-close" id="installClose">✕</button>
+            </div>
+
+            <!-- ========== PAGE: INÍCIO ========== -->
+            <section class="page active" id="page-home">
+
+                <!-- Fidelity Card -->
+                <div class="fidelity-card">
+                    <div class="card-top">
+                        <span class="card-title">🏆 Minha Fidelidade</span>
+                        <span class="card-tier">✦ VIP</span>
+                    </div>
+                    <div class="card-points">1.280 <small>pts</small></div>
+                    <div class="card-sub">Faltam 220 pontos para o próximo benefício</div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width:68%"></div>
+                    </div>
+                    <div class="card-footer">
+                        <span>🔄 12 visitas este mês</span>
+                        <span>🎯 Próximo: 1.500 pts</span>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <button class="quick-action primary" data-tab="agenda">
+                        <span class="qa-icon">📅</span>
+                        Agendar
+                    </button>
+                    <button class="quick-action" data-tab="beneficios">
+                        <span class="qa-icon">🎁</span>
+                        Benefícios
+                    </button>
+                    <button class="quick-action" data-tab="indicar">
+                        <span class="qa-icon">📤</span>
+                        Indicar
+                    </button>
+                    <button class="quick-action" data-tab="perfil">
+                        <span class="qa-icon">👤</span>
+                        Perfil
+                    </button>
+                </div>
+
+                <!-- Campaign Banner -->
+                <div class="campaign-banner" id="campaignBanner">
+                    <span class="cb-icon">✂️</span>
+                    <div class="cb-content">
+                        <div class="cb-title">Corte do Mês</div>
+                        <div class="cb-desc">10% off em cortes com a tesoura • até 30/04</div>
+                    </div>
+                    <span class="cb-cta">Ver →</span>
+                </div>
+
+                <!-- Feed -->
+                <div class="feed-section">
+                    <div class="feed-title">📰 Atividades da comunidade</div>
+
+                    <div class="feed-item">
+                        <div class="fi-avatar">👨</div>
+                        <div class="fi-info">
+                            <div class="fi-name">Carlos Silva</div>
+                            <div class="fi-action">agendou um corte tradicional</div>
+                            <div class="fi-time">há 15 min</div>
+                        </div>
+                    </div>
+
+                    <div class="feed-item">
+                        <div class="fi-avatar">👨</div>
+                        <div class="fi-info">
+                            <div class="fi-name">Marcos Souza</div>
+                            <div class="fi-action">ganhou 50 pontos de indicação</div>
+                            <div class="fi-time">há 2 h</div>
+                        </div>
+                    </div>
+
+                    <div class="feed-item">
+                        <div class="fi-avatar">👨</div>
+                        <div class="fi-info">
+                            <div class="fi-name">Rafael Lima</div>
+                            <div class="fi-action">completou 10 visitas e subiu para VIP</div>
+                            <div class="fi-time">há 5 h</div>
+                        </div>
+                    </div>
+
+                    <div class="scroll-hint">— role para mais —</div>
+                </div>
+
+            </section>
+
+            <!-- ========== PAGE: PERFIL ========== -->
+            <section class="page" id="page-perfil">
+
+                <div class="profile-header">
+                    <div class="ph-avatar">👤</div>
+                    <div class="ph-name">Pedro Almeida</div>
+                    <div class="ph-since">Cliente desde março de 2023</div>
+                    <div class="ph-stats">
+                        <div class="ph-stat">
+                            <div class="num">37</div>
+                            <div class="label">visitas</div>
+                        </div>
+                        <div class="ph-stat">
+                            <div class="num">1.280</div>
+                            <div class="label">pontos</div>
+                        </div>
+                        <div class="ph-stat">
+                            <div class="num">VIP</div>
+                            <div class="label">nível</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-section">
+                    <div class="tl-title">📜 Histórico de visitas</div>
+
+                    <div class="timeline-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-info">
+                            <div class="tl-date">10/04/2026 • 14:30</div>
+                            <div class="tl-desc">Corte + Barba</div>
+                            <div class="tl-service">com Carlos • 45 min</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="tl-dot"></div>
+                        <div class="tl-info">
+                            <div class="tl-date">03/04/2026 • 09:15</div>
+                            <div class="tl-desc">Corte tradicional</div>
+                            <div class="tl-service">com Rafael • 30 min</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="tl-dot past"></div>
+                        <div class="tl-info">
+                            <div class="tl-date">28/03/2026 • 16:00</div>
+                            <div class="tl-desc">Barba + Aparação</div>
+                            <div class="tl-service">com Marcos • 25 min</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="tl-dot past"></div>
+                        <div class="tl-info">
+                            <div class="tl-date">20/03/2026 • 11:20</div>
+                            <div class="tl-desc">Corte infantil</div>
+                            <div class="tl-service">com Carlos • 20 min</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="tl-dot past"></div>
+                        <div class="tl-info">
+                            <div class="tl-date">14/03/2026 • 15:40</div>
+                            <div class="tl-desc">Corte + Hidratação</div>
+                            <div class="tl-service">com Rafael • 50 min</div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ========== PAGE: BENEFÍCIOS ========== -->
+            <section class="page" id="page-beneficios">
+
+                <div class="fidelity-card" style="background: var(--green-dark); margin-bottom: 20px;">
+                    <div class="card-top">
+                        <span class="card-title">⭐ Meus Benefícios</span>
+                        <span class="card-tier">VIP • 1.280 pts</span>
+                    </div>
+                    <div class="card-points" style="font-size:28px;">Nível <strong>VIP</strong></div>
+                    <div class="card-sub">Você tem acesso a benefícios exclusivos</div>
+                    <div class="progress-track" style="background:rgba(255,255,255,0.15);">
+                        <div class="progress-fill" style="width:68%; background:linear-gradient(90deg, #F5E6D3, #FFD700);"></div>
+                    </div>
+                    <div class="card-footer">
+                        <span>🔓 4 benefícios disponíveis</span>
+                        <span>🏅 2 desbloqueados</span>
+                    </div>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="bc-icon">🎯</span>
+                    <div class="bc-info">
+                        <div class="bc-name">Corte Grátis</div>
+                        <div class="bc-desc">Resgate com 1.500 pontos</div>
+                    </div>
+                    <span class="bc-status locked">220 pts</span>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="bc-icon">💈</span>
+                    <div class="bc-info">
+                        <div class="bc-name">Barba Premium</div>
+                        <div class="bc-desc">50% off na barba completa</div>
+                    </div>
+                    <span class="bc-status">✅ Disponível</span>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="bc-icon">👥</span>
+                    <div class="bc-info">
+                        <div class="bc-name">Indique + Ganhe</div>
+                        <div class="bc-desc">50 pontos por indicação</div>
+                    </div>
+                    <span class="bc-status">✅ Ativo</span>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="bc-icon">🎂</span>
+                    <div class="bc-info">
+                        <div class="bc-name">Corte de Aniversário</div>
+                        <div class="bc-desc">Corte grátis no seu mês</div>
+                    </div>
+                    <span class="bc-status">🔒 Junho</span>
+                </div>
+
+                <div class="benefit-card">
+                    <span class="bc-icon">☕</span>
+                    <div class="bc-info">
+                        <div class="bc-name">Café da Casa</div>
+                        <div class="bc-desc">Café especial a cada visita</div>
+                    </div>
+                    <span class="bc-status">✅ Disponível</span>
+                </div>
+
+            </section>
+
+            <!-- ========== PAGE: AGENDA ========== -->
+            <section class="page" id="page-agenda">
+
+                <div class="agenda-card">
+                    <div class="ag-title">✂️ Escolha o serviço</div>
+
+                    <div class="service-option" data-service="corte">
+                        <span class="so-name">Corte tradicional</span>
+                        <span class="so-price">R$ 45,00</span>
+                        <span class="so-radio selected"></span>
+                    </div>
+                    <div class="service-option" data-service="barba">
+                        <span class="so-name">Barba completa</span>
+                        <span class="so-price">R$ 35,00</span>
+                        <span class="so-radio"></span>
+                    </div>
+                    <div class="service-option" data-service="corte-barba">
+                        <span class="so-name">Corte + Barba</span>
+                        <span class="so-price">R$ 70,00</span>
+                        <span class="so-radio"></span>
+                    </div>
+                    <div class="service-option" data-service="infantil">
+                        <span class="so-name">Corte infantil</span>
+                        <span class="so-price">R$ 30,00</span>
+                        <span class="so-radio"></span>
+                    </div>
+                </div>
+
+                <div class="agenda-card">
+                    <div class="ag-title">📅 Escolha o dia</div>
+                    <div class="date-grid" id="dateGrid">
+                        <span class="day-label">D</span>
+                        <span class="day-label">S</span>
+                        <span class="day-label">T</span>
+                        <span class="day-label">Q</span>
+                        <span class="day-label">Q</span>
+                        <span class="day-label">S</span>
+                        <span class="day-label">S</span>
+                        <!-- gerado via JS -->
+                    </div>
+                </div>
+
+                <div class="agenda-card">
+                    <div class="ag-title">🕐 Horários disponíveis</div>
+                    <div class="time-slots" id="timeSlots">
+                        <button class="time-btn">09:00</button>
+                        <button class="time-btn">09:30</button>
+                        <button class="time-btn">10:00</button>
+                        <button class="time-btn">10:30</button>
+                        <button class="time-btn">11:00</button>
+                        <button class="time-btn selected">14:00</button>
+                        <button class="time-btn">14:30</button>
+                        <button class="time-btn">15:00</button>
+                        <button class="time-btn">15:30</button>
+                        <button class="time-btn">16:00</button>
+                    </div>
+                </div>
+
+                <button class="btn-book" id="bookBtn">📌 Confirmar agendamento</button>
+
+            </section>
+
+            <!-- ========== PAGE: INDIQUE ========== -->
+            <section class="page" id="page-indicar">
+
+                <div class="referral-hero">
+                    <div class="rh-icon">📤</div>
+                    <div class="rh-title">Indique um amigo</div>
+                    <div class="rh-desc">Ganhe 50 pontos por indicação aprovada</div>
+                    <div class="rh-code">LOOP-2026</div>
+                </div>
+
+                <div class="share-actions">
+                    <button class="share-btn" data-share="whatsapp">
+                        <span class="sb-icon">💬</span>
+                        WhatsApp
+                    </button>
+                    <button class="share-btn" data-share="instagram">
+                        <span class="sb-icon">📸</span>
+                        Instagram
+                    </button>
+                    <button class="share-btn" data-share="copy">
+                        <span class="sb-icon">📋</span>
+                        Copiar
+                    </button>
+                </div>
+
+                <div style="background:var(--white); border-radius:var(--radius-md); padding:16px 18px; box-shadow:var(--shadow-sm);">
+                    <div style="font-weight:600; font-size:14px; color:var(--blue-dark); margin-bottom:8px;">🏅 Suas indicações</div>
+                    <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--sand);">
+                        <span style="font-size:13px; color:var(--text-secondary);">Carlos Silva</span>
+                        <span style="font-size:13px; font-weight:600; color:var(--green-dark);">+50 pts</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--sand);">
+                        <span style="font-size:13px; color:var(--text-secondary);">Marcos Souza</span>
+                        <span style="font-size:13px; font-weight:600; color:var(--green-dark);">+50 pts</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; padding:6px 0;">
+                        <span style="font-size:13px; color:var(--text-secondary);">Rafael Lima</span>
+                        <span style="font-size:13px; font-weight:600; color:var(--gray-mid);">pendente</span>
+                    </div>
+                    <div style="margin-top:10px; font-size:13px; color:var(--gray-dark); opacity:0.6; text-align:center;">
+                        Total ganho: <strong style="color:var(--green-dark);">100 pontos</strong>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- ========== PAGE: MENSAGENS ========== -->
+            <section class="page" id="page-mensagens">
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <span class="section-title" style="margin-bottom:0;">💬 Mensagens</span>
+                    <span style="font-size:13px; color:var(--gray-mid);">3 não lidas</span>
+                </div>
+
+                <div class="msg-item unread">
+                    <span class="msg-icon">✂️</span>
+                    <div class="msg-info">
+                        <div class="msg-title">Oferta especial para você</div>
+                        <div class="msg-preview">Corte com tesoura com 10% off até domingo...</div>
+                        <div class="msg-time">há 2 h</div>
+                    </div>
+                    <span class="msg-unread-dot"></span>
+                </div>
+
+                <div class="msg-item unread">
+                    <span class="msg-icon">🎂</span>
+                    <div class="msg-info">
+                        <div class="msg-title">Seu mês de aniversário!</div>
+                        <div class="msg-preview">Você ganhou um corte grátis para usar em junho...</div>
+                        <div class="msg-time">há 1 d</div>
+                    </div>
+                    <span class="msg-unread-dot"></span>
+                </div>
+
+                <div class="msg-item unread">
+                    <span class="msg-icon">🏆</span>
+                    <div class="msg-info">
+                        <div class="msg-title">Você subiu para VIP!</div>
+                        <div class="msg-preview">Parabéns! Você atingiu 10 visitas e agora tem acesso a...</div>
+                        <div class="msg-time">há 3 d</div>
+                    </div>
+                    <span class="msg-unread-dot"></span>
+                </div>
+
+                <div class="msg-item">
+                    <span class="msg-icon">📤</span>
+                    <div class="msg-info">
+                        <div class="msg-title">Indicação aprovada</div>
+                        <div class="msg-preview">Carlos Silva usou seu código e você ganhou 50 pontos...</div>
+                        <div class="msg-time">há 5 d</div>
+                    </div>
+                </div>
+
+                <div class="msg-item">
+                    <span class="msg-icon">📅</span>
+                    <div class="msg-info">
+                        <div class="msg-title">Lembrete de retorno</div>
+                        <div class="msg-preview">Já faz 3 semanas desde sua última visita. Que tal...</div>
+                        <div class="msg-time">há 1 sem</div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+
+        <!-- ==================== BOTTOM NAV ==================== -->
+        <nav class="bottom-nav" id="bottomNav">
+            <button class="nav-item active" data-tab="home">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Início</span>
+                <span class="nav-dot"></span>
+            </button>
+            <button class="nav-item" data-tab="perfil">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Perfil</span>
+                <span class="nav-dot"></span>
+            </button>
+            <button class="nav-item" data-tab="beneficios">
+                <span class="nav-icon">🎁</span>
+                <span class="nav-label">Benefícios</span>
+                <span class="nav-dot"></span>
+            </button>
+            <button class="nav-item" data-tab="agenda">
+                <span class="nav-icon">📅</span>
+                <span class="nav-label">Agenda</span>
+                <span class="nav-dot"></span>
+            </button>
+            <button class="nav-item" data-tab="indicar">
+                <span class="nav-icon">📤</span>
+                <span class="nav-label">Indique</span>
+                <span class="nav-dot"></span>
+            </button>
+            <button class="nav-item" data-tab="mensagens">
+                <span class="nav-icon">💬</span>
+                <span class="nav-label">Mensagens</span>
+                <span class="nav-dot"></span>
+            </button>
+        </nav>
+
+        <!-- Toast -->
+        <div class="toast" id="toast"></div>
+    </div>
+
+    <script>
+        // ================================================================
+        //  PWA - LOCAL LOOP
+        //  Navegação, interações, micro-animações, PWA install
+        // ================================================================
+
+        (function() {
+            'use strict';
+
+            // ---------- DOM refs ----------
+            const mainContent = document.getElementById('mainContent');
+            const pages = document.querySelectorAll('.page');
+            const navItems = document.querySelectorAll('.nav-item');
+            const toast = document.getElementById('toast');
+            let toastTimer = null;
+
+            // ---------- Navegação ----------
+            function navigateTo(tabId) {
+                // Atualiza páginas
+                pages.forEach(p => p.classList.remove('active'));
+                const target = document.getElementById('page-' + tabId);
+                if (target) target.classList.add('active');
+
+                // Atualiza nav
+                navItems.forEach(item => {
+                    item.classList.toggle('active', item.dataset.tab === tabId);
+                });
+
+                // Scroll to top
+                mainContent.scrollTop = 0;
+
+                // Fecha install banner se aberto
+                const banner = document.getElementById('installBanner');
+                if (banner) banner.classList.remove('show');
+            }
+
+            // Eventos de nav
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    const tab = this.dataset.tab;
+                    navigateTo(tab);
+                    // haptic feedback simulado
+                    if (navigator.vibrate) navigator.vibrate(6);
+                });
+            });
+
+            // Quick actions que navegam
+            document.querySelectorAll('[data-tab]').forEach(el => {
+                el.addEventListener('click', function(e) {
+                    const tab = this.dataset.tab;
+                    navigateTo(tab);
+                    if (navigator.vibrate) navigator.vibrate(6);
+                });
+            });
+
+            // ---------- Toast ----------
+            function showToast(msg) {
+                if (toastTimer) clearTimeout(toastTimer);
+                toast.textContent = msg;
+                toast.classList.add('show');
+                toastTimer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2200);
+            }
+
+            // ---------- Agenda: seleção de serviço ----------
+            document.querySelectorAll('.service-option').forEach(el => {
+                el.addEventListener('click', function() {
+                    document.querySelectorAll('.service-option').forEach(s => {
+                        s.querySelector('.so-radio').classList.remove('selected');
+                    });
+                    this.querySelector('.so-radio').classList.add('selected');
+                    if (navigator.vibrate) navigator.vibrate(4);
+                });
+            });
+
+            // ---------- Agenda: seleção de horário ----------
+            document.querySelectorAll('.time-slots .time-btn').forEach(el => {
+                el.addEventListener('click', function() {
+                    document.querySelectorAll('.time-slots .time-btn').forEach(b => b.classList.remove(
+                    'selected'));
+                    this.classList.add('selected');
+                    if (navigator.vibrate) navigator.vibrate(4);
+                });
+            });
+
+            // ---------- Agenda: gerar dias ----------
+            (function buildDateGrid() {
+                const grid = document.getElementById('dateGrid');
+                if (!grid) return;
+                const today = new Date();
+                const year = today.getFullYear();
+                const month = today.getMonth();
+                const firstDay = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                // Limpa (mantém os cabeçalhos)
+                const labels = grid.querySelectorAll('.day-label');
+                grid.innerHTML = '';
+                labels.forEach(l => grid.appendChild(l));
+
+                for (let i = 0; i < firstDay; i++) {
+                    const empty = document.createElement('span');
+                    empty.style.visibility = 'hidden';
+                    empty.style.aspectRatio = '1';
+                    grid.appendChild(empty);
+                }
+
+                const todayDate = today.getDate();
+                for (let d = 1; d <= daysInMonth; d++) {
+                    const btn = document.createElement('button');
+                    btn.className = 'date-btn';
+                    btn.textContent = d;
+                    if (d === todayDate) btn.classList.add('selected');
+                    if (d < todayDate) btn.classList.add('disabled');
+                    btn.addEventListener('click', function() {
+                        if (this.classList.contains('disabled')) return;
+                        document.querySelectorAll('.date-btn').forEach(b => b.classList.remove('selected'));
+                        this.classList.add('selected');
+                        if (navigator.vibrate) navigator.vibrate(4);
+                    });
+                    grid.appendChild(btn);
+                }
+            })();
+
+            // ---------- Botão agendar ----------
+            document.getElementById('bookBtn')?.addEventListener('click', function() {
+                const service = document.querySelector('.service-option .so-radio.selected')?.closest(
+                    '.service-option')?.dataset.service || 'corte';
+                const time = document.querySelector('.time-slots .time-btn.selected')?.textContent || '14:00';
+                const dateEl = document.querySelector('.date-btn.selected');
+                const day = dateEl ? dateEl.textContent : 'hoje';
+                showToast(`✅ Agendado para o dia ${day} às ${time}!`);
+                if (navigator.vibrate) navigator.vibrate(12);
+            });
+
+            // ---------- Campanha banner ----------
+            document.getElementById('campaignBanner')?.addEventListener('click', function() {
+                showToast('🎉 Oferta: 10% off em cortes com tesoura!');
+                if (navigator.vibrate) navigator.vibrate(8);
+            });
+
+            // ---------- Compartilhar (Indique) ----------
+            document.querySelectorAll('[data-share]').forEach(el => {
+                el.addEventListener('click', function() {
+                    const type = this.dataset.share;
+                    const code = 'LOOP-2026';
+                    if (type === 'copy') {
+                        navigator.clipboard?.writeText(`Use meu código ${code} na barbearia e ganhe benefícios!`)
+                            .then(() => showToast('📋 Código copiado!'))
+                            .catch(() => showToast('📋 Código: ' + code));
+                    } else {
+                        showToast(`📤 Compartilhar via ${type} (simulado)`);
+                    }
+                    if (navigator.vibrate) navigator.vibrate(6);
+                });
+            });
+
+            // ---------- Notificações ----------
+            document.getElementById('notifBtn')?.addEventListener('click', function() {
+                navigateTo('mensagens');
+                if (navigator.vibrate) navigator.vibrate(6);
+            });
+
+            // ---------- PWA Install ----------
+            let deferredPrompt = null;
+            const installBanner = document.getElementById('installBanner');
+            const installBtn = document.getElementById('installBtn');
+            const installClose = document.getElementById('installClose');
+
+            window.addEventListener('beforeinstallprompt', function(e) {
+                e.preventDefault();
+                deferredPrompt = e;
+                if (installBanner) installBanner.classList.add('show');
+            });
+
+            installBtn?.addEventListener('click', function() {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then(() => {
+                        deferredPrompt = null;
+                        if (installBanner) installBanner.classList.remove('show');
+                    });
+                } else {
+                    showToast('📲 Abra no navegador e adicione à tela inicial');
+                }
+            });
+
+            installClose?.addEventListener('click', function() {
+                installBanner.classList.remove('show');
+            });
+
+            // Detecta se já está instalado
+            window.addEventListener('appinstalled', function() {
+                if (installBanner) installBanner.classList.remove('show');
+                showToast('✅ Local Loop instalado com sucesso!');
+            });
+
+            // ---------- Service Worker ----------
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(() => console.log('✅ Service Worker registrado'))
+                    .catch(err => console.warn('SW não registrado:', err));
+            }
+
+            // ---------- Expor navigate globalmente ----------
+            window.navigateTo = navigateTo;
+            window.showToast = showToast;
+
+            // ---------- Scroll suave para links internos ----------
+            document.querySelectorAll('a[href^="#"]').forEach(a => {
+                a.addEventListener('click', function(e) {
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+
+            console.log('🚀 Local Loop PWA inicializado');
+
+        })();
+    </script>
+
+</body>
+</html>

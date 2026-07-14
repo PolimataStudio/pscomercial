@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+    <title>Give With Purpose — Doe com propósito</title>
+    <meta name="description" content="Faça parte de uma campanha que transforma vidas. Doe com propósito e veja seu impacto em ação." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Source+Sans+Pro:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        /* ================================================================
+           GIVE WITH PURPOSE — Landing Page de Doação
+           Emocional · Confiável · Conversão
+           ================================================================ */
+
+        /* ---------- TOKENS ---------- */
+        :root {
+            --wine: #6A1B2A;
+            --wine-dark: #4A0F1A;
+            --wine-light: #8A2E40;
+            --wine-surface: #F5EDEF;
+            --gold: #C9A96E;
+            --gold-light: #E8D5A8;
+            --gold-dark: #A8894A;
+            --gold-surface: #F9F2E6;
+            --white: #FFFFFF;
+            --white-soft: #F8F6F3;
+            --gray-100: #F0EDE8;
+            --gray-200: #DCD7D0;
+            --gray-300: #B5ADA4;
+            --gray-400: #8A827A;
+            --gray-500: #6A625A;
+            --gray-600: #4A4A4A;
+            --gray-700: #2A2A2A;
+            --gray-800: #1A1A1A;
+            --black: #0D0D0D;
+
+            --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --font-sans: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --radius-full: 9999px;
+
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 48px rgba(0, 0, 0, 0.10);
+            --shadow-gold: 0 4px 32px rgba(201, 169, 110, 0.20);
+
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --header-height: 68px;
+            --max-width: 1020px;
+        }
+
+        /* ---------- RESET ---------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+        body {
+            font-family: var(--font-sans);
+            background: var(--white-soft);
+            color: var(--gray-600);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        /* ---------- UTILITY ---------- */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section-padding {
+            padding: 64px 0 56px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-wine {
+            color: var(--wine);
+        }
+        .text-gold {
+            color: var(--gold);
+        }
+        .text-serif {
+            font-family: var(--font-serif);
+        }
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ---------- BUTTONS ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 36px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 16px;
+            transition: all var(--transition);
+            border: none;
+            line-height: 1.2;
+            min-height: 52px;
+            cursor: pointer;
+            font-family: var(--font-sans);
+        }
+        .btn-primary {
+            background: var(--wine);
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(106, 27, 42, 0.20);
+        }
+        .btn-primary:hover {
+            background: var(--wine-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 36px rgba(106, 27, 42, 0.30);
+        }
+        .btn-gold {
+            background: var(--gold);
+            color: var(--wine-dark);
+            box-shadow: 0 4px 24px rgba(201, 169, 110, 0.25);
+        }
+        .btn-gold:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 36px rgba(201, 169, 110, 0.35);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--wine);
+            border: 2px solid var(--wine);
+        }
+        .btn-outline:hover {
+            background: var(--wine);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .btn-outline-light {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.20);
+        }
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-lg {
+            padding: 18px 48px;
+            font-size: 18px;
+            min-height: 60px;
+        }
+        .btn-sm {
+            padding: 8px 22px;
+            font-size: 14px;
+            min-height: 40px;
+        }
+        .btn-whatsapp {
+            background: #25D366;
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(37, 211, 102, 0.20);
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 36px rgba(37, 211, 102, 0.30);
+        }
+
+        /* ---------- HEADER ---------- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: box-shadow var(--transition);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .header .logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--wine-dark);
+            letter-spacing: -0.5px;
+            font-family: var(--font-serif);
+        }
+        .header .logo span {
+            color: var(--gold);
+        }
+        .header-nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .header-nav a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-500);
+            transition: color var(--transition);
+            position: relative;
+        }
+        .header-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width var(--transition);
+        }
+        .header-nav a:hover {
+            color: var(--wine);
+        }
+        .header-nav a:hover::after {
+            width: 100%;
+        }
+        .header-nav .btn-nav {
+            background: var(--wine);
+            color: #fff;
+            padding: 8px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 13px;
+            transition: all var(--transition);
+        }
+        .header-nav .btn-nav:hover {
+            background: var(--wine-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(106, 27, 42, 0.20);
+        }
+        .header-nav .btn-nav::after {
+            display: none;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 26px;
+            color: var(--wine-dark);
+            padding: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            margin-top: var(--header-height);
+            padding: 56px 0 48px;
+            background: linear-gradient(165deg, var(--wine-dark) 0%, var(--wine) 60%, var(--wine-light) 100%);
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 70%;
+            height: 150%;
+            background: radial-gradient(ellipse at center, rgba(201, 169, 110, 0.06), transparent 70%);
+            pointer-events: none;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .hero-content .badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            border: 1px solid rgba(201, 169, 110, 0.20);
+            padding: 4px 18px;
+            border-radius: var(--radius-full);
+            margin-bottom: 16px;
+        }
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 46px;
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .hero-content h1 .highlight {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .hero-content p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 440px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+        .hero-content .btn-group {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-visual .hero-card {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            box-shadow: var(--shadow-lg);
+        }
+        .hero-visual .hero-card .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .hero-visual .hero-card .stat-row .label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .hero-visual .hero-card .stat-row .value {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .hero-visual .hero-card .progress-track {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-full);
+            height: 8px;
+            overflow: hidden;
+            margin: 8px 0 16px;
+        }
+        .hero-visual .hero-card .progress-track .bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            border-radius: var(--radius-full);
+            width: 67%;
+            transition: width 1s ease;
+        }
+        .hero-visual .hero-card .meta-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .hero-visual .hero-card .meta-info strong {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ---------- SECTION TITLES ---------- */
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--wine-dark);
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            margin-bottom: 8px;
+        }
+        .section-title .highlight {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .section-sub {
+            font-size: 17px;
+            color: var(--gray-400);
+            max-width: 520px;
+            line-height: 1.7;
+        }
+        .section-title.center,
+        .section-sub.center {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        /* ---------- STORY / NEED ---------- */
+        .story-section {
+            background: var(--white);
+        }
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .story-content .number {
+            font-family: var(--font-serif);
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .story-content h3 {
+            font-family: var(--font-serif);
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--wine-dark);
+            margin-bottom: 8px;
+        }
+        .story-content p {
+            font-size: 16px;
+            color: var(--gray-500);
+            line-height: 1.8;
+        }
+        .story-visual {
+            background: var(--gold-surface);
+            border-radius: var(--radius-md);
+            padding: 40px 32px;
+            text-align: center;
+            border: 1px solid rgba(201, 169, 110, 0.10);
+        }
+        .story-visual .icon-big {
+            font-size: 56px;
+            margin-bottom: 12px;
+        }
+        .story-visual h4 {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--wine-dark);
+        }
+        .story-visual p {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        /* ---------- IMPACT ---------- */
+        .impact-section {
+            background: var(--white-soft);
+        }
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 12px;
+        }
+        .impact-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .impact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--gold);
+        }
+        .impact-card .number {
+            font-family: var(--font-serif);
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--wine);
+            line-height: 1;
+        }
+        .impact-card .number .gold {
+            color: var(--gold);
+        }
+        .impact-card .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+        .impact-card .desc {
+            font-size: 14px;
+            color: var(--gray-400);
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+
+        /* ---------- PROGRESS / META ---------- */
+        .goal-section {
+            background: var(--wine-dark);
+            color: #fff;
+        }
+        .goal-section .section-title {
+            color: #fff;
+        }
+        .goal-section .section-sub {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .goal-box {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(4px);
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .goal-box .goal-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 6px;
+        }
+        .goal-box .goal-row .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .goal-box .goal-row .amount {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+        .goal-box .goal-row .amount small {
+            font-size: 16px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.3);
+            font-family: var(--font-sans);
+        }
+        .goal-box .progress-track {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-full);
+            height: 10px;
+            overflow: hidden;
+            margin: 8px 0 14px;
+        }
+        .goal-box .progress-track .bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            border-radius: var(--radius-full);
+            width: 67%;
+            transition: width 1.2s ease;
+        }
+        .goal-box .goal-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.25);
+        }
+        .goal-box .goal-meta strong {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ---------- SOCIAL PROOF ---------- */
+        .proof-section {
+            background: var(--white);
+        }
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 8px;
+        }
+        .proof-card {
+            background: var(--white-soft);
+            border-radius: var(--radius-md);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition);
+        }
+        .proof-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--gold);
+        }
+        .proof-card .quote {
+            font-size: 15px;
+            color: var(--gray-600);
+            line-height: 1.7;
+            font-style: italic;
+        }
+        .proof-card .quote::before {
+            content: '"';
+            font-family: var(--font-serif);
+            font-size: 28px;
+            color: var(--gold);
+            margin-right: 2px;
+        }
+        .proof-card .quote::after {
+            content: '"';
+            font-family: var(--font-serif);
+            font-size: 28px;
+            color: var(--gold);
+            margin-left: 2px;
+        }
+        .proof-card .author {
+            margin-top: 14px;
+            font-weight: 700;
+            color: var(--wine-dark);
+            font-size: 15px;
+        }
+        .proof-card .role {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        /* ---------- WAYS TO GIVE ---------- */
+        .ways-section {
+            background: var(--white-soft);
+        }
+        .ways-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 8px;
+        }
+        .ways-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .ways-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--gold);
+        }
+        .ways-card .icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .ways-card h4 {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--wine-dark);
+            margin-bottom: 4px;
+        }
+        .ways-card p {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+        .ways-card .btn {
+            margin-top: 14px;
+        }
+
+        /* ---------- DONATION FAQ ---------- */
+        .faq-section {
+            background: var(--white);
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: var(--white-soft);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .faq-item:hover {
+            border-color: var(--gold);
+        }
+        .faq-item .question {
+            padding: 18px 22px;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--wine-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background var(--transition);
+            gap: 12px;
+            font-family: var(--font-sans);
+        }
+        .faq-item .question:hover {
+            background: var(--gold-surface);
+        }
+        .faq-item .question .icon {
+            font-size: 20px;
+            color: var(--gold);
+            flex-shrink: 0;
+            transition: transform var(--transition);
+        }
+        .faq-item .question .icon.open {
+            transform: rotate(45deg);
+        }
+        .faq-item .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 22px;
+            color: var(--gray-500);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .faq-item .answer.open {
+            max-height: 300px;
+            padding: 0 22px 18px;
+        }
+
+        /* ---------- CTA FINAL ---------- */
+        .cta-section {
+            background: var(--wine);
+            padding: 56px 0 64px;
+            color: #fff;
+        }
+        .cta-box {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+        .cta-box h2 {
+            font-family: var(--font-serif);
+            font-size: 38px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .cta-box h2 .highlight {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .cta-box p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 440px;
+            margin: 0 auto 24px;
+            line-height: 1.7;
+        }
+        .cta-box .btn-group {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-box .btn-gold {
+            background: var(--gold);
+            color: var(--wine-dark);
+            box-shadow: 0 4px 32px rgba(201, 169, 110, 0.25);
+        }
+        .cta-box .btn-gold:hover {
+            background: var(--gold-light);
+            box-shadow: 0 8px 48px rgba(201, 169, 110, 0.35);
+        }
+        .cta-box .btn-outline-light {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+        }
+        .cta-box .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--gold);
+        }
+        .cta-box .btn-whatsapp {
+            display: inline-flex;
+            margin-top: 14px;
+            background: #25D366;
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(37, 211, 102, 0.20);
+        }
+        .cta-box .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 36px rgba(37, 211, 102, 0.30);
+        }
+
+        /* ---------- CTA PERSISTENTE ---------- */
+        .cta-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+        }
+        .cta-float .btn-donate {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--wine);
+            color: #fff;
+            padding: 14px 28px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 32px rgba(106, 27, 42, 0.35);
+            transition: all var(--transition);
+            font-family: var(--font-sans);
+        }
+        .cta-float .btn-donate:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 48px rgba(106, 27, 42, 0.45);
+        }
+        .cta-float .btn-donate .icon {
+            font-size: 22px;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: var(--gray-800);
+            color: rgba(255, 255, 255, 0.2);
+            padding: 24px 0;
+            text-align: center;
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+        }
+        .footer .brand {
+            color: rgba(255, 255, 255, 0.3);
+        }
+        .footer .brand span {
+            color: var(--gold);
+        }
+        .footer .transparency {
+            margin-top: 6px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.15);
+        }
+        .footer .transparency a {
+            color: var(--gold);
+            text-decoration: underline;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .hero-content h1 {
+                font-size: 38px;
+            }
+            .hero-content p {
+                max-width: 100%;
+            }
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .proof-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .ways-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 18px;
+            }
+            .section-padding {
+                padding: 48px 0 40px;
+            }
+            .hero {
+                padding: 32px 0 28px;
+            }
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            .hero-content .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-content .btn-group .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .hero-visual .hero-card {
+                padding: 24px 20px;
+            }
+            .hero-visual .hero-card .stat-row .value {
+                font-size: 22px;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+            .impact-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .proof-grid {
+                grid-template-columns: 1fr;
+            }
+            .ways-grid {
+                grid-template-columns: 1fr;
+            }
+            .goal-box {
+                padding: 24px 18px;
+            }
+            .goal-box .goal-row .amount {
+                font-size: 22px;
+            }
+            .cta-box h2 {
+                font-size: 30px;
+            }
+            .cta-box .btn-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 20px 24px;
+                gap: 16px;
+                border-bottom: 1px solid var(--gray-200);
+                box-shadow: var(--shadow-md);
+            }
+            .header-nav.open {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .header-nav a {
+                font-size: 15px;
+            }
+            .header-nav .btn-nav {
+                align-self: flex-start;
+            }
+            .cta-float {
+                bottom: 16px;
+                right: 16px;
+            }
+            .cta-float .btn-donate {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+            .cta-float .btn-donate .icon {
+                font-size: 18px;
+            }
+            .faq-item .question {
+                font-size: 15px;
+                padding: 14px 18px;
+            }
+            .faq-item .answer {
+                font-size: 14px;
+            }
+            .story-visual {
+                padding: 28px 20px;
+            }
+            .story-content .number {
+                font-size: 38px;
+            }
+            .story-content h3 {
+                font-size: 22px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            .hero-content .badge {
+                font-size: 10px;
+                padding: 3px 14px;
+            }
+            .section-title {
+                font-size: 24px;
+            }
+            .impact-card .number {
+                font-size: 32px;
+            }
+            .goal-box .goal-row .amount {
+                font-size: 20px;
+            }
+            .cta-box h2 {
+                font-size: 26px;
+            }
+            .btn-lg {
+                padding: 14px 32px;
+                font-size: 16px;
+                min-height: 52px;
+            }
+            .header .logo {
+                font-size: 17px;
+            }
+            .hero-visual .hero-card .stat-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+            .hero-visual .hero-card .stat-row .value {
+                font-size: 20px;
+            }
+        }
+
+        /* ---------- ANIMAÇÕES ---------- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up.delay-1 {
+            transition-delay: 0.08s;
+        }
+        .fade-up.delay-2 {
+            transition-delay: 0.16s;
+        }
+        .fade-up.delay-3 {
+            transition-delay: 0.24s;
+        }
+        .fade-up.delay-4 {
+            transition-delay: 0.32s;
+        }
+        .fade-up.delay-5 {
+            transition-delay: 0.40s;
+        }
+
+        /* ---------- COUNTER ANIMATION ---------- */
+        .counter-value {
+            display: inline-block;
+            transition: all 0.01s;
+        }
+
+        /* ---------- SCROLL INDICATOR ---------- */
+        .scroll-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 32px;
+            gap: 6px;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.3;
+            transition: opacity var(--transition);
+        }
+        .scroll-indicator:hover {
+            opacity: 0.8;
+        }
+        .scroll-indicator span {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .scroll-indicator .line {
+            width: 1px;
+            height: 24px;
+            background: linear-gradient(180deg, var(--gold), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+        @keyframes scrollLine {
+            0%,
+            100% {
+                transform: scaleY(0.3);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scaleY(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header" role="banner">
+        <div class="container">
+            <div class="logo">Give <span>With Purpose</span></div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+                ☰
+            </button>
+            <nav class="header-nav" id="headerNav" role="navigation" aria-label="Principal">
+                <a href="#impacto">Impacto</a>
+                <a href="#meta">Meta</a>
+                <a href="#provas">Depoimentos</a>
+                <a href="#como-doar">Como doar</a>
+                <a href="#faq">FAQ</a>
+                <a href="#cta" class="btn-nav">Doe agora</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content fade-up visible">
+                    <div class="badge">Campanha 2026</div>
+                    <h1>Doe com <span class="highlight">propósito</span> e transforme vidas</h1>
+                    <p>Sua contribuição é o combustível que move nossa missão. Cada oferta, cada gesto, cada oração — tudo se soma para gerar impacto real.</p>
+                    <div class="btn-group">
+                        <a href="#cta" class="btn btn-gold">Quero doar →</a>
+                        <a href="#impacto" class="btn btn-outline-light">Ver impacto</a>
+                    </div>
+                </div>
+                <div class="hero-visual fade-up delay-2 visible">
+                    <div class="hero-card">
+                        <div class="stat-row">
+                            <span class="label">Meta da campanha</span>
+                            <span class="value">R$ 120.000</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="label">Arrecadado</span>
+                            <span class="value">R$ 80.400</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="bar" style="width:67%;" id="heroProgress"></div>
+                        </div>
+                        <div class="meta-info">
+                            <span><strong>67%</strong> alcançado</span>
+                            <span><strong>R$ 39.600</strong> restantes</span>
+                        </div>
+                        <div style="margin-top:16px;font-size:13px;color:rgba(255,255,255,0.2);text-align:center;">
+                            🔒 100% transparente · Parceria verificada
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>Role para conhecer</span>
+                <div class="line"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== STORY / NEED ===== -->
+    <section class="story-section section-padding" id="historia">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-content fade-up">
+                    <div class="number">01</div>
+                    <h3>Por que essa campanha existe</h3>
+                    <p>Há centenas de famílias na nossa comunidade que não têm acesso a alimentação adequada, educação e apoio emocional. Nossa missão é construir pontes — e isso exige recursos, planejamento e a colaboração de pessoas que acreditam em um futuro melhor.</p>
+                    <p style="margin-top:12px;">Cada real doado é transformado em alimento, material educativo, atendimento psicológico e ações que restauram a dignidade e a esperança.</p>
+                </div>
+                <div class="story-visual fade-up delay-2">
+                    <div class="icon-big">❤️</div>
+                    <h4>Uma história de amor e serviço</h4>
+                    <p>Desde 2010, já impactamos mais de 3.200 vidas com projetos que vão além da assistência — construímos comunidade, vínculo e pertencimento.</p>
+                    <div style="margin-top:14px;font-size:14px;color:var(--gold-dark);font-weight:600;">✧ Apoie essa corrente do bem ✧</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== IMPACT ===== -->
+    <section class="impact-section section-padding" id="impacto">
+        <div class="container">
+            <div class="fade-up">
+                <span style="font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:12px;color:var(--gold-dark);">Impacto real</span>
+                <h2 class="section-title">O que sua <span class="highlight">doação</span> já alcançou</h2>
+                <p class="section-sub">Números que representam vidas transformadas e famílias acolhidas.</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card fade-up delay-1">
+                    <div class="number"><span class="counter-value" data-target="3200">0</span><span class="gold">+</span></div>
+                    <div class="label">Pessoas impactadas</div>
+                    <div class="desc">Atendimentos, oficinas e ações sociais realizadas</div>
+                </div>
+                <div class="impact-card fade-up delay-2">
+                    <div class="number"><span class="counter-value" data-target="85">0</span><span class="gold">%</span></div>
+                    <div class="label">Famílias acompanhadas</div>
+                    <div class="desc">Apoio contínuo com alimentos, orientação e afeto</div>
+                </div>
+                <div class="impact-card fade-up delay-3">
+                    <div class="number"><span class="counter-value" data-target="12">0</span><span class="gold">+</span></div>
+                    <div class="label">Projetos realizados</div>
+                    <div class="desc">Campanhas, reformas, missões e ações comunitárias</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GOAL / META ===== -->
+    <section class="goal-section section-padding" id="meta">
+        <div class="container">
+            <div class="fade-up">
+                <span style="font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:12px;color:var(--gold);">Meta da campanha</span>
+                <h2 class="section-title">Onde <span style="color:var(--gold);">chegamos</span> e onde <span style="color:var(--gold);">queremos</span> chegar</h2>
+                <p class="section-sub">Acompanhe nosso progresso e veja como cada doação nos aproxima do objetivo.</p>
+            </div>
+            <div class="goal-box fade-up delay-2">
+                <div class="goal-row">
+                    <span class="label">Meta</span>
+                    <span class="amount">R$ 120.000</span>
+                </div>
+                <div class="goal-row">
+                    <span class="label">Arrecadado</span>
+                    <span class="amount">R$ 80.400</span>
+                </div>
+                <div class="progress-track">
+                    <div class="bar" id="goalProgress" style="width:67%;"></div>
+                </div>
+                <div class="goal-meta">
+                    <span><strong>67%</strong> da meta</span>
+                    <span>Faltam <strong>R$ 39.600</strong></span>
+                    <span><strong>204</strong> doadores</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOCIAL PROOF ===== -->
+    <section class="proof-section section-padding" id="provas">
+        <div class="container">
+            <div class="fade-up">
+                <span style="font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:12px;color:var(--gold-dark);">Vozes que inspiram</span>
+                <h2 class="section-title">O que dizem <span class="highlight">quem doou</span></h2>
+                <p class="section-sub">Depoimentos de pessoas que decidiram fazer parte dessa corrente de transformação.</p>
+            </div>
+            <div class="proof-grid">
+                <div class="proof-card fade-up delay-1">
+                    <div class="quote">Doei porque acredito que pequenos gestos movem montanhas. Ver o sorriso de uma criança alimentada é a maior recompensa.</div>
+                    <div class="author">— Ana Paula</div>
+                    <div class="role">Doadora recorrente</div>
+                </div>
+                <div class="proof-card fade-up delay-2">
+                    <div class="quote">Minha família doa juntos. É uma forma de ensinar aos nossos filhos sobre generosidade e propósito.</div>
+                    <div class="author">— Família Santos</div>
+                    <div class="role">Doadores desde 2023</div>
+                </div>
+                <div class="proof-card fade-up delay-3">
+                    <div class="quote">Participei da campanha do ano passado e vi de perto o impacto. Doar com propósito é transformar vidas.</div>
+                    <div class="author">— Carlos Eduardo</div>
+                    <div class="role">Voluntário e doador</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WAYS TO GIVE ===== -->
+    <section class="ways-section section-padding" id="como-doar">
+        <div class="container">
+            <div class="fade-up">
+                <span style="font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:12px;color:var(--gold-dark);">Como contribuir</span>
+                <h2 class="section-title">Formas de <span class="highlight">doar</span></h2>
+                <p class="section-sub">Escolha a melhor maneira de fazer sua doação. Toda contribuição é valiosa.</p>
+            </div>
+            <div class="ways-grid">
+                <div class="ways-card fade-up delay-1">
+                    <span class="icon">💳</span>
+                    <h4>Doação única</h4>
+                    <p>Contribua com qualquer valor, de forma segura e rápida, via cartão de crédito ou Pix.</p>
+                    <a href="#cta" class="btn btn-primary btn-sm">Doar agora</a>
+                </div>
+                <div class="ways-card fade-up delay-2">
+                    <span class="icon">🔄</span>
+                    <h4>Doação recorrente</h4>
+                    <p>Ajude mensalmente com um valor fixo. Você mantém o impacto contínuo e planejado.</p>
+                    <a href="#cta" class="btn btn-primary btn-sm">Quero ser recorrente</a>
+                </div>
+                <div class="ways-card fade-up delay-3">
+                    <span class="icon">📱</span>
+                    <h4>Pix ou WhatsApp</h4>
+                    <p>Use a chave Pix ou fale conosco pelo WhatsApp para doar de forma simples e direta.</p>
+                    <a href="#" class="btn btn-whatsapp btn-sm">💬 Falar no WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DONATION FAQ ===== -->
+    <section class="faq-section section-padding" id="faq">
+        <div class="container">
+            <div class="fade-up">
+                <span style="font-weight:700;letter-spacing:2px;text-transform:uppercase;font-size:12px;color:var(--gold-dark);">Dúvidas</span>
+                <h2 class="section-title">Perguntas <span class="highlight">frequentes</span></h2>
+                <p class="section-sub">Tudo que você precisa saber sobre como sua doação é usada e como contribuir com segurança.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item fade-up delay-1">
+                    <div class="question" role="button" tabindex="0">
+                        <span>Para onde vai minha doação?</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="answer">Sua doação é destinada integralmente aos projetos da campanha: alimentação, educação, apoio familiar e ações comunitárias. Publicamos relatórios trimestrais de transparência.</div>
+                </div>
+                <div class="faq-item fade-up delay-2">
+                    <div class="question" role="button" tabindex="0">
+                        <span>Como sei que minha doação é segura?</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="answer">Utilizamos plataformas de pagamento certificadas com criptografia de ponta a ponta. Seus dados estão protegidos e nunca compartilhados com terceiros.</div>
+                </div>
+                <div class="faq-item fade-up delay-3">
+                    <div class="question" role="button" tabindex="0">
+                        <span>Posso fazer uma doação em nome de outra pessoa?</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="answer">Sim! Ao finalizar a doação, você pode indicar o nome da pessoa homenageada. Enviamos um certificado de reconhecimento.</div>
+                </div>
+                <div class="faq-item fade-up delay-4">
+                    <div class="question" role="button" tabindex="0">
+                        <span>Recebo comprovante para declarar no Imposto de Renda?</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="answer">Sim, todos os doadores recebem um comprovante oficial com os dados necessários para dedução fiscal conforme a legislação vigente.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA FINAL ===== -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <div class="cta-box fade-up">
+                <h2>Faça parte dessa <span class="highlight">transformação</span></h2>
+                <p>Não importa o valor — o que importa é o propósito. Sua doação é o gesto que pode mudar uma vida.</p>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-gold btn-lg">Doar com propósito →</a>
+                    <a href="#" class="btn btn-outline-light btn-lg">Quero saber mais</a>
+                </div>
+                <div style="margin-top:18px;font-size:14px;color:rgba(255,255,255,0.25);">
+                    Dúvidas? Fale conosco pelo WhatsApp
+                </div>
+                <a href="#" class="btn btn-whatsapp" style="display:inline-flex;margin-top:10px;">
+                    💬 Enviar mensagem
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA PERSISTENTE ===== -->
+    <div class="cta-float">
+        <a href="#cta" class="btn-donate">
+            <span class="icon">❤️</span>
+            <span>Doe agora</span>
+        </a>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p><span class="brand">Give <span>With Purpose</span></span> — Doe com propósito e transforme vidas. © 2026</p>
+            <div class="transparency">
+                🔒 100% transparente · <a href="#">Relatório de impacto</a> · <a href="#">Política de privacidade</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ================================================================
+        //  MENU MOBILE
+        // ================================================================
+        const menuToggle = document.getElementById('menuToggle');
+        const headerNav = document.getElementById('headerNav');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = headerNav.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            menuToggle.textContent = isOpen ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('.header-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                headerNav.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = '☰';
+            });
+        });
+
+        // ================================================================
+        //  ANIMAÇÃO DE ENTRADA
+        // ================================================================
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        fadeElements.forEach(el => observer.observe(el));
+
+        // ================================================================
+        //  COUNTER ANIMATION
+        // ================================================================
+        const counters = document.querySelectorAll('.counter-value');
+        let countersAnimated = false;
+
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !countersAnimated) {
+                    countersAnimated = true;
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.dataset.target);
+                        let current = 0;
+                        const step = Math.max(1, Math.floor(target / 40));
+                        const interval = setInterval(() => {
+                            current += step;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(interval);
+                            }
+                            counter.textContent = current.toLocaleString('pt-BR');
+                        }, 25);
+                    });
+                }
+            });
+        }, { threshold: 0.3 });
+
+        counters.forEach(el => counterObserver.observe(el));
+
+        // ================================================================
+        //  FAQ ACCORDION
+        // ================================================================
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.question');
+            const answer = item.querySelector('.answer');
+            const icon = question.querySelector('.icon');
+
+            question.addEventListener('click', () => {
+                const isOpen = answer.classList.contains('open');
+                faqItems.forEach(other => {
+                    if (other !== item) {
+                        other.querySelector('.answer').classList.remove('open');
+                        other.querySelector('.icon').classList.remove('open');
+                    }
+                });
+                answer.classList.toggle('open');
+                icon.classList.toggle('open');
+            });
+
+            question.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    question.click();
+                }
+            });
+        });
+
+        // ================================================================
+        //  HEADER SCROLL
+        // ================================================================
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                header.style.boxShadow = '0 2px 24px rgba(0,0,0,0.04)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // ================================================================
+        //  WHATSAPP & CTA CLICKS
+        // ================================================================
+        document.querySelectorAll('.btn-whatsapp, .cta-box .btn-whatsapp').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('💬 WhatsApp: (11) 99999-9999 — Fale conosco!');
+            });
+        });
+
+        document.querySelectorAll('.btn-gold, .btn-primary, .btn-donate').forEach(btn => {
+            if (btn.textContent.includes('Doar') || btn.textContent.includes('Doe')) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('❤️ Obrigado por querer doar! Em breve nossa equipe entrará em contato com as opções de contribuição.');
+                });
+            }
+        });
+
+        // ================================================================
+        //  SCROLL INDICATOR FADE
+        // ================================================================
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 150) {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.pointerEvents = 'none';
+            } else {
+                scrollIndicator.style.opacity = '0.3';
+                scrollIndicator.style.pointerEvents = 'auto';
+            }
+        });
+
+        // ================================================================
+        //  LOG
+        // ================================================================
+        console.log('❤️ Give With Purpose — Landing Page de doação');
+        console.log('📌 Meta: R$ 120.000 | Arrecadado: R$ 80.400 | 67%');
+        console.log('📌 Contadores animados, FAQ e CTAs funcionando.');
+    </script>
+
+</body>
+</html>

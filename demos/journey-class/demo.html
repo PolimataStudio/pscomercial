@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#4A2C2A" />
+    <meta name="description" content="Journey Class — Uma jornada de transformação através da educação." />
+    <title>Journey Class · Landing Page</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES · DESIGN SYSTEM
+           ============================================================ */
+        :root {
+            --color-white: #ffffff;
+            --color-cream: #fdf8f2;
+            --color-beige: #f5ede4;
+            --color-beige-dark: #e8ddd0;
+            --color-terracotta: #c46a4a;
+            --color-terracotta-light: #d9896a;
+            --color-terracotta-dark: #a8553a;
+            --color-terracotta-pale: #f5e8e0;
+            --color-blue-deep: #1a2e3f;
+            --color-blue-deep-light: #2a4055;
+            --color-blue-deep-pale: #e8edf0;
+            --color-gray-50: #faf8f6;
+            --color-gray-100: #f0ede8;
+            --color-gray-200: #e0dad2;
+            --color-gray-300: #cbc3b8;
+            --color-gray-400: #b0a69a;
+            --color-gray-500: #94897c;
+            --color-gray-600: #776b5e;
+            --color-gray-700: #5a4f43;
+            --color-gray-800: #3d342b;
+            --color-gray-900: #221c16;
+            --color-gold: #d4a86a;
+            --color-gold-light: #e8c99a;
+            --color-gold-pale: #f5ede0;
+
+            --font-display: 'Playfair Display', 'Times New Roman', serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.08);
+            --shadow-xl: 0 40px 80px rgba(0, 0, 0, 0.10);
+
+            --transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-cream);
+            color: var(--color-gray-800);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-gray-100);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-terracotta);
+            border-radius: 10px;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section {
+            padding: 72px 0;
+        }
+
+        .section-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--color-terracotta);
+            margin-bottom: 6px;
+            font-family: var(--font-body);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+        .section-title .highlight {
+            color: var(--color-terracotta);
+        }
+        .section-title .highlight-blue {
+            color: var(--color-blue-deep);
+        }
+
+        .section-sub {
+            font-size: 18px;
+            color: var(--color-gray-500);
+            max-width: 620px;
+            margin-top: 8px;
+            line-height: 1.8;
+        }
+
+        .section-alt {
+            background: var(--color-white);
+        }
+
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 38px;
+            border-radius: 50px;
+            border: none;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            line-height: 1.2;
+        }
+
+        .btn-primary {
+            background: var(--color-terracotta);
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(196, 106, 74, 0.25);
+        }
+        .btn-primary:hover {
+            background: var(--color-terracotta-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(196, 106, 74, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--color-gray-700);
+            border: 2px solid var(--color-gray-300);
+        }
+        .btn-outline:hover {
+            border-color: var(--color-terracotta);
+            color: var(--color-terracotta);
+            background: var(--color-terracotta-pale);
+            transform: translateY(-3px);
+        }
+
+        .btn-white {
+            background: var(--color-white);
+            color: var(--color-blue-deep);
+        }
+        .btn-white:hover {
+            background: var(--color-gray-100);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-lg {
+            padding: 18px 48px;
+            font-size: 18px;
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--color-gray-200);
+            padding: 12px 0;
+            transition: all var(--transition);
+        }
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header .logo {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--color-blue-deep);
+            text-decoration: none;
+            letter-spacing: -0.3px;
+        }
+        .header .logo span {
+            color: var(--color-terracotta);
+        }
+        .header .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            list-style: none;
+        }
+        .header .nav-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-gray-600);
+            text-decoration: none;
+            transition: color var(--transition);
+            position: relative;
+        }
+        .header .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-terracotta);
+            transition: width var(--transition);
+        }
+        .header .nav-links a:hover {
+            color: var(--color-terracotta);
+        }
+        .header .nav-links a:hover::after {
+            width: 100%;
+        }
+        .header .nav-links .btn {
+            padding: 8px 24px;
+            font-size: 14px;
+        }
+        .header .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 22px;
+            color: var(--color-gray-700);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        /* ============================================================
+           HERO · ABERTURA COM NARRATIVA
+           ============================================================ */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(160deg, var(--color-cream) 0%, var(--color-beige) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 50%;
+            height: 140%;
+            background: radial-gradient(circle, rgba(196, 106, 74, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero .hero-tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-terracotta);
+            background: var(--color-terracotta-pale);
+            padding: 4px 18px;
+            border-radius: 50px;
+            margin-bottom: 14px;
+        }
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 .highlight {
+            color: var(--color-terracotta);
+        }
+        .hero .hero-sub {
+            font-size: 18px;
+            color: var(--color-gray-500);
+            margin: 16px 0 24px;
+            line-height: 1.8;
+            max-width: 540px;
+        }
+        .hero .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .hero .hero-narrative {
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-gray-200);
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+        .hero .hero-narrative .item {
+            font-size: 14px;
+            color: var(--color-gray-500);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .hero .hero-narrative .item i {
+            color: var(--color-terracotta);
+            font-size: 16px;
+        }
+
+        /* Hero visual */
+        .hero-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .hero-visual .visual-main {
+            background: var(--color-blue-deep);
+            border-radius: var(--radius-lg);
+            padding: 40px 36px;
+            color: #fff;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-visual .visual-main .quote-mark {
+            font-family: var(--font-display);
+            font-size: 56px;
+            color: var(--color-terracotta);
+            opacity: 0.2;
+            line-height: 1;
+            margin-bottom: -12px;
+        }
+        .hero-visual .visual-main blockquote {
+            font-family: var(--font-display);
+            font-size: 22px;
+            font-weight: 400;
+            line-height: 1.4;
+            font-style: italic;
+            max-width: 90%;
+        }
+        .hero-visual .visual-main .attribution {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 8px;
+            font-style: normal;
+        }
+        .hero-visual .visual-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .hero-visual .visual-grid .grid-item {
+            background: var(--color-white);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            cursor: default;
+        }
+        .hero-visual .visual-grid .grid-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .hero-visual .visual-grid .grid-item .icon {
+            font-size: 24px;
+            color: var(--color-terracotta);
+            margin-bottom: 4px;
+        }
+        .hero-visual .visual-grid .grid-item .label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--color-gray-700);
+        }
+        .hero-visual .visual-grid .grid-item .desc {
+            font-size: 12px;
+            color: var(--color-gray-400);
+        }
+
+        /* ============================================================
+           PAIN · DOR DO PÚBLICO
+           ============================================================ */
+        .pain-section {
+            background: var(--color-white);
+            border-top: 1px solid var(--color-gray-200);
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+        .pain-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+        .pain-grid .pain-text .pain-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-terracotta);
+            margin-bottom: 6px;
+        }
+        .pain-grid .pain-text h2 {
+            font-family: var(--font-display);
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            line-height: 1.15;
+        }
+        .pain-grid .pain-text h2 .highlight {
+            color: var(--color-terracotta);
+        }
+        .pain-grid .pain-text p {
+            font-size: 17px;
+            color: var(--color-gray-600);
+            line-height: 1.9;
+            margin-top: 12px;
+        }
+        .pain-grid .pain-list {
+            background: var(--color-cream);
+            border-radius: var(--radius-lg);
+            padding: 32px 36px;
+            border: 1px solid var(--color-gray-200);
+        }
+        .pain-grid .pain-list .item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+        .pain-grid .pain-list .item:last-child {
+            border-bottom: none;
+        }
+        .pain-grid .pain-list .item .icon {
+            color: var(--color-terracotta);
+            font-size: 18px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .pain-grid .pain-list .item .text {
+            font-size: 15px;
+            color: var(--color-gray-700);
+        }
+        .pain-grid .pain-list .item .text strong {
+            color: var(--color-gray-900);
+        }
+
+        /* ============================================================
+           METHOD · MÉTODO
+           ============================================================ */
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .method-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            position: relative;
+        }
+        .method-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-terracotta);
+        }
+        .method-card .step {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-terracotta);
+            background: var(--color-terracotta-pale);
+            padding: 2px 16px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .method-card .icon {
+            font-size: 32px;
+            color: var(--color-terracotta);
+            margin-bottom: 8px;
+        }
+        .method-card h4 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--color-gray-900);
+        }
+        .method-card p {
+            font-size: 14px;
+            color: var(--color-gray-500);
+            line-height: 1.7;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+           TRANSFORMATION · LINHA DO TEMPO
+           ============================================================ */
+        .transformation-section {
+            background: var(--color-blue-deep);
+            color: #fff;
+        }
+        .transformation-section .section-label {
+            color: var(--color-terracotta-light);
+        }
+        .transformation-section .section-title {
+            color: #fff;
+        }
+        .transformation-section .section-title .highlight {
+            color: var(--color-terracotta-light);
+        }
+        .transformation-section .section-sub {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .timeline {
+            margin-top: 36px;
+            position: relative;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .timeline-item {
+            position: relative;
+            padding: 16px 0 16px 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 24px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--color-terracotta);
+            border: 3px solid var(--color-blue-deep);
+            box-shadow: 0 0 0 4px rgba(196, 106, 74, 0.2);
+        }
+        .timeline-item .step-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-terracotta-light);
+        }
+        .timeline-item h4 {
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .timeline-item p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            max-width: 640px;
+        }
+
+        /* ============================================================
+           TESTIMONIALS
+           ============================================================ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .testimonial-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 32px 32px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .testimonial-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .testimonial-card .quote-icon {
+            color: var(--color-terracotta);
+            font-size: 28px;
+            opacity: 0.2;
+            margin-bottom: 4px;
+        }
+        .testimonial-card .text {
+            font-size: 16px;
+            color: var(--color-gray-700);
+            line-height: 1.8;
+            font-style: italic;
+        }
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--color-gray-100);
+        }
+        .testimonial-card .author .avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--color-terracotta-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--color-terracotta);
+            flex-shrink: 0;
+        }
+        .testimonial-card .author .info .name {
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--color-gray-800);
+        }
+        .testimonial-card .author .info .role {
+            font-size: 13px;
+            color: var(--color-gray-400);
+        }
+
+        /* ============================================================
+           SERVICE STRUCTURE
+           ============================================================ */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .service-card {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: 28px 28px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+        }
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-terracotta);
+        }
+        .service-card .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--color-terracotta-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            color: var(--color-terracotta);
+            flex-shrink: 0;
+        }
+        .service-card .content h4 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--color-gray-900);
+        }
+        .service-card .content p {
+            font-size: 14px;
+            color: var(--color-gray-500);
+            line-height: 1.7;
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           CTA FINAL
+           ============================================================ */
+        .cta-final {
+            background: linear-gradient(160deg, var(--color-beige) 0%, var(--color-cream) 100%);
+            padding: 72px 0;
+            border-top: 1px solid var(--color-gray-200);
+        }
+        .cta-final .cta-box {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            padding: 56px 48px;
+            border: 1px solid var(--color-gray-200);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .cta-final .cta-box h2 {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            line-height: 1.15;
+        }
+        .cta-final .cta-box h2 .highlight {
+            color: var(--color-terracotta);
+        }
+        .cta-final .cta-box p {
+            font-size: 18px;
+            color: var(--color-gray-500);
+            max-width: 520px;
+            margin: 12px auto 28px;
+            line-height: 1.8;
+        }
+        .cta-final .cta-box .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            padding: 28px 0;
+            border-top: 1px solid var(--color-gray-200);
+            text-align: center;
+            font-size: 13px;
+            color: var(--color-gray-400);
+            background: var(--color-white);
+        }
+        .footer a {
+            color: var(--color-terracotta);
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ============================================================
+           FLOATING CTA (mobile)
+           ============================================================ */
+        .floating-cta {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 200;
+            background: var(--color-white);
+            padding: 12px 16px;
+            border-top: 1px solid var(--color-gray-200);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.06);
+            gap: 10px;
+            align-items: center;
+        }
+        .floating-cta .btn {
+            flex: 1;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: var(--radius-md);
+        }
+        .floating-cta .btn-primary {
+            border: none;
+            font-family: var(--font-body);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           TOAST
+           ============================================================ */
+        .toast-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 360px;
+        }
+        .toast {
+            background: var(--color-gray-900);
+            color: #fff;
+            padding: 14px 20px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            font-size: 14px;
+            animation: slideInRight 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-left: 4px solid var(--color-terracotta);
+        }
+        .toast.success {
+            border-left-color: var(--color-terracotta);
+        }
+        .toast i {
+            font-size: 18px;
+        }
+        .toast .close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            font-size: 16px;
+            padding: 0 4px;
+        }
+        .toast .close:hover {
+            color: #fff;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes slideOutRight {
+            from {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+        }
+
+        /* ============================================================
+           SCROLL REVEAL
+           ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero h1 {
+                font-size: 38px;
+            }
+            .pain-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .method-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 34px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header .nav-links {
+                display: none;
+                flex-direction: column;
+                gap: 16px;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--color-white);
+                padding: 24px 20px;
+                border-bottom: 1px solid var(--color-gray-200);
+                box-shadow: var(--shadow-md);
+            }
+            .header .nav-links.open {
+                display: flex;
+            }
+            .header .nav-toggle {
+                display: block;
+            }
+            .header .nav-links .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 120px 0 48px;
+            }
+            .hero h1 {
+                font-size: 32px;
+            }
+            .hero .hero-sub {
+                font-size: 16px;
+            }
+            .hero .hero-narrative {
+                gap: 16px;
+            }
+            .hero-visual .visual-main blockquote {
+                font-size: 18px;
+            }
+            .hero-visual .visual-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .section {
+                padding: 48px 0;
+            }
+            .section-title {
+                font-size: 28px;
+            }
+            .section-sub {
+                font-size: 16px;
+            }
+
+            .pain-grid .pain-text h2 {
+                font-size: 28px;
+            }
+            .pain-grid .pain-list {
+                padding: 24px 20px;
+            }
+
+            .method-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .method-card {
+                padding: 24px 20px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonial-card {
+                padding: 24px 20px;
+            }
+
+            .service-card {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px 20px;
+            }
+
+            .cta-final .cta-box {
+                padding: 36px 24px;
+                border-radius: var(--radius-lg);
+            }
+            .cta-final .cta-box h2 {
+                font-size: 28px;
+            }
+            .cta-final .cta-box p {
+                font-size: 16px;
+            }
+
+            .floating-cta {
+                display: flex;
+            }
+
+            .toast-container {
+                top: 70px;
+                right: 10px;
+                left: 10px;
+                max-width: none;
+            }
+
+            .timeline {
+                padding-left: 24px;
+            }
+            .timeline::before {
+                left: 4px;
+            }
+            .timeline-item {
+                padding-left: 20px;
+            }
+            .timeline-item::before {
+                left: -22px;
+                width: 12px;
+                height: 12px;
+            }
+            .timeline-item h4 {
+                font-size: 17px;
+            }
+
+            .hero .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            .hero-visual .visual-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-visual .visual-main {
+                padding: 28px 20px;
+                min-height: 160px;
+            }
+            .hero-visual .visual-main blockquote {
+                font-size: 16px;
+            }
+            .section-title {
+                font-size: 24px;
+            }
+            .pain-grid .pain-text h2 {
+                font-size: 24px;
+            }
+            .cta-final .cta-box h2 {
+                font-size: 24px;
+            }
+            .cta-final .cta-box .cta-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .header .logo {
+                font-size: 20px;
+            }
+            .floating-cta .btn {
+                font-size: 13px;
+                padding: 10px;
+            }
+            .testimonial-card .text {
+                font-size: 15px;
+            }
+            .method-card h4 {
+                font-size: 18px;
+            }
+            .pain-grid .pain-list .item .text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo">Journey <span>Class</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-links" id="navLinks">
+                <a href="#pain">A jornada</a>
+                <a href="#method">O método</a>
+                <a href="#transformation">Transformação</a>
+                <a href="#testimonials">Depoimentos</a>
+                <a href="#service">Estrutura</a>
+                <a href="#cta" class="btn btn-primary">Começar agora</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    HERO · ABERTURA COM NARRATIVA
+    ============================================================ -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-tag"><i class="fas fa-feather"></i> Uma história de transformação</div>
+                <h1>Descubra o caminho para uma <span class="highlight">educação que transforma</span></h1>
+                <p class="hero-sub">Mais do que um curso, uma jornada. Aprenda com propósito, desenvolva habilidades reais e construa o futuro que você merece.</p>
+                <div class="hero-actions">
+                    <a href="#cta" class="btn btn-primary btn-lg"><i class="fas fa-arrow-right"></i> Começar minha jornada</a>
+                    <a href="#pain" class="btn btn-outline btn-lg"><i class="fas fa-play"></i> Conhecer a história</a>
+                </div>
+                <div class="hero-narrative">
+                    <span class="item"><i class="fas fa-user-graduate"></i> +2.300 alunos</span>
+                    <span class="item"><i class="fas fa-star"></i> 4.9★ de avaliação</span>
+                    <span class="item"><i class="fas fa-clock"></i> 8 anos de caminhada</span>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="visual-main">
+                    <div class="quote-mark">"</div>
+                    <blockquote>Educar não é encher um balde, mas acender uma fogueira.</blockquote>
+                    <div class="attribution">— William Butler Yeats</div>
+                </div>
+                <div class="visual-grid">
+                    <div class="grid-item">
+                        <div class="icon"><i class="fas fa-book-open"></i></div>
+                        <div class="label">Aprendizado vivo</div>
+                        <div class="desc">Conteúdo que respira</div>
+                    </div>
+                    <div class="grid-item">
+                        <div class="icon"><i class="fas fa-users"></i></div>
+                        <div class="label">Comunidade</div>
+                        <div class="desc">Conexões que importam</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAIN · DOR DO PÚBLICO
+    ============================================================ -->
+    <section class="section pain-section" id="pain">
+        <div class="container">
+            <div class="pain-grid">
+                <div class="pain-text reveal">
+                    <div class="pain-label">A jornada começa aqui</div>
+                    <h2>Você sente que <span class="highlight">falta algo</span> no seu aprendizado?</h2>
+                    <p>Muitos alunos e profissionais enfrentam os mesmos desafios: falta de direção, conteúdo desconectado da realidade, e a sensação de que o aprendizado não está gerando transformação real.</p>
+                    <p style="margin-top:8px;">A Journey Class nasceu para mudar isso. Para construir pontes entre o conhecimento e a vida, entre a teoria e a prática, entre a dúvida e a descoberta.</p>
+                </div>
+                <div class="pain-list reveal">
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-times-circle"></i></div>
+                        <div class="text"><strong>Desconexão</strong> — conteúdos que não se conectam com a realidade do aluno.</div>
+                    </div>
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-times-circle"></i></div>
+                        <div class="text"><strong>Desmotivação</strong> — a falta de propósito transforma o estudo em obrigação.</div>
+                    </div>
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-times-circle"></i></div>
+                        <div class="text"><strong>Solidão</strong> — aprender sozinho é mais difícil e menos inspirador.</div>
+                    </div>
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-times-circle"></i></div>
+                        <div class="text"><strong>Resultados frustrantes</strong> — o esforço não se traduz em progresso real.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    METHOD · MÉTODO
+    ============================================================ -->
+    <section class="section" id="method">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-label">Nosso método</div>
+                <h2 class="section-title">Uma abordagem que <span class="highlight">faz sentido</span></h2>
+                <p class="section-sub mx-auto">Construído sobre pilares que transformam a maneira como você aprende e cresce.</p>
+            </div>
+
+            <div class="method-grid">
+                <div class="method-card reveal">
+                    <span class="step">Pilar 1</span>
+                    <div class="icon"><i class="fas fa-compass"></i></div>
+                    <h4>Propósito claro</h4>
+                    <p>Todo aprendizado começa com um "por quê". Definimos metas significativas que guiam cada passo da jornada.</p>
+                </div>
+                <div class="method-card reveal">
+                    <span class="step">Pilar 2</span>
+                    <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h4>Acompanhamento humano</h4>
+                    <p>Você nunca estará sozinho. Nossa equipe está presente para orientar, motivar e celebrar cada conquista.</p>
+                </div>
+                <div class="method-card reveal">
+                    <span class="step">Pilar 3</span>
+                    <div class="icon"><i class="fas fa-project-diagram"></i></div>
+                    <h4>Projetos reais</h4>
+                    <p>Aprenda fazendo. Cada etapa da jornada envolve desafios práticos que conectam teoria e aplicação.</p>
+                </div>
+                <div class="method-card reveal">
+                    <span class="step">Pilar 4</span>
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <h4>Comunidade ativa</h4>
+                    <p>Troque experiências, colabore e cresça junto com outros alunos que compartilham os mesmos objetivos.</p>
+                </div>
+                <div class="method-card reveal">
+                    <span class="step">Pilar 5</span>
+                    <div class="icon"><i class="fas fa-sync-alt"></i></div>
+                    <h4>Feedback contínuo</h4>
+                    <p>Avaliação constante e construtiva para que você saiba exatamente onde está e para onde ir.</p>
+                </div>
+                <div class="method-card reveal">
+                    <span class="step">Pilar 6</span>
+                    <div class="icon"><i class="fas fa-gem"></i></div>
+                    <h4>Transformação duradoura</h4>
+                    <p>O objetivo não é apenas aprender, mas se tornar uma versão mais capaz, confiante e realizada de si mesmo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    TRANSFORMATION · LINHA DO TEMPO
+    ============================================================ -->
+    <section class="section transformation-section" id="transformation">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-label">A transformação</div>
+                <h2 class="section-title">Como a <span class="highlight">jornada se desenrola</span></h2>
+                <p class="section-sub mx-auto">Cada etapa é planejada para construir conhecimento, confiança e propósito.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="step-label">Fase 1</div>
+                    <h4>Descoberta</h4>
+                    <p>Começamos com uma imersão profunda nos seus interesses, desafios e objetivos. Mapeamos o território e definimos a rota.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="step-label">Fase 2</div>
+                    <h4>Fundação</h4>
+                    <p>Construímos as bases sólidas do conhecimento. Conceitos fundamentais, ferramentas e habilidades essenciais.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="step-label">Fase 3</div>
+                    <h4>Imersão</h4>
+                    <p>Mergulho profundo nos conteúdos centrais. Projetos práticos, desafios e colaboração com a comunidade.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="step-label">Fase 4</div>
+                    <h4>Prototipação</h4>
+                    <p>Coloque em prática o que aprendeu. Desenvolva projetos reais, receba feedback e refine suas criações.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="step-label">Fase 5</div>
+                    <h4>Consolidação</h4>
+                    <p>Revise, sistematize e integre o aprendizado. Prepare-se para aplicar o conhecimento de forma autônoma.</p>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="step-label">Fase 6</div>
+                    <h4>Transformação</h4>
+                    <p>Você não é mais a mesma pessoa. Saia da jornada com novas habilidades, uma nova visão e um futuro redefinido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    TESTIMONIALS
+    ============================================================ -->
+    <section class="section section-alt" id="testimonials">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-label">Depoimentos</div>
+                <h2 class="section-title">Histórias de quem <span class="highlight">viveu a jornada</span></h2>
+                <p class="section-sub mx-auto">Transformações reais contadas por quem trilhou o caminho.</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <div class="text">“A Journey Class mudou minha vida. Antes, eu estudava sem direção. Hoje, tenho clareza, propósito e confiança para construir meu futuro. Cada etapa foi pensada com cuidado e carinho.”</div>
+                    <div class="author">
+                        <div class="avatar">AM</div>
+                        <div class="info">
+                            <div class="name">Ana Martins</div>
+                            <div class="role">Aluna · Turma 2024</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal">
+                    <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                    <div class="text">“Eu nunca havia encontrado um método que realmente me engajasse. A Journey Class me mostrou que aprender pode ser inspirador, prático e profundamente transformador.”</div>
+                    <div class="author">
+                        <div class="avatar">CR</div>
+                        <div class="info">
+                            <div class="name">Carlos Ribeiro</div>
+                            <div class="role">Ex-aluno · Empreendedor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    SERVICE STRUCTURE
+    ============================================================ -->
+    <section class="section" id="service">
+        <div class="container">
+            <div class="text-center">
+                <div class="section-label">O que está incluso</div>
+                <h2 class="section-title">Tudo o que você <span class="highlight">precisa para sua jornada</span></h2>
+                <p class="section-sub mx-auto">Uma estrutura completa pensada para eliminar obstáculos e potencializar seu crescimento.</p>
+            </div>
+
+            <div class="service-grid">
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-video"></i></div>
+                    <div class="content">
+                        <h4>Aulas gravadas e ao vivo</h4>
+                        <p>Conteúdo de alta qualidade disponível 24/7, com encontros ao vivo para tirar dúvidas e aprofundar temas.</p>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-file-alt"></i></div>
+                    <div class="content">
+                        <h4>Material exclusivo</h4>
+                        <p>Guias, exercícios, leituras complementares e materiais desenvolvidos especialmente para cada fase.</p>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <div class="content">
+                        <h4>Comunidade ativa</h4>
+                        <p>Fórum, grupos de estudo e encontros para trocar ideias, colaborar e crescer junto com outros alunos.</p>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="content">
+                        <h4>Mentoria personalizada</h4>
+                        <p>Acompanhamento individual com educadores experientes para orientar seu progresso e superar desafios.</p>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="content">
+                        <h4>Feedback contínuo</h4>
+                        <p>Avaliações e devolutivas detalhadas para que você saiba exatamente como está evoluindo.</p>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="icon"><i class="fas fa-certificate"></i></div>
+                    <div class="content">
+                        <h4>Certificado de conclusão</h4>
+                        <p>Reconhecimento oficial da sua jornada e das competências desenvolvidas ao longo do percurso.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CTA FINAL
+    ============================================================ -->
+    <section class="cta-final" id="cta">
+        <div class="container">
+            <div class="cta-box reveal">
+                <h2>Pronto para <span class="highlight">começar sua jornada</span>?</h2>
+                <p>Dê o primeiro passo hoje. Junte-se a centenas de alunos que já transformaram suas vidas através da educação com propósito.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary btn-lg" onclick="showToast('Sua jornada começa agora! 🚀','success')">
+                        <i class="fas fa-arrow-right"></i> Quero começar
+                    </a>
+                    <a href="#pain" class="btn btn-outline btn-lg">
+                        <i class="fas fa-play"></i> Conhecer a história
+                    </a>
+                </div>
+                <p style="font-size:13px;color:var(--color-gray-400);margin-top:16px;max-width:100%;">
+                    <i class="fas fa-lock" style="margin-right:6px;"></i> Sem compromisso. Sem taxas escondidas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2026 <a href="#">Journey Class</a>. Todos os direitos reservados. Feito com <i class="fas fa-heart" style="color:var(--color-terracotta);"></i></p>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    FLOATING CTA (mobile)
+    ============================================================ -->
+    <div class="floating-cta" id="floatingCta">
+        <a href="#cta" class="btn btn-primary">
+            <i class="fas fa-arrow-right"></i> Começar jornada
+        </a>
+    </div>
+
+    <!-- ============================================================
+    TOAST CONTAINER
+    ============================================================ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // TOAST
+            // ============================================================
+            function showToast(message, type = 'info', duration = 4000) {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                const icons = {
+                    success: 'fa-check-circle',
+                    error: 'fa-times-circle',
+                    warning: 'fa-exclamation-circle',
+                    info: 'fa-info-circle'
+                };
+                toast.className = 'toast ' + type;
+                toast.innerHTML = `
+                            <i class="fas ${icons[type] || icons.info}"></i>
+                            <span>${message}</span>
+                            <button class="close">&times;</button>
+                        `;
+                container.appendChild(toast);
+
+                const close = () => {
+                    toast.style.animation = 'slideOutRight 0.25s ease forwards';
+                    setTimeout(() => toast.remove(), 300);
+                };
+
+                toast.querySelector('.close').addEventListener('click', close);
+                setTimeout(close, duration);
+            }
+
+            // ============================================================
+            // HEADER NAV TOGGLE (mobile)
+            // ============================================================
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+
+            navToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+                this.innerHTML = navLinks.classList.contains('open') ?
+                    '<i class="fas fa-times"></i>' :
+                    '<i class="fas fa-bars"></i>';
+            });
+
+            // Close nav on link click
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('open');
+                    navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+
+            // ============================================================
+            // SCROLL REVEAL
+            // ============================================================
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -20px 0px' });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // ============================================================
+            // HEADER SCROLL EFFECT
+            // ============================================================
+            const header = document.getElementById('header');
+
+            window.addEventListener('scroll', function() {
+                const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollY > 60) {
+                    header.style.boxShadow = 'var(--shadow-md)';
+                } else {
+                    header.style.boxShadow = 'none';
+                }
+            });
+
+            // ============================================================
+            // SMOOTH SCROLL FOR ANCHOR LINKS
+            // ============================================================
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        const headerHeight = document.querySelector('.header').offsetHeight;
+                        const top = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            console.log('📖 Journey Class · Landing Page inicializada');
+            setTimeout(() => {
+                showToast('🌟 Sua jornada de transformação começa aqui.', 'info', 3500);
+            }, 700);
+
+            // Expose to global
+            window.showToast = showToast;
+
+        })();
+    </script>
+
+</body>
+</html>

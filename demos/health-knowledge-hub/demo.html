@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Health Knowledge Hub · Autoridade em Saúde</title>
+    <!-- Fonts: serifada para títulos, sans-serif para leitura -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ============================================================
+           CSS CUSTOM PROPERTIES — Design System Editorial
+           ============================================================ */
+        :root {
+            --color-primary: #0a3d5e;
+            --color-primary-light: #1a5a7a;
+            --color-secondary: #2a7a6a;
+            --color-secondary-light: #4a9a8a;
+            --color-accent: #d4a373;
+            --color-bg: #f5f7f8;
+            --color-card: #ffffff;
+            --color-text: #1a2a32;
+            --color-text-muted: #4a5a66;
+            --color-text-light: #8a9aa8;
+            --color-border: #e2e8ec;
+            --color-shadow: rgba(10, 61, 94, 0.04);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-xs: 8px;
+            --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            --max-width: 1200px;
+            --header-height: 68px;
+            --shadow-card: 0 4px 24px rgba(10, 61, 94, 0.04);
+            --shadow-hover: 0 12px 40px rgba(10, 61, 94, 0.08);
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+           HEADER / NAV (fixa com glass)
+           ============================================================ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: var(--color-secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.2px;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        .nav-menu a.active {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: inline-block;
+            padding: 8px 22px;
+            background: var(--color-secondary);
+            color: #fff;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            letter-spacing: 0.2px;
+        }
+        .nav-cta:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(42, 122, 106, 0.2);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           MAIN CONTENT — Tabs
+           ============================================================ */
+        .main-content {
+            padding-top: var(--header-height);
+            min-height: 100vh;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeSlideUp 0.5s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           SECTIONS (dentro de cada tab)
+           ============================================================ */
+        .page-section {
+            padding: 60px 0 50px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .page-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-secondary);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .highlight {
+            color: var(--color-secondary);
+            font-style: italic;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin-bottom: 1.8rem;
+        }
+
+        .text-center {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================================
+           HOME — Editorial
+           ============================================================ */
+        .hero-editorial {
+            padding: 60px 0 40px;
+            background: linear-gradient(160deg, #eef4f8 0%, #f7f9fa 100%);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .hero-editorial-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-editorial-content h1 {
+            font-family: var(--font-serif);
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.05;
+            color: var(--color-primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-editorial-content h1 .highlight {
+            color: var(--color-secondary);
+            font-style: italic;
+        }
+
+        .hero-editorial-content p {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            max-width: 460px;
+            margin-bottom: 1.8rem;
+        }
+
+        .hero-editorial-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            background: var(--color-secondary);
+            color: #fff;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            box-shadow: 0 8px 28px rgba(42, 122, 106, 0.15);
+        }
+
+        .hero-editorial-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(42, 122, 106, 0.25);
+            background: var(--color-secondary-light);
+        }
+
+        .hero-editorial-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-editorial-image .placeholder {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 1/1;
+            background: linear-gradient(145deg, var(--color-primary-light), var(--color-primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.06);
+            font-size: 4rem;
+            font-weight: 300;
+            box-shadow: 0 20px 60px rgba(10, 61, 94, 0.10);
+            position: relative;
+        }
+
+        .hero-editorial-image .placeholder span {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.10);
+            font-size: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-editorial-image .placeholder::after {
+            content: '✦';
+            font-size: 5rem;
+            opacity: 0.04;
+            position: absolute;
+            bottom: 8%;
+            right: 8%;
+        }
+
+        /* Destaques editoriais (cards de conteúdo) */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .featured-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.8rem 1.8rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .featured-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .featured-card .tag {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            color: var(--color-secondary);
+            background: var(--color-bg);
+            padding: 2px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-card h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .featured-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            margin-bottom: 0.8rem;
+        }
+
+        .featured-card .read-more {
+            font-weight: 600;
+            color: var(--color-secondary);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .featured-card .read-more:hover {
+            color: var(--color-primary);
+        }
+
+        /* ============================================================
+           SERVIÇOS (páginas de serviço)
+           ============================================================ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .service-item {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 2rem 1.5rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .service-item:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        .service-item .icon {
+            font-size: 2.2rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-item h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .service-item p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+            margin-top: 4px;
+        }
+
+        .service-item .saiba-mais {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .service-item .saiba-mais:hover {
+            color: var(--color-primary);
+        }
+
+        /* ============================================================
+           BLOG / GUIAS
+           ============================================================ */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .blog-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.8rem 2rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .blog-card .tag {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            color: var(--color-secondary);
+            background: var(--color-bg);
+            padding: 2px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-card h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .blog-card p {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        .blog-card .meta {
+            font-size: 0.7rem;
+            color: var(--color-text-light);
+            margin-top: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .blog-card .read-more {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .blog-card .read-more:hover {
+            color: var(--color-primary);
+        }
+
+        /* ============================================================
+           FAQ
+           ============================================================ */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .faq-item {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.2rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-align: left;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--color-bg);
+        }
+
+        .faq-question .icon {
+            color: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .faq-question.open .icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 1.5rem;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .faq-answer.open {
+            max-height: 300px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        /* ============================================================
+           EQUIPE
+           ============================================================ */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .team-member {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
+        }
+
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-member .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary));
+            margin: 0 auto 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .team-member h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .team-member .role {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           CONTATO
+           ============================================================ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-info .info-item .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-secondary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .contact-info .info-item .text strong {
+            display: block;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .contact-info .info-item .text span {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            background: var(--color-card);
+            transition: var(--transition);
+            outline: none;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(42, 122, 106, 0.06);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            padding: 14px 32px;
+            background: var(--color-secondary);
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+            letter-spacing: 0.3px;
+        }
+
+        .contact-form button:hover {
+            background: var(--color-secondary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(42, 122, 106, 0.15);
+        }
+
+        /* ============================================================
+           RODAPÉ
+           ============================================================ */
+        .site-footer {
+            background: var(--color-primary);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .site-footer .footer-text {
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+        }
+
+        .site-footer .footer-text a {
+            color: rgba(255, 255, 255, 0.6);
+            transition: var(--transition);
+        }
+        .site-footer .footer-text a:hover {
+            color: #fff;
+        }
+
+        .site-footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-editorial-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-editorial-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-editorial-image .placeholder {
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            .featured-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-editorial-content h1 {
+                font-size: 2.6rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: var(--color-card);
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid var(--color-border);
+                box-shadow: var(--shadow-card);
+                gap: 1rem;
+                align-items: stretch;
+            }
+            .nav-menu.open {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .nav-cta {
+                display: none;
+            }
+
+            .hero-editorial-content h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-editorial-content h1 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .hero-editorial-cta {
+                width: 100%;
+                justify-content: center;
+            }
+            .contact-form button {
+                width: 100%;
+            }
+        }
+
+        /* ============================================================
+           UTILITÁRIOS
+           ============================================================ */
+        .mt-2 {
+            margin-top: 2rem;
+        }
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            margin-top: 0.5rem;
+        }
+        .btn-whatsapp:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.15);
+        }
+        .btn-whatsapp i {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="header">
+        <div class="container">
+            <a href="#" class="logo" id="logoLink">Health<span>Hub</span></a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" data-tab="home" class="active">Início</a></li>
+                <li><a href="#" data-tab="servicos">Serviços</a></li>
+                <li><a href="#" data-tab="blog">Blog & Guias</a></li>
+                <li><a href="#" data-tab="faq">FAQ</a></li>
+                <li><a href="#" data-tab="equipe">Equipe</a></li>
+                <li><a href="#" data-tab="contato">Contato</a></li>
+            </ul>
+            <a href="#" class="nav-cta" id="navCta">Agendar</a>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    MAIN CONTENT (Tabs)
+    ============================================================ -->
+    <main class="main-content">
+
+        <!-- ============================================================
+        TAB: HOME
+        ============================================================ -->
+        <div class="tab-panel active" id="tab-home">
+            <!-- Hero Editorial -->
+            <section class="hero-editorial">
+                <div class="container">
+                    <div class="hero-editorial-grid">
+                        <div class="hero-editorial-content">
+                            <h1>Conhecimento que <span class="highlight">cuidado</span></h1>
+                            <p>
+                                Informação confiável para você tomar decisões mais conscientes
+                                sobre sua saúde. Conteúdo baseado em evidências e experiência clínica.
+                            </p>
+                            <a href="#" class="hero-editorial-cta" id="heroCta">
+                                <i class="fas fa-book-open"></i> Explorar conteúdo
+                            </a>
+                        </div>
+                        <div class="hero-editorial-image">
+                            <div class="placeholder">
+                                <span>Hub</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Destaques Editoriais -->
+            <section class="page-section" style="padding-top:20px;">
+                <div class="container">
+                    <div class="section-label text-center">Conteúdo em destaque</div>
+                    <h2 class="section-title text-center" style="font-size:2rem;">Artigos <span class="highlight">recentes</span></h2>
+                    <div class="featured-grid">
+                        <div class="featured-card">
+                            <span class="tag">Cardiologia</span>
+                            <h4>5 sinais de que seu coração precisa de atenção</h4>
+                            <p>Conheça os principais alertas que o corpo dá e quando procurar um especialista.</p>
+                            <a href="#" class="read-more" onclick="navigateTo('blog')">Ler mais →</a>
+                        </div>
+                        <div class="featured-card">
+                            <span class="tag">Nutrição</span>
+                            <h4>Alimentação anti-inflamatória: o que comer?</h4>
+                            <p>Descubra os alimentos que ajudam a reduzir inflamações e melhorar sua saúde geral.</p>
+                            <a href="#" class="read-more" onclick="navigateTo('blog')">Ler mais →</a>
+                        </div>
+                        <div class="featured-card">
+                            <span class="tag">Saúde Mental</span>
+                            <h4>Como gerenciar a ansiedade no dia a dia</h4>
+                            <p>Estratégias práticas e baseadas em ciência para lidar com a ansiedade cotidiana.</p>
+                            <a href="#" class="read-more" onclick="navigateTo('blog')">Ler mais →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action contextual -->
+            <section class="page-section" style="background:var(--color-card);">
+                <div class="container text-center">
+                    <div class="section-label">Pronto para agendar?</div>
+                    <h2 class="section-title" style="font-size:2rem;">Fale com um <span class="highlight">especialista</span></h2>
+                    <p style="max-width:480px; margin:0 auto 1.5rem; color:var(--color-text-muted);">
+                        Nossa equipe está preparada para responder suas perguntas e oferecer o cuidado que você merece.
+                    </p>
+                    <a href="#" class="hero-editorial-cta" onclick="navigateTo('contato')">
+                        <i class="fas fa-calendar-check"></i> Agendar consulta
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================================================
+        TAB: SERVIÇOS
+        ============================================================ -->
+        <div class="tab-panel" id="tab-servicos">
+            <section class="page-section" style="padding-top:80px;">
+                <div class="container">
+                    <div class="section-label text-center">Nossos serviços</div>
+                    <h2 class="section-title text-center">Especialidades <span class="highlight">em saúde</span></h2>
+                    <p class="section-desc text-center" style="max-width:540px;">
+                        Conheça as áreas de atuação da nossa equipe e encontre o cuidado certo para você.
+                    </p>
+                    <div class="services-grid">
+                        <div class="service-item">
+                            <div class="icon"><i class="fas fa-user-md"></i></div>
+                            <h4>Clínica Geral</h4>
+                            <p>Prevenção, diagnóstico e acompanhamento contínuo.</p>
+                            <a href="#" class="saiba-mais" onclick="navigateTo('contato')">Agendar →</a>
+                        </div>
+                        <div class="service-item">
+                            <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                            <h4>Cardiologia</h4>
+                            <p>Cuidado especializado para a saúde do seu coração.</p>
+                            <a href="#" class="saiba-mais" onclick="navigateTo('contato')">Agendar →</a>
+                        </div>
+                        <div class="service-item">
+                            <div class="icon"><i class="fas fa-female"></i></div>
+                            <h4>Ginecologia</h4>
+                            <p>Saúde da mulher em todas as fases da vida.</p>
+                            <a href="#" class="saiba-mais" onclick="navigateTo('contato')">Agendar →</a>
+                        </div>
+                        <div class="service-item">
+                            <div class="icon"><i class="fas fa-bone"></i></div>
+                            <h4>Ortopedia</h4>
+                            <p>Tratamento de lesões e doenças do sistema locomotor.</p>
+                            <a href="#" class="saiba-mais" onclick="navigateTo('contato')">Agendar →</a>
+                        </div>
+                        <div class="service-item">
+                            <div class="icon"><i class="fas fa-brain"></i></div>
+                            <h4>Psicologia</h4>
+                            <p>Apoio para saúde mental e bem-estar emocional.</p>
+                            <a href="#" class="saiba-mais" onclick="navigateTo('contato')">Agendar →</a>
+                        </div>
+                        <div class="service-item">
+                            <div class="icon"><i class="fas fa-apple-alt"></i></div>
+                            <h4>Nutrição</h4>
+                            <p>Orientação alimentar personalizada para sua saúde.</p>
+                            <a href="#" class="saiba-mais" onclick="navigateTo('contato')">Agendar →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================================================
+        TAB: BLOG & GUIAS
+        ============================================================ -->
+        <div class="tab-panel" id="tab-blog">
+            <section class="page-section" style="padding-top:80px;">
+                <div class="container">
+                    <div class="section-label text-center">Blog e guias</div>
+                    <h2 class="section-title text-center">Artigos <span class="highlight">educativos</span></h2>
+                    <p class="section-desc text-center" style="max-width:520px;">
+                        Informação confiável para ajudar você a entender melhor sua saúde e tomar decisões informadas.
+                    </p>
+                    <div class="blog-grid">
+                        <div class="blog-card">
+                            <span class="tag">Prevenção</span>
+                            <h4>Check-up anual: o que não pode faltar</h4>
+                            <p>Saiba quais exames são essenciais para manter sua saúde em dia e prevenir doenças.</p>
+                            <div class="meta"><i class="far fa-calendar-alt"></i> 12/07/2026 · <i class="far fa-clock"></i> 4 min de leitura</div>
+                            <a href="#" class="read-more">Ler artigo completo →</a>
+                        </div>
+                        <div class="blog-card">
+                            <span class="tag">Bem-estar</span>
+                            <h4>Como melhorar a qualidade do sono</h4>
+                            <p>Dicas práticas para uma rotina de sono mais saudável e restauradora.</p>
+                            <div class="meta"><i class="far fa-calendar-alt"></i> 08/07/2026 · <i class="far fa-clock"></i> 3 min de leitura</div>
+                            <a href="#" class="read-more">Ler artigo completo →</a>
+                        </div>
+                        <div class="blog-card">
+                            <span class="tag">Saúde Mental</span>
+                            <h4>Mindfulness: o que é e como praticar</h4>
+                            <p>Entenda os benefícios da atenção plena e como incorporá-la ao seu dia a dia.</p>
+                            <div class="meta"><i class="far fa-calendar-alt"></i> 05/07/2026 · <i class="far fa-clock"></i> 5 min de leitura</div>
+                            <a href="#" class="read-more">Ler artigo completo →</a>
+                        </div>
+                        <div class="blog-card">
+                            <span class="tag">Nutrição</span>
+                            <h4>Guia de alimentação para gestantes</h4>
+                            <p>Nutrientes essenciais e dicas para uma gravidez saudável e equilibrada.</p>
+                            <div class="meta"><i class="far fa-calendar-alt"></i> 30/06/2026 · <i class="far fa-clock"></i> 6 min de leitura</div>
+                            <a href="#" class="read-more">Ler artigo completo →</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================================================
+        TAB: FAQ
+        ============================================================ -->
+        <div class="tab-panel" id="tab-faq">
+            <section class="page-section" style="padding-top:80px;">
+                <div class="container">
+                    <div class="section-label text-center">Perguntas frequentes</div>
+                    <h2 class="section-title text-center">Dúvidas <span class="highlight">comuns</span></h2>
+                    <p class="section-desc text-center" style="max-width:480px;">
+                        Respostas claras para as perguntas que mais recebemos.
+                    </p>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                <span>Como agendar uma consulta?</span>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Você pode agendar pelo formulário de contato, pelo WhatsApp ou por telefone. Nossa equipe retorna em até 2 horas úteis.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                <span>Quais convênios são aceitos?</span>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Trabalhamos com Unimed, Bradesco Saúde, Amil, SulAmérica e também atendemos particulares com preços acessíveis.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                <span>O atendimento é presencial ou online?</span>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Oferecemos ambas as modalidades. Você pode escolher a que for mais conveniente para você.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                <span>Preciso de encaminhamento para marcar?</span>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Não é necessário. Você pode agendar diretamente com a especialidade desejada. Nossa equipe faz a triagem inicial.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                <span>Como funciona o atendimento de urgência?</span>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Atendemos urgências durante o horário de funcionamento. Em casos graves, orientamos procurar um pronto-socorro.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================================================
+        TAB: EQUIPE
+        ============================================================ -->
+        <div class="tab-panel" id="tab-equipe">
+            <section class="page-section" style="padding-top:80px;">
+                <div class="container">
+                    <div class="section-label text-center">Profissionais</div>
+                    <h2 class="section-title text-center">Nossa <span class="highlight">equipe</span></h2>
+                    <p class="section-desc text-center" style="max-width:480px;">
+                        Médicos e terapeutas comprometidos com o cuidado humanizado e baseado em evidências.
+                    </p>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="avatar">AS</div>
+                            <h4>Dra. Ana Silva</h4>
+                            <div class="role">Clínica Geral · CRM 12345</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">RM</div>
+                            <h4>Dr. Rodrigo Martins</h4>
+                            <div class="role">Cardiologia · CRM 67890</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">CL</div>
+                            <h4>Dra. Camila Lima</h4>
+                            <div class="role">Ginecologia · CRM 11223</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">PF</div>
+                            <h4>Dr. Paulo Ferreira</h4>
+                            <div class="role">Ortopedia · CRM 44556</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">MC</div>
+                            <h4>Dra. Mariana Costa</h4>
+                            <div class="role">Psicologia · CRP 77889</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">RN</div>
+                            <h4>Dr. Rafael Nunes</h4>
+                            <div class="role">Nutrição · CRN 99001</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">LS</div>
+                            <h4>Dra. Laura Santos</h4>
+                            <div class="role">Dermatologia · CRM 22334</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">JP</div>
+                            <h4>Dr. João Pedro</h4>
+                            <div class="role">Pediatria · CRM 55667</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================================================
+        TAB: CONTATO
+        ============================================================ -->
+        <div class="tab-panel" id="tab-contato">
+            <section class="page-section" style="padding-top:80px;">
+                <div class="container">
+                    <div class="section-label text-center">Fale conosco</div>
+                    <h2 class="section-title text-center">Entre em <span class="highlight">contato</span></h2>
+                    <p class="section-desc text-center" style="max-width:480px;">
+                        Tire dúvidas, agende sua consulta ou envie uma mensagem. Estamos aqui para ajudar.
+                    </p>
+
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <div class="info-item">
+                                <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                                <div class="text">
+                                    <strong>Telefone</strong>
+                                    <span>(11) 3456-7890</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="icon"><i class="fab fa-whatsapp"></i></div>
+                                <div class="text">
+                                    <strong>WhatsApp</strong>
+                                    <span>(11) 98765-4321</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="icon"><i class="fas fa-envelope"></i></div>
+                                <div class="text">
+                                    <strong>E-mail</strong>
+                                    <span>contato@healthhub.com</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="text">
+                                    <strong>Endereço</strong>
+                                    <span>Rua do Conhecimento, 150 · São Paulo, SP</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="icon"><i class="fas fa-clock"></i></div>
+                                <div class="text">
+                                    <strong>Horário</strong>
+                                    <span>Seg–Sex: 8h–20h · Sáb: 8h–14h</span>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/5511987654321?text=Olá%2C%20gostaria%20de%20falar%20com%20a%20clínica." target="_blank" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Falar agora no WhatsApp
+                            </a>
+                        </div>
+
+                        <form class="contact-form" onsubmit="event.preventDefault(); alert('✅ Mensagem enviada! Retornaremos em breve.');">
+                            <input type="text" placeholder="Seu nome" required />
+                            <input type="email" placeholder="Seu e-mail" required />
+                            <input type="tel" placeholder="Telefone" required />
+                            <select>
+                                <option value="">Especialidade desejada</option>
+                                <option>Clínica Geral</option>
+                                <option>Cardiologia</option>
+                                <option>Ginecologia</option>
+                                <option>Ortopedia</option>
+                                <option>Psicologia</option>
+                                <option>Nutrição</option>
+                                <option>Dermatologia</option>
+                                <option>Pediatria</option>
+                            </select>
+                            <textarea placeholder="Como podemos ajudá-lo?" rows="4"></textarea>
+                            <button type="submit">Enviar mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+    RODAPÉ
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-text">
+                &copy; 2026 Health Knowledge Hub · Todos os direitos reservados.
+                <div class="footer-links">
+                    <a href="#" data-tab="home">Início</a>
+                    <a href="#" data-tab="servicos">Serviços</a>
+                    <a href="#" data-tab="blog">Blog</a>
+                    <a href="#" data-tab="contato">Contato</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // NAVEGAÇÃO POR TABS
+            // ============================================================
+            const navLinks = document.querySelectorAll('.nav-menu a[data-tab]');
+            const panels = {
+                home: document.getElementById('tab-home'),
+                servicos: document.getElementById('tab-servicos'),
+                blog: document.getElementById('tab-blog'),
+                faq: document.getElementById('tab-faq'),
+                equipe: document.getElementById('tab-equipe'),
+                contato: document.getElementById('tab-contato')
+            };
+
+            const footerLinks = document.querySelectorAll('.site-footer a[data-tab]');
+            const logoLink = document.getElementById('logoLink');
+
+            // Função de navegação exposta globalmente
+            window.navigateTo = function(tabId) {
+                // Atualiza links do menu
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.tab === tabId) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Atualiza painéis
+                Object.keys(panels).forEach(key => {
+                    panels[key].classList.remove('active');
+                    if (key === tabId) {
+                        panels[key].classList.add('active');
+                    }
+                });
+
+                // Fecha menu mobile
+                navMenu.classList.remove('open');
+                const icon = toggleBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+
+                // Scroll para o topo
+                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            };
+
+            // Event listeners para navegação principal
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.navigateTo(this.dataset.tab);
+                });
+            });
+
+            // Footer links
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.navigateTo(this.dataset.tab);
+                });
+            });
+
+            // Logo
+            logoLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.navigateTo('home');
+            });
+
+            // CTAs do header e hero
+            document.getElementById('navCta').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.navigateTo('contato');
+            });
+            document.getElementById('heroCta').addEventListener('click', function(e) {
+                e.preventDefault();
+                window.navigateTo('blog');
+            });
+
+            // ============================================================
+            // MOBILE TOGGLE
+            // ============================================================
+            const toggleBtn = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            toggleBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('open');
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            // Fecha o menu ao clicar em um link
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('open');
+                    const icon = toggleBtn.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                });
+            });
+
+            // ============================================================
+            // FAQ ACCORDION
+            // ============================================================
+            window.toggleFaq = function(button) {
+                const answer = button.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+
+                // Fecha todos os outros
+                document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('open'));
+                document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('open'));
+
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    button.classList.add('open');
+                }
+            };
+
+            // ============================================================
+            // KEYBOARD SHORTCUTS (1-6)
+            // ============================================================
+            document.addEventListener('keydown', (e) => {
+                const num = parseInt(e.key);
+                if (num >= 1 && num <= 6) {
+                    const tabIds = ['home', 'servicos', 'blog', 'faq', 'equipe', 'contato'];
+                    const target = tabIds[num - 1];
+                    if (target) {
+                        e.preventDefault();
+                        window.navigateTo(target);
+                    }
+                }
+            });
+
+            console.log('📚 Health Knowledge Hub — carregado com sucesso.');
+            console.log('📌 Use as teclas 1-6 para navegar entre as abas.');
+
+        })();
+    </script>
+
+</body>
+</html>

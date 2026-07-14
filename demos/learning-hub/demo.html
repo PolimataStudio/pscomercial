@@ -1,0 +1,2253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learning Hub — Centro de Conhecimento</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue-deep: #0b2b4a;
+            --blue-dark: #1a3f62;
+            --blue-soft: #4a8db7;
+            --blue-light: #e3eef6;
+            --blue-pale: #f0f6fa;
+            --orange: #e8843a;
+            --orange-light: #f5e3d4;
+            --orange-pale: #faf0e8;
+            --white: #ffffff;
+            --gray-50: #f7f8f9;
+            --gray-100: #edf0f3;
+            --gray-200: #d9dfe6;
+            --gray-300: #bcc4ce;
+            --gray-400: #8f9aa8;
+            --gray-500: #6a7787;
+            --gray-600: #4a5666;
+            --gray-700: #2d3848;
+            --gray-800: #1a2434;
+            --gray-900: #0d141e;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 16px 56px rgba(0, 0, 0, 0.12);
+            --radius: 14px;
+            --radius-sm: 8px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--gray-700);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 28px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            line-height: 1.2;
+        }
+
+        .btn-primary {
+            background: var(--blue-deep);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(11, 43, 74, 0.25);
+        }
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(11, 43, 74, 0.3);
+        }
+
+        .btn-orange {
+            background: var(--orange);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(232, 132, 58, 0.3);
+        }
+        .btn-orange:hover {
+            background: #d4722e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(232, 132, 58, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--blue-deep);
+            border: 1.5px solid var(--blue-deep);
+        }
+        .btn-outline:hover {
+            background: var(--blue-deep);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--gray-500);
+            padding: 8px 16px;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .btn-ghost:hover {
+            background: var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .btn-sm {
+            padding: 8px 18px;
+            font-size: 0.8rem;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--blue-deep);
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-white:hover {
+            background: var(--gray-50);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(217, 223, 230, 0.5);
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--gray-800);
+            letter-spacing: -0.3px;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--orange);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gray-500);
+            transition: var(--transition);
+            padding: 6px 14px;
+            border-radius: 60px;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gray-800);
+            background: var(--gray-100);
+        }
+
+        .nav-links a.active {
+            background: var(--orange-pale);
+            color: var(--orange);
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 2.5px;
+            background: var(--gray-700);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        /* ===== TAB CONTENT ===== */
+        .tab-content {
+            display: none;
+            padding-top: 88px;
+            padding-bottom: 40px;
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== SECTION HEADERS ===== */
+        .section-header {
+            text-align: center;
+            margin-bottom: 44px;
+        }
+
+        .section-header .label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.8px;
+            color: var(--orange);
+            background: var(--orange-pale);
+            padding: 4px 16px;
+            border-radius: 60px;
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--gray-800);
+            line-height: 1.2;
+        }
+
+        .section-header h2 .highlight {
+            color: var(--orange);
+        }
+
+        .section-header p {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin: 8px auto 0;
+            line-height: 1.7;
+        }
+
+        /* ===== HOME ===== */
+        .hero {
+            background: linear-gradient(165deg, var(--blue-deep) 0%, var(--blue-dark) 100%);
+            border-radius: var(--radius);
+            padding: 56px 52px;
+            margin-bottom: 36px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(232, 132, 58, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--orange);
+            padding: 4px 16px;
+            border-radius: 60px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 12px;
+        }
+
+        .hero-content h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--orange);
+        }
+
+        .hero-content p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 1.1rem;
+            max-width: 480px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 36px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .hero-stats .stat .number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-stats .stat .number .plus {
+            color: var(--orange);
+        }
+
+        .hero-stats .stat .label {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 500;
+        }
+
+        .hero-visual {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .hero-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            transition: var(--transition);
+        }
+
+        .hero-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero-card .title {
+            font-weight: 700;
+            color: var(--white);
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .hero-card .title i {
+            color: var(--orange);
+            margin-right: 8px;
+        }
+
+        .hero-card .desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.6;
+        }
+
+        .hero-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .hero-card .tags .tag {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 2px 14px;
+            border-radius: 60px;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
+        }
+
+        /* ===== FEATURED CONTENT ===== */
+        .featured-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .featured-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .featured-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+            border-color: var(--orange);
+        }
+
+        .featured-card .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--orange-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--orange);
+            font-size: 1.2rem;
+            margin-bottom: 14px;
+        }
+
+        .featured-card .icon.blue {
+            background: var(--blue-light);
+            color: var(--blue-soft);
+        }
+        .featured-card .icon.green {
+            background: #e6f4ed;
+            color: #2d8f6f;
+        }
+
+        .featured-card .tag {
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--orange);
+            background: var(--orange-pale);
+            padding: 2px 12px;
+            border-radius: 60px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .featured-card .tag.blue {
+            background: var(--blue-light);
+            color: var(--blue-soft);
+        }
+        .featured-card .tag.green {
+            background: #e6f4ed;
+            color: #2d8f6f;
+        }
+
+        .featured-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 6px;
+        }
+
+        .featured-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .featured-card .link {
+            display: inline-block;
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--orange);
+            transition: var(--transition);
+        }
+
+        .featured-card .link:hover {
+            color: var(--blue-deep);
+        }
+
+        /* ===== GUIDES ===== */
+        .guides-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .guide-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .guide-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .guide-card .thumb {
+            height: 160px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            font-size: 0.85rem;
+            position: relative;
+        }
+
+        .guide-card .thumb .cat {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--orange);
+            color: var(--white);
+            padding: 2px 14px;
+            border-radius: 60px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .guide-card .thumb .cat.blue {
+            background: var(--blue-soft);
+        }
+        .guide-card .thumb .cat.green {
+            background: #2d8f6f;
+        }
+        .guide-card .thumb .cat.purple {
+            background: #8a6eb8;
+        }
+
+        .guide-card .thumb i {
+            font-size: 2.4rem;
+            color: var(--gray-300);
+        }
+
+        .guide-card .body {
+            padding: 20px 24px 24px;
+        }
+
+        .guide-card .body .meta {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            font-weight: 500;
+            display: flex;
+            gap: 16px;
+            margin-bottom: 6px;
+        }
+
+        .guide-card .body .meta i {
+            margin-right: 4px;
+        }
+
+        .guide-card .body h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .guide-card .body p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .guide-card .body .link {
+            display: inline-block;
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--orange);
+            transition: var(--transition);
+        }
+
+        .guide-card .body .link:hover {
+            color: var(--blue-deep);
+        }
+
+        /* ===== COURSES ===== */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .course-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .course-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .course-card .icon-big {
+            font-size: 2rem;
+            color: var(--orange);
+            margin-bottom: 12px;
+        }
+
+        .course-card .icon-big.blue {
+            color: var(--blue-soft);
+        }
+        .course-card .icon-big.green {
+            color: #2d8f6f;
+        }
+        .course-card .icon-big.purple {
+            color: #8a6eb8;
+        }
+
+        .course-card .badge {
+            display: inline-block;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 12px;
+            border-radius: 60px;
+            background: var(--orange-pale);
+            color: var(--orange);
+            margin-bottom: 8px;
+        }
+
+        .course-card .badge.blue {
+            background: var(--blue-light);
+            color: var(--blue-soft);
+        }
+        .course-card .badge.green {
+            background: #e6f4ed;
+            color: #2d8f6f;
+        }
+
+        .course-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 6px;
+        }
+
+        .course-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .course-card .info-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        .course-card .info-row i {
+            color: var(--orange);
+            margin-right: 4px;
+        }
+
+        .course-card .btn {
+            margin-top: 16px;
+            width: 100%;
+        }
+
+        /* ===== ABOUT ===== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--gray-800);
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .about-content h2 .highlight {
+            color: var(--orange);
+        }
+
+        .about-content p {
+            color: var(--gray-600);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .about-content p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .about-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .about-values .value {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+
+        .about-values .value i {
+            color: var(--orange);
+            font-size: 1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .about-image {
+            background: var(--gray-100);
+            border-radius: var(--radius);
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            border: 1px solid var(--gray-200);
+            font-size: 0.95rem;
+        }
+
+        .about-image i {
+            font-size: 3.6rem;
+            color: var(--gray-300);
+            margin-right: 12px;
+        }
+
+        /* ===== RESULTS ===== */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .result-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 20px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .result-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+            border-color: var(--orange);
+        }
+
+        .result-card .number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--blue-deep);
+            letter-spacing: -0.02em;
+        }
+
+        .result-card .number .plus {
+            color: var(--orange);
+        }
+
+        .result-card .label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-top: 4px;
+        }
+
+        .result-card .desc {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-top: 4px;
+        }
+
+        /* ===== FAQ ===== */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-item .question {
+            padding: 18px 24px;
+            font-weight: 600;
+            color: var(--gray-800);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .faq-item .question:hover {
+            background: var(--gray-50);
+        }
+
+        .faq-item .question i {
+            color: var(--orange);
+            transition: var(--transition);
+        }
+
+        .faq-item .answer {
+            padding: 0 24px 18px;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-item.open .answer {
+            display: block;
+        }
+
+        .faq-item.open .question i {
+            transform: rotate(180deg);
+        }
+
+        /* ===== CONTACT ===== */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contact-info-box {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-info-box h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+
+        .contact-info-box>p {
+            color: var(--gray-500);
+            margin-bottom: 24px;
+        }
+
+        .contact-info-box .item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .contact-info-box .item .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--orange-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--orange);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-info-box .item .info h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .contact-info-box .item .info span {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .contact-form-box {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contact-form-box h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 4px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            transition: var(--transition);
+            background: var(--gray-50);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(232, 132, 58, 0.12);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* ===== BLOG ===== */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .blog-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .blog-card .thumb {
+            height: 180px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            font-size: 0.85rem;
+            position: relative;
+        }
+
+        .blog-card .thumb .tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--orange);
+            color: var(--white);
+            padding: 2px 14px;
+            border-radius: 60px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-card .thumb .tag.blue {
+            background: var(--blue-soft);
+        }
+        .blog-card .thumb .tag.green {
+            background: #2d8f6f;
+        }
+
+        .blog-card .thumb i {
+            font-size: 2.4rem;
+            color: var(--gray-300);
+        }
+
+        .blog-card .body {
+            padding: 20px 24px 24px;
+        }
+
+        .blog-card .body .meta {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            font-weight: 500;
+            display: flex;
+            gap: 16px;
+            margin-bottom: 6px;
+        }
+
+        .blog-card .body .meta i {
+            margin-right: 4px;
+        }
+
+        .blog-card .body h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 6px;
+            line-height: 1.3;
+        }
+
+        .blog-card .body p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        .blog-card .body .link {
+            display: inline-block;
+            margin-top: 12px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--orange);
+            transition: var(--transition);
+        }
+
+        .blog-card .body .link:hover {
+            color: var(--blue-deep);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--gray-50);
+            border-top: 1px solid var(--gray-200);
+            padding: 32px 0 24px;
+            margin-top: auto;
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .footer-socials a:hover {
+            background: var(--orange-pale);
+            border-color: var(--orange);
+            color: var(--orange);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 40px 32px;
+                gap: 32px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .featured-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .guides-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .courses-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header .container {
+                height: 60px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 20px 24px;
+                gap: 4px;
+                border-bottom: 1px solid var(--gray-200);
+                box-shadow: var(--shadow-md);
+                align-items: stretch;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 16px;
+                white-space: normal;
+                text-align: left;
+            }
+
+            .nav-cta {
+                display: inline-flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .tab-content {
+                padding-top: 76px;
+            }
+
+            .hero {
+                padding: 32px 24px;
+                border-radius: var(--radius-sm);
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .hero-stats {
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+
+            .hero-stats .stat .number {
+                font-size: 1.3rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.7rem;
+            }
+
+            .featured-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .guides-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .result-card .number {
+                font-size: 2rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-values {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info-box,
+            .contact-form-box {
+                padding: 24px 20px;
+            }
+
+            .footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 24px 16px;
+            }
+
+            .hero-content h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .result-card {
+                padding: 20px 12px;
+            }
+
+            .guide-card .thumb {
+                height: 120px;
+            }
+
+            .blog-card .thumb {
+                height: 140px;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Newsletter signup inline */
+        .newsletter-inline {
+            background: var(--blue-deep);
+            border-radius: var(--radius);
+            padding: 36px 40px;
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .newsletter-inline h3 {
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .newsletter-inline p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .newsletter-inline .form-inline {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-inline .form-inline input {
+            padding: 10px 18px;
+            border-radius: 60px;
+            border: none;
+            font-family: inherit;
+            font-size: 0.9rem;
+            min-width: 240px;
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--white);
+            placeholder-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .newsletter-inline .form-inline input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .newsletter-inline .form-inline input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .newsletter-inline .form-inline .btn {
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-inline {
+                flex-direction: column;
+                text-align: center;
+                padding: 28px 24px;
+            }
+
+            .newsletter-inline .form-inline {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .newsletter-inline .form-inline input {
+                width: 100%;
+                min-width: unset;
+            }
+
+            .newsletter-inline .form-inline .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo" id="logoLink">
+                <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+                Learning Hub
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" data-tab="home" class="active">Home</a></li>
+                <li><a href="#" data-tab="guias">Guias</a></li>
+                <li><a href="#" data-tab="cursos">Cursos</a></li>
+                <li><a href="#" data-tab="sobre">Sobre</a></li>
+                <li><a href="#" data-tab="resultados">Resultados</a></li>
+                <li><a href="#" data-tab="faq">FAQ</a></li>
+                <li><a href="#" data-tab="contato">Contato</a></li>
+                <li><a href="#" data-tab="blog">Blog</a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== TAB: HOME ===== -->
+    <section class="tab-content active" id="tab-home">
+        <div class="container">
+
+            <!-- Hero -->
+            <div class="hero">
+                <div class="hero-content">
+                    <div class="badge"><i class="fas fa-star"></i> Centro de conhecimento</div>
+                    <h1>
+                        Aprenda, ensine e<br />
+                        <span class="highlight">transforme com conteúdo</span>
+                    </h1>
+                    <p>
+                        Um ecossistema de aprendizado que combina conteúdo educativo,
+                        autoridade e conversão suave para educadores e instituições.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#" class="btn btn-orange" onclick="navigateTo('guias')">Explorar guias <i class="fas fa-arrow-right"></i></a>
+                        <a href="#" class="btn btn-white" onclick="navigateTo('cursos')">Ver cursos</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <div class="number">+2.400</div>
+                            <div class="label">alunos impactados</div>
+                        </div>
+                        <div class="stat">
+                            <div class="number">94<span class="plus">%</span></div>
+                            <div class="label">satisfação</div>
+                        </div>
+                        <div class="stat">
+                            <div class="number">120<span class="plus">+</span></div>
+                            <div class="label">conteúdos publicados</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div class="title"><i class="fas fa-lightbulb"></i> Destaque da semana</div>
+                        <div class="desc">Guia completo: como estruturar um plano de aula baseado em metodologias ativas.</div>
+                        <div class="tags">
+                            <span class="tag">#Metodologia</span>
+                            <span class="tag">#Educação</span>
+                            <span class="tag">#Planejamento</span>
+                        </div>
+                    </div>
+                    <div class="hero-card">
+                        <div class="title"><i class="fas fa-rocket"></i> Novo curso</div>
+                        <div class="desc">Marketing educacional: atraia alunos com autoridade e conteúdo.</div>
+                        <div class="tags">
+                            <span class="tag">#Marketing</span>
+                            <span class="tag">#Captação</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Content -->
+            <div class="section-header">
+                <span class="label">Destaques</span>
+                <h2>Conteúdo <span class="highlight">que gera autoridade</span></h2>
+                <p>Recursos selecionados para educadores que querem se destacar e atrair mais alunos.</p>
+            </div>
+
+            <div class="featured-grid">
+                <div class="featured-card" onclick="navigateTo('guias')">
+                    <div class="icon"><i class="fas fa-book-open"></i></div>
+                    <span class="tag">Guia</span>
+                    <h4>Planejamento estratégico para cursos online</h4>
+                    <p>Estrutura passo a passo para criar um curso que engaja e converte.</p>
+                    <span class="link">Ler guia →</span>
+                </div>
+                <div class="featured-card" onclick="navigateTo('cursos')">
+                    <div class="icon blue"><i class="fas fa-chart-line"></i></div>
+                    <span class="tag blue">Curso</span>
+                    <h4>Marketing de conteúdo para educadores</h4>
+                    <p>Aprenda a atrair tráfego orgânico e construir autoridade no seu nicho.</p>
+                    <span class="link">Conhecer curso →</span>
+                </div>
+                <div class="featured-card" onclick="navigateTo('blog')">
+                    <div class="icon green"><i class="fas fa-newspaper"></i></div>
+                    <span class="tag green">Blog</span>
+                    <h4>5 tendências educacionais para 2026</h4>
+                    <p>O que está mudando na educação e como se preparar para o futuro.</p>
+                    <span class="link">Ler artigo →</span>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="newsletter-inline">
+                <div>
+                    <h3><i class="fas fa-envelope" style="margin-right:8px;"></i> Receba conteúdos exclusivos</h3>
+                    <p>Inscreva-se na newsletter e tenha acesso a materiais gratuitos toda semana.</p>
+                </div>
+                <div class="form-inline">
+                    <input type="email" placeholder="Seu melhor e-mail" />
+                    <button class="btn btn-orange">Inscrever <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== TAB: GUIAS ===== -->
+    <section class="tab-content" id="tab-guias">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Guias e conteúdos</span>
+                <h2>Recursos <span class="highlight">para educadores</span></h2>
+                <p>Materiais práticos que ajudam você a ensinar melhor e construir sua autoridade.</p>
+            </div>
+
+            <div class="guides-grid">
+                <div class="guide-card">
+                    <div class="thumb">
+                        <span class="cat">Metodologia</span>
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-clock"></i> 15 min de leitura</span><span><i class="far fa-file-pdf"></i> PDF</span></div>
+                        <h4>Guia de metodologias ativas para o ensino básico</h4>
+                        <p>Aprenda a aplicar aprendizagem baseada em projetos e sala de aula invertida.</p>
+                        <span class="link">Baixar guia →</span>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="thumb">
+                        <span class="cat blue">Marketing</span>
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-clock"></i> 20 min de leitura</span><span><i class="far fa-file-pdf"></i> PDF</span></div>
+                        <h4>Como posicionar sua escola no Google</h4>
+                        <p>Estratégias de SEO local para atrair famílias que buscam por educação.</p>
+                        <span class="link">Baixar guia →</span>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="thumb">
+                        <span class="cat green">Planejamento</span>
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-clock"></i> 12 min de leitura</span><span><i class="far fa-file-pdf"></i> PDF</span></div>
+                        <h4>Plano de aula anual — modelo prático</h4>
+                        <p>Estrutura completa para organizar seu ano letivo com objetivos claros.</p>
+                        <span class="link">Baixar guia →</span>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="thumb">
+                        <span class="cat purple">Captação</span>
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-clock"></i> 18 min de leitura</span><span><i class="far fa-file-pdf"></i> PDF</span></div>
+                        <h4>Funil de captação para escolas pequenas</h4>
+                        <p>Como atrair, engajar e converter famílias com conteúdo estratégico.</p>
+                        <span class="link">Baixar guia →</span>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="thumb">
+                        <span class="cat">Tecnologia</span>
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-clock"></i> 10 min de leitura</span><span><i class="far fa-file-pdf"></i> PDF</span></div>
+                        <h4>Ferramentas digitais para professores</h4>
+                        <p>Lista de aplicativos e plataformas que otimizam seu dia a dia.</p>
+                        <span class="link">Baixar guia →</span>
+                    </div>
+                </div>
+
+                <div class="guide-card">
+                    <div class="thumb">
+                        <span class="cat blue">Gestão</span>
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-clock"></i> 14 min de leitura</span><span><i class="far fa-file-pdf"></i> PDF</span></div>
+                        <h4>Gestão de tempo para educadores</h4>
+                        <p>Técnicas para equilibrar planejamento, correção e vida pessoal.</p>
+                        <span class="link">Baixar guia →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: CURSOS ===== -->
+    <section class="tab-content" id="tab-cursos">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Cursos e serviços</span>
+                <h2>Formação <span class="highlight">para educadores</span></h2>
+                <p>Cursos práticos que ajudam você a crescer profissionalmente e atrair mais alunos.</p>
+            </div>
+
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="icon-big"><i class="fas fa-bullhorn"></i></div>
+                    <span class="badge">Marketing</span>
+                    <h4>Marketing educacional</h4>
+                    <p>Aprenda a atrair alunos com autoridade, conteúdo e estratégias de captação.</p>
+                    <div class="info-row">
+                        <span><i class="fas fa-clock"></i> 8h de carga</span>
+                        <span><i class="fas fa-users"></i> 40 vagas</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="navigateTo('contato')">Quero saber mais</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="icon-big blue"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <span class="badge blue">Pedagogia</span>
+                    <h4>Metodologias ativas</h4>
+                    <p>Domine técnicas como PBL, sala de aula invertida e gamificação aplicada.</p>
+                    <div class="info-row">
+                        <span><i class="fas fa-clock"></i> 12h de carga</span>
+                        <span><i class="fas fa-users"></i> 35 vagas</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="navigateTo('contato')">Quero saber mais</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="icon-big green"><i class="fas fa-search"></i></div>
+                    <span class="badge green">SEO</span>
+                    <h4>SEO para escolas</h4>
+                    <p>Posicione sua instituição no topo do Google e atraia famílias qualificadas.</p>
+                    <div class="info-row">
+                        <span><i class="fas fa-clock"></i> 10h de carga</span>
+                        <span><i class="fas fa-users"></i> 30 vagas</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="navigateTo('contato')">Quero saber mais</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="icon-big purple"><i class="fas fa-pen-fancy"></i></div>
+                    <span class="badge" style="background:#ede7f5;color:#8a6eb8;">Conteúdo</span>
+                    <h4>Produção de conteúdo educativo</h4>
+                    <p>Crie materiais ricos, artigos, e-books e vídeos que engajam e convertem.</p>
+                    <div class="info-row">
+                        <span><i class="fas fa-clock"></i> 6h de carga</span>
+                        <span><i class="fas fa-users"></i> 50 vagas</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="navigateTo('contato')">Quero saber mais</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="icon-big" style="color:#d4944a;"><i class="fas fa-hand-holding-usd"></i></div>
+                    <span class="badge" style="background:#f5ede3;color:#d4944a;">Finanças</span>
+                    <h4>Gestão financeira para escolas</h4>
+                    <p>Organize as finanças da sua instituição com planejamento e controle.</p>
+                    <div class="info-row">
+                        <span><i class="fas fa-clock"></i> 8h de carga</span>
+                        <span><i class="fas fa-users"></i> 25 vagas</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="navigateTo('contato')">Quero saber mais</button>
+                </div>
+
+                <div class="course-card">
+                    <div class="icon-big" style="color:#3a9a8a;"><i class="fas fa-comments"></i></div>
+                    <span class="badge" style="background:#e0f0ed;color:#3a9a8a;">Comunicação</span>
+                    <h4>Comunicação com famílias</h4>
+                    <p>Estratégias para engajar pais e responsáveis na vida escolar dos alunos.</p>
+                    <div class="info-row">
+                        <span><i class="fas fa-clock"></i> 6h de carga</span>
+                        <span><i class="fas fa-users"></i> 40 vagas</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="navigateTo('contato')">Quero saber mais</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: SOBRE ===== -->
+    <section class="tab-content" id="tab-sobre">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <span class="section-label" style="display:inline-block;margin-bottom:12px;">Quem somos</span>
+                    <h2>Construindo <span class="highlight">autoridade</span> através do conhecimento</h2>
+                    <p>
+                        O Learning Hub nasceu com a missão de democratizar o acesso a conteúdos
+                        educacionais de qualidade e ajudar educadores a construir sua autoridade
+                        digital. Acreditamos que o conhecimento compartilhado transforma realidades.
+                    </p>
+                    <p>
+                        Nossa equipe é formada por educadores, especialistas em marketing digital
+                        e produtores de conteúdo que unem forças para criar recursos que realmente
+                        fazem a diferença na prática docente.
+                    </p>
+                    <div class="about-values">
+                        <div class="value"><i class="fas fa-check-circle"></i> Conteúdo baseado em evidências</div>
+                        <div class="value"><i class="fas fa-check-circle"></i> Metodologias testadas em sala</div>
+                        <div class="value"><i class="fas fa-check-circle"></i> Foco em resultados reais</div>
+                        <div class="value"><i class="fas fa-check-circle"></i> Comunidade de aprendizado</div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-users"></i>
+                    <span>Equipe Learning Hub</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: RESULTADOS ===== -->
+    <section class="tab-content" id="tab-resultados">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Resultados</span>
+                <h2>Números que <span class="highlight">comprovam nossa entrega</span></h2>
+                <p>Métricas reais de quem já utilizou nossos recursos e cursos.</p>
+            </div>
+
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="number">2.400<span class="plus">+</span></div>
+                    <div class="label">Alunos impactados</div>
+                    <div class="desc">Em cursos e formações</div>
+                </div>
+                <div class="result-card">
+                    <div class="number">94<span class="plus">%</span></div>
+                    <div class="label">Satisfação geral</div>
+                    <div class="desc">Avaliação média dos participantes</div>
+                </div>
+                <div class="result-card">
+                    <div class="number">120<span class="plus">+</span></div>
+                    <div class="label">Conteúdos publicados</div>
+                    <div class="desc">Guias, artigos e recursos</div>
+                </div>
+                <div class="result-card">
+                    <div class="number">87<span class="plus">%</span></div>
+                    <div class="label">Aumento de autoridade</div>
+                    <div class="desc">Percepção dos educadores parceiros</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: FAQ ===== -->
+    <section class="tab-content" id="tab-faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">FAQ</span>
+                <h2>Dúvidas <span class="highlight">frequentes</span></h2>
+                <p>Respostas para as perguntas mais comuns sobre nossos conteúdos e serviços.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item open">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Os conteúdos são gratuitos?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Sim, todos os guias e artigos do blog são completamente gratuitos. Os cursos e serviços têm valor acessível para educadores e instituições.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Como faço para acessar os cursos?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Após a inscrição, você recebe acesso imediato à plataforma com todos os materiais, videoaulas e suporte da equipe.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Os cursos têm certificado?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Sim! Ao concluir o curso com aproveitamento, você recebe um certificado de participação com carga horária.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Como posso contribuir com conteúdo?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Aceitamos contribuições de educadores e especialistas. Entre em contato pelo formulário com sua proposta.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Os materiais são atualizados com frequência?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Sim, revisamos e atualizamos os conteúdos regularmente para manter a relevância e a qualidade.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Atendem escolas e instituições?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Sim! Oferecemos planos institucionais para escolas e centros educacionais. Entre em contato para mais detalhes.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: CONTATO ===== -->
+    <section class="tab-content" id="tab-contato">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Contato</span>
+                <h2>Fale <span class="highlight">com a gente</span></h2>
+                <p>Tire dúvidas, sugira conteúdos ou solicite uma proposta personalizada.</p>
+            </div>
+
+            <div class="contact-wrapper">
+                <div class="contact-info-box">
+                    <h3>Vamos conversar?</h3>
+                    <p>Estamos disponíveis para atender você pelos canais abaixo ou através do formulário ao lado.</p>
+
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div class="info">
+                            <h4>E-mail</h4>
+                            <span>contato@learninghub.edu.br</span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="info">
+                            <h4>Telefone</h4>
+                            <span>(11) 3456-7890 · (11) 98765-4321</span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info">
+                            <h4>Localização</h4>
+                            <span>Av. do Conhecimento, 789 — São Paulo, SP</span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-clock"></i></div>
+                        <div class="info">
+                            <h4>Horário de atendimento</h4>
+                            <span>Segunda a sexta, das 9h às 18h</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">
+                        <a href="#" class="btn btn-orange btn-sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="#" class="btn btn-outline btn-sm"><i class="fas fa-comment"></i> Chat online</a>
+                    </div>
+                </div>
+
+                <div class="contact-form-box">
+                    <h3>Envie uma mensagem</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contatoNome">Nome completo</label>
+                            <input type="text" id="contatoNome" placeholder="Seu nome" />
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contatoEmail">E-mail</label>
+                                <input type="email" id="contatoEmail" placeholder="seu@email.com" />
+                            </div>
+                            <div class="form-group">
+                                <label for="contatoTelefone">Telefone</label>
+                                <input type="tel" id="contatoTelefone" placeholder="(11) 99999-9999" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contatoAssunto">Assunto</label>
+                            <select id="contatoAssunto">
+                                <option value="">Selecione...</option>
+                                <option>Dúvida sobre cursos</option>
+                                <option>Sugestão de conteúdo</option>
+                                <option>Parceria institucional</option>
+                                <option>Assessoria educacional</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contatoMensagem">Mensagem</label>
+                            <textarea id="contatoMensagem" rows="4" placeholder="Escreva sua mensagem aqui..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensagem <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: BLOG ===== -->
+    <section class="tab-content" id="tab-blog">
+        <div class="container">
+            <div class="section-header">
+                <span class="label">Blog</span>
+                <h2>Atualizações <span class="highlight">e tendências</span></h2>
+                <p>Artigos, reflexões e novidades para educadores que querem estar sempre à frente.</p>
+            </div>
+
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="thumb">
+                        <span class="tag">Tendências</span>
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-calendar-alt"></i> 18/06/2026</span><span><i class="far fa-clock"></i> 6 min</span></div>
+                        <h4>5 tendências educacionais para 2026</h4>
+                        <p>O que está moldando o futuro da educação e como se preparar para as mudanças.</p>
+                        <span class="link">Ler artigo →</span>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="thumb">
+                        <span class="tag blue">Metodologia</span>
+                        <i class="fas fa-chalkboard"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-calendar-alt"></i> 12/06/2026</span><span><i class="far fa-clock"></i> 8 min</span></div>
+                        <h4>Como aplicar a sala de aula invertida no ensino básico</h4>
+                        <p>Passo a passo para implementar essa metodologia com recursos práticos.</p>
+                        <span class="link">Ler artigo →</span>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="thumb">
+                        <span class="tag green">Marketing</span>
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-calendar-alt"></i> 08/06/2026</span><span><i class="far fa-clock"></i> 7 min</span></div>
+                        <h4>Como criar um funil de captação para sua escola</h4>
+                        <p>Estratégias para atrair, engajar e converter famílias com conteúdo.</p>
+                        <span class="link">Ler artigo →</span>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="thumb">
+                        <span class="tag purple">Tecnologia</span>
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-calendar-alt"></i> 05/06/2026</span><span><i class="far fa-clock"></i> 5 min</span></div>
+                        <h4>Ferramentas de IA para professores</h4>
+                        <p>Inteligência artificial aplicada à educação: descubra as melhores ferramentas.</p>
+                        <span class="link">Ler artigo →</span>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="thumb">
+                        <span class="tag" style="background:#d4944a;">Carreira</span>
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-calendar-alt"></i> 02/06/2026</span><span><i class="far fa-clock"></i> 6 min</span></div>
+                        <h4>Como se destacar como educador em um mercado competitivo</h4>
+                        <p>Dicas práticas para construir sua autoridade e atrair mais oportunidades.</p>
+                        <span class="link">Ler artigo →</span>
+                    </div>
+                </div>
+
+                <div class="blog-card">
+                    <div class="thumb">
+                        <span class="tag" style="background:#3a9a8a;">Inovação</span>
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="body">
+                        <div class="meta"><span><i class="far fa-calendar-alt"></i> 28/05/2026</span><span><i class="far fa-clock"></i> 4 min</span></div>
+                        <h4>Gamificação: como engajar alunos com jogos</h4>
+                        <p>Estratégias lúdicas para tornar o aprendizado mais envolvente e eficaz.</p>
+                        <span class="link">Ler artigo →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Learning Hub — Centro de Conhecimento para Educadores</p>
+            <div class="footer-socials">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ----- TABS -----
+            const tabs = document.querySelectorAll('.nav-links a[data-tab]');
+            const contents = {
+                home: document.getElementById('tab-home'),
+                guias: document.getElementById('tab-guias'),
+                cursos: document.getElementById('tab-cursos'),
+                sobre: document.getElementById('tab-sobre'),
+                resultados: document.getElementById('tab-resultados'),
+                faq: document.getElementById('tab-faq'),
+                contato: document.getElementById('tab-contato'),
+                blog: document.getElementById('tab-blog'),
+            };
+
+            function activateTab(tabId) {
+                // Hide all
+                Object.values(contents).forEach(el => el.classList.remove('active'));
+
+                // Remove active from nav
+                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+                // Show target
+                const target = contents[tabId];
+                if (target) target.classList.add('active');
+
+                // Activate nav link
+                document.querySelectorAll('.nav-links a[data-tab]').forEach(a => {
+                    if (a.dataset.tab === tabId) {
+                        a.classList.add('active');
+                    }
+                });
+
+                // Close mobile menu
+                document.getElementById('navLinks').classList.remove('open');
+
+                // Scroll to top of content
+                const headerHeight = document.getElementById('header').offsetHeight;
+                window.scrollTo({ top: headerHeight, behavior: 'smooth' });
+            }
+
+            // Navigation function exposed globally for quick items
+            window.navigateTo = function(tabId) {
+                activateTab(tabId);
+            };
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.dataset.tab;
+                    activateTab(tabId);
+                });
+            });
+
+            // Logo click goes to home
+            document.getElementById('logoLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                activateTab('home');
+            });
+
+            // ----- HAMBURGER -----
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                });
+            });
+
+            // ----- HEADER SCROLL -----
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // ----- FAQ TOGGLE -----
+            window.toggleFaq = function(el) {
+                const item = el.closest('.faq-item');
+                if (item) {
+                    item.classList.toggle('open');
+                }
+            };
+
+            // ----- FORM SUBMISSION -----
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('✅ Mensagem enviada com sucesso! Nossa equipe responderá em breve.');
+                this.reset();
+            });
+
+            // ----- NEWSLETTER INLINE -----
+            const newsletterBtn = document.querySelector('.newsletter-inline .btn');
+            if (newsletterBtn) {
+                newsletterBtn.addEventListener('click', function() {
+                    const input = this.closest('.form-inline').querySelector('input');
+                    if (input && input.value.trim()) {
+                        alert('📬 Inscrição confirmada! Você receberá nossos conteúdos por e-mail.');
+                        input.value = '';
+                    } else {
+                        alert('Por favor, informe um e-mail válido.');
+                    }
+                });
+            }
+
+        })();
+    </script>
+
+</body>
+</html>
