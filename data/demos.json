@@ -1,0 +1,632 @@
+[
+{
+"id": "church",
+"title": "Igreja Demo – Landing Page",
+"description": "Landing page institucional para igrejas com eventos, testemunhos e chamada para doação.",
+"url": "demos/church/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "church-home2",
+"title": "Igreja Home 2",
+"description": "Landing page institucional com sermões, testemunhos e chamada para doação.",
+"url": "demos/church-home2/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "school",
+"title": "EscolaPolímata – Demonstração Interativa",
+"description": "Explore como uma escola pode digitalizar matrículas, comunicar-se com pais e organizar a vida acadêmica.",
+"url": "demos/school/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "author",
+"title": "AutorPolímata – Demonstração Interativa",
+"description": "Explore como um autor pode criar um canal direto com leitores, vender livros e construir comunidade.",
+"url": "demos/author/index.html",
+"categoryId": "autores"
+},
+{
+"id": "portfolio",
+"title": "PortfólioPRO – Demonstração Interativa",
+"description": "Explore como um portfólio digital com IA pode ajudar profissionais criativos a venderem mais e se destacarem.",
+"url": "demos/portfolio/index.html",
+"categoryId": "produtos-digitais"
+},
+{
+"id": "ikaros",
+"title": "IKAROS – A Contagem do Destino",
+"description": "Explore a landing page do romance de fantasia juvenil. Veja como uma página de autor pode ser imersiva e conversiva.",
+"url": "demos/ikaros/index.html",
+"categoryId": "autores"
+},
+{
+"id": "command-center",
+"title": "Command Center — Central Pastoral",
+"description": "Central de comando para ações pastorais e gestão de atividades.",
+"url": "demos/command-center/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "faith-house",
+"title": "Faith House — Comunidade de Fé",
+"description": "Plataforma digital para comunidades de fé, oração e engajamento.",
+"url": "demos/faith-house/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "church-portal",
+"title": "Church Portal — Conectando sua Igreja",
+"description": "Portal completo com agenda, sermões, grupos e doações.",
+"url": "demos/church-portal/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "community-center",
+"title": "Community Center — Hub comunitário",
+"description": "Hub digital para ações sociais, oração e voluntariado.",
+"url": "demos/community-center/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "ministry-showcase",
+"title": "Ministry Showcase — Portfólio de Ministérios",
+"description": "Plataforma para exibir e promover os ministérios da sua igreja. Vitrine de projetos, eventos e resultados.",
+"url": "demos/ministry-showcase/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "plan-a-visit",
+"title": "Plan a Visit — Sua Primeira Visita",
+"description": "Plataforma para agendar e planejar visitas à sua igreja. Landing page de conversão para novos visitantes.",
+"url": "demos/plan-a-visit/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "give-with-purpose",
+"title": "Give With Purpose — Doe com Propósito",
+"description": "Plataforma para facilitar doações com propósito e impacto. Landing page de doação com foco em impacto social.",
+"url": "demos/give-with-purpose/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "join-the-movement",
+"title": "Join the Movement — Faça Parte",
+"description": "Plataforma para engajar e mobilizar a comunidade. Landing page de campanha com contagem regressiva.",
+"url": "demos/join-the-movement/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "sacred-stories",
+"title": "Sacred Stories — Portfólio Editorial",
+"description": "Portfólio editorial com história, testemunhos e projetos.",
+"url": "demos/sacred-stories/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "interactive-witness",
+"title": "Interactive Witness — Portfólio Experiencial",
+"description": "Portfólio imersivo com glassmorphism e interatividade.",
+"url": "demos/interactive-witness/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "community-hub",
+"title": "Community Hub — Hub Comunitário",
+"description": "Hub digital para ações sociais, oração e voluntariado.",
+"url": "demos/community-hub/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "igreja1",
+"title": "Igreja 1 — Portfólio de Ministérios",
+"description": "Plataforma para exibir e promover os ministérios da sua igreja. Vitrine de projetos, eventos e resultados.",
+"url": "demos/igreja1/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "ministry-flow",
+"title": "Ministry Flow — Fluxo de Ministérios",
+"description": "Plataforma para visualizar e interagir com o fluxo de ministérios.",
+"url": "demos/ministry-flow/index.html",
+"categoryId": "igrejas"
+},
+{
+"id": "careflow",
+"title": "CareFlow – Portfólio Interativo",
+"description": "Portfólio interativo para clínicas de saúde com design moderno e acolhedor.",
+"url": "demos/careflow/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "care-portal",
+"title": "Care Portal – Centro de Serviços",
+"description": "Plataforma integrada que organiza serviços, agendamentos e comunicação entre clínica e pacientes.",
+"url": "demos/care-portal/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "care-story",
+"title": "Care Story – Uma história de cuidado",
+"description": "Landing page narrativa que humaniza a jornada do paciente, construindo confiança e conexão.",
+"url": "demos/care-story/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "click-to-chat",
+"title": "Click-to-Chat – Fale com a Clínica",
+"description": "Landing page de alta conversão que conecta pacientes à sua clínica via WhatsApp com um único clique.",
+"url": "demos/click-to-chat/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "clinic-community-hub",
+"title": "Clinic Community Hub – Saúde e Comunidade",
+"description": "Plataforma PWA que integra conteúdos, eventos e serviços para fortalecer a relação entre clínica e comunidade.",
+"url": "demos/clinic-community-hub/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "clinic-pulse",
+"title": "Clinic Pulse – Painel Clínico",
+"description": "Dashboard completo para gestão de consultas, pacientes e indicadores de desempenho da clínica.",
+"url": "demos/clinic-pulse/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "health-knowledge-hub",
+"title": "Health Knowledge Hub – Autoridade em Saúde",
+"description": "Portal de conteúdo que posiciona sua clínica como referência, com artigos, guias e informações confiáveis.",
+"url": "demos/health-knowledge-hub/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "meridian-clinic",
+"title": "Meridian Clinic Studio – Portfólio",
+"description": "Portfólio institucional com design premium que transmite confiança, sofisticação e excelência em saúde.",
+"url": "demos/meridian-clinic/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "novacare",
+"title": "NovaCare – Clínica Institucional",
+"description": "Landing page institucional que comunica humanização, acolhimento e excelência em saúde, com navegação por abas.",
+"url": "demos/novacare/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "patient-lane",
+"title": "Patient Lane – Sua Jornada de Saúde",
+"description": "Aplicativo PWA que organiza a jornada do paciente com consultas, exames, orientações e comunicação direta com a clínica.",
+"url": "demos/patient-lane/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "trust-booking",
+"title": "Trust Booking – Agende sua consulta",
+"description": "Landing page de agendamento com design focado em conversão, confiança e facilidade para o paciente.",
+"url": "demos/trust-booking/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "vitallens",
+"title": "VitalLens – Showcase",
+"description": "Showcase premium para clínicas com design cinematográfico, identidade visual ousada e experiência imersiva.",
+"url": "demos/vitallens/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "bookfast-clinic",
+"title": "BookFast Clinic – Agende sua consulta",
+"description": "Landing page de agendamento com design focado em conversão, confiança e facilidade para o paciente.",
+"url": "demos/bookfast-clinic/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "care-portal-ecossistema",
+"title": "Care Portal – Ecossistema digital para sua clínica",
+"description": "Portal completo com dashboard, serviços, retornos, orientações e equipe integrados em um só lugar.",
+"url": "demos/care-portal-ecossistema/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "chatdental",
+"title": "ChatDental – Fale com a gente agora",
+"description": "Landing page de alta conversão que conecta pacientes à sua clínica via WhatsApp com um clique.",
+"url": "demos/chatdental/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "cliniflow",
+"title": "CliniFlow – Operação e Relacionamento",
+"description": "Dashboard completo para gestão de operações, relacionamento com pacientes e indicadores de desempenho da clínica.",
+"url": "demos/cliniflow/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "dental-hub",
+"title": "Dental Hub – Centro de conhecimento e cuidado",
+"description": "Hub completo com conteúdos educativos, tratamentos, planos e tecnologia para clínicas odontológicas.",
+"url": "demos/dental-hub/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "office-prime",
+"title": "Office Prime – Consultório Odontológico",
+"description": "Site institucional premium para consultórios odontológicos com navegação multi-páginas e design sofisticado.",
+"url": "demos/office-prime/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "oral-command",
+"title": "Oral Command – Clínica Odontológica",
+"description": "Site institucional premium com navegação multi-páginas, planos de saúde, tecnologia e gestão de tratamentos.",
+"url": "demos/oral-command/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "oraldesk",
+"title": "OralDesk – Gestão Odontológica",
+"description": "Dashboard completo para gestão de agenda, pacientes, planos de saúde, financeiro e relatórios.",
+"url": "demos/oraldesk/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "oral-signature",
+"title": "Oral Signature – Portfólio Premium",
+"description": "Portfólio institucional com design sofisticado, planos de assinatura, tratamentos e estrutura premium.",
+"url": "demos/oral-signature/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "patient-orbit",
+"title": "Patient Orbit – Cuidado centrado em você",
+"description": "Site acolhedor com navegação orientada por intenção, serviços, FAQ, equipe e agendamento fácil.",
+"url": "demos/patient-orbit/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "pulse-office",
+"title": "Pulse Office – Portfólio Profissional",
+"description": "Portfólio profissional com serviços, agenda de atendimento, retornos e contato direto.",
+"url": "demos/pulse-office/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "smile-connect",
+"title": "Smile Connect – Sua Jornada Odontológica",
+"description": "PWA completo para pacientes: acompanhamento de consultas, tratamentos, documentos e mensagens.",
+"url": "demos/smile-connect/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "smile-experience",
+"title": "Smile Experience – Odontologia com alma",
+"description": "Site sensorial e acolhedor com trilha de experiência, tratamentos, equipe, estrutura e agendamento.",
+"url": "demos/smile-experience/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "smile-guide",
+"title": "Smile Guide – Guia completo para seu tratamento",
+"description": "Landing page educacional que explica cada etapa do tratamento, com depoimentos, equipe e FAQ.",
+"url": "demos/smile-guide/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "smile-journey",
+"title": "Smile Journey – Clínica Odontológica",
+"description": "Portfólio completo com jornada do paciente, tratamentos, equipe, estrutura e agendamento integrado.",
+"url": "demos/smile-journey/index.html",
+"categoryId": "clinicas"
+},
+{
+"id": "academy-core",
+"title": "Academy Core",
+"description": "Site institucional para escolas com navegação entre seções e design profissional.",
+"url": "demos/academy-core/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "aulaflow",
+"title": "AulaFlow",
+"description": "PWA para gestão de aulas com navegação por abas, modo offline e dashboard completo.",
+"url": "demos/aulaflow/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "edupulse",
+"title": "EduPulse",
+"description": "Plataforma de captação de leads com landing page, provas sociais e formulário de conversão.",
+"url": "demos/edupulse/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "enroll-now",
+"title": "Enroll Now",
+"description": "Landing page de matrícula com urgência, benefícios, depoimentos e formulário de conversão.",
+"url": "demos/enroll-now/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "growth-proof",
+"title": "Growth Proof",
+"description": "Portfólio de resultados com cases, métricas, depoimentos e navegação por abas.",
+"url": "demos/growth-proof/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "humanloop",
+"title": "HumanLoop",
+"description": "Portal de comunicação e relacionamento para escolas com feed, comunicados e área do responsável.",
+"url": "demos/humanloop/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "journey-class",
+"title": "Journey Class",
+"description": "Landing page com narrativa de transformação, abordagem humanizada e estrutura de jornada do aluno.",
+"url": "demos/journey-class/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "learning-hub",
+"title": "Learning Hub",
+"description": "Centro de conhecimento com guias, cursos, blog e FAQ para educadores.",
+"url": "demos/learning-hub/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "mentor-atlas",
+"title": "Mentor Atlas",
+"description": "Portfólio editorial premium com manifesto, método, projetos, depoimentos e conteúdos.",
+"url": "demos/mentor-atlas/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "parent-portal",
+"title": "Parent Portal",
+"description": "Portal de relacionamento para famílias com dashboard, comunicados, agenda e área do responsável.",
+"url": "demos/parent-portal/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "studio-showcase",
+"title": "Studio Showcase",
+"description": "Portfólio criativo com projetos de design, branding, UX/UI e navegação por abas.",
+"url": "demos/studio-showcase/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "trust-stack",
+"title": "Trust Stack",
+"description": "Landing page de autoridade com credenciais, resultados, depoimentos, processo, oferta e garantia.",
+"url": "demos/trust-stack/index.html",
+"categoryId": "escolas"
+},
+{
+"id": "agenda-studio",
+"title": "Agenda Studio – PWA de Agendamento",
+"description": "Organize seu salão com clareza e simplicidade. PWA completa para gestão de horários e clientes.",
+"url": "demos/agenda-studio/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "beauty-hub-center",
+"title": "Beauty Hub Center – Hub Digital de Beleza",
+"description": "Seu hub digital de beleza: agendamento, portfólio, promoções e gestão centralizados.",
+"url": "demos/beauty-hub-center/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "beauty-knowledge-center",
+"title": "Beauty Knowledge Center – Centro de Conhecimento",
+"description": "Centro de conhecimento em cuidados de beleza com guias técnicos, artigos e conteúdos educativos.",
+"url": "demos/beauty-knowledge-center/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "guia-3-passos-salao-bella",
+"title": "Guia em 3 passos – Recuperação Capilar",
+"description": "Guia educativo com diagnóstico, tratamento e manutenção para recuperação capilar.",
+"url": "demos/guia-3-passos-salao-bella/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "salao-bella-beauty-portal",
+"title": "Salão Bella – Beauty Portal",
+"description": "Portal completo de beleza: serviços, blog, vídeos, comunidade e agendamento integrados.",
+"url": "demos/salao-bella-beauty-portal/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "salao-bella-community-beauty-center",
+"title": "Salão Bella – Community Beauty Center",
+"description": "Beleza e comunidade: eventos, projetos sociais e histórias que conectam o salão ao bairro.",
+"url": "demos/salao-bella-community-beauty-center/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "salao-bella-portfolio",
+"title": "Salão Bella – Portfólio Compacto",
+"description": "Portfólio de beleza com categorias visuais: Cabelo, Unhas, Maquiagem e Sobrancelha.",
+"url": "demos/salao-bella-portfolio/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "editorial-aura",
+"title": "Editorial Aura – Estúdio de Beleza",
+"description": "Portfólio autoral de estética e beleza com narrativa visual e design editorial.",
+"url": "demos/editorial-aura/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "interactive-mirror",
+"title": "Interactive Mirror – Espelho Digital",
+"description": "Portfólio interativo com glassmorphism, neon e experiência imersiva de espelho digital.",
+"url": "demos/interactive-mirror/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "salao-bella-agende-horario",
+"title": "Salão Bella – Agendamento Rápido",
+"description": "Agendamento de serviços de beleza em menos de 1 minuto. Landing page de alta conversão.",
+"url": "demos/salao-bella-agende-horario/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "salon-classic",
+"title": "Salon Classic – Site Institucional",
+"description": "Site institucional de salão de beleza com atendimento acolhedor, serviços e depoimentos.",
+"url": "demos/salon-classic/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "salon-flow",
+"title": "Salon Flow – Gestão de Fluxo",
+"description": "Ferramenta de gestão de filas e atendimento em tempo real para salões de beleza.",
+"url": "demos/salon-flow/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "client-glow",
+"title": "Client Glow – Clube de Beleza Premium",
+"description": "Clube de beleza com sistema de pontos, benefícios, agendamento e jornada do cliente.",
+"url": "demos/client-glow/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "neighborhood-beauty-hub",
+"title": "Neighborhood Beauty Hub – Comunidade Local",
+"description": "Conecte-se com seu salão de beleza local através de feed, eventos, promoções e comunidade.",
+"url": "demos/neighborhood-beauty-hub/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "salon-insight",
+"title": "Salon Insight – Painel de Inteligência",
+"description": "Painel de inteligência para salões de beleza com KPIs, heatmaps e análise de clientes.",
+"url": "demos/salon-insight/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "service-stories",
+"title": "Service Stories – Portfólio de Transformação",
+"description": "Histórias reais de transformação com problema, processo e resultado para cada caso.",
+"url": "demos/service-stories/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "studio-grid",
+"title": "Studio Grid – Beleza em Mosaico",
+"description": "Portfólio de beleza em grid modular com categorias coloridas e experiência visual rica.",
+"url": "demos/studio-grid/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "beauty-starter-kit",
+"title": "Beauty Starter Kit – Lead Magnet",
+"description": "Guia gratuito para cuidar do cabelo com checklist pré-química, cronograma capilar e dicas pós-cuidado.",
+"url": "demos/beauty-starter-kit/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "salao-bella-local-trust",
+"title": "Salão Bella – Local Trust",
+"description": "Salão de beleza em Parnamirim desde 2019, com depoimentos locais, mapa e prova social.",
+"url": "demos/salao-bella-local-trust/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "salao-bella-transformacao-ana",
+"title": "Salão Bella – Transformação Ana",
+"description": "História de transformação de Ana, desde o primeiro cabelo até a confiança total.",
+"url": "demos/salao-bella-transformacao-ana/index.html",
+"categoryId": "saloes"
+},
+{
+"id": "atelie-negro",
+"title": "Ateliê Negro – Portfólio Editorial",
+"description": "Portfólio premium com linguagem editorial e identidade visual sofisticada.",
+"url": "demos/atelie-negro/index.html",
+"categoryId": "barbearias"
+},
+{
+"id": "barber-chronicle",
+"title": "Barber Chronicle – Comunidade & Cultura",
+"description": "Website comunitário para barbearia com história, equipe e cultura.",
+"url": "demos/barber-chronicle/index.html",
+"categoryId": "barbearias"
+},
+{
+"id": "barber-house",
+"title": "Barber House – Site Institucional",
+"description": "Website institucional para barbearia com design clássico e confiável.",
+"url": "demos/barber-house/index.html",
+"categoryId": "barbearias"
+},
+{
+"id": "chronicle",
+"title": "Chronicle – Barbearia Premium",
+"description": "Landing page premium para barbearia com identidade editorial e atmosfera sofisticada.",
+"url": "demos/chronicle/index.html",
+"categoryId": "barbearias"
+},
+{
+"id": "command-chair",
+"title": "Command Chair – PWA de Gestão",
+"description": "PWA de gestão operacional para barbearias com painel de controle e agendamento.",
+"url": "demos/command-chair/index.html",
+"categoryId": "barbearias"
+},
+{
+"id": "cutline",
+"title": "Cutline – Landing de Conversão",
+"description": "Landing page de alta conversão para barbearias com foco em agendamento via WhatsApp.",
+"url": "demos/cutline/index.html",
+"categoryId": "barbearias"
+},
+{
+"id": "local-loop",
+"title": "Local Loop – PWA de Fidelidade",
+"description": "PWA de fidelidade e agendamento para barbearias de bairro.",
+"url": "demos/local-loop/index.html",
+"categoryId": "barbearias"
+},
+{
+"id": "neighborhood-flow",
+"title": "Neighborhood Flow – Landing Educativa",
+"description": "Landing page educativa para barbearia de bairro com foco em transparência e acolhimento.",
+"url": "demos/neighborhood-flow/index.html",
+"categoryId": "barbearias"
+},
+{
+"id": "pulse-archive",
+"title": "Pulse Archive – Portfólio Interativo",
+"description": "Portfólio interativo de experimentos, estudos e projetos autorais.",
+"url": "demos/pulse-archive/index.html",
+"categoryId": "barbearias"
+},
+{
+"id": "pulse-book",
+"title": "Pulse Book – Agendamento Premium",
+"description": "Aplicativo de agendamento premium para barbearias.",
+"url": "demos/pulse-book/index.html",
+"categoryId": "barbearias"
+},
+{
+"id": "studio-signal",
+"title": "Studio Signal – Portfólio Estratégico",
+"description": "Portfólio estratégico para designers e product managers.",
+"url": "demos/studio-signal/index.html",
+"categoryId": "barbearias"
+},
+{
+"id": "the-loop",
+"title": "The Loop – Hub Digital",
+"description": "Hub digital para barbearia com agendamento, serviços, novidades e equipe.",
+"url": "demos/the-loop/index.html",
+"categoryId": "barbearias"
+}
+]

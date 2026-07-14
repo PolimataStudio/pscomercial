@@ -1,0 +1,62 @@
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  /* Safe areas no container (para elementos internos) */
+  padding-left: calc(var(--space-4) + var(--safe-area-inset-left));
+  padding-right: calc(var(--space-4) + var(--safe-area-inset-right));
+}
+
+/* Seções */
+.section { padding: var(--space-8) 0; }
+.section-sm { padding: var(--space-6) 0; }
+.section-lg { padding: var(--space-9) 0; }
+
+/* Grids responsivos */
+.grid-2, .grid-3, .grid-4 {
+  display: grid;
+  gap: var(--space-6);
+}
+
+/* Mobile first: 1 coluna por padrão */
+.grid-2, .grid-3, .grid-4 {
+  grid-template-columns: 1fr;
+}
+
+/* Tablet (≥ 768px) */
+@media (min-width: 768px) {
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Desktop (≥ 1024px) */
+@media (min-width: 1024px) {
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Wide Desktop (≥ 1440px) – opcional, mantém 4 colunas */
+@media (min-width: 1440px) {
+  .container { max-width: 1400px; }
+}
+
+/* Utilitários flex */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: var(--space-2); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Responsividade de containers específicos */
+@media (max-width: 767px) {
+  .section { padding: var(--space-6) 0; }
+  .container { padding: 0 var(--space-3); }
+}

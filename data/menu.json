@@ -1,0 +1,7 @@
+[
+  { "label": "Início", "url": "./" },
+  { "label": "Soluções", "url": "../pages/solucoes.html" },
+  { "label": "Produções", "url": "../pages/producoes.html" },
+  { "label": "Sobre", "url": "../pages/sobre.html" },
+  { "label": "Contato", "url": "../pages/contato.html" }
+]

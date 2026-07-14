@@ -1,0 +1,98 @@
+[
+  {
+    "id": "igrejas",
+    "name": "Igrejas",
+    "description": "Landing pages, portais e aplicativos para comunidades de fé.",
+    "icon": "church",
+    "image": "assets/images/categories/church.jpg",
+    "macrosegment": "Religioso"
+  },
+  {
+    "id": "escolas",
+    "name": "Escolas",
+    "description": "Plataformas educacionais, matrícula digital e gestão acadêmica.",
+    "icon": "school",
+    "image": "assets/images/categories/school.jpg",
+    "macrosegment": "Educação"
+  },
+  {
+    "id": "clinicas",
+    "name": "Clínicas",
+    "description": "Prontuário digital, agendamento e lembretes automáticos.",
+    "icon": "clinic",
+    "image": "assets/images/categories/clinic.jpg",
+    "macrosegment": "Saúde"
+  },
+  {
+    "id": "saloes",
+    "name": "Salões de Beleza",
+    "description": "Agendamento automático, catálogo e fidelização de clientes.",
+    "icon": "salon",
+    "image": "assets/images/categories/salon.jpg",
+    "macrosegment": "Beleza"
+  },
+  {
+    "id": "barbearias",
+    "name": "Barbearias",
+    "description": "Agendamento, lembretes e gestão de clientes para barbearias.",
+    "icon": "barber",
+    "image": "assets/images/categories/barber.jpg",
+    "macrosegment": "Beleza"
+  },
+  {
+    "id": "comercio",
+    "name": "Comércio",
+    "description": "Catálogo digital, WhatsApp integrado e pagamentos para lojas.",
+    "icon": "business",
+    "image": "assets/images/categories/business.jpg",
+    "macrosegment": "Comércio"
+  },
+  {
+    "id": "produtos-digitais",
+    "name": "Produtos Digitais",
+    "description": "Portfólios e vitrines para criadores de conteúdo digital.",
+    "icon": "digital",
+    "image": "assets/images/categories/digital.jpg",
+    "macrosegment": "Produtos Digitais"
+  },
+  {
+    "id": "infoprodutos",
+    "name": "Infoprodutos",
+    "description": "Plataformas para venda de cursos, e-books e assinaturas.",
+    "icon": "book",
+    "image": "assets/images/categories/book.jpg",
+    "macrosegment": "Produtos Digitais"
+  },
+  {
+    "id": "escritorios",
+    "name": "Escritórios",
+    "description": "Sites institucionais e portais para escritórios de advocacia, contabilidade, etc.",
+    "icon": "office",
+    "image": "assets/images/categories/office.jpg",
+    "macrosegment": "Institucional"
+  },
+  {
+    "id": "restaurantes",
+    "name": "Restaurantes",
+    "description": "Cardápio digital, reservas e sistema de pedidos online.",
+    "icon": "restaurant",
+    "image": "assets/images/categories/restaurant.jpg",
+    "macrosegment": "Comércio"
+  },
+  {
+    "id": "academias",
+    "name": "Academias",
+    "description": "Gestão de alunos, rotinas personalizadas e pagamentos.",
+    "icon": "fitness",
+    "image": "assets/images/categories/fitness.jpg",
+    "macrosegment": "Saúde"
+  },
+  {
+    "id": "autores",
+    "name": "Autores",
+    "description": "Portfólio de livros, comunidade e vendas automáticas.",
+    "icon": "author",
+    "image": "assets/images/categories/author.jpg",
+    "macrosegment": "Produtos Digitais"
+  }
+]

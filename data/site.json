@@ -1,0 +1,13 @@
+{
+  "name": "Polímata",
+  "slogan": "Inteligência digital multidisciplinar",
+  "description": "Estúdio de inteligência digital que transforma ideias, serviços e conhecimentos em experiências digitais inteligentes.",
+  "url": "https://polimatastudio.github.io/pscomercial/",
+  "social": {
+    "instagram": "https://instagram.com/polimata",
+    "tiktok": "https://tiktok.com/@polimata",
+    "youtube": "https://youtube.com/@Polímata-std",
+    "whatsapp": "https://wa.link/lbx5vd"
+  },
+  "cta": { "text": "Solicitar demonstração", "url": "../contato" }
+}
