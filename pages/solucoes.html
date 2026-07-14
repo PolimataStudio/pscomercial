@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soluções – Polímata</title>
+  <meta name="description" content="Conheça as soluções digitais da Polímata para igrejas, escolas, professores, escritores, clínicas, salões, academias e negócios.">
+  <link rel="canonical" href="https://polimata.com/pages/solucoes.html">
+  <link rel="icon" href="../assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  
+  <!-- ===== PATH RESOLVER INLINE ===== -->
+  <script>
+  (function(global) {
+    'use strict';
+    let BASE_PATH = global.PROJECT_BASE || null;
+    if (!BASE_PATH) {
+      const path = global.location.pathname;
+      const match = path.match(/^(\/.*?\/)(?:demos\/|pages\/|js\/|css\/|assets\/|data\/|themes\/)/);
+      BASE_PATH = match ? match[1] : '/';
+    }
+    if (!BASE_PATH.endsWith('/')) BASE_PATH += '/';
+    function resolve(relativePath) {
+      if (relativePath.startsWith(BASE_PATH)) return relativePath;
+      if (relativePath.startsWith('/')) return BASE_PATH + relativePath.slice(1);
+      let clean = relativePath.replace(/^\.\//, '').replace(/^\.\.\//, '');
+      while (clean.startsWith('../')) clean = clean.replace(/^\.\.\//, '');
+      return BASE_PATH + clean;
+    }
+    function resolveData(dataPath) { return resolve('data/' + dataPath); }
+    function resolveComponent(componentName) {
+      if (!componentName.endsWith('.html')) componentName += '.html';
+      return resolve('components/' + componentName);
+    }
+    function resolveLink(linkPath) { return resolve(linkPath); }
+    function resolveAsset(assetPath) { return resolve(assetPath); }
+    function resolveDemoUrl(demo) {
+      let url = (typeof demo === 'string') ? demo : (demo?.url || '');
+      if (!url) return BASE_PATH + 'demos/fallback/index.html';
+      if (url.startsWith('http')) return url;
+      let clean = url.replace(/^\.\//, '').replace(/^\.\.\//, '');
+      if (!clean.startsWith('demos/')) clean = 'demos/' + clean;
+      if (!clean.endsWith('.html') && !clean.endsWith('/')) clean += '.html';
+      if (clean.endsWith('index.html')) {
+        const demoHtml = clean.replace(/index\.html$/, 'demo.html');
+        return resolve(demoHtml);
+      }
+      return resolve(clean);
+    }
+    function prefetchDemo(demo) {
+      const url = resolveDemoUrl(demo);
+      if ('prefetch' in document.createElement('link')) {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = url;
+        link.as = 'document';
+        document.head.appendChild(link);
+      }
+    }
+    function getBasePath() { return BASE_PATH; }
+    function isDebug() { return localStorage.getItem('path-debug') === 'true' || new URLSearchParams(window.location.search).get('debug') === 'paths'; }
+    function log(...args) { if (isDebug()) console.log('[PathResolver]', ...args); }
+    global.PathResolver = { resolve, resolveData, resolveComponent, resolveLink, resolveAsset, resolveDemoUrl, prefetchDemo, getBasePath, isDebug, log };
+    global.PathManager = global.PathResolver;
+    console.log('[PathResolver Inline] Base definida:', BASE_PATH);
+  })(window);
+  </script>
+  <!-- ===== FIM PATH RESOLVER ===== -->
+  
+  <script src="../js/core/init.js"></script>
+  <script type="module" src="../js/app.js"></script>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 class="text-center">Soluções digitais inteligentes</h1>
+        <p class="text-center" style="max-width: 700px; margin: 0 auto var(--space-6);">
+          Cada solução é desenhada para resolver dores específicas, combinando tecnologia, design e estratégia.
+        </p>
+        <div class="solutions-grid" id="solutions-grid-full"></div>
+      </div>
+    </section>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script type="module">
+    import { renderSolutions } from '../js/components.js';
+    document.addEventListener('DOMContentLoaded', async () => {
+      await renderSolutions('#solutions-grid-full');
+    });
+  </script>
+</body>
+</html>

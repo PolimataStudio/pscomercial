@@ -1,0 +1,28 @@
+{
+  "name": "Carlos Silva",
+  "bio": "Escritor e palestrante com 15 anos de experiência em literatura e desenvolvimento pessoal. Autor de 10 livros best-sellers.",
+  "hero": {
+    "title": "Carlos Silva",
+    "subtitle": "Autor | Palestrante | Mentor",
+    "image": "author-photo.jpg"
+  },
+  "books": [
+    { "title": "O Poder da Disciplina", "synopsis": "Como a disciplina transforma vidas.", "cover": "disciplina.jpg", "link": "#" },
+    { "title": "Mindset Digital", "synopsis": "Adapte-se à era digital.", "cover": "mindset.jpg", "link": "#" }
+  ],
+  "events": [
+    { "title": "Lançamento do livro 'Resiliência'", "date": "2026-08-10", "location": "Livraria Cultura" },
+    { "title": "Palestra na Feira do Livro", "date": "2026-08-20", "location": "Centro de Convenções" }
+  ],
+  "gallery": [
+    { "title": "Palestra em SP", "image": "palestra-sp.jpg" },
+    { "title": "Sessão de Autógrafos", "image": "autografos.jpg" }
+  ],
+  "contact": {
+    "email": "carlos@carlossilva.com",
+    "social": {
+      "instagram": "https://instagram.com/carlossilva",
+      "youtube": "https://youtube.com/@carlossilva"
+    }
+  }
+}

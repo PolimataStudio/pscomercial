@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contato – Polímata</title>
+  <meta name="description" content="Entre em contato com a Polímata para solicitar uma demonstração, tirar dúvidas ou iniciar um projeto.">
+  <link rel="canonical" href="https://polimatastudio.github.io/pscomercial/pages/contato.html">
+  <link rel="icon" href="../assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  
+  <!-- ===== PATH RESOLVER INLINE ===== -->
+  <script>
+  (function(global) {
+    'use strict';
+    let BASE_PATH = global.PROJECT_BASE || null;
+    if (!BASE_PATH) {
+      const path = global.location.pathname;
+      const match = path.match(/^(\/.*?\/)(?:demos\/|pages\/|js\/|css\/|assets\/|data\/|themes\/)/);
+      BASE_PATH = match ? match[1] : '/';
+    }
+    if (!BASE_PATH.endsWith('/')) BASE_PATH += '/';
+    function resolve(relativePath) {
+      if (relativePath.startsWith(BASE_PATH)) return relativePath;
+      if (relativePath.startsWith('/')) return BASE_PATH + relativePath.slice(1);
+      let clean = relativePath.replace(/^\.\//, '').replace(/^\.\.\//, '');
+      while (clean.startsWith('../')) clean = clean.replace(/^\.\.\//, '');
+      return BASE_PATH + clean;
+    }
+    function resolveData(dataPath) { return resolve('data/' + dataPath); }
+    function resolveComponent(componentName) {
+      if (!componentName.endsWith('.html')) componentName += '.html';
+      return resolve('components/' + componentName);
+    }
+    function resolveLink(linkPath) { return resolve(linkPath); }
+    function resolveAsset(assetPath) { return resolve(assetPath); }
+    function resolveDemoUrl(demo) {
+      let url = (typeof demo === 'string') ? demo : (demo?.url || '');
+      if (!url) return BASE_PATH + 'demos/fallback/index.html';
+      if (url.startsWith('http')) return url;
+      let clean = url.replace(/^\.\//, '').replace(/^\.\.\//, '');
+      if (!clean.startsWith('demos/')) clean = 'demos/' + clean;
+      if (!clean.endsWith('.html') && !clean.endsWith('/')) clean += '.html';
+      if (clean.endsWith('index.html')) {
+        const demoHtml = clean.replace(/index\.html$/, 'demo.html');
+        return resolve(demoHtml);
+      }
+      return resolve(clean);
+    }
+    function prefetchDemo(demo) {
+      const url = resolveDemoUrl(demo);
+      if ('prefetch' in document.createElement('link')) {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = url;
+        link.as = 'document';
+        document.head.appendChild(link);
+      }
+    }
+    function getBasePath() { return BASE_PATH; }
+    function isDebug() { return localStorage.getItem('path-debug') === 'true' || new URLSearchParams(window.location.search).get('debug') === 'paths'; }
+    function log(...args) { if (isDebug()) console.log('[PathResolver]', ...args); }
+    global.PathResolver = { resolve, resolveData, resolveComponent, resolveLink, resolveAsset, resolveDemoUrl, prefetchDemo, getBasePath, isDebug, log };
+    global.PathManager = global.PathResolver;
+    console.log('[PathResolver Inline] Base definida:', BASE_PATH);
+  })(window);
+  </script>
+  <!-- ===== FIM PATH RESOLVER ===== -->
+  
+  <script src="../js/core/init.js"></script>
+  <script type="module" src="../js/app.js"></script>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main>
+    <section class="section">
+      <div class="container">
+        <h1 class="text-center">Vamos transformar sua ideia</h1>
+        <p class="text-center" style="max-width: 600px; margin: 0 auto var(--space-6);">Preencha o formulário ou fale diretamente com a gente pelos canais abaixo.</p>
+        <div class="contact-wrapper">
+          <div>
+            <h3>Envie uma mensagem</h3>
+            <form class="pfx-form contact-form" 
+                  data-pfx-form 
+                  data-pfx-adapter="staticforms" 
+                  data-pfx-endpoint="https://api.staticforms.dev/submit"
+                  data-pfx-auto-reset="true"
+                  novalidate>
+              
+              <!-- Honeypot (oculto) -->
+              <input type="text" name="_honeypot" class="pfx-honeypot" tabindex="-1" autocomplete="off">
+              
+              <!-- Campos ocultos do Static Forms -->
+              <input type="hidden" name="apiKey" value="sf_81a2b0ca7d6a2c1f6709f558">
+              
+              <!-- REDIRECT VAZIO = NENHUM REDIRECIONAMENTO -->
+              <input type="hidden" name="_redirect" value="">
+              
+              <div class="form-group">
+                <label for="name">Nome completo</label>
+                <input type="text" 
+                       id="name" 
+                       name="name" 
+                       data-pfx-field 
+                       data-pfx-rules="name,required"
+                       placeholder="Seu nome"
+                       autocomplete="name"
+                       required
+                       aria-required="true">
+              </div>
+              <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" 
+                       id="email" 
+                       name="email" 
+                       data-pfx-field 
+                       data-pfx-rules="email,required"
+                       placeholder="seu.melhor@email.com"
+                       autocomplete="email"
+                       required
+                       aria-required="true">
+              </div>
+              <div class="form-group">
+                <label for="message">Mensagem</label>
+                <textarea id="message" 
+                          name="message" 
+                          data-pfx-field 
+                          data-pfx-rules="message,required"
+                          placeholder="Conte sobre seu projeto ou dúvida..."
+                          rows="5"
+                          required
+                          aria-required="true"></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary" data-pfx-submit>
+                Enviar mensagem
+              </button>
+            </form>
+          </div>
+          <div class="contact-info">
+            <h3>Fale conosco</h3>
+            <div class="contact-channel">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              <a href="mailto:polimatastudio.comercial@gmail.com">polimatastudio.comercial@gmail.com</a>
+            </div>
+            <div class="contact-channel">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              <a href="https://wa.link/lbx5vd" target="_blank">WhatsApp</a>
+            </div>
+            <div class="contact-social">
+              <a href="https://instagram.com/polimatastudio" target="_blank">Instagram</a>
+              <a href="https://tiktok.com/@polimatastudio" target="_blank">TikTok</a>
+              <a href="https://youtube.com/@Polímata-std" target="_blank">YouTube</a>
+            </div>
+            <div style="margin-top: var(--space-6); padding: var(--space-4); background: var(--surface); border-radius: var(--radius-md);">
+              <strong>Atendimento</strong><br>
+              <span class="text-muted">Segunda a sexta, 8h às 17h;</span>
+              <span class="text-muted">Sábados, 8h às 13h (horário de Brasília)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="footer-placeholder"></div>
+</body>
+</html>

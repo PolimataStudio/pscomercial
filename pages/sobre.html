@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sobre – Polímata Studio</title>
+  <meta name="description" content="Conheça a Polímata Studio: nosso manifesto, propósito, crenças, valores e a história por trás da inteligência digital multidisciplinar.">
+  <link rel="canonical" href="https://polimatastudio.github.io/pscomercial/pages/sobre.html">
+  <link rel="icon" href="../assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  
+  <!-- ===== PATH RESOLVER INLINE ===== -->
+  <script>
+  (function(global) {
+    'use strict';
+    let BASE_PATH = global.PROJECT_BASE || null;
+    if (!BASE_PATH) {
+      const path = global.location.pathname;
+      const match = path.match(/^(\/.*?\/)(?:demos\/|pages\/|js\/|css\/|assets\/|data\/|themes\/)/);
+      BASE_PATH = match ? match[1] : '/';
+    }
+    if (!BASE_PATH.endsWith('/')) BASE_PATH += '/';
+    function resolve(relativePath) {
+      if (relativePath.startsWith(BASE_PATH)) return relativePath;
+      if (relativePath.startsWith('/')) return BASE_PATH + relativePath.slice(1);
+      let clean = relativePath.replace(/^\.\//, '').replace(/^\.\.\//, '');
+      while (clean.startsWith('../')) clean = clean.replace(/^\.\.\//, '');
+      return BASE_PATH + clean;
+    }
+    function resolveData(dataPath) { return resolve('data/' + dataPath); }
+    function resolveComponent(componentName) {
+      if (!componentName.endsWith('.html')) componentName += '.html';
+      return resolve('components/' + componentName);
+    }
+    function resolveLink(linkPath) { return resolve(linkPath); }
+    function resolveAsset(assetPath) { return resolve(assetPath); }
+    function resolveDemoUrl(demo) {
+      let url = (typeof demo === 'string') ? demo : (demo?.url || '');
+      if (!url) return BASE_PATH + 'demos/fallback/index.html';
+      if (url.startsWith('http')) return url;
+      let clean = url.replace(/^\.\//, '').replace(/^\.\.\//, '');
+      if (!clean.startsWith('demos/')) clean = 'demos/' + clean;
+      if (!clean.endsWith('.html') && !clean.endsWith('/')) clean += '.html';
+      if (clean.endsWith('index.html')) {
+        const demoHtml = clean.replace(/index\.html$/, 'demo.html');
+        return resolve(demoHtml);
+      }
+      return resolve(clean);
+    }
+    function prefetchDemo(demo) {
+      const url = resolveDemoUrl(demo);
+      if ('prefetch' in document.createElement('link')) {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = url;
+        link.as = 'document';
+        document.head.appendChild(link);
+      }
+    }
+    function getBasePath() { return BASE_PATH; }
+    function isDebug() { return localStorage.getItem('path-debug') === 'true' || new URLSearchParams(window.location.search).get('debug') === 'paths'; }
+    function log(...args) { if (isDebug()) console.log('[PathResolver]', ...args); }
+    global.PathResolver = { resolve, resolveData, resolveComponent, resolveLink, resolveAsset, resolveDemoUrl, prefetchDemo, getBasePath, isDebug, log };
+    global.PathManager = global.PathResolver;
+    console.log('[PathResolver Inline] Base definida:', BASE_PATH);
+  })(window);
+  </script>
+  <!-- ===== FIM PATH RESOLVER ===== -->
+  
+  <script src="../js/core/init.js"></script>
+  <script type="module" src="../js/app.js"></script>
+  
+  <style>
+    .about-hero { background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%); padding: var(--space-8) 0 var(--space-6); text-align: center; border-bottom: 1px solid var(--border); }
+    .about-hero h1 { font-size: 3.5rem; margin-bottom: var(--space-3); }
+    .about-hero .subtitle { font-size: 1.25rem; color: var(--muted); max-width: 640px; margin: 0 auto; }
+    .manifesto-quote { background: var(--surface); border-left: 4px solid var(--accent-lime); padding: var(--space-5) var(--space-6); border-radius: var(--radius-md); margin: var(--space-6) 0; font-size: 1.15rem; line-height: 1.7; color: var(--text); }
+    .belief-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin: var(--space-4) 0; }
+    .belief-item { background: var(--surface); padding: var(--space-4); border-radius: var(--radius-md); border-left: 3px solid var(--accent-lime); }
+    .values-grid-about { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-4); margin: var(--space-4) 0; }
+    .value-card { background: var(--surface); padding: var(--space-4); border-radius: var(--radius-md); text-align: center; border: 1px solid var(--border); transition: border-color var(--duration-fast); }
+    .value-card:hover { border-color: var(--accent-lime); }
+    .history-section { background: var(--surface); padding: var(--space-6); border-radius: var(--radius-lg); margin: var(--space-6) 0; }
+    @media (max-width: 768px) { .belief-grid { grid-template-columns: 1fr; } .about-hero h1 { font-size: 2.5rem; } }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main>
+    <section class="about-hero">
+      <div class="container">
+        <h1>Sobre a Polímata Studio</h1>
+        <p class="subtitle">Não somos uma agência. Não somos uma fábrica de software. Somos um estúdio de criação e desenvolvimento onde o conhecimento encontra a tecnologia, a criatividade encontra a precisão, e as ideias encontram sua forma digital.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container about-content">
+        <div class="manifesto-quote">
+          <p><strong>“Transformamos ideias, conhecimentos e serviços em experiências digitais inteligentes.”</strong></p>
+          <p style="margin-top: var(--space-2);">Essa não é apenas nossa descrição. É nossa razão de existir. É nossa promessa. É nossa missão.</p>
+        </div>
+        <h2>Nosso Propósito</h2>
+        <p>Existe uma lacuna entre o que as pessoas e organizações precisam e o que o mercado digital oferece. Soluções caras demais ou limitadas demais. Tecnologia sem propósito ou design sem função. Conhecimento sem aplicação ou aplicação sem conhecimento.</p>
+        <p>A Polímata Studio existe para preencher essa lacuna. Criamos experiências digitais que unem o melhor do design, da tecnologia, da educação e da estratégia — para igrejas, escolas, professores, escritores, pequenos negócios, profissionais criativos e organizações sociais.</p>
+        <h2>Nossas Crenças</h2>
+        <div class="belief-grid">
+          <div class="belief-item"><h4>📌 O futuro é humano e digital</h4><p>Tecnologia e humanidade não são opostas — são complementares. O digital amplifica o melhor do humano.</p></div>
+          <div class="belief-item"><h4>📌 O conhecimento é a base de tudo</h4><p>Não como acúmulo de informações, mas como capacidade de compreender, conectar e criar.</p></div>
+          <div class="belief-item"><h4>📌 A tecnologia deve servir às pessoas</h4><p>Cada linha de código, cada interface, cada interação deve ser medida por sua capacidade de humanizar e simplificar.</p></div>
+          <div class="belief-item"><h4>📌 A criatividade é uma prática</h4><p>Não um talento raro, mas uma capacidade universal de imaginar o que não existe e torná-lo real.</p></div>
+          <div class="belief-item"><h4>📌 A educação é o motor da mudança</h4><p>Aprender não é acumular — é transformar. Ensinar não é informar — é inspirar.</p></div>
+          <div class="belief-item"><h4>📌 A simplicidade é o maior luxo</h4><p>Tecnologia complexa, entregue de forma simples — essa é nossa filosofia e nossa promessa.</p></div>
+        </div>
+        <h2>Nossos Valores</h2>
+        <div class="values-grid-about">
+          <div class="value-card"><span class="value-icon">🧠</span><h4>Inteligência</h4><p>Cada solução pensa antes de agir. IA integrada, UX inteligente, automação consciente.</p></div>
+          <div class="value-card"><span class="value-icon">🎨</span><h4>Criatividade</h4><p>Não repetimos padrões. Criamos experiências únicas para cada cliente.</p></div>
+          <div class="value-card"><span class="value-icon">🚀</span><h4>Inovação</h4><p>Adotamos tecnologias emergentes antes do mercado massificar.</p></div>
+          <div class="value-card"><span class="value-icon">✨</span><h4>Simplicidade</h4><p>Tecnologia complexa entregue de forma simples. Clareza é o maior luxo.</p></div>
+          <div class="value-card"><span class="value-icon">⚡</span><h4>Autoridade</h4><p>Confiança baseada em estudos de caso reais, não em claims vazios.</p></div>
+          <div class="value-card"><span class="value-icon">🌱</span><h4>Acessibilidade</h4><p>Premium não significa caro para poucos. Soluções premium acessíveis para todos.</p></div>
+          <div class="value-card"><span class="value-icon">🔭</span><h4>Visão de Futuro</h4><p>Projetamos soluções que duram 5, 10 anos. Pensamos no longo prazo.</p></div>
+        </div>
+        <h2>Nossa Filosofia</h2>
+        <p><strong>Sabedoria aplicada ao digital.</strong> Ser um polímata é dominar múltiplos campos do conhecimento. Na Polímata Studio, isso significa unir tecnologia, design, educação, estratégia e criatividade — não como partes separadas, mas como um todo integrado.</p>
+        <p>Não escolhemos entre esses campos. Nós os integramos. Cada solução que criamos nasce dessa interseção. Porque acreditamos que o melhor do design só é completo com a melhor da tecnologia. Que a melhor estratégia só é forte se apoiada pela melhor criatividade. Que a melhor inovação só é real se for profundamente humana.</p>
+        <h2>Nossa História</h2>
+        <div class="history-section">
+          <p>A Polímata Studio nasceu da crença de que o conhecimento humano é a força mais transformadora que existe — e que, pela primeira vez na história, a tecnologia nos permite criar experiências completas de aprendizado e transformação.</p>
+          <p>Fundada em 2026, nossa jornada começou com o propósito de transformar ideias em experiências digitais inteligentes. O nome <strong>Polímata</strong> vem do grego <em>polymathēs</em> — “aquele que aprendeu muito” — e reflete nossa essência: a busca pela sabedoria multidisciplinar aplicada ao digital.</p>
+          <p>Não somos uma agência tradicional. Somos um estúdio de criação e desenvolvimento, um espaço de experimentação, uma comunidade de aprendizado. Construímos PWAs, plataformas educacionais, aplicativos, portfólios, landing pages, recursos autorais e soluções com IA — tudo com design de ponta, tecnologia moderna e um profundo entendimento das necessidades de cada cliente.</p>
+          <p>Atendemos igrejas, escolas, professores, escritores, pequenos negócios, clínicas, salões, academias, profissionais criativos e organizações sociais. Cada projeto é único, cada solução é pensada sob medida, cada entrega é uma parceria.</p>
+          <p>Nossa visão é ambiciosa: ser o estúdio de referência global em experiências digitais inteligentes até 2030. Mas, acima de tudo, queremos construir um futuro onde a tecnologia sirva às pessoas, onde o conhecimento seja acessível, onde a criatividade seja celebrada, e onde a simplicidade seja o padrão.</p>
+        </div>
+        <div style="text-align: center; margin-top: var(--space-8); padding: var(--space-6); background: var(--surface); border-radius: var(--radius-lg); border: 1px solid var(--border);">
+          <h2 style="margin-bottom: var(--space-3);">O futuro não espera.</h2>
+          <p style="max-width: 600px; margin: 0 auto var(--space-4); color: var(--muted);">As ideias não podem esperar. O conhecimento quer ser compartilhado.<br><strong>Vamos construir algo extraordinário juntos.</strong></p>
+          <a href="../pages/contato.html" class="btn btn-primary btn-lg" style="font-size: 1.2rem; padding: var(--space-3) var(--space-7);">Vamos conversar</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="footer-placeholder"></div>
+</body>
+</html>

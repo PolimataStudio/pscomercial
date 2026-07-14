@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Demonstrações – Polímata</title>
+  <meta name="description" content="Explore demonstrações interativas organizadas por segmento: Igrejas, Escolas, Clínicas, Comércio e mais.">
+  <meta property="og:title" content="Catálogo de Demonstrações – Polímata">
+  <meta property="og:description" content="Descubra soluções digitais inteligentes para seu negócio ou projeto.">
+  <link rel="icon" href="../assets/icons/favicon.ico">
+  <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="../manifest.json">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  
+  <!-- ===== PATH RESOLVER INLINE ===== -->
+  <script>
+  (function(global) {
+    'use strict';
+    let BASE_PATH = global.PROJECT_BASE || null;
+    if (!BASE_PATH) {
+      const path = global.location.pathname;
+      const match = path.match(/^(\/.*?\/)(?:demos\/|pages\/|js\/|css\/|assets\/|data\/|themes\/)/);
+      BASE_PATH = match ? match[1] : '/';
+    }
+    if (!BASE_PATH.endsWith('/')) BASE_PATH += '/';
+    function resolve(relativePath) {
+      if (relativePath.startsWith(BASE_PATH)) return relativePath;
+      if (relativePath.startsWith('/')) return BASE_PATH + relativePath.slice(1);
+      let clean = relativePath.replace(/^\.\//, '').replace(/^\.\.\//, '');
+      while (clean.startsWith('../')) clean = clean.replace(/^\.\.\//, '');
+      return BASE_PATH + clean;
+    }
+    function resolveData(dataPath) { return resolve('data/' + dataPath); }
+    function resolveComponent(componentName) {
+      if (!componentName.endsWith('.html')) componentName += '.html';
+      return resolve('components/' + componentName);
+    }
+    function resolveLink(linkPath) { return resolve(linkPath); }
+    function resolveAsset(assetPath) { return resolve(assetPath); }
+    function resolveDemoUrl(demo) {
+      let url = (typeof demo === 'string') ? demo : (demo?.url || '');
+      if (!url) return BASE_PATH + 'demos/fallback/index.html';
+      if (url.startsWith('http')) return url;
+      let clean = url.replace(/^\.\//, '').replace(/^\.\.\//, '');
+      if (!clean.startsWith('demos/')) clean = 'demos/' + clean;
+      if (!clean.endsWith('.html') && !clean.endsWith('/')) clean += '.html';
+      if (clean.endsWith('index.html')) {
+        const demoHtml = clean.replace(/index\.html$/, 'demo.html');
+        return resolve(demoHtml);
+      }
+      return resolve(clean);
+    }
+    function prefetchDemo(demo) {
+      const url = resolveDemoUrl(demo);
+      if ('prefetch' in document.createElement('link')) {
+        const link = document.createElement('link');
+        link.rel = 'prefetch';
+        link.href = url;
+        link.as = 'document';
+        document.head.appendChild(link);
+      }
+    }
+    function getBasePath() { return BASE_PATH; }
+    function isDebug() { return localStorage.getItem('path-debug') === 'true' || new URLSearchParams(window.location.search).get('debug') === 'paths'; }
+    function log(...args) { if (isDebug()) console.log('[PathResolver]', ...args); }
+    global.PathResolver = { resolve, resolveData, resolveComponent, resolveLink, resolveAsset, resolveDemoUrl, prefetchDemo, getBasePath, isDebug, log };
+    global.PathManager = global.PathResolver;
+    console.log('[PathResolver Inline] Base definida:', BASE_PATH);
+  })(window);
+  </script>
+  <!-- ===== FIM PATH RESOLVER ===== -->
+  
+  <script src="../js/core/init.js"></script>
+  <script type="module" src="../js/app.js"></script>
+  
+  <style>
+    /* Estilos específicos do catálogo */
+    .catalog-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      justify-content: center;
+      margin-bottom: var(--space-6);
+    }
+    .catalog-filters .filter-btn {
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all var(--duration-fast) var(--ease-standard);
+      cursor: pointer;
+    }
+    .catalog-filters .filter-btn:hover {
+      border-color: var(--accent-lime);
+      color: var(--text);
+    }
+    .catalog-filters .filter-btn.active {
+      background: var(--accent-lime);
+      color: var(--bg);
+      border-color: var(--accent-lime);
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-4);
+    }
+    .category-card {
+      perspective: 1200px;
+      height: 100%;
+      min-height: 340px;
+    }
+    .category-card-inner {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform-style: preserve-3d;
+    }
+    .category-card:hover .category-card-inner {
+      transform: translateY(-8px) scale(1.02);
+    }
+    .category-stack {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: box-shadow 0.4s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+    .category-card:hover .category-stack {
+      box-shadow: 0 12px 40px rgba(182, 255, 59, 0.15), 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .stack-layer {
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: translateZ(-20px) rotate(0deg);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      pointer-events: none;
+      filter: blur(2px) brightness(0.6);
+      border: 1px solid var(--border);
+    }
+    .stack-layer .stack-label {
+      position: absolute;
+      bottom: var(--space-3);
+      left: var(--space-3);
+      color: #fff;
+      font-size: 0.7rem;
+      background: rgba(0,0,0,0.5);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(4px);
+    }
+    .category-stack.stack-active .stack-layer { opacity: 1; }
+    .category-stack.stack-active .stack-layer:nth-child(1) {
+      transform: translateZ(-30px) rotate(-3deg) translateX(-8px) translateY(-6px);
+      opacity: 0.3;
+    }
+    .category-stack.stack-active .stack-layer:nth-child(2) {
+      transform: translateZ(-20px) rotate(2deg) translateX(6px) translateY(-4px);
+      opacity: 0.5;
+    }
+    .category-stack.stack-active .stack-layer:nth-child(3) {
+      transform: translateZ(-10px) rotate(-1deg) translateX(-4px) translateY(-2px);
+      opacity: 0.7;
+    }
+    .category-card-front {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(4px);
+      transition: background 0.3s ease;
+    }
+    .category-card:hover .category-card-front {
+      background: rgba(14, 18, 25, 0.92);
+    }
+    .category-card-front .category-icon {
+      margin-bottom: var(--space-3);
+      color: var(--accent-lime);
+    }
+    .category-card-front .category-icon svg {
+      width: 48px;
+      height: 48px;
+    }
+    .category-card-front h3 {
+      font-size: 1.25rem;
+      margin-bottom: var(--space-2);
+      color: var(--text);
+    }
+    .category-card-front p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: var(--space-3);
+      flex-grow: 1;
+    }
+    .category-card-front .category-count {
+      font-size: 0.8rem;
+      color: var(--accent-lime);
+      font-weight: 600;
+      margin-bottom: var(--space-4);
+    }
+    .category-card-front .category-cta {
+      margin-top: auto;
+      width: 100%;
+    }
+    @media (max-width: 768px) {
+      .category-grid { grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+      .category-card { min-height: 280px; }
+      .category-card-front { padding: var(--space-4); }
+      .category-card-front .category-icon svg { width: 36px; height: 36px; }
+    }
+    @media (max-width: 480px) { .category-grid { grid-template-columns: 1fr; } }
+    .demo-list-header { text-align: center; }
+    .demo-list-header p { max-width: 700px; margin-left: auto; margin-right: auto; }
+  </style>
+</head>
+<body>
+  <div id="navbar-placeholder"></div>
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="demo-list-header">
+          <h1>Catálogo de Demonstrações</h1>
+          <p>Explore soluções digitais inteligentes organizadas por segmento. Clique em uma categoria para ver todas as demonstrações disponíveis.</p>
+          <a href="../pages/contato.html" class="btn btn-primary">Solicitar uma demonstração personalizada</a>
+        </div>
+        <div class="catalog-filters" id="catalog-filters">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+        </div>
+        <div class="category-grid" id="category-grid"></div>
+        <div class="demo-cta-list" style="text-align:center;padding:var(--space-6);background:var(--surface-light);border-radius:var(--radius-lg);margin-top:var(--space-6);border:1px solid var(--border);">
+          <h2>Pronto para levar essa solução ao seu projeto?</h2>
+          <p>Entre em contato e descubra como a Polímata pode criar uma experiência digital sob medida para você.</p>
+          <a href="../pages/contato.html" class="btn btn-primary">Solicitar uma versão para meu projeto</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <div id="footer-placeholder"></div>
+  <script type="module">
+    import { loadComponents } from '../js/components.js';
+    import { renderCategoryGrid, getMacrosegments } from '../js/catalog.js';
+
+    async function loadNavAndFooter() {
+      try { await loadComponents(); } catch (e) { console.warn('[Catalog] Erro ao carregar componentes:', e); }
+    }
+
+    async function loadCatalog() {
+      try {
+        await renderCategoryGrid('#category-grid');
+        const { categories } = await import('../js/catalog.js').then(m => m.loadCatalogData());
+        const segments = getMacrosegments(categories);
+        const filterContainer = document.getElementById('catalog-filters');
+        segments.forEach(seg => {
+          const btn = document.createElement('button');
+          btn.className = 'filter-btn';
+          btn.dataset.filter = seg;
+          btn.textContent = seg;
+          filterContainer.appendChild(btn);
+        });
+        filterContainer.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            filterContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.dataset.filter;
+            const segment = filter === 'all' ? '' : filter;
+            renderCategoryGrid('#category-grid', segment);
+          });
+        });
+      } catch (e) {
+        console.error('[Catalog] Erro ao renderizar catálogo:', e);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadNavAndFooter();
+      await loadCatalog();
+    });
+  </script>
+</body>
+</html>
