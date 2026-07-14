@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="theme-color" content="#FFF8F5" />
+    <meta name="description" content="Neighborhood Beauty Hub - Conecte-se com seu salão de beleza local" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <title>Neighborhood Beauty Hub</title>
+
+    <!-- Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkJlYXV0eSBIdWIiLAogICJzaG9ydF9uYW1lIjogIkJlYXV0eSBIdWIiLAogICJkZXNjcmlwdGlvbiI6ICJDb25lY3RlLXNlIGNvbSBzZXUgc2Fsw6NvIGRlIGJlbGV6YSBsb2NhbCIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjRkZGOEY1IiwKICAidGhlbWVfY29sb3IiOiAiI0ZGRjhGNSIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInPjxyZWN0IHdpZHRoPSc1MTInIGhlaWdodD0nNTEyJyByeD0nNjAnIGZpbGw9JyUyM0ZGRjhGNScvPjx0ZXh0IHg9JzI1NicgeT0nMzQwJyBmb250LXNpemU9JzI1MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnIGZpbGw9JyUyM0U4N0UzQyc+4oKAPC90ZXh0Pjwvc3ZnPgogICAgfQogIF0KfQ==" />
+
+    <!-- Google Fonts: Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES / THEME
+           ============================================================ */
+        :root {
+            --bg-body: #FFF8F5;
+            --bg-surface: #FFFFFF;
+            --bg-surface-soft: #FFF5F0;
+            --bg-primary: #E87E3C;
+            --bg-primary-light: #F5DCCE;
+            --bg-primary-subtle: #FEF0E8;
+            --bg-secondary: #4A8DB7;
+            --bg-secondary-light: #D4E8F2;
+            --bg-tertiary: #6BBF8A;
+            --bg-tertiary-light: #DCF5E6;
+            --bg-accent: #F5A623;
+            --bg-accent-light: #FDF0D4;
+
+            --text-primary: #3D2C24;
+            --text-secondary: #7A5F52;
+            --text-muted: #B0968A;
+            --text-inverse: #FFFFFF;
+
+            --border-light: #F0E5DF;
+            --border-primary: #E87E3C;
+
+            --shadow-sm: 0 2px 8px rgba(60, 40, 35, 0.06);
+            --shadow-md: 0 8px 28px rgba(60, 40, 35, 0.08);
+            --shadow-lg: 0 16px 48px rgba(60, 40, 35, 0.10);
+
+            --radius-card: 18px;
+            --radius-btn: 30px;
+            --radius-input: 14px;
+
+            --font: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+            --transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --bottom-bar-height: 68px;
+            --header-height: 0px;
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding-bottom: calc(var(--bottom-bar-height) + var(--safe-bottom) + 8px);
+            padding-top: 8px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bg-primary);
+            border-radius: 20px;
+        }
+
+        /* ============================================================
+           TYPOGRAPHY
+           ============================================================ */
+        .heading-1 {
+            font-size: 1.625rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        .heading-2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        .heading-3 {
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+        .body-text {
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .body-text strong {
+            color: var(--text-primary);
+        }
+        .label-text {
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .caption-text {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           LAYOUT
+           ============================================================ */
+        .container {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 0 14px;
+        }
+
+        .page {
+            display: none;
+            padding-top: 4px;
+            padding-bottom: 12px;
+            animation: fadeSlideUp 0.4s ease both;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 6px 0 12px;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 14px;
+        }
+        .app-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-header .logo .icon {
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+        .app-header .logo .name {
+            font-size: 1.0625rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+        .app-header .logo .name span {
+            color: var(--bg-primary);
+        }
+        .app-header .badge-header {
+            background: var(--bg-primary-light);
+            color: var(--bg-primary);
+            font-size: 0.5625rem;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: 30px;
+            letter-spacing: 0.04em;
+        }
+
+        /* ============================================================
+           BOTTOM NAVIGATION
+           ============================================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            align-items: stretch;
+            justify-content: space-around;
+            height: calc(var(--bottom-bar-height) + var(--safe-bottom));
+            padding-bottom: var(--safe-bottom);
+            z-index: 100;
+            box-shadow: 0 -4px 20px rgba(60, 40, 35, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.92);
+        }
+        .bottom-nav .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            padding: 4px 0;
+            border: none;
+            background: transparent;
+            font-family: var(--font);
+            font-size: 0.5625rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            position: relative;
+        }
+        .bottom-nav .nav-item .icon {
+            font-size: 1.25rem;
+            line-height: 1;
+            transition: var(--transition);
+        }
+        .bottom-nav .nav-item .label {
+            transition: var(--transition);
+        }
+        .bottom-nav .nav-item.active {
+            color: var(--bg-primary);
+        }
+        .bottom-nav .nav-item.active .icon {
+            transform: translateY(-1px);
+        }
+        .bottom-nav .nav-item:active {
+            transform: scale(0.92);
+        }
+        .bottom-nav .nav-item .badge-nav {
+            position: absolute;
+            top: 2px;
+            right: 50%;
+            transform: translateX(calc(50% + 18px));
+            background: var(--bg-accent);
+            color: #fff;
+            font-size: 0.45rem;
+            font-weight: 700;
+            padding: 0 6px;
+            border-radius: 20px;
+            line-height: 1.5;
+            min-width: 14px;
+            text-align: center;
+        }
+
+        /* ============================================================
+           CARDS
+           ============================================================ */
+        .card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            padding: 14px 16px;
+            transition: var(--transition);
+            margin-bottom: 14px;
+        }
+        .card:active {
+            transform: scale(0.99);
+        }
+        .card-soft {
+            background: var(--bg-surface-soft);
+            border-color: transparent;
+        }
+        .card-primary {
+            background: var(--bg-primary);
+            color: #fff;
+            border-color: var(--bg-primary);
+        }
+        .card-primary .body-text {
+            color: rgba(255, 255, 255, 0.85);
+        }
+        .card-primary .caption-text {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 12px;
+            border-radius: 30px;
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            line-height: 1.6;
+        }
+        .badge-primary {
+            background: var(--bg-primary-light);
+            color: var(--bg-primary);
+        }
+        .badge-secondary {
+            background: var(--bg-secondary-light);
+            color: var(--bg-secondary);
+        }
+        .badge-tertiary {
+            background: var(--bg-tertiary-light);
+            color: var(--bg-tertiary);
+        }
+        .badge-accent {
+            background: var(--bg-accent-light);
+            color: var(--bg-accent);
+        }
+        .badge-gold {
+            background: #FDF0D4;
+            color: #B8860B;
+        }
+        .badge-white {
+            background: rgba(255, 255, 255, 0.25);
+            color: #fff;
+        }
+
+        /* ============================================================
+           FEED POST
+           ============================================================ */
+        .post-card .post-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .post-card .post-header .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: var(--bg-primary);
+            flex-shrink: 0;
+        }
+        .post-card .post-header .info .name {
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        .post-card .post-header .info .time {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+        .post-card .post-image {
+            border-radius: var(--radius-card);
+            background: var(--bg-primary-light);
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            overflow: hidden;
+            position: relative;
+            color: var(--bg-primary);
+        }
+        .post-card .post-image .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 16px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.3));
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.8125rem;
+        }
+        .post-card .post-content {
+            font-size: 0.875rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        .post-card .post-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-top: 10px;
+            border-top: 1px solid var(--border-light);
+        }
+        .post-card .post-actions button {
+            background: none;
+            border: none;
+            font-family: var(--font);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: var(--transition);
+            padding: 4px 8px;
+            border-radius: 30px;
+        }
+        .post-card .post-actions button:active {
+            transform: scale(0.92);
+        }
+        .post-card .post-actions button.liked {
+            color: var(--bg-primary);
+        }
+        .post-card .post-actions button .emoji {
+            font-size: 1rem;
+        }
+
+        /* ============================================================
+           EVENT CARD
+           ============================================================ */
+        .event-card {
+            display: flex;
+            gap: 14px;
+            align-items: stretch;
+        }
+        .event-card .date-box {
+            flex-shrink: 0;
+            width: 56px;
+            background: var(--bg-primary-subtle);
+            border-radius: var(--radius-card);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 4px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+        }
+        .event-card .date-box .day {
+            font-size: 1.375rem;
+            font-weight: 800;
+            color: var(--bg-primary);
+            line-height: 1.1;
+        }
+        .event-card .date-box .month {
+            font-size: 0.5625rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .event-card .info {
+            flex: 1;
+            min-width: 0;
+        }
+        .event-card .info .title {
+            font-weight: 700;
+            font-size: 0.9375rem;
+        }
+        .event-card .info .desc {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        .event-card .info .meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+        .event-card .info .meta .tag {
+            font-size: 0.625rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: var(--bg-body);
+            padding: 1px 10px;
+            border-radius: 30px;
+        }
+        .event-card .cta {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 4px;
+        }
+        .event-card .cta .btn-small {
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.6875rem;
+            font-weight: 700;
+            border: none;
+            background: var(--bg-primary);
+            color: #fff;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font);
+        }
+        .event-card .cta .btn-small:active {
+            transform: scale(0.94);
+        }
+        .event-card .cta .btn-small.outline {
+            background: transparent;
+            color: var(--bg-primary);
+            border: 1.5px solid var(--bg-primary);
+        }
+
+        /* ============================================================
+           PROMO CARD
+           ============================================================ */
+        .promo-card {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 12px 14px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            margin-bottom: 10px;
+        }
+        .promo-card:active {
+            transform: scale(0.98);
+        }
+        .promo-card .icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+            width: 48px;
+            text-align: center;
+        }
+        .promo-card .info {
+            flex: 1;
+            min-width: 0;
+        }
+        .promo-card .info .title {
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        .promo-card .info .desc {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .promo-card .info .price {
+            font-size: 0.8125rem;
+            font-weight: 700;
+            color: var(--bg-primary);
+            margin-top: 2px;
+        }
+        .promo-card .info .price .old {
+            font-weight: 400;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            font-size: 0.6875rem;
+            margin-right: 6px;
+        }
+        .promo-card .badge {
+            flex-shrink: 0;
+        }
+
+        /* ============================================================
+           FORM
+           ============================================================ */
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 3px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: var(--font);
+            font-size: 0.875rem;
+            background: var(--bg-surface);
+            border: 1.5px solid var(--border-light);
+            border-radius: var(--radius-input);
+            color: var(--text-primary);
+            transition: var(--transition);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--bg-primary);
+            box-shadow: 0 0 0 3px rgba(232, 126, 60, 0.12);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 56px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            font-family: var(--font);
+            font-size: 0.9375rem;
+            font-weight: 700;
+            border: none;
+            border-radius: var(--radius-btn);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .btn:active {
+            transform: scale(0.96);
+        }
+        .btn-primary {
+            background: var(--bg-primary);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(232, 126, 60, 0.25);
+        }
+        .btn-primary:active {
+            box-shadow: 0 2px 8px rgba(232, 126, 60, 0.15);
+        }
+        .btn-secondary {
+            background: var(--bg-secondary);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(74, 141, 183, 0.25);
+        }
+        .btn-tertiary {
+            background: var(--bg-tertiary);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(107, 191, 138, 0.25);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--bg-primary);
+            border: 2px solid var(--bg-primary);
+        }
+
+        /* ============================================================
+           COMMUNITY / TESTIMONIALS
+           ============================================================ */
+        .story-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-light);
+            padding: 14px 16px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+        .story-card:active {
+            transform: scale(0.99);
+        }
+        .story-card .story-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .story-card .story-header .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-tertiary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: var(--bg-tertiary);
+            flex-shrink: 0;
+        }
+        .story-card .story-header .info .name {
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        .story-card .story-header .info .role {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+        .story-card .story-text {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        .story-card .story-text::before {
+            content: '"';
+            font-size: 1.2rem;
+            color: var(--bg-primary);
+            font-weight: 700;
+            margin-right: 2px;
+        }
+        .story-card .story-text::after {
+            content: '"';
+            font-size: 1.2rem;
+            color: var(--bg-primary);
+            font-weight: 700;
+            margin-left: 2px;
+        }
+        .story-card .story-stars {
+            color: var(--bg-accent);
+            font-size: 0.875rem;
+            margin-top: 4px;
+            letter-spacing: 2px;
+        }
+
+        /* ============================================================
+           TOAST
+           ============================================================ */
+        .toast-container {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            pointer-events: none;
+            max-width: 400px;
+            width: 90%;
+        }
+        .toast {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            padding: 12px 18px;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+            animation: toastIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+            margin-bottom: 6px;
+        }
+        .toast.success {
+            border-left: 4px solid var(--bg-tertiary);
+        }
+        .toast .toast-icon {
+            font-size: 1.125rem;
+        }
+        .toast .toast-msg {
+            flex: 1;
+            font-weight: 600;
+            font-size: 0.8125rem;
+        }
+        @keyframes toastIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-16px) scale(0.94);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .toast.removing {
+            animation: toastOut 0.3s ease both;
+        }
+        @keyframes toastOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-12px) scale(0.94);
+            }
+        }
+
+        /* ============================================================
+           ONBOARDING
+           ============================================================ */
+        .onboarding-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(60, 40, 35, 0.40);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            animation: fadeIn 0.4s ease;
+        }
+        .onboarding-overlay.hidden {
+            display: none;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .onboarding-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            padding: 32px 24px 28px;
+            max-width: 380px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            animation: slideUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        }
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .onboarding-card .emoji-big {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+        }
+        .onboarding-card h2 {
+            font-weight: 800;
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+        .onboarding-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 2px;
+        }
+        .onboarding-card .dots {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin: 14px 0 18px;
+        }
+        .onboarding-card .dots .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-light);
+            transition: var(--transition);
+        }
+        .onboarding-card .dots .dot.active {
+            background: var(--bg-primary);
+            width: 24px;
+            border-radius: 20px;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (min-width: 600px) {
+            .container {
+                max-width: 560px;
+                padding: 0 20px;
+            }
+            .post-card .post-image {
+                height: 180px;
+            }
+            .event-card .date-box {
+                width: 64px;
+            }
+            .event-card .date-box .day {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .container {
+                max-width: 720px;
+                padding: 0 32px;
+            }
+            .post-card .post-image {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .event-card .cta .btn-small {
+                font-size: 0.625rem;
+                padding: 4px 12px;
+            }
+            .event-card .date-box {
+                width: 48px;
+            }
+            .event-card .date-box .day {
+                font-size: 1.125rem;
+            }
+            .promo-card .icon {
+                font-size: 1.6rem;
+                width: 40px;
+            }
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-12 {
+            margin-bottom: 12px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-muted {
+            color: var(--text-muted);
+        }
+        .w-full {
+            width: 100%;
+        }
+
+        /* ============================================================
+           SERVICE WORKER
+           ============================================================ */
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    ONBOARDING
+    ============================================================ -->
+    <div class="onboarding-overlay" id="onboardingOverlay">
+        <div class="onboarding-card" id="onboardingCard">
+            <div class="emoji-big" id="obEmoji">🏘️</div>
+            <h2 id="obTitle">Seu salão, sua comunidade</h2>
+            <p id="obDesc">Descubra o que está acontecendo no seu salão de beleza local.</p>
+            <div class="dots" id="obDots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="btn btn-primary" id="obBtn">Começar</button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    TOAST
+    ============================================================ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <div class="container">
+        <header class="app-header">
+            <div class="logo">
+                <span class="icon">🏘️</span>
+                <span class="name">Beauty <span>Hub</span></span>
+            </div>
+            <span class="badge-header">📍 Bairro</span>
+        </header>
+    </div>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <main class="container">
+
+        <!-- ========== FEED ========== -->
+        <section class="page active" id="pageFeed">
+            <!-- Welcome banner -->
+            <div class="card card-primary" style="margin-bottom:14px;padding:16px 18px;">
+                <div style="display:flex;align-items:center;gap:12px;">
+                    <span style="font-size:2rem;">✨</span>
+                    <div>
+                        <div style="font-weight:800;font-size:1.0625rem;">Descubra seu salão!</div>
+                        <div class="body-text" style="color:rgba(255,255,255,0.8);font-size:0.8125rem;">
+                            Fique por dentro das novidades, dicas e promoções da sua comunidade.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feed posts -->
+            <div id="feedContainer">
+                <!-- Rendered by JS -->
+            </div>
+        </section>
+
+        <!-- ========== EVENTOS ========== -->
+        <section class="page" id="pageEventos">
+            <div class="flex-between mb-12">
+                <h2 class="heading-2">📅 Eventos</h2>
+                <span class="badge badge-primary">Agenda</span>
+            </div>
+
+            <!-- Countdown banner -->
+            <div class="card card-primary" style="padding:12px 16px;margin-bottom:14px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
+                    <div>
+                        <div style="font-weight:700;font-size:0.8125rem;">🎉 Próximo evento</div>
+                        <div style="font-size:1.25rem;font-weight:800;" id="nextEventCountdown">Dia das Mães · 10/05</div>
+                    </div>
+                    <span class="badge badge-white">Faltam 8 dias</span>
+                </div>
+            </div>
+
+            <div id="eventContainer">
+                <!-- Rendered by JS -->
+            </div>
+        </section>
+
+        <!-- ========== PROMO ========== -->
+        <section class="page" id="pagePromo">
+            <div class="flex-between mb-12">
+                <h2 class="heading-2">🏷️ Promoções</h2>
+                <span class="badge badge-accent">Ofertas</span>
+            </div>
+
+            <!-- Promo Spotlight -->
+            <div class="card card-primary" style="padding:14px 18px;margin-bottom:14px;text-align:center;">
+                <div style="font-size:2.5rem;margin-bottom:4px;">⭐</div>
+                <div style="font-weight:800;font-size:1.125rem;">Promo do Dia</div>
+                <div style="font-size:1.5rem;font-weight:800;color:#fff;margin:4px 0;">Corte + Escova</div>
+                <div style="font-size:0.875rem;color:rgba(255,255,255,0.85);">
+                    <span style="text-decoration:line-through;opacity:0.6;">R$ 120</span>
+                    <span style="font-weight:700;font-size:1.25rem;">R$ 84</span>
+                    <span style="background:rgba(255,255,255,0.2);padding:0 10px;border-radius:30px;font-size:0.75rem;font-weight:700;margin-left:6px;">-30%</span>
+                </div>
+                <button class="btn btn-primary" style="background:#fff;color:var(--bg-primary);margin-top:10px;width:auto;padding:8px 32px;box-shadow:none;" id="promoSpotlightBtn">Agendar agora</button>
+            </div>
+
+            <div id="promoContainer">
+                <!-- Rendered by JS -->
+            </div>
+        </section>
+
+        <!-- ========== AGENDAR ========== -->
+        <section class="page" id="pageAgendar">
+            <h2 class="heading-2 mb-12">📋 Agendar serviço</h2>
+            <div class="card" style="padding:16px 18px;">
+                <form id="formAgendamento" autocomplete="off">
+                    <div class="form-group">
+                        <label for="agNome">Seu nome *</label>
+                        <input type="text" id="agNome" placeholder="Digite seu nome" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="agTelefone">Telefone *</label>
+                        <input type="tel" id="agTelefone" placeholder="(11) 99999-9999" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="agServico">Serviço *</label>
+                        <select id="agServico" required>
+                            <option value="">Selecione</option>
+                            <option value="Corte">Corte</option>
+                            <option value="Corte + Escova">Corte + Escova</option>
+                            <option value="Manicure">Manicure</option>
+                            <option value="Pedicure">Pedicure</option>
+                            <option value="Depilação">Depilação</option>
+                            <option value="Barba">Barba</option>
+                            <option value="Design de Sobrancelhas">Design de Sobrancelhas</option>
+                            <option value="Tratamento Capilar">Tratamento Capilar</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="agData">Data *</label>
+                            <input type="date" id="agData" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="agHora">Hora *</label>
+                            <input type="time" id="agHora" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="agObs">Observações</label>
+                        <textarea id="agObs" placeholder="Alguma observação…"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">💫 Agendar</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- ========== COMUNIDADE ========== -->
+        <section class="page" id="pageComunidade">
+            <div class="flex-between mb-12">
+                <h2 class="heading-2">🤝 Comunidade</h2>
+                <span class="badge badge-tertiary">Depoimentos</span>
+            </div>
+
+            <div class="card card-soft" style="padding:12px 16px;margin-bottom:14px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="font-size:1.4rem;">💬</span>
+                    <div>
+                        <div style="font-weight:700;font-size:0.875rem;">Compartilhe sua experiência</div>
+                        <div style="font-size:0.75rem;color:var(--text-muted);">Sua história inspira nossa comunidade</div>
+                    </div>
+                    <button class="btn btn-primary" style="width:auto;padding:6px 20px;font-size:0.75rem;margin-left:auto;" id="openFeedbackBtn">Enviar</button>
+                </div>
+            </div>
+
+            <div id="storyContainer">
+                <!-- Rendered by JS -->
+            </div>
+
+            <!-- Feedback modal inline -->
+            <div class="onboarding-overlay hidden" id="feedbackModal" style="z-index:150;background:rgba(60,40,35,0.50);">
+                <div class="onboarding-card" style="max-width:400px;text-align:left;">
+                    <div class="flex-between mb-12">
+                        <h2 class="heading-2">💬 Compartilhe</h2>
+                        <button style="background:none;border:none;font-size:1.25rem;cursor:pointer;color:var(--text-muted);" id="feedbackCloseBtn">✕</button>
+                    </div>
+                    <form id="formFeedback">
+                        <div class="form-group">
+                            <label for="fbNome">Seu nome *</label>
+                            <input type="text" id="fbNome" placeholder="Digite seu nome" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="fbTexto">Sua história *</label>
+                            <textarea id="fbTexto" placeholder="Conte como foi sua experiência no salão…" required style="min-height:80px;"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Avaliação</label>
+                            <div style="display:flex;gap:6px;font-size:1.5rem;" id="starRating">
+                                <span data-star="1" style="cursor:pointer;">☆</span>
+                                <span data-star="2" style="cursor:pointer;">☆</span>
+                                <span data-star="3" style="cursor:pointer;">☆</span>
+                                <span data-star="4" style="cursor:pointer;">☆</span>
+                                <span data-star="5" style="cursor:pointer;">☆</span>
+                            </div>
+                            <input type="hidden" id="fbStars" value="5" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">📤 Enviar depoimento</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+    BOTTOM NAVIGATION
+    ============================================================ -->
+    <nav class="bottom-nav" id="bottomNav">
+        <button class="nav-item active" data-page="pageFeed" data-label="Feed">
+            <span class="icon">📰</span>
+            <span class="label">Feed</span>
+        </button>
+        <button class="nav-item" data-page="pageEventos" data-label="Eventos">
+            <span class="icon">📅</span>
+            <span class="label">Eventos</span>
+            <span class="badge-nav">3</span>
+        </button>
+        <button class="nav-item" data-page="pagePromo" data-label="Promo">
+            <span class="icon">🏷️</span>
+            <span class="label">Promo</span>
+        </button>
+        <button class="nav-item" data-page="pageAgendar" data-label="Agendar">
+            <span class="icon">📋</span>
+            <span class="label">Agendar</span>
+        </button>
+        <button class="nav-item" data-page="pageComunidade" data-label="Comunidade">
+            <span class="icon">🤝</span>
+            <span class="label">Comunidade</span>
+        </button>
+    </nav>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // DATA STORE (mock)
+            // ============================================================
+            const DEFAULT_DATA = {
+                posts: [{
+                    id: 'p1',
+                    author: 'Salão Glow',
+                    avatar: 'SG',
+                    time: '2 horas atrás',
+                    image: '🌸',
+                    imageLabel: 'Novo tratamento capilar',
+                    content: '🌿 Apresentamos nosso novo tratamento de hidratação profunda com óleos naturais! Agende já e ganhe 10% de desconto na primeira sessão.',
+                    likes: 24,
+                    liked: false,
+                    comments: 7
+                }, {
+                    id: 'p2',
+                    author: 'Dica de Beleza',
+                    avatar: '💄',
+                    time: '5 horas atrás',
+                    image: '✨',
+                    imageLabel: 'Dica: pele radiante',
+                    content: '💡 Dica da semana: esfoliação suave + hidratação diária mantêm sua pele radiante! Qual é o seu segredo de beleza?',
+                    likes: 42,
+                    liked: false,
+                    comments: 12
+                }, {
+                    id: 'p3',
+                    author: 'Evento Especial',
+                    avatar: '🎉',
+                    time: '1 dia atrás',
+                    image: '🎊',
+                    imageLabel: 'Dia das Mães',
+                    content: '💝 Dia das Mães está chegando! Prepare um presente especial: compre um pacote de serviços e ganhe um mimo exclusivo. Vagas limitadas!',
+                    likes: 18,
+                    liked: false,
+                    comments: 5
+                }, {
+                    id: 'p4',
+                    author: 'Bastidores',
+                    avatar: '📸',
+                    time: '2 dias atrás',
+                    image: '✂️',
+                    imageLabel: 'Nos bastidores',
+                    content: '📸 Olha só os bastidores de um dos nossos dias mais movimentados! Nossa equipe está sempre pronta para receber você com todo carinho.',
+                    likes: 31,
+                    liked: false,
+                    comments: 9
+                }],
+                events: [{
+                    id: 'e1',
+                    title: 'Dia das Mães Especial',
+                    desc: 'Pacote de serviços com desconto e brinde exclusivo para as mamães.',
+                    date: '2026-05-10',
+                    time: '09:00 - 18:00',
+                    category: 'Especial',
+                    cta: 'Agendar'
+                }, {
+                    id: 'e2',
+                    title: 'Dia de Beleza no Bairro',
+                    desc: 'Venha conhecer nossos serviços em um dia especial com promoções e sorteios.',
+                    date: '2026-05-25',
+                    time: '10:00 - 16:00',
+                    category: 'Comunidade',
+                    cta: 'Participar'
+                }, {
+                    id: 'e3',
+                    title: 'Workshop de Autocuidado',
+                    desc: 'Aprenda técnicas de cuidados diários com nossos especialistas.',
+                    date: '2026-06-05',
+                    time: '14:00 - 17:00',
+                    category: 'Educativo',
+                    cta: 'Inscrever-se'
+                }],
+                promos: [{
+                    id: 'pr1',
+                    title: 'Corte + Escova',
+                    desc: 'Combo completo com finalização',
+                    price: 84,
+                    oldPrice: 120,
+                    discount: '30%',
+                    emoji: '✂️',
+                    badge: 'Destaque'
+                }, {
+                    id: 'pr2',
+                    title: 'Manicure + Pedicure',
+                    desc: 'Tratamento completo para mãos e pés',
+                    price: 70,
+                    oldPrice: 95,
+                    discount: '26%',
+                    emoji: '💅',
+                    badge: 'Popular'
+                }, {
+                    id: 'pr3',
+                    title: 'Pacote Depilação',
+                    desc: '3 sessões com preço especial',
+                    price: 150,
+                    oldPrice: 210,
+                    discount: '28%',
+                    emoji: '🪒',
+                    badge: 'Economia'
+                }, {
+                    id: 'pr4',
+                    title: 'Tratamento Capilar',
+                    desc: 'Hidratação profunda com óleos',
+                    price: 90,
+                    oldPrice: 130,
+                    discount: '31%',
+                    emoji: '🌿',
+                    badge: 'Novo'
+                }],
+                stories: [{
+                    id: 'st1',
+                    name: 'Ana Paula',
+                    role: 'Cliente desde 2023',
+                    text: 'O Glow Studio é mais que um salão, é um ponto de encontro. Adoro a energia e o cuidado que eles têm com cada detalhe. Sempre saio renovada!',
+                    stars: 5,
+                    avatar: 'AP'
+                }, {
+                    id: 'st2',
+                    name: 'Mariana Costa',
+                    role: 'Cliente fiel',
+                    text: 'Fiz minha primeira depilação aqui e nunca mais troquei. Profissionais super atenciosos e ambiente acolhedor. Recomendo a todas as amigas!',
+                    stars: 5,
+                    avatar: 'MC'
+                }, {
+                    id: 'st3',
+                    name: 'Roberto Alves',
+                    role: 'Cliente desde 2022',
+                    text: 'Melhor barbearia do bairro! O corte sempre perfeito e a equipe é muito gente boa. É bom ter um lugar onde você é tratado como amigo.',
+                    stars: 4,
+                    avatar: 'RA'
+                }],
+                feedbacks: []
+            };
+
+            let store = loadData();
+
+            function loadData() {
+                try {
+                    const raw = localStorage.getItem('beautyHubData');
+                    if (raw) {
+                        const parsed = JSON.parse(raw);
+                        for (const key in DEFAULT_DATA) {
+                            if (!(key in parsed)) parsed[key] = DEFAULT_DATA[key];
+                        }
+                        return parsed;
+                    }
+                } catch (_) {}
+                return JSON.parse(JSON.stringify(DEFAULT_DATA));
+            }
+
+            function saveData() {
+                try {
+                    localStorage.setItem('beautyHubData', JSON.stringify(store));
+                } catch (_) {}
+            }
+
+            function resetData() {
+                store = JSON.parse(JSON.stringify(DEFAULT_DATA));
+                saveData();
+                renderAll();
+                showToast('Dados redefinidos', 'success');
+            }
+
+            function generateId() {
+                return 'id_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+            }
+
+            function getToday() {
+                return new Date().toISOString().slice(0, 10);
+            }
+
+            // ============================================================
+            // RENDER FUNCTIONS
+            // ============================================================
+            function renderFeed() {
+                const container = document.getElementById('feedContainer');
+                const posts = store.posts;
+                if (posts.length === 0) {
+                    container.innerHTML =
+                        `<div class="card card-soft text-center" style="padding:30px 16px;color:var(--text-muted);">
+                            <div style="font-size:2.5rem;">📭</div>
+                            <p style="margin-top:8px;font-weight:600;">Nenhum post ainda</p>
+                            <p style="font-size:0.8125rem;">Novidades em breve!</p>
+                        </div>`;
+                    return;
+                }
+
+                container.innerHTML = posts.map(post => {
+                    const likedClass = post.liked ? 'liked' : '';
+                    const likeEmoji = post.liked ? '❤️' : '🤍';
+                    return `
+                        <div class="card post-card" data-id="${post.id}">
+                            <div class="post-header">
+                                <div class="avatar">${post.avatar}</div>
+                                <div class="info">
+                                    <div class="name">${post.author}</div>
+                                    <div class="time">${post.time}</div>
+                                </div>
+                            </div>
+                            <div class="post-image">
+                                ${post.image}
+                                <div class="overlay">${post.imageLabel}</div>
+                            </div>
+                            <div class="post-content">${post.content}</div>
+                            <div class="post-actions">
+                                <button class="like-btn ${likedClass}" data-id="${post.id}">
+                                    <span class="emoji">${likeEmoji}</span>
+                                    <span class="like-count">${post.likes}</span>
+                                </button>
+                                <button class="comment-btn" data-id="${post.id}">
+                                    <span class="emoji">💬</span>
+                                    <span>${post.comments}</span>
+                                </button>
+                                <button class="share-btn" data-id="${post.id}">
+                                    <span class="emoji">📤</span>
+                                    <span>Compartilhar</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Bind like events
+                document.querySelectorAll('.like-btn').forEach(btn => {
+                    btn.removeEventListener('click', handleLike);
+                    btn.addEventListener('click', handleLike);
+                });
+                document.querySelectorAll('.comment-btn').forEach(btn => {
+                    btn.removeEventListener('click', handleComment);
+                    btn.addEventListener('click', handleComment);
+                });
+                document.querySelectorAll('.share-btn').forEach(btn => {
+                    btn.removeEventListener('click', handleShare);
+                    btn.addEventListener('click', handleShare);
+                });
+            }
+
+            function handleLike(e) {
+                const btn = e.currentTarget;
+                const id = btn.dataset.id;
+                const post = store.posts.find(p => p.id === id);
+                if (!post) return;
+                post.liked = !post.liked;
+                post.likes += post.liked ? 1 : -1;
+                saveData();
+                renderFeed();
+                if (post.liked) {
+                    showToast('❤️ Você curtiu este post!', 'success');
+                }
+            }
+
+            function handleComment(e) {
+                const id = e.currentTarget.dataset.id;
+                showToast('💬 Em breve você poderá comentar!', 'info');
+            }
+
+            function handleShare(e) {
+                const id = e.currentTarget.dataset.id;
+                showToast('📤 Link copiado para compartilhar!', 'success');
+            }
+
+            function renderEvents() {
+                const container = document.getElementById('eventContainer');
+                const events = store.events;
+                if (events.length === 0) {
+                    container.innerHTML =
+                        `<div class="card card-soft text-center" style="padding:20px 16px;color:var(--text-muted);">
+                            <div style="font-size:2rem;">📭</div>
+                            <p style="margin-top:6px;">Nenhum evento programado</p>
+                        </div>`;
+                    return;
+                }
+
+                // Countdown
+                const nextEvent = events[0];
+                if (nextEvent) {
+                    const dateObj = new Date(nextEvent.date + 'T00:00:00');
+                    const today = new Date();
+                    const diff = Math.ceil((dateObj - today) / (1000 * 60 * 60 * 24));
+                    const countdownEl = document.getElementById('nextEventCountdown');
+                    if (diff > 0) {
+                        countdownEl.textContent = `${nextEvent.title} · Faltam ${diff} dias`;
+                    } else if (diff === 0) {
+                        countdownEl.textContent = `${nextEvent.title} · É hoje! 🎉`;
+                    } else {
+                        countdownEl.textContent = `${nextEvent.title} · Já passou`;
+                    }
+                }
+
+                container.innerHTML = events.map(ev => {
+                    const dateObj = new Date(ev.date + 'T00:00:00');
+                    const day = dateObj.getDate();
+                    const month = dateObj.toLocaleDateString('pt-BR', { month: 'short' });
+                    const isPast = dateObj < new Date();
+                    return `
+                        <div class="card event-card" style="margin-bottom:10px;">
+                            <div class="date-box">
+                                <div class="day">${day}</div>
+                                <div class="month">${month}</div>
+                            </div>
+                            <div class="info">
+                                <div class="title">${ev.title}</div>
+                                <div class="desc">${ev.desc}</div>
+                                <div class="meta">
+                                    <span class="tag">${ev.time}</span>
+                                    <span class="tag">${ev.category}</span>
+                                </div>
+                            </div>
+                            <div class="cta">
+                                <button class="btn-small ${isPast ? 'outline' : ''}" data-id="${ev.id}" data-action="event">
+                                    ${isPast ? 'Passado' : ev.cta || 'Ver mais'}
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Bind event CTAs
+                container.querySelectorAll('.btn-small[data-action="event"]').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const id = this.dataset.id;
+                        const ev = store.events.find(e => e.id === id);
+                        if (ev) {
+                            showToast(`📅 Inscrição para "${ev.title}" confirmada!`, 'success');
+                        }
+                    });
+                });
+            }
+
+            function renderPromos() {
+                const container = document.getElementById('promoContainer');
+                const promos = store.promos;
+                if (promos.length === 0) {
+                    container.innerHTML =
+                        `<div class="card card-soft text-center" style="padding:20px 16px;color:var(--text-muted);">
+                            <div style="font-size:2rem;">🏷️</div>
+                            <p style="margin-top:6px;">Nenhuma promoção ativa</p>
+                        </div>`;
+                    return;
+                }
+
+                container.innerHTML = promos.map(p => {
+                    const discountText = p.discount ? `${p.discount} OFF` : '';
+                    return `
+                        <div class="promo-card" data-id="${p.id}">
+                            <div class="icon">${p.emoji || '🏷️'}</div>
+                            <div class="info">
+                                <div class="title">${p.title}</div>
+                                <div class="desc">${p.desc}</div>
+                                <div class="price">
+                                    ${p.oldPrice ? `<span class="old">R$ ${p.oldPrice}</span>` : ''}
+                                    R$ ${p.price}
+                                </div>
+                            </div>
+                            <div class="badge badge-accent">${discountText || p.badge || 'Oferta'}</div>
+                        </div>
+                    `;
+                }).join('');
+
+                container.querySelectorAll('.promo-card').forEach(card => {
+                    card.addEventListener('click', function() {
+                        const id = this.dataset.id;
+                        const promo = store.promos.find(p => p.id === id);
+                        if (promo) {
+                            showToast(`🏷️ Promoção "${promo.title}" selecionada! Agende agora.`, 'success');
+                        }
+                    });
+                });
+
+                // Spotlight button
+                document.getElementById('promoSpotlightBtn').addEventListener('click', function() {
+                    showToast('⭐ Promo do Dia selecionada! Agende seu horário.', 'success');
+                });
+            }
+
+            function renderStories() {
+                const container = document.getElementById('storyContainer');
+                const stories = store.stories;
+                if (stories.length === 0) {
+                    container.innerHTML =
+                        `<div class="card card-soft text-center" style="padding:20px 16px;color:var(--text-muted);">
+                            <div style="font-size:2rem;">💬</div>
+                            <p style="margin-top:6px;">Seja o primeiro a compartilhar sua história!</p>
+                        </div>`;
+                    return;
+                }
+
+                container.innerHTML = stories.map(s => {
+                    const stars = '★'.repeat(s.stars) + '☆'.repeat(5 - s.stars);
+                    return `
+                        <div class="story-card">
+                            <div class="story-header">
+                                <div class="avatar">${s.avatar || s.name.slice(0,2).toUpperCase()}</div>
+                                <div class="info">
+                                    <div class="name">${s.name}</div>
+                                    <div class="role">${s.role || 'Cliente'}</div>
+                                </div>
+                            </div>
+                            <div class="story-text">${s.text}</div>
+                            <div class="story-stars">${stars}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            function renderAll() {
+                renderFeed();
+                renderEvents();
+                renderPromos();
+                renderStories();
+                updateBadge();
+            }
+
+            function updateBadge() {
+                const badge = document.querySelector('.bottom-nav .nav-item[data-page="pageEventos"] .badge-nav');
+                if (badge) {
+                    const futureEvents = store.events.filter(e => new Date(e.date + 'T00:00:00') >= new Date());
+                    badge.textContent = futureEvents.length;
+                    badge.style.display = futureEvents.length > 0 ? 'block' : 'none';
+                }
+            }
+
+            // ============================================================
+            // NAVIGATION
+            // ============================================================
+            function navigateTo(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                const target = document.getElementById(pageId);
+                if (target) target.classList.add('active');
+
+                document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.page === pageId);
+                });
+
+                // Refresh content
+                if (pageId === 'pageFeed') renderFeed();
+                if (pageId === 'pageEventos') renderEvents();
+                if (pageId === 'pagePromo') renderPromos();
+                if (pageId === 'pageComunidade') renderStories();
+            }
+
+            // ============================================================
+            // TOAST
+            // ============================================================
+            let toastTimeout = null;
+
+            function showToast(message, type = 'success') {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                const icons = { success: '✨', error: '❌', info: '💡' };
+                toast.innerHTML = `
+                    <span class="toast-icon">${icons[type] || '✨'}</span>
+                    <span class="toast-msg">${message}</span>
+                `;
+                container.appendChild(toast);
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.add('removing');
+                    setTimeout(() => {
+                        if (toast.parentNode) toast.parentNode.removeChild(toast);
+                    }, 300);
+                    toastTimeout = null;
+                }, 2800);
+            }
+
+            // ============================================================
+            // ONBOARDING
+            // ============================================================
+            function initOnboarding() {
+                const overlay = document.getElementById('onboardingOverlay');
+                const emoji = document.getElementById('obEmoji');
+                const title = document.getElementById('obTitle');
+                const desc = document.getElementById('obDesc');
+                const dots = document.getElementById('obDots');
+                const btn = document.getElementById('obBtn');
+
+                const steps = [{
+                    emoji: '🏘️',
+                    title: 'Seu salão, sua comunidade',
+                    desc: 'Descubra o que está acontecendo no seu salão de beleza local.'
+                }, {
+                    emoji: '📰',
+                    title: 'Feed de novidades',
+                    desc: 'Fique por dentro de dicas, eventos e promoções exclusivas.'
+                }, {
+                    emoji: '🤝',
+                    title: 'Faça parte da comunidade',
+                    desc: 'Compartilhe sua história e conecte-se com outros clientes.'
+                }];
+
+                let step = 0;
+
+                function updateStep(index) {
+                    step = index;
+                    emoji.textContent = steps[step].emoji;
+                    title.textContent = steps[step].title;
+                    desc.textContent = steps[step].desc;
+                    dots.querySelectorAll('.dot').forEach((d, i) => {
+                        d.classList.toggle('active', i === step);
+                    });
+                    btn.textContent = step === steps.length - 1 ? '🚀 Começar' : 'Próximo';
+                }
+
+                btn.addEventListener('click', function() {
+                    if (step < steps.length - 1) {
+                        updateStep(step + 1);
+                    } else {
+                        overlay.classList.add('hidden');
+                        localStorage.setItem('beautyHubOnboarded', 'true');
+                    }
+                });
+
+                if (localStorage.getItem('beautyHubOnboarded') === 'true') {
+                    overlay.classList.add('hidden');
+                } else {
+                    updateStep(0);
+                }
+            }
+
+            // ============================================================
+            // FEEDBACK MODAL
+            // ============================================================
+            let selectedStars = 5;
+
+            function initFeedbackModal() {
+                const modal = document.getElementById('feedbackModal');
+                const openBtn = document.getElementById('openFeedbackBtn');
+                const closeBtn = document.getElementById('feedbackCloseBtn');
+                const form = document.getElementById('formFeedback');
+                const stars = document.querySelectorAll('#starRating span');
+
+                stars.forEach(el => {
+                    el.addEventListener('click', function() {
+                        const val = parseInt(this.dataset.star);
+                        selectedStars = val;
+                        stars.forEach((s, i) => {
+                            s.textContent = i < val ? '★' : '☆';
+                            s.style.color = i < val ? '#F5A623' : 'var(--text-muted)';
+                        });
+                        document.getElementById('fbStars').value = val;
+                    });
+                });
+                // Set initial
+                stars.forEach((s, i) => {
+                    s.textContent = i < 5 ? '★' : '☆';
+                    s.style.color = i < 5 ? '#F5A623' : 'var(--text-muted)';
+                });
+
+                openBtn.addEventListener('click', () => {
+                    modal.classList.remove('hidden');
+                    document.getElementById('fbNome').value = '';
+                    document.getElementById('fbTexto').value = '';
+                    selectedStars = 5;
+                    stars.forEach((s, i) => {
+                        s.textContent = i < 5 ? '★' : '☆';
+                        s.style.color = i < 5 ? '#F5A623' : 'var(--text-muted)';
+                    });
+                    document.getElementById('fbStars').value = 5;
+                });
+
+                closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) modal.classList.add('hidden');
+                });
+
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const name = document.getElementById('fbNome').value.trim();
+                    const text = document.getElementById('fbTexto').value.trim();
+                    const starsVal = parseInt(document.getElementById('fbStars').value);
+
+                    if (!name || !text) {
+                        showToast('Preencha nome e história', 'error');
+                        return;
+                    }
+
+                    store.stories.unshift({
+                        id: generateId(),
+                        name: name,
+                        role: 'Cliente',
+                        text: text,
+                        stars: starsVal,
+                        avatar: name.slice(0, 2).toUpperCase()
+                    });
+                    saveData();
+                    renderStories();
+                    modal.classList.add('hidden');
+                    showToast('💬 Depoimento enviado! Obrigado por compartilhar.', 'success');
+                });
+            }
+
+            // ============================================================
+            // EVENT BINDING
+            // ============================================================
+            function bindEvents() {
+                // Bottom nav
+                document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const pageId = this.dataset.page;
+                        if (pageId) navigateTo(pageId);
+                    });
+                });
+
+                // Booking form
+                document.getElementById('formAgendamento').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const nome = document.getElementById('agNome').value.trim();
+                    const telefone = document.getElementById('agTelefone').value.trim();
+                    const servico = document.getElementById('agServico').value;
+                    const data = document.getElementById('agData').value;
+                    const hora = document.getElementById('agHora').value;
+
+                    if (!nome || !telefone || !servico || !data || !hora) {
+                        showToast('Preencha todos os campos obrigatórios', 'error');
+                        return;
+                    }
+
+                    showToast(`📋 Agendamento confirmado para ${nome} - ${servico} em ${data} às ${hora}`, 'success');
+                    this.reset();
+                    // Set default date to tomorrow
+                    const tomorrow = new Date();
+                    tomorrow.setDate(tomorrow.getDate() + 1);
+                    document.getElementById('agData').value = tomorrow.toISOString().slice(0, 10);
+                    navigateTo('pageFeed');
+                });
+
+                // Set default date
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                const dateInput = document.getElementById('agData');
+                if (!dateInput.value) {
+                    dateInput.value = tomorrow.toISOString().slice(0, 10);
+                }
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === '1') { document.querySelector('.bottom-nav .nav-item[data-page="pageFeed"]')
+                            ?.click(); }
+                    if (e.key === '2') { document.querySelector('.bottom-nav .nav-item[data-page="pageEventos"]')
+                            ?.click(); }
+                    if (e.key === '3') { document.querySelector('.bottom-nav .nav-item[data-page="pagePromo"]')
+                            ?.click(); }
+                    if (e.key === '4') { document.querySelector('.bottom-nav .nav-item[data-page="pageAgendar"]')
+                            ?.click(); }
+                    if (e.key === '5') { document.querySelector('.bottom-nav .nav-item[data-page="pageComunidade"]')
+                            ?.click(); }
+                    if (e.key === 'Escape') {
+                        const modal = document.getElementById('feedbackModal');
+                        if (!modal.classList.contains('hidden')) modal.classList.add('hidden');
+                        const overlay = document.getElementById('onboardingOverlay');
+                        if (!overlay.classList.contains('hidden')) {
+                            overlay.classList.add('hidden');
+                            localStorage.setItem('beautyHubOnboarded', 'true');
+                        }
+                    }
+                });
+
+                // Reset hidden (double tap on header icon)
+                let clickCount = 0;
+                document.querySelector('.app-header .logo .icon').addEventListener('click', function() {
+                    clickCount++;
+                    if (clickCount >= 5) {
+                        if (confirm('Resetar todos os dados?')) {
+                            resetData();
+                        }
+                        clickCount = 0;
+                    }
+                    setTimeout(() => { clickCount = 0; }, 800);
+                });
+            }
+
+            // ============================================================
+            // PWA: SERVICE WORKER
+            // ============================================================
+            function registerServiceWorker() {
+                if ('serviceWorker' in navigator) {
+                    const swCode = `
+                        self.addEventListener('install', e => {
+                            e.waitUntil(
+                                caches.open('beauty-hub-v1').then(cache => {
+                                    return cache.addAll(['/', '/index.html']);
+                                })
+                            );
+                            self.skipWaiting();
+                        });
+                        self.addEventListener('activate', e => {
+                            e.waitUntil(clients.claim());
+                        });
+                        self.addEventListener('fetch', e => {
+                            e.respondWith(
+                                caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('/index.html')))
+                            );
+                        });
+                    `;
+                    try {
+                        const blob = new Blob([swCode], { type: 'application/javascript' });
+                        const swUrl = URL.createObjectURL(blob);
+                        navigator.serviceWorker.register(swUrl)
+                            .then(() => console.log('[PWA] Service Worker registrado'))
+                            .catch(() => console.log('[PWA] SW fallback'));
+                    } catch (_) {
+                        try {
+                            const minSW =
+                                'self.addEventListener("install",()=>self.skipWaiting());self.addEventListener("activate",()=>clients.claim());';
+                            const b2 = new Blob([minSW], { type: 'application/javascript' });
+                            navigator.serviceWorker.register(URL.createObjectURL(b2)).catch(() => {});
+                        } catch (_) {}
+                    }
+                }
+            }
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            function init() {
+                if (!localStorage.getItem('beautyHubData')) {
+                    saveData();
+                }
+                renderAll();
+                bindEvents();
+                initOnboarding();
+                initFeedbackModal();
+                registerServiceWorker();
+
+                // Auto-refresh
+                setInterval(() => {
+                    const active = document.querySelector('.page.active');
+                    if (active) {
+                        if (active.id === 'pageFeed') renderFeed();
+                        if (active.id === 'pageEventos') renderEvents();
+                        if (active.id === 'pagePromo') renderPromos();
+                        if (active.id === 'pageComunidade') renderStories();
+                    }
+                }, 30000);
+
+                console.log('🏘️ Neighborhood Beauty Hub inicializado');
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+    </script>
+</body>
+</html>

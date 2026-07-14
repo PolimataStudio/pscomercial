@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trust Stack — Landing Page de Autoridade</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 (gratuito) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0b1a2f;
+            --navy-light: #1a314d;
+            --navy-dark: #06101e;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            --green: #0b8a5e;
+            --green-light: #10b981;
+            --green-pale: #ecfdf5;
+            --green-badge: #d1fae5;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 24px rgba(11, 26, 47, 0.08);
+            --shadow-lg: 0 12px 48px rgba(11, 26, 47, 0.12);
+            --shadow-xl: 0 20px 60px rgba(11, 26, 47, 0.18);
+            --radius: 14px;
+            --radius-sm: 8px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 32px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            font-family: inherit;
+            line-height: 1.2;
+        }
+
+        .btn-primary {
+            background: var(--navy);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(11, 26, 47, 0.25);
+        }
+        .btn-primary:hover {
+            background: var(--navy-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(11, 26, 47, 0.3);
+        }
+
+        .btn-green {
+            background: var(--green);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(11, 138, 94, 0.3);
+        }
+        .btn-green:hover {
+            background: #0a7a52;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(11, 138, 94, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--navy);
+            border: 1.5px solid var(--navy);
+        }
+        .btn-outline:hover {
+            background: var(--navy);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--navy);
+            box-shadow: var(--shadow-md);
+        }
+        .btn-white:hover {
+            background: var(--gray-50);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-sm {
+            padding: 10px 24px;
+            font-size: 0.85rem;
+        }
+
+        /* ===== HEADER / NAV ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--navy);
+            letter-spacing: -0.3px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--navy);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            transition: var(--transition);
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--navy);
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--navy);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 2.5px;
+            background: var(--navy);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 140px 0 80px;
+            background: linear-gradient(165deg, var(--gray-50) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(11, 138, 94, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.04em;
+            color: var(--navy);
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--green);
+            position: relative;
+        }
+
+        .hero-content h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: rgba(11, 138, 94, 0.15);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .hero-sub {
+            font-size: 1.2rem;
+            color: var(--gray-600);
+            max-width: 520px;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green-pale);
+            color: var(--green);
+            padding: 6px 16px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+        .badge i {
+            font-size: 0.75rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .hero-trust {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 32px;
+            padding-top: 28px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .hero-trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+        .hero-trust-item i {
+            color: var(--green);
+            font-size: 1rem;
+        }
+
+        /* Hero visual */
+        .hero-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .hero-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+
+        .hero-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hero-card .number {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-card .label {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        .hero-card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .hero-card .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-card .stat .number {
+            font-size: 1.8rem;
+        }
+
+        .hero-card .stat .label {
+            font-size: 0.8rem;
+        }
+
+        .hero-card .stars {
+            color: #f59e0b;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+        }
+
+        /* ===== SECTION COMMON ===== */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--green);
+            background: var(--green-pale);
+            padding: 4px 16px;
+            border-radius: 60px;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: var(--navy);
+            line-height: 1.2;
+        }
+
+        .section-title .highlight {
+            color: var(--green);
+        }
+
+        .section-sub {
+            font-size: 1.1rem;
+            color: var(--gray-500);
+            max-width: 600px;
+            margin-top: 12px;
+            line-height: 1.7;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .section-header .section-sub {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== CREDENTIALS ===== */
+        #credenciais {
+            background: var(--gray-50);
+        }
+
+        .credenciais-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .credencial-card {
+            background: var(--white);
+            padding: 32px 24px;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .credencial-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--green);
+        }
+
+        .credencial-card .icon {
+            width: 56px;
+            height: 56px;
+            background: var(--green-pale);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 1.5rem;
+            color: var(--green);
+        }
+
+        .credencial-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .credencial-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        /* ===== RESULTS ===== */
+        #resultados {
+            background: var(--white);
+        }
+
+        .resultados-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .resultado-card {
+            background: var(--gray-50);
+            padding: 36px 28px;
+            border-radius: var(--radius);
+            text-align: center;
+            border: 1px solid transparent;
+            transition: var(--transition);
+        }
+
+        .resultado-card:hover {
+            border-color: var(--green);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .resultado-card .number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+
+        .resultado-card .number .plus {
+            color: var(--green);
+        }
+
+        .resultado-card .label {
+            font-size: 0.95rem;
+            color: var(--gray-600);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        .resultado-card .desc {
+            font-size: 0.85rem;
+            color: var(--gray-400);
+            margin-top: 8px;
+        }
+
+        /* ===== TESTIMONIALS ===== */
+        #depoimentos {
+            background: var(--gray-50);
+        }
+
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .depoimento-card {
+            background: var(--white);
+            padding: 32px 28px;
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .depoimento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .depoimento-card .stars {
+            color: #f59e0b;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .depoimento-card blockquote {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--gray-700);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .depoimento-card .author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .depoimento-card .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--navy);
+            flex-shrink: 0;
+        }
+
+        .depoimento-card .author-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .depoimento-card .author-info strong {
+            font-size: 0.9rem;
+            color: var(--navy);
+        }
+
+        .depoimento-card .author-info span {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        /* ===== PROCESS ===== */
+        #processo {
+            background: var(--white);
+        }
+
+        .processo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+        }
+
+        .processo-grid::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 12.5%;
+            right: 12.5%;
+            height: 2px;
+            background: var(--gray-200);
+            z-index: 0;
+        }
+
+        .processo-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .processo-step .circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 4px 14px rgba(11, 26, 47, 0.2);
+            transition: var(--transition);
+        }
+
+        .processo-step:hover .circle {
+            transform: scale(1.08);
+            background: var(--green);
+        }
+
+        .processo-step h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 6px;
+        }
+
+        .processo-step p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        /* ===== OFFER ===== */
+        #oferta {
+            background: var(--navy);
+            color: var(--white);
+        }
+
+        #oferta .section-title {
+            color: var(--white);
+        }
+
+        #oferta .section-sub {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        #oferta .section-label {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--green-light);
+        }
+
+        .oferta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .oferta-features {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .oferta-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: var(--transition);
+        }
+
+        .oferta-feature:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        .oferta-feature i {
+            color: var(--green-light);
+            font-size: 1.2rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .oferta-feature h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .oferta-feature p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.65);
+            line-height: 1.5;
+        }
+
+        .oferta-card {
+            background: var(--white);
+            color: var(--gray-800);
+            border-radius: var(--radius);
+            padding: 40px 36px;
+            box-shadow: var(--shadow-xl);
+            text-align: center;
+        }
+
+        .oferta-card .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: -0.02em;
+        }
+
+        .oferta-card .price span {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--gray-500);
+        }
+
+        .oferta-card .price-desc {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-bottom: 20px;
+        }
+
+        .oferta-card .btn {
+            width: 100%;
+        }
+
+        .oferta-card .small-note {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-top: 14px;
+        }
+
+        .oferta-card .guarantee-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--green-pale);
+            color: var(--green);
+            padding: 6px 18px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+        }
+
+        /* ===== GUARANTEE / CTA ===== */
+        #garantia {
+            background: var(--gray-50);
+        }
+
+        .garantia-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .garantia-content h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--navy);
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+        }
+
+        .garantia-content h2 .highlight {
+            color: var(--green);
+        }
+
+        .garantia-content p {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            margin: 16px 0 28px;
+            line-height: 1.7;
+            max-width: 480px;
+        }
+
+        .garantia-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .garantia-badges .badge {
+            background: var(--white);
+            color: var(--navy);
+            border: 1px solid var(--gray-200);
+            font-weight: 500;
+        }
+
+        .garantia-badges .badge i {
+            color: var(--green);
+        }
+
+        .garantia-visual {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 36px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .garantia-visual .icon-big {
+            font-size: 3.6rem;
+            color: var(--green);
+            margin-bottom: 12px;
+        }
+
+        .garantia-visual h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy);
+        }
+
+        .garantia-visual p {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            max-width: 360px;
+            margin: 8px auto 20px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--navy-dark);
+            color: rgba(255, 255, 255, 0.6);
+            padding: 48px 0 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 32px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 12px;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            max-width: 300px;
+            line-height: 1.6;
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 14px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .footer-col ul a {
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .footer-col ul a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.8rem;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 16px;
+        }
+
+        .footer-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .footer-socials a:hover {
+            background: rgba(255, 255, 255, 0.12);
+            color: var(--white);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.6rem;
+            }
+
+            .credenciais-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .depoimentos-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .processo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 32px;
+            }
+            .processo-grid::before {
+                display: none;
+            }
+
+            .oferta-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .garantia-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header .container {
+                height: 64px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 24px;
+                gap: 16px;
+                border-bottom: 1px solid var(--gray-200);
+                box-shadow: var(--shadow-md);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-cta {
+                display: inline-flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 110px 0 56px;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-sub {
+                font-size: 1rem;
+            }
+
+            .hero-trust {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
+
+            .hero-card-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .credenciais-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .credencial-card {
+                padding: 24px 16px;
+            }
+
+            .resultados-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .depoimentos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .processo-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .oferta-card {
+                padding: 28px 20px;
+            }
+
+            .garantia-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .credenciais-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .processo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ===== ANIMAÇÕES ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .counter {
+            display: inline-block;
+        }
+
+        /* Scroll suave para ancora */
+        .smooth-scroll {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo">
+                <span class="logo-icon">T</span>
+                TrustStack
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#credenciais">Credenciais</a></li>
+                <li><a href="#resultados">Resultados</a></li>
+                <li><a href="#depoimentos">Depoimentos</a></li>
+                <li><a href="#processo">Processo</a></li>
+                <li><a href="#oferta">Oferta</a></li>
+                <li><a href="#garantia" class="nav-cta btn btn-primary btn-sm">Garantia</a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badges">
+                        <span class="badge"><i class="fas fa-check-circle"></i> Autoridade comprovada</span>
+                        <span class="badge"><i class="fas fa-star"></i> 4.9/5 de avaliações</span>
+                        <span class="badge"><i class="fas fa-shield-alt"></i> Garantia total</span>
+                    </div>
+
+                    <h1>
+                        Transforme hesitação em<br />
+                        <span class="highlight">confiança e conversão</span>
+                    </h1>
+
+                    <p class="hero-sub">
+                        Construa credibilidade com uma landing page que comunica autoridade,
+                        resultados reais e segurança — especialmente para serviços educacionais premium.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#garantia" class="btn btn-primary">Quero minha página <i class="fas fa-arrow-right"></i></a>
+                        <a href="#depoimentos" class="btn btn-outline">Ver depoimentos</a>
+                    </div>
+
+                    <div class="hero-trust">
+                        <span class="hero-trust-item"><i class="fas fa-user-check"></i> 1.200+ clientes</span>
+                        <span class="hero-trust-item"><i class="fas fa-calendar-check"></i> 6 anos de mercado</span>
+                        <span class="hero-trust-item"><i class="fas fa-medal"></i> Selo de qualidade</span>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                            <span class="label"><i class="fas fa-users" style="color:var(--green);margin-right:6px;"></i> Resultados reais</span>
+                            <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                        </div>
+                        <div class="hero-card-row">
+                            <div class="stat">
+                                <span class="number">94<span style="color:var(--green);">%</span></span>
+                                <span class="label">de aprovação</span>
+                            </div>
+                            <div class="stat">
+                                <span class="number">3.2<span style="color:var(--green);">x</span></span>
+                                <span class="label">mais conversões</span>
+                            </div>
+                            <div class="stat">
+                                <span class="number">+87<span style="color:var(--green);">%</span></span>
+                                <span class="label">em credibilidade</span>
+                            </div>
+                            <div class="stat">
+                                <span class="number">98<span style="color:var(--green);">%</span></span>
+                                <span class="label">clientes satisfeitos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                        <div class="hero-card" style="padding:20px 24px;">
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <i class="fas fa-graduation-cap" style="color:var(--green);font-size:1.4rem;"></i>
+                                <div>
+                                    <div style="font-weight:700;color:var(--navy);">+500</div>
+                                    <div style="font-size:0.75rem;color:var(--gray-500);">alunos impactados</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-card" style="padding:20px 24px;">
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <i class="fas fa-award" style="color:var(--green);font-size:1.4rem;"></i>
+                                <div>
+                                    <div style="font-weight:700;color:var(--navy);">12</div>
+                                    <div style="font-size:0.75rem;color:var(--gray-500);">prêmios educacionais</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CREDENCIAIS ===== -->
+    <section id="credenciais">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-label">Credenciais</span>
+                <h2 class="section-title">Autoridade <span class="highlight">construída em camadas</span></h2>
+                <p class="section-sub">Cada selo e certificação reforça a confiança antes do pedido de ação.</p>
+            </div>
+
+            <div class="credenciais-grid">
+                <div class="credencial-card fade-up">
+                    <div class="icon"><i class="fas fa-certificate"></i></div>
+                    <h4>Certificação ISO 9001</h4>
+                    <p>Gestão de qualidade e excelência em processos educacionais.</p>
+                </div>
+                <div class="credencial-card fade-up">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <h4>+200% de crescimento</h4>
+                    <p>Média de aumento em captação de alunos para nossos parceiros.</p>
+                </div>
+                <div class="credencial-card fade-up">
+                    <div class="icon"><i class="fas fa-user-tie"></i></div>
+                    <h4>Equipe especializada</h4>
+                    <p>Profissionais com mestrado e doutorado em educação e marketing.</p>
+                </div>
+                <div class="credencial-card fade-up">
+                    <div class="icon"><i class="fas fa-handshake"></i></div>
+                    <h4>+50 parcerias</h4>
+                    <p>Escolas, clínicas e redes de ensino que confiam no nosso método.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RESULTADOS ===== -->
+    <section id="resultados">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-label">Resultados</span>
+                <h2 class="section-title">Números que <span class="highlight">comprovam a eficácia</span></h2>
+                <p class="section-sub">Métricas reais de quem já transformou sua comunicação com a Trust Stack.</p>
+            </div>
+
+            <div class="resultados-grid">
+                <div class="resultado-card fade-up">
+                    <div class="number"><span class="counter" data-target="94">0</span><span class="plus">%</span></div>
+                    <div class="label">Taxa de aprovação</div>
+                    <div class="desc">Em projetos de landing page para educação</div>
+                </div>
+                <div class="resultado-card fade-up">
+                    <div class="number"><span class="counter" data-target="3.2">0</span><span class="plus">x</span></div>
+                    <div class="label">Mais conversões</div>
+                    <div class="desc">Comparado a landing pages genéricas</div>
+                </div>
+                <div class="resultado-card fade-up">
+                    <div class="number"><span class="counter" data-target="87">0</span><span class="plus">%</span></div>
+                    <div class="label">Aumento em credibilidade</div>
+                    <div class="desc">Percebida pelo público-alvo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section id="depoimentos">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-label">Depoimentos</span>
+                <h2 class="section-title">Quem confia <span class="highlight">já validou</span></h2>
+                <p class="section-sub">Histórias reais de profissionais e instituições que transformaram seus resultados.</p>
+            </div>
+
+            <div class="depoimentos-grid">
+                <div class="depoimento-card fade-up">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>
+                        “A Trust Stack entregou uma landing page que elevou nossa credibilidade imediatamente.
+                        Em duas semanas, triplicamos os contatos de pais interessados.”
+                    </blockquote>
+                    <div class="author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <strong>Mariana Rocha</strong>
+                            <span>Diretora · Colégio Lumiar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="depoimento-card fade-up">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>
+                        “O design sofisticado e a arquitetura de confiança fizeram toda a diferença.
+                        Nossos responsáveis sentiram segurança e a taxa de matrícula subiu 78%.”
+                    </blockquote>
+                    <div class="author">
+                        <div class="author-avatar">TC</div>
+                        <div class="author-info">
+                            <strong>Thiago Campos</strong>
+                            <span>CEO · Clínica Pedagógica Aprender</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="depoimento-card fade-up">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>
+                        “Como professor particular, precisei de uma página que passasse autoridade.
+                        A Trust Stack entendeu meu público e o resultado foi imediato — mais alunos e mais valor.”
+                    </blockquote>
+                    <div class="author">
+                        <div class="author-avatar">AS</div>
+                        <div class="author-info">
+                            <strong>Amanda Silva</strong>
+                            <span>Professora · Educação Premium</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROCESSO ===== -->
+    <section id="processo">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-label">Processo</span>
+                <h2 class="section-title">Metodologia <span class="highlight">em 4 passos</span></h2>
+                <p class="section-sub">Da validação à conversão, cada etapa reduz objeções e constrói confiança.</p>
+            </div>
+
+            <div class="processo-grid">
+                <div class="processo-step fade-up">
+                    <div class="circle">1</div>
+                    <h4>Validação</h4>
+                    <p>Entendemos seu público e mapeamos objeções para estruturar a mensagem.</p>
+                </div>
+                <div class="processo-step fade-up">
+                    <div class="circle">2</div>
+                    <h4>Autoridade</h4>
+                    <p>Construímos a camada de credenciais, selos e provas sociais.</p>
+                </div>
+                <div class="processo-step fade-up">
+                    <div class="circle">3</div>
+                    <h4>Oferta</h4>
+                    <p>Desenhamos a proposta de valor com clareza e diferenciais competitivos.</p>
+                </div>
+                <div class="processo-step fade-up">
+                    <div class="circle">4</div>
+                    <h4>Garantia &amp; CTA</h4>
+                    <p>Finalizamos com segurança e chamada para ação objetiva e persuasiva.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== OFERTA ===== -->
+    <section id="oferta">
+        <div class="container">
+            <div class="section-header fade-up">
+                <span class="section-label">Oferta</span>
+                <h2 class="section-title">Solução completa <span class="highlight">para sua autoridade</span></h2>
+                <p class="section-sub">Tudo o que você precisa para transformar hesitação em conversão.</p>
+            </div>
+
+            <div class="oferta-grid">
+                <div class="oferta-features">
+                    <div class="oferta-feature fade-up">
+                        <i class="fas fa-palette"></i>
+                        <div>
+                            <h4>Design premium e racional</h4>
+                            <p>Layout sofisticado com paleta azul-marinho, branco e verde de confiança.</p>
+                        </div>
+                    </div>
+                    <div class="oferta-feature fade-up">
+                        <i class="fas fa-layer-group"></i>
+                        <div>
+                            <h4>Arquitetura de confiança</h4>
+                            <p>Hero, credenciais, resultados, depoimentos, processo, oferta e garantia.</p>
+                        </div>
+                    </div>
+                    <div class="oferta-feature fade-up">
+                        <i class="fas fa-rocket"></i>
+                        <div>
+                            <h4>Alta performance &amp; SEO</h4>
+                            <p>Estrutura enxuta, carregamento rápido e otimização para busca local.</p>
+                        </div>
+                    </div>
+                    <div class="oferta-feature fade-up">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div>
+                            <h4>Mobile sólido</h4>
+                            <p>Experiência fluida em qualquer dispositivo, sem perder a sensação premium.</p>
+                        </div>
+                    </div>
+                    <div class="oferta-feature fade-up">
+                        <i class="fas fa-video"></i>
+                        <div>
+                            <h4>Prova social em vídeo</h4>
+                            <p>Depoimentos em vídeo e selos personalizados para máxima credibilidade.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="oferta-card fade-up">
+                    <div class="guarantee-badge"><i class="fas fa-shield-alt"></i> Garantia de 30 dias</div>
+                    <div class="price">
+                        R$ 1.497 <span>ou 12x R$ 149</span>
+                    </div>
+                    <div class="price-desc">Investimento único com suporte e atualizações</div>
+                    <a href="#garantia" class="btn btn-green">Quero garantir minha página <i class="fas fa-arrow-right"></i></a>
+                    <div class="small-note"><i class="fas fa-lock" style="margin-right:6px;"></i> Pagamento seguro · 7 dias para teste</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GARANTIA / CTA ===== -->
+    <section id="garantia">
+        <div class="container">
+            <div class="garantia-wrapper">
+                <div class="garantia-content fade-up">
+                    <span class="section-label">Garantia</span>
+                    <h2>
+                        Risco zero.<br />
+                        <span class="highlight">Confiança total.</span>
+                    </h2>
+                    <p>
+                        Se em 30 dias você não sentir que sua landing page transmite a autoridade
+                        e segurança que seu negócio merece, devolvemos 100% do seu investimento.
+                        Sem burocracia, sem perguntas.
+                    </p>
+
+                    <div class="garantia-badges">
+                        <span class="badge"><i class="fas fa-check-circle"></i> 30 dias de garantia</span>
+                        <span class="badge"><i class="fas fa-check-circle"></i> Suporte prioritário</span>
+                        <span class="badge"><i class="fas fa-check-circle"></i> Revisões ilimitadas</span>
+                    </div>
+
+                    <a href="#" class="btn btn-primary">Quero minha landing page <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <div class="garantia-visual fade-up">
+                    <div class="icon-big"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Compromisso com seu sucesso</h3>
+                    <p>
+                        Mais de 1.200 clientes já confiaram na Trust Stack para construir
+                        autoridade e converter com segurança.
+                    </p>
+                    <div style="display:flex; justify-content:center; gap:24px; margin-top:16px; font-size:0.85rem; color:var(--gray-500);">
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> 94% aprovação</span>
+                        <span><i class="fas fa-check-circle" style="color:var(--green);"></i> +87% credibilidade</span>
+                    </div>
+                    <div style="margin-top:20px; padding-top:20px; border-top:1px solid var(--gray-200);">
+                        <a href="#" class="btn btn-green" style="width:100%;">Garantir minha página agora</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <span class="logo-icon">T</span>
+                        TrustStack
+                    </a>
+                    <p>
+                        Landing pages de autoridade para serviços educacionais premium.
+                        Construímos confiança em camadas para converter com segurança.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Navegação</h4>
+                    <ul>
+                        <li><a href="#credenciais">Credenciais</a></li>
+                        <li><a href="#resultados">Resultados</a></li>
+                        <li><a href="#depoimentos">Depoimentos</a></li>
+                        <li><a href="#processo">Processo</a></li>
+                        <li><a href="#oferta">Oferta</a></li>
+                        <li><a href="#garantia">Garantia</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Cases</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="mailto:contato@truststack.com">contato@truststack.com</a></li>
+                        <li><a href="#">(11) 99999-9999</a></li>
+                        <li><a href="#">São Paulo, SP</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 TrustStack. Todos os direitos reservados.</span>
+                <div class="footer-socials">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ----- HAMBURGER -----
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+            });
+
+            // Fechar ao clicar em um link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                });
+            });
+
+            // ----- HEADER SCROLL -----
+            const header = document.getElementById('header');
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+                lastScroll = currentScroll;
+            });
+
+            // ----- FADE-UP ON SCROLL (IntersectionObserver) -----
+            const fadeElements = document.querySelectorAll('.fade-up');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -20px 0px'
+            });
+
+            fadeElements.forEach(el => observer.observe(el));
+
+            // ----- COUNTER ANIMATION -----
+            const counters = document.querySelectorAll('.counter');
+
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const target = parseFloat(el.getAttribute('data-target'));
+                        const duration = 1800;
+                        const startTime = performance.now();
+
+                        function updateCounter(currentTime) {
+                            const elapsed = currentTime - startTime;
+                            const progress = Math.min(elapsed / duration, 1);
+                            // Ease-out cubic
+                            const eased = 1 - Math.pow(1 - progress, 3);
+                            const current = eased * target;
+
+                            if (target % 1 === 0) {
+                                el.textContent = Math.round(current);
+                            } else {
+                                el.textContent = current.toFixed(1);
+                            }
+
+                            if (progress < 1) {
+                                requestAnimationFrame(updateCounter);
+                            } else {
+                                if (target % 1 === 0) {
+                                    el.textContent = target;
+                                } else {
+                                    el.textContent = target.toFixed(1);
+                                }
+                            }
+                        }
+
+                        requestAnimationFrame(updateCounter);
+                        counterObserver.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            counters.forEach(c => counterObserver.observe(c));
+
+            // ----- SMOOTH SCROLL PARA LINKS INTERNOS (fallback) -----
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        const offset = 80;
+                        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
+                });
+            });
+
+        })();
+    </script>
+
+</body>
+</html>

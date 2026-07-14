@@ -1,0 +1,2036 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Salão Bella · Community Beauty Center</title>
+    <meta name="description" content="Beleza & comunidade em Parnamirim. Conheça nossos eventos, projetos sociais e histórias que conectam o salão ao bairro." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --laranja: #E8823A;
+            --laranja-escuro: #CC6E2A;
+            --laranja-claro: #F5DFCE;
+            --laranja-pale: #FCF3EC;
+            --azul: #2B7BB6;
+            --azul-escuro: #1D5F8F;
+            --azul-claro: #D4E5F0;
+            --azul-pale: #EEF5FA;
+            --verde: #4CAF7A;
+            --verde-claro: #D4ECD9;
+            --verde-pale: #F0F8F2;
+            --branco: #FFFFFF;
+            --cinza-100: #F8F9FA;
+            --cinza-200: #EAEDF0;
+            --cinza-300: #D0D5DD;
+            --cinza-400: #9AA8B5;
+            --cinza-500: #6B7A88;
+            --cinza-600: #4A5A66;
+            --cinza-700: #2E3A44;
+            --cinza-800: #1A242E;
+            --cinza-900: #0E141A;
+            --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.10);
+            --shadow-xl: 0 12px 48px rgba(0, 0, 0, 0.14);
+            --radius: 18px;
+            --radius-sm: 10px;
+            --radius-xs: 6px;
+            --font: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            --header-h: 68px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--cinza-100);
+            color: var(--cinza-800);
+            line-height: 1.6;
+            padding-top: var(--header-h);
+            padding-bottom: 20px;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            font-family: var(--font);
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: inherit;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ============================================================
+           HEADER / NAV
+           ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-h);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--cinza-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 100;
+            transition: box-shadow var(--transition);
+        }
+        .header.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 900;
+            font-size: 1.1rem;
+            color: var(--cinza-900);
+            letter-spacing: -0.3px;
+            flex-shrink: 0;
+        }
+        .logo .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--laranja), var(--azul));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .logo span {
+            color: var(--laranja);
+        }
+        .logo .badge-community {
+            font-size: 0.5rem;
+            font-weight: 800;
+            background: var(--verde);
+            color: #fff;
+            padding: 0 8px;
+            border-radius: 50px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin-left: 4px;
+        }
+
+        /* Desktop nav */
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            flex-wrap: wrap;
+        }
+        .nav-desktop button {
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            color: var(--cinza-500);
+            transition: all var(--transition);
+            touch-action: manipulation;
+            white-space: nowrap;
+        }
+        .nav-desktop button:hover {
+            background: var(--laranja-claro);
+            color: var(--laranja-escuro);
+        }
+        .nav-desktop button.active {
+            background: var(--laranja);
+            color: #fff;
+            box-shadow: 0 2px 12px rgba(232, 130, 58, 0.25);
+        }
+        .nav-desktop button.cta-nav {
+            background: var(--azul);
+            color: #fff;
+            padding: 6px 18px;
+            font-weight: 800;
+        }
+        .nav-desktop button.cta-nav:hover {
+            background: var(--azul-escuro);
+            transform: scale(0.96);
+        }
+        .nav-desktop button.cta-nav.active {
+            background: var(--azul-escuro);
+        }
+
+        /* Mobile toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            padding: 6px;
+            border-radius: 8px;
+            background: var(--cinza-100);
+            border: 1px solid var(--cinza-200);
+            touch-action: manipulation;
+        }
+        .menu-toggle span {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            background: var(--cinza-600);
+            border-radius: 4px;
+            transition: all var(--transition);
+        }
+        .menu-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .menu-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: var(--header-h);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 99;
+            flex-direction: column;
+            gap: 4px;
+            border-top: 1px solid var(--cinza-200);
+            animation: fadeIn 0.25s ease;
+        }
+        .mobile-menu.open {
+            display: flex;
+        }
+        .mobile-menu button {
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--cinza-700);
+            text-align: left;
+            transition: background var(--transition);
+            touch-action: manipulation;
+            border-bottom: 1px solid var(--cinza-200);
+        }
+        .mobile-menu button:last-child {
+            border-bottom: none;
+        }
+        .mobile-menu button:hover {
+            background: var(--laranja-claro);
+        }
+        .mobile-menu button.active {
+            background: var(--laranja);
+            color: #fff;
+        }
+        .mobile-menu button.cta-nav {
+            background: var(--azul);
+            color: #fff;
+            text-align: center;
+            font-weight: 800;
+            margin-top: 8px;
+            border-radius: 60px;
+            border: none;
+        }
+        .mobile-menu button.cta-nav:hover {
+            background: var(--azul-escuro);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 960px) {
+            .nav-desktop {
+                display: none;
+            }
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        /* ============================================================
+           PÁGINAS (tabs)
+           ============================================================ */
+        .page {
+            display: none;
+            animation: pageIn 0.4s ease forwards;
+            padding: 24px 0 32px;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           HOME
+           ============================================================ */
+        .hero-home {
+            padding: 20px 0 32px;
+            background: linear-gradient(165deg, var(--laranja-pale) 0%, var(--branco) 85%);
+            border-radius: var(--radius);
+            margin-bottom: 28px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-home::before {
+            content: '❤️';
+            position: absolute;
+            font-size: 12rem;
+            opacity: 0.04;
+            right: -20px;
+            bottom: -40px;
+            transform: rotate(12deg);
+            pointer-events: none;
+        }
+        .hero-home .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--verde-claro);
+            color: var(--verde);
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 50px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .hero-home h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--cinza-900);
+            letter-spacing: -0.5px;
+        }
+        .hero-home h1 em {
+            color: var(--laranja);
+            font-style: normal;
+        }
+        .hero-home h1 .azul {
+            color: var(--azul);
+        }
+        .hero-home p {
+            font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+            color: var(--cinza-500);
+            max-width: 520px;
+            margin: 8px auto 20px;
+        }
+        .hero-home .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--laranja);
+            color: #fff;
+            font-weight: 800;
+            font-size: 1rem;
+            padding: 14px 36px;
+            border-radius: 60px;
+            box-shadow: 0 8px 28px rgba(232, 130, 58, 0.30);
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .hero-home .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(232, 130, 58, 0.40);
+            background: var(--laranja-escuro);
+        }
+        .hero-home .btn-primary:active {
+            transform: scale(0.96);
+        }
+        .hero-home .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: transparent;
+            color: var(--azul-escuro);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 12px 24px;
+            border-radius: 60px;
+            border: 1.5px solid var(--azul);
+            transition: all var(--transition);
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .hero-home .btn-secondary:hover {
+            background: var(--azul-claro);
+            transform: translateY(-2px);
+        }
+        .hero-cta-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        /* Home blocks */
+        .home-block {
+            margin-bottom: 32px;
+        }
+        .home-block .block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .home-block .block-header h2 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--cinza-900);
+        }
+        .home-block .block-header h2 em {
+            color: var(--laranja);
+            font-style: normal;
+        }
+        .home-block .block-header h2 .azul {
+            color: var(--azul);
+        }
+        .home-block .block-header .view-all {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--azul);
+            cursor: pointer;
+            transition: color var(--transition);
+        }
+        .home-block .block-header .view-all:hover {
+            color: var(--azul-escuro);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .card-grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .card {
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            padding: 18px 16px 16px;
+            border: 1px solid var(--cinza-200);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            cursor: default;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--laranja-claro);
+        }
+
+        /* Event card */
+        .card-event {
+            border-left: 4px solid var(--laranja);
+            padding: 16px 16px 14px;
+        }
+        .card-event .date {
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: var(--laranja);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .card-event .date .day {
+            background: var(--laranja);
+            color: #fff;
+            padding: 0 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+        }
+        .card-event h3 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--cinza-800);
+            margin: 4px 0 2px;
+        }
+        .card-event p {
+            font-size: 0.8rem;
+            color: var(--cinza-500);
+            line-height: 1.5;
+        }
+        .card-event .tag {
+            display: inline-block;
+            font-size: 0.55rem;
+            font-weight: 800;
+            color: var(--azul);
+            background: var(--azul-claro);
+            padding: 0 10px;
+            border-radius: 50px;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .card-event .tag.verde {
+            color: var(--verde);
+            background: var(--verde-claro);
+        }
+        .card-event .tag.laranja {
+            color: var(--laranja);
+            background: var(--laranja-claro);
+        }
+        .card-event .btn-participar {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--branco);
+            background: var(--azul);
+            padding: 4px 16px;
+            border-radius: 50px;
+            transition: all var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+        .card-event .btn-participar:hover {
+            background: var(--azul-escuro);
+            transform: scale(0.96);
+        }
+
+        /* Story card */
+        .card-story {
+            padding: 0 0 16px 0;
+            overflow: hidden;
+        }
+        .card-story .img-placeholder {
+            height: 140px;
+            background: var(--laranja-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.6rem;
+            color: var(--laranja);
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+        }
+        .card-story .body {
+            padding: 14px 16px 0;
+        }
+        .card-story .body .tag {
+            font-size: 0.55rem;
+            font-weight: 800;
+            color: var(--verde);
+            background: var(--verde-claro);
+            padding: 0 10px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .card-story .body h3 {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--cinza-800);
+            margin: 4px 0 2px;
+            line-height: 1.3;
+        }
+        .card-story .body p {
+            font-size: 0.8rem;
+            color: var(--cinza-500);
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .card-story .body .leia-mais {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--azul);
+            cursor: pointer;
+            margin-top: 6px;
+            display: inline-block;
+            transition: color var(--transition);
+        }
+        .card-story .body .leia-mais:hover {
+            color: var(--azul-escuro);
+        }
+
+        /* Project card */
+        .card-project {
+            border-left: 4px solid var(--verde);
+        }
+        .card-project .icon {
+            font-size: 1.6rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .card-project h3 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--cinza-800);
+        }
+        .card-project p {
+            font-size: 0.8rem;
+            color: var(--cinza-500);
+            line-height: 1.5;
+        }
+        .card-project .btn-conhecer {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--verde);
+            background: var(--verde-claro);
+            padding: 4px 16px;
+            border-radius: 50px;
+            transition: all var(--transition);
+            cursor: pointer;
+            border: none;
+        }
+        .card-project .btn-conhecer:hover {
+            background: var(--verde);
+            color: #fff;
+        }
+
+        @media (max-width: 820px) {
+            .card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .card-grid-2 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 540px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .card-grid-2 {
+                grid-template-columns: 1fr;
+                max-width: 380px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-home {
+                padding: 16px 12px 24px;
+            }
+        }
+
+        /* ============================================================
+           AGENDA DE EVENTOS
+           ============================================================ */
+        .events-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .events-filters button {
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--cinza-500);
+            background: var(--branco);
+            border: 1px solid var(--cinza-200);
+            transition: all var(--transition);
+            touch-action: manipulation;
+        }
+        .events-filters button:hover {
+            border-color: var(--laranja);
+            color: var(--laranja-escuro);
+        }
+        .events-filters button.active {
+            background: var(--laranja);
+            color: #fff;
+            border-color: var(--laranja);
+        }
+
+        .events-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .event-item {
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            padding: 18px 22px;
+            border: 1px solid var(--cinza-200);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            transition: all var(--transition);
+        }
+        .event-item:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+        }
+        .event-item .date-box {
+            min-width: 60px;
+            text-align: center;
+            background: var(--laranja-pale);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+        }
+        .event-item .date-box .day {
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--laranja);
+            line-height: 1;
+        }
+        .event-item .date-box .month {
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--cinza-500);
+            text-transform: uppercase;
+        }
+        .event-item .info {
+            flex: 1;
+        }
+        .event-item .info h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--cinza-800);
+        }
+        .event-item .info .meta {
+            font-size: 0.8rem;
+            color: var(--cinza-500);
+        }
+        .event-item .info .tags {
+            display: flex;
+            gap: 6px;
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+        .event-item .info .tags span {
+            font-size: 0.55rem;
+            font-weight: 800;
+            padding: 0 10px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .event-item .info .tags .tag-beleza {
+            background: var(--laranja-claro);
+            color: var(--laranja);
+        }
+        .event-item .info .tags .tag-social {
+            background: var(--verde-claro);
+            color: var(--verde);
+        }
+        .event-item .info .tags .tag-educativo {
+            background: var(--azul-claro);
+            color: var(--azul);
+        }
+        .event-item .btn-participar {
+            flex-shrink: 0;
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            color: #fff;
+            background: var(--azul);
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+            touch-action: manipulation;
+        }
+        .event-item .btn-participar:hover {
+            background: var(--azul-escuro);
+            transform: scale(0.96);
+        }
+
+        @media (max-width: 640px) {
+            .event-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+            .event-item .date-box {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 8px 16px;
+                min-width: unset;
+            }
+            .event-item .date-box .day {
+                font-size: 1.2rem;
+            }
+            .event-item .btn-participar {
+                align-self: center;
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* ============================================================
+           PROJETOS SOCIAIS
+           ============================================================ */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .project-card {
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--cinza-200);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .project-card .img {
+            height: 140px;
+            background: var(--verde-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: var(--verde);
+        }
+        .project-card .body {
+            padding: 18px 20px 20px;
+        }
+        .project-card .body .badge {
+            font-size: 0.55rem;
+            font-weight: 800;
+            color: var(--verde);
+            background: var(--verde-claro);
+            padding: 0 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .project-card .body h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--cinza-800);
+            margin: 4px 0 4px;
+        }
+        .project-card .body p {
+            font-size: 0.85rem;
+            color: var(--cinza-500);
+            line-height: 1.6;
+        }
+        .project-card .body .btn-saiba {
+            display: inline-block;
+            margin-top: 8px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--azul);
+            cursor: pointer;
+            transition: color var(--transition);
+        }
+        .project-card .body .btn-saiba:hover {
+            color: var(--azul-escuro);
+        }
+
+        @media (max-width: 640px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* ============================================================
+           HISTÓRIAS DA COMUNIDADE
+           ============================================================ */
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .story-card {
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--cinza-200);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .story-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .story-card .img {
+            height: 160px;
+            background: var(--laranja-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--laranja);
+        }
+        .story-card .body {
+            padding: 18px 20px 20px;
+        }
+        .story-card .body .tag {
+            font-size: 0.55rem;
+            font-weight: 800;
+            color: var(--laranja);
+            background: var(--laranja-claro);
+            padding: 0 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .story-card .body h3 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--cinza-800);
+            margin: 4px 0 4px;
+        }
+        .story-card .body p {
+            font-size: 0.85rem;
+            color: var(--cinza-500);
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .story-card .body .autor {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--azul);
+            margin-top: 8px;
+        }
+
+        @media (max-width: 640px) {
+            .stories-grid {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* ============================================================
+           SERVIÇOS (resumido)
+           ============================================================ */
+        .services-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .service-summary-card {
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            padding: 20px 16px;
+            text-align: center;
+            border: 1px solid var(--cinza-200);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .service-summary-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--azul-claro);
+        }
+        .service-summary-card .emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .service-summary-card h3 {
+            font-size: 0.9rem;
+            font-weight: 800;
+            color: var(--cinza-800);
+        }
+        .service-summary-card .price {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--laranja);
+        }
+        .service-summary-card .btn-agendar {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: #fff;
+            background: var(--azul);
+            padding: 4px 18px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .service-summary-card .btn-agendar:hover {
+            background: var(--azul-escuro);
+            transform: scale(0.96);
+        }
+
+        @media (max-width: 640px) {
+            .services-summary {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+        }
+        @media (max-width: 380px) {
+            .services-summary {
+                grid-template-columns: 1fr;
+                max-width: 280px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* ============================================================
+           SOBRE (missão comunitária)
+           ============================================================ */
+        .about-mission {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            align-items: center;
+        }
+        .about-mission .text-block .manifesto {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--laranja);
+            font-style: italic;
+            line-height: 1.6;
+            border-left: 4px solid var(--laranja);
+            padding-left: 16px;
+            margin-bottom: 12px;
+        }
+        .about-mission .text-block p {
+            color: var(--cinza-600);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+        .about-mission .text-block p:last-child {
+            margin-bottom: 0;
+        }
+        .about-mission .text-block strong {
+            color: var(--azul-escuro);
+        }
+        .about-mission .image-wrap {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--azul-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.6rem;
+            color: var(--azul);
+            border: 1px solid var(--cinza-200);
+            min-height: 180px;
+        }
+
+        .partner-ribbon {
+            margin-top: 24px;
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            padding: 20px 24px;
+            border: 1px solid var(--cinza-200);
+            box-shadow: var(--shadow-sm);
+        }
+        .partner-ribbon h4 {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--cinza-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        .partner-ribbon .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .partner-ribbon .logos .logo-item {
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: var(--cinza-400);
+            background: var(--cinza-100);
+            padding: 6px 18px;
+            border-radius: 50px;
+            border: 1px solid var(--cinza-200);
+        }
+        .partner-ribbon .logos .logo-item:hover {
+            border-color: var(--azul);
+            color: var(--azul);
+        }
+
+        @media (max-width: 720px) {
+            .about-mission {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+            .about-mission .image-wrap {
+                order: -1;
+                aspect-ratio: 16/9;
+            }
+        }
+
+        /* ============================================================
+           CONTATO
+           ============================================================ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .contact-info .item {
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            padding: 16px 18px;
+            border: 1px solid var(--cinza-200);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .contact-info .item .icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--laranja-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--laranja);
+        }
+        .contact-info .item .text h4 {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--cinza-800);
+        }
+        .contact-info .item .text p {
+            font-size: 0.8rem;
+            color: var(--cinza-500);
+        }
+
+        .contact-form {
+            background: var(--branco);
+            border-radius: var(--radius);
+            padding: 24px 22px;
+            border: 1px solid var(--cinza-200);
+            box-shadow: var(--shadow-sm);
+        }
+        .contact-form h3 {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--cinza-900);
+            margin-bottom: 12px;
+        }
+        .contact-form .form-group {
+            margin-bottom: 12px;
+        }
+        .contact-form .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--cinza-700);
+            margin-bottom: 4px;
+        }
+        .contact-form .form-group input,
+        .contact-form .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--cinza-200);
+            font-family: var(--font);
+            font-size: 0.9rem;
+            color: var(--cinza-800);
+            background: var(--cinza-100);
+            transition: all var(--transition);
+            outline: none;
+        }
+        .contact-form .form-group input:focus,
+        .contact-form .form-group textarea:focus {
+            border-color: var(--laranja);
+            box-shadow: 0 0 0 3px var(--laranja-claro);
+            background: var(--branco);
+        }
+        .contact-form .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        .contact-form .btn-submit {
+            width: 100%;
+            padding: 12px 0;
+            background: var(--laranja);
+            color: #fff;
+            font-weight: 800;
+            font-size: 1rem;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all var(--transition);
+            touch-action: manipulation;
+            box-shadow: 0 4px 20px rgba(232, 130, 58, 0.25);
+        }
+        .contact-form .btn-submit:hover {
+            background: var(--laranja-escuro);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(232, 130, 58, 0.35);
+        }
+        .contact-form .btn-submit:active {
+            transform: scale(0.97);
+        }
+
+        @media (max-width: 720px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            padding: 24px 0 12px;
+            border-top: 1px solid var(--cinza-200);
+            background: var(--branco);
+            margin-top: 8px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.78rem;
+            color: var(--cinza-400);
+        }
+        .footer-content .socials {
+            display: flex;
+            gap: 12px;
+        }
+        .footer-content .socials a {
+            color: var(--cinza-400);
+            transition: color var(--transition);
+            font-size: 1rem;
+        }
+        .footer-content .socials a:hover {
+            color: var(--laranja);
+        }
+
+        /* ============================================================
+           UTILITÁRIOS
+           ============================================================ */
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mt-24 {
+            margin-top: 24px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ============================================================
+           RESPONSIVIDADE GERAL
+           ============================================================ */
+        @media (max-width: 640px) {
+            .header {
+                padding: 0 16px;
+            }
+            .logo {
+                font-size: 1rem;
+            }
+            .logo .icon {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+            .logo .badge-community {
+                font-size: 0.4rem;
+                padding: 0 6px;
+            }
+            .page {
+                padding: 16px 0 20px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .container {
+                padding: 0 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="logo">
+            <span class="icon">✦</span>
+            Salão<span>Bella</span>
+            <span class="badge-community">❤️ comunidade</span>
+        </div>
+
+        <!-- Desktop nav -->
+        <nav class="nav-desktop" id="navDesktop">
+            <button class="active" data-page="home">Início</button>
+            <button data-page="agenda">Agenda</button>
+            <button data-page="projetos">Projetos</button>
+            <button data-page="historias">Histórias</button>
+            <button data-page="servicos">Serviços</button>
+            <button data-page="sobre">Sobre</button>
+            <button data-page="contato" class="cta-nav">Contato</button>
+        </nav>
+
+        <!-- Mobile toggle -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- ===== MOBILE MENU ===== -->
+    <nav class="mobile-menu" id="mobileMenu">
+        <button class="active" data-page="home">Início</button>
+        <button data-page="agenda">📅 Agenda</button>
+        <button data-page="projetos">❤️ Projetos</button>
+        <button data-page="historias">📖 Histórias</button>
+        <button data-page="servicos">💇 Serviços</button>
+        <button data-page="sobre">📋 Sobre</button>
+        <button data-page="contato" class="cta-nav">📞 Contato</button>
+    </nav>
+
+    <!-- ============================================================
+    PÁGINA: HOME
+    ============================================================ -->
+    <main class="page active" id="page-home">
+        <div class="container">
+            <!-- Hero -->
+            <section class="hero-home">
+                <div class="hero-badge">❤️ Comunidade em ação</div>
+                <h1>Beleza & <em>comunidade</em> em <span class="azul">Parnamirim</span></h1>
+                <p>Um salão que cresce junto com o bairro. Conheça nossos eventos, projetos e histórias que conectam pessoas.</p>
+                <div class="hero-cta-group">
+                    <button class="btn-primary" onclick="navigateTo('agenda')">
+                        📅 Conhecer próximos eventos
+                    </button>
+                    <button class="btn-secondary" onclick="navigateTo('historias')">
+                        📖 Ver histórias →
+                    </button>
+                </div>
+            </section>
+
+            <!-- Próximos eventos -->
+            <div class="home-block">
+                <div class="block-header">
+                    <h2>📅 Próximos <em>eventos</em></h2>
+                    <span class="view-all" onclick="navigateTo('agenda')">Ver todos →</span>
+                </div>
+                <div class="card-grid">
+                    <div class="card card-event">
+                        <div class="date"><span class="day">16</span> jul 2026</div>
+                        <h3>Dia da Beleza Solidária</h3>
+                        <p>10% dos serviços revertidos para ONG local. Participe!</p>
+                        <span class="tag">social</span>
+                        <button class="btn-participar" onclick="alert('Inscrição simulada! Em breve entraremos em contato.')">Participar</button>
+                    </div>
+                    <div class="card card-event">
+                        <div class="date"><span class="day">20</span> jul 2026</div>
+                        <h3>Workshop: Cuidados de Inverno</h3>
+                        <p>Aprenda a proteger seus fios e pele no inverno.</p>
+                        <span class="tag verde">educativo</span>
+                        <button class="btn-participar" onclick="alert('Inscrição simulada! Em breve entraremos em contato.')">Participar</button>
+                    </div>
+                    <div class="card card-event">
+                        <div class="date"><span class="day">5</span> ago 2026</div>
+                        <h3>Parceria com Estúdio Flores</h3>
+                        <p>15% de desconto para clientes em arranjos florais.</p>
+                        <span class="tag laranja">parceria</span>
+                        <button class="btn-participar" onclick="alert('Inscrição simulada! Em breve entraremos em contato.')">Participar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projetos sociais em andamento -->
+            <div class="home-block">
+                <div class="block-header">
+                    <h2>❤️ Projetos <em>sociais</em></h2>
+                    <span class="view-all" onclick="navigateTo('projetos')">Ver todos →</span>
+                </div>
+                <div class="card-grid card-grid-2">
+                    <div class="card card-project">
+                        <span class="icon">🤝</span>
+                        <h3>Beleza para TODAS</h3>
+                        <p>Atendimentos gratuitos para mulheres em situação de vulnerabilidade social.</p>
+                        <button class="btn-conhecer" onclick="navigateTo('projetos')">Conhecer projeto</button>
+                    </div>
+                    <div class="card card-project">
+                        <span class="icon">🌱</span>
+                        <h3>Jovens aprendizes</h3>
+                        <p>Programa de capacitação em beleza para jovens do bairro.</p>
+                        <button class="btn-conhecer" onclick="navigateTo('projetos')">Conhecer projeto</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Histórias da comunidade -->
+            <div class="home-block">
+                <div class="block-header">
+                    <h2>📖 Histórias da <em>comunidade</em></h2>
+                    <span class="view-all" onclick="navigateTo('historias')">Ver todas →</span>
+                </div>
+                <div class="card-grid">
+                    <div class="card card-story">
+                        <div class="img-placeholder">👩</div>
+                        <div class="body">
+                            <span class="tag">depoimento</span>
+                            <h3>Como o Salão Bella mudou minha vida</h3>
+                            <p>Conheça a história de Maria, que encontrou no salão um lugar de acolhimento e transformação.</p>
+                            <span class="leia-mais" onclick="navigateTo('historias')">Leia mais →</span>
+                        </div>
+                    </div>
+                    <div class="card card-story">
+                        <div class="img-placeholder">👧</div>
+                        <div class="body">
+                            <span class="tag">ação social</span>
+                            <h3>Dia da Beleza na escola municipal</h3>
+                            <p>Como um mutirão de beleza levou autoestima para 50 alunas de uma escola pública.</p>
+                            <span class="leia-mais" onclick="navigateTo('historias')">Leia mais →</span>
+                        </div>
+                    </div>
+                    <div class="card card-story">
+                        <div class="img-placeholder">👩‍👧</div>
+                        <div class="body">
+                            <span class="tag">comunidade</span>
+                            <h3>Mães do bairro: histórias de força</h3>
+                            <p>Um encontro especial que reuniu mães da comunidade para um dia de autocuidado.</p>
+                            <span class="leia-mais" onclick="navigateTo('historias')">Leia mais →</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================================
+    PÁGINA: AGENDA
+    ============================================================ -->
+    <main class="page" id="page-agenda">
+        <div class="container">
+            <h1 style="font-size:clamp(1.6rem,3vw,2.2rem); font-weight:900; color:var(--cinza-900); margin-bottom:4px;">
+                📅 <em style="color:var(--laranja); font-style:normal;">Agenda</em> da comunidade
+            </h1>
+            <p style="color:var(--cinza-500); margin-bottom:16px;">Fique por dentro de todos os eventos e atividades do Salão Bella</p>
+
+            <div class="events-filters">
+                <button class="active" data-filter="all">Todos</button>
+                <button data-filter="beleza">💄 Beleza</button>
+                <button data-filter="social">❤️ Social</button>
+                <button data-filter="educativo">📚 Educativo</button>
+            </div>
+
+            <div class="events-list" id="eventsList">
+                <div class="event-item" data-type="social">
+                    <div class="date-box">
+                        <div class="day">16</div>
+                        <div class="month">jul</div>
+                    </div>
+                    <div class="info">
+                        <h3>Dia da Beleza Solidária</h3>
+                        <div class="meta">📍 Salão Bella · 8h–18h</div>
+                        <div class="tags">
+                            <span class="tag-social">social</span>
+                        </div>
+                    </div>
+                    <button class="btn-participar" onclick="alert('Inscrição simulada! Em breve entraremos em contato.')">Participar</button>
+                </div>
+                <div class="event-item" data-type="educativo">
+                    <div class="date-box">
+                        <div class="day">20</div>
+                        <div class="month">jul</div>
+                    </div>
+                    <div class="info">
+                        <h3>Workshop: Cuidados de Inverno</h3>
+                        <div class="meta">📍 Salão Bella · 15h–17h</div>
+                        <div class="tags">
+                            <span class="tag-educativo">educativo</span>
+                        </div>
+                    </div>
+                    <button class="btn-participar" onclick="alert('Inscrição simulada! Em breve entraremos em contato.')">Participar</button>
+                </div>
+                <div class="event-item" data-type="beleza">
+                    <div class="date-box">
+                        <div class="day">5</div>
+                        <div class="month">ago</div>
+                    </div>
+                    <div class="info">
+                        <h3>Parceria com Estúdio Flores</h3>
+                        <div class="meta">📍 Salão Bella · Durante todo o mês</div>
+                        <div class="tags">
+                            <span class="tag-beleza">beleza</span>
+                        </div>
+                    </div>
+                    <button class="btn-participar" onclick="alert('Inscrição simulada! Em breve entraremos em contato.')">Participar</button>
+                </div>
+                <div class="event-item" data-type="social">
+                    <div class="date-box">
+                        <div class="day">12</div>
+                        <div class="month">ago</div>
+                    </div>
+                    <div class="info">
+                        <h3>Campanha: Doe um sorriso</h3>
+                        <div class="meta">📍 Salão Bella · 9h–17h</div>
+                        <div class="tags">
+                            <span class="tag-social">social</span>
+                        </div>
+                    </div>
+                    <button class="btn-participar" onclick="alert('Inscrição simulada! Em breve entraremos em contato.')">Participar</button>
+                </div>
+                <div class="event-item" data-type="educativo">
+                    <div class="date-box">
+                        <div class="day">20</div>
+                        <div class="month">ago</div>
+                    </div>
+                    <div class="info">
+                        <h3>Oficina de Automaquiagem</h3>
+                        <div class="meta">📍 Salão Bella · 14h–16h</div>
+                        <div class="tags">
+                            <span class="tag-educativo">educativo</span>
+                        </div>
+                    </div>
+                    <button class="btn-participar" onclick="alert('Inscrição simulada! Em breve entraremos em contato.')">Participar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================================
+    PÁGINA: PROJETOS SOCIAIS
+    ============================================================ -->
+    <main class="page" id="page-projetos">
+        <div class="container">
+            <h1 style="font-size:clamp(1.6rem,3vw,2.2rem); font-weight:900; color:var(--cinza-900); margin-bottom:4px;">
+                ❤️ <em style="color:var(--verde); font-style:normal;">Projetos</em> sociais
+            </h1>
+            <p style="color:var(--cinza-500); margin-bottom:20px;">Conheça as iniciativas que conectam o Salão Bella à comunidade</p>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="img">🤝</div>
+                    <div class="body">
+                        <span class="badge">em andamento</span>
+                        <h3>Beleza para TODAS</h3>
+                        <p>Programa que oferece atendimentos gratuitos de beleza para mulheres em situação de vulnerabilidade social. Uma parceria com o CRAS local para promover autoestima e bem-estar.</p>
+                        <span class="btn-saiba" onclick="alert('Mais informações sobre o projeto Beleza para TODAS.')">Saiba mais →</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="img">🌱</div>
+                    <div class="body">
+                        <span class="badge">em andamento</span>
+                        <h3>Jovens aprendizes</h3>
+                        <p>Programa de capacitação em técnicas de beleza para jovens do bairro. Com duração de 3 meses, os participantes aprendem corte, escova e maquiagem básica.</p>
+                        <span class="btn-saiba" onclick="alert('Mais informações sobre o projeto Jovens aprendizes.')">Saiba mais →</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="img">💆</div>
+                    <div class="body">
+                        <span class="badge">concluído</span>
+                        <h3>Dia da Beleza na Escola</h3>
+                        <p>Mutirão de beleza que atendeu 50 alunas de uma escola pública. Uma ação de valorização e autoestima que impactou toda a comunidade escolar.</p>
+                        <span class="btn-saiba" onclick="alert('Mais informações sobre o Dia da Beleza na Escola.')">Saiba mais →</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="img">🤱</div>
+                    <div class="body">
+                        <span class="badge">concluído</span>
+                        <h3>Mães do Bairro</h3>
+                        <p>Encontro especial para mães da comunidade, com cuidados de beleza, roda de conversa e acolhimento. Fortaleceu laços e promoveu saúde mental.</p>
+                        <span class="btn-saiba" onclick="alert('Mais informações sobre o projeto Mães do Bairro.')">Saiba mais →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================================
+    PÁGINA: HISTÓRIAS
+    ============================================================ -->
+    <main class="page" id="page-historias">
+        <div class="container">
+            <h1 style="font-size:clamp(1.6rem,3vw,2.2rem); font-weight:900; color:var(--cinza-900); margin-bottom:4px;">
+                📖 <em style="color:var(--laranja); font-style:normal;">Histórias</em> da comunidade
+            </h1>
+            <p style="color:var(--cinza-500); margin-bottom:20px;">Depoimentos e relatos reais de quem vive a experiência Salão Bella</p>
+
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="img">👩</div>
+                    <div class="body">
+                        <span class="tag">depoimento</span>
+                        <h3>Como o Salão Bella mudou minha vida</h3>
+                        <p>"Cheguei no salão com a autoestima muito baixa. A equipe me acolheu de uma forma que eu nunca imaginei. Hoje, me sinto uma nova pessoa." — Maria, 42 anos.</p>
+                        <div class="autor">— Maria S., cliente desde 2021</div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="img">👧</div>
+                    <div class="body">
+                        <span class="tag">ação social</span>
+                        <h3>Dia da Beleza na escola municipal</h3>
+                        <p>"Ver o sorriso no rosto de cada aluna foi emocionante. O Salão Bella levou não só beleza, mas esperança." — Professora Adriana.</p>
+                        <div class="autor">— Adriana L., educadora</div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="img">👩‍👧</div>
+                    <div class="body">
+                        <span class="tag">comunidade</span>
+                        <h3>Mães do bairro: histórias de força</h3>
+                        <p>"Foi o primeiro dia de cuidados que tive em meses. Me senti lembrada, valorizada. O salão é um abraço." — Carla, mãe solo.</p>
+                        <div class="autor">— Carla R., participante</div>
+                    </div>
+                </div>
+                <div class="story-card">
+                    <div class="img">🧑</div>
+                    <div class="body">
+                        <span class="tag">cliente</span>
+                        <h3>Uma transformação que começou no cabelo</h3>
+                        <p>"Fui no salão para um corte e saí com uma nova perspectiva de vida. A conversa com a equipe mudou meu dia." — João, 28 anos.</p>
+                        <div class="autor">— João M., cliente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================================
+    PÁGINA: SERVIÇOS (resumido)
+    ============================================================ -->
+    <main class="page" id="page-servicos">
+        <div class="container">
+            <h1 style="font-size:clamp(1.6rem,3vw,2.2rem); font-weight:900; color:var(--cinza-900); margin-bottom:4px;">
+                💇 <em style="color:var(--azul); font-style:normal;">Serviços</em> do salão
+            </h1>
+            <p style="color:var(--cinza-500); margin-bottom:20px;">Conheça os cuidados que oferecemos para realçar sua beleza</p>
+
+            <div class="services-summary">
+                <div class="service-summary-card">
+                    <span class="emoji">✂️</span>
+                    <h3>Corte e Escova</h3>
+                    <div class="price">a partir de R$ 69</div>
+                    <button class="btn-agendar" onclick="alert('Redirecionando para agendamento...')">Agendar</button>
+                </div>
+                <div class="service-summary-card">
+                    <span class="emoji">💅</span>
+                    <h3>Unhas em Gel</h3>
+                    <div class="price">a partir de R$ 55</div>
+                    <button class="btn-agendar" onclick="alert('Redirecionando para agendamento...')">Agendar</button>
+                </div>
+                <div class="service-summary-card">
+                    <span class="emoji">🎨</span>
+                    <h3>Maquiagem</h3>
+                    <div class="price">a partir de R$ 45</div>
+                    <button class="btn-agendar" onclick="alert('Redirecionando para agendamento...')">Agendar</button>
+                </div>
+                <div class="service-summary-card">
+                    <span class="emoji">👁️</span>
+                    <h3>Sobrancelhas</h3>
+                    <div class="price">a partir de R$ 35</div>
+                    <button class="btn-agendar" onclick="alert('Redirecionando para agendamento...')">Agendar</button>
+                </div>
+                <div class="service-summary-card">
+                    <span class="emoji">🧖‍♀️</span>
+                    <h3>Tratamentos Capilares</h3>
+                    <div class="price">a partir de R$ 120</div>
+                    <button class="btn-agendar" onclick="alert('Redirecionando para agendamento...')">Agendar</button>
+                </div>
+                <div class="service-summary-card">
+                    <span class="emoji">💆</span>
+                    <h3>Pacote Completo</h3>
+                    <div class="price">a partir de R$ 199</div>
+                    <button class="btn-agendar" onclick="alert('Redirecionando para agendamento...')">Agendar</button>
+                </div>
+            </div>
+
+            <div style="text-align:center; margin-top:20px;">
+                <button class="hero-home .btn-primary" style="background:var(--azul); color:#fff; font-weight:800; font-size:0.95rem; padding:12px 32px; border-radius:60px; border:none; cursor:pointer; box-shadow:0 4px 20px rgba(43,123,182,0.25); transition: all var(--transition);" onclick="alert('Redirecionando para agendamento completo...')">
+                    📅 Agendar agora
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================================
+    PÁGINA: SOBRE
+    ============================================================ -->
+    <main class="page" id="page-sobre">
+        <div class="container">
+            <h1 style="font-size:clamp(1.6rem,3vw,2.2rem); font-weight:900; color:var(--cinza-900); margin-bottom:4px;">
+                📋 <em style="color:var(--laranja); font-style:normal;">Sobre</em> o Salão Bella
+            </h1>
+            <p style="color:var(--cinza-500); margin-bottom:20px;">Nossa missão: beleza que transforma vidas e fortalece a comunidade</p>
+
+            <div class="about-mission">
+                <div class="text-block">
+                    <div class="manifesto">
+                        "Acreditamos que um salão de beleza pode ser muito mais que um lugar de serviços — pode ser um ponto de encontro, um espaço de acolhimento e um agente de transformação social."
+                    </div>
+                    <p>
+                        O <strong>Salão Bella</strong> nasceu em 2019 com a vontade de criar um espaço onde a beleza
+                        encontrasse a comunidade. Localizado em <strong>Parnamirim</strong>, desde o início
+                        nos dedicamos a construir relacionamentos genuínos com cada pessoa que entra pela nossa porta.
+                    </p>
+                    <p>
+                        Mais que cortes de cabelo ou esmaltes, oferecemos <strong>acolhimento</strong>, <strong>escuta</strong>
+                        e <strong>cuidado</strong>. Cada projeto social, cada evento comunitário e cada história que
+                        compartilhamos nasce do desejo de fazer a diferença no bairro onde vivemos.
+                    </p>
+                    <p>
+                        <strong>Nossa missão:</strong> usar a beleza como ferramenta de transformação pessoal e social.
+                        <strong>Nossa visão:</strong> ser reconhecido como o centro de beleza e comunidade de Parnamirim.
+                    </p>
+                </div>
+                <div class="image-wrap">
+                    <span>❤️</span>
+                </div>
+            </div>
+
+            <!-- Partner Ribbon -->
+            <div class="partner-ribbon">
+                <h4>🤝 Nossos parceiros locais</h4>
+                <div class="logos">
+                    <span class="logo-item">CRAS Parnamirim</span>
+                    <span class="logo-item">Escola Municipal</span>
+                    <span class="logo-item">ONG Mulheres Fortes</span>
+                    <span class="logo-item">Igreja da Comunidade</span>
+                    <span class="logo-item">Estúdio Flores</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============================================================
+    PÁGINA: CONTATO
+    ============================================================ -->
+    <main class="page" id="page-contato">
+        <div class="container">
+            <h1 style="font-size:clamp(1.6rem,3vw,2.2rem); font-weight:900; color:var(--cinza-900); margin-bottom:4px;">
+                📞 <em style="color:var(--azul); font-style:normal;">Contato</em>
+            </h1>
+            <p style="color:var(--cinza-500); margin-bottom:20px;">Fale conosco, participe de um projeto ou agende um horário</p>
+
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-info">
+                        <div class="item">
+                            <div class="icon">📍</div>
+                            <div class="text">
+                                <h4>Endereço</h4>
+                                <p>Rua das Flores, 123 — Parnamirim, RN</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="icon">📞</div>
+                            <div class="text">
+                                <h4>Telefone</h4>
+                                <p>(11) 99999-9999</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="icon">💬</div>
+                            <div class="text">
+                                <h4>WhatsApp</h4>
+                                <p>(11) 99999-9999</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="icon">📧</div>
+                            <div class="text">
+                                <h4>E-mail</h4>
+                                <p>comunidade@salaobella.com.br</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="icon">🕐</div>
+                            <div class="text">
+                                <h4>Horário de atendimento</h4>
+                                <p>Seg–Sex: 8h–20h · Sáb: 8h–18h</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>📩 Envie uma mensagem</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="nomeContato">Seu nome *</label>
+                            <input type="text" id="nomeContato" placeholder="Ex.: Ana Silva" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="contatoContato">WhatsApp ou E-mail *</label>
+                            <input type="text" id="contatoContato" placeholder="(11) 99999-9999" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="msgContato">Mensagem *</label>
+                            <textarea id="msgContato" rows="4" placeholder="Gostaria de saber mais sobre os projetos sociais..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">📨 Enviar mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <span>© 2026 Salão Bella · Community Beauty Center</span>
+                <span>❤️ Parnamirim · RN</span>
+                <div class="socials">
+                    <a href="#" aria-label="Instagram">📸</a>
+                    <a href="#" aria-label="Facebook">👍</a>
+                    <a href="#" aria-label="YouTube">▶️</a>
+                    <a href="#" aria-label="TikTok">🎵</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    SCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- NAVEGAÇÃO ENTRE PÁGINAS ----
+            const pages = {
+                home: document.getElementById('page-home'),
+                agenda: document.getElementById('page-agenda'),
+                projetos: document.getElementById('page-projetos'),
+                historias: document.getElementById('page-historias'),
+                servicos: document.getElementById('page-servicos'),
+                sobre: document.getElementById('page-sobre'),
+                contato: document.getElementById('page-contato'),
+            };
+
+            const navButtonsDesktop = document.querySelectorAll('#navDesktop button');
+            const navButtonsMobile = document.querySelectorAll('#mobileMenu button');
+
+            function navigateTo(pageId) {
+                // Hide all pages
+                Object.keys(pages).forEach(key => {
+                    pages[key].classList.remove('active');
+                });
+                if (pages[pageId]) {
+                    pages[pageId].classList.add('active');
+                }
+
+                // Update desktop nav
+                navButtonsDesktop.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.page === pageId);
+                });
+
+                // Update mobile nav
+                navButtonsMobile.forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.page === pageId);
+                });
+
+                // Close mobile menu
+                document.getElementById('mobileMenu').classList.remove('open');
+                document.getElementById('menuToggle').classList.remove('open');
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                history.pushState(null, null, '#' + pageId);
+            }
+
+            window.navigateTo = navigateTo;
+
+            // Desktop nav clicks
+            navButtonsDesktop.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    navigateTo(btn.dataset.page);
+                });
+            });
+
+            // Mobile nav clicks
+            navButtonsMobile.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    navigateTo(btn.dataset.page);
+                });
+            });
+
+            // ---- MOBILE MENU TOGGLE ----
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            menuToggle.addEventListener('click', () => {
+                menuToggle.classList.toggle('open');
+                mobileMenu.classList.toggle('open');
+            });
+
+            // ---- HEADER SHADOW ----
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 20);
+            }, { passive: true });
+
+            // ---- HASH ROUTING ----
+            function handleHash() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && pages[hash]) {
+                    navigateTo(hash);
+                } else {
+                    navigateTo('home');
+                }
+            }
+
+            window.addEventListener('hashchange', handleHash);
+            if (window.location.hash) {
+                handleHash();
+            } else {
+                navigateTo('home');
+            }
+
+            // ---- EVENT FILTERS ----
+            const filterButtons = document.querySelectorAll('.events-filters button');
+            const eventItems = document.querySelectorAll('.event-item');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.dataset.filter;
+
+                    eventItems.forEach(item => {
+                        if (filter === 'all' || item.dataset.type === filter) {
+                            item.style.display = 'flex';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // ---- FORM SUBMISSIONS (simuladas) ----
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('📨 Mensagem enviada! Responderemos em breve. Obrigada por se conectar com a comunidade!');
+                    this.reset();
+                });
+            }
+
+            console.log('❤️ Community Beauty Center — Salão Bella');
+            console.log('🏘️ Um salão que cresce junto com a comunidade.');
+        })();
+    </script>
+
+</body>
+</html>

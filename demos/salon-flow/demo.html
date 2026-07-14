@@ -1,0 +1,2232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="theme-color" content="#E8EDE9" />
+    <meta name="description" content="Salon Flow - Gerencie o fluxo de atendimento do seu salão em tempo real" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <title>Salon Flow</title>
+
+    <!-- Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlNhbG9uIEZsb3ciLAogICJzaG9ydF9uYW1lIjogIlNhbG9uIEZsb3ciLAogICJkZXNjcmlwdGlvbiI6ICJGbHV4byBkZSBhdGVuZGltZW50byBlbSB0ZW1wbyByZWFsIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNFQkVEREUiLAogICJ0aGVtZV9jb2xvciI6ICIjRUJFRERFIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLDxzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgNTEyIDUxMic+PHJlY3Qgd2lkdGg9JzUxMicgaGVpZ2h0PSc1MTInIHJ4PSc2MCcgZmlsbD0nJTIzRUJFRERFJy8+PHRleHQgeD0nMjU2JyB5PSczNDAnIGZvbnQtc2l6ZT0nMjUwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LWZhbWlseT0nc2Fucy1zZXJpZicgZmlsbD0nJTIzNUFBNzZEJz7iiI48L3RleHQ+PC9zdmc+IgogICAgfQogIF0KfQ==" />
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES / THEME
+           ============================================================ */
+        :root {
+            --bg-body: #EBEDE9;
+            --bg-surface: #FFFFFF;
+            --bg-surface-soft: #F5F6F3;
+
+            /* Flow status colors */
+            --color-chegada: #7DB89A;
+            --color-chegada-bg: #E8F5EE;
+            --color-chegada-text: #2E6B4E;
+
+            --color-atendimento: #F5D98F;
+            --color-atendimento-bg: #FEF6E0;
+            --color-atendimento-text: #8A6E1B;
+
+            --color-pagamento: #8CB4D4;
+            --color-pagamento-bg: #E6F0FA;
+            --color-pagamento-text: #2A5F7A;
+
+            --color-finalizado: #B8C4C0;
+            --color-finalizado-bg: #F0F2F0;
+            --color-finalizado-text: #4A5A54;
+
+            /* Neutrals */
+            --text-primary: #2D3A35;
+            --text-secondary: #5A6E64;
+            --text-muted: #8A9E94;
+            --text-inverse: #FFFFFF;
+            --border-light: #DFE3DF;
+            --border-focus: #5A7E6D;
+
+            --shadow-sm: 0 1px 3px rgba(45, 58, 53, 0.06), 0 1px 2px rgba(45, 58, 53, 0.04);
+            --shadow-md: 0 4px 16px rgba(45, 58, 53, 0.08), 0 2px 4px rgba(45, 58, 53, 0.04);
+            --shadow-lg: 0 12px 40px rgba(45, 58, 53, 0.12);
+
+            --radius-card: 14px;
+            --radius-btn: 10px;
+            --radius-input: 10px;
+            --radius-bento: 16px;
+
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --bottom-bar-height: 68px;
+            --header-height: 62px;
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding-bottom: calc(var(--bottom-bar-height) + var(--safe-bottom) + 8px);
+            padding-top: var(--header-height);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-chegada);
+            border-radius: 20px;
+        }
+
+        /* ============================================================
+           TYPOGRAPHY
+           ============================================================ */
+        .heading-1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        .heading-2 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+        }
+        .heading-3 {
+            font-size: 0.9375rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .body-text {
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        .label-text {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .caption-text {
+            font-size: 0.6875rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .app-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-light);
+            z-index: 50;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.92);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 12px;
+        }
+        .app-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .app-header .logo-icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .app-header .logo-text {
+            font-size: 1.0625rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        .app-header .logo-text span {
+            color: var(--color-chegada);
+        }
+        .app-header .mode-toggle {
+            display: flex;
+            background: var(--bg-body);
+            border-radius: 30px;
+            padding: 2px;
+            margin-left: auto;
+            border: 1px solid var(--border-light);
+            flex-shrink: 0;
+        }
+        .app-header .mode-toggle button {
+            border: none;
+            background: transparent;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-family: var(--font);
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+        .app-header .mode-toggle button.active {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-sm);
+        }
+        .app-header .mode-toggle button:active {
+            transform: scale(0.95);
+        }
+
+        /* ============================================================
+           BOTTOM NAVIGATION
+           ============================================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            align-items: stretch;
+            justify-content: space-around;
+            height: calc(var(--bottom-bar-height) + var(--safe-bottom));
+            padding-bottom: var(--safe-bottom);
+            z-index: 100;
+            box-shadow: 0 -2px 12px rgba(45, 58, 53, 0.05);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.94);
+        }
+        .bottom-nav .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            padding: 4px 0;
+            border: none;
+            background: transparent;
+            font-family: var(--font);
+            font-size: 0.5625rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .bottom-nav .nav-item .icon {
+            font-size: 1.25rem;
+            line-height: 1;
+            transition: var(--transition);
+        }
+        .bottom-nav .nav-item .label {
+            transition: var(--transition);
+        }
+        .bottom-nav .nav-item.active {
+            color: var(--color-chegada);
+        }
+        .bottom-nav .nav-item.active .icon {
+            transform: translateY(-1px);
+        }
+        .bottom-nav .nav-item:active {
+            transform: scale(0.92);
+        }
+        .bottom-nav .nav-item .badge-nav {
+            position: absolute;
+            top: 2px;
+            right: 50%;
+            transform: translateX(calc(50% + 20px));
+            background: #D46A6A;
+            color: #fff;
+            font-size: 0.5rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 20px;
+            line-height: 1.4;
+            min-width: 16px;
+            text-align: center;
+        }
+
+        /* ============================================================
+           PAGE CONTAINER
+           ============================================================ */
+        .page {
+            display: none;
+            padding: 12px 12px 20px;
+            animation: fadeSlide 0.3s ease both;
+        }
+        .page.active {
+            display: block;
+        }
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           FLOW BOARD (BENTO)
+           ============================================================ */
+        .flow-board {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .flow-board .lane {
+            background: var(--bg-surface);
+            border-radius: var(--radius-bento);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            padding: 10px 8px 8px;
+            display: flex;
+            flex-direction: column;
+            min-height: 140px;
+            transition: var(--transition);
+        }
+        .flow-board .lane-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 4px 6px 4px;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 8px;
+        }
+        .flow-board .lane-header .lane-title {
+            font-size: 0.6875rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .flow-board .lane-header .lane-count {
+            font-size: 0.625rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            background: var(--bg-body);
+            padding: 0 8px;
+            border-radius: 20px;
+            line-height: 1.6;
+        }
+        .flow-board .lane-body {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+            min-height: 60px;
+        }
+        .flow-board .lane-empty {
+            color: var(--text-muted);
+            font-size: 0.6875rem;
+            text-align: center;
+            padding: 16px 4px;
+            font-weight: 400;
+        }
+
+        /* Card */
+        .flow-card {
+            background: var(--bg-surface-soft);
+            border-radius: var(--radius-card);
+            padding: 10px 12px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+            animation: cardIn 0.25s ease both;
+        }
+        .flow-card:active {
+            transform: scale(0.97);
+        }
+        @keyframes cardIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.96) translateY(6px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        .flow-card .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 6px;
+        }
+        .flow-card .card-client {
+            font-weight: 600;
+            font-size: 0.875rem;
+            line-height: 1.2;
+            flex: 1;
+            min-width: 0;
+        }
+        .flow-card .card-time {
+            font-size: 0.6875rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        .flow-card .card-time .timer-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            display: inline-block;
+            flex-shrink: 0;
+        }
+        .flow-card .card-time .timer-dot.green {
+            background: var(--color-chegada);
+        }
+        .flow-card .card-time .timer-dot.yellow {
+            background: var(--color-atendimento);
+            animation: pulse-dot 1s ease-in-out infinite;
+        }
+        .flow-card .card-time .timer-dot.red {
+            background: #D46A6A;
+            animation: pulse-dot 0.6s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(0.7);
+            }
+        }
+
+        .flow-card .card-details {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+            flex-wrap: wrap;
+        }
+        .flow-card .card-service {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .flow-card .card-professional {
+            font-size: 0.625rem;
+            font-weight: 600;
+            padding: 1px 10px;
+            border-radius: 30px;
+            background: var(--bg-body);
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .flow-card .card-actions {
+            display: flex;
+            gap: 4px;
+            margin-top: 6px;
+            padding-top: 6px;
+            border-top: 1px solid var(--border-light);
+            flex-wrap: wrap;
+        }
+        .flow-card .card-actions button {
+            border: none;
+            background: var(--bg-surface);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-family: var(--font);
+            font-size: 0.625rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--border-light);
+            flex: 1;
+            min-width: 50px;
+        }
+        .flow-card .card-actions button:active {
+            transform: scale(0.94);
+        }
+        .flow-card .card-actions button.primary-action {
+            background: var(--color-chegada);
+            color: #fff;
+            border-color: var(--color-chegada);
+        }
+        .flow-card .card-actions button.primary-action:active {
+            opacity: 0.8;
+        }
+        .flow-card .card-actions button.danger-action {
+            color: #D46A6A;
+            border-color: #F0D6D6;
+        }
+
+        /* Lane-specific card accents */
+        .flow-card.lane-chegada {
+            border-left: 3px solid var(--color-chegada);
+        }
+        .flow-card.lane-atendimento {
+            border-left: 3px solid var(--color-atendimento);
+        }
+        .flow-card.lane-pagamento {
+            border-left: 3px solid var(--color-pagamento);
+        }
+        .flow-card.lane-finalizado {
+            border-left: 3px solid var(--color-finalizado);
+            opacity: 0.75;
+        }
+
+        /* ============================================================
+           CAPACITY WIDGET
+           ============================================================ */
+        .capacity-ring-wrap {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: var(--bg-surface);
+            border-radius: var(--radius-bento);
+            padding: 16px 20px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 16px;
+        }
+        .capacity-ring {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            flex-shrink: 0;
+        }
+        .capacity-ring svg {
+            transform: rotate(-90deg);
+        }
+        .capacity-ring .ring-bg {
+            fill: none;
+            stroke: var(--border-light);
+            stroke-width: 7;
+        }
+        .capacity-ring .ring-fg {
+            fill: none;
+            stroke: var(--color-chegada);
+            stroke-width: 7;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.6s ease, stroke 0.4s ease;
+        }
+        .capacity-ring .ring-center {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .capacity-ring .ring-center .sub {
+            font-size: 0.5rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-left: 2px;
+        }
+        .capacity-info {
+            flex: 1;
+        }
+        .capacity-info .cap-title {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+        .capacity-info .cap-status {
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-top: 1px;
+        }
+        .capacity-info .cap-detail {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           AGENDA VIEW (Lista)
+           ============================================================ */
+        .agenda-day {
+            background: var(--bg-surface);
+            border-radius: var(--radius-bento);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            padding: 12px 14px;
+            margin-bottom: 10px;
+        }
+        .agenda-day .day-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 8px;
+        }
+        .agenda-day .day-header .day-name {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .agenda-day .day-header .day-date {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .agenda-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .agenda-item:last-child {
+            border-bottom: none;
+        }
+        .agenda-item .agenda-time {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            min-width: 44px;
+        }
+        .agenda-item .agenda-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .agenda-item .agenda-info .agenda-client {
+            font-weight: 500;
+            font-size: 0.8125rem;
+        }
+        .agenda-item .agenda-info .agenda-service {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+        .agenda-item .agenda-status {
+            font-size: 0.5625rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 1px 8px;
+            border-radius: 20px;
+            background: var(--bg-body);
+            color: var(--text-muted);
+            letter-spacing: 0.03em;
+        }
+        .agenda-item .agenda-status.arrived {
+            background: var(--color-chegada-bg);
+            color: var(--color-chegada-text);
+        }
+        .agenda-item .agenda-status.in-service {
+            background: var(--color-atendimento-bg);
+            color: var(--color-atendimento-text);
+        }
+        .agenda-item .agenda-status.payment {
+            background: var(--color-pagamento-bg);
+            color: var(--color-pagamento-text);
+        }
+        .agenda-item .agenda-status.done {
+            background: var(--color-finalizado-bg);
+            color: var(--color-finalizado-text);
+        }
+
+        /* ============================================================
+           FORM (Novo Atendimento)
+           ============================================================ */
+        .form-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-bento);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            padding: 16px 18px;
+        }
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 3px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            font-family: var(--font);
+            font-size: 0.875rem;
+            background: var(--bg-surface);
+            border: 1.5px solid var(--border-light);
+            border-radius: var(--radius-input);
+            color: var(--text-primary);
+            transition: var(--transition);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--color-chegada);
+            box-shadow: 0 0 0 3px rgba(125, 184, 154, 0.20);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 48px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            font-family: var(--font);
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-btn);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn-primary {
+            background: var(--color-chegada);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(125, 184, 154, 0.30);
+        }
+        .btn-primary:active {
+            box-shadow: 0 2px 6px rgba(125, 184, 154, 0.20);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1.5px solid var(--border-light);
+        }
+        .btn-success {
+            background: #5A7E6D;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(90, 126, 109, 0.25);
+        }
+
+        /* ============================================================
+           SETTINGS
+           ============================================================ */
+        .setting-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+        .setting-item .left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .setting-item .left .icon {
+            font-size: 1.125rem;
+            width: 28px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .setting-item .left .info .title {
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        .setting-item .left .info .desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+        .setting-item .right {
+            color: var(--text-muted);
+            font-size: 0.8125rem;
+        }
+
+        .service-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--bg-body);
+            padding: 2px 10px 2px 8px;
+            border-radius: 30px;
+            font-size: 0.6875rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin: 2px 4px 2px 0;
+            border: 1px solid var(--border-light);
+        }
+
+        /* ============================================================
+           TOAST
+           ============================================================ */
+        .toast-container {
+            position: fixed;
+            top: calc(var(--header-height) + 12px);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            pointer-events: none;
+            max-width: 400px;
+            width: 90%;
+        }
+        .toast {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            padding: 12px 18px;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+            animation: toastIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+            margin-bottom: 6px;
+        }
+        .toast.success {
+            border-left: 4px solid var(--color-chegada);
+        }
+        .toast.error {
+            border-left: 4px solid #D46A6A;
+        }
+        .toast.info {
+            border-left: 4px solid var(--color-pagamento);
+        }
+        .toast .toast-icon {
+            font-size: 1.125rem;
+        }
+        .toast .toast-msg {
+            flex: 1;
+            font-weight: 500;
+            font-size: 0.8125rem;
+        }
+        @keyframes toastIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-16px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .toast.removing {
+            animation: toastOut 0.3s ease both;
+        }
+        @keyframes toastOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-12px) scale(0.94);
+            }
+        }
+
+        /* ============================================================
+           ONBOARDING
+           ============================================================ */
+        .onboarding-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(45, 58, 53, 0.55);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            animation: fadeIn 0.4s ease;
+        }
+        .onboarding-overlay.hidden {
+            display: none;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .onboarding-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-bento);
+            padding: 32px 24px 28px;
+            max-width: 380px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .onboarding-card .emoji-big {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+        }
+        .onboarding-card h2 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .onboarding-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 2px;
+        }
+        .onboarding-card .dots {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin: 14px 0 18px;
+        }
+        .onboarding-card .dots .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-light);
+            transition: var(--transition);
+        }
+        .onboarding-card .dots .dot.active {
+            background: var(--color-chegada);
+            width: 24px;
+            border-radius: 20px;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (min-width: 600px) {
+            .flow-board {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 12px;
+            }
+            .flow-board .lane {
+                min-height: 200px;
+            }
+            .page {
+                padding: 16px 20px 20px;
+            }
+            .container {
+                max-width: 720px;
+                margin: 0 auto;
+            }
+            .app-header {
+                padding: 0 24px;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .container {
+                max-width: 960px;
+            }
+            .flow-board {
+                gap: 16px;
+            }
+            .page {
+                padding: 20px 32px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .flow-board {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .flow-board .lane {
+                padding: 8px 6px 6px;
+                min-height: 120px;
+            }
+            .flow-card {
+                padding: 8px 10px;
+            }
+            .flow-card .card-client {
+                font-size: 0.8125rem;
+            }
+            .capacity-ring-wrap {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+            }
+            .capacity-ring {
+                width: 60px;
+                height: 60px;
+            }
+            .capacity-ring .ring-center {
+                font-size: 0.9375rem;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .app-header .mode-toggle button {
+                font-size: 0.625rem;
+                padding: 3px 10px;
+            }
+            .app-header .logo-text {
+                font-size: 0.9375rem;
+            }
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-12 {
+            margin-bottom: 12px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-muted {
+            color: var(--text-muted);
+        }
+        .w-full {
+            width: 100%;
+        }
+
+        /* Empty state for lanes */
+        .lane-empty-state {
+            text-align: center;
+            padding: 20px 8px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+        .lane-empty-state .icon {
+            font-size: 1.5rem;
+            opacity: 0.4;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ============================================================
+           SERVICE WORKER REGISTRATION
+           ============================================================ */
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    ONBOARDING
+    ============================================================ -->
+    <div class="onboarding-overlay" id="onboardingOverlay">
+        <div class="onboarding-card" id="onboardingCard">
+            <div class="emoji-big" id="obEmoji">🚀</div>
+            <h2 id="obTitle">Fluxo organizado</h2>
+            <p id="obDesc">Salon Flow transforma o atendimento do seu salão em uma linha de produção suave.</p>
+            <div class="dots" id="obDots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="btn btn-primary" id="obBtn">Começar</button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    TOAST
+    ============================================================ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="app-header">
+        <div class="logo">
+            <span class="logo-icon">💈</span>
+            <span class="logo-text">Salon <span>Flow</span></span>
+        </div>
+        <div class="mode-toggle" id="modeToggle">
+            <button class="active" data-mode="flow">Fluxo</button>
+            <button data-mode="agenda">Agenda</button>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <main>
+
+        <!-- ========== FLUXO ========== -->
+        <section class="page active" id="pageFlow">
+            <div class="container">
+                <!-- Capacity Ring -->
+                <div class="capacity-ring-wrap" id="capacityWidget">
+                    <div class="capacity-ring">
+                        <svg width="72" height="72" viewBox="0 0 72 72">
+                            <circle class="ring-bg" cx="36" cy="36" r="28" />
+                            <circle class="ring-fg" id="capacityRing" cx="36" cy="36" r="28"
+                            stroke-dasharray="175.93" stroke-dashoffset="0" />
+                        </svg>
+                        <div class="ring-center">
+                            <span id="capPercent">0</span><span class="sub">%</span>
+                        </div>
+                    </div>
+                    <div class="capacity-info">
+                        <div class="cap-title">Ocupação do salão</div>
+                        <div class="cap-status" id="capStatus">Tranquilo</div>
+                        <div class="cap-detail" id="capDetail">0 em atendimento · 0 aguardando</div>
+                    </div>
+                </div>
+
+                <!-- Flow Board -->
+                <div class="flow-board" id="flowBoard">
+                    <!-- Lanes rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== AGENDA ========== -->
+        <section class="page" id="pageAgenda">
+            <div class="container">
+                <div class="flex-between mb-12">
+                    <span class="label-text">Agenda do dia</span>
+                    <span class="caption-text" id="agendaDate">--</span>
+                </div>
+                <div id="agendaList">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CAPACIDADE (detalhada) ========== -->
+        <section class="page" id="pageCapacidade">
+            <div class="container">
+                <h2 class="heading-2 mb-12">📊 Capacidade & Produtividade</h2>
+                <div class="card" style="background:var(--bg-surface);border-radius:var(--radius-bento);padding:16px;border:1px solid var(--border-light);">
+                    <div class="flex-between">
+                        <span class="label-text">Atendimentos hoje</span>
+                        <span class="heading-2" id="capTotalToday">0</span>
+                    </div>
+                    <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;">
+                        <div style="background:var(--color-chegada-bg);padding:10px;border-radius:var(--radius-card);text-align:center;">
+                            <div style="font-size:1.25rem;font-weight:700;color:var(--color-chegada-text);" id="capArrived">0</div>
+                            <div style="font-size:0.625rem;color:var(--text-muted);text-transform:uppercase;">Chegada</div>
+                        </div>
+                        <div style="background:var(--color-atendimento-bg);padding:10px;border-radius:var(--radius-card);text-align:center;">
+                            <div style="font-size:1.25rem;font-weight:700;color:var(--color-atendimento-text);" id="capInService">0</div>
+                            <div style="font-size:0.625rem;color:var(--text-muted);text-transform:uppercase;">Atendimento</div>
+                        </div>
+                        <div style="background:var(--color-pagamento-bg);padding:10px;border-radius:var(--radius-card);text-align:center;">
+                            <div style="font-size:1.25rem;font-weight:700;color:var(--color-pagamento-text);" id="capPayment">0</div>
+                            <div style="font-size:0.625rem;color:var(--text-muted);text-transform:uppercase;">Pagamento</div>
+                        </div>
+                    </div>
+                    <div style="margin-top:12px;background:var(--color-finalizado-bg);padding:10px;border-radius:var(--radius-card);text-align:center;">
+                        <div style="font-size:1.25rem;font-weight:700;color:var(--color-finalizado-text);" id="capDone">0</div>
+                        <div style="font-size:0.625rem;color:var(--text-muted);text-transform:uppercase;">Finalizados</div>
+                    </div>
+                </div>
+
+                <div class="card" style="background:var(--bg-surface);border-radius:var(--radius-bento);padding:16px;border:1px solid var(--border-light);margin-top:12px;">
+                    <span class="label-text">⏱️ Tempo médio por serviço</span>
+                    <div id="avgTimeList" style="margin-top:8px;">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CONFIG ========== -->
+        <section class="page" id="pageConfig">
+            <div class="container">
+                <h2 class="heading-2 mb-12">⚙️ Configurações</h2>
+
+                <div class="card" style="background:var(--bg-surface);border-radius:var(--radius-bento);padding:16px;border:1px solid var(--border-light);">
+                    <div class="setting-item">
+                        <div class="left">
+                            <span class="icon">🏷️</span>
+                            <div class="info">
+                                <div class="title">Nome do Salão</div>
+                                <div class="desc" id="salonNameDisplay">Salon Flow</div>
+                            </div>
+                        </div>
+                        <div class="right">✎</div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="left">
+                            <span class="icon">👤</span>
+                            <div class="info">
+                                <div class="title">Profissionais</div>
+                                <div class="desc" id="profListDisplay">Ana, Carlos, Beatriz</div>
+                            </div>
+                        </div>
+                        <div class="right">✎</div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="left">
+                            <span class="icon">✂️</span>
+                            <div class="info">
+                                <div class="title">Serviços</div>
+                                <div class="desc" id="serviceListDisplay">Corte, Manicure, Depilação</div>
+                            </div>
+                        </div>
+                        <div class="right">✎</div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="left">
+                            <span class="icon">⏱️</span>
+                            <div class="info">
+                                <div class="title">Tempo padrão (min)</div>
+                                <div class="desc" id="timeDefaultsDisplay">Corte: 45 · Manicure: 30</div>
+                            </div>
+                        </div>
+                        <div class="right">✎</div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="left">
+                            <span class="icon">📱</span>
+                            <div class="info">
+                                <div class="title">Versão</div>
+                                <div class="desc">PWA 1.0.0</div>
+                            </div>
+                        </div>
+                        <div class="right">✓</div>
+                    </div>
+                    <div class="setting-item" style="border-bottom:none;padding-top:16px;">
+                        <button class="btn btn-secondary" style="width:auto;padding:6px 20px;font-size:0.75rem;" id="resetDataBtn">↻ Resetar dados</button>
+                        <button class="btn btn-primary" style="width:auto;padding:6px 20px;font-size:0.75rem;" id="addSampleBtn">➕ Add exemplo</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+    BOTTOM NAVIGATION
+    ============================================================ -->
+    <nav class="bottom-nav" id="bottomNav">
+        <button class="nav-item active" data-page="pageFlow" data-label="Fluxo">
+            <span class="icon">📋</span>
+            <span class="label">Fluxo</span>
+        </button>
+        <button class="nav-item" data-page="pageAgenda" data-label="Agenda">
+            <span class="icon">📅</span>
+            <span class="label">Agenda</span>
+            <span class="badge-nav" id="agendaBadge">0</span>
+        </button>
+        <button class="nav-item" data-page="pageCapacidade" data-label="Capacidade">
+            <span class="icon">📊</span>
+            <span class="label">Capacidade</span>
+        </button>
+        <button class="nav-item" data-page="pageConfig" data-label="Config">
+            <span class="icon">⚙️</span>
+            <span class="label">Config</span>
+        </button>
+    </nav>
+
+    <!-- ============================================================
+    MODAL (Novo Atendimento)
+    ============================================================ -->
+    <div class="onboarding-overlay hidden" id="modalNovoAtendimento" style="z-index:150;background:rgba(45,58,53,0.50);">
+        <div class="onboarding-card" style="max-width:440px;text-align:left;padding:24px 20px;">
+            <div class="flex-between mb-12">
+                <h2 class="heading-2">➕ Novo Atendimento</h2>
+                <button style="background:none;border:none;font-size:1.25rem;cursor:pointer;color:var(--text-muted);" id="modalCloseBtn">✕</button>
+            </div>
+            <form id="formNovoAtendimento">
+                <div class="form-group">
+                    <label for="formCliente">Cliente *</label>
+                    <input type="text" id="formCliente" placeholder="Nome do cliente" required />
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="formServico">Serviço *</label>
+                        <select id="formServico" required></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="formProfissional">Profissional *</label>
+                        <select id="formProfissional" required></select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="formStatus">Status inicial</label>
+                    <select id="formStatus">
+                        <option value="chegada">Chegada</option>
+                        <option value="atendimento">Em atendimento</option>
+                        <option value="pagamento">Aguardando pagamento</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="formObs">Observações</label>
+                    <textarea id="formObs" placeholder="Alguma observação…"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">💾 Criar atendimento</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // DATA STORE
+            // ============================================================
+            const DEFAULT_DATA = {
+                appointments: [{
+                    id: 'a1',
+                    client: 'Ana Silva',
+                    service: 's1',
+                    professional: 'p1',
+                    status: 'atendimento',
+                    startTime: new Date(Date.now() - 25 * 60000).toISOString(),
+                    notes: 'Cliente regular',
+                    createdAt: new Date(Date.now() - 25 * 60000).toISOString()
+                }, {
+                    id: 'a2',
+                    client: 'Carlos Souza',
+                    service: 's2',
+                    professional: 'p2',
+                    status: 'chegada',
+                    startTime: new Date(Date.now() - 5 * 60000).toISOString(),
+                    notes: 'Primeira vez',
+                    createdAt: new Date(Date.now() - 5 * 60000).toISOString()
+                }, {
+                    id: 'a3',
+                    client: 'Mariana Costa',
+                    service: 's3',
+                    professional: 'p1',
+                    status: 'pagamento',
+                    startTime: new Date(Date.now() - 50 * 60000).toISOString(),
+                    notes: '',
+                    createdAt: new Date(Date.now() - 50 * 60000).toISOString()
+                }, {
+                    id: 'a4',
+                    client: 'Paulo Mendes',
+                    service: 's4',
+                    professional: 'p3',
+                    status: 'finalizado',
+                    startTime: new Date(Date.now() - 80 * 60000).toISOString(),
+                    notes: 'Cliente satisfeito',
+                    createdAt: new Date(Date.now() - 80 * 60000).toISOString()
+                }, {
+                    id: 'a5',
+                    client: 'Juliana Rocha',
+                    service: 's5',
+                    professional: 'p2',
+                    status: 'chegada',
+                    startTime: new Date(Date.now() - 2 * 60000).toISOString(),
+                    notes: '',
+                    createdAt: new Date(Date.now() - 2 * 60000).toISOString()
+                }, {
+                    id: 'a6',
+                    client: 'Fernanda Lima',
+                    service: 's1',
+                    professional: 'p3',
+                    status: 'atendimento',
+                    startTime: new Date(Date.now() - 40 * 60000).toISOString(),
+                    notes: 'Corte e escova',
+                    createdAt: new Date(Date.now() - 40 * 60000).toISOString()
+                }],
+                clients: [
+                    { id: 'c1', name: 'Ana Silva', phone: '(11) 91234-5678' },
+                    { id: 'c2', name: 'Carlos Souza', phone: '(11) 92345-6789' },
+                    { id: 'c3', name: 'Mariana Costa', phone: '(11) 93456-7890' },
+                    { id: 'c4', name: 'Paulo Mendes', phone: '(11) 94567-8901' },
+                    { id: 'c5', name: 'Juliana Rocha', phone: '(11) 95678-9012' },
+                    { id: 'c6', name: 'Fernanda Lima', phone: '(11) 96789-0123' },
+                ],
+                services: [
+                    { id: 's1', name: 'Corte', duration: 45 },
+                    { id: 's2', name: 'Corte e Escova', duration: 60 },
+                    { id: 's3', name: 'Manicure', duration: 30 },
+                    { id: 's4', name: 'Depilação', duration: 30 },
+                    { id: 's5', name: 'Barba', duration: 25 },
+                    { id: 's6', name: 'Maquiagem', duration: 50 },
+                ],
+                professionals: [
+                    { id: 'p1', name: 'Ana', color: '#7DB89A' },
+                    { id: 'p2', name: 'Carlos', color: '#F5D98F' },
+                    { id: 'p3', name: 'Beatriz', color: '#8CB4D4' },
+                ],
+                salonName: 'Salon Flow',
+                _idCounter: 20
+            };
+
+            let store = loadData();
+
+            function loadData() {
+                try {
+                    const raw = localStorage.getItem('salonFlowData');
+                    if (raw) {
+                        const parsed = JSON.parse(raw);
+                        for (const key in DEFAULT_DATA) {
+                            if (!(key in parsed)) parsed[key] = DEFAULT_DATA[key];
+                        }
+                        return parsed;
+                    }
+                } catch (_) {}
+                return JSON.parse(JSON.stringify(DEFAULT_DATA));
+            }
+
+            function saveData() {
+                try {
+                    localStorage.setItem('salonFlowData', JSON.stringify(store));
+                } catch (_) {}
+            }
+
+            function resetData() {
+                store = JSON.parse(JSON.stringify(DEFAULT_DATA));
+                saveData();
+                renderAll();
+                showToast('Dados redefinidos com exemplos', 'success');
+            }
+
+            function generateId() {
+                return 'id_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6);
+            }
+
+            function getToday() {
+                return new Date().toISOString().slice(0, 10);
+            }
+
+            function getStatusLabel(status) {
+                const map = {
+                    chegada: 'Chegada',
+                    atendimento: 'Atendimento',
+                    pagamento: 'Pagamento',
+                    finalizado: 'Finalizado'
+                };
+                return map[status] || status;
+            }
+
+            function getStatusColor(status) {
+                const map = {
+                    chegada: 'var(--color-chegada)',
+                    atendimento: 'var(--color-atendimento)',
+                    pagamento: 'var(--color-pagamento)',
+                    finalizado: 'var(--color-finalizado)'
+                };
+                return map[status] || 'var(--text-muted)';
+            }
+
+            function getStatusBg(status) {
+                const map = {
+                    chegada: 'var(--color-chegada-bg)',
+                    atendimento: 'var(--color-atendimento-bg)',
+                    pagamento: 'var(--color-pagamento-bg)',
+                    finalizado: 'var(--color-finalizado-bg)'
+                };
+                return map[status] || 'var(--bg-body)';
+            }
+
+            function getStatusText(status) {
+                const map = {
+                    chegada: 'var(--color-chegada-text)',
+                    atendimento: 'var(--color-atendimento-text)',
+                    pagamento: 'var(--color-pagamento-text)',
+                    finalizado: 'var(--color-finalizado-text)'
+                };
+                return map[status] || 'var(--text-muted)';
+            }
+
+            function getServiceName(id) {
+                const s = store.services.find(s => s.id === id);
+                return s ? s.name : id;
+            }
+
+            function getServiceDuration(id) {
+                const s = store.services.find(s => s.id === id);
+                return s ? s.duration : 30;
+            }
+
+            function getProfessionalName(id) {
+                const p = store.professionals.find(p => p.id === id);
+                return p ? p.name : id;
+            }
+
+            function getProfessionalColor(id) {
+                const p = store.professionals.find(p => p.id === id);
+                return p ? p.color : 'var(--text-muted)';
+            }
+
+            function getAppointmentsByStatus(status) {
+                return store.appointments.filter(a => a.status === status);
+            }
+
+            function getActiveAppointments() {
+                return store.appointments.filter(a => a.status !== 'finalizado');
+            }
+
+            function getTodayAppointments() {
+                const today = getToday();
+                return store.appointments.filter(a => a.createdAt.startsWith(today) || a.startTime.startsWith(today));
+            }
+
+            function getElapsedMinutes(startTime) {
+                const start = new Date(startTime);
+                const now = new Date();
+                return Math.floor((now - start) / 60000);
+            }
+
+            function getTimeStatus(startTime, serviceId) {
+                const elapsed = getElapsedMinutes(startTime);
+                const duration = getServiceDuration(serviceId);
+                if (elapsed < duration * 0.8) return 'green';
+                if (elapsed < duration * 1.2) return 'yellow';
+                return 'red';
+            }
+
+            // ============================================================
+            // CRUD
+            // ============================================================
+            function createAppointment(data) {
+                const now = new Date().toISOString();
+                const app = {
+                    id: generateId(),
+                    client: data.client.trim(),
+                    service: data.service,
+                    professional: data.professional,
+                    status: data.status || 'chegada',
+                    startTime: now,
+                    notes: data.notes || '',
+                    createdAt: now
+                };
+                store.appointments.push(app);
+                // Add to clients if new
+                if (!store.clients.some(c => c.name.toLowerCase() === app.client.toLowerCase())) {
+                    store.clients.push({ id: generateId(), name: app.client, phone: '' });
+                }
+                saveData();
+                renderAll();
+                showToast(`✅ ${app.client} adicionado(a) ao fluxo`, 'success');
+                return app;
+            }
+
+            function updateAppointmentStatus(id, newStatus) {
+                const app = store.appointments.find(a => a.id === id);
+                if (!app) return;
+                const oldStatus = app.status;
+                app.status = newStatus;
+                // If moving to atendimento, update startTime
+                if (newStatus === 'atendimento' && oldStatus !== 'atendimento') {
+                    app.startTime = new Date().toISOString();
+                }
+                saveData();
+                renderAll();
+                const label = getStatusLabel(newStatus);
+                showToast(`↳ ${app.client} → ${label}`, 'info');
+            }
+
+            function deleteAppointment(id) {
+                store.appointments = store.appointments.filter(a => a.id !== id);
+                saveData();
+                renderAll();
+                showToast('🗑️ Atendimento removido', 'info');
+            }
+
+            // ============================================================
+            // RENDER FUNCTIONS
+            // ============================================================
+            function renderFlowBoard() {
+                const board = document.getElementById('flowBoard');
+                const lanes = [
+                    { key: 'chegada', label: '🚪 Chegada', icon: '🚪' },
+                    { key: 'atendimento', label: '✂️ Em atendimento', icon: '✂️' },
+                    { key: 'pagamento', label: '💳 Pagamento', icon: '💳' },
+                    { key: 'finalizado', label: '✅ Finalizado', icon: '✅' }
+                ];
+
+                board.innerHTML = lanes.map(lane => {
+                    const apps = store.appointments.filter(a => a.status === lane.key);
+                    const count = apps.length;
+                    return `
+                        <div class="lane" data-lane="${lane.key}">
+                            <div class="lane-header">
+                                <div class="lane-title">${lane.icon} ${lane.label}</div>
+                                <div class="lane-count">${count}</div>
+                            </div>
+                            <div class="lane-body">
+                                ${count === 0 ? `
+                                    <div class="lane-empty-state">
+                                        <span class="icon">📭</span>
+                                        <span>Vazio</span>
+                                    </div>
+                                ` : apps.map(app => renderCard(app, lane.key)).join('')}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Update capacity widget
+                updateCapacity();
+            }
+
+            function renderCard(app, laneKey) {
+                const serviceName = getServiceName(app.service);
+                const profName = getProfessionalName(app.professional);
+                const profColor = getProfessionalColor(app.professional);
+                const elapsed = getElapsedMinutes(app.startTime);
+                const timeStatus = app.status === 'atendimento' || app.status === 'chegada' ?
+                    getTimeStatus(app.startTime, app.service) :
+                    'green';
+
+                const timeLabel = app.status === 'atendimento' || app.status === 'chegada' ?
+                    `${elapsed}min` :
+                    '—';
+
+                // Actions based on status
+                let actions = '';
+                const statusOrder = ['chegada', 'atendimento', 'pagamento', 'finalizado'];
+                const currentIdx = statusOrder.indexOf(laneKey);
+                const nextStatus = currentIdx < statusOrder.length - 1 ? statusOrder[currentIdx + 1] : null;
+                const prevStatus = currentIdx > 0 ? statusOrder[currentIdx - 1] : null;
+
+                if (laneKey !== 'finalizado') {
+                    actions += `
+                        <button class="primary-action" data-action="move" data-id="${app.id}" data-status="${nextStatus}">
+                            ➜ ${getStatusLabel(nextStatus)}
+                        </button>
+                    `;
+                }
+                if (laneKey === 'chegada' || laneKey === 'atendimento') {
+                    actions += `
+                        <button class="primary-action" data-action="move" data-id="${app.id}" data-status="atendimento" style="background:var(--color-atendimento);border-color:var(--color-atendimento);">
+                            ✂️ Atender
+                        </button>
+                    `;
+                }
+                if (laneKey === 'pagamento') {
+                    actions += `
+                        <button class="primary-action" data-action="move" data-id="${app.id}" data-status="finalizado" style="background:var(--color-finalizado);border-color:var(--color-finalizado);">
+                            ✅ Finalizar
+                        </button>
+                    `;
+                }
+                actions += `
+                    <button class="danger-action" data-action="delete" data-id="${app.id}">✕</button>
+                `;
+
+                const dotClass = timeStatus === 'green' ? 'green' : timeStatus === 'yellow' ? 'yellow' : 'red';
+
+                return `
+                    <div class="flow-card lane-${laneKey}" data-id="${app.id}">
+                        <div class="card-top">
+                            <div class="card-client">${app.client}</div>
+                            <div class="card-time">
+                                <span class="timer-dot ${dotClass}"></span>
+                                ${timeLabel}
+                            </div>
+                        </div>
+                        <div class="card-details">
+                            <span class="card-service">${serviceName}</span>
+                            <span class="card-professional" style="background:${profColor}20;color:${profColor}">
+                                ● ${profName}
+                            </span>
+                        </div>
+                        ${app.notes ? `<div style="font-size:0.625rem;color:var(--text-muted);margin-top:2px;">📝 ${app.notes}</div>` : ''}
+                        <div class="card-actions">
+                            ${actions}
+                        </div>
+                    </div>
+                `;
+            }
+
+            function updateCapacity() {
+                const active = getActiveAppointments();
+                const total = store.appointments.length;
+                const inService = getAppointmentsByStatus('atendimento').length;
+                const arrived = getAppointmentsByStatus('chegada').length;
+                const payment = getAppointmentsByStatus('pagamento').length;
+                const done = getAppointmentsByStatus('finalizado').length;
+
+                const maxCapacity = 6;
+                const percent = Math.min(Math.round((inService / maxCapacity) * 100), 100);
+
+                // Ring
+                const ring = document.getElementById('capacityRing');
+                const circumference = 175.93;
+                const offset = circumference - (percent / 100) * circumference;
+                ring.style.strokeDashoffset = offset;
+
+                // Color based on load
+                if (percent < 40) {
+                    ring.style.stroke = 'var(--color-chegada)';
+                } else if (percent < 70) {
+                    ring.style.stroke = 'var(--color-atendimento)';
+                } else {
+                    ring.style.stroke = '#D46A6A';
+                }
+
+                document.getElementById('capPercent').textContent = percent;
+
+                let statusText = 'Tranquilo';
+                if (percent >= 80) statusText = '⚠️ Cheio';
+                else if (percent >= 50) statusText = '🟡 Movimentado';
+                document.getElementById('capStatus').textContent = statusText;
+
+                document.getElementById('capDetail').textContent =
+                    `${inService} em atendimento · ${arrived} aguardando · ${payment} em pagamento`;
+
+                // Badge
+                document.getElementById('agendaBadge').textContent = total;
+
+                // Capacity page
+                document.getElementById('capTotalToday').textContent = total;
+                document.getElementById('capArrived').textContent = arrived;
+                document.getElementById('capInService').textContent = inService;
+                document.getElementById('capPayment').textContent = payment;
+                document.getElementById('capDone').textContent = done;
+
+                // Avg times
+                const avgContainer = document.getElementById('avgTimeList');
+                const serviceStats = {};
+                store.appointments.forEach(a => {
+                    if (a.status === 'finalizado') {
+                        const key = a.service;
+                        if (!serviceStats[key]) serviceStats[key] = { total: 0, count: 0 };
+                        const elapsed = getElapsedMinutes(a.startTime);
+                        serviceStats[key].total += elapsed;
+                        serviceStats[key].count += 1;
+                    }
+                });
+                const entries = Object.entries(serviceStats);
+                if (entries.length === 0) {
+                    avgContainer.innerHTML =
+                        `<div class="text-muted" style="font-size:0.75rem;padding:8px 0;">Nenhum atendimento finalizado ainda.</div>`;
+                } else {
+                    avgContainer.innerHTML = entries.map(([serviceId, stats]) => {
+                        const avg = Math.round(stats.total / stats.count);
+                        const name = getServiceName(serviceId);
+                        return `
+                            <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border-light);font-size:0.8125rem;">
+                                <span>${name}</span>
+                                <span style="font-weight:600;">${avg} min</span>
+                            </div>
+                        `;
+                    }).join('');
+                }
+            }
+
+            function renderAgenda() {
+                const today = getToday();
+                const dateObj = new Date();
+                document.getElementById('agendaDate').textContent =
+                    dateObj.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' });
+
+                const todayApps = store.appointments.filter(a => a.createdAt.startsWith(today) || a.startTime.startsWith(
+                today));
+                const sorted = todayApps.sort((a, b) => a.startTime.localeCompare(b.startTime));
+
+                const container = document.getElementById('agendaList');
+                if (sorted.length === 0) {
+                    container.innerHTML = `
+                        <div class="empty-state" style="text-align:center;padding:40px 0;color:var(--text-muted);">
+                            <div style="font-size:2.5rem;opacity:0.3;">📭</div>
+                            <h4 style="margin-top:8px;">Nenhum atendimento hoje</h4>
+                            <p class="caption-text">Os atendimentos aparecerão aqui quando forem criados.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = sorted.map(app => {
+                    const serviceName = getServiceName(app.service);
+                    const profName = getProfessionalName(app.professional);
+                    const time = new Date(app.startTime).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                    const statusClass = app.status;
+                    const statusLabel = getStatusLabel(app.status);
+                    return `
+                        <div class="agenda-day" style="padding:10px 12px;">
+                            <div class="agenda-item">
+                                <div class="agenda-time">${time}</div>
+                                <div class="agenda-info">
+                                    <div class="agenda-client">${app.client}</div>
+                                    <div class="agenda-service">${serviceName} · ${profName}</div>
+                                </div>
+                                <div class="agenda-status ${statusClass}">${statusLabel}</div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            function renderSettings() {
+                document.getElementById('salonNameDisplay').textContent = store.salonName;
+                document.getElementById('profListDisplay').textContent = store.professionals.map(p => p.name).join(', ');
+                document.getElementById('serviceListDisplay').textContent = store.services.map(s => s.name).join(', ');
+                document.getElementById('timeDefaultsDisplay').textContent =
+                    store.services.map(s => `${s.name}: ${s.duration}min`).join(' · ');
+            }
+
+            function renderFormSelects() {
+                const serviceSel = document.getElementById('formServico');
+                serviceSel.innerHTML = store.services.map(s =>
+                    `<option value="${s.id}">${s.name} (${s.duration}min)</option>`
+                ).join('');
+
+                const profSel = document.getElementById('formProfissional');
+                profSel.innerHTML = store.professionals.map(p =>
+                    `<option value="${p.id}">${p.name}</option>`
+                ).join('');
+            }
+
+            function renderAll() {
+                renderFlowBoard();
+                renderAgenda();
+                renderSettings();
+                renderFormSelects();
+                // Re-bind card actions
+                bindCardActions();
+            }
+
+            // ============================================================
+            // CARD ACTIONS (event delegation)
+            // ============================================================
+            function bindCardActions() {
+                document.querySelectorAll('.flow-card .card-actions button').forEach(btn => {
+                    btn.removeEventListener('click', handleCardAction);
+                    btn.addEventListener('click', handleCardAction);
+                });
+            }
+
+            function handleCardAction(e) {
+                e.stopPropagation();
+                const btn = e.currentTarget;
+                const action = btn.dataset.action;
+                const id = btn.dataset.id;
+                const status = btn.dataset.status;
+
+                if (action === 'move' && status) {
+                    updateAppointmentStatus(id, status);
+                } else if (action === 'delete') {
+                    if (confirm('Remover este atendimento do fluxo?')) {
+                        deleteAppointment(id);
+                    }
+                }
+            }
+
+            // ============================================================
+            // NAVIGATION
+            // ============================================================
+            function navigateTo(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                const target = document.getElementById(pageId);
+                if (target) target.classList.add('active');
+
+                document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.page === pageId);
+                });
+
+                // Refresh content
+                if (pageId === 'pageFlow') renderFlowBoard();
+                if (pageId === 'pageAgenda') renderAgenda();
+                if (pageId === 'pageCapacidade') updateCapacity();
+                if (pageId === 'pageConfig') renderSettings();
+            }
+
+            // ============================================================
+            // MODAL
+            // ============================================================
+            function openModal() {
+                document.getElementById('modalNovoAtendimento').classList.remove('hidden');
+                renderFormSelects();
+                document.getElementById('formCliente').focus();
+            }
+
+            function closeModal() {
+                document.getElementById('modalNovoAtendimento').classList.add('hidden');
+            }
+
+            // ============================================================
+            // TOAST
+            // ============================================================
+            let toastTimeout = null;
+
+            function showToast(message, type = 'success') {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+                toast.innerHTML = `
+                    <span class="toast-icon">${icons[type] || 'ℹ️'}</span>
+                    <span class="toast-msg">${message}</span>
+                `;
+                container.appendChild(toast);
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.add('removing');
+                    setTimeout(() => {
+                        if (toast.parentNode) toast.parentNode.removeChild(toast);
+                    }, 300);
+                    toastTimeout = null;
+                }, 2800);
+            }
+
+            // ============================================================
+            // ONBOARDING
+            // ============================================================
+            function initOnboarding() {
+                const overlay = document.getElementById('onboardingOverlay');
+                const emoji = document.getElementById('obEmoji');
+                const title = document.getElementById('obTitle');
+                const desc = document.getElementById('obDesc');
+                const dots = document.getElementById('obDots');
+                const btn = document.getElementById('obBtn');
+
+                const steps = [{
+                    emoji: '🚀',
+                    title: 'Fluxo organizado',
+                    desc: 'Salon Flow transforma o atendimento do seu salão em uma linha de produção suave.'
+                }, {
+                    emoji: '📋',
+                    title: 'Kanban para salões',
+                    desc: 'Acompanhe cada cliente desde a chegada até a finalização com clareza total.'
+                }, {
+                    emoji: '⚡',
+                    title: 'Tempo real',
+                    desc: 'Veja a ocupação, tempos de atendimento e produtividade em um só lugar.'
+                }];
+
+                let step = 0;
+
+                function updateStep(index) {
+                    step = index;
+                    emoji.textContent = steps[step].emoji;
+                    title.textContent = steps[step].title;
+                    desc.textContent = steps[step].desc;
+                    dots.querySelectorAll('.dot').forEach((d, i) => {
+                        d.classList.toggle('active', i === step);
+                    });
+                    btn.textContent = step === steps.length - 1 ? '🚀 Começar' : 'Próximo';
+                }
+
+                btn.addEventListener('click', function() {
+                    if (step < steps.length - 1) {
+                        updateStep(step + 1);
+                    } else {
+                        overlay.classList.add('hidden');
+                        localStorage.setItem('salonFlowOnboarded', 'true');
+                    }
+                });
+
+                if (localStorage.getItem('salonFlowOnboarded') === 'true') {
+                    overlay.classList.add('hidden');
+                } else {
+                    updateStep(0);
+                }
+            }
+
+            // ============================================================
+            // MODE TOGGLE
+            // ============================================================
+            function initModeToggle() {
+                const buttons = document.querySelectorAll('#modeToggle button');
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        buttons.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+                        const mode = this.dataset.mode;
+                        if (mode === 'flow') {
+                            navigateTo('pageFlow');
+                        } else {
+                            navigateTo('pageAgenda');
+                        }
+                    });
+                });
+            }
+
+            // ============================================================
+            // EVENT BINDING
+            // ============================================================
+            function bindEvents() {
+                // Bottom nav
+                document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const pageId = this.dataset.page;
+                        if (pageId) {
+                            navigateTo(pageId);
+                            // Update mode toggle
+                            const mode = pageId === 'pageFlow' ? 'flow' : pageId === 'pageAgenda' ? 'agenda' :
+                            null;
+                            if (mode) {
+                                document.querySelectorAll('#modeToggle button').forEach(b => {
+                                    b.classList.toggle('active', b.dataset.mode === mode);
+                                });
+                            }
+                        }
+                    });
+                });
+
+                // Modal controls
+                document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+                document.querySelector('.bottom-nav .nav-item[data-page="pageFlow"] .icon')?.addEventListener('dblclick',
+                    openModal);
+
+                // Open modal from "Novo" action - we'll use a FAB style via double-tap on Flow tab
+                // Also add a hidden trigger: tap the logo twice
+                let logoClickCount = 0;
+                document.querySelector('.app-header .logo').addEventListener('click', function() {
+                    logoClickCount++;
+                    if (logoClickCount >= 2) {
+                        openModal();
+                        logoClickCount = 0;
+                    }
+                    setTimeout(() => { logoClickCount = 0; }, 500);
+                });
+
+                // Form submission
+                document.getElementById('formNovoAtendimento').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const cliente = document.getElementById('formCliente').value.trim();
+                    const service = document.getElementById('formServico').value;
+                    const professional = document.getElementById('formProfissional').value;
+                    const status = document.getElementById('formStatus').value;
+                    const notes = document.getElementById('formObs').value.trim();
+
+                    if (!cliente || !service || !professional) {
+                        showToast('Preencha cliente, serviço e profissional', 'error');
+                        return;
+                    }
+
+                    createAppointment({
+                        client: cliente,
+                        service: service,
+                        professional: professional,
+                        status: status,
+                        notes: notes
+                    });
+
+                    document.getElementById('formCliente').value = '';
+                    document.getElementById('formObs').value = '';
+                    closeModal();
+                    navigateTo('pageFlow');
+                });
+
+                // Reset data
+                document.getElementById('resetDataBtn').addEventListener('click', function() {
+                    if (confirm('Resetar todos os dados para o estado inicial?')) {
+                        resetData();
+                    }
+                });
+
+                // Add sample
+                document.getElementById('addSampleBtn').addEventListener('click', function() {
+                    const names = ['Roberto Alves', 'Tatiana Reis', 'Marcos Nunes', 'Cristina Lima'];
+                    const services = store.services;
+                    const profs = store.professionals;
+                    const statuses = ['chegada', 'atendimento', 'pagamento'];
+                    for (let i = 0; i < 2; i++) {
+                        const name = names[Math.floor(Math.random() * names.length)] + (i > 0 ? ` ${i+1}` : '');
+                        const service = services[Math.floor(Math.random() * services.length)];
+                        const prof = profs[Math.floor(Math.random() * profs.length)];
+                        const status = statuses[Math.floor(Math.random() * statuses.length)];
+                        createAppointment({
+                            client: name,
+                            service: service.id,
+                            professional: prof.id,
+                            status: status,
+                            notes: 'Exemplo automático'
+                        });
+                    }
+                    showToast('➕ 2 exemplos adicionados', 'success');
+                });
+
+                // Keyboard: Escape to close modal
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape') {
+                        closeModal();
+                        const overlay = document.getElementById('onboardingOverlay');
+                        if (!overlay.classList.contains('hidden')) {
+                            overlay.classList.add('hidden');
+                            localStorage.setItem('salonFlowOnboarded', 'true');
+                        }
+                    }
+                    if (e.key === 'n' && (e.ctrlKey || e.metaKey)) {
+                        e.preventDefault();
+                        openModal();
+                    }
+                });
+
+                // Click outside modal to close
+                document.getElementById('modalNovoAtendimento').addEventListener('click', function(e) {
+                    if (e.target === this) closeModal();
+                });
+            }
+
+            // ============================================================
+            // PWA: SERVICE WORKER
+            // ============================================================
+            function registerServiceWorker() {
+                if ('serviceWorker' in navigator) {
+                    const swCode = `
+                        self.addEventListener('install', e => {
+                            e.waitUntil(
+                                caches.open('salon-flow-v1').then(cache => {
+                                    return cache.addAll(['/', '/index.html']);
+                                })
+                            );
+                            self.skipWaiting();
+                        });
+                        self.addEventListener('activate', e => {
+                            e.waitUntil(clients.claim());
+                        });
+                        self.addEventListener('fetch', e => {
+                            e.respondWith(
+                                caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('/index.html')))
+                            );
+                        });
+                    `;
+                    try {
+                        const blob = new Blob([swCode], { type: 'application/javascript' });
+                        const swUrl = URL.createObjectURL(blob);
+                        navigator.serviceWorker.register(swUrl)
+                            .then(() => console.log('[PWA] Service Worker registrado'))
+                            .catch(() => console.log('[PWA] SW fallback'));
+                    } catch (_) {
+                        try {
+                            const minSW =
+                                'self.addEventListener("install",()=>self.skipWaiting());self.addEventListener("activate",()=>clients.claim());';
+                            const b2 = new Blob([minSW], { type: 'application/javascript' });
+                            navigator.serviceWorker.register(URL.createObjectURL(b2)).catch(() => {});
+                        } catch (_) {}
+                    }
+                }
+            }
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            function init() {
+                if (!localStorage.getItem('salonFlowData')) {
+                    saveData();
+                }
+                renderAll();
+                bindEvents();
+                initOnboarding();
+                initModeToggle();
+                registerServiceWorker();
+
+                // Auto-refresh every 30s
+                setInterval(() => {
+                    const active = document.querySelector('.page.active');
+                    if (active) {
+                        if (active.id === 'pageFlow') renderFlowBoard();
+                        if (active.id === 'pageAgenda') renderAgenda();
+                        if (active.id === 'pageCapacidade') updateCapacity();
+                    }
+                }, 30000);
+
+                console.log('💈 Salon Flow inicializado');
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+    </script>
+</body>
+</html>

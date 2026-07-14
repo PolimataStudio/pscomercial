@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smile Guide · Guia completo para seu tratamento</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1A6B8A;
+            --primary-dark: #0F4A62;
+            --primary-light: #4A9BBF;
+            --secondary: #5CB8A4;
+            --secondary-light: #D4F0E8;
+            --accent: #F2A65A;
+            --accent-light: #FCE4C8;
+            --warm-bg: #FFF8F0;
+            --white: #FFFFFF;
+            --gray-50: #F7FAFC;
+            --gray-100: #EDF2F7;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            --shadow-sm: 0 2px 12px rgba(26, 107, 138, 0.06);
+            --shadow-md: 0 8px 32px rgba(26, 107, 138, 0.10);
+            --shadow-lg: 0 20px 60px rgba(26, 107, 138, 0.12);
+            --shadow-xl: 0 30px 80px rgba(26, 107, 138, 0.16);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-full: 50px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font: 'Inter', sans-serif;
+            --max-width: 1160px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--primary);
+            background: rgba(26, 107, 138, 0.08);
+            padding: 5px 18px;
+            border-radius: var(--radius-full);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--gray-900);
+            margin-bottom: 12px;
+        }
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 580px;
+            margin-bottom: 32px;
+        }
+        .section-subtitle.centered {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        .text-center .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================================
+                   BUTTONS
+                   ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 14px 34px;
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(26, 107, 138, 0.30);
+        }
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(26, 107, 138, 0.35);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(92, 184, 164, 0.30);
+        }
+        .btn-secondary:hover {
+            background: #4AA08E;
+            box-shadow: 0 8px 32px rgba(92, 184, 164, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            box-shadow: none;
+            border: 2px solid var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--gray-900);
+            box-shadow: 0 4px 20px rgba(242, 166, 90, 0.30);
+        }
+        .btn-accent:hover {
+            background: #E8953E;
+            box-shadow: 0 8px 32px rgba(242, 166, 90, 0.35);
+        }
+
+        .btn-lg {
+            font-size: 1.05rem;
+            padding: 16px 40px;
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ============================================================
+                   NAVBAR (minimal, apenas para navegação)
+                   ============================================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(26, 107, 138, 0.06);
+            padding: 0 24px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--primary);
+            letter-spacing: -0.3px;
+        }
+        .nav-logo i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        .nav-logo span {
+            color: var(--gray-900);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+            background: rgba(26, 107, 138, 0.06);
+        }
+        .nav-links a.cta-link {
+            background: var(--primary);
+            color: var(--white);
+            padding: 8px 22px;
+        }
+        .nav-links a.cta-link:hover {
+            background: var(--primary-dark);
+            color: var(--white);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 6px;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--gray-800);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .nav-hamburger.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .nav-hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .nav-hamburger.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* ============================================================
+                   HERO
+                   ============================================================ */
+        .hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(165deg, #F0F7FA 0%, #E4F0F5 40%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(92, 184, 164, 0.10) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(242, 166, 90, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+        .hero-content h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: rgba(26, 107, 138, 0.15);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .hero-content .hero-desc {
+            font-size: 1.15rem;
+            color: var(--gray-600);
+            max-width: 500px;
+            margin-bottom: 24px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 32px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(26, 107, 138, 0.06);
+        }
+        .hero-features span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+        .hero-features span i {
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-illustration {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            box-shadow: var(--shadow-xl);
+            width: 100%;
+            max-width: 440px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            transition: var(--transition);
+        }
+        .hero-illustration:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero-illustration .step-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .hero-illustration .flow-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            background: var(--gray-50);
+            border-left: 4px solid var(--secondary);
+            transition: var(--transition);
+        }
+        .hero-illustration .flow-item:hover {
+            background: var(--secondary-light);
+            border-left-color: var(--primary);
+        }
+        .hero-illustration .flow-item .fi-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(26, 107, 138, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .hero-illustration .flow-item .fi-text {
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+        .hero-illustration .flow-item .fi-text strong {
+            color: var(--gray-900);
+        }
+        .hero-illustration .flow-item .fi-arrow {
+            margin-left: auto;
+            color: var(--gray-300);
+            font-size: 0.8rem;
+        }
+
+        /* ============================================================
+                   PROBLEMA / INTRODUÇÃO
+                   ============================================================ */
+        .problem {
+            padding: 72px 0 80px;
+            background: var(--white);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .problem-content .section-title {
+            font-size: 2.2rem;
+        }
+
+        .problem-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 16px;
+        }
+        .problem-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 14px 18px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-100);
+            transition: var(--transition);
+        }
+        .problem-list li:hover {
+            border-color: var(--secondary-light);
+            background: var(--white);
+        }
+        .problem-list li i {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .problem-list li span {
+            font-size: 0.95rem;
+            color: var(--gray-700);
+        }
+
+        .problem-image {
+            background: linear-gradient(135deg, var(--secondary-light), #E8F5F0);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            text-align: center;
+            border: 1px solid rgba(92, 184, 164, 0.15);
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .problem-image i {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 16px;
+            opacity: 0.6;
+        }
+        .problem-image h4 {
+            font-size: 1.1rem;
+            color: var(--gray-700);
+        }
+        .problem-image p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            max-width: 300px;
+        }
+
+        /* ============================================================
+                   COMO FUNCIONA (etapas)
+                   ============================================================ */
+        .how-it-works {
+            padding: 72px 0 80px;
+            background: var(--gray-50);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 12px;
+        }
+
+        .step-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 28px 22px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            position: relative;
+        }
+        .step-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-md);
+        }
+
+        .step-card .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 16px rgba(26, 107, 138, 0.20);
+        }
+        .step-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 6px;
+        }
+        .step-card p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+
+        .step-card .step-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(26, 107, 138, 0.06);
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        /* ============================================================
+                   O QUE ESPERAR DA CONSULTA
+                   ============================================================ */
+        .expect {
+            padding: 72px 0 80px;
+            background: var(--white);
+        }
+
+        .expect-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .expect-item {
+            display: flex;
+            gap: 18px;
+            align-items: flex-start;
+            padding: 20px 24px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .expect-item:hover {
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+        .expect-item .ei-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(92, 184, 164, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .expect-item h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 2px;
+        }
+        .expect-item p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+
+        /* ============================================================
+                   COMPARAÇÃO / ANTES E DEPOIS (institucional)
+                   ============================================================ */
+        .comparison {
+            padding: 72px 0 80px;
+            background: var(--gray-50);
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+        }
+
+        .comparison-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            text-align: center;
+        }
+        .comparison-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+        .comparison-card .cc-icon {
+            font-size: 2.8rem;
+            margin-bottom: 12px;
+        }
+        .comparison-card .cc-icon.positive {
+            color: var(--secondary);
+        }
+        .comparison-card .cc-icon.negative {
+            color: var(--gray-300);
+        }
+        .comparison-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 6px;
+        }
+        .comparison-card ul {
+            text-align: left;
+            margin-top: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .comparison-card ul li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+        .comparison-card ul li i {
+            font-size: 0.8rem;
+            width: 18px;
+            text-align: center;
+        }
+        .comparison-card ul li .check {
+            color: var(--secondary);
+        }
+        .comparison-card ul li .xmark {
+            color: var(--gray-400);
+        }
+
+        /* ============================================================
+                   DEPOIMENTOS
+                   ============================================================ */
+        .testimonials {
+            padding: 72px 0 80px;
+            background: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .testimonial-card:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .testimonial-card .stars {
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .testimonial-card blockquote {
+            font-size: 0.95rem;
+            color: var(--gray-700);
+            font-style: italic;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .testimonial-card .author .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--gray-600);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .testimonial-card .author .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gray-900);
+        }
+        .testimonial-card .author .role {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        /* ============================================================
+                   EQUIPE
+                   ============================================================ */
+        .team {
+            padding: 72px 0 80px;
+            background: var(--gray-50);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .team-card {
+            text-align: center;
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 24px 16px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .team-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-sm);
+        }
+        .team-card .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gray-200), var(--gray-300));
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--gray-500);
+        }
+        .team-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .team-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+        .team-card .badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            background: rgba(26, 107, 138, 0.06);
+            color: var(--primary);
+            padding: 3px 14px;
+            border-radius: var(--radius-full);
+            margin-top: 6px;
+        }
+
+        /* ============================================================
+                   FAQ
+                   ============================================================ */
+        .faq-section {
+            padding: 72px 0 80px;
+            background: var(--white);
+        }
+
+        .faq-list {
+            max-width: 780px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .faq-item {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .faq-item:hover {
+            border-color: var(--gray-300);
+        }
+        .faq-item.active {
+            border-color: var(--primary-light);
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--gray-900);
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font);
+            gap: 16px;
+            transition: var(--transition);
+        }
+        .faq-question:hover {
+            color: var(--primary);
+        }
+        .faq-question i {
+            font-size: 0.9rem;
+            color: var(--gray-400);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s ease;
+            padding: 0 24px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 24px 24px;
+        }
+        .faq-answer p {
+            color: var(--gray-600);
+            font-size: 0.92rem;
+            margin: 0;
+        }
+
+        /* ============================================================
+                   CTA FINAL
+                   ============================================================ */
+        .cta-final {
+            padding: 72px 0 80px;
+            background: linear-gradient(165deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .cta-final .container {
+            position: relative;
+            z-index: 2;
+        }
+        .cta-final h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .cta-final h2 span {
+            color: var(--accent-light);
+        }
+        .cta-final p {
+            font-size: 1.05rem;
+            opacity: 0.80;
+            max-width: 520px;
+            margin: 0 auto 32px;
+        }
+        .cta-final .cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+        .cta-final .btn {
+            background: var(--accent);
+            color: var(--gray-900);
+            box-shadow: 0 4px 24px rgba(242, 166, 90, 0.35);
+        }
+        .cta-final .btn:hover {
+            background: #E8953E;
+            box-shadow: 0 8px 40px rgba(242, 166, 90, 0.45);
+        }
+        .cta-final .btn-outline-light {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: none;
+        }
+        .cta-final .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--white);
+        }
+
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
+        .footer {
+            background: var(--gray-900);
+            color: rgba(255, 255, 255, 0.50);
+            padding: 32px 0 24px;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-brand i {
+            color: var(--accent);
+        }
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        .footer-links a {
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        .footer-copy {
+            font-size: 0.75rem;
+            width: 100%;
+            text-align: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-features {
+                justify-content: center;
+            }
+            .hero-illustration {
+                margin: 0 auto;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+                text-align: center;
+            }
+            .problem-list {
+                max-width: 500px;
+                margin: 16px auto 0;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .expect-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin: 0 auto;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 64px;
+                padding: 0 16px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 20px 24px;
+                gap: 4px;
+                transform: translateY(-120%);
+                transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                box-shadow: var(--shadow-md);
+                border-bottom: 1px solid var(--gray-200);
+            }
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            .nav-links a {
+                width: 100%;
+                padding: 10px 16px;
+                font-size: 0.95rem;
+            }
+            .nav-links a.cta-link {
+                text-align: center;
+                margin-top: 4px;
+            }
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 100px 0 60px;
+                min-height: auto;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .hero-content .hero-desc {
+                font-size: 1rem;
+            }
+            .hero-illustration {
+                padding: 24px 18px;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .cta-final h2 {
+                font-size: 1.8rem;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .hero-features {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cta-final .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            .cta-final .cta-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* ============================================================
+                   REVEAL ANIMATIONS
+                   ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(32px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.08s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.16s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.24s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.32s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Navegação principal">
+        <div class="nav-inner">
+            <a href="#hero" class="nav-logo">
+                <i class="fas fa-smile"></i>
+                Smile<span>Guide</span>
+            </a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#como-funciona">Como funciona</a>
+                <a href="#expectativas">O que esperar</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#equipe">Equipe</a>
+                <a href="#faq">FAQ</a>
+                <a href="#cta" class="cta-link">Agendar consulta</a>
+            </div>
+
+            <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <span class="section-tag"><i class="fas fa-graduation-cap"></i> Guia completo</span>
+                <h1>Entenda seu <span>tratamento</span> antes de começar</h1>
+                <p class="hero-desc">
+                    Tire todas as suas dúvidas, conheça cada etapa e sinta-se seguro para dar
+                    o próximo passo. Um guia claro e acolhedor para você tomar a melhor decisão.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#cta" class="btn btn-lg">
+                        <i class="fas fa-calendar-check"></i> Quero agendar
+                    </a>
+                    <a href="#como-funciona" class="btn btn-outline btn-lg">
+                        <i class="fas fa-arrow-right"></i> Entender o processo
+                    </a>
+                </div>
+
+                <div class="hero-features">
+                    <span><i class="fas fa-check-circle"></i> Sem pressão</span>
+                    <span><i class="fas fa-check-circle"></i> Explicação clara</span>
+                    <span><i class="fas fa-check-circle"></i> Atendimento humanizado</span>
+                    <span><i class="fas fa-check-circle"></i> +1.800 pacientes</span>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-illustration">
+                    <div class="step-flow">
+                        <div class="flow-item">
+                            <div class="fi-icon"><i class="fas fa-comment-dots"></i></div>
+                            <div class="fi-text"><strong>1. Escuta</strong> · Entendemos suas necessidades</div>
+                            <div class="fi-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="fi-icon"><i class="fas fa-stethoscope"></i></div>
+                            <div class="fi-text"><strong>2. Diagnóstico</strong> · Avaliação completa</div>
+                            <div class="fi-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="fi-icon"><i class="fas fa-teeth"></i></div>
+                            <div class="fi-text"><strong>3. Tratamento</strong> · Plano personalizado</div>
+                            <div class="fi-arrow"><i class="fas fa-chevron-right"></i></div>
+                        </div>
+                        <div class="flow-item">
+                            <div class="fi-icon"><i class="fas fa-heart"></i></div>
+                            <div class="fi-text"><strong>4. Acompanhamento</strong> · Cuidado contínuo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PROBLEMA / INTRODUÇÃO
+    ============================================================ -->
+    <section class="problem" id="problema">
+        <div class="container">
+            <div class="problem-grid">
+                <div class="problem-content reveal">
+                    <span class="section-tag"><i class="fas fa-lightbulb"></i> Por que este guia?</span>
+                    <h2 class="section-title">Saber o que esperar <span>faz toda diferença</span></h2>
+                    <p class="section-subtitle" style="margin-bottom:8px;">
+                        Muitas pessoas adiam o tratamento odontológico por medo ou insegurança.
+                        Nosso objetivo é transformar essa experiência em algo claro e acolhedor.
+                    </p>
+
+                    <ul class="problem-list">
+                        <li>
+                            <i class="fas fa-face-frown"></i>
+                            <span><strong>Insegurança:</strong> Você não sabe o que vai acontecer durante a consulta.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span><strong>Incerteza:</strong> Dúvidas sobre prazos, custos e resultados.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-hand-holding-heart"></i>
+                            <span><strong>Falta de acolhimento:</strong> Sentir que não foi ouvido ou compreendido.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="problem-image reveal reveal-delay-2">
+                    <i class="fas fa-smile-beam"></i>
+                    <h4>Transformamos dúvida em confiança</h4>
+                    <p>
+                        Com informação clara e atendimento humanizado, você se sente preparado
+                        para cada etapa da sua jornada odontológica.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    COMO FUNCIONA (etapas)
+    ============================================================ -->
+    <section class="how-it-works" id="como-funciona">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag"><i class="fas fa-route"></i> Passo a passo</span>
+                <h2 class="section-title">Como funciona o <span>atendimento</span></h2>
+                <p class="section-subtitle centered">
+                    Uma jornada simples, transparente e pensada para o seu conforto.
+                </p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card reveal reveal-delay-1">
+                    <div class="step-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <div class="step-number">1</div>
+                    <h4>Acolhimento</h4>
+                    <p>Escuta ativa e acolhedora para entender suas necessidades e preocupações.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-2">
+                    <div class="step-icon"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="step-number">2</div>
+                    <h4>Avaliação</h4>
+                    <p>Exames e diagnósticos com equipamentos modernos e precisão.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-3">
+                    <div class="step-icon"><i class="fas fa-pen-fancy"></i></div>
+                    <div class="step-number">3</div>
+                    <h4>Plano personalizado</h4>
+                    <p>Apresentamos o tratamento ideal com prazos, custos e expectativas claras.</p>
+                </div>
+                <div class="step-card reveal reveal-delay-4">
+                    <div class="step-icon"><i class="fas fa-smile-beam"></i></div>
+                    <div class="step-number">4</div>
+                    <h4>Realização &amp; acompanhamento</h4>
+                    <p>Execução com excelência e cuidado contínuo para manter seu sorriso saudável.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    O QUE ESPERAR DA CONSULTA
+    ============================================================ -->
+    <section class="expect" id="expectativas">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag"><i class="fas fa-clock"></i> O que esperar</span>
+                <h2 class="section-title">Sua consulta <span>em detalhes</span></h2>
+                <p class="section-subtitle centered">
+                    Conheça cada momento do atendimento e sinta-se preparado.
+                </p>
+            </div>
+
+            <div class="expect-grid">
+                <div class="expect-item reveal reveal-delay-1">
+                    <div class="ei-icon"><i class="fas fa-comment"></i></div>
+                    <div>
+                        <h4>Conversa inicial (15 min)</h4>
+                        <p>Vamos ouvir suas queixas, histórico e expectativas. É o momento de tirar todas as dúvidas.</p>
+                    </div>
+                </div>
+                <div class="expect-item reveal reveal-delay-2">
+                    <div class="ei-icon"><i class="fas fa-x-ray"></i></div>
+                    <div>
+                        <h4>Exames e diagnóstico (20 min)</h4>
+                        <p>Utilizamos tecnologia moderna para avaliar sua saúde bucal com precisão e conforto.</p>
+                    </div>
+                </div>
+                <div class="expect-item reveal reveal-delay-3">
+                    <div class="ei-icon"><i class="fas fa-file-medical"></i></div>
+                    <div>
+                        <h4>Plano de tratamento (15 min)</h4>
+                        <p>Apresentamos as opções de tratamento, prazos, custos e todas as informações para sua decisão.</p>
+                    </div>
+                </div>
+                <div class="expect-item reveal reveal-delay-4">
+                    <div class="ei-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div>
+                        <h4>Agendamento e início</h4>
+                        <p>Você decide o melhor momento para começar. Agendamos com flexibilidade e sem pressão.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    COMPARAÇÃO / ANTES E DEPOIS (institucional)
+    ============================================================ -->
+    <section class="comparison" id="comparacao">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag"><i class="fas fa-scale-balanced"></i> Compare</span>
+                <h2 class="section-title">Com ou sem <span>orientação</span></h2>
+                <p class="section-subtitle centered">
+                    Entender o processo faz toda a diferença na sua experiência.
+                </p>
+            </div>
+
+            <div class="comparison-grid">
+                <div class="comparison-card reveal reveal-delay-1">
+                    <div class="cc-icon negative"><i class="fas fa-face-frown"></i></div>
+                    <h4>Sem informação</h4>
+                    <ul>
+                        <li><i class="fas fa-times xmark"></i> Incerteza sobre o que esperar</li>
+                        <li><i class="fas fa-times xmark"></i> Ansiedade e medo desnecessários</li>
+                        <li><i class="fas fa-times xmark"></i> Decisão adiada ou evitada</li>
+                        <li><i class="fas fa-times xmark"></i> Experiência impessoal</li>
+                    </ul>
+                </div>
+                <div class="comparison-card reveal reveal-delay-2">
+                    <div class="cc-icon positive"><i class="fas fa-face-smile"></i></div>
+                    <h4>Com o Smile Guide</h4>
+                    <ul>
+                        <li><i class="fas fa-check check"></i> Clareza em cada etapa</li>
+                        <li><i class="fas fa-check check"></i> Confiança e tranquilidade</li>
+                        <li><i class="fas fa-check check"></i> Decisão consciente e segura</li>
+                        <li><i class="fas fa-check check"></i> Atendimento humanizado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    DEPOIMENTOS
+    ============================================================ -->
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag"><i class="fas fa-quote-right"></i> Depoimentos</span>
+                <h2 class="section-title">O que nossos <span>pacientes</span> dizem</h2>
+                <p class="section-subtitle centered">
+                    Histórias reais de quem viveu a experiência e confiou em nosso cuidado.
+                </p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“O guia me ajudou a entender tudo antes da consulta. Cheguei muito mais tranquila e sabendo exatamente o que esperar.”</blockquote>
+                    <div class="author">
+                        <div class="avatar">MC</div>
+                        <div>
+                            <div class="name">Mariana Castro</div>
+                            <div class="role">1ª consulta</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Sempre tive medo de dentista, mas o acolhimento e a explicação clara mudaram tudo. Recomendo demais!”</blockquote>
+                    <div class="author">
+                        <div class="avatar">PF</div>
+                        <div>
+                            <div class="name">Paulo Ferreira</div>
+                            <div class="role">Implante dentário</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal reveal-delay-3">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Excelente equipe! Me senti segura o tempo todo. O plano de tratamento foi apresentado com total transparência.”</blockquote>
+                    <div class="author">
+                        <div class="avatar">CS</div>
+                        <div>
+                            <div class="name">Camila Santos</div>
+                            <div class="role">Ortodontia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    EQUIPE
+    ============================================================ -->
+    <section class="team" id="equipe">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag"><i class="fas fa-users"></i> Nossa equipe</span>
+                <h2 class="section-title">Profissionais que <span>cuidam</span> de você</h2>
+                <p class="section-subtitle centered">
+                    Um time dedicado, com experiência e paixão por transformar sorrisos.
+                </p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card reveal reveal-delay-1">
+                    <div class="avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dra. Luciana Mendes</h4>
+                    <p>Diretora Clínica</p>
+                    <span class="badge">12 anos de experiência</span>
+                </div>
+                <div class="team-card reveal reveal-delay-2">
+                    <div class="avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dr. Felipe Andrade</h4>
+                    <p>Implantes &amp; Próteses</p>
+                    <span class="badge">9 anos de experiência</span>
+                </div>
+                <div class="team-card reveal reveal-delay-3">
+                    <div class="avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dra. Beatriz Lopes</h4>
+                    <p>Ortodontia &amp; Harmonização</p>
+                    <span class="badge">7 anos de experiência</span>
+                </div>
+                <div class="team-card reveal reveal-delay-4">
+                    <div class="avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dr. Carlos Ruiz</h4>
+                    <p>Odontopediatria &amp; Prevenção</p>
+                    <span class="badge">6 anos de experiência</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FAQ
+    ============================================================ -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag"><i class="fas fa-question-circle"></i> Dúvidas frequentes</span>
+                <h2 class="section-title">Perguntas <span>frequentes</span></h2>
+                <p class="section-subtitle centered">
+                    Respondemos as principais perguntas para você se sentir preparado.
+                </p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item active reveal reveal-delay-1">
+                    <button class="faq-question">
+                        <span>Precisa de encaminhamento para agendar?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Não. Você pode agendar diretamente conosco, sem necessidade de encaminhamento. Fazemos uma avaliação completa no primeiro atendimento.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-2">
+                    <button class="faq-question">
+                        <span>Quanto tempo dura uma consulta de avaliação?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>A consulta de avaliação dura em média 50 minutos, incluindo a conversa, exames e apresentação do plano de tratamento.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-3">
+                    <button class="faq-question">
+                        <span>Vocês trabalham com planos de saúde?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim, trabalhamos com os principais planos odontológicos. Entre em contato para verificar a cobertura do seu plano.</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-4">
+                    <button class="faq-question">
+                        <span>O que acontece se eu tiver medo ou ansiedade?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nossa equipe é treinada para lidar com pacientes ansiosos. Utilizamos técnicas de acolhimento, sedação consciente e ambiente preparado para seu conforto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CTA FINAL
+    ============================================================ -->
+    <section class="cta-final" id="cta">
+        <div class="container">
+            <div class="reveal">
+                <h2>Pronto para dar o <span>próximo passo</span>?</h2>
+                <p>
+                    Agende sua consulta e venha conhecer uma experiência odontológica
+                    diferente, baseada em clareza, acolhimento e confiança.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#hero" class="btn btn-lg">
+                        <i class="fas fa-calendar-check"></i> Agendar consulta
+                    </a>
+                    <a href="#faq" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-question-circle"></i> Ver mais dúvidas
+                    </a>
+                </div>
+                <div style="margin-top:20px;font-size:0.85rem;opacity:0.60;">
+                    <i class="fas fa-lock"></i> Seus dados estão seguros. Atendimento humanizado e sem pressão.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <i class="fas fa-smile"></i>
+                    SmileGuide
+                </div>
+                <div class="footer-links">
+                    <a href="#como-funciona">Como funciona</a>
+                    <a href="#expectativas">O que esperar</a>
+                    <a href="#depoimentos">Depoimentos</a>
+                    <a href="#equipe">Equipe</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#cta">Agendar</a>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2026 Smile Guide · Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- NAVBAR SCROLL ----
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // ---- HAMBURGER ----
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', function() {
+                const isOpen = navLinks.classList.toggle('open');
+                hamburger.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', isOpen);
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navLinks.classList.remove('open');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // ---- SMOOTH SCROLL ----
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        e.preventDefault();
+                        const offset = 80;
+                        const targetPos = targetEl.getBoundingClientRect().top + window.pageYOffset -
+                            offset;
+                        window.scrollTo({
+                            top: targetPos,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // ---- REVEAL ON SCROLL ----
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -30px 0px'
+            });
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // ---- FAQ ACCORDION ----
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', function() {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(i => i.classList.remove('active'));
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+
+            // ---- ACTIVE NAV LINK ----
+            const sections = document.querySelectorAll('section[id]');
+            const navLinksAll = document.querySelectorAll('.nav-links a:not(.cta-link)');
+
+            function updateActiveLink() {
+                let current = '';
+                const scrollPos = window.pageYOffset + 130;
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLinksAll.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            window.addEventListener('load', updateActiveLink);
+
+            // ---- KEYBOARD ACCESSIBILITY ----
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.focus();
+                }
+            });
+
+            console.log('🚀 Smile Guide — Landing Page educacional carregada com sucesso!');
+        })();
+    </script>
+
+</body>
+</html>

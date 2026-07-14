@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Oral Signature · Portfólio Premium</title>
+    <!-- Fonts: serifada para títulos, sans-serif para corpo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ============================================================
+           CSS CUSTOM PROPERTIES — Design System Premium
+           ============================================================ */
+        :root {
+            --color-primary: #0a2a3a;
+            --color-primary-light: #1a4a5a;
+            --color-primary-dark: #051a26;
+            --color-secondary: #c9a87c;
+            --color-secondary-light: #dac09a;
+            --color-secondary-dark: #b8986a;
+            --color-accent-gold: #d4af37;
+            --color-bg: #f8f6f2;
+            --color-card: #ffffff;
+            --color-text: #1a2a32;
+            --color-text-muted: #4a5a66;
+            --color-text-light: #8a9aa8;
+            --color-border: #e4ded6;
+            --color-shadow: rgba(10, 42, 58, 0.04);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-xs: 8px;
+            --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+            --max-width: 1200px;
+            --header-height: 72px;
+            --shadow-card: 0 4px 24px rgba(10, 42, 58, 0.04);
+            --shadow-hover: 0 12px 40px rgba(10, 42, 58, 0.08);
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-secondary);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+           HEADER / NAV (fixa com glass)
+           ============================================================ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: var(--color-secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        .nav-menu a.active {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: inline-block;
+            padding: 8px 24px;
+            background: var(--color-secondary);
+            color: #fff;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            letter-spacing: 0.3px;
+        }
+        .nav-cta:hover {
+            background: var(--color-secondary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(201, 168, 124, 0.25);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           MAIN CONTENT — Tabs
+           ============================================================ */
+        .main-content {
+            padding-top: var(--header-height);
+            min-height: 100vh;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeSlideUp 0.5s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           SECTIONS (dentro de cada tab)
+           ============================================================ */
+        .page-section {
+            padding: 60px 0 50px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .page-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--color-secondary);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .highlight {
+            color: var(--color-secondary);
+            font-style: italic;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin-bottom: 1.8rem;
+        }
+
+        .text-center {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================================
+           TAB: A CLÍNICA (Home)
+           ============================================================ */
+        .hero-premium {
+            padding: 60px 0 40px;
+            background: linear-gradient(160deg, #f2efe8 0%, #f8f6f2 100%);
+            border-bottom: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-premium::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 168, 124, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content .hero-badge {
+            display: inline-block;
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.05;
+            color: var(--color-primary);
+            margin-bottom: 0.8rem;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--color-secondary);
+            font-style: italic;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            max-width: 460px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 38px;
+            background: var(--color-secondary);
+            color: #fff;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            box-shadow: 0 8px 28px rgba(201, 168, 124, 0.15);
+            letter-spacing: 0.3px;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(201, 168, 124, 0.25);
+            background: var(--color-secondary-dark);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image .placeholder {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1/1;
+            background: linear-gradient(145deg, var(--color-primary-light), var(--color-primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.04);
+            font-size: 4rem;
+            font-weight: 300;
+            box-shadow: 0 20px 60px rgba(10, 42, 58, 0.10);
+            position: relative;
+            border: 2px solid rgba(201, 168, 124, 0.08);
+        }
+
+        .hero-image .placeholder span {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 2.2rem;
+            letter-spacing: 3px;
+        }
+
+        .hero-image .placeholder::after {
+            content: '✦';
+            font-size: 6rem;
+            opacity: 0.04;
+            position: absolute;
+            bottom: 5%;
+            right: 8%;
+        }
+
+        .trust-seals {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .trust-seals span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        .trust-seals i {
+            color: var(--color-secondary);
+        }
+
+        /* Manifesto */
+        .manifesto-block {
+            background: var(--color-card);
+            border-radius: var(--radius);
+            padding: 2.5rem 3rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .manifesto-block::before {
+            content: '\201C';
+            font-family: var(--font-serif);
+            font-size: 5rem;
+            color: var(--color-secondary);
+            opacity: 0.08;
+            position: absolute;
+            top: 0.5rem;
+            left: 1.5rem;
+        }
+
+        .manifesto-block p {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--color-text);
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Equipe */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .team-member {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
+        }
+
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-secondary-light);
+        }
+
+        .team-member .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary));
+            margin: 0 auto 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 600;
+            box-shadow: 0 4px 16px rgba(201, 168, 124, 0.08);
+        }
+
+        .team-member h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .team-member .role {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+
+        .team-member .bio {
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+            margin-top: 6px;
+        }
+
+        /* ============================================================
+           TAB: TRATAMENTOS
+           ============================================================ */
+        .treatments-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .treatment-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 2rem 1.5rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .treatment-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-secondary-light);
+        }
+
+        .treatment-card .icon {
+            font-size: 2.6rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.6rem;
+        }
+
+        .treatment-card h4 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .treatment-card p {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-top: 4px;
+        }
+
+        .treatment-card .tag {
+            display: inline-block;
+            margin-top: 0.8rem;
+            font-size: 0.6rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--color-bg);
+            padding: 2px 14px;
+            border-radius: 30px;
+            color: var(--color-text-muted);
+        }
+
+        /* ============================================================
+           TAB: PLANOS
+           ============================================================ */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .plan-card {
+            background: var(--color-card);
+            border-radius: var(--radius);
+            padding: 2rem 1.8rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .plan-card.featured {
+            border-color: var(--color-secondary);
+            box-shadow: 0 8px 32px rgba(201, 168, 124, 0.10);
+        }
+
+        .plan-card.featured::before {
+            content: 'Recomendado';
+            position: absolute;
+            top: 12px;
+            right: -30px;
+            background: var(--color-secondary);
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 36px;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 8px rgba(201, 168, 124, 0.15);
+        }
+
+        .plan-card .plan-name {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .plan-card .plan-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        .plan-card .plan-price .period {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--color-text-muted);
+        }
+
+        .plan-card .plan-desc {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .plan-card .plan-features {
+            list-style: none;
+            text-align: left;
+            margin: 0.8rem 0;
+            padding: 0;
+        }
+
+        .plan-card .plan-features li {
+            padding: 4px 0;
+            font-size: 0.85rem;
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .plan-card .plan-features li i {
+            color: var(--color-secondary);
+            font-size: 0.8rem;
+        }
+
+        .plan-card .plan-cta {
+            display: inline-block;
+            padding: 10px 32px;
+            background: var(--color-secondary);
+            color: #fff;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            margin-top: 0.5rem;
+        }
+
+        .plan-card .plan-cta:hover {
+            background: var(--color-secondary-dark);
+            transform: scale(1.02);
+        }
+
+        .plan-card .plan-cta.outline {
+            background: transparent;
+            color: var(--color-secondary);
+            border: 1px solid var(--color-secondary);
+        }
+
+        .plan-card .plan-cta.outline:hover {
+            background: var(--color-secondary);
+            color: #fff;
+        }
+
+        /* ============================================================
+           TAB: ESTRUTURA
+           ============================================================ */
+        .structure-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .structure-item {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 2rem 2rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .structure-item:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .structure-item .icon {
+            font-size: 2.2rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .structure-item h4 {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .structure-item p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Tech badges */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .tech-item {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.2rem 1rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .tech-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .tech-item .icon {
+            font-size: 2rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .tech-item h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        /* ============================================================
+           TAB: CONTATO
+           ============================================================ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-info .info-item .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--color-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-secondary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            border: 1px solid var(--color-border);
+        }
+
+        .contact-info .info-item .text strong {
+            display: block;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .contact-info .info-item .text span {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            background: var(--color-card);
+            transition: var(--transition);
+            outline: none;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(201, 168, 124, 0.06);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            padding: 14px 32px;
+            background: var(--color-secondary);
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+            letter-spacing: 0.3px;
+        }
+
+        .contact-form button:hover {
+            background: var(--color-secondary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201, 168, 124, 0.15);
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            margin-top: 0.5rem;
+        }
+
+        .btn-whatsapp:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.15);
+        }
+
+        .btn-whatsapp i {
+            font-size: 1.2rem;
+        }
+
+        /* FAQ accordion */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .faq-item {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 1.2rem 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            text-align: left;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--color-bg);
+        }
+
+        .faq-question .icon {
+            color: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .faq-question.open .icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 1.5rem;
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .faq-answer.open {
+            max-height: 300px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        /* ============================================================
+           DEPOIMENTOS (global)
+           ============================================================ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.8rem 2rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .testimonial-card .stars {
+            color: var(--color-secondary);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-card .quote {
+            font-size: 0.95rem;
+            color: var(--color-text);
+            font-style: italic;
+        }
+
+        .testimonial-card .author {
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-card .author span {
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* ============================================================
+           RODAPÉ
+           ============================================================ */
+        .site-footer {
+            background: var(--color-primary);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .site-footer .footer-text {
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+        }
+
+        .site-footer .footer-text a {
+            color: rgba(255, 255, 255, 0.6);
+            transition: var(--transition);
+        }
+        .site-footer .footer-text a:hover {
+            color: #fff;
+        }
+
+        .site-footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-image .placeholder {
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .treatments-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .plans-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .structure-grid {
+                grid-template-columns: 1fr;
+            }
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.6rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .trust-seals {
+                justify-content: center;
+            }
+            .manifesto-block p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: var(--color-card);
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid var(--color-border);
+                box-shadow: var(--shadow-card);
+                gap: 1rem;
+                align-items: stretch;
+            }
+            .nav-menu.open {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .nav-cta {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .treatments-grid {
+                grid-template-columns: 1fr;
+            }
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .tech-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .plan-card.featured::before {
+                font-size: 0.5rem;
+                padding: 3px 28px;
+                right: -24px;
+            }
+            .trust-seals {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+            .manifesto-block {
+                padding: 1.5rem 1.5rem;
+            }
+            .manifesto-block::before {
+                font-size: 3rem;
+                left: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .hero-cta {
+                width: 100%;
+                justify-content: center;
+            }
+            .contact-form button {
+                width: 100%;
+            }
+            .plan-card {
+                padding: 1.5rem 1.2rem;
+            }
+            .plan-card .plan-price {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* ============================================================
+           UTILITÁRIOS
+           ============================================================ */
+        .text-muted {
+            color: var(--color-text-muted);
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-2 {
+            margin-top: 2rem;
+        }
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .w-full {
+            width: 100%;
+        }
+
+        .badge-gold {
+            display: inline-block;
+            background: rgba(201, 168, 124, 0.08);
+            color: var(--color-secondary);
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Animação sutil para o hero */
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .hero-image .placeholder {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="header">
+        <div class="container">
+            <a href="#" class="logo" id="logoLink">Oral<span>Signature</span></a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" data-tab="clinica" class="active">A Clínica</a></li>
+                <li><a href="#" data-tab="tratamentos">Tratamentos</a></li>
+                <li><a href="#" data-tab="planos">Planos</a></li>
+                <li><a href="#" data-tab="estrutura">Estrutura</a></li>
+                <li><a href="#" data-tab="contato">Contato</a></li>
+            </ul>
+            <a href="#" class="nav-cta" id="navCta">Agendar</a>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    MAIN CONTENT (Tabs)
+    ============================================================ -->
+    <main class="main-content">
+
+        <!-- ============================================================
+        TAB: A CLÍNICA
+        ============================================================ -->
+        <div class="tab-panel active" id="tab-clinica">
+
+            <!-- Hero Premium -->
+            <section class="hero-premium">
+                <div class="container">
+                    <div class="hero-grid">
+                        <div class="hero-content">
+                            <div class="hero-badge">— Excelência em odontologia</div>
+                            <h1>Assinatura de um <span class="highlight">sorriso</span> único</h1>
+                            <p>
+                                Na Oral Signature, transformamos sorrisos com precisão, tecnologia
+                                e um cuidado que vai além do tratamento. Sua jornada para um sorriso
+                                premium começa aqui.
+                            </p>
+                            <a href="#" class="hero-cta" id="heroCta">
+                                <i class="fas fa-calendar-check"></i> Agendar consulta
+                            </a>
+                            <div class="trust-seals">
+                                <span><i class="fas fa-check-circle"></i> 12+ anos de excelência</span>
+                                <span><i class="fas fa-star"></i> 4.9 estrelas</span>
+                                <span><i class="fas fa-crown"></i> Clínica referência</span>
+                            </div>
+                        </div>
+                        <div class="hero-image">
+                            <div class="placeholder">
+                                <span>Signature</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manifesto -->
+            <section class="page-section" style="padding-top:20px;">
+                <div class="container">
+                    <div class="manifesto-block">
+                        <p>
+                            “Cuidar do sorriso é cuidar da pessoa. Na Oral Signature, cada tratamento é
+                            desenhado com precisão, arte e compromisso com a sua confiança.”
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Equipe -->
+            <section class="page-section">
+                <div class="container">
+                    <div class="section-label text-center">Nossa equipe</div>
+                    <h2 class="section-title text-center">Profissionais <span class="highlight">assinatura</span></h2>
+                    <p class="section-desc text-center" style="max-width:480px;">
+                        Especialistas dedicados a transformar sorrisos com excelência e acolhimento.
+                    </p>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <div class="avatar">AS</div>
+                            <h4>Dra. Ana Silva</h4>
+                            <div class="role">Especialista em Implantes · CRO 12345</div>
+                            <div class="bio">14 anos de experiência em reabilitação oral.</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">RM</div>
+                            <h4>Dr. Rodrigo Martins</h4>
+                            <div class="role">Ortodontia · CRO 67890</div>
+                            <div class="bio">Especialista em ortodontia estética e Invisalign.</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">CL</div>
+                            <h4>Dra. Camila Lima</h4>
+                            <div class="role">Estética Dental · CRO 11223</div>
+                            <div class="bio">Referência em lentes de contato e clareamento.</div>
+                        </div>
+                        <div class="team-member">
+                            <div class="avatar">PF</div>
+                            <h4>Dr. Paulo Ferreira</h4>
+                            <div class="role">Periodontia · CRO 44556</div>
+                            <div class="bio">Especialista em saúde periodontal e gengiva.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Depoimentos (na clínica) -->
+            <section class="page-section" style="background:var(--color-card);">
+                <div class="container">
+                    <div class="section-label text-center">Depoimentos</div>
+                    <h2 class="section-title text-center">O que nossos <span class="highlight">pacientes</span> dizem</h2>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="quote">“Transformação completa. Nunca imaginei que meu sorriso pudesse ficar tão bonito.”</div>
+                            <div class="author">Mariana Oliveira <span>· Paciente</span></div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="quote">“Equipe atenciosa e estrutura impecável. Me senti segura do início ao fim.”</div>
+                            <div class="author">Carlos Eduardo <span>· Paciente</span></div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="quote">“O atendimento premium fez toda a diferença. Recomendo a todos.”</div>
+                            <div class="author">Fernanda Lima <span>· Paciente</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================================================
+        TAB: TRATAMENTOS
+        ============================================================ -->
+        <div class="tab-panel" id="tab-tratamentos">
+            <section class="page-section" style="padding-top:80px;">
+                <div class="container">
+                    <div class="section-label text-center">Tratamentos</div>
+                    <h2 class="section-title text-center">Soluções <span class="highlight">personalizadas</span></h2>
+                    <p class="section-desc text-center" style="max-width:520px;">
+                        Oferecemos uma gama completa de tratamentos odontológicos com tecnologia de ponta.
+                    </p>
+                    <div class="treatments-grid">
+                        <div class="treatment-card">
+                            <div class="icon"><i class="fas fa-tooth"></i></div>
+                            <h4>Implantes Dentários</h4>
+                            <p>Reabilitação com precisão e durabilidade excepcionais.</p>
+                            <span class="tag">Saiba mais</span>
+                        </div>
+                        <div class="treatment-card">
+                            <div class="icon"><i class="fas fa-smile"></i></div>
+                            <h4>Ortodontia Estética</h4>
+                            <p>Invisalign e aparelhos invisíveis para um sorriso alinhado.</p>
+                            <span class="tag">Saiba mais</span>
+                        </div>
+                        <div class="treatment-card">
+                            <div class="icon"><i class="fas fa-gem"></i></div>
+                            <h4>Lentes de Contato</h4>
+                            <p>Transformação estética com resultados naturais e duradouros.</p>
+                            <span class="tag">Saiba mais</span>
+                        </div>
+                        <div class="treatment-card">
+                            <div class="icon"><i class="fas fa-teeth"></i></div>
+                            <h4>Clareamento Dental</h4>
+                            <p>Protocolo seguro e eficaz para um sorriso mais branco.</p>
+                            <span class="tag">Saiba mais</span>
+                        </div>
+                        <div class="treatment-card">
+                            <div class="icon"><i class="fas fa-crown"></i></div>
+                            <h4>Facetas de Porcelana</h4>
+                            <p>Correção estética com naturalidade e alta durabilidade.</p>
+                            <span class="tag">Saiba mais</span>
+                        </div>
+                        <div class="treatment-card">
+                            <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                            <h4>Periodontia</h4>
+                            <p>Cuidado especializado para a saúde das gengivas e suporte.</p>
+                            <span class="tag">Saiba mais</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================================================
+        TAB: PLANOS
+        ============================================================ -->
+        <div class="tab-panel" id="tab-planos">
+            <section class="page-section" style="padding-top:80px;">
+                <div class="container">
+                    <div class="section-label text-center">Planos</div>
+                    <h2 class="section-title text-center">Planos <span class="highlight">premium</span></h2>
+                    <p class="section-desc text-center" style="max-width:480px;">
+                        Escolha o plano que melhor se adapta ao seu sorriso e ao seu bolso.
+                    </p>
+                    <div class="plans-grid">
+                        <div class="plan-card">
+                            <div class="plan-name">Plano Ouro</div>
+                            <div class="plan-price">R$ 89,90 <span class="period">/mês</span></div>
+                            <div class="plan-desc">Cobertura completa para manutenção e prevenção.</div>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> 2 consultas preventivas/ano</li>
+                                <li><i class="fas fa-check"></i> Limpeza e profilaxia</li>
+                                <li><i class="fas fa-check"></i> Exames de rotina</li>
+                                <li><i class="fas fa-check"></i> Desconto em tratamentos</li>
+                            </ul>
+                            <button class="plan-cta" onclick="alert('Adquirir Plano Ouro')">Assinar</button>
+                        </div>
+                        <div class="plan-card featured">
+                            <div class="plan-name">Plano Black</div>
+                            <div class="plan-price">R$ 149,90 <span class="period">/mês</span></div>
+                            <div class="plan-desc">Cuidado premium com cobertura ampla e benefícios exclusivos.</div>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> 4 consultas/ano + urgências</li>
+                                <li><i class="fas fa-check"></i> Limpeza, profilaxia e clareamento</li>
+                                <li><i class="fas fa-check"></i> Exames e radiografias</li>
+                                <li><i class="fas fa-check"></i> Desconto em todos os tratamentos</li>
+                            </ul>
+                            <button class="plan-cta" onclick="alert('Adquirir Plano Black')">Assinar</button>
+                        </div>
+                        <div class="plan-card">
+                            <div class="plan-name">Plano Família</div>
+                            <div class="plan-price">R$ 199,90 <span class="period">/mês</span></div>
+                            <div class="plan-desc">Cobertura para até 4 membros da família.</div>
+                            <ul class="plan-features">
+                                <li><i class="fas fa-check"></i> 2 consultas/pessoa/ano</li>
+                                <li><i class="fas fa-check"></i> Limpeza e profilaxia</li>
+                                <li><i class="fas fa-check"></i> Exames de rotina</li>
+                                <li><i class="fas fa-check"></i> Benefícios estendidos</li>
+                            </ul>
+                            <button class="plan-cta outline" onclick="alert('Adquirir Plano Família')">Assinar</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================================================
+        TAB: ESTRUTURA
+        ============================================================ -->
+        <div class="tab-panel" id="tab-estrutura">
+            <section class="page-section" style="padding-top:80px;">
+                <div class="container">
+                    <div class="section-label text-center">Infraestrutura</div>
+                    <h2 class="section-title text-center">Tecnologia e <span class="highlight">conforto</span></h2>
+                    <p class="section-desc text-center" style="max-width:500px;">
+                        Nossa estrutura foi projetada para oferecer precisão, segurança e bem-estar.
+                    </p>
+
+                    <div class="structure-grid">
+                        <div class="structure-item">
+                            <div class="icon"><i class="fas fa-microscope"></i></div>
+                            <h4>Diagnóstico Digital</h4>
+                            <p>Equipamentos de última geração para exames precisos e planejamento 3D.</p>
+                        </div>
+                        <div class="structure-item">
+                            <div class="icon"><i class="fas fa-couch"></i></div>
+                            <h4>Conforto e Acolhimento</h4>
+                            <p>Ambiente pensado para reduzir ansiedade e proporcionar tranquilidade.</p>
+                        </div>
+                        <div class="structure-item">
+                            <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                            <h4>Segurança e Biossegurança</h4>
+                            <p>Protocolos rigorosos para garantir sua segurança em cada procedimento.</p>
+                        </div>
+                        <div class="structure-item">
+                            <div class="icon"><i class="fas fa-clock"></i></div>
+                            <h4>Horário Estendido</h4>
+                            <p>Atendimento de segunda a sábado, com flexibilidade para sua agenda.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tecnologia -->
+                    <div style="margin-top:2.5rem;">
+                        <div class="section-label text-center">Tecnologia</div>
+                        <h3 class="text-center" style="font-family:var(--font-serif); font-size:1.8rem; color:var(--color-primary); margin-bottom:0.5rem;">Inovação <span class="highlight">a serviço</span> do seu sorriso</h3>
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="icon"><i class="fas fa-cube"></i></div>
+                                <h4>Escaneamento 3D</h4>
+                            </div>
+                            <div class="tech-item">
+                                <div class="icon"><i class="fas fa-x-ray"></i></div>
+                                <h4>Tomografia Digital</h4>
+                            </div>
+                            <div class="tech-item">
+                                <div class="icon"><i class="fas fa-laptop-medical"></i></div>
+                                <h4>Planejamento Virtual</h4>
+                            </div>
+                            <div class="tech-item">
+                                <div class="icon"><i class="fas fa-print"></i></div>
+                                <h4>Impressão 3D</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Depoimentos (na estrutura) -->
+            <section class="page-section" style="background:var(--color-card); border-bottom:none;">
+                <div class="container">
+                    <div class="section-label text-center">Depoimentos</div>
+                    <h2 class="section-title text-center">O que <span class="highlight">nossos pacientes</span> dizem</h2>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="quote">“A estrutura é incrível e a equipe muito atenciosa. Meu tratamento foi impecável.”</div>
+                            <div class="author">Juliana Costa <span>· Paciente</span></div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="quote">“Tecnologia de ponta e profissionais excelentes. Recomendo a todos.”</div>
+                            <div class="author">Rafael Almeida <span>· Paciente</span></div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                            <div class="quote">“Desde o primeiro contato, percebi a diferença. Um cuidado premium.”</div>
+                            <div class="author">Patrícia Nunes <span>· Paciente</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ============================================================
+        TAB: CONTATO
+        ============================================================ -->
+        <div class="tab-panel" id="tab-contato">
+            <section class="page-section" style="padding-top:80px;">
+                <div class="container">
+                    <div class="section-label text-center">Fale conosco</div>
+                    <h2 class="section-title text-center">Agende sua <span class="highlight">consultoria</span></h2>
+                    <p class="section-desc text-center" style="max-width:480px;">
+                        Tire dúvidas, agende sua avaliação ou solicite informações sobre nossos planos.
+                    </p>
+
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <div class="info-item">
+                                <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                                <div class="text">
+                                    <strong>Telefone</strong>
+                                    <span>(11) 3456-7890</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="icon"><i class="fab fa-whatsapp"></i></div>
+                                <div class="text">
+                                    <strong>WhatsApp</strong>
+                                    <span>(11) 98765-4321</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="icon"><i class="fas fa-envelope"></i></div>
+                                <div class="text">
+                                    <strong>E-mail</strong>
+                                    <span>contato@oralsignature.com</span>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="text">
+                                    <strong>Endereço</strong>
+                                    <span>Av. dos Sorrisos, 200 · São Paulo, SP</span>
+                                </div>
+                            </div>
+                            <div class="info-item" style="border-bottom:none;">
+                                <div class="icon"><i class="fas fa-clock"></i></div>
+                                <div class="text">
+                                    <strong>Horário de atendimento</strong>
+                                    <span>Seg–Sex: 8h–20h · Sáb: 8h–14h</span>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/5511987654321?text=Olá%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn-whatsapp">
+                                <i class="fab fa-whatsapp"></i> Falar agora no WhatsApp
+                            </a>
+                        </div>
+
+                        <form class="contact-form" onsubmit="event.preventDefault(); alert('✅ Mensagem enviada! Retornaremos em breve.');">
+                            <input type="text" placeholder="Seu nome" required />
+                            <input type="email" placeholder="Seu e-mail" required />
+                            <input type="tel" placeholder="Telefone" required />
+                            <select>
+                                <option value="">Especialidade desejada</option>
+                                <option>Implantes</option>
+                                <option>Ortodontia</option>
+                                <option>Estética Dental</option>
+                                <option>Periodontia</option>
+                                <option>Clareamento</option>
+                            </select>
+                            <textarea placeholder="Como podemos ajudá-lo?" rows="4"></textarea>
+                            <button type="submit">Enviar mensagem</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FAQ na contato -->
+            <section class="page-section" style="background:var(--color-card); border-bottom:none;">
+                <div class="container">
+                    <div class="section-label text-center">Dúvidas</div>
+                    <h2 class="section-title text-center">Perguntas <span class="highlight">frequentes</span></h2>
+                    <p class="section-desc text-center" style="max-width:480px;">
+                        Esclareça as principais dúvidas sobre nossos tratamentos e planos.
+                    </p>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                <span>Como funciona o plano de assinatura?</span>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Nossos planos oferecem cobertura para consultas, exames e procedimentos preventivos, com desconto em tratamentos estéticos e reabilitação.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                <span>Quais formas de pagamento são aceitas?</span>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Aceitamos cartões de crédito, débito, boleto bancário e também oferecemos parcelamento especial para tratamentos de maior valor.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                <span>Como funciona o agendamento?</span>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Você pode agendar pelo formulário de contato, WhatsApp ou telefone. Nossa equipe retorna em até 2 horas úteis para confirmar o horário.
+                            </div>
+                        </div>
+                        <div class="faq-item">
+                            <button class="faq-question" onclick="toggleFaq(this)">
+                                <span>O plano cobre tratamentos estéticos?</span>
+                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="faq-answer">
+                                Sim, os planos oferecem descontos progressivos em tratamentos estéticos como lentes de contato, facetas e clareamento.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- ============================================================
+    RODAPÉ
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-text">
+                &copy; 2026 Oral Signature · Todos os direitos reservados.
+                <div class="footer-links">
+                    <a href="#" data-tab="clinica">A Clínica</a>
+                    <a href="#" data-tab="tratamentos">Tratamentos</a>
+                    <a href="#" data-tab="planos">Planos</a>
+                    <a href="#" data-tab="estrutura">Estrutura</a>
+                    <a href="#" data-tab="contato">Contato</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // NAVEGAÇÃO POR TABS
+            // ============================================================
+            const navLinks = document.querySelectorAll('.nav-menu a[data-tab]');
+            const panels = {
+                clinica: document.getElementById('tab-clinica'),
+                tratamentos: document.getElementById('tab-tratamentos'),
+                planos: document.getElementById('tab-planos'),
+                estrutura: document.getElementById('tab-estrutura'),
+                contato: document.getElementById('tab-contato')
+            };
+
+            const footerLinks = document.querySelectorAll('.site-footer a[data-tab]');
+            const logoLink = document.getElementById('logoLink');
+
+            function navigateTo(tabId) {
+                // Atualiza links do menu
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.dataset.tab === tabId) {
+                        link.classList.add('active');
+                    }
+                });
+
+                // Atualiza painéis
+                Object.keys(panels).forEach(key => {
+                    panels[key].classList.remove('active');
+                    if (key === tabId) {
+                        panels[key].classList.add('active');
+                    }
+                });
+
+                // Fecha menu mobile
+                navMenu.classList.remove('open');
+                const icon = toggleBtn.querySelector('i');
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+
+                // Scroll para o topo
+                document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            window.navigateTo = navigateTo;
+
+            // Event listeners para navegação principal
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navigateTo(this.dataset.tab);
+                });
+            });
+
+            // Footer links
+            footerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navigateTo(this.dataset.tab);
+                });
+            });
+
+            // Logo
+            logoLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                navigateTo('clinica');
+            });
+
+            // CTAs
+            document.getElementById('navCta').addEventListener('click', function(e) {
+                e.preventDefault();
+                navigateTo('contato');
+            });
+            document.getElementById('heroCta').addEventListener('click', function(e) {
+                e.preventDefault();
+                navigateTo('contato');
+            });
+
+            // ============================================================
+            // MOBILE TOGGLE
+            // ============================================================
+            const toggleBtn = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+
+            toggleBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('open');
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('open');
+                    const icon = toggleBtn.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                });
+            });
+
+            // ============================================================
+            // FAQ ACCORDION
+            // ============================================================
+            window.toggleFaq = function(button) {
+                const answer = button.nextElementSibling;
+                const isOpen = answer.classList.contains('open');
+
+                // Fecha todos os outros
+                document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('open'));
+                document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('open'));
+
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    button.classList.add('open');
+                }
+            };
+
+            // ============================================================
+            // KEYBOARD SHORTCUTS (1-5)
+            // ============================================================
+            document.addEventListener('keydown', (e) => {
+                const num = parseInt(e.key);
+                if (num >= 1 && num <= 5) {
+                    const tabIds = ['clinica', 'tratamentos', 'planos', 'estrutura', 'contato'];
+                    const target = tabIds[num - 1];
+                    if (target) {
+                        e.preventDefault();
+                        navigateTo(target);
+                    }
+                }
+            });
+
+            console.log('✨ Oral Signature — carregado com sucesso.');
+            console.log('📌 Use as teclas 1-5 para navegar entre as abas.');
+
+        })();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+    <title>Sacred Stories — Portfólio Editorial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================================
+           SACRED STORIES — Design System Editorial
+           ============================================================ */
+
+        /* ---------- TOKENS ---------- */
+        :root {
+            --cream: #FDFBF7;
+            --cream-dark: #F5F0E8;
+            --wine: #6A1B2A;
+            --wine-light: #8A2E40;
+            --wine-dark: #4A0F1A;
+            --gold: #C9A96E;
+            --gold-light: #E8D5A8;
+            --gold-dark: #A8894A;
+            --gray-100: #F0EDE8;
+            --gray-200: #DCD7D0;
+            --gray-300: #B5ADA4;
+            --gray-400: #8A827A;
+            --gray-500: #6A625A;
+            --gray-600: #4A4A4A;
+            --gray-700: #2A2A2A;
+            --white: #FFFFFF;
+            --black: #1A1A1A;
+
+            --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --font-sans: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+
+            --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.04);
+            --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.06);
+            --shadow-hover: 0 12px 56px rgba(0, 0, 0, 0.10);
+
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --header-height: 72px;
+            --max-width: 1200px;
+        }
+
+        /* ---------- RESET ---------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+        body {
+            font-family: var(--font-sans);
+            background: var(--cream);
+            color: var(--gray-600);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-dark);
+        }
+
+        /* ---------- UTILITY ---------- */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+        .section-padding {
+            padding: 80px 0 70px;
+        }
+        .text-serif {
+            font-family: var(--font-serif);
+        }
+        .text-gold {
+            color: var(--gold);
+        }
+        .text-wine {
+            color: var(--wine);
+        }
+        .text-center {
+            text-align: center;
+        }
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ---------- HEADER ---------- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: rgba(253, 251, 247, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: background var(--transition);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .header .logo {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--wine);
+            letter-spacing: -0.5px;
+        }
+        .header .logo span {
+            color: var(--gold);
+        }
+        .header-nav {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+        .header-nav a {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-500);
+            transition: color var(--transition);
+            letter-spacing: 0.3px;
+            position: relative;
+        }
+        .header-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width var(--transition);
+        }
+        .header-nav a:hover {
+            color: var(--wine);
+        }
+        .header-nav a:hover::after {
+            width: 100%;
+        }
+        .header-nav .btn-nav {
+            background: var(--wine);
+            color: #fff;
+            padding: 8px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 14px;
+            transition: all var(--transition);
+        }
+        .header-nav .btn-nav:hover {
+            background: var(--wine-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(106, 27, 42, 0.20);
+        }
+        .header-nav .btn-nav::after {
+            display: none;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 28px;
+            color: var(--wine);
+            padding: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ---------- HERO / CAPA ---------- */
+        .hero {
+            margin-top: var(--header-height);
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: var(--cream);
+            padding: 60px 0 40px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-content {
+            position: relative;
+        }
+        .hero-content .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 12px;
+        }
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 58px;
+            font-weight: 800;
+            line-height: 1.08;
+            color: var(--wine);
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+        .hero-content h1 em {
+            color: var(--gold);
+            font-style: italic;
+        }
+        .hero-content p {
+            font-size: 18px;
+            color: var(--gray-500);
+            max-width: 460px;
+            margin-bottom: 28px;
+            line-height: 1.8;
+        }
+        .hero-content .btn-hero {
+            display: inline-block;
+            background: var(--wine);
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 16px;
+            transition: all var(--transition);
+            border: 1px solid var(--wine);
+        }
+        .hero-content .btn-hero:hover {
+            background: transparent;
+            color: var(--wine);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(106, 27, 42, 0.12);
+        }
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-visual .hero-block {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: var(--gold-light);
+            border-radius: var(--radius-lg);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--wine);
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(145deg, #F5EDE0, #E8D5C0);
+        }
+        .hero-visual .hero-block .quote-mark {
+            font-size: 80px;
+            opacity: 0.15;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-family: var(--font-serif);
+            color: var(--wine);
+        }
+        .hero-visual .hero-block .inner-text {
+            padding: 40px;
+            text-align: center;
+            z-index: 1;
+        }
+        .hero-visual .hero-block .inner-text .verse {
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+        .hero-visual .hero-block .inner-text .ref {
+            font-size: 16px;
+            color: var(--gold-dark);
+            margin-top: 12px;
+            font-weight: 600;
+        }
+
+        /* ---------- SECTION TITLES ---------- */
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--wine);
+            letter-spacing: -0.8px;
+            margin-bottom: 16px;
+        }
+        .section-sub {
+            font-size: 17px;
+            color: var(--gray-400);
+            max-width: 560px;
+            margin-bottom: 40px;
+        }
+        .section-title.center,
+        .section-sub.center {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        /* ---------- HISTÓRIA / TIMELINE ---------- */
+        .history-section {
+            background: var(--white);
+        }
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin-top: 16px;
+        }
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 28px;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        }
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+        .timeline-item .year {
+            font-family: var(--font-serif);
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: -0.5px;
+        }
+        .timeline-item .content h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--wine);
+            margin-bottom: 4px;
+        }
+        .timeline-item .content p {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+
+        /* ---------- IMPACTO E MISSÃO ---------- */
+        .impact-section {
+            background: var(--cream-dark);
+        }
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .impact-card {
+            background: var(--white);
+            padding: 32px 28px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+            transition: all var(--transition);
+            text-align: center;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+        .impact-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        .impact-card .number {
+            font-family: var(--font-serif);
+            font-size: 44px;
+            font-weight: 700;
+            color: var(--wine);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .impact-card .number .gold {
+            color: var(--gold);
+        }
+        .impact-card .label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-500);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .impact-card .desc {
+            font-size: 14px;
+            color: var(--gray-400);
+            margin-top: 8px;
+        }
+
+        /* ---------- TESTEMUNHOS ---------- */
+        .testimonials-section {
+            background: var(--white);
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: var(--cream);
+            padding: 32px 30px;
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--gold);
+            transition: all var(--transition);
+            box-shadow: var(--shadow-soft);
+        }
+        .testimonial-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+        .testimonial-card .quote {
+            font-size: 16px;
+            color: var(--gray-600);
+            line-height: 1.7;
+            font-style: italic;
+        }
+        .testimonial-card .quote::before {
+            content: '“';
+            font-family: var(--font-serif);
+            font-size: 32px;
+            color: var(--gold);
+            line-height: 0.8;
+            margin-right: 4px;
+        }
+        .testimonial-card .quote::after {
+            content: '”';
+            font-family: var(--font-serif);
+            font-size: 32px;
+            color: var(--gold);
+            line-height: 0.8;
+            margin-left: 4px;
+        }
+        .testimonial-card .author {
+            margin-top: 14px;
+            font-weight: 700;
+            color: var(--wine);
+            font-size: 15px;
+        }
+        .testimonial-card .role {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        /* ---------- PROJETOS ---------- */
+        .projects-section {
+            background: var(--cream-dark);
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .project-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: all var(--transition);
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+        }
+        .project-card .image {
+            height: 180px;
+            background: var(--gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: var(--wine);
+            font-weight: 700;
+            font-family: var(--font-serif);
+        }
+        .project-card .body {
+            padding: 20px 24px 24px;
+        }
+        .project-card .body h4 {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--wine);
+            margin-bottom: 4px;
+        }
+        .project-card .body p {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+        .project-card .body .tag {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gold-dark);
+            background: var(--gold-light);
+            padding: 2px 14px;
+            border-radius: var(--radius-full);
+        }
+
+        /* ---------- LIDERANÇA ---------- */
+        .leadership-section {
+            background: var(--white);
+        }
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .leader-card {
+            text-align: center;
+            padding: 20px 16px;
+            border-radius: var(--radius-md);
+            transition: all var(--transition);
+            background: var(--cream);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+        .leader-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-soft);
+        }
+        .leader-card .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gold-light);
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--wine);
+        }
+        .leader-card .name {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--wine);
+        }
+        .leader-card .role {
+            font-size: 13px;
+            color: var(--gray-400);
+        }
+
+        /* ---------- GALERIA ---------- */
+        .gallery-section {
+            background: var(--cream-dark);
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .gallery-item {
+            aspect-ratio: 1/1;
+            background: var(--gold-light);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--gray-500);
+            font-weight: 600;
+            transition: all var(--transition);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 160px;
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-soft);
+        }
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.40);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            padding: 8px 14px;
+            font-size: 13px;
+            font-weight: 400;
+            transform: translateY(100%);
+            transition: transform var(--transition);
+        }
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+        .gallery-item:nth-child(1) {
+            background: #DCC8B0;
+        }
+        .gallery-item:nth-child(2) {
+            background: #C9B69A;
+        }
+        .gallery-item:nth-child(3) {
+            background: #E8D5C0;
+        }
+        .gallery-item:nth-child(4) {
+            background: #BFA88A;
+        }
+        .gallery-item:nth-child(5) {
+            background: #D4C0AA;
+        }
+        .gallery-item:nth-child(6) {
+            background: #E0CDB8;
+        }
+
+        /* ---------- CONTATO ---------- */
+        .contact-section {
+            background: var(--wine);
+            color: #fff;
+            padding: 80px 0;
+        }
+        .contact-section .section-title {
+            color: #fff;
+        }
+        .contact-section .section-sub {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        .contact-info p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+        .contact-info .detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 10px;
+        }
+        .contact-info .detail strong {
+            color: var(--gold);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-family: var(--font-sans);
+            font-size: 15px;
+            transition: all var(--transition);
+            margin-bottom: 14px;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .contact-form .btn-submit {
+            background: var(--gold);
+            color: var(--wine);
+            padding: 14px 40px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 16px;
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .contact-form .btn-submit:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(201, 169, 110, 0.30);
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: var(--wine-dark);
+            color: rgba(255, 255, 255, 0.5);
+            padding: 32px 0;
+            text-align: center;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .footer .social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 12px;
+        }
+        .footer .social a {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 18px;
+            transition: color var(--transition);
+        }
+        .footer .social a:hover {
+            color: var(--gold);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-content h1 {
+                font-size: 44px;
+            }
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .leadership-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .header-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                background: var(--cream);
+                padding: 20px 28px;
+                gap: 16px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+                box-shadow: var(--shadow-soft);
+            }
+            .header-nav.open {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .header-nav a {
+                font-size: 16px;
+            }
+            .header-nav .btn-nav {
+                align-self: flex-start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 18px;
+            }
+            .section-padding {
+                padding: 50px 0 40px;
+            }
+            .hero {
+                padding: 40px 0 30px;
+                min-height: auto;
+            }
+            .hero-content h1 {
+                font-size: 34px;
+            }
+            .hero-content p {
+                font-size: 16px;
+            }
+            .hero-visual .hero-block {
+                aspect-ratio: 3/2;
+            }
+            .hero-visual .hero-block .inner-text .verse {
+                font-size: 18px;
+            }
+            .section-title {
+                font-size: 30px;
+            }
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            .leadership-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .gallery-item {
+                min-height: 120px;
+            }
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+            .timeline-item .year {
+                font-size: 22px;
+            }
+            .header .logo {
+                font-size: 18px;
+            }
+            .contact-form .btn-submit {
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            .leadership-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .leader-card .avatar {
+                width: 60px;
+                height: 60px;
+                font-size: 20px;
+            }
+        }
+
+        /* ---------- ANIMAÇÕES ---------- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up.delay-1 {
+            transition-delay: 0.1s;
+        }
+        .fade-up.delay-2 {
+            transition-delay: 0.2s;
+        }
+        .fade-up.delay-3 {
+            transition-delay: 0.3s;
+        }
+        .fade-up.delay-4 {
+            transition-delay: 0.4s;
+        }
+        .fade-up.delay-5 {
+            transition-delay: 0.5s;
+        }
+
+        /* ---------- SCROLL INDICATOR ---------- */
+        .scroll-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            animation: bounce 2s infinite;
+        }
+        .scroll-indicator span {
+            font-size: 28px;
+            color: var(--gold);
+            opacity: 0.6;
+        }
+        @keyframes bounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        /* ---------- BOTÃO VOLTAR AO TOPO ---------- */
+        .back-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--wine);
+            color: #fff;
+            border: none;
+            font-size: 22px;
+            box-shadow: 0 4px 20px rgba(106, 27, 42, 0.25);
+            transition: all var(--transition);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 999;
+            cursor: pointer;
+        }
+        .back-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .back-top:hover {
+            transform: scale(1.08);
+            background: var(--wine-light);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header" role="banner">
+        <div class="container">
+            <div class="logo">Sacred <span>Stories</span></div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+                ☰
+            </button>
+            <nav class="header-nav" id="headerNav" role="navigation" aria-label="Principal">
+                <a href="#historia">História</a>
+                <a href="#impacto">Impacto</a>
+                <a href="#testemunhos">Testemunhos</a>
+                <a href="#projetos">Projetos</a>
+                <a href="#lideranca">Liderança</a>
+                <a href="#galeria">Galeria</a>
+                <a href="#contato" class="btn-nav">Conectar</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content fade-up visible">
+                    <div class="label">Jornada de fé e comunidade</div>
+                    <h1>Uma história de <em>amor</em> que transforma</h1>
+                    <p>Há mais de 40 anos, construímos pontes, acolhemos vidas e semeamos esperança. Esta é a nossa história — e ela continua sendo escrita a cada dia.</p>
+                    <a href="#contato" class="btn-hero">Faça parte</a>
+                </div>
+                <div class="hero-visual fade-up delay-2 visible">
+                    <div class="hero-block">
+                        <span class="quote-mark">"</span>
+                        <div class="inner-text">
+                            <div class="verse">"Onde o amor reina, a comunidade floresce."</div>
+                            <div class="ref">— Missão Sacred Stories</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>⌄</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HISTÓRIA ===== -->
+    <section class="history-section section-padding" id="historia">
+        <div class="container">
+            <div class="fade-up">
+                <span class="text-gold" style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:13px;">Nossa trajetória</span>
+                <h2 class="section-title">Uma linha do tempo de <span class="text-gold">fé e propósito</span></h2>
+                <p class="section-sub">Cada marco representa um capítulo de dedicação, superação e amor ao próximo.</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item fade-up delay-1">
+                    <div class="year">1982</div>
+                    <div class="content">
+                        <h4>O início de uma visão</h4>
+                        <p>Um pequeno grupo de famílias se reúne em uma sala alugada, com o sonho de construir uma comunidade baseada no amor e na solidariedade.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-up delay-2">
+                    <div class="year">1995</div>
+                    <div class="content">
+                        <h4>Primeiro templo</h4>
+                        <p>Inauguração do nosso primeiro espaço próprio, um marco que consolidou a presença da igreja na região e ampliou a capacidade de acolhimento.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-up delay-3">
+                    <div class="year">2008</div>
+                    <div class="content">
+                        <h4>Missão social</h4>
+                        <p>Lançamento do programa "Mãos que Acolhem", levando alimento, educação e apoio a centenas de famílias em situação de vulnerabilidade.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-up delay-4">
+                    <div class="year">2020</div>
+                    <div class="content">
+                        <h4>Resiliência digital</h4>
+                        <p>Em tempos de distanciamento, expandimos nossa presença online, conectando pessoas através de lives, devocionais e apoio remoto.</p>
+                    </div>
+                </div>
+                <div class="timeline-item fade-up delay-5">
+                    <div class="year">2025</div>
+                    <div class="content">
+                        <h4>Futuro em movimento</h4>
+                        <p>Hoje, somos uma comunidade vibrante, com projetos que transformam vidas e uma visão clara de continuar impactando gerações.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== IMPACTO E MISSÃO ===== -->
+    <section class="impact-section section-padding" id="impacto">
+        <div class="container">
+            <div class="fade-up">
+                <span class="text-gold" style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:13px;">Impacto real</span>
+                <h2 class="section-title">Números que contam <span class="text-gold">histórias</span></h2>
+                <p class="section-sub">Cada número representa uma vida tocada, uma família acolhida, uma esperança renovada.</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card fade-up delay-1">
+                    <div class="number">40<span class="gold">+</span></div>
+                    <div class="label">Anos de missão</div>
+                    <div class="desc">Uma caminhada de fé e serviço ininterrupta</div>
+                </div>
+                <div class="impact-card fade-up delay-2">
+                    <div class="number">2.3<span class="gold">k</span></div>
+                    <div class="label">Pessoas atendidas</div>
+                    <div class="desc">Através de nossos projetos sociais e ações comunitárias</div>
+                </div>
+                <div class="impact-card fade-up delay-3">
+                    <div class="number">120<span class="gold">+</span></div>
+                    <div class="label">Voluntários ativos</div>
+                    <div class="desc">Pessoas dedicadas a servir e fazer a diferença</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTEMUNHOS ===== -->
+    <section class="testimonials-section section-padding" id="testemunhos">
+        <div class="container">
+            <div class="fade-up">
+                <span class="text-gold" style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:13px;">Vozes da comunidade</span>
+                <h2 class="section-title">O que dizem sobre <span class="text-gold">nós</span></h2>
+                <p class="section-sub">Histórias reais de pessoas que encontraram acolhimento, propósito e transformação.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card fade-up delay-1">
+                    <div class="quote">Encontrei mais que uma igreja, encontrei uma família. Aqui aprendi que o amor se pratica todos os dias, não apenas aos domingos.</div>
+                    <div class="author">— Mariana Silva</div>
+                    <div class="role">Voluntária há 8 anos</div>
+                </div>
+                <div class="testimonial-card fade-up delay-2">
+                    <div class="quote">Cheguei sem esperança e fui acolhido como filho. Hoje sou grato por cada pessoa que cruzou meu caminho nesta comunidade.</div>
+                    <div class="author">— Carlos Mendes</div>
+                    <div class="role">Participante do projeto social</div>
+                </div>
+                <div class="testimonial-card fade-up delay-3">
+                    <div class="quote">A igreja não é um prédio, são as pessoas. E aqui vi isso na prática: cuidado, respeito e uma missão que vai além das palavras.</div>
+                    <div class="author">— Ana Lúcia</div>
+                    <div class="role">Membro da liderança comunitária</div>
+                </div>
+                <div class="testimonial-card fade-up delay-4">
+                    <div class="quote">Meus filhos cresceram aqui, aprenderam valores que levam para a vida. Sou grata por cada ensinamento e por cada abraço.</div>
+                    <div class="author">— Fernanda Costa</div>
+                    <div class="role">Frequentadora há 15 anos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJETOS ===== -->
+    <section class="projects-section section-padding" id="projetos">
+        <div class="container">
+            <div class="fade-up">
+                <span class="text-gold" style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:13px;">Ações que geram frutos</span>
+                <h2 class="section-title">Projetos que <span class="text-gold">transformam</span></h2>
+                <p class="section-sub">Cada iniciativa nasce de um coração que deseja ver o outro florescer.</p>
+            </div>
+            <div class="project-grid">
+                <div class="project-card fade-up delay-1">
+                    <div class="image">🍲</div>
+                    <div class="body">
+                        <h4>Mãos que Acolhem</h4>
+                        <p>Distribuição de alimentos e sopa comunitária todas as quartas-feiras, atendendo mais de 150 famílias mensalmente.</p>
+                        <span class="tag">Social</span>
+                    </div>
+                </div>
+                <div class="project-card fade-up delay-2">
+                    <div class="image">📚</div>
+                    <div class="body">
+                        <h4>Educação para Todos</h4>
+                        <p>Reforço escolar, oficinas de leitura e cursos profissionalizantes para crianças e adultos da comunidade.</p>
+                        <span class="tag">Educação</span>
+                    </div>
+                </div>
+                <div class="project-card fade-up delay-3">
+                    <div class="image">🧸</div>
+                    <div class="body">
+                        <h4>Família Acolhedora</h4>
+                        <p>Apoio psicológico, orientação familiar e grupos de convivência para fortalecer os laços familiares.</p>
+                        <span class="tag">Bem-estar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LIDERANÇA ===== -->
+    <section class="leadership-section section-padding" id="lideranca">
+        <div class="container">
+            <div class="fade-up">
+                <span class="text-gold" style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:13px;">Equipe pastoral</span>
+                <h2 class="section-title">Pessoas que <span class="text-gold">guiaram</span> essa história</h2>
+                <p class="section-sub">Líderes que dedicaram suas vidas a servir, inspirar e conduzir com amor.</p>
+            </div>
+            <div class="leadership-grid">
+                <div class="leader-card fade-up delay-1">
+                    <div class="avatar">PR</div>
+                    <div class="name">Pastor Ricardo</div>
+                    <div class="role">Líder sênior · 25 anos</div>
+                </div>
+                <div class="leader-card fade-up delay-2">
+                    <div class="avatar">LS</div>
+                    <div class="name">Lúcia Santos</div>
+                    <div class="role">Coordenação social · 18 anos</div>
+                </div>
+                <div class="leader-card fade-up delay-3">
+                    <div class="avatar">AM</div>
+                    <div class="name">André Mendes</div>
+                    <div class="role">Música e louvor · 12 anos</div>
+                </div>
+                <div class="leader-card fade-up delay-4">
+                    <div class="avatar">CF</div>
+                    <div class="name">Carla Ferreira</div>
+                    <div class="role">Aconselhamento · 10 anos</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== GALERIA ===== -->
+    <section class="gallery-section section-padding" id="galeria">
+        <div class="container">
+            <div class="fade-up">
+                <span class="text-gold" style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:13px;">Memórias em imagem</span>
+                <h2 class="section-title">Galeria de <span class="text-gold">momentos</span></h2>
+                <p class="section-sub">Cada foto conta uma história de comunhão, alegria e esperança.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-up delay-1">
+                    <span>📸</span>
+                    <span class="caption">Culto ao ar livre — 2023</span>
+                </div>
+                <div class="gallery-item fade-up delay-2">
+                    <span>📸</span>
+                    <span class="caption">Ação social — distribuição de cestas</span>
+                </div>
+                <div class="gallery-item fade-up delay-3">
+                    <span>📸</span>
+                    <span class="caption">Ensaio do louvor — 2024</span>
+                </div>
+                <div class="gallery-item fade-up delay-4">
+                    <span>📸</span>
+                    <span class="caption">Acampamento da juventude</span>
+                </div>
+                <div class="gallery-item fade-up delay-5">
+                    <span>📸</span>
+                    <span class="caption">Celebração de Páscoa</span>
+                </div>
+                <div class="gallery-item fade-up delay-1">
+                    <span>📸</span>
+                    <span class="caption">Plantão de oração</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <section class="contact-section" id="contato">
+        <div class="container">
+            <div class="fade-up">
+                <span class="text-gold" style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:13px;">Conecte-se</span>
+                <h2 class="section-title">Vamos <span style="color:var(--gold);">caminhar</span> juntos</h2>
+                <p class="section-sub">Quer saber mais, fazer parte ou apoiar nossa missão? Fale conosco.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info fade-up delay-1">
+                    <p>Estamos aqui para ouvir, acolher e construir parcerias que geram impacto. Entre em contato e descubra como você pode fazer parte desta história.</p>
+                    <div class="detail">📧 <strong>Email:</strong> contato@sacredstories.org</div>
+                    <div class="detail">📞 <strong>Telefone:</strong> (11) 99999-9999</div>
+                    <div class="detail">📍 <strong>Endereço:</strong> Rua da Esperança, 123 — Centro</div>
+                </div>
+                <form class="contact-form fade-up delay-2" id="contactForm">
+                    <input type="text" placeholder="Seu nome" required />
+                    <input type="email" placeholder="Seu melhor e-mail" required />
+                    <input type="text" placeholder="Assunto" />
+                    <textarea placeholder="Sua mensagem..." required></textarea>
+                    <button type="submit" class="btn-submit">Enviar mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="social">
+                <a href="#" aria-label="Instagram">📷</a>
+                <a href="#" aria-label="YouTube">▶️</a>
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="Spotify">🎵</a>
+            </div>
+            <p>&copy; 2026 Sacred Stories — Uma história de fé e comunidade.</p>
+        </div>
+    </footer>
+
+    <!-- ===== BOTÃO VOLTAR AO TOPO ===== -->
+    <button class="back-top" id="backTop" aria-label="Voltar ao topo">↑</button>
+
+    <script>
+        // ================================================================
+        //  MENU MOBILE
+        // ================================================================
+        const menuToggle = document.getElementById('menuToggle');
+        const headerNav = document.getElementById('headerNav');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = headerNav.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            menuToggle.textContent = isOpen ? '✕' : '☰';
+        });
+
+        // Fecha o menu ao clicar em um link
+        document.querySelectorAll('.header-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                headerNav.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = '☰';
+            });
+        });
+
+        // ================================================================
+        //  ANIMAÇÃO DE ENTRADA (Intersection Observer)
+        // ================================================================
+        const fadeElements = document.querySelectorAll('.fade-up');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.10,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // ================================================================
+        //  BOTÃO VOLTAR AO TOPO
+        // ================================================================
+        const backTop = document.getElementById('backTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backTop.classList.add('visible');
+            } else {
+                backTop.classList.remove('visible');
+            }
+        });
+
+        backTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ================================================================
+        //  FORMULÁRIO DE CONTATO
+        // ================================================================
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = this.querySelector('input[type="text"]').value || 'visitante';
+            alert(`✨ Obrigado, ${name}! Sua mensagem foi enviada. Em breve retornaremos com carinho.`);
+            this.reset();
+        });
+
+        // ================================================================
+        //  HEADER SCROLL EFFECT
+        // ================================================================
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                header.style.background = 'rgba(253, 251, 247, 0.96)';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.04)';
+            } else {
+                header.style.background = 'rgba(253, 251, 247, 0.92)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // ================================================================
+        //  LOG
+        // ================================================================
+        console.log('📖 Sacred Stories — Portfólio editorial premium');
+    </script>
+
+</body>
+</html>

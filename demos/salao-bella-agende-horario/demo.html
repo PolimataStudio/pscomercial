@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>Salão Bella · Agende seu horário de beleza</title>
+    <meta name="description" content="Agende seu horário de beleza em menos de 1 minuto. Corte, escova, unhas e mais. Profissionais experientes, horários flexíveis." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --azul: #2B7BE4;
+            --azul-escuro: #1A5FBF;
+            --azul-claro: #E8F1FC;
+            --azul-grad: linear-gradient(135deg, #2B7BE4, #1A5FBF);
+            --verde: #25D366;
+            --cinza-100: #F7F8FA;
+            --cinza-200: #E9ECEF;
+            --cinza-300: #D0D5DD;
+            --cinza-400: #98A2B3;
+            --cinza-500: #667085;
+            --cinza-600: #475467;
+            --cinza-700: #344054;
+            --cinza-800: #1D2939;
+            --cinza-900: #101828;
+            --branco: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(16, 24, 40, 0.06), 0 1px 2px rgba(16, 24, 40, 0.04);
+            --shadow-md: 0 4px 16px rgba(16, 24, 40, 0.08);
+            --shadow-lg: 0 8px 32px rgba(16, 24, 40, 0.12);
+            --shadow-xl: 0 12px 48px rgba(16, 24, 40, 0.16);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-xs: 6px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --header-h: 64px;
+            --cta-bar-h: 72px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--cinza-100);
+            color: var(--cinza-800);
+            line-height: 1.5;
+            padding-top: var(--header-h);
+            padding-bottom: calc(var(--cta-bar-h) + 16px);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-h);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--cinza-200);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 100;
+            transition: box-shadow var(--transition);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--cinza-900);
+            letter-spacing: -0.3px;
+        }
+
+        .logo .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--azul-grad);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .logo span {
+            color: var(--azul);
+        }
+
+        .header-cta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .header-cta .btn-small {
+            background: var(--azul-grad);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 6px 16px;
+            border-radius: 50px;
+            transition: all var(--transition);
+            touch-action: manipulation;
+            border: none;
+            cursor: pointer;
+        }
+
+        .header-cta .btn-small:hover {
+            transform: scale(0.96);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* ============================================================
+           HERO
+           ============================================================ */
+        .hero {
+            padding: 32px 0 24px;
+            text-align: center;
+            background: var(--cinza-100);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--azul-claro);
+            color: var(--azul-escuro);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 14px;
+            border-radius: 50px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--cinza-900);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .hero h1 em {
+            color: var(--azul);
+            font-style: normal;
+        }
+
+        .hero p {
+            font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+            color: var(--cinza-500);
+            max-width: 520px;
+            margin: 0 auto 24px;
+            font-weight: 400;
+        }
+
+        .hero .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--azul-grad);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 16px 40px;
+            border-radius: 60px;
+            box-shadow: 0 8px 28px rgba(43, 123, 228, 0.35);
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .hero .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(43, 123, 228, 0.45);
+        }
+
+        .hero .btn-primary:active {
+            transform: scale(0.96);
+        }
+
+        .hero .btn-primary .whatsapp-icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        .hero .sub-cta {
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--cinza-400);
+        }
+
+        .hero .sub-cta strong {
+            color: var(--cinza-600);
+        }
+
+        /* ============================================================
+           TRUST BAR (provas rápidas)
+           ============================================================ */
+        .trust-bar {
+            background: var(--branco);
+            border-top: 1px solid var(--cinza-200);
+            border-bottom: 1px solid var(--cinza-200);
+            padding: 16px 0;
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--cinza-600);
+        }
+
+        .trust-item .num {
+            font-weight: 800;
+            color: var(--cinza-900);
+            font-size: 1rem;
+        }
+
+        .trust-item .emoji {
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 480px) {
+            .trust-bar {
+                gap: 16px;
+                padding: 12px 0;
+            }
+            .trust-item {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* ============================================================
+           SEÇÕES
+           ============================================================ */
+        .section {
+            padding: 40px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            color: var(--cinza-900);
+            letter-spacing: -0.3px;
+        }
+
+        .section-header h2 em {
+            color: var(--azul);
+            font-style: normal;
+        }
+
+        .section-header p {
+            color: var(--cinza-500);
+            font-size: 0.95rem;
+            margin-top: 4px;
+        }
+
+        /* ============================================================
+           BENEFÍCIOS (BULLETS)
+           ============================================================ */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .benefit-card {
+            background: var(--branco);
+            padding: 20px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--cinza-200);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: all var(--transition);
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--azul-claro);
+        }
+
+        .benefit-card .icon {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .benefit-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--cinza-800);
+            margin-bottom: 2px;
+        }
+
+        .benefit-card p {
+            font-size: 0.8rem;
+            color: var(--cinza-500);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .benefits-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+        }
+        @media (max-width: 420px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                max-width: 320px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* ============================================================
+           SERVIÇOS (CARDS)
+           ============================================================ */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .service-card {
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--cinza-200);
+            padding: 20px 16px;
+            text-align: center;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--azul);
+        }
+
+        .service-card .emoji {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .service-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--cinza-800);
+        }
+
+        .service-card .price {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--azul);
+            margin-top: 2px;
+        }
+
+        .service-card .desc {
+            font-size: 0.75rem;
+            color: var(--cinza-400);
+            margin-top: 4px;
+        }
+
+        @media (max-width: 640px) {
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+        }
+        @media (max-width: 420px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                max-width: 280px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* ============================================================
+           DEPOIMENTOS
+           ============================================================ */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .testimonial-card {
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            padding: 20px 18px;
+            border: 1px solid var(--cinza-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .testimonial-card .stars {
+            color: #F5B342;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .testimonial-card blockquote {
+            font-size: 0.9rem;
+            color: var(--cinza-600);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .testimonial-card .author .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--azul-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: var(--azul);
+            flex-shrink: 0;
+        }
+
+        .testimonial-card .author .name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--cinza-800);
+        }
+
+        .testimonial-card .author .role {
+            font-size: 0.7rem;
+            color: var(--cinza-400);
+            display: block;
+        }
+
+        @media (max-width: 640px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 420px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+
+        /* ============================================================
+           FAQ
+           ============================================================ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--branco);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--cinza-200);
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+
+        .faq-item:hover {
+            border-color: var(--azul-claro);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--cinza-800);
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font);
+            transition: all var(--transition);
+            touch-action: manipulation;
+        }
+
+        .faq-question:hover {
+            background: var(--cinza-100);
+        }
+
+        .faq-question .arrow {
+            font-size: 0.8rem;
+            color: var(--cinza-400);
+            transition: transform var(--transition);
+            flex-shrink: 0;
+            margin-left: 12px;
+        }
+
+        .faq-item.open .faq-question .arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease, padding 0.35s ease;
+            padding: 0 18px;
+            color: var(--cinza-500);
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 18px 16px;
+        }
+
+        /* ============================================================
+           CTA FINAL
+           ============================================================ */
+        .cta-final {
+            background: var(--azul-grad);
+            border-radius: var(--radius);
+            padding: 40px 24px;
+            text-align: center;
+            color: #fff;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .cta-final h2 {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 800;
+            margin-bottom: 6px;
+            letter-spacing: -0.3px;
+        }
+
+        .cta-final p {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-final .btn-white {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            color: var(--azul-escuro);
+            font-weight: 700;
+            font-size: 1.05rem;
+            padding: 16px 40px;
+            border-radius: 60px;
+            transition: all var(--transition);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            border: none;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .cta-final .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        .cta-final .btn-white:active {
+            transform: scale(0.96);
+        }
+
+        .cta-final .btn-white .whatsapp-icon {
+            width: 22px;
+            height: 22px;
+            fill: #25D366;
+            flex-shrink: 0;
+        }
+
+        .cta-final .badge-vagas {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 4px 16px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            padding: 24px 0 12px;
+            border-top: 1px solid var(--cinza-200);
+            margin-top: 8px;
+            background: var(--branco);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--cinza-400);
+        }
+
+        .footer-content .socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-content .socials a {
+            color: var(--cinza-400);
+            transition: color var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .footer-content .socials a:hover {
+            color: var(--azul);
+        }
+
+        /* ============================================================
+           WHATSAPP BAR FIXA
+           ============================================================ */
+        .whatsapp-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--cta-bar-h);
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-top: 1px solid var(--cinza-200);
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 99;
+        }
+
+        .whatsapp-bar .btn-whatsapp {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--azul-grad);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 12px 0;
+            border-radius: 60px;
+            box-shadow: 0 4px 20px rgba(43, 123, 228, 0.30);
+            transition: all var(--transition);
+            border: none;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .whatsapp-bar .btn-whatsapp:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 28px rgba(43, 123, 228, 0.40);
+        }
+
+        .whatsapp-bar .btn-whatsapp:active {
+            transform: scale(0.96);
+        }
+
+        .whatsapp-bar .btn-whatsapp .whatsapp-icon {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+            flex-shrink: 0;
+        }
+
+        .whatsapp-bar .bar-label {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--cinza-400);
+            text-align: center;
+            line-height: 1.2;
+            flex-shrink: 0;
+            max-width: 56px;
+        }
+
+        /* ============================================================
+           ANIMAÇÕES
+           ============================================================ */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+           UTILITÁRIOS
+           ============================================================ */
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ============================================================
+           RESPONSIVIDADE
+           ============================================================ */
+        @media (max-width: 640px) {
+            .header {
+                padding: 0 16px;
+            }
+            .logo {
+                font-size: 1rem;
+            }
+            .logo .icon {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+            .header-cta .btn-small {
+                font-size: 0.7rem;
+                padding: 4px 12px;
+            }
+            .hero {
+                padding: 20px 0 16px;
+            }
+            .section {
+                padding: 28px 0;
+            }
+            .hero .btn-primary {
+                font-size: 0.95rem;
+                padding: 14px 28px;
+            }
+            .cta-final .btn-white {
+                font-size: 0.95rem;
+                padding: 14px 28px;
+            }
+            .whatsapp-bar .btn-whatsapp {
+                font-size: 0.85rem;
+                padding: 10px 0;
+            }
+            .trust-bar {
+                gap: 12px;
+            }
+            .trust-item .num {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .container {
+                padding: 0 14px;
+            }
+            .cta-final {
+                padding: 28px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="logo">
+            <span class="icon">✦</span>
+            Salão<span>Bella</span>
+        </div>
+        <div class="header-cta">
+            <button class="btn-small" onclick="window.open('https://wa.me/5511999999999?text=Olá!%20Quero%20agendar%20meu%20horário%20no%20Salão%20Bella.', '_blank')">
+                Agendar
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-badge">⚡ Agendamento rápido</div>
+            <h1>Agende seu horário de <em>beleza</em> em menos de 1 minuto</h1>
+            <p>Sem filas, sem burocracia. Escolha o serviço, confirme e pronto — seu horário está garantido.</p>
+            <button class="btn-primary" onclick="window.open('https://wa.me/5511999999999?text=Olá!%20Quero%20agendar%20meu%20horário%20no%20Salão%20Bella.', '_blank')">
+                <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M12.032 21.965c-1.917 0-3.775-.563-5.378-1.62l-4.65 1.524 1.552-4.525a9.923 9.923 0 0 1-1.708-5.54c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm0-18.5c-4.687 0-8.5 3.813-8.5 8.5 0 1.714.51 3.363 1.475 4.75l-.967 2.82 2.917-.956a8.48 8.48 0 0 0 5.075 1.68c4.687 0 8.5-3.813 8.5-8.5s-3.813-8.5-8.5-8.5zm4.932 10.557c-.288-.144-1.703-.84-1.967-.936-.264-.096-.456-.144-.647.144s-.742.936-.91 1.128-.335.216-.623.072c-.288-.144-1.217-.448-2.318-1.428-.857-.764-1.436-1.707-1.603-1.996-.168-.288-.018-.444.126-.587.13-.13.288-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504s-.623-1.5-.853-2.054c-.225-.54-.454-.447-.623-.456-.168-.008-.36-.008-.552-.008s-.504.072-.768.36c-.264.288-1.008.984-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.03 3.096 4.915 4.34 2.885 1.244 2.885.828 3.406.776.521-.052 1.68-.686 1.916-1.348.236-.662.236-1.23.168-1.348-.072-.12-.264-.192-.552-.336z"/></svg>
+                Agendar agora no WhatsApp
+            </button>
+            <div class="sub-cta">
+                <strong>🔹</strong> Atendimento rápido · <strong>🔹</strong> Sem compromisso
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TRUST BAR ===== -->
+    <div class="trust-bar" id="trust">
+        <div class="trust-item">
+            <span class="emoji">👩</span>
+            <span><span class="num">+500</span> clientes atendidos</span>
+        </div>
+        <div class="trust-item">
+            <span class="emoji">⭐</span>
+            <span><span class="num">4.9</span> de 5 estrelas</span>
+        </div>
+        <div class="trust-item">
+            <span class="emoji">🏆</span>
+            <span><span class="num">6</span> anos de experiência</span>
+        </div>
+        <div class="trust-item">
+            <span class="emoji">📅</span>
+            <span><span class="num">100%</span> horários flexíveis</span>
+        </div>
+    </div>
+
+    <!-- ===== BENEFÍCIOS ===== -->
+    <section class="section" id="beneficios">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Por que escolher o <em>Salão Bella</em></h2>
+                <p>Resultados reais, atendimento personalizado e praticidade que você merece</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card fade-up">
+                    <span class="icon">⏱️</span>
+                    <h3>Sem fila</h3>
+                    <p>Agendamento rápido e pontual. Seu tempo é valioso.</p>
+                </div>
+                <div class="benefit-card fade-up">
+                    <span class="icon">🕒</span>
+                    <h3>Horários flexíveis</h3>
+                    <p>Manhã, tarde, noite — agende no horário que couber na sua rotina.</p>
+                </div>
+                <div class="benefit-card fade-up">
+                    <span class="icon">🧑‍🎨</span>
+                    <h3>Profissionais experientes</h3>
+                    <p>Equipe qualificada com anos de prática e atualização constante.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVIÇOS ===== -->
+    <section class="section" id="servicos" style="background: var(--cinza-100);">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Serviços em <em>destaque</em></h2>
+                <p>Escolha o que você precisa e agende em um toque</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-up">
+                    <span class="emoji">✂️</span>
+                    <h3>Corte + Escova</h3>
+                    <div class="price">a partir de R$ 79</div>
+                    <div class="desc">Corte moderno com finalização</div>
+                </div>
+                <div class="service-card fade-up">
+                    <span class="emoji">💅</span>
+                    <h3>Unhas em gel</h3>
+                    <div class="price">a partir de R$ 59</div>
+                    <div class="desc">Alongamento e decoração</div>
+                </div>
+                <div class="service-card fade-up">
+                    <span class="emoji">🎨</span>
+                    <h3>Combo Cabelo + Unha</h3>
+                    <div class="price">a partir de R$ 129</div>
+                    <div class="desc">Pacote completo com desconto</div>
+                </div>
+            </div>
+            <div class="text-center mt-16">
+                <button class="hero .btn-primary" style="background: var(--azul-grad); color:#fff; font-weight:700; font-size:0.95rem; padding:14px 32px; border-radius:60px; border:none; cursor:pointer; box-shadow:0 4px 20px rgba(43,123,228,0.30); transition: all var(--transition);" onclick="window.open('https://wa.me/5511999999999?text=Olá!%20Quero%20agendar%20o%20combo%20no%20Salão%20Bella.', '_blank')">
+                    Ver todos os serviços →
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section class="section" id="depoimentos">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>O que nossas <em>clientes</em> dizem</h2>
+                <p>Histórias reais de quem já viveu a experiência Salão Bella</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-up">
+                    <span class="stars">★★★★★</span>
+                    <blockquote>"Atendimento impecável, saí com o cabelo dos sonhos. Super recomendo!"</blockquote>
+                    <div class="author">
+                        <div class="avatar">FM</div>
+                        <div><span class="name">Fernanda M.</span><span class="role">cliente desde 2024</span></div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-up">
+                    <span class="stars">★★★★★</span>
+                    <blockquote>"Agendei pelo WhatsApp e fui atendida no horário exato. Profissionais incríveis."</blockquote>
+                    <div class="author">
+                        <div class="avatar">CR</div>
+                        <div><span class="name">Camila R.</span><span class="role">cliente desde 2023</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section" id="faq" style="background: var(--cinza-100);">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Dúvidas <em>frequentes</em></h2>
+                <p>Respostas rápidas para você agendar com confiança</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item fade-up">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Como funciona o agendamento?</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">É simples: clique no botão "Agendar agora", será redirecionado ao WhatsApp, informe o serviço desejado e um horário. Confirmamos em poucos minutos.</div>
+                </div>
+                <div class="faq-item fade-up">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Posso cancelar ou remarcar?</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">Sim, com até 2 horas de antecedência. Basta nos avisar pelo WhatsApp e remarcamos sem custo adicional.</div>
+                </div>
+                <div class="faq-item fade-up">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Quais formas de pagamento são aceitas?</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">Aceitamos dinheiro, cartão de débito e crédito (em até 3x sem juros). Também temos PIX para maior comodidade.</div>
+                </div>
+                <div class="faq-item fade-up">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        <span>Os valores são fixos ou variam?</span>
+                        <span class="arrow">▼</span>
+                    </button>
+                    <div class="faq-answer">Trabalhamos com preços fixos por serviço, com transparência total. Orçamentos personalizados são feitos durante a consulta.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA FINAL ===== -->
+    <section class="section" id="cta-final">
+        <div class="container">
+            <div class="cta-final fade-up">
+                <span class="badge-vagas">🔹 Vagas limitadas para este fim de semana</span>
+                <h2>Garantir meu horário hoje</h2>
+                <p>Não deixe para depois. Seu momento de beleza está a um clique de distância.</p>
+                <button class="btn-white" onclick="window.open('https://wa.me/5511999999999?text=Olá!%20Quero%20garantir%20meu%20horário%20no%20Salão%20Bella.', '_blank')">
+                    <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M12.032 21.965c-1.917 0-3.775-.563-5.378-1.62l-4.65 1.524 1.552-4.525a9.923 9.923 0 0 1-1.708-5.54c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm0-18.5c-4.687 0-8.5 3.813-8.5 8.5 0 1.714.51 3.363 1.475 4.75l-.967 2.82 2.917-.956a8.48 8.48 0 0 0 5.075 1.68c4.687 0 8.5-3.813 8.5-8.5s-3.813-8.5-8.5-8.5zm4.932 10.557c-.288-.144-1.703-.84-1.967-.936-.264-.096-.456-.144-.647.144s-.742.936-.91 1.128-.335.216-.623.072c-.288-.144-1.217-.448-2.318-1.428-.857-.764-1.436-1.707-1.603-1.996-.168-.288-.018-.444.126-.587.13-.13.288-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504s-.623-1.5-.853-2.054c-.225-.54-.454-.447-.623-.456-.168-.008-.36-.008-.552-.008s-.504.072-.768.36c-.264.288-1.008.984-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.03 3.096 4.915 4.34 2.885 1.244 2.885.828 3.406.776.521-.052 1.68-.686 1.916-1.348.236-.662.236-1.23.168-1.348-.072-.12-.264-.192-.552-.336z"/></svg>
+                    Agendar meu horário agora
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <span>© 2026 Salão Bella · Todos os direitos reservados</span>
+                <span>📍 Rua das Flores, 123 · Centro</span>
+                <div class="socials">
+                    <a href="#" aria-label="Instagram">📸</a>
+                    <a href="#" aria-label="Facebook">👍</a>
+                    <a href="#" aria-label="YouTube">▶️</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== WHATSAPP BAR FIXA ===== -->
+    <div class="whatsapp-bar">
+        <span class="bar-label">📲 1 clique</span>
+        <button class="btn-whatsapp" onclick="window.open('https://wa.me/5511999999999?text=Olá!%20Quero%20agendar%20meu%20horário%20no%20Salão%20Bella.', '_blank')">
+            <svg class="whatsapp-icon" viewBox="0 0 24 24"><path d="M12.032 21.965c-1.917 0-3.775-.563-5.378-1.62l-4.65 1.524 1.552-4.525a9.923 9.923 0 0 1-1.708-5.54c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm0-18.5c-4.687 0-8.5 3.813-8.5 8.5 0 1.714.51 3.363 1.475 4.75l-.967 2.82 2.917-.956a8.48 8.48 0 0 0 5.075 1.68c4.687 0 8.5-3.813 8.5-8.5s-3.813-8.5-8.5-8.5zm4.932 10.557c-.288-.144-1.703-.84-1.967-.936-.264-.096-.456-.144-.647.144s-.742.936-.91 1.128-.335.216-.623.072c-.288-.144-1.217-.448-2.318-1.428-.857-.764-1.436-1.707-1.603-1.996-.168-.288-.018-.444.126-.587.13-.13.288-.336.431-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504s-.623-1.5-.853-2.054c-.225-.54-.454-.447-.623-.456-.168-.008-.36-.008-.552-.008s-.504.072-.768.36c-.264.288-1.008.984-1.008 2.4s1.032 2.784 1.176 2.976c.144.192 2.03 3.096 4.915 4.34 2.885 1.244 2.885.828 3.406.776.521-.052 1.68-.686 1.916-1.348.236-.662.236-1.23.168-1.348-.072-.12-.264-.192-.552-.336z"/></svg>
+            Agendar agora
+        </button>
+    </div>
+
+    <!-- ============================================================
+    SCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---- HEADER SHADOW ----
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 20);
+            }, { passive: true });
+
+            // ---- FAQ TOGGLE ----
+            window.toggleFaq = function(btn) {
+                const item = btn.closest('.faq-item');
+                if (!item) return;
+                const isOpen = item.classList.contains('open');
+                // close all
+                document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
+                if (!isOpen) {
+                    item.classList.add('open');
+                }
+            };
+
+            // ---- FADE-IN ON SCROLL (Intersection Observer) ----
+            const fadeElements = document.querySelectorAll('.fade-up');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // optionally unobserve after reveal
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -30px 0px'
+            });
+
+            fadeElements.forEach(el => observer.observe(el));
+
+            // ---- SMOOTH ANCHOR SCROLL ----
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        const offsetTop = target.getBoundingClientRect().top + window.scrollY - 80;
+                        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                        history.pushState(null, null, targetId);
+                    }
+                });
+            });
+
+            console.log('📅 One-Click Booking — Salão Bella');
+            console.log('🎯 Landing page de conversão direta para agendamentos.');
+        })();
+    </script>
+
+</body>
+</html>

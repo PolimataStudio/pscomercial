@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="theme-color" content="#0D1418" />
+    <meta name="description" content="Salon Insight - Painel de inteligência para salões de beleza" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <title>Salon Insight</title>
+
+    <!-- Manifest -->
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlNhbG9uIEluc2lnaHQiLAogICJzaG9ydF9uYW1lIjogIlNhbG9uIEluc2lnaHQiLAogICJkZXNjcmlwdGlvbiI6ICJQYWluZWwgZGUgaW50ZWxpZ8OqbmNpYSBwYXJhIHNhbMO1ZXMiLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzBEMTQxOCIsCiAgInRoZW1lX2NvbG9yIjogIiMwRDE0MTgiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCA1MTIgNTEyJz48cmVjdCB3aWR0aD0nNTEyJyBoZWlnaHQ9JzUxMicgcng9JzYwJyBmaWxsPSclMjMwRDE0MTgnLz48dGV4dCB4PScyNTYnIHk9JzM0MCcgZm9udC1zaXplPScyNTAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtZmFtaWx5PSdzYW5zLXNlcmlmJyBmaWxsPSclMjM0QkE4NzQnPuKIgjwvdGV4dD48L3N2Zz4iCiAgICB9CiAgXQp9" />
+
+    <!-- Google Fonts: Space Grotesk + Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+           CSS VARIABLES / THEME (Dark)
+           ============================================================ */
+        :root {
+            --bg-body: #0D1418;
+            --bg-surface: #162026;
+            --bg-surface-2: #1C2A32;
+            --bg-surface-3: #24343E;
+            --bg-card: #1A262E;
+            --bg-card-hover: #22333C;
+
+            --text-primary: #E8EDF0;
+            --text-secondary: #9AB0BB;
+            --text-muted: #5E7682;
+            --text-inverse: #0D1418;
+
+            --color-accent: #4BA874;
+            --color-accent-light: #6BCA94;
+            --color-accent-bg: rgba(75, 168, 116, 0.12);
+            --color-blue: #4A8DB7;
+            --color-blue-bg: rgba(74, 141, 183, 0.12);
+            --color-gold: #D4A14A;
+            --color-gold-bg: rgba(212, 161, 74, 0.12);
+            --color-red: #C95A5A;
+            --color-red-bg: rgba(201, 90, 90, 0.12);
+
+            --border-light: #2A3A44;
+            --border-subtle: #1E2E38;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.5);
+
+            --radius-card: 16px;
+            --radius-btn: 10px;
+            --radius-input: 10px;
+
+            --font-display: 'Space Grotesk', 'Inter', sans-serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --bottom-bar-height: 64px;
+            --header-height: 0px;
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding-bottom: calc(var(--bottom-bar-height) + var(--safe-bottom) + 8px);
+            padding-top: 8px;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-body);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-accent);
+            border-radius: 20px;
+        }
+
+        /* ============================================================
+           TYPOGRAPHY
+           ============================================================ */
+        .display-font {
+            font-family: var(--font-display);
+        }
+        .heading-1 {
+            font-family: var(--font-display);
+            font-size: 1.625rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        .heading-2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+        }
+        .heading-3 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .body-text {
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+        .label-text {
+            font-size: 0.625rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+        .caption-text {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+        .number-large {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        .number-medium {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        /* ============================================================
+           LAYOUT
+           ============================================================ */
+        .container {
+            max-width: 560px;
+            margin: 0 auto;
+            padding: 0 14px;
+        }
+
+        .page {
+            display: none;
+            padding-top: 4px;
+            padding-bottom: 12px;
+            animation: fadeSlideUp 0.4s ease both;
+        }
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+           HEADER
+           ============================================================ */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 0 12px;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 14px;
+        }
+        .app-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .app-header .logo .icon {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .app-header .logo .name {
+            font-family: var(--font-display);
+            font-size: 1.0625rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .app-header .logo .name span {
+            color: var(--color-accent);
+        }
+        .app-header .period-filter {
+            display: flex;
+            background: var(--bg-surface);
+            border-radius: 30px;
+            padding: 2px;
+            border: 1px solid var(--border-subtle);
+        }
+        .app-header .period-filter button {
+            border: none;
+            background: transparent;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-family: var(--font-sans);
+            font-size: 0.625rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .app-header .period-filter button.active {
+            background: var(--color-accent);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(75, 168, 116, 0.25);
+        }
+        .app-header .period-filter button:active {
+            transform: scale(0.95);
+        }
+
+        /* ============================================================
+           BOTTOM NAVIGATION
+           ============================================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: stretch;
+            justify-content: space-around;
+            height: calc(var(--bottom-bar-height) + var(--safe-bottom));
+            padding-bottom: var(--safe-bottom);
+            z-index: 100;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(22, 32, 38, 0.94);
+        }
+        .bottom-nav .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            padding: 4px 0;
+            border: none;
+            background: transparent;
+            font-family: var(--font-sans);
+            font-size: 0.5625rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            position: relative;
+        }
+        .bottom-nav .nav-item .icon {
+            font-size: 1.125rem;
+            line-height: 1;
+            transition: var(--transition);
+        }
+        .bottom-nav .nav-item .label {
+            transition: var(--transition);
+        }
+        .bottom-nav .nav-item.active {
+            color: var(--color-accent);
+        }
+        .bottom-nav .nav-item.active .icon {
+            transform: translateY(-1px);
+        }
+        .bottom-nav .nav-item:active {
+            transform: scale(0.92);
+        }
+        .bottom-nav .nav-item .badge-nav {
+            position: absolute;
+            top: 2px;
+            right: 50%;
+            transform: translateX(calc(50% + 16px));
+            background: var(--color-accent);
+            color: #fff;
+            font-size: 0.45rem;
+            font-weight: 700;
+            padding: 0 6px;
+            border-radius: 20px;
+            line-height: 1.5;
+            min-width: 14px;
+            text-align: center;
+        }
+
+        /* ============================================================
+           BENTO GRID
+           ============================================================ */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .bento-grid .full {
+            grid-column: 1 / -1;
+        }
+        .bento-grid .half {
+            grid-column: span 1;
+        }
+
+        /* ============================================================
+           CARDS
+           ============================================================ */
+        .card {
+            background: var(--bg-card);
+            border-radius: var(--radius-card);
+            border: 1px solid var(--border-subtle);
+            padding: 14px 16px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+        .card:hover {
+            border-color: var(--border-light);
+            background: var(--bg-card-hover);
+        }
+        .card:active {
+            transform: scale(0.98);
+        }
+        .card .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .card .card-header .card-title {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .card .card-header .card-badge {
+            font-size: 0.5625rem;
+            font-weight: 600;
+            padding: 1px 10px;
+            border-radius: 30px;
+            background: var(--bg-surface-2);
+            color: var(--text-secondary);
+        }
+        .card .card-value {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+        .card .card-value .trend {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 6px;
+            font-family: var(--font-sans);
+        }
+        .card .card-value .trend.up {
+            color: var(--color-accent);
+        }
+        .card .card-value .trend.down {
+            color: var(--color-red);
+        }
+        .card .card-sub {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .mini-chart {
+            margin-top: 8px;
+            height: 36px;
+            width: 100%;
+        }
+        .mini-chart svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* KPI Card com gráfico integrado */
+        .kpi-card .chart-area {
+            margin-top: 6px;
+            height: 44px;
+            width: 100%;
+        }
+        .kpi-card .chart-area svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ============================================================
+           SERVIÇOS LIST
+           ============================================================ */
+        .service-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            gap: 10px;
+        }
+        .service-item:last-child {
+            border-bottom: none;
+        }
+        .service-item .rank {
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            min-width: 20px;
+        }
+        .service-item .info {
+            flex: 1;
+            min-width: 0;
+        }
+        .service-item .info .name {
+            font-weight: 500;
+            font-size: 0.8125rem;
+        }
+        .service-item .info .meta {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+        .service-item .stats {
+            text-align: right;
+            flex-shrink: 0;
+        }
+        .service-item .stats .count {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        .service-item .stats .revenue {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+        .service-item .bar-bg {
+            width: 60px;
+            height: 4px;
+            background: var(--bg-surface-2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 3px;
+            margin-left: auto;
+        }
+        .service-item .bar-bg .bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: var(--color-accent);
+            transition: width 0.6s ease;
+        }
+
+        /* ============================================================
+           HEATMAP
+           ============================================================ */
+        .heatmap-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-top: 6px;
+        }
+        .heatmap-grid .day-label {
+            font-size: 0.5rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            text-align: center;
+            padding: 2px 0;
+        }
+        .heatmap-grid .hour-cell {
+            aspect-ratio: 1 / 0.8;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: var(--transition);
+            background: var(--bg-surface-2);
+            cursor: default;
+            min-height: 20px;
+        }
+        .heatmap-grid .hour-cell.level-0 {
+            background: var(--bg-surface-2);
+            color: var(--text-muted);
+        }
+        .heatmap-grid .hour-cell.level-1 {
+            background: rgba(75, 168, 116, 0.20);
+            color: var(--text-secondary);
+        }
+        .heatmap-grid .hour-cell.level-2 {
+            background: rgba(75, 168, 116, 0.40);
+            color: var(--text-primary);
+        }
+        .heatmap-grid .hour-cell.level-3 {
+            background: rgba(75, 168, 116, 0.65);
+            color: #fff;
+        }
+        .heatmap-grid .hour-cell.level-4 {
+            background: var(--color-accent);
+            color: #fff;
+            font-weight: 600;
+        }
+        .heatmap-grid .hour-cell:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============================================================
+           CLIENTES
+           ============================================================ */
+        .client-stat {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .client-stat:last-child {
+            border-bottom: none;
+        }
+        .client-stat .icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            width: 36px;
+            text-align: center;
+        }
+        .client-stat .info {
+            flex: 1;
+        }
+        .client-stat .info .label {
+            font-size: 0.8125rem;
+            font-weight: 500;
+        }
+        .client-stat .info .desc {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+        .client-stat .value {
+            font-weight: 700;
+            font-size: 1.0625rem;
+            color: var(--text-primary);
+        }
+
+        /* ============================================================
+           CONFIG
+           ============================================================ */
+        .config-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .config-item:last-child {
+            border-bottom: none;
+        }
+        .config-item .left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .config-item .left .icon {
+            font-size: 1.125rem;
+            width: 28px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+        .config-item .left .info .title {
+            font-weight: 500;
+            font-size: 0.8125rem;
+        }
+        .config-item .left .info .desc {
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+        .config-item .right {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+        .config-item .right .badge-config {
+            background: var(--bg-surface-2);
+            padding: 2px 10px;
+            border-radius: 30px;
+            font-size: 0.625rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* ============================================================
+           ACTION SUGGESTION STRIP
+           ============================================================ */
+        .suggestion-strip {
+            background: var(--bg-surface-2);
+            border-radius: var(--radius-card);
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--border-subtle);
+            margin-bottom: 12px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .suggestion-strip .suggestion {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            background: var(--bg-card);
+            border-radius: 30px;
+            border: 1px solid var(--border-subtle);
+            flex-shrink: 0;
+        }
+        .suggestion-strip .suggestion .emoji {
+            font-size: 0.875rem;
+        }
+        .suggestion-strip .suggestion .highlight {
+            color: var(--color-accent);
+        }
+
+        /* ============================================================
+           TOAST
+           ============================================================ */
+        .toast-container {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            pointer-events: none;
+            max-width: 400px;
+            width: 90%;
+        }
+        .toast {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            padding: 10px 16px;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: auto;
+            animation: toastIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+            margin-bottom: 6px;
+        }
+        .toast.success {
+            border-left: 4px solid var(--color-accent);
+        }
+        .toast .toast-icon {
+            font-size: 1rem;
+        }
+        .toast .toast-msg {
+            flex: 1;
+            font-weight: 500;
+            font-size: 0.8125rem;
+        }
+        @keyframes toastIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-16px) scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        .toast.removing {
+            animation: toastOut 0.3s ease both;
+        }
+        @keyframes toastOut {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-12px) scale(0.94);
+            }
+        }
+
+        /* ============================================================
+           ONBOARDING
+           ============================================================ */
+        .onboarding-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.70);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            animation: fadeIn 0.4s ease;
+        }
+        .onboarding-overlay.hidden {
+            display: none;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        .onboarding-card {
+            background: var(--bg-surface);
+            border-radius: var(--radius-card);
+            padding: 32px 24px 28px;
+            max-width: 380px;
+            width: 100%;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            border: 1px solid var(--border-light);
+            animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .onboarding-card .emoji-big {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .onboarding-card h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .onboarding-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 2px;
+        }
+        .onboarding-card .dots {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+            margin: 14px 0 18px;
+        }
+        .onboarding-card .dots .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border-light);
+            transition: var(--transition);
+        }
+        .onboarding-card .dots .dot.active {
+            background: var(--color-accent);
+            width: 24px;
+            border-radius: 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 28px;
+            font-family: var(--font-sans);
+            font-size: 0.875rem;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-btn);
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        .btn-primary {
+            background: var(--color-accent);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(75, 168, 116, 0.25);
+        }
+        .btn-primary:active {
+            box-shadow: 0 2px 8px rgba(75, 168, 116, 0.15);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-secondary);
+            border: 1.5px solid var(--border-light);
+        }
+        .btn-gold {
+            background: var(--color-gold);
+            color: #fff;
+            box-shadow: 0 4px 16px rgba(212, 161, 74, 0.25);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (min-width: 600px) {
+            .container {
+                max-width: 600px;
+                padding: 0 20px;
+            }
+            .bento-grid {
+                gap: 14px;
+            }
+            .card {
+                padding: 18px 20px;
+            }
+            .card .card-value {
+                font-size: 2.125rem;
+            }
+            .heatmap-grid .hour-cell {
+                min-height: 28px;
+                font-size: 0.5625rem;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .container {
+                max-width: 880px;
+                padding: 0 32px;
+            }
+            .bento-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 18px;
+            }
+            .bento-grid .full {
+                grid-column: 1 / -1;
+            }
+            .bento-grid .half {
+                grid-column: span 1;
+            }
+            .bento-grid .two-thirds {
+                grid-column: span 2;
+            }
+            .card .card-value {
+                font-size: 2.5rem;
+            }
+            .heatmap-grid {
+                gap: 6px;
+            }
+            .heatmap-grid .hour-cell {
+                min-height: 32px;
+                font-size: 0.625rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .bento-grid {
+                gap: 8px;
+            }
+            .card {
+                padding: 12px 14px;
+            }
+            .card .card-value {
+                font-size: 1.375rem;
+            }
+            .app-header .period-filter button {
+                padding: 3px 10px;
+                font-size: 0.5625rem;
+            }
+            .app-header .logo .name {
+                font-size: 0.9375rem;
+            }
+            .heatmap-grid .hour-cell {
+                font-size: 0.4375rem;
+                min-height: 16px;
+            }
+            .heatmap-grid .day-label {
+                font-size: 0.4375rem;
+            }
+            .service-item .stats .count {
+                font-size: 0.75rem;
+            }
+            .service-item .bar-bg {
+                width: 40px;
+            }
+        }
+
+        /* ============================================================
+           UTILITY
+           ============================================================ */
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-12 {
+            margin-bottom: 12px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-muted {
+            color: var(--text-muted);
+        }
+        .w-full {
+            width: 100%;
+        }
+
+        /* ============================================================
+           SERVICE WORKER
+           ============================================================ */
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    ONBOARDING
+    ============================================================ -->
+    <div class="onboarding-overlay" id="onboardingOverlay">
+        <div class="onboarding-card" id="onboardingCard">
+            <div class="emoji-big" id="obEmoji">📊</div>
+            <h2 id="obTitle">Inteligência para seu salão</h2>
+            <p id="obDesc">Salon Insight transforma dados em decisões práticas para o seu negócio.</p>
+            <div class="dots" id="obDots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="btn btn-primary" id="obBtn">Começar</button>
+        </div>
+    </div>
+
+    <!-- ============================================================
+    TOAST
+    ============================================================ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <div class="container">
+        <header class="app-header">
+            <div class="logo">
+                <span class="icon">📈</span>
+                <span class="name">Salon <span>Insight</span></span>
+            </div>
+            <div class="period-filter" id="periodFilter">
+                <button class="active" data-period="week">Semana</button>
+                <button data-period="month">Mês</button>
+                <button data-period="quarter">Trimestre</button>
+            </div>
+        </header>
+    </div>
+
+    <!-- ============================================================
+    MAIN CONTENT
+    ============================================================ -->
+    <main class="container">
+
+        <!-- ========== GERAL ========== -->
+        <section class="page active" id="pageGeral">
+            <!-- Suggestion Strip -->
+            <div class="suggestion-strip" id="suggestionStrip">
+                <span style="font-weight:600;font-size:0.6875rem;color:var(--text-muted);flex-shrink:0;">💡 INSIGHTS</span>
+                <div class="suggestion">
+                    <span class="emoji">🔥</span>
+                    <span>Promover <span class="highlight">Corte</span> às quartas</span>
+                </div>
+                <div class="suggestion">
+                    <span class="emoji">📈</span>
+                    <span>Manicure em alta <span class="highlight">+18%</span></span>
+                </div>
+                <div class="suggestion">
+                    <span class="emoji">⏰</span>
+                    <span>Pico: <span class="highlight">sábados 14h</span></span>
+                </div>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="bento-grid">
+                <!-- KPI: Atendimentos -->
+                <div class="card kpi-card full">
+                    <div class="card-header">
+                        <span class="card-title">Total de Atendimentos</span>
+                        <span class="card-badge">+12% vs mês anterior</span>
+                    </div>
+                    <div class="card-value" id="totalAppointments">347</div>
+                    <div class="card-sub">Últimos 30 dias · média de 11,6 por dia</div>
+                    <div class="chart-area">
+                        <svg viewBox="0 0 300 44" preserveAspectRatio="none">
+                            <polyline points="0,38 20,32 40,36 60,28 80,30 100,18 120,22 140,12 160,16 180,8 200,14 220,6 240,10 260,4 280,8 300,2"
+                            fill="none" stroke="#4BA874" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <polyline points="0,38 20,32 40,36 60,28 80,30 100,18 120,22 140,12 160,16 180,8 200,14 220,6 240,10 260,4 280,8 300,2"
+                            fill="none" stroke="#4BA874" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.15" />
+                            <circle cx="300" cy="2" r="4" fill="#4BA874" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- KPI: Faturamento -->
+                <div class="card kpi-card half">
+                    <div class="card-header">
+                        <span class="card-title">Faturamento</span>
+                        <span class="card-badge">↑ 8.3%</span>
+                    </div>
+                    <div class="card-value" id="totalRevenue">R$ 28.450</div>
+                    <div class="card-sub">Ticket médio: R$ 82,00</div>
+                    <div class="chart-area">
+                        <svg viewBox="0 0 140 32" preserveAspectRatio="none">
+                            <rect x="2" y="18" width="10" height="12" rx="2" fill="#4A8DB7" opacity="0.7" />
+                            <rect x="16" y="10" width="10" height="20" rx="2" fill="#4A8DB7" opacity="0.8" />
+                            <rect x="30" y="14" width="10" height="16" rx="2" fill="#4A8DB7" opacity="0.75" />
+                            <rect x="44" y="6" width="10" height="24" rx="2" fill="#4A8DB7" opacity="0.9" />
+                            <rect x="58" y="12" width="10" height="18" rx="2" fill="#4A8DB7" opacity="0.7" />
+                            <rect x="72" y="4" width="10" height="26" rx="2" fill="#4A8DB7" />
+                            <rect x="86" y="16" width="10" height="14" rx="2" fill="#4A8DB7" opacity="0.7" />
+                            <rect x="100" y="8" width="10" height="22" rx="2" fill="#4A8DB7" opacity="0.85" />
+                            <rect x="114" y="2" width="10" height="28" rx="2" fill="#4A8DB7" opacity="0.95" />
+                            <rect x="128" y="10" width="10" height="20" rx="2" fill="#4A8DB7" opacity="0.75" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- KPI: Serviços Top -->
+                <div class="card kpi-card half">
+                    <div class="card-header">
+                        <span class="card-title">Serviço Mais Vendido</span>
+                        <span class="card-badge">⭐ Top</span>
+                    </div>
+                    <div class="card-value" style="font-size:1.25rem;" id="topService">Corte</div>
+                    <div class="card-sub">86 atendimentos · 24.8% do total</div>
+                    <div class="chart-area">
+                        <svg viewBox="0 0 140 32" preserveAspectRatio="none">
+                            <circle cx="20" cy="16" r="12" fill="none" stroke="#4BA874" stroke-width="3" />
+                            <circle cx="20" cy="16" r="12" fill="none" stroke="#4BA874" stroke-width="3"
+                            stroke-dasharray="75.4 75.4" stroke-dashoffset="18.85" />
+                            <circle cx="70" cy="16" r="12" fill="none" stroke="#4A8DB7" stroke-width="3" />
+                            <circle cx="70" cy="16" r="12" fill="none" stroke="#4A8DB7" stroke-width="3"
+                            stroke-dasharray="75.4 75.4" stroke-dashoffset="37.7" />
+                            <circle cx="120" cy="16" r="12" fill="none" stroke="#D4A14A" stroke-width="3" />
+                            <circle cx="120" cy="16" r="12" fill="none" stroke="#D4A14A" stroke-width="3"
+                            stroke-dasharray="75.4 75.4" stroke-dashoffset="56.5" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Serviços Top List (full) -->
+                <div class="card full" style="grid-column:1/-1;">
+                    <div class="card-header">
+                        <span class="card-title">📋 Desempenho dos Serviços</span>
+                        <span class="card-badge">Top 5</span>
+                    </div>
+                    <div id="serviceList">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SERVIÇOS ========== -->
+        <section class="page" id="pageServicos">
+            <div class="flex-between mb-12">
+                <h2 class="heading-2">📊 Análise de Serviços</h2>
+                <span class="badge-config" style="background:var(--bg-surface-2);padding:4px 14px;border-radius:30px;font-size:0.625rem;color:var(--text-muted);">KPI detalhado</span>
+            </div>
+
+            <div class="bento-grid">
+                <div class="card full" style="grid-column:1/-1;">
+                    <div class="card-header">
+                        <span class="card-title">Performance por Serviço</span>
+                        <span class="card-badge">Ordenado por receita</span>
+                    </div>
+                    <div id="serviceDetailList">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <div class="card full" style="grid-column:1/-1;margin-top:4px;">
+                    <div class="card-header">
+                        <span class="card-title">📈 Distribuição de Atendimentos</span>
+                        <span class="card-badge">Proporção</span>
+                    </div>
+                    <div style="height:120px;display:flex;align-items:flex-end;gap:8px;padding:8px 0;" id="serviceDistribution">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== HORÁRIOS ========== -->
+        <section class="page" id="pageHorarios">
+            <div class="flex-between mb-12">
+                <h2 class="heading-2">⏰ Horários de Pico</h2>
+                <span class="badge-config" style="background:var(--bg-surface-2);padding:4px 14px;border-radius:30px;font-size:0.625rem;color:var(--text-muted);">Heatmap</span>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">Intensidade por Dia/Horário</span>
+                    <span class="card-badge">Mais escuro = mais movimentado</span>
+                </div>
+                <div class="heatmap-grid" id="heatmapGrid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <div class="card mt-12">
+                <div class="card-header">
+                    <span class="card-title">📌 Insights de Horário</span>
+                    <span class="card-badge">Recomendações</span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px;">
+                    <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border-subtle);">
+                        <span style="font-size:1.1rem;">🔥</span>
+                        <span style="font-size:0.8125rem;"><strong>Sábado 14h-16h</strong> — pico absoluto (24 atendimentos)</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border-subtle);">
+                        <span style="font-size:1.1rem;">📈</span>
+                        <span style="font-size:0.8125rem;"><strong>Quarta 10h-12h</strong> — alto movimento, ideal para promoções</span>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:10px;padding:6px 0;">
+                        <span style="font-size:1.1rem;">💡</span>
+                        <span style="font-size:0.8125rem;"><strong>Segunda 9h</strong> — baixa ocupação, considere ofertas especiais</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CLIENTES ========== -->
+        <section class="page" id="pageClientes">
+            <div class="flex-between mb-12">
+                <h2 class="heading-2">👥 Visão de Clientes</h2>
+                <span class="badge-config" style="background:var(--bg-surface-2);padding:4px 14px;border-radius:30px;font-size:0.625rem;color:var(--text-muted);">Segmentação</span>
+            </div>
+
+            <div class="bento-grid">
+                <div class="card full">
+                    <div class="card-header">
+                        <span class="card-title">📊 Distribuição de Clientes</span>
+                        <span class="card-badge">Novos vs Recorrentes</span>
+                    </div>
+                    <div style="display:flex;gap:16px;padding:8px 0;">
+                        <div style="flex:1;text-align:center;background:var(--bg-surface-2);border-radius:var(--radius-card);padding:12px;">
+                            <div style="font-size:1.75rem;font-weight:700;color:var(--color-accent);" id="newClients">64</div>
+                            <div style="font-size:0.6875rem;color:var(--text-muted);">Novos clientes</div>
+                            <div style="font-size:0.625rem;color:var(--text-muted);">36% do total</div>
+                        </div>
+                        <div style="flex:1;text-align:center;background:var(--bg-surface-2);border-radius:var(--radius-card);padding:12px;">
+                            <div style="font-size:1.75rem;font-weight:700;color:var(--color-blue);" id="returningClients">112</div>
+                            <div style="font-size:0.6875rem;color:var(--text-muted);">Clientes recorrentes</div>
+                            <div style="font-size:0.625rem;color:var(--text-muted);">64% do total</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card full">
+                    <div class="card-header">
+                        <span class="card-title">📈 Frequência de Visitas</span>
+                        <span class="card-badge">Média: 2.3 visitas/mês</span>
+                    </div>
+                    <div id="frequencyList">
+                        <div class="client-stat">
+                            <span class="icon">🌟</span>
+                            <div class="info">
+                                <div class="label">Clientes VIP (5+ visitas/mês)</div>
+                                <div class="desc">Alta fidelidade</div>
+                            </div>
+                            <div class="value">18</div>
+                        </div>
+                        <div class="client-stat">
+                            <span class="icon">⭐</span>
+                            <div class="info">
+                                <div class="label">Regulares (2-4 visitas/mês)</div>
+                                <div class="desc">Boa recorrência</div>
+                            </div>
+                            <div class="value">52</div>
+                        </div>
+                        <div class="client-stat">
+                            <span class="icon">💫</span>
+                            <div class="info">
+                                <div class="label">Ocasional (1 visita/mês)</div>
+                                <div class="desc">Potencial para fidelizar</div>
+                            </div>
+                            <div class="value">64</div>
+                        </div>
+                        <div class="client-stat">
+                            <span class="icon">🌱</span>
+                            <div class="info">
+                                <div class="label">Novos (primeira visita)</div>
+                                <div class="desc">Primeiro contato</div>
+                            </div>
+                            <div class="value">42</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CONFIG ========== -->
+        <section class="page" id="pageConfig">
+            <div class="flex-between mb-12">
+                <h2 class="heading-2">⚙️ Configurações</h2>
+                <span class="badge-config" style="background:var(--bg-surface-2);padding:4px 14px;border-radius:30px;font-size:0.625rem;color:var(--text-muted);">Painel</span>
+            </div>
+
+            <div class="card">
+                <div class="config-item">
+                    <div class="left">
+                        <span class="icon">📊</span>
+                        <div class="info">
+                            <div class="title">Fonte de dados</div>
+                            <div class="desc">Dados simulados para demonstração</div>
+                        </div>
+                    </div>
+                    <div class="right"><span class="badge-config">Demo</span></div>
+                </div>
+                <div class="config-item">
+                    <div class="left">
+                        <span class="icon">📅</span>
+                        <div class="info">
+                            <div class="title">Período analisado</div>
+                            <div class="desc">Últimos 30 dias</div>
+                        </div>
+                    </div>
+                    <div class="right"><span class="badge-config">Ativo</span></div>
+                </div>
+                <div class="config-item">
+                    <div class="left">
+                        <span class="icon">🔄</span>
+                        <div class="info">
+                            <div class="title">Atualização automática</div>
+                            <div class="desc">Dados atualizados a cada 24h</div>
+                        </div>
+                    </div>
+                    <div class="right"><span class="badge-config">Ligado</span></div>
+                </div>
+                <div class="config-item">
+                    <div class="left">
+                        <span class="icon">💾</span>
+                        <div class="info">
+                            <div class="title">Exportar relatório</div>
+                            <div class="desc">Gerar PDF com métricas atuais</div>
+                        </div>
+                    </div>
+                    <div class="right"><button class="btn btn-secondary" style="padding:4px 16px;font-size:0.625rem;width:auto;border-radius:20px;" id="exportBtn">📤 Exportar</button></div>
+                </div>
+                <div class="config-item" style="border-bottom:none;">
+                    <div class="left">
+                        <span class="icon">🔁</span>
+                        <div class="info">
+                            <div class="title">Resetar dados de demonstração</div>
+                            <div class="desc">Voltar ao estado inicial</div>
+                        </div>
+                    </div>
+                    <div class="right"><button class="btn btn-secondary" style="padding:4px 16px;font-size:0.625rem;width:auto;border-radius:20px;border-color:var(--color-red);color:var(--color-red);" id="resetBtn">↻ Resetar</button></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ============================================================
+    BOTTOM NAVIGATION
+    ============================================================ -->
+    <nav class="bottom-nav" id="bottomNav">
+        <button class="nav-item active" data-page="pageGeral" data-label="Geral">
+            <span class="icon">📊</span>
+            <span class="label">Geral</span>
+        </button>
+        <button class="nav-item" data-page="pageServicos" data-label="Serviços">
+            <span class="icon">✂️</span>
+            <span class="label">Serviços</span>
+        </button>
+        <button class="nav-item" data-page="pageHorarios" data-label="Horários">
+            <span class="icon">⏰</span>
+            <span class="label">Horários</span>
+        </button>
+        <button class="nav-item" data-page="pageClientes" data-label="Clientes">
+            <span class="icon">👥</span>
+            <span class="label">Clientes</span>
+        </button>
+        <button class="nav-item" data-page="pageConfig" data-label="Config">
+            <span class="icon">⚙️</span>
+            <span class="label">Config</span>
+        </button>
+    </nav>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // DATA STORE (mock)
+            // ============================================================
+            const DEFAULT_DATA = {
+                period: 'week',
+                appointments: {
+                    total: 347,
+                    trend: 12,
+                    daily: [38, 32, 36, 28, 30, 18, 22, 12, 16, 8, 14, 6, 10, 4, 8, 2],
+                    revenue: 28450,
+                    avgTicket: 82.00,
+                    revenueTrend: 8.3
+                },
+                services: [
+                    { id: 's1', name: 'Corte', count: 86, revenue: 6020, percent: 24.8, trend: 5.2 },
+                    { id: 's2', name: 'Corte + Escova', count: 64, revenue: 5120, percent: 18.4, trend: 8.7 },
+                    { id: 's3', name: 'Manicure', count: 52, revenue: 3380, percent: 15.0, trend: 18.3 },
+                    { id: 's4', name: 'Depilação', count: 38, revenue: 2660, percent: 11.0, trend: -2.1 },
+                    { id: 's5', name: 'Barba', count: 34, revenue: 2040, percent: 9.8, trend: 12.4 },
+                    { id: 's6', name: 'Design de Sobrancelhas', count: 28, revenue: 1960, percent: 8.1, trend: 6.7 },
+                    { id: 's7', name: 'Tratamento Capilar', count: 22, revenue: 1760, percent: 6.3, trend: 15.2 },
+                    { id: 's8', name: 'Spa das Mãos', count: 18, revenue: 1440, percent: 5.2, trend: 3.8 },
+                    { id: 's9', name: 'Maquiagem', count: 5, revenue: 450, percent: 1.4, trend: -5.6 },
+                ],
+                heatmap: [
+                    // [Seg, Ter, Qua, Qui, Sex, Sab, Dom] para cada hora (8h-20h)
+                    [0, 1, 2, 1, 1, 3, 0],
+                    [1, 1, 2, 1, 2, 3, 0],
+                    [1, 2, 2, 2, 2, 4, 1],
+                    [2, 2, 3, 2, 3, 4, 1],
+                    [2, 3, 3, 2, 3, 4, 1],
+                    [3, 3, 4, 3, 4, 4, 2],
+                    [3, 4, 4, 3, 4, 3, 2],
+                    [2, 3, 3, 2, 3, 3, 1],
+                    [2, 2, 2, 2, 3, 2, 1],
+                    [1, 2, 2, 1, 2, 2, 0],
+                    [1, 1, 1, 1, 2, 2, 0],
+                    [0, 1, 1, 0, 1, 1, 0],
+                    [0, 0, 0, 0, 0, 1, 0],
+                ],
+                clients: {
+                    total: 176,
+                    new: 64,
+                    returning: 112,
+                    vip: 18,
+                    regular: 52,
+                    occasional: 64,
+                    firstTime: 42,
+                    avgVisits: 2.3
+                },
+                topService: 'Corte',
+                topServiceCount: 86,
+                topServicePercent: 24.8,
+                suggestions: [
+                    { emoji: '🔥', text: 'Promover <span class="highlight">Corte</span> às quartas' },
+                    { emoji: '📈', text: 'Manicure em alta <span class="highlight">+18%</span>' },
+                    { emoji: '⏰', text: 'Pico: <span class="highlight">sábados 14h</span>' },
+                ]
+            };
+
+            let store = loadData();
+
+            function loadData() {
+                try {
+                    const raw = localStorage.getItem('salonInsightData');
+                    if (raw) {
+                        const parsed = JSON.parse(raw);
+                        for (const key in DEFAULT_DATA) {
+                            if (!(key in parsed)) parsed[key] = DEFAULT_DATA[key];
+                        }
+                        return parsed;
+                    }
+                } catch (_) {}
+                return JSON.parse(JSON.stringify(DEFAULT_DATA));
+            }
+
+            function saveData() {
+                try {
+                    localStorage.setItem('salonInsightData', JSON.stringify(store));
+                } catch (_) {}
+            }
+
+            function resetData() {
+                store = JSON.parse(JSON.stringify(DEFAULT_DATA));
+                saveData();
+                renderAll();
+                showToast('Dados redefinidos para demonstração', 'success');
+            }
+
+            // ============================================================
+            // RENDER FUNCTIONS
+            // ============================================================
+            function renderGeral() {
+                const app = store.appointments;
+                document.getElementById('totalAppointments').textContent = app.total;
+                document.getElementById('totalRevenue').textContent = `R$ ${app.revenue.toLocaleString()}`;
+                document.getElementById('topService').textContent = store.topService;
+
+                // Service list (top 5)
+                const container = document.getElementById('serviceList');
+                const top5 = store.services.slice(0, 5);
+                container.innerHTML = top5.map((s, i) => {
+                    const barWidth = (s.count / store.services[0].count) * 100;
+                    const trend = s.trend > 0 ? `↑ ${s.trend.toFixed(1)}%` : `↓ ${Math.abs(s.trend).toFixed(1)}%`;
+                    const trendClass = s.trend > 0 ? 'up' : 'down';
+                    return `
+                        <div class="service-item">
+                            <div class="rank">#${i+1}</div>
+                            <div class="info">
+                                <div class="name">${s.name}</div>
+                                <div class="meta">${s.count} atendimentos</div>
+                            </div>
+                            <div class="stats">
+                                <div class="count">${s.revenue}</div>
+                                <div class="revenue">${s.percent}%</div>
+                            </div>
+                            <div class="bar-bg">
+                                <div class="bar-fill" style="width:${barWidth}%;"></div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Suggestions
+                const strip = document.getElementById('suggestionStrip');
+                const existing = strip.querySelectorAll('.suggestion');
+                existing.forEach(el => el.remove());
+                store.suggestions.forEach(sug => {
+                    const div = document.createElement('div');
+                    div.className = 'suggestion';
+                    div.innerHTML = `<span class="emoji">${sug.emoji}</span><span>${sug.text}</span>`;
+                    strip.appendChild(div);
+                });
+            }
+
+            function renderServicos() {
+                const container = document.getElementById('serviceDetailList');
+                const sorted = [...store.services].sort((a, b) => b.revenue - a.revenue);
+                const maxRevenue = sorted[0]?.revenue || 1;
+
+                container.innerHTML = sorted.map(s => {
+                    const barWidth = (s.revenue / maxRevenue) * 100;
+                    const trend = s.trend > 0 ? `↑ ${s.trend.toFixed(1)}%` : `↓ ${Math.abs(s.trend).toFixed(1)}%`;
+                    const trendClass = s.trend > 0 ? 'up' : 'down';
+                    return `
+                        <div class="service-item">
+                            <div class="info" style="flex:2;">
+                                <div class="name">${s.name}</div>
+                                <div class="meta">${s.count} atend · ${s.percent}% do total</div>
+                            </div>
+                            <div style="flex:1;min-width:80px;">
+                                <div style="display:flex;justify-content:space-between;font-size:0.75rem;">
+                                    <span style="font-weight:600;">R$ ${s.revenue}</span>
+                                    <span class="trend ${trendClass}" style="font-size:0.625rem;">${trend}</span>
+                                </div>
+                                <div class="bar-bg" style="width:100%;">
+                                    <div class="bar-fill" style="width:${barWidth}%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+
+                // Distribution chart
+                const distContainer = document.getElementById('serviceDistribution');
+                const top6 = store.services.slice(0, 6);
+                const maxCount = top6[0]?.count || 1;
+                const colors = ['#4BA874', '#4A8DB7', '#D4A14A', '#C95A5A', '#8A7AB8', '#5E9B8A'];
+                distContainer.innerHTML = top6.map((s, i) => {
+                    const height = (s.count / maxCount) * 80 + 12;
+                    return `
+                        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+                            <div style="font-size:0.5625rem;color:var(--text-muted);">${s.count}</div>
+                            <div style="width:100%;height:${height}px;background:${colors[i % colors.length]};border-radius:4px 4px 0 0;transition:height 0.6s ease;min-height:12px;"></div>
+                            <div style="font-size:0.5rem;color:var(--text-muted);text-align:center;line-height:1.2;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${s.name}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            function renderHorarios() {
+                const grid = document.getElementById('heatmapGrid');
+                const days = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
+                const hours = ['8h', '9h', '10h', '11h', '12h', '13h', '14h', '15h', '16h', '17h', '18h', '19h', '20h'];
+
+                let html = '';
+                // Day labels
+                days.forEach(d => {
+                    html += `<div class="day-label">${d}</div>`;
+                });
+
+                // Data rows
+                const data = store.heatmap;
+                for (let h = 0; h < data.length; h++) {
+                    for (let d = 0; d < data[h].length; d++) {
+                        const level = data[h][d];
+                        const label = level > 0 ? level : '';
+                        html += `<div class="hour-cell level-${level}">${label}</div>`;
+                    }
+                }
+
+                grid.innerHTML = html;
+            }
+
+            function renderClientes() {
+                const c = store.clients;
+                document.getElementById('newClients').textContent = c.new;
+                document.getElementById('returningClients').textContent = c.returning;
+
+                // Frequency list already static, but update numbers
+                const items = document.querySelectorAll('#frequencyList .client-stat .value');
+                if (items.length >= 4) {
+                    items[0].textContent = c.vip;
+                    items[1].textContent = c.regular;
+                    items[2].textContent = c.occasional;
+                    items[3].textContent = c.firstTime;
+                }
+            }
+
+            function renderAll() {
+                renderGeral();
+                renderServicos();
+                renderHorarios();
+                renderClientes();
+            }
+
+            // ============================================================
+            // NAVIGATION
+            // ============================================================
+            function navigateTo(pageId) {
+                document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+                const target = document.getElementById(pageId);
+                if (target) target.classList.add('active');
+
+                document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.page === pageId);
+                });
+
+                // Refresh content
+                if (pageId === 'pageGeral') renderGeral();
+                if (pageId === 'pageServicos') renderServicos();
+                if (pageId === 'pageHorarios') renderHorarios();
+                if (pageId === 'pageClientes') renderClientes();
+            }
+
+            // ============================================================
+            // TOAST
+            // ============================================================
+            let toastTimeout = null;
+
+            function showToast(message, type = 'success') {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                const icons = { success: '✅', error: '❌', info: 'ℹ️' };
+                toast.innerHTML = `
+                    <span class="toast-icon">${icons[type] || 'ℹ️'}</span>
+                    <span class="toast-msg">${message}</span>
+                `;
+                container.appendChild(toast);
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.add('removing');
+                    setTimeout(() => {
+                        if (toast.parentNode) toast.parentNode.removeChild(toast);
+                    }, 300);
+                    toastTimeout = null;
+                }, 2800);
+            }
+
+            // ============================================================
+            // ONBOARDING
+            // ============================================================
+            function initOnboarding() {
+                const overlay = document.getElementById('onboardingOverlay');
+                const emoji = document.getElementById('obEmoji');
+                const title = document.getElementById('obTitle');
+                const desc = document.getElementById('obDesc');
+                const dots = document.getElementById('obDots');
+                const btn = document.getElementById('obBtn');
+
+                const steps = [{
+                    emoji: '📊',
+                    title: 'Inteligência para seu salão',
+                    desc: 'Salon Insight transforma dados em decisões práticas para o seu negócio.'
+                }, {
+                    emoji: '📈',
+                    title: 'Métricas claras',
+                    desc: 'Veja atendimentos, faturamento e serviços mais vendidos de forma visual.'
+                }, {
+                    emoji: '⏰',
+                    title: 'Horários de pico',
+                    desc: 'Identifique os melhores horários e otimize sua operação.'
+                }];
+
+                let step = 0;
+
+                function updateStep(index) {
+                    step = index;
+                    emoji.textContent = steps[step].emoji;
+                    title.textContent = steps[step].title;
+                    desc.textContent = steps[step].desc;
+                    dots.querySelectorAll('.dot').forEach((d, i) => {
+                        d.classList.toggle('active', i === step);
+                    });
+                    btn.textContent = step === steps.length - 1 ? '🚀 Começar' : 'Próximo';
+                }
+
+                btn.addEventListener('click', function() {
+                    if (step < steps.length - 1) {
+                        updateStep(step + 1);
+                    } else {
+                        overlay.classList.add('hidden');
+                        localStorage.setItem('salonInsightOnboarded', 'true');
+                    }
+                });
+
+                if (localStorage.getItem('salonInsightOnboarded') === 'true') {
+                    overlay.classList.add('hidden');
+                } else {
+                    updateStep(0);
+                }
+            }
+
+            // ============================================================
+            // EVENT BINDING
+            // ============================================================
+            function bindEvents() {
+                // Bottom nav
+                document.querySelectorAll('.bottom-nav .nav-item').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const pageId = this.dataset.page;
+                        if (pageId) navigateTo(pageId);
+                    });
+                });
+
+                // Period filter
+                document.querySelectorAll('#periodFilter button').forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        document.querySelectorAll('#periodFilter button').forEach(b => b.classList.remove(
+                        'active'));
+                        this.classList.add('active');
+                        const period = this.dataset.period;
+                        store.period = period;
+                        saveData();
+                        showToast(`Período alterado: ${this.textContent}`, 'info');
+                        renderAll();
+                    });
+                });
+
+                // Export
+                document.getElementById('exportBtn').addEventListener('click', function() {
+                    showToast('📄 Relatório exportado com sucesso!', 'success');
+                });
+
+                // Reset
+                document.getElementById('resetBtn').addEventListener('click', function() {
+                    if (confirm('Resetar todos os dados para o estado inicial?')) {
+                        resetData();
+                    }
+                });
+
+                // Keyboard: period shortcuts
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === '1') { document.querySelector('#periodFilter button[data-period="week"]')
+                            ?.click(); }
+                    if (e.key === '2') { document.querySelector('#periodFilter button[data-period="month"]')
+                            ?.click(); }
+                    if (e.key === '3') { document.querySelector('#periodFilter button[data-period="quarter"]')
+                            ?.click(); }
+                });
+            }
+
+            // ============================================================
+            // PWA: SERVICE WORKER
+            // ============================================================
+            function registerServiceWorker() {
+                if ('serviceWorker' in navigator) {
+                    const swCode = `
+                        self.addEventListener('install', e => {
+                            e.waitUntil(
+                                caches.open('salon-insight-v1').then(cache => {
+                                    return cache.addAll(['/', '/index.html']);
+                                })
+                            );
+                            self.skipWaiting();
+                        });
+                        self.addEventListener('activate', e => {
+                            e.waitUntil(clients.claim());
+                        });
+                        self.addEventListener('fetch', e => {
+                            e.respondWith(
+                                caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('/index.html')))
+                            );
+                        });
+                    `;
+                    try {
+                        const blob = new Blob([swCode], { type: 'application/javascript' });
+                        const swUrl = URL.createObjectURL(blob);
+                        navigator.serviceWorker.register(swUrl)
+                            .then(() => console.log('[PWA] Service Worker registrado'))
+                            .catch(() => console.log('[PWA] SW fallback'));
+                    } catch (_) {
+                        try {
+                            const minSW =
+                                'self.addEventListener("install",()=>self.skipWaiting());self.addEventListener("activate",()=>clients.claim());';
+                            const b2 = new Blob([minSW], { type: 'application/javascript' });
+                            navigator.serviceWorker.register(URL.createObjectURL(b2)).catch(() => {});
+                        } catch (_) {}
+                    }
+                }
+            }
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            function init() {
+                if (!localStorage.getItem('salonInsightData')) {
+                    saveData();
+                }
+                renderAll();
+                bindEvents();
+                initOnboarding();
+                registerServiceWorker();
+
+                // Auto-refresh
+                setInterval(() => {
+                    const active = document.querySelector('.page.active');
+                    if (active) {
+                        if (active.id === 'pageGeral') renderGeral();
+                        if (active.id === 'pageServicos') renderServicos();
+                        if (active.id === 'pageHorarios') renderHorarios();
+                        if (active.id === 'pageClientes') renderClientes();
+                    }
+                }, 30000);
+
+                console.log('📊 Salon Insight inicializado');
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+    </script>
+</body>
+</html>

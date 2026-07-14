@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <meta name="theme-color" content="#20242B" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIk1pbmlzdHJ5IEZsb3ciLAogICJzaG9ydF9uYW1lIjogIkZsb3ciLAogICJkZXNjcmlwdGlvbiI6ICJGZXJyYW1lbnRhIG9wZXJhY2lvbmFsIHBhcmEgbWluaXN0w6lyaW9zLCBlc2NhbGFzIGUgdGFyZWZhcyIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjMjAyNDJCIiwKICAidGhlbWVfY29sb3IiOiAiIzIwMjQyQiIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCw8c3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgdmlld0JveD0nMCAwIDUxMiA1MTInPjxyZWN0IHdpZHRoPSc1MTInIGhlaWdodD0nNTEyJyByeD0nODAnIGZpbGw9JyUyMzIwMjQyQicvPjx0ZXh0IHg9JzI1NicgeT0nMzUwJyBmb250LXNpemU9JzI0MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZmlsbD0nJTIzQjdFMDREJyBmb250LWZhbWlseT0nSW50ZXIgVGlnaHQnPk1GPC90ZXh0Pjwvc3ZnPg=="LAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXQp9" />
+    <title>Ministry Flow — Operacional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        /* ================================================================
+           MINISTRY FLOW — Design System
+           Editorial · Tech · Operacional
+           ================================================================ */
+
+        /* ---------- TOKENS ---------- */
+        :root {
+            /* Cores principais */
+            --graphite: #20242B;
+            --graphite-light: #2C313A;
+            --graphite-lighter: #3A404B;
+            --graphite-surface: #2A2F38;
+            --white: #FFFFFF;
+            --white-soft: #F5F6F8;
+            --white-muted: #E8EAED;
+            --petrol: #1E4E6A;
+            --petrol-light: #2A6A8A;
+            --petrol-dark: #143A4F;
+            --petrol-surface: #1A3D55;
+            --lime: #B7E04A;
+            --lime-light: #D4F08A;
+            --lime-dark: #9CC63A;
+            --lime-surface: #E8F5D0;
+
+            --text-primary: #FFFFFF;
+            --text-secondary: #B8C0CC;
+            --text-tertiary: #7A8798;
+            --text-inverse: #20242B;
+
+            --bg-base: #181C22;
+            --bg-card: #242932;
+            --bg-card-hover: #2C323D;
+            --bg-elevated: #2A2F3A;
+
+            --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.30), 0 1px 4px rgba(0, 0, 0, 0.10);
+            --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.40), 0 2px 8px rgba(0, 0, 0, 0.15);
+            --shadow-glow: 0 0 40px rgba(183, 224, 74, 0.06);
+
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --radius-full: 9999px;
+
+            --font: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transition: 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --header-height: 64px;
+            --bottom-nav-height: 68px;
+            --sidebar-width: 240px;
+            --max-width: 1100px;
+        }
+
+        /* ---------- RESET & BASE ---------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--bg-base);
+            color: var(--text-secondary);
+            line-height: 1.5;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: inherit;
+        }
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+            font-size: inherit;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--graphite-lighter);
+            border-radius: var(--radius-full);
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--petrol-light);
+        }
+
+        /* ---------- UTILITY ---------- */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ---------- LAYOUT ---------- */
+        .app-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            min-height: 100dvh;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 24px 90px;
+            position: relative;
+        }
+
+        /* ---- HEADER ---- */
+        .header {
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-base);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header-brand .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: var(--lime);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--graphite);
+            font-weight: 900;
+            font-size: 16px;
+            flex-shrink: 0;
+            letter-spacing: -0.5px;
+        }
+        .header-brand .logo-text {
+            font-weight: 800;
+            font-size: 18px;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+        .header-brand .logo-text span {
+            font-weight: 400;
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .header-actions .action-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-tertiary);
+            transition: all var(--transition);
+            background: var(--graphite-light);
+            border: 1px solid transparent;
+            font-size: 16px;
+        }
+        .header-actions .action-btn:hover {
+            background: var(--graphite-lighter);
+            color: var(--text-primary);
+        }
+        .header-actions .action-btn .dot {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--lime);
+            border: 2px solid var(--graphite);
+        }
+        .header-actions .action-btn {
+            position: relative;
+        }
+
+        /* ---- PAGE CONTENT ---- */
+        .page-content {
+            flex: 1;
+            padding: 20px 0 30px;
+        }
+        .page-section {
+            display: none;
+            animation: fadeSlide 0.35s ease forwards;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---- BOTTOM NAV ---- */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: var(--bottom-nav-height);
+            background: var(--graphite);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            padding: 6px 4px 10px;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+        }
+        .bottom-nav .nav-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            padding: 4px 6px;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition);
+            min-width: 40px;
+            position: relative;
+            background: transparent;
+            border: none;
+            line-height: 1.2;
+            letter-spacing: 0.2px;
+        }
+        .bottom-nav .nav-btn .icon {
+            font-size: 18px;
+            line-height: 1;
+            transition: transform var(--transition);
+        }
+        .bottom-nav .nav-btn .icon svg {
+            width: 22px;
+            height: 22px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .bottom-nav .nav-btn span {
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .bottom-nav .nav-btn.active {
+            color: var(--lime);
+        }
+        .bottom-nav .nav-btn.active .icon {
+            transform: scale(1.06);
+        }
+        .bottom-nav .nav-btn .badge-dot {
+            position: absolute;
+            top: 0px;
+            right: 2px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--lime);
+            border: 2px solid var(--graphite);
+            box-shadow: 0 0 12px rgba(183, 224, 74, 0.30);
+        }
+        .bottom-nav .nav-btn .badge-dot.orange {
+            background: #E8A838;
+        }
+        .bottom-nav .nav-btn .badge-dot.red {
+            background: #D65A5A;
+        }
+        .bottom-nav .nav-btn .badge-dot.blue {
+            background: var(--petrol-light);
+        }
+
+        /* ================================================================
+           COMPONENTES — Operacionais
+           ================================================================ */
+
+        /* --- Welcome / Status --- */
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding: 16px 20px;
+            background: var(--graphite-light);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .status-bar .greeting {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.3px;
+        }
+        .status-bar .greeting small {
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--text-tertiary);
+            display: block;
+            margin-top: 2px;
+        }
+        .status-bar .badge-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .status-bar .badge-group .stat {
+            background: var(--graphite-lighter);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .status-bar .badge-group .stat .num {
+            color: var(--lime);
+            font-weight: 800;
+        }
+        .status-bar .badge-group .stat .num.red {
+            color: #D65A5A;
+        }
+        .status-bar .badge-group .stat .num.amber {
+            color: #E8A838;
+        }
+
+        /* --- Task / Action Cards --- */
+        .task-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        .task-item {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+        }
+        .task-item:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(183, 224, 74, 0.10);
+            transform: translateX(4px);
+        }
+        .task-item .priority {
+            width: 4px;
+            height: 36px;
+            border-radius: var(--radius-full);
+            flex-shrink: 0;
+            background: var(--lime);
+        }
+        .task-item .priority.high {
+            background: #D65A5A;
+        }
+        .task-item .priority.medium {
+            background: #E8A838;
+        }
+        .task-item .info {
+            flex: 1;
+            min-width: 0;
+        }
+        .task-item .info .title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .task-item .info .desc {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-top: 1px;
+        }
+        .task-item .info .meta {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .task-item .info .meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .task-item .badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: var(--radius-full);
+            background: var(--graphite-lighter);
+            color: var(--text-secondary);
+            flex-shrink: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .task-item .badge.lime {
+            background: var(--lime-surface);
+            color: var(--graphite);
+        }
+        .task-item .badge.red {
+            background: rgba(214, 90, 90, 0.15);
+            color: #D65A5A;
+        }
+        .task-item .badge.amber {
+            background: rgba(232, 168, 56, 0.15);
+            color: #E8A838;
+        }
+        .task-item .badge.blue {
+            background: rgba(42, 106, 138, 0.20);
+            color: var(--petrol-light);
+        }
+        .task-item .action-btn {
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 12px;
+            transition: all var(--transition);
+            background: var(--lime);
+            color: var(--graphite);
+            flex-shrink: 0;
+        }
+        .task-item .action-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 4px 16px rgba(183, 224, 74, 0.25);
+        }
+        .task-item .action-btn.outline {
+            background: transparent;
+            border: 1px solid var(--graphite-lighter);
+            color: var(--text-secondary);
+        }
+        .task-item .action-btn.outline:hover {
+            border-color: var(--lime);
+            color: var(--lime);
+        }
+
+        /* --- Section Header --- */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .section-header h2 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.2px;
+        }
+        .section-header h2 small {
+            font-weight: 400;
+            font-size: 13px;
+            color: var(--text-tertiary);
+            margin-left: 8px;
+        }
+        .section-header .actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* --- Grid Cards --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+        .card-grid .mini-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all var(--transition);
+            cursor: pointer;
+        }
+        .card-grid .mini-card:hover {
+            background: var(--bg-card-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        .card-grid .mini-card .label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .card-grid .mini-card .value {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 4px 0 2px;
+            letter-spacing: -0.5px;
+        }
+        .card-grid .mini-card .value.lime {
+            color: var(--lime);
+        }
+        .card-grid .mini-card .value.red {
+            color: #D65A5A;
+        }
+        .card-grid .mini-card .value.amber {
+            color: #E8A838;
+        }
+        .card-grid .mini-card .sub {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+        .card-grid .mini-card .bar {
+            margin-top: 10px;
+            height: 4px;
+            background: var(--graphite-lighter);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+        .card-grid .mini-card .bar .fill {
+            height: 100%;
+            border-radius: var(--radius-full);
+            background: var(--lime);
+            transition: width 0.6s ease;
+        }
+        .card-grid .mini-card .bar .fill.red {
+            background: #D65A5A;
+        }
+        .card-grid .mini-card .bar .fill.amber {
+            background: #E8A838;
+        }
+        .card-grid .mini-card .bar .fill.blue {
+            background: var(--petrol-light);
+        }
+
+        /* --- Checklist --- */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+        .checklist-item .check {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid var(--graphite-lighter);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: all var(--transition);
+            cursor: pointer;
+            color: transparent;
+            font-size: 12px;
+        }
+        .checklist-item .check.done {
+            background: var(--lime);
+            border-color: var(--lime);
+            color: var(--graphite);
+        }
+        .checklist-item .check:hover {
+            border-color: var(--lime);
+        }
+        .checklist-item .info {
+            flex: 1;
+        }
+        .checklist-item .info .title {
+            font-size: 14px;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+        .checklist-item .info .title.done {
+            text-decoration: line-through;
+            color: var(--text-tertiary);
+        }
+        .checklist-item .info .desc {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+        .checklist-item .badge {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: var(--radius-full);
+            background: var(--graphite-lighter);
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            flex-shrink: 0;
+        }
+        .checklist-item .badge.lime {
+            background: var(--lime-surface);
+            color: var(--graphite);
+        }
+
+        /* --- Schedule / Escalas --- */
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .schedule-item:last-child {
+            border-bottom: none;
+        }
+        .schedule-item .date-box {
+            width: 48px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .schedule-item .date-box .day {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+        .schedule-item .date-box .month {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .schedule-item .info {
+            flex: 1;
+        }
+        .schedule-item .info .title {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .schedule-item .info .detail {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+        .schedule-item .info .meta {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: 2px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .schedule-item .badge {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 12px;
+            border-radius: var(--radius-full);
+            flex-shrink: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .schedule-item .badge.lime {
+            background: var(--lime-surface);
+            color: var(--graphite);
+        }
+        .schedule-item .badge.amber {
+            background: rgba(232, 168, 56, 0.15);
+            color: #E8A838;
+        }
+        .schedule-item .badge.red {
+            background: rgba(214, 90, 90, 0.15);
+            color: #D65A5A;
+        }
+        .schedule-item .badge.blue {
+            background: rgba(42, 106, 138, 0.20);
+            color: var(--petrol-light);
+        }
+
+        /* --- Volunteer / People --- */
+        .volunteer-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .volunteer-item:last-child {
+            border-bottom: none;
+        }
+        .volunteer-item .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--graphite-lighter);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+        .volunteer-item .info {
+            flex: 1;
+        }
+        .volunteer-item .info .name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .volunteer-item .info .role {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+        .volunteer-item .badge {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: var(--radius-full);
+            flex-shrink: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .volunteer-item .badge.lime {
+            background: var(--lime-surface);
+            color: var(--graphite);
+        }
+        .volunteer-item .badge.amber {
+            background: rgba(232, 168, 56, 0.15);
+            color: #E8A838;
+        }
+        .volunteer-item .badge.red {
+            background: rgba(214, 90, 90, 0.15);
+            color: #D65A5A;
+        }
+        .volunteer-item .badge.blue {
+            background: rgba(42, 106, 138, 0.20);
+            color: var(--petrol-light);
+        }
+        .volunteer-item .action-btn {
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 11px;
+            transition: all var(--transition);
+            background: var(--graphite-lighter);
+            color: var(--text-secondary);
+            flex-shrink: 0;
+        }
+        .volunteer-item .action-btn:hover {
+            background: var(--lime);
+            color: var(--graphite);
+        }
+
+        /* --- Resource / File --- */
+        .resource-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .resource-item:last-child {
+            border-bottom: none;
+        }
+        .resource-item .icon {
+            font-size: 20px;
+            width: 36px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .resource-item .info {
+            flex: 1;
+        }
+        .resource-item .info .name {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        .resource-item .info .desc {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+        .resource-item .badge {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: var(--radius-full);
+            background: var(--graphite-lighter);
+            color: var(--text-tertiary);
+            flex-shrink: 0;
+        }
+        .resource-item .badge.lime {
+            background: var(--lime-surface);
+            color: var(--graphite);
+        }
+
+        /* --- Announcement --- */
+        .announcement-item {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .announcement-item:last-child {
+            border-bottom: none;
+        }
+        .announcement-item .title {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-primary);
+        }
+        .announcement-item .desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+        .announcement-item .meta {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .announcement-item .badge {
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: var(--radius-full);
+            background: var(--graphite-lighter);
+            color: var(--text-tertiary);
+            display: inline-block;
+            margin-top: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+        .announcement-item .badge.lime {
+            background: var(--lime-surface);
+            color: var(--graphite);
+        }
+        .announcement-item .badge.red {
+            background: rgba(214, 90, 90, 0.15);
+            color: #D65A5A;
+        }
+
+        /* --- Botões --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 8px 20px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 13px;
+            transition: all var(--transition);
+            border: 1px solid transparent;
+            line-height: 1.2;
+            min-height: 36px;
+            min-width: 36px;
+            font-family: var(--font);
+        }
+        .btn-primary {
+            background: var(--lime);
+            color: var(--graphite);
+            box-shadow: 0 4px 16px rgba(183, 224, 74, 0.15);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(183, 224, 74, 0.25);
+        }
+        .btn-secondary {
+            background: var(--petrol);
+            color: #fff;
+        }
+        .btn-secondary:hover {
+            background: var(--petrol-light);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--text-secondary);
+            border-color: var(--graphite-lighter);
+        }
+        .btn-outline:hover {
+            border-color: var(--lime);
+            color: var(--lime);
+        }
+        .btn-ghost {
+            background: var(--graphite-light);
+            color: var(--text-secondary);
+        }
+        .btn-ghost:hover {
+            background: var(--graphite-lighter);
+            color: var(--text-primary);
+        }
+        .btn-danger {
+            background: rgba(214, 90, 90, 0.15);
+            color: #D65A5A;
+        }
+        .btn-danger:hover {
+            background: rgba(214, 90, 90, 0.25);
+        }
+        .btn-sm {
+            padding: 4px 14px;
+            font-size: 12px;
+            min-height: 30px;
+            min-width: 30px;
+        }
+        .btn-xs {
+            padding: 2px 10px;
+            font-size: 10px;
+            min-height: 24px;
+            min-width: 24px;
+            border-radius: 4px;
+        }
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* --- Offline Banner --- */
+        .offline-banner {
+            display: none;
+            background: rgba(232, 168, 56, 0.10);
+            color: #E8A838;
+            text-align: center;
+            padding: 6px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+            border: 1px solid rgba(232, 168, 56, 0.12);
+        }
+        .offline-banner.show {
+            display: block;
+        }
+
+        /* --- Modal --- */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.60);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+            padding: 20px;
+        }
+        .modal-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal {
+            background: var(--graphite);
+            border-radius: var(--radius-lg);
+            max-width: 480px;
+            width: 100%;
+            padding: 28px 32px;
+            box-shadow: var(--shadow-hover);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transform: scale(0.94) translateY(16px);
+            transition: transform var(--transition-bounce);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-overlay.open .modal {
+            transform: scale(1) translateY(0);
+        }
+        .modal .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal .modal-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .modal .modal-close {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: var(--text-tertiary);
+            transition: all var(--transition);
+            background: var(--graphite-light);
+            border: none;
+        }
+        .modal .modal-close:hover {
+            background: var(--graphite-lighter);
+            color: var(--text-primary);
+        }
+        .modal .input-group {
+            margin-bottom: 16px;
+        }
+        .modal .input-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+        }
+        .modal .input-field {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            transition: all var(--transition);
+            background: var(--graphite-light);
+            color: var(--text-primary);
+            font-family: var(--font);
+            min-height: 42px;
+        }
+        .modal .input-field:focus {
+            outline: none;
+            border-color: var(--lime);
+            box-shadow: 0 0 0 3px rgba(183, 224, 74, 0.08);
+        }
+        .modal .input-field::placeholder {
+            color: var(--text-tertiary);
+        }
+        .modal .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end;
+        }
+
+        /* ================================================================
+           RESPONSIVIDADE
+           ================================================================ */
+        @media (max-width: 768px) {
+            .app-wrapper {
+                padding: 0 16px 80px;
+            }
+            .status-bar {
+                padding: 14px 16px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .status-bar .greeting {
+                font-size: 18px;
+            }
+            .status-bar .badge-group {
+                justify-content: flex-start;
+            }
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .card-grid .mini-card {
+                padding: 14px 16px;
+            }
+            .card-grid .mini-card .value {
+                font-size: 22px;
+            }
+            .section-header h2 {
+                font-size: 16px;
+            }
+            .task-item {
+                padding: 12px 14px;
+                flex-wrap: wrap;
+            }
+            .task-item .action-btn {
+                margin-left: auto;
+            }
+            .schedule-item .date-box {
+                width: 40px;
+            }
+            .schedule-item .date-box .day {
+                font-size: 17px;
+            }
+            .bottom-nav .nav-btn {
+                min-width: 34px;
+                padding: 2px 4px;
+            }
+            .bottom-nav .nav-btn .icon svg {
+                width: 20px;
+                height: 20px;
+            }
+            .bottom-nav .nav-btn span {
+                font-size: 7px;
+            }
+            .header-brand .logo-text {
+                font-size: 16px;
+            }
+            .header-brand .logo-text span {
+                font-size: 12px;
+            }
+            .modal {
+                padding: 20px 18px;
+                margin: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .card-grid .mini-card {
+                padding: 12px 14px;
+            }
+            .card-grid .mini-card .value {
+                font-size: 20px;
+            }
+            .task-item {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+            .task-item .priority {
+                height: 4px;
+                width: auto;
+            }
+            .task-item .action-btn {
+                align-self: flex-end;
+            }
+            .schedule-item {
+                flex-wrap: wrap;
+            }
+            .schedule-item .date-box {
+                width: 36px;
+            }
+            .schedule-item .date-box .day {
+                font-size: 15px;
+            }
+            .volunteer-item {
+                flex-wrap: wrap;
+            }
+            .volunteer-item .action-btn {
+                margin-left: auto;
+            }
+            .header-actions .action-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 14px;
+            }
+            .status-bar .badge-group .stat {
+                font-size: 11px;
+                padding: 4px 10px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .bottom-nav .nav-btn .icon svg {
+                width: 18px;
+                height: 18px;
+            }
+            .bottom-nav .nav-btn span {
+                font-size: 6px;
+            }
+        }
+
+        /* ================================================================
+           MICROINTERAÇÕES
+           ================================================================ */
+        .btn,
+        .task-item,
+        .mini-card,
+        .schedule-item,
+        .volunteer-item,
+        .checklist-item .check,
+        .action-btn {
+            will-change: transform, box-shadow, background;
+        }
+
+        .pulse-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--lime);
+            animation: pulse 1.8s infinite;
+            margin-right: 4px;
+        }
+        @keyframes pulse {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.4;
+                transform: scale(0.8);
+            }
+        }
+
+        .loading-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+        .loading-dots span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--text-tertiary);
+            animation: dotPulse 1.2s infinite;
+        }
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        @keyframes dotPulse {
+            0%,
+            80%,
+            100% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+            40% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Scrollbar personalizada no conteúdo */
+        .scrollable {
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--graphite-lighter) transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== APP WRAPPER ========== -->
+    <div class="app-wrapper" id="app">
+
+        <!-- ===== HEADER ===== -->
+        <header class="header" role="banner">
+            <div class="header-brand">
+                <div class="logo-icon">MF</div>
+                <div class="logo-text">Ministry <span>Flow</span></div>
+            </div>
+            <div class="header-actions">
+                <button class="action-btn" aria-label="Notificações" title="Notificações" id="notifBtn">
+                    🔔
+                    <span class="dot"></span>
+                </button>
+                <button class="action-btn" aria-label="Instalar app" title="Instalar" id="installBtn" style="display:none;">
+                    ⬇
+                </button>
+            </div>
+        </header>
+
+        <!-- ===== OFFLINE BANNER ===== -->
+        <div class="offline-banner" id="offlineBanner">
+            <span>📡</span> Modo offline — escalas e checklists disponíveis.
+        </div>
+
+        <!-- ===== PAGE CONTENT ===== -->
+        <div class="page-content">
+
+            <!-- ========================================================== -->
+            <!-- SECTION: INÍCIO (Dashboard) -->
+            <!-- ========================================================== -->
+            <section class="page-section active" id="section-home" aria-label="Início">
+                <div class="status-bar">
+                    <div class="greeting">
+                        Olá, equipe <small>o que precisa ser feito hoje?</small>
+                    </div>
+                    <div class="badge-group">
+                        <span class="stat">📋 Tarefas <span class="num">8</span></span>
+                        <span class="stat">⏳ Pendentes <span class="num red">3</span></span>
+                        <span class="stat">✅ Concluídas <span class="num lime">5</span></span>
+                    </div>
+                </div>
+
+                <!-- Tarefas da semana -->
+                <div class="section-header">
+                    <h2>📌 Tarefas da semana <small>prioridades</small></h2>
+                    <div class="actions">
+                        <button class="btn btn-primary btn-sm" id="openTaskModal">+ Nova tarefa</button>
+                    </div>
+                </div>
+
+                <div class="task-feed">
+                    <div class="task-item">
+                        <div class="priority high"></div>
+                        <div class="info">
+                            <div class="title">Finalizar checklist do Culto de Jovens</div>
+                            <div class="desc">Verificar som, iluminação e material</div>
+                            <div class="meta">
+                                <span>📅 Vence hoje</span>
+                                <span>👤 André</span>
+                            </div>
+                        </div>
+                        <span class="badge red">Atraso</span>
+                        <button class="action-btn">Concluir</button>
+                    </div>
+                    <div class="task-item">
+                        <div class="priority medium"></div>
+                        <div class="info">
+                            <div class="title">Confirmar voluntários para o evento</div>
+                            <div class="desc">Enviar mensagem para equipe de recepção</div>
+                            <div class="meta">
+                                <span>📅 Amanhã</span>
+                                <span>👤 Mariana</span>
+                            </div>
+                        </div>
+                        <span class="badge amber">Pendente</span>
+                        <button class="action-btn outline">Confirmar</button>
+                    </div>
+                    <div class="task-item">
+                        <div class="priority"></div>
+                        <div class="info">
+                            <div class="title">Revisar escalas do próximo mês</div>
+                            <div class="desc">Ajustar conforme disponibilidade</div>
+                            <div class="meta">
+                                <span>📅 3 dias</span>
+                                <span>👤 Ricardo</span>
+                            </div>
+                        </div>
+                        <span class="badge lime">Em dia</span>
+                        <button class="action-btn outline">Revisar</button>
+                    </div>
+                    <div class="task-item">
+                        <div class="priority high"></div>
+                        <div class="info">
+                            <div class="title">Enviar comunicado sobre mudança de horário</div>
+                            <div class="desc">Culto de oração remarcado para quinta</div>
+                            <div class="meta">
+                                <span>📅 Hoje</span>
+                                <span>👤 Secretaria</span>
+                            </div>
+                        </div>
+                        <span class="badge red">Urgente</span>
+                        <button class="action-btn">Enviar</button>
+                    </div>
+                </div>
+
+                <!-- Mini cards de status -->
+                <div class="card-grid">
+                    <div class="mini-card">
+                        <div class="label">Eventos esta semana</div>
+                        <div class="value">4</div>
+                        <div class="sub">2 confirmados · 2 pendentes</div>
+                        <div class="bar"><div class="fill" style="width:50%;"></div></div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="label">Voluntários escalados</div>
+                        <div class="value lime">18</div>
+                        <div class="sub">12 confirmados · 6 aguardando</div>
+                        <div class="bar"><div class="fill lime" style="width:66%;"></div></div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="label">Checklists ativos</div>
+                        <div class="value amber">7</div>
+                        <div class="sub">4 em andamento · 3 concluídos</div>
+                        <div class="bar"><div class="fill amber" style="width:42%;"></div></div>
+                    </div>
+                    <div class="mini-card">
+                        <div class="label">Comunicados</div>
+                        <div class="value blue">3</div>
+                        <div class="sub">2 lidos · 1 não lido</div>
+                        <div class="bar"><div class="fill blue" style="width:33%;"></div></div>
+                    </div>
+                </div>
+
+                <!-- Mini status board -->
+                <div class="section-header">
+                    <h2>📊 Status board <small>visão rápida</small></h2>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:14px 18px;border:1px solid rgba(255,255,255,0.04);">
+                        <div style="font-size:12px;color:var(--text-tertiary);font-weight:600;text-transform:uppercase;letter-spacing:0.4px;">Execução</div>
+                        <div style="font-size:24px;font-weight:800;color:var(--text-primary);margin:2px 0;">72%</div>
+                        <div style="height:4px;background:var(--graphite-lighter);border-radius:var(--radius-full);overflow:hidden;margin-top:6px;">
+                            <div style="width:72%;height:100%;background:var(--lime);border-radius:var(--radius-full);"></div>
+                        </div>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:14px 18px;border:1px solid rgba(255,255,255,0.04);">
+                        <div style="font-size:12px;color:var(--text-tertiary);font-weight:600;text-transform:uppercase;letter-spacing:0.4px;">Confirmados</div>
+                        <div style="font-size:24px;font-weight:800;color:var(--text-primary);margin:2px 0;">12<span style="font-size:14px;font-weight:400;color:var(--text-tertiary);">/18</span></div>
+                        <div style="height:4px;background:var(--graphite-lighter);border-radius:var(--radius-full);overflow:hidden;margin-top:6px;">
+                            <div style="width:66%;height:100%;background:var(--petrol-light);border-radius:var(--radius-full);"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- SECTION: TAREFAS -->
+            <!-- ========================================================== -->
+            <section class="page-section" id="section-tasks" aria-label="Tarefas">
+                <div class="section-header">
+                    <h2>📋 Tarefas <small>todas</small></h2>
+                    <div class="actions">
+                        <button class="btn btn-primary btn-sm" id="openTaskModal2">+ Nova</button>
+                        <button class="btn btn-outline btn-sm">Filtrar</button>
+                    </div>
+                </div>
+                <div class="task-feed">
+                    <div class="task-item">
+                        <div class="priority high"></div>
+                        <div class="info">
+                            <div class="title">Finalizar checklist do Culto de Jovens</div>
+                            <div class="desc">Verificar som, iluminação e material</div>
+                            <div class="meta"><span>📅 Vence hoje</span><span>👤 André</span><span>🏷️ Eventos</span></div>
+                        </div>
+                        <span class="badge red">Atraso</span>
+                        <button class="action-btn">Concluir</button>
+                    </div>
+                    <div class="task-item">
+                        <div class="priority medium"></div>
+                        <div class="info">
+                            <div class="title">Confirmar voluntários para o evento</div>
+                            <div class="desc">Enviar mensagem para equipe de recepção</div>
+                            <div class="meta"><span>📅 Amanhã</span><span>👤 Mariana</span><span>🏷️ Voluntários</span></div>
+                        </div>
+                        <span class="badge amber">Pendente</span>
+                        <button class="action-btn outline">Confirmar</button>
+                    </div>
+                    <div class="task-item">
+                        <div class="priority"></div>
+                        <div class="info">
+                            <div class="title">Revisar escalas do próximo mês</div>
+                            <div class="desc">Ajustar conforme disponibilidade</div>
+                            <div class="meta"><span>📅 3 dias</span><span>👤 Ricardo</span><span>🏷️ Escalas</span></div>
+                        </div>
+                        <span class="badge lime">Em dia</span>
+                        <button class="action-btn outline">Revisar</button>
+                    </div>
+                    <div class="task-item">
+                        <div class="priority high"></div>
+                        <div class="info">
+                            <div class="title">Enviar comunicado sobre mudança de horário</div>
+                            <div class="desc">Culto de oração remarcado para quinta</div>
+                            <div class="meta"><span>📅 Hoje</span><span>👤 Secretaria</span><span>🏷️ Comunicados</span></div>
+                        </div>
+                        <span class="badge red">Urgente</span>
+                        <button class="action-btn">Enviar</button>
+                    </div>
+                    <div class="task-item">
+                        <div class="priority"></div>
+                        <div class="info">
+                            <div class="title">Organizar arquivos do ministério de louvor</div>
+                            <div class="desc">Partituras e backing tracks</div>
+                            <div class="meta"><span>📅 5 dias</span><span>👤 Lúcia</span><span>🏷️ Recursos</span></div>
+                        </div>
+                        <span class="badge lime">Em dia</span>
+                        <button class="action-btn outline">Abrir</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- SECTION: ESCALAS -->
+            <!-- ========================================================== -->
+            <section class="page-section" id="section-schedules" aria-label="Escalas">
+                <div class="section-header">
+                    <h2>⏱️ Escalas <small>serviços e ministérios</small></h2>
+                    <div class="actions">
+                        <button class="btn btn-primary btn-sm">+ Nova escala</button>
+                    </div>
+                </div>
+                <div class="schedule-item">
+                    <div class="date-box"><div class="day">15</div><div class="month">hoje</div></div>
+                    <div class="info">
+                        <div class="title">Culto de Jovens</div>
+                        <div class="detail">Louvor · 19h · Salão Principal</div>
+                        <div class="meta">👤 Responsável: André · 6 voluntários</div>
+                    </div>
+                    <span class="badge lime">Confirmado</span>
+                </div>
+                <div class="schedule-item">
+                    <div class="date-box"><div class="day">16</div><div class="month">qua</div></div>
+                    <div class="info">
+                        <div class="title">Reunião de Líderes</div>
+                        <div class="detail">Coordenação · 20h · Sala 2</div>
+                        <div class="meta">👤 Responsável: Ricardo · 4 voluntários</div>
+                    </div>
+                    <span class="badge amber">Pendente</span>
+                </div>
+                <div class="schedule-item">
+                    <div class="date-box"><div class="day">18</div><div class="month">sex</div></div>
+                    <div class="info">
+                        <div class="title">Ensaio do Louvor</div>
+                        <div class="detail">Música · 19h · Salão</div>
+                        <div class="meta">👤 Responsável: Mariana · 8 voluntários</div>
+                    </div>
+                    <span class="badge blue">Aguardando</span>
+                </div>
+                <div class="schedule-item">
+                    <div class="date-box"><div class="day">20</div><div class="month">dom</div></div>
+                    <div class="info">
+                        <div class="title">Culto Dominical</div>
+                        <div class="detail">Completo · 10h · Auditório</div>
+                        <div class="meta">👤 Responsável: Pastor · 15 voluntários</div>
+                    </div>
+                    <span class="badge lime">Confirmado</span>
+                </div>
+                <div class="schedule-item">
+                    <div class="date-box"><div class="day">22</div><div class="month">ter</div></div>
+                    <div class="info">
+                        <div class="title">Evento Kids</div>
+                        <div class="detail">Infantil · 14h · Salão Multiuso</div>
+                        <div class="meta">👤 Responsável: Lúcia · 5 voluntários</div>
+                    </div>
+                    <span class="badge red">Urgente</span>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- SECTION: EVENTOS -->
+            <!-- ========================================================== -->
+            <section class="page-section" id="section-events" aria-label="Eventos">
+                <div class="section-header">
+                    <h2>📅 Eventos <small>próximos</small></h2>
+                    <div class="actions">
+                        <button class="btn btn-primary btn-sm">+ Criar evento</button>
+                    </div>
+                </div>
+                <div class="card-grid" style="grid-template-columns:1fr 1fr;">
+                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:16px 18px;border:1px solid rgba(255,255,255,0.04);border-left:4px solid var(--lime);">
+                        <div style="font-weight:700;font-size:15px;color:var(--text-primary);">Culto de Jovens</div>
+                        <div style="font-size:13px;color:var(--text-tertiary);">Sábado, 15/07 · 19h</div>
+                        <div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;">Salão Principal · 45 confirmados</div>
+                        <span class="badge lime" style="margin-top:8px;display:inline-block;">Confirmado</span>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:16px 18px;border:1px solid rgba(255,255,255,0.04);border-left:4px solid #E8A838;">
+                        <div style="font-weight:700;font-size:15px;color:var(--text-primary);">Reunião de Líderes</div>
+                        <div style="font-size:13px;color:var(--text-tertiary);">Segunda, 17/07 · 20h</div>
+                        <div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;">Sala 2 · 12 confirmados</div>
+                        <span class="badge amber" style="margin-top:8px;display:inline-block;">Pendente</span>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:16px 18px;border:1px solid rgba(255,255,255,0.04);border-left:4px solid var(--petrol-light);">
+                        <div style="font-weight:700;font-size:15px;color:var(--text-primary);">Escola Bíblica</div>
+                        <div style="font-size:13px;color:var(--text-tertiary);">Domingo, 22/07 · 9h</div>
+                        <div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;">Auditório · 28 confirmados</div>
+                        <span class="badge blue" style="margin-top:8px;display:inline-block;">Agendado</span>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:16px 18px;border:1px solid rgba(255,255,255,0.04);border-left:4px solid #D65A5A;">
+                        <div style="font-weight:700;font-size:15px;color:var(--text-primary);">Evento Kids</div>
+                        <div style="font-size:13px;color:var(--text-tertiary);">Terça, 22/07 · 14h</div>
+                        <div style="font-size:12px;color:var(--text-tertiary);margin-top:4px;">Salão Multiuso · 8 confirmados</div>
+                        <span class="badge red" style="margin-top:8px;display:inline-block;">Urgente</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- SECTION: CHECKLISTS -->
+            <!-- ========================================================== -->
+            <section class="page-section" id="section-checklists" aria-label="Checklists">
+                <div class="section-header">
+                    <h2>✅ Checklists <small>execução</small></h2>
+                    <div class="actions">
+                        <button class="btn btn-primary btn-sm">+ Novo checklist</button>
+                    </div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:16px 20px;border:1px solid rgba(255,255,255,0.04);margin-bottom:14px;">
+                    <div style="font-weight:700;font-size:15px;color:var(--text-primary);margin-bottom:6px;">📋 Culto de Jovens — Sábado</div>
+                    <div class="checklist-item">
+                        <div class="check done">✓</div>
+                        <div class="info"><div class="title done">Verificar sistema de som</div><div class="desc">André</div></div>
+                        <span class="badge lime">Concluído</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check done">✓</div>
+                        <div class="info"><div class="title done">Preparar material de projeção</div><div class="desc">Mariana</div></div>
+                        <span class="badge lime">Concluído</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check"></div>
+                        <div class="info"><div class="title">Organizar cadeiras adicionais</div><div class="desc">Ricardo</div></div>
+                        <span class="badge amber">Pendente</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check"></div>
+                        <div class="info"><div class="title">Confirmar equipe de recepção</div><div class="desc">Lúcia</div></div>
+                        <span class="badge red">Urgente</span>
+                    </div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:16px 20px;border:1px solid rgba(255,255,255,0.04);">
+                    <div style="font-weight:700;font-size:15px;color:var(--text-primary);margin-bottom:6px;">📋 Evento Kids — Terça</div>
+                    <div class="checklist-item">
+                        <div class="check done">✓</div>
+                        <div class="info"><div class="title done">Separar brinquedos</div><div class="desc">Ana</div></div>
+                        <span class="badge lime">Concluído</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check"></div>
+                        <div class="info"><div class="title">Preparar lanche</div><div class="desc">Cozinha</div></div>
+                        <span class="badge amber">Pendente</span>
+                    </div>
+                    <div class="checklist-item">
+                        <div class="check"></div>
+                        <div class="info"><div class="title">Confirmar voluntários</div><div class="desc">Coordenação</div></div>
+                        <span class="badge red">Urgente</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- SECTION: RECURSOS -->
+            <!-- ========================================================== -->
+            <section class="page-section" id="section-resources" aria-label="Recursos">
+                <div class="section-header">
+                    <h2>📂 Recursos <small>arquivos e materiais</small></h2>
+                    <div class="actions">
+                        <button class="btn btn-primary btn-sm">+ Adicionar</button>
+                    </div>
+                </div>
+                <div class="resource-item">
+                    <div class="icon">📄</div>
+                    <div class="info">
+                        <div class="name">Escala de Louvor - Julho</div>
+                        <div class="desc">PDF · Atualizado há 2 dias</div>
+                    </div>
+                    <span class="badge lime">Atual</span>
+                </div>
+                <div class="resource-item">
+                    <div class="icon">📊</div>
+                    <div class="info">
+                        <div class="name">Planilha de Voluntários</div>
+                        <div class="desc">XLSX · Última versão 12/07</div>
+                    </div>
+                    <span class="badge">V2.3</span>
+                </div>
+                <div class="resource-item">
+                    <div class="icon">🎵</div>
+                    <div class="info">
+                        <div class="name">Repertório - Culto Jovens</div>
+                        <div class="desc">MP3 + Letras · 15 músicas</div>
+                    </div>
+                    <span class="badge lime">Completo</span>
+                </div>
+                <div class="resource-item">
+                    <div class="icon">📋</div>
+                    <div class="info">
+                        <div class="name">Checklist Evento Kids</div>
+                        <div class="desc">DOC · Modelo padrão</div>
+                    </div>
+                    <span class="badge">Modelo</span>
+                </div>
+                <div class="resource-item">
+                    <div class="icon">🖼️</div>
+                    <div class="info">
+                        <div class="name">Artes para Comunicação</div>
+                        <div class="desc">PNG · 12 arquivos</div>
+                    </div>
+                    <span class="badge">Atual</span>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- SECTION: COMUNICADOS -->
+            <!-- ========================================================== -->
+            <section class="page-section" id="section-announcements" aria-label="Comunicados">
+                <div class="section-header">
+                    <h2>📢 Comunicados <small>avisos e informes</small></h2>
+                    <div class="actions">
+                        <button class="btn btn-primary btn-sm">+ Novo comunicado</button>
+                    </div>
+                </div>
+                <div class="announcement-item">
+                    <div class="title">Mudança no horário do Culto de Oração</div>
+                    <div class="desc">O culto de oração desta quinta-feira foi remarcado para as 20h.</div>
+                    <div class="meta">📅 15/07 · Por Secretaria</div>
+                    <span class="badge red">Urgente</span>
+                </div>
+                <div class="announcement-item">
+                    <div class="title">Inscrições abertas para voluntários</div>
+                    <div class="desc">Estamos recrutando voluntários para o ministério de recepção.</div>
+                    <div class="meta">📅 14/07 · Por Coordenação</div>
+                    <span class="badge lime">Ativo</span>
+                </div>
+                <div class="announcement-item">
+                    <div class="title">Ensaio do Louvor — horário especial</div>
+                    <div class="desc">Ensaio desta semana será na quinta-feira, 19h.</div>
+                    <div class="meta">📅 13/07 · Por Mariana</div>
+                    <span class="badge">Informativo</span>
+                </div>
+                <div class="announcement-item">
+                    <div class="title">Campanha de Doação de Alimentos</div>
+                    <div class="desc">Arrecadação até 30/07 — pontos de coleta na entrada.</div>
+                    <div class="meta">📅 12/07 · Por Ação Social</div>
+                    <span class="badge lime">Ativo</span>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- SECTION: VOLUNTÁRIOS -->
+            <!-- ========================================================== -->
+            <section class="page-section" id="section-volunteers" aria-label="Voluntários">
+                <div class="section-header">
+                    <h2>👤 Voluntários <small>equipes</small></h2>
+                    <div class="actions">
+                        <button class="btn btn-primary btn-sm">+ Adicionar</button>
+                    </div>
+                </div>
+                <div class="volunteer-item">
+                    <div class="avatar">AR</div>
+                    <div class="info">
+                        <div class="name">André Rodrigues</div>
+                        <div class="role">Louvor · Líder</div>
+                    </div>
+                    <span class="badge lime">Confirmado</span>
+                    <button class="action-btn">Mensagem</button>
+                </div>
+                <div class="volunteer-item">
+                    <div class="avatar">MC</div>
+                    <div class="info">
+                        <div class="name">Mariana Costa</div>
+                        <div class="role">Recepção · Coordenadora</div>
+                    </div>
+                    <span class="badge lime">Confirmado</span>
+                    <button class="action-btn">Mensagem</button>
+                </div>
+                <div class="volunteer-item">
+                    <div class="avatar">PF</div>
+                    <div class="info">
+                        <div class="name">Paulo Ferreira</div>
+                        <div class="role">Som · Técnico</div>
+                    </div>
+                    <span class="badge amber">Aguardando</span>
+                    <button class="action-btn">Lembrar</button>
+                </div>
+                <div class="volunteer-item">
+                    <div class="avatar">LS</div>
+                    <div class="info">
+                        <div class="name">Lúcia Santos</div>
+                        <div class="role">Infantil · Coordenadora</div>
+                    </div>
+                    <span class="badge lime">Confirmado</span>
+                    <button class="action-btn">Mensagem</button>
+                </div>
+                <div class="volunteer-item">
+                    <div class="avatar">RM</div>
+                    <div class="info">
+                        <div class="name">Ricardo Moura</div>
+                        <div class="role">Logística · Apoio</div>
+                    </div>
+                    <span class="badge red">Pendente</span>
+                    <button class="action-btn">Confirmar</button>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- SECTION: ARQUIVOS -->
+            <!-- ========================================================== -->
+            <section class="page-section" id="section-files" aria-label="Arquivos">
+                <div class="section-header">
+                    <h2>🗂️ Arquivos <small>documentos por ministério</small></h2>
+                    <div class="actions">
+                        <button class="btn btn-primary btn-sm">+ Enviar</button>
+                    </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:14px 16px;border:1px solid rgba(255,255,255,0.04);">
+                        <div style="font-weight:700;color:var(--text-primary);">🎵 Louvor</div>
+                        <div style="font-size:12px;color:var(--text-tertiary);">8 arquivos · 42 MB</div>
+                        <div style="margin-top:6px;font-size:12px;color:var(--text-tertiary);">📄 Partituras · 🎵 Backings</div>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:14px 16px;border:1px solid rgba(255,255,255,0.04);">
+                        <div style="font-weight:700;color:var(--text-primary);">👥 Voluntários</div>
+                        <div style="font-size:12px;color:var(--text-tertiary);">12 arquivos · 18 MB</div>
+                        <div style="margin-top:6px;font-size:12px;color:var(--text-tertiary);">📋 Escalas · 📊 Planilhas</div>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:14px 16px;border:1px solid rgba(255,255,255,0.04);">
+                        <div style="font-weight:700;color:var(--text-primary);">📅 Eventos</div>
+                        <div style="font-size:12px;color:var(--text-tertiary);">15 arquivos · 76 MB</div>
+                        <div style="margin-top:6px;font-size:12px;color:var(--text-tertiary);">📋 Checklists · 🖼️ Artes</div>
+                    </div>
+                    <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:14px 16px;border:1px solid rgba(255,255,255,0.04);">
+                        <div style="font-weight:700;color:var(--text-primary);">📢 Comunicados</div>
+                        <div style="font-size:12px;color:var(--text-tertiary);">6 arquivos · 8 MB</div>
+                        <div style="margin-top:6px;font-size:12px;color:var(--text-tertiary);">📄 PDFs · 📝 Textos</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================================== -->
+            <!-- SECTION: HISTÓRICO -->
+            <!-- ========================================================== -->
+            <section class="page-section" id="section-history" aria-label="Histórico">
+                <div class="section-header">
+                    <h2>📜 Histórico <small>últimas ações</small></h2>
+                    <div class="actions">
+                        <button class="btn btn-outline btn-sm">Filtrar</button>
+                    </div>
+                </div>
+                <div style="background:var(--bg-card);border-radius:var(--radius-md);padding:16px 20px;border:1px solid rgba(255,255,255,0.04);">
+                    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;">
+                        <span>✅ André concluiu "Verificar sistema de som"</span>
+                        <span style="color:var(--text-tertiary);font-size:12px;">Há 2h</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;">
+                        <span>📋 Mariana criou checklist "Culto de Jovens"</span>
+                        <span style="color:var(--text-tertiary);font-size:12px;">Há 4h</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;">
+                        <span>📢 Secretaria publicou comunicado "Mudança de horário"</span>
+                        <span style="color:var(--text-tertiary);font-size:12px;">Há 1d</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:13px;">
+                        <span>👤 Ricardo confirmou 3 voluntários para o evento</span>
+                        <span style="color:var(--text-tertiary);font-size:12px;">Há 2d</span>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:13px;">
+                        <span>📅 Lúcia criou evento "Evento Kids"</span>
+                        <span style="color:var(--text-tertiary);font-size:12px;">Há 3d</span>
+                    </div>
+                </div>
+            </section>
+
+        </div><!-- /page-content -->
+
+        <!-- ===== BOTTOM NAV ===== -->
+        <nav class="bottom-nav" id="bottomNav" role="navigation" aria-label="Navegação">
+            <button class="nav-btn active" data-section="home" aria-label="Início">
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                </span>
+                <span>Início</span>
+            </button>
+            <button class="nav-btn" data-section="tasks" aria-label="Tarefas">
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+                </span>
+                <span>Tarefas</span>
+                <span class="badge-dot"></span>
+            </button>
+            <button class="nav-btn" data-section="schedules" aria-label="Escalas">
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </span>
+                <span>Escalas</span>
+            </button>
+            <button class="nav-btn" data-section="events" aria-label="Eventos">
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </span>
+                <span>Eventos</span>
+                <span class="badge-dot orange"></span>
+            </button>
+            <button class="nav-btn" data-section="checklists" aria-label="Checklists">
+                <span class="icon">
+                    <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </span>
+                <span>Check</span>
+                <span class="badge-dot blue"></span>
+            </button>
+        </nav>
+
+    </div><!-- /app-wrapper -->
+
+    <!-- ========== MODAL: NOVA TAREFA ========== -->
+    <div class="modal-overlay" id="taskModal" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 id="taskModalTitle">➕ Nova tarefa</h3>
+                <button class="modal-close" id="taskModalClose" aria-label="Fechar">✕</button>
+            </div>
+            <div class="input-group">
+                <label for="taskTitle">Título</label>
+                <input class="input-field" id="taskTitle" placeholder="Ex: Finalizar checklist" />
+            </div>
+            <div class="input-group">
+                <label for="taskDesc">Descrição</label>
+                <input class="input-field" id="taskDesc" placeholder="Detalhes da tarefa..." />
+            </div>
+            <div class="input-group">
+                <label for="taskPriority">Prioridade</label>
+                <select class="input-field" id="taskPriority">
+                    <option value="normal">Normal</option>
+                    <option value="alta">Alta</option>
+                    <option value="urgente">Urgente</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="taskAssignee">Responsável</label>
+                <input class="input-field" id="taskAssignee" placeholder="Nome da pessoa" />
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-ghost" id="taskModalCancel">Cancelar</button>
+                <button class="btn btn-primary" id="taskModalConfirm">Criar tarefa</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ================================================================
+        //  PWA — SERVICE WORKER
+        // ================================================================
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register(window.location.href + '?sw', { scope: '/' })
+                .then(() => console.log('[PWA] Service Worker registrado'))
+                .catch(() => console.warn('[PWA] SW não registrado'));
+        }
+
+        // ================================================================
+        //  OFFLINE
+        // ================================================================
+        const offlineBanner = document.getElementById('offlineBanner');
+
+        function updateOffline() {
+            offlineBanner.classList.toggle('show', !navigator.onLine);
+        }
+        window.addEventListener('online', updateOffline);
+        window.addEventListener('offline', updateOffline);
+        updateOffline();
+
+        // ================================================================
+        //  NAVEGAÇÃO
+        // ================================================================
+        const sections = {};
+        document.querySelectorAll('.page-section').forEach(el => {
+            sections[el.id.replace('section-', '')] = el;
+        });
+
+        const navBtns = document.querySelectorAll('.bottom-nav .nav-btn');
+
+        function navigateTo(sectionId) {
+            Object.values(sections).forEach(s => s.classList.remove('active'));
+            const target = sections[sectionId];
+            if (target) target.classList.add('active');
+
+            navBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.section === sectionId);
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        navBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const section = btn.dataset.section;
+                if (section) navigateTo(section);
+            });
+        });
+
+        // ================================================================
+        //  MODAL: TAREFA
+        // ================================================================
+        const taskModal = document.getElementById('taskModal');
+        const taskModalClose = document.getElementById('taskModalClose');
+        const taskModalCancel = document.getElementById('taskModalCancel');
+        const taskModalConfirm = document.getElementById('taskModalConfirm');
+        const openTaskBtns = document.querySelectorAll('#openTaskModal, #openTaskModal2');
+
+        function openTaskModalFn() { taskModal.classList.add('open'); }
+
+        function closeTaskModal() { taskModal.classList.remove('open'); }
+
+        openTaskBtns.forEach(btn => btn.addEventListener('click', openTaskModalFn));
+        taskModalClose.addEventListener('click', closeTaskModal);
+        taskModalCancel.addEventListener('click', closeTaskModal);
+
+        taskModalConfirm.addEventListener('click', () => {
+            const title = document.getElementById('taskTitle').value || 'Nova tarefa';
+            alert(`✅ Tarefa "${title}" criada com sucesso!`);
+            closeTaskModal();
+            document.getElementById('taskTitle').value = '';
+            document.getElementById('taskDesc').value = '';
+            document.getElementById('taskAssignee').value = '';
+        });
+
+        taskModal.addEventListener('click', (e) => { if (e.target === taskModal) closeTaskModal(); });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && taskModal.classList.contains('open')) closeTaskModal();
+        });
+
+        // ================================================================
+        //  CHECKLIST INTERACTION
+        // ================================================================
+        document.querySelectorAll('.checklist-item .check').forEach(check => {
+            check.addEventListener('click', function() {
+                this.classList.toggle('done');
+                const title = this.closest('.checklist-item').querySelector('.title');
+                if (title) title.classList.toggle('done');
+                const badge = this.closest('.checklist-item').querySelector('.badge');
+                if (badge) {
+                    if (this.classList.contains('done')) {
+                        badge.textContent = 'Concluído';
+                        badge.className = 'badge lime';
+                    } else {
+                        badge.textContent = 'Pendente';
+                        badge.className = 'badge amber';
+                    }
+                }
+            });
+        });
+
+        // ================================================================
+        //  TASK ACTION BUTTONS (demo)
+        // ================================================================
+        document.querySelectorAll('.task-item .action-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const label = this.textContent.trim();
+                if (label === 'Concluir' || label === 'Confirmar' || label === 'Enviar') {
+                    alert('✅ Ação registrada!');
+                    const badge = this.closest('.task-item').querySelector('.badge');
+                    if (badge) {
+                        badge.textContent = 'Concluído';
+                        badge.className = 'badge lime';
+                    }
+                } else if (label === 'Revisar' || label === 'Abrir') {
+                    alert('📂 Abrindo detalhes...');
+                }
+            });
+        });
+
+        // ================================================================
+        //  VOLUNTEER ACTION BUTTONS
+        // ================================================================
+        document.querySelectorAll('.volunteer-item .action-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const label = this.textContent.trim();
+                if (label === 'Confirmar') {
+                    alert('✅ Voluntário confirmado!');
+                    const badge = this.closest('.volunteer-item').querySelector('.badge');
+                    if (badge) { badge.textContent = 'Confirmado';
+                        badge.className = 'badge lime'; }
+                    this.textContent = 'Mensagem';
+                } else if (label === 'Lembrar') {
+                    alert('🔔 Lembrete enviado!');
+                } else if (label === 'Mensagem') {
+                    alert('💬 Enviar mensagem para o voluntário.');
+                }
+            });
+        });
+
+        // ================================================================
+        //  NOTIFICAÇÕES
+        // ================================================================
+        document.getElementById('notifBtn').addEventListener('click', () => {
+            alert('🔔 2 notificações: 1 tarefa atrasada, 1 comunicado não lido.');
+        });
+
+        // ================================================================
+        //  PWA — INSTALL
+        // ================================================================
+        let deferredPrompt = null;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'flex';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const result = await deferredPrompt.userChoice;
+                if (result.outcome === 'accepted') installBtn.style.display = 'none';
+                deferredPrompt = null;
+            }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            installBtn.style.display = 'none';
+            console.log('[PWA] App instalado');
+        });
+
+        // ================================================================
+        //  MINI-CARD CLICK (navegação)
+        // ================================================================
+        document.querySelectorAll('.mini-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const label = this.querySelector('.label')?.textContent || '';
+                if (label.includes('Eventos')) navigateTo('events');
+                else if (label.includes('Voluntários')) navigateTo('volunteers');
+                else if (label.includes('Checklists')) navigateTo('checklists');
+                else if (label.includes('Comunicados')) navigateTo('announcements');
+            });
+        });
+
+        // ================================================================
+        //  KEYBOARD SHORTCUTS
+        // ================================================================
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key >= '1' && e.key <= '9') {
+                e.preventDefault();
+                const map = ['home', 'tasks', 'schedules', 'events', 'checklists', 'resources', 'announcements',
+                    'volunteers', 'files'
+                ];
+                const idx = parseInt(e.key) - 1;
+                if (map[idx]) navigateTo(map[idx]);
+            }
+            if (e.ctrlKey && e.key === '0') {
+                e.preventDefault();
+                navigateTo('history');
+            }
+        });
+
+        // ================================================================
+        //  LOG
+        // ================================================================
+        console.log('⚙️ Ministry Flow PWA — Operacional e funcional');
+        console.log('📌 Atalhos: Ctrl+1..9 para navegar');
+    </script>
+
+    <!-- ================================================================
+    SERVICE WORKER (inline)
+    ================================================================ -->
+    <script>
+        (function registerSW() {
+            const swCode = `
+        const CACHE = 'ministry-flow-v1';
+        const urls = ['.', 'index.html', '?'];
+
+        self.addEventListener('install', e => {
+          e.waitUntil(caches.open(CACHE).then(c => c.addAll(urls)));
+          self.skipWaiting();
+        });
+
+        self.addEventListener('activate', e => {
+          e.waitUntil(
+            caches.keys().then(keys => Promise.all(
+              keys.filter(k => k !== CACHE).map(k => caches.delete(k))
+            ))
+          );
+          self.clients.claim();
+        });
+
+        self.addEventListener('fetch', e => {
+          e.respondWith(
+            caches.match(e.request).then(res => res || fetch(e.request).catch(() => {
+              return new Response('Offline — Ministry Flow', { status: 503 });
+            }))
+          );
+        });
+      `;
+            try {
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register(swUrl, { scope: '/' })
+                        .then(() => console.log('[PWA] SW registrado'))
+                        .catch(() => {});
+                }
+            } catch (_) {}
+        })();
+    </script>
+
+</body>
+</html>

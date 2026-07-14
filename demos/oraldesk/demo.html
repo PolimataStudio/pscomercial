@@ -1,0 +1,1770 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#0a2a3a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <title>OralDesk · Gestão Odontológica</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+               CSS CUSTOM PROPERTIES — Design System Premium
+               ============================================================ */
+        :root {
+            --color-primary: #0a2a3a;
+            --color-primary-light: #1a4a5a;
+            --color-primary-dark: #051a26;
+            --color-secondary: #1a7a6a;
+            --color-secondary-light: #3a9a8a;
+            --color-accent-teal: #2eccb0;
+            --color-accent-green: #27ae60;
+            --color-accent-yellow: #f39c12;
+            --color-accent-red: #e74c3c;
+            --color-gold: #d4a373;
+            --color-bg: #f2f5f6;
+            --color-card: #ffffff;
+            --color-text: #1a2a32;
+            --color-text-muted: #4a5a66;
+            --color-text-light: #8a9aa8;
+            --color-border: #dce4e8;
+            --color-shadow: rgba(10, 42, 58, 0.04);
+            --radius: 18px;
+            --radius-sm: 10px;
+            --radius-xs: 6px;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --max-width: 800px;
+            --header-height: 56px;
+            --nav-height: 62px;
+            --shadow-card: 0 2px 16px rgba(10, 42, 58, 0.04);
+            --shadow-hover: 0 8px 32px rgba(10, 42, 58, 0.08);
+        }
+
+        /* ============================================================
+               RESET & BASE
+               ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.5;
+            min-height: 100vh;
+            min-height: 100dvh;
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            justify-content: center;
+            background: #e4eaec;
+        }
+
+        /* ============================================================
+               SCROLLBAR
+               ============================================================ */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-primary-light);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+               APP SHELL — Mobile First
+               ============================================================ */
+        #app {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: var(--max-width);
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: var(--color-bg);
+            position: relative;
+            margin: 0 auto;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.04);
+        }
+
+        /* ============================================================
+               INSTALL BANNER
+               ============================================================ */
+        .install-banner {
+            display: none;
+            background: var(--color-primary);
+            color: #fff;
+            padding: 10px 16px;
+            margin: 10px 12px 0;
+            border-radius: var(--radius-sm);
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            box-shadow: 0 4px 16px rgba(10, 42, 58, 0.20);
+        }
+        .install-banner.visible {
+            display: flex;
+        }
+        .install-banner .ib-text {
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .install-banner .ib-text i {
+            font-size: 1.1rem;
+        }
+        .install-banner .ib-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .install-banner .ib-actions button {
+            padding: 4px 16px;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-family: var(--font);
+            transition: var(--transition);
+        }
+        .install-banner .ib-actions .ib-install {
+            background: #fff;
+            color: var(--color-primary);
+        }
+        .install-banner .ib-actions .ib-dismiss {
+            background: rgba(255, 255, 255, 0.12);
+            color: #fff;
+        }
+
+        /* ============================================================
+               OFFLINE INDICATOR
+               ============================================================ */
+        .offline-indicator {
+            display: none;
+            background: var(--color-accent-yellow);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 500;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 12px 0;
+        }
+        .offline-indicator.visible {
+            display: flex;
+        }
+        .offline-indicator i {
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+               HEADER
+               ============================================================ */
+        .app-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px 10px;
+            background: var(--color-card);
+            border-bottom: 1px solid var(--color-border);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            flex-shrink: 0;
+            min-height: var(--header-height);
+        }
+
+        .app-header .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--color-text);
+        }
+
+        .app-header .brand .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            border-radius: var(--radius-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+            box-shadow: 0 2px 8px rgba(10, 42, 58, 0.15);
+        }
+
+        .app-header .brand .brand-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: -0.2px;
+        }
+        .app-header .brand .brand-name span {
+            color: var(--color-secondary);
+        }
+
+        .app-header .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .app-header .header-right .date-display {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            background: var(--color-bg);
+            padding: 4px 12px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .app-header .header-right .date-display i {
+            color: var(--color-secondary);
+            font-size: 0.65rem;
+        }
+
+        .app-header .header-right .user-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-secondary), var(--color-primary-light));
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.7rem;
+            box-shadow: 0 2px 8px rgba(10, 42, 58, 0.10);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid var(--color-card);
+        }
+        .app-header .header-right .user-avatar:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============================================================
+               NAVIGATION — Bottom Tabs
+               ============================================================ */
+        .app-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 4px 0 env(safe-area-inset-bottom);
+            background: var(--color-card);
+            border-top: 1px solid var(--color-border);
+            position: sticky;
+            bottom: 0;
+            z-index: 50;
+            flex-shrink: 0;
+            box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.02);
+            min-height: var(--nav-height);
+        }
+
+        .app-nav .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            padding: 4px 8px;
+            border-radius: var(--radius-xs);
+            font-size: 0.55rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font);
+            min-width: 44px;
+            position: relative;
+        }
+
+        .app-nav .nav-item i {
+            font-size: 1.15rem;
+            margin-bottom: 0px;
+            transition: var(--transition);
+        }
+
+        .app-nav .nav-item span {
+            line-height: 1.2;
+        }
+
+        .app-nav .nav-item:hover {
+            color: var(--color-text);
+        }
+
+        .app-nav .nav-item.active {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .app-nav .nav-item.active i {
+            transform: translateY(-2px);
+            color: var(--color-primary);
+        }
+
+        .app-nav .nav-item .nav-badge {
+            position: absolute;
+            top: 0;
+            right: 2px;
+            background: var(--color-accent-red);
+            color: #fff;
+            font-size: 0.45rem;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 12px;
+            line-height: 1.3;
+            min-width: 16px;
+            text-align: center;
+        }
+
+        /* ============================================================
+               MAIN CONTENT
+               ============================================================ */
+        .app-content {
+            flex: 1;
+            padding: 12px 14px 16px;
+            overflow-y: auto;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeSlideUp 0.35s ease;
+        }
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+               BENTO CARDS (Premium)
+               ============================================================ */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .bento-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .bento-card .card-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        .bento-card .card-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--color-text);
+            margin-top: 2px;
+        }
+
+        .bento-card .card-value .unit {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--color-text-muted);
+            margin-left: 2px;
+        }
+
+        .bento-card .card-icon {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            font-size: 1.4rem;
+            opacity: 0.10;
+            color: var(--color-primary);
+        }
+
+        .bento-card.accent .card-value {
+            color: var(--color-secondary);
+        }
+        .bento-card.gold .card-value {
+            color: var(--color-gold);
+        }
+        .bento-card.warning .card-value {
+            color: var(--color-accent-yellow);
+        }
+        .bento-card.danger .card-value {
+            color: var(--color-accent-red);
+        }
+        .bento-card.primary .card-value {
+            color: var(--color-primary);
+        }
+        .bento-card.teal .card-value {
+            color: var(--color-accent-teal);
+        }
+
+        .bento-card .card-change {
+            font-size: 0.6rem;
+            margin-top: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 1px 8px;
+            border-radius: 20px;
+            background: rgba(46, 204, 113, 0.08);
+            color: var(--color-accent-green);
+            font-weight: 600;
+        }
+        .bento-card .card-change.negative {
+            background: rgba(231, 76, 60, 0.08);
+            color: var(--color-accent-red);
+        }
+
+        .bento-full {
+            grid-column: 1 / -1;
+        }
+
+        /* ============================================================
+               PLAN CARDS (Ofertas)
+               ============================================================ */
+        .plan-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .plan-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .plan-card .plan-info {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .plan-card .plan-info .plan-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--color-primary);
+        }
+
+        .plan-card .plan-info .plan-desc {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+        }
+
+        .plan-card .plan-price {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-secondary);
+            text-align: right;
+            min-width: 80px;
+        }
+
+        .plan-card .plan-price .period {
+            font-weight: 400;
+            font-size: 0.65rem;
+            color: var(--color-text-muted);
+        }
+
+        .plan-card .plan-badge {
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 2px 12px;
+            border-radius: 30px;
+            background: var(--color-accent-teal);
+            color: #fff;
+        }
+
+        .plan-card .plan-badge.highlight {
+            background: var(--color-gold);
+        }
+
+        .plan-card .plan-action {
+            padding: 6px 16px;
+            border-radius: 30px;
+            border: none;
+            background: var(--color-secondary);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-family: var(--font);
+            transition: var(--transition);
+        }
+
+        .plan-card .plan-action:hover {
+            background: var(--color-secondary-light);
+            transform: scale(1.02);
+        }
+
+        /* ============================================================
+               LIST ITEMS (Agenda, Pacientes, Financeiro)
+               ============================================================ */
+        .list-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            margin-bottom: 6px;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .list-item:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-secondary);
+        }
+
+        .list-item .item-time {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            min-width: 44px;
+        }
+
+        .list-item .item-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .list-item .item-info .item-name {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-text);
+        }
+
+        .list-item .item-info .item-detail {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+        }
+
+        .list-item .item-status {
+            font-size: 0.55rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            flex-shrink: 0;
+        }
+
+        .item-status.confirmed {
+            background: rgba(46, 204, 113, 0.10);
+            color: var(--color-accent-green);
+        }
+        .item-status.pending {
+            background: rgba(243, 156, 18, 0.10);
+            color: var(--color-accent-yellow);
+        }
+        .item-status.waiting {
+            background: rgba(10, 42, 58, 0.06);
+            color: var(--color-primary-light);
+        }
+        .item-status.canceled {
+            background: rgba(231, 76, 60, 0.08);
+            color: var(--color-accent-red);
+        }
+        .item-status.done {
+            background: rgba(46, 204, 113, 0.06);
+            color: var(--color-accent-green);
+        }
+        .item-status.plan {
+            background: rgba(212, 163, 115, 0.10);
+            color: var(--color-gold);
+        }
+        .item-status.no-show {
+            background: rgba(231, 76, 60, 0.10);
+            color: var(--color-accent-red);
+        }
+
+        .list-item .item-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .item-dot.green {
+            background: var(--color-accent-green);
+        }
+        .item-dot.yellow {
+            background: var(--color-accent-yellow);
+        }
+        .item-dot.blue {
+            background: var(--color-primary-light);
+        }
+        .item-dot.red {
+            background: var(--color-accent-red);
+        }
+        .item-dot.gold {
+            background: var(--color-gold);
+        }
+        .item-dot.teal {
+            background: var(--color-accent-teal);
+        }
+        .item-dot.gray {
+            background: var(--color-text-light);
+        }
+
+        .list-item .item-action {
+            font-size: 0.7rem;
+            color: var(--color-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font);
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .list-item .item-action:hover {
+            background: rgba(26, 122, 106, 0.06);
+        }
+
+        .list-item .item-amount {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--color-secondary);
+            flex-shrink: 0;
+            min-width: 60px;
+            text-align: right;
+        }
+
+        .list-item .item-amount.negative {
+            color: var(--color-accent-red);
+        }
+
+        /* ============================================================
+               TAB: DASHBOARD
+               ============================================================ */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 8px;
+            margin: 8px 0 12px;
+        }
+
+        .quick-action {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 10px 4px;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
+        }
+
+        .quick-action:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-secondary);
+        }
+
+        .quick-action i {
+            font-size: 1.3rem;
+            color: var(--color-secondary);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .quick-action span {
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        /* ============================================================
+               TAB: FINANCEIRO
+               ============================================================ */
+        .finance-summary {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .finance-item {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 12px 10px;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+        }
+
+        .finance-item .fi-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        .finance-item .fi-value {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-top: 2px;
+        }
+
+        .finance-item .fi-value.green {
+            color: var(--color-accent-green);
+        }
+        .finance-item .fi-value.red {
+            color: var(--color-accent-red);
+        }
+        .finance-item .fi-value.gold {
+            color: var(--color-gold);
+        }
+
+        /* ============================================================
+               TAB: RELATÓRIOS
+               ============================================================ */
+        .report-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .report-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .report-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .report-card .rc-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--color-text-muted);
+            font-weight: 600;
+        }
+
+        .report-card .rc-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-top: 2px;
+        }
+
+        .report-card .rc-desc {
+            font-size: 0.7rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+
+        .report-card .rc-bar {
+            margin-top: 8px;
+            background: var(--color-bg);
+            border-radius: var(--radius-xs);
+            height: 6px;
+            overflow: hidden;
+        }
+
+        .report-card .rc-bar .rc-fill {
+            height: 100%;
+            border-radius: var(--radius-xs);
+            background: linear-gradient(90deg, var(--color-secondary), var(--color-accent-teal));
+            transition: width 0.6s ease;
+        }
+
+        /* ============================================================
+               RESPONSIVE
+               ============================================================ */
+        @media (max-width: 420px) {
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .bento-card {
+                padding: 10px 12px;
+            }
+            .bento-card .card-value {
+                font-size: 1.2rem;
+            }
+            .bento-card .card-icon {
+                font-size: 1rem;
+                right: 8px;
+                top: 8px;
+            }
+            .quick-actions {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 4px;
+            }
+            .quick-action {
+                padding: 8px 2px;
+            }
+            .quick-action i {
+                font-size: 1.1rem;
+            }
+            .app-nav .nav-item {
+                min-width: 36px;
+                font-size: 0.5rem;
+                padding: 2px 4px;
+            }
+            .app-nav .nav-item i {
+                font-size: 1rem;
+            }
+            .app-header .brand .brand-name {
+                font-size: 0.9rem;
+            }
+            .app-header .header-right .date-display {
+                font-size: 0.6rem;
+                padding: 2px 8px;
+            }
+            .finance-summary {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 6px;
+            }
+            .finance-item .fi-value {
+                font-size: 1rem;
+            }
+            .report-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .report-card .rc-value {
+                font-size: 1.2rem;
+            }
+            .plan-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .plan-card .plan-price {
+                text-align: center;
+            }
+            .list-item {
+                padding: 8px 10px;
+                flex-wrap: wrap;
+                gap: 4px;
+            }
+            .list-item .item-time {
+                min-width: 32px;
+                font-size: 0.6rem;
+            }
+            .list-item .item-info .item-name {
+                font-size: 0.8rem;
+            }
+            .list-item .item-amount {
+                font-size: 0.75rem;
+                min-width: 50px;
+            }
+        }
+
+        @media (min-width: 600px) {
+            #app {
+                border-radius: 20px;
+                margin: 16px auto;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.04);
+                min-height: calc(100vh - 32px);
+                min-height: calc(100dvh - 32px);
+            }
+            body {
+                padding: 16px;
+                background: #dce2e4;
+            }
+            .app-header {
+                border-radius: 20px 20px 0 0;
+                padding: 16px 24px 12px;
+            }
+            .app-content {
+                padding: 16px 20px 20px;
+            }
+            .app-nav {
+                border-radius: 0 0 20px 20px;
+                padding: 8px 0 env(safe-area-inset-bottom);
+            }
+            .app-nav .nav-item {
+                padding: 6px 14px;
+                font-size: 0.6rem;
+            }
+            .app-nav .nav-item i {
+                font-size: 1.3rem;
+            }
+            .quick-actions {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 10px;
+            }
+        }
+
+        /* ============================================================
+               UTILITÁRIOS
+               ============================================================ */
+        .text-muted {
+            color: var(--color-text-muted);
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-between {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .w-full {
+            width: 100%;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .section-header h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .section-header h3 i {
+            color: var(--color-secondary);
+            font-size: 0.85rem;
+        }
+
+        .section-header .see-all {
+            font-size: 0.7rem;
+            color: var(--color-secondary);
+            font-weight: 500;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font);
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+        .section-header .see-all:hover {
+            background: rgba(26, 122, 106, 0.04);
+        }
+
+        /* Pulse dot */
+        .pulse-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--color-accent-green);
+            animation: pulse-dot 1.8s ease-in-out infinite;
+            margin-right: 4px;
+        }
+
+        @keyframes pulse-dot {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.3;
+                transform: scale(0.8);
+            }
+        }
+
+        .badge-comercial {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(212, 163, 115, 0.08);
+            color: var(--color-gold);
+            font-size: 0.55rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+
+        .badge-comercial i {
+            font-size: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    APP
+    ============================================================ -->
+    <div id="app">
+
+        <!-- Install Banner -->
+        <div class="install-banner" id="installBanner">
+            <span class="ib-text"><i class="fas fa-mobile-alt"></i> Instale o OralDesk</span>
+            <div class="ib-actions">
+                <button class="ib-install" id="installBtn">Instalar</button>
+                <button class="ib-dismiss" id="dismissInstall">Agora não</button>
+            </div>
+        </div>
+
+        <!-- Offline Indicator -->
+        <div class="offline-indicator" id="offlineIndicator">
+            <i class="fas fa-wifi-slash"></i> Modo offline — dados locais disponíveis
+        </div>
+
+        <!-- ============================================================
+        HEADER
+        ============================================================ -->
+        <header class="app-header">
+            <a href="#" class="brand" onclick="navigateTo('dashboard')">
+                <div class="logo-icon">OD</div>
+                <span class="brand-name">Oral<span>Desk</span></span>
+            </a>
+            <div class="header-right">
+                <span class="date-display" id="headerDate">
+                    <i class="far fa-calendar-alt"></i>
+                    <span id="dateText">Carregando...</span>
+                </span>
+                <div class="user-avatar" title="Dra. Ana Odonto">AO</div>
+            </div>
+        </header>
+
+        <!-- ============================================================
+        CONTENT
+        ============================================================ -->
+        <main class="app-content">
+
+            <!-- ======== TAB: DASHBOARD ======== -->
+            <section class="tab-panel active" id="tab-dashboard" role="tabpanel">
+
+                <!-- Bento Stats -->
+                <div class="bento-grid">
+                    <div class="bento-card primary">
+                        <span class="card-label">Consultas Hoje</span>
+                        <div class="card-value" id="statConsultas">9</div>
+                        <span class="card-change"><i class="fas fa-arrow-up"></i> +3 vs ontem</span>
+                        <i class="fas fa-tooth card-icon"></i>
+                    </div>
+                    <div class="bento-card gold">
+                        <span class="card-label">Planos Ativos</span>
+                        <div class="card-value" id="statPlanos">24</div>
+                        <span class="card-change"><i class="fas fa-arrow-up"></i> +2 este mês</span>
+                        <i class="fas fa-crown card-icon"></i>
+                    </div>
+                    <div class="bento-card accent">
+                        <span class="card-label">Taxa de Retenção</span>
+                        <div class="card-value">88<span class="unit">%</span></div>
+                        <span class="card-change"><i class="fas fa-arrow-up"></i> +5% vs mês</span>
+                        <i class="fas fa-heart card-icon"></i>
+                    </div>
+                    <div class="bento-card warning">
+                        <span class="card-label">Pacientes sem Retorno</span>
+                        <div class="card-value" id="statSemRetorno">7</div>
+                        <span class="card-change negative"><i class="fas fa-arrow-up"></i> +2</span>
+                        <i class="fas fa-user-clock card-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Ações rápidas -->
+                <div class="quick-actions">
+                    <div class="quick-action" onclick="navigateTo('agenda')">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Agendar</span>
+                    </div>
+                    <div class="quick-action" onclick="navigateTo('planos')">
+                        <i class="fas fa-crown"></i>
+                        <span>Planos</span>
+                    </div>
+                    <div class="quick-action" onclick="navigateTo('pacientes')">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Paciente</span>
+                    </div>
+                    <div class="quick-action" onclick="navigateTo('financeiro')">
+                        <i class="fas fa-coins"></i>
+                        <span>Financeiro</span>
+                    </div>
+                </div>
+
+                <!-- Agenda do dia -->
+                <div class="section-header">
+                    <h3><i class="fas fa-calendar-day"></i> Agenda de Hoje</h3>
+                    <button class="see-all" onclick="navigateTo('agenda')">Ver todas</button>
+                </div>
+                <div id="timelineContainer">
+                    <!-- preenchido via JS -->
+                </div>
+
+                <!-- Planos em destaque -->
+                <div class="section-header" style="margin-top:12px;">
+                    <h3><i class="fas fa-crown"></i> Planos em Destaque</h3>
+                    <button class="see-all" onclick="navigateTo('planos')">Ver todos</button>
+                </div>
+                <div id="plansPreview">
+                    <!-- preenchido via JS -->
+                </div>
+
+            </section>
+
+            <!-- ======== TAB: AGENDA ======== -->
+            <section class="tab-panel" id="tab-agenda" role="tabpanel">
+                <div class="section-header">
+                    <h3><i class="fas fa-calendar-alt"></i> Agenda Completa</h3>
+                    <button class="see-all" onclick="alert('Nova consulta')">+ Adicionar</button>
+                </div>
+                <div id="agendaContainer">
+                    <!-- preenchido via JS -->
+                </div>
+            </section>
+
+            <!-- ======== TAB: PLANOS ======== -->
+            <section class="tab-panel" id="tab-planos" role="tabpanel">
+                <div class="section-header">
+                    <h3><i class="fas fa-crown"></i> Planos e Ofertas</h3>
+                    <span class="badge-comercial"><i class="fas fa-circle"></i> 24 ativos</span>
+                </div>
+                <div id="plansContainer">
+                    <!-- preenchido via JS -->
+                </div>
+            </section>
+
+            <!-- ======== TAB: PACIENTES ======== -->
+            <section class="tab-panel" id="tab-pacientes" role="tabpanel">
+                <div class="section-header">
+                    <h3><i class="fas fa-users"></i> Pacientes</h3>
+                    <button class="see-all" onclick="alert('Novo paciente')">+ Cadastrar</button>
+                </div>
+                <div style="display:flex; gap:8px; margin-bottom:10px;">
+                    <input type="text" placeholder="Buscar paciente..." id="patientSearch" style="flex:1; padding:8px 12px; border-radius:var(--radius-sm); border:1px solid var(--color-border); font-family:var(--font); font-size:0.85rem; outline:none; background:var(--color-card); transition:var(--transition);" />
+                    <button id="searchBtn" style="padding:8px 16px; background:var(--color-primary); color:#fff; border:none; border-radius:var(--radius-sm); font-weight:600; font-size:0.8rem; cursor:pointer; font-family:var(--font);">Buscar</button>
+                </div>
+                <div id="patientContainer">
+                    <!-- preenchido via JS -->
+                </div>
+                <!-- Pacientes sem retorno (destaque) -->
+                <div style="margin-top:12px; background:var(--color-card); border-radius:var(--radius-sm); padding:14px 16px; border:1px solid var(--color-border);">
+                    <div style="font-size:0.75rem; font-weight:600; color:var(--color-accent-red); display:flex; align-items:center; gap:6px;">
+                        <i class="fas fa-exclamation-circle"></i> Pacientes sem retorno (7)
+                    </div>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:6px;">
+                        <span style="font-size:0.7rem; background:var(--color-bg); padding:2px 12px; border-radius:20px; color:var(--color-text-muted);">Ana Paula</span>
+                        <span style="font-size:0.7rem; background:var(--color-bg); padding:2px 12px; border-radius:20px; color:var(--color-text-muted);">Carlos Silva</span>
+                        <span style="font-size:0.7rem; background:var(--color-bg); padding:2px 12px; border-radius:20px; color:var(--color-text-muted);">Mariana Costa</span>
+                        <span style="font-size:0.7rem; background:var(--color-bg); padding:2px 12px; border-radius:20px; color:var(--color-text-muted);">+4 outros</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======== TAB: FINANCEIRO ======== -->
+            <section class="tab-panel" id="tab-financeiro" role="tabpanel">
+                <div class="section-header">
+                    <h3><i class="fas fa-coins"></i> Resumo Financeiro</h3>
+                </div>
+                <div class="finance-summary">
+                    <div class="finance-item">
+                        <div class="fi-label">Receita Mensal</div>
+                        <div class="fi-value green">R$ 18.450</div>
+                    </div>
+                    <div class="finance-item">
+                        <div class="fi-label">Planos (recorrente)</div>
+                        <div class="fi-value gold">R$ 6.720</div>
+                    </div>
+                    <div class="finance-item">
+                        <div class="fi-label">A Receber</div>
+                        <div class="fi-value red">R$ 2.380</div>
+                    </div>
+                </div>
+                <div style="background:var(--color-card); border-radius:var(--radius-sm); padding:14px 16px; border:1px solid var(--color-border); margin-bottom:12px;">
+                    <div style="font-size:0.8rem; font-weight:600; color:var(--color-primary);">Últimos Recebimentos</div>
+                    <div id="financeList">
+                        <!-- preenchido via JS -->
+                    </div>
+                </div>
+                <div style="background:var(--color-card); border-radius:var(--radius-sm); padding:14px 16px; border:1px solid var(--color-border);">
+                    <div style="font-size:0.8rem; font-weight:600; color:var(--color-primary);">📈 Evolução Mensal</div>
+                    <div style="margin-top:8px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+                        <span style="font-size:0.75rem; color:var(--color-text-muted);">Jul: R$ 16.200</span>
+                        <span style="font-size:0.75rem; color:var(--color-text-muted);">Ago: R$ 17.800</span>
+                        <span style="font-size:0.75rem; color:var(--color-accent-green); font-weight:600;">Set: R$ 18.450</span>
+                        <span style="font-size:0.7rem; color:var(--color-accent-green);"><i class="fas fa-arrow-up"></i> +3.7%</span>
+                    </div>
+                    <div style="margin-top:8px; background:var(--color-bg); border-radius:var(--radius-xs); height:6px; overflow:hidden; display:flex; gap:2px;">
+                        <div style="height:100%; width:32%; background:var(--color-text-light); border-radius:var(--radius-xs);"></div>
+                        <div style="height:100%; width:36%; background:var(--color-secondary-light); border-radius:var(--radius-xs);"></div>
+                        <div style="height:100%; width:38%; background:var(--color-secondary); border-radius:var(--radius-xs);"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ======== TAB: RELATÓRIOS ======== -->
+            <section class="tab-panel" id="tab-relatorios" role="tabpanel">
+                <div class="section-header">
+                    <h3><i class="fas fa-chart-bar"></i> Indicadores</h3>
+                </div>
+                <div class="report-grid">
+                    <div class="report-card">
+                        <div class="rc-label">Atendimentos (mês)</div>
+                        <div class="rc-value">42</div>
+                        <div class="rc-desc">+8 vs mês passado</div>
+                        <div class="rc-bar"><div class="rc-fill" style="width:78%;"></div></div>
+                    </div>
+                    <div class="report-card">
+                        <div class="rc-label">Taxa de Comparecimento</div>
+                        <div class="rc-value">89<span class="unit">%</span></div>
+                        <div class="rc-desc">+4% vs mês anterior</div>
+                        <div class="rc-bar"><div class="rc-fill" style="width:89%;"></div></div>
+                    </div>
+                    <div class="report-card">
+                        <div class="rc-label">Planos Vendidos (mês)</div>
+                        <div class="rc-value">6</div>
+                        <div class="rc-desc">+2 vs mês passado</div>
+                        <div class="rc-bar"><div class="rc-fill" style="width:60%;"></div></div>
+                    </div>
+                    <div class="report-card">
+                        <div class="rc-label">Pacientes Ativos</div>
+                        <div class="rc-value">47</div>
+                        <div class="rc-desc">+5 no último mês</div>
+                        <div class="rc-bar"><div class="rc-fill" style="width:82%;"></div></div>
+                    </div>
+                </div>
+                <div style="margin-top:12px; background:var(--color-card); border-radius:var(--radius-sm); padding:14px 16px; border:1px solid var(--color-border);">
+                    <div style="font-size:0.8rem; font-weight:600; color:var(--color-primary);">📊 Resumo do Trimestre</div>
+                    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; margin-top:8px;">
+                        <div><span style="font-size:0.65rem; color:var(--color-text-muted);">Consultas</span><br /><strong>124</strong></div>
+                        <div><span style="font-size:0.65rem; color:var(--color-text-muted);">Receita</span><br /><strong>R$ 52.300</strong></div>
+                        <div><span style="font-size:0.65rem; color:var(--color-text-muted);">Retenção</span><br /><strong>86%</strong></div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ============================================================
+        BOTTOM NAVIGATION
+        ============================================================ -->
+        <nav class="app-nav" id="appNav" role="tablist">
+            <button class="nav-item active" data-tab="dashboard" role="tab" aria-selected="true">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
+            </button>
+            <button class="nav-item" data-tab="agenda" role="tab" aria-selected="false">
+                <i class="fas fa-calendar-day"></i>
+                <span>Agenda</span>
+                <span class="nav-badge">9</span>
+            </button>
+            <button class="nav-item" data-tab="planos" role="tab" aria-selected="false">
+                <i class="fas fa-crown"></i>
+                <span>Planos</span>
+                <span class="nav-badge">3</span>
+            </button>
+            <button class="nav-item" data-tab="pacientes" role="tab" aria-selected="false">
+                <i class="fas fa-users"></i>
+                <span>Pacientes</span>
+            </button>
+            <button class="nav-item" data-tab="financeiro" role="tab" aria-selected="false">
+                <i class="fas fa-coins"></i>
+                <span>Financeiro</span>
+            </button>
+            <button class="nav-item" data-tab="relatorios" role="tab" aria-selected="false">
+                <i class="fas fa-chart-bar"></i>
+                <span>Relatórios</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // DATA
+            // ============================================================
+            const appointments = [{
+                id: 1,
+                time: '08:30',
+                patient: 'Ana Paula',
+                doctor: 'Dra. Ana',
+                procedure: 'Limpeza',
+                status: 'confirmed',
+                statusLabel: 'Confirmado'
+            }, {
+                id: 2,
+                time: '09:00',
+                patient: 'Carlos Silva',
+                doctor: 'Dr. Carlos',
+                procedure: 'Canal',
+                status: 'waiting',
+                statusLabel: 'Aguardando'
+            }, {
+                id: 3,
+                time: '09:30',
+                patient: 'Mariana Costa',
+                doctor: 'Dra. Ana',
+                procedure: 'Clareamento',
+                status: 'confirmed',
+                statusLabel: 'Confirmado'
+            }, {
+                id: 4,
+                time: '10:00',
+                patient: 'João Pedro',
+                doctor: 'Dr. Carlos',
+                procedure: 'Extraçâo',
+                status: 'pending',
+                statusLabel: 'Pendente'
+            }, {
+                id: 5,
+                time: '10:30',
+                patient: 'Sofia Lima',
+                doctor: 'Dra. Ana',
+                procedure: 'Limpeza',
+                status: 'confirmed',
+                statusLabel: 'Confirmado'
+            }, {
+                id: 6,
+                time: '11:00',
+                patient: 'Rafael Souza',
+                doctor: 'Dr. Carlos',
+                procedure: 'Restauração',
+                status: 'done',
+                statusLabel: 'Atendido'
+            }, {
+                id: 7,
+                time: '14:00',
+                patient: 'Amanda Ferreira',
+                doctor: 'Dra. Ana',
+                procedure: 'Canal',
+                status: 'confirmed',
+                statusLabel: 'Confirmado'
+            }, {
+                id: 8,
+                time: '14:30',
+                patient: 'Bruno Rodrigues',
+                doctor: 'Dr. Carlos',
+                procedure: 'Limpeza',
+                status: 'canceled',
+                statusLabel: 'Cancelado'
+            }, {
+                id: 9,
+                time: '15:00',
+                patient: 'Carla Mendes',
+                doctor: 'Dra. Ana',
+                procedure: 'Clareamento',
+                status: 'confirmed',
+                statusLabel: 'Confirmado'
+            }, {
+                id: 10,
+                time: '15:30',
+                patient: 'Diego Alves',
+                doctor: 'Dr. Carlos',
+                procedure: 'Restauração',
+                status: 'waiting',
+                statusLabel: 'Aguardando'
+            }];
+
+            const plans = [
+                { name: 'Plano Ouro', desc: 'Consultas, limpeza e clareamento 1x/ano', price: 'R$ 89,90',
+                    period: '/mês', badge: 'Destaque', highlight: true },
+                { name: 'Plano Prata', desc: 'Consultas e limpeza 2x/ano', price: 'R$ 59,90', period: '/mês',
+                    badge: 'Popular' },
+                { name: 'Plano Bronze', desc: 'Consultas preventivas', price: 'R$ 39,90', period: '/mês',
+                    badge: 'Básico' },
+                { name: 'Plano Família', desc: 'Até 4 pessoas, cobertura completa', price: 'R$ 149,90',
+                    period: '/mês', badge: 'Econômico' },
+            ];
+
+            const patients = [
+                { name: 'Ana Paula', phone: '(11) 91234-5678', lastVisit: '10/07/2026', status: 'Ativo',
+                plan: 'Ouro' },
+                { name: 'Carlos Silva', phone: '(11) 92345-6789', lastVisit: '09/07/2026', status: 'Ativo',
+                    plan: 'Prata' },
+                { name: 'Mariana Costa', phone: '(11) 93456-7890', lastVisit: '08/07/2026', status: 'Ativo',
+                    plan: 'Ouro' },
+                { name: 'João Pedro', phone: '(11) 94567-8901', lastVisit: '07/07/2026', status: 'Inativo',
+                    plan: '-' },
+                { name: 'Sofia Lima', phone: '(11) 95678-9012', lastVisit: '06/07/2026', status: 'Ativo',
+                    plan: 'Prata' },
+                { name: 'Rafael Souza', phone: '(11) 96789-0123', lastVisit: '05/07/2026', status: 'Ativo',
+                    plan: 'Bronze' },
+                { name: 'Amanda Ferreira', phone: '(11) 97890-1234', lastVisit: '04/07/2026', status: 'Ativo',
+                    plan: 'Ouro' },
+                { name: 'Bruno Rodrigues', phone: '(11) 98901-2345', lastVisit: '03/07/2026', status: 'Inativo',
+                    plan: '-' },
+            ];
+
+            const financeTransactions = [
+                { patient: 'Ana Paula', amount: 'R$ 250,00', date: '10/07/2026', type: 'Consulta' },
+                { patient: 'Carlos Silva', amount: 'R$ 89,90', date: '09/07/2026', type: 'Plano Ouro' },
+                { patient: 'Mariana Costa', amount: 'R$ 350,00', date: '08/07/2026', type: 'Clareamento' },
+                { patient: 'Sofia Lima', amount: 'R$ 89,90', date: '06/07/2026', type: 'Plano Ouro' },
+                { patient: 'Rafael Souza', amount: 'R$ 180,00', date: '05/07/2026', type: 'Restauração' },
+            ];
+
+            // ============================================================
+            // DOM REFS
+            // ============================================================
+            const tabs = document.querySelectorAll('.nav-item');
+            const panels = document.querySelectorAll('.tab-panel');
+            const timelineContainer = document.getElementById('timelineContainer');
+            const agendaContainer = document.getElementById('agendaContainer');
+            const plansContainer = document.getElementById('plansContainer');
+            const plansPreview = document.getElementById('plansPreview');
+            const patientContainer = document.getElementById('patientContainer');
+            const financeList = document.getElementById('financeList');
+            const patientSearch = document.getElementById('patientSearch');
+            const searchBtn = document.getElementById('searchBtn');
+            const installBanner = document.getElementById('installBanner');
+            const installBtn = document.getElementById('installBtn');
+            const dismissInstall = document.getElementById('dismissInstall');
+            const offlineIndicator = document.getElementById('offlineIndicator');
+
+            // ============================================================
+            // DATE
+            // ============================================================
+            function updateDate() {
+                const now = new Date();
+                const options = { weekday: 'short', day: 'numeric', month: 'short' };
+                const formatted = now.toLocaleDateString('pt-BR', options);
+                document.getElementById('dateText').textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+            }
+            updateDate();
+
+            // ============================================================
+            // RENDER: TIMELINE
+            // ============================================================
+            function renderTimeline() {
+                const active = appointments.filter(a => a.status !== 'canceled' && a.status !== 'done');
+                const show = active.slice(0, 5);
+                timelineContainer.innerHTML = show.map(a => {
+                    const dotClass = a.status === 'confirmed' ? 'green' :
+                        a.status === 'waiting' ? 'yellow' :
+                        a.status === 'pending' ? 'yellow' : 'gray';
+                    return `
+                                <div class="list-item">
+                                    <span class="item-time">${a.time}</span>
+                                    <span class="item-dot ${dotClass}"></span>
+                                    <div class="item-info">
+                                        <span class="item-name">${a.patient}</span>
+                                        <span class="item-detail">${a.procedure} · ${a.doctor}</span>
+                                    </div>
+                                    <span class="item-status ${a.status}">${a.statusLabel}</span>
+                                    <button class="item-action" onclick="confirmPatient(${a.id})"><i class="fas fa-check"></i></button>
+                                </div>
+                            `;
+                }).join('') || '<div style="text-align:center; padding:20px; color:var(--color-text-muted); font-size:0.85rem;">Nenhuma consulta pendente hoje 🎉</div>';
+            }
+
+            // ============================================================
+            // RENDER: AGENDA
+            // ============================================================
+            function renderAgenda() {
+                agendaContainer.innerHTML = appointments.map(a => `
+                            <div class="list-item">
+                                <span class="item-time">${a.time}</span>
+                                <span class="item-dot ${a.status === 'confirmed' ? 'green' : a.status === 'waiting' ? 'yellow' : a.status === 'canceled' ? 'red' : 'gray'}"></span>
+                                <div class="item-info">
+                                    <span class="item-name">${a.patient}</span>
+                                    <span class="item-detail">${a.procedure} · ${a.doctor}</span>
+                                </div>
+                                <span class="item-status ${a.status}">${a.statusLabel}</span>
+                            </div>
+                        `).join('');
+            }
+
+            // ============================================================
+            // RENDER: PLANOS
+            // ============================================================
+            function renderPlans() {
+                const html = plans.map(p => `
+                            <div class="plan-card">
+                                <div class="plan-info">
+                                    <div class="plan-name">${p.name}</div>
+                                    <div class="plan-desc">${p.desc}</div>
+                                </div>
+                                <div class="plan-price">${p.price} <span class="period">${p.period}</span></div>
+                                <span class="plan-badge ${p.highlight ? 'highlight' : ''}">${p.badge}</span>
+                                <button class="plan-action" onclick="alert('Vender ${p.name}')">Vender</button>
+                            </div>
+                        `).join('');
+                plansContainer.innerHTML = html;
+
+                // Preview (apenas 2 primeiros)
+                plansPreview.innerHTML = plans.slice(0, 2).map(p => `
+                            <div class="plan-card" style="margin-bottom:4px; padding:10px 14px;">
+                                <div class="plan-info">
+                                    <div class="plan-name" style="font-size:0.85rem;">${p.name}</div>
+                                    <div class="plan-desc" style="font-size:0.65rem;">${p.desc}</div>
+                                </div>
+                                <div class="plan-price" style="font-size:0.9rem;">${p.price}</div>
+                                <span class="plan-badge ${p.highlight ? 'highlight' : ''}" style="font-size:0.5rem;">${p.badge}</span>
+                            </div>
+                        `).join('');
+            }
+
+            // ============================================================
+            // RENDER: PACIENTES
+            // ============================================================
+            function renderPatients(filter = '') {
+                const list = filter ?
+                    patients.filter(p => p.name.toLowerCase().includes(filter.toLowerCase())) :
+                    patients;
+                patientContainer.innerHTML = list.map(p => `
+                            <div class="list-item">
+                                <span class="item-dot ${p.status === 'Ativo' ? 'green' : 'gray'}"></span>
+                                <div class="item-info">
+                                    <span class="item-name">${p.name}</span>
+                                    <span class="item-detail">${p.phone} · Plano: ${p.plan} · Última: ${p.lastVisit}</span>
+                                </div>
+                                <span class="item-status ${p.status === 'Ativo' ? 'confirmed' : 'canceled'}">${p.status}</span>
+                                ${p.plan !== '-' ? '<span class="item-status plan">Plano</span>' : ''}
+                            </div>
+                        `).join('');
+            }
+
+            // ============================================================
+            // RENDER: FINANCEIRO
+            // ============================================================
+            function renderFinance() {
+                financeList.innerHTML = financeTransactions.map(t => `
+                            <div class="list-item" style="margin-bottom:4px; padding:8px 10px;">
+                                <span class="item-dot ${t.type.includes('Plano') ? 'gold' : 'green'}"></span>
+                                <div class="item-info">
+                                    <span class="item-name">${t.patient}</span>
+                                    <span class="item-detail">${t.type} · ${t.date}</span>
+                                </div>
+                                <span class="item-amount">${t.amount}</span>
+                            </div>
+                        `).join('');
+            }
+
+            // ============================================================
+            // NAVIGATION
+            // ============================================================
+            function navigateTo(tabId) {
+                tabs.forEach(t => {
+                    const isActive = t.dataset.tab === tabId;
+                    t.classList.toggle('active', isActive);
+                    t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+                panels.forEach(p => {
+                    p.classList.toggle('active', p.id === `tab-${tabId}`);
+                });
+                document.querySelector('.app-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    navigateTo(this.dataset.tab);
+                });
+            });
+
+            window.navigateTo = navigateTo;
+
+            // ============================================================
+            // CONFIRM PATIENT
+            // ============================================================
+            window.confirmPatient = function(id) {
+                alert('✅ Paciente confirmado!');
+                const btns = document.querySelectorAll('.item-action');
+                btns.forEach(btn => {
+                    if (btn.textContent.trim() === '✓' || btn.innerHTML.includes('fa-check')) {
+                        btn.innerHTML = '<i class="fas fa-check-circle" style="color:var(--color-accent-green);"></i>';
+                        btn.style.color = 'var(--color-accent-green)';
+                        setTimeout(() => {
+                            btn.innerHTML = '<i class="fas fa-check"></i>';
+                            btn.style.color = '';
+                        }, 1500);
+                    }
+                });
+            };
+
+            // ============================================================
+            // PATIENT SEARCH
+            // ============================================================
+            function handleSearch() {
+                renderPatients(patientSearch.value.trim());
+            }
+
+            searchBtn.addEventListener('click', handleSearch);
+            patientSearch.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') handleSearch();
+                clearTimeout(window._searchTimer);
+                window._searchTimer = setTimeout(() => {
+                    renderPatients(this.value.trim());
+                }, 300);
+            });
+
+            // ============================================================
+            // UPDATE STATS
+            // ============================================================
+            function updateStats() {
+                const total = appointments.filter(a => a.status !== 'canceled' && a.status !== 'done').length;
+                const semRetorno = patients.filter(p => p.status === 'Inativo').length;
+                document.getElementById('statConsultas').textContent = total;
+                document.getElementById('statPlanos').textContent = plans.length;
+                document.getElementById('statSemRetorno').textContent = semRetorno;
+            }
+
+            // ============================================================
+            // PWA — INSTALL
+            // ============================================================
+            let deferredPrompt = null;
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                installBanner.classList.add('visible');
+            });
+
+            installBtn.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const result = await deferredPrompt.userChoice;
+                    if (result.outcome === 'accepted') {
+                        installBanner.classList.remove('visible');
+                    }
+                    deferredPrompt = null;
+                }
+            });
+
+            dismissInstall.addEventListener('click', () => {
+                installBanner.classList.remove('visible');
+            });
+
+            // ============================================================
+            // PWA — OFFLINE
+            // ============================================================
+            function updateOfflineStatus() {
+                offlineIndicator.classList.toggle('visible', !navigator.onLine);
+            }
+            window.addEventListener('online', updateOfflineStatus);
+            window.addEventListener('offline', updateOfflineStatus);
+            updateOfflineStatus();
+
+            // ============================================================
+            // PWA — SERVICE WORKER
+            // ============================================================
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(() => console.log('✅ Service Worker registrado'))
+                    .catch(err => console.warn('⚠️ SW não registrado:', err));
+            }
+
+            // ============================================================
+            // KEYBOARD SHORTCUTS (1-6)
+            // ============================================================
+            document.addEventListener('keydown', (e) => {
+                const num = parseInt(e.key);
+                if (num >= 1 && num <= 6) {
+                    const tabIds = ['dashboard', 'agenda', 'planos', 'pacientes', 'financeiro', 'relatorios'];
+                    navigateTo(tabIds[num - 1]);
+                    e.preventDefault();
+                }
+            });
+
+            // ============================================================
+            // INIT
+            // ============================================================
+            renderTimeline();
+            renderAgenda();
+            renderPlans();
+            renderPatients();
+            renderFinance();
+            updateStats();
+
+            console.log('🦷 OralDesk PWA — carregado com sucesso!');
+            console.log('📌 Use as teclas 1-6 para navegar entre as abas.');
+
+        })();
+    </script>
+
+</body>
+</html>

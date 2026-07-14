@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
+    <title>Plan a Visit — Sua primeira visita</title>
+    <meta name="description" content="Venha nos visitar. Conheça nossos horários, localização, como é o culto e tudo que você precisa saber para sua primeira visita." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+    <style>
+        /* ================================================================
+           PLAN A VISIT — Landing Page de Conversão
+           Clean · Acolhedor · Mobile-first
+           ================================================================ */
+
+        /* ---------- TOKENS ---------- */
+        :root {
+            --blue-dark: #0F2B4A;
+            --blue: #1A4F7A;
+            --blue-light: #2A7AAA;
+            --blue-surface: #E8F0F8;
+            --blue-soft: #D4E5F0;
+            --green: #2A9D7A;
+            --green-light: #E6F4EE;
+            --green-dark: #1E7A5E;
+            --white: #FFFFFF;
+            --white-soft: #F8FAFC;
+            --gray-100: #F0F2F5;
+            --gray-200: #E0E4E8;
+            --gray-300: #C8CDD4;
+            --gray-400: #A0A8B4;
+            --gray-500: #707884;
+            --gray-600: #4A5058;
+            --gray-700: #2A2E34;
+            --gray-800: #1A1E24;
+            --black: #050A14;
+
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 9999px;
+
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.08);
+
+            --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-bounce: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+            --header-height: 68px;
+            --max-width: 960px;
+        }
+
+        /* ---------- RESET ---------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            -webkit-font-smoothing: antialiased;
+        }
+        body {
+            font-family: var(--font);
+            background: var(--white-soft);
+            color: var(--gray-600);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--gray-100);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--blue-light);
+            border-radius: 10px;
+        }
+
+        /* ---------- UTILITY ---------- */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .section-padding {
+            padding: 64px 0 56px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .text-blue {
+            color: var(--blue);
+        }
+        .text-green {
+            color: var(--green);
+        }
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* ---------- BUTTONS ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 36px;
+            border-radius: var(--radius-full);
+            font-weight: 700;
+            font-size: 16px;
+            transition: all var(--transition);
+            border: none;
+            line-height: 1.2;
+            min-height: 52px;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--blue);
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(26, 79, 122, 0.20);
+        }
+        .btn-primary:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 36px rgba(26, 79, 122, 0.30);
+        }
+        .btn-secondary {
+            background: var(--green);
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(42, 157, 122, 0.20);
+        }
+        .btn-secondary:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 36px rgba(42, 157, 122, 0.30);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--blue);
+            border: 2px solid var(--blue);
+        }
+        .btn-outline:hover {
+            background: var(--blue);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-whatsapp {
+            background: #25D366;
+            color: #fff;
+            box-shadow: 0 4px 24px rgba(37, 211, 102, 0.25);
+        }
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 36px rgba(37, 211, 102, 0.35);
+        }
+        .btn-sm {
+            padding: 10px 24px;
+            font-size: 14px;
+            min-height: 44px;
+        }
+        .btn-lg {
+            padding: 18px 48px;
+            font-size: 18px;
+            min-height: 60px;
+        }
+
+        /* ---------- HEADER ---------- */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            transition: box-shadow var(--transition);
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .header .logo {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--blue-dark);
+            letter-spacing: -0.5px;
+        }
+        .header .logo span {
+            color: var(--green);
+        }
+        .header-nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+        .header-nav a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-500);
+            transition: color var(--transition);
+            position: relative;
+        }
+        .header-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--blue);
+            transition: width var(--transition);
+        }
+        .header-nav a:hover {
+            color: var(--blue-dark);
+        }
+        .header-nav a:hover::after {
+            width: 100%;
+        }
+        .header-nav .btn-nav {
+            background: var(--blue);
+            color: #fff;
+            padding: 8px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 13px;
+            transition: all var(--transition);
+        }
+        .header-nav .btn-nav:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(26, 79, 122, 0.20);
+        }
+        .header-nav .btn-nav::after {
+            display: none;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 26px;
+            color: var(--blue-dark);
+            padding: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            margin-top: var(--header-height);
+            padding: 48px 0 40px;
+            background: var(--white);
+            border-bottom: 1px solid var(--gray-200);
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .hero-content .badge {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--green);
+            background: var(--green-light);
+            padding: 4px 18px;
+            border-radius: var(--radius-full);
+            margin-bottom: 12px;
+        }
+        .hero-content h1 {
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1.08;
+            color: var(--blue-dark);
+            letter-spacing: -1px;
+            margin-bottom: 12px;
+        }
+        .hero-content h1 .highlight {
+            color: var(--green);
+        }
+        .hero-content p {
+            font-size: 17px;
+            color: var(--gray-500);
+            max-width: 440px;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        .hero-content .btn-group {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-visual .hero-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: var(--blue-soft);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--blue);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+            min-height: 220px;
+        }
+        .hero-visual .hero-image .overlay-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(4px);
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: var(--radius-full);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* ---------- SECTION TITLES ---------- */
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--blue-dark);
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+            margin-bottom: 8px;
+        }
+        .section-title .highlight {
+            color: var(--green);
+        }
+        .section-sub {
+            font-size: 17px;
+            color: var(--gray-400);
+            max-width: 520px;
+            line-height: 1.7;
+        }
+        .section-title.center,
+        .section-sub.center {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        /* ---------- SCHEDULE ---------- */
+        .schedule-section {
+            background: var(--white-soft);
+        }
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 12px;
+        }
+        .schedule-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 24px 20px;
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .schedule-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--blue-soft);
+        }
+        .schedule-card .day {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .schedule-card .time {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--blue-dark);
+            margin: 4px 0 2px;
+        }
+        .schedule-card .desc {
+            font-size: 14px;
+            color: var(--gray-500);
+        }
+        .schedule-card .tag {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 16px;
+            border-radius: var(--radius-full);
+            background: var(--green-light);
+            color: var(--green-dark);
+        }
+        .schedule-card .tag.blue {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        /* ---------- MAP & LOCATION ---------- */
+        .location-section {
+            background: var(--white);
+        }
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        .location-info h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 8px;
+        }
+        .location-info .address {
+            font-size: 16px;
+            color: var(--gray-500);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .location-info .address strong {
+            color: var(--gray-700);
+        }
+        .location-info .directions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        .location-info .directions .btn {
+            min-height: 44px;
+            padding: 10px 24px;
+            font-size: 14px;
+        }
+        .location-map {
+            background: var(--gray-100);
+            border-radius: var(--radius-md);
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: var(--gray-400);
+            border: 1px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+        .location-map .map-pin {
+            font-size: 48px;
+            margin-bottom: 8px;
+        }
+        .location-map .map-label {
+            font-weight: 500;
+            color: var(--gray-500);
+        }
+
+        /* ---------- WHAT TO EXPECT ---------- */
+        .expect-section {
+            background: var(--white-soft);
+        }
+        .expect-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 8px;
+        }
+        .expect-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 24px 22px;
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition);
+            text-align: center;
+        }
+        .expect-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+        .expect-card .icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .expect-card h4 {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--blue-dark);
+            margin-bottom: 4px;
+        }
+        .expect-card p {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        /* ---------- FAQ ---------- */
+        .faq-section {
+            background: var(--white);
+        }
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: var(--white-soft);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: all var(--transition);
+        }
+        .faq-item:hover {
+            border-color: var(--blue-soft);
+        }
+        .faq-item .question {
+            padding: 18px 22px;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--blue-dark);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: background var(--transition);
+            gap: 12px;
+        }
+        .faq-item .question:hover {
+            background: var(--blue-surface);
+        }
+        .faq-item .question .icon {
+            font-size: 20px;
+            color: var(--blue);
+            flex-shrink: 0;
+            transition: transform var(--transition);
+        }
+        .faq-item .question .icon.open {
+            transform: rotate(45deg);
+        }
+        .faq-item .answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 22px;
+            color: var(--gray-500);
+            font-size: 15px;
+            line-height: 1.7;
+        }
+        .faq-item .answer.open {
+            max-height: 300px;
+            padding: 0 22px 18px;
+        }
+
+        /* ---------- TESTIMONIALS ---------- */
+        .testimonials-section {
+            background: var(--blue-dark);
+            color: #fff;
+        }
+        .testimonials-section .section-title {
+            color: #fff;
+        }
+        .testimonials-section .section-sub {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 8px;
+        }
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: var(--radius-md);
+            padding: 24px 22px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            transition: all var(--transition);
+        }
+        .testimonial-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+        .testimonial-card .quote {
+            font-size: 15px;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+        }
+        .testimonial-card .quote::before {
+            content: '"';
+            font-size: 24px;
+            color: var(--green);
+            margin-right: 2px;
+        }
+        .testimonial-card .quote::after {
+            content: '"';
+            font-size: 24px;
+            color: var(--green);
+            margin-left: 2px;
+        }
+        .testimonial-card .author {
+            margin-top: 14px;
+            font-weight: 700;
+            font-size: 15px;
+            color: #fff;
+        }
+        .testimonial-card .role {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ---------- CTA FINAL ---------- */
+        .cta-section {
+            background: var(--white);
+            padding: 56px 0 64px;
+            border-top: 1px solid var(--gray-200);
+        }
+        .cta-box {
+            background: var(--blue-dark);
+            border-radius: var(--radius-lg);
+            padding: 48px 40px;
+            text-align: center;
+            color: #fff;
+            box-shadow: var(--shadow-lg);
+        }
+        .cta-box h2 {
+            font-size: 34px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+        .cta-box h2 .highlight {
+            color: var(--green);
+        }
+        .cta-box p {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.5);
+            max-width: 440px;
+            margin: 0 auto 24px;
+            line-height: 1.7;
+        }
+        .cta-box .btn-group {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cta-box .btn-primary {
+            background: var(--green);
+            color: var(--blue-dark);
+            box-shadow: 0 4px 24px rgba(42, 157, 122, 0.25);
+        }
+        .cta-box .btn-primary:hover {
+            background: var(--green-light);
+            box-shadow: 0 8px 36px rgba(42, 157, 122, 0.35);
+        }
+        .cta-box .btn-outline-white {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+        }
+        .cta-box .btn-outline-white:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--green);
+        }
+
+        /* ---------- CTA PERSISTENTE (WhatsApp) ---------- */
+        .cta-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+        }
+        .cta-float .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #25D366;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 4px 32px rgba(37, 211, 102, 0.35);
+            transition: all var(--transition);
+        }
+        .cta-float .btn-whatsapp:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 48px rgba(37, 211, 102, 0.45);
+        }
+        .cta-float .btn-whatsapp .icon {
+            font-size: 24px;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .footer {
+            background: var(--gray-800);
+            color: rgba(255, 255, 255, 0.25);
+            padding: 24px 0;
+            text-align: center;
+            font-size: 13px;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+        }
+        .footer .brand {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        .footer .brand span {
+            color: var(--green);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            .hero-content p {
+                max-width: 100%;
+            }
+            .schedule-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .expect-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .location-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .location-map {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 18px;
+            }
+            .section-padding {
+                padding: 48px 0 40px;
+            }
+            .hero {
+                padding: 32px 0 28px;
+            }
+            .hero-content h1 {
+                font-size: 30px;
+            }
+            .hero-content .btn-group {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-content .btn-group .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .hero-visual .hero-image {
+                min-height: 160px;
+                font-size: 40px;
+            }
+            .section-title {
+                font-size: 26px;
+            }
+            .schedule-grid {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .schedule-card .time {
+                font-size: 24px;
+            }
+            .expect-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+            .cta-box {
+                padding: 32px 20px;
+            }
+            .cta-box h2 {
+                font-size: 26px;
+            }
+            .cta-box .btn-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .header-nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 20px 24px;
+                gap: 16px;
+                border-bottom: 1px solid var(--gray-200);
+                box-shadow: var(--shadow-md);
+            }
+            .header-nav.open {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .header-nav a {
+                font-size: 15px;
+            }
+            .header-nav .btn-nav {
+                align-self: flex-start;
+            }
+            .cta-float {
+                bottom: 16px;
+                right: 16px;
+            }
+            .cta-float .btn-whatsapp {
+                padding: 10px 18px;
+                font-size: 13px;
+            }
+            .cta-float .btn-whatsapp .icon {
+                font-size: 20px;
+            }
+            .faq-item .question {
+                font-size: 15px;
+                padding: 14px 18px;
+            }
+            .faq-item .answer {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 26px;
+            }
+            .hero-content .badge {
+                font-size: 10px;
+                padding: 3px 14px;
+            }
+            .section-title {
+                font-size: 22px;
+            }
+            .schedule-card {
+                padding: 18px 16px;
+            }
+            .schedule-card .time {
+                font-size: 22px;
+            }
+            .cta-box h2 {
+                font-size: 22px;
+            }
+            .location-map {
+                height: 160px;
+            }
+            .btn-lg {
+                padding: 14px 32px;
+                font-size: 16px;
+                min-height: 52px;
+            }
+            .header .logo {
+                font-size: 17px;
+            }
+        }
+
+        /* ---------- ANIMAÇÕES ---------- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .fade-up.delay-1 {
+            transition-delay: 0.08s;
+        }
+        .fade-up.delay-2 {
+            transition-delay: 0.16s;
+        }
+        .fade-up.delay-3 {
+            transition-delay: 0.24s;
+        }
+        .fade-up.delay-4 {
+            transition-delay: 0.32s;
+        }
+        .fade-up.delay-5 {
+            transition-delay: 0.40s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header" role="banner">
+        <div class="container">
+            <div class="logo">Plan a <span>Visit</span></div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">
+                ☰
+            </button>
+            <nav class="header-nav" id="headerNav" role="navigation" aria-label="Principal">
+                <a href="#horarios">Horários</a>
+                <a href="#localizacao">Como chegar</a>
+                <a href="#faq">FAQ</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#cta" class="btn-nav">Quero visitar</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content fade-up visible">
+                    <div class="badge">Sua primeira visita</div>
+                    <h1>Você é <span class="highlight">bem-vindo</span> aqui</h1>
+                    <p>Queremos que sua primeira vez seja leve e acolhedora. Descubra quem somos, quando nos reunimos e o que esperar — sem pressão, sem surpresas.</p>
+                    <div class="btn-group">
+                        <a href="#cta" class="btn btn-primary">Quero visitar →</a>
+                        <a href="#horarios" class="btn btn-outline">Ver horários</a>
+                    </div>
+                </div>
+                <div class="hero-visual fade-up delay-2 visible">
+                    <div class="hero-image">
+                        <span>🙏</span>
+                        <span class="overlay-text">Comunidade acolhedora</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== HORÁRIOS ===== -->
+    <section class="schedule-section section-padding" id="horarios">
+        <div class="container">
+            <div class="fade-up">
+                <span style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:12px;color:var(--green);">Nossos encontros</span>
+                <h2 class="section-title">Horários de <span class="highlight">culto</span></h2>
+                <p class="section-sub">Escolha o melhor horário para sua visita. Todos são bem-vindos.</p>
+            </div>
+            <div class="schedule-grid">
+                <div class="schedule-card fade-up delay-1">
+                    <div class="day">Domingo</div>
+                    <div class="time">10h</div>
+                    <div class="desc">Culto da Família</div>
+                    <span class="tag">Presencial</span>
+                </div>
+                <div class="schedule-card fade-up delay-2">
+                    <div class="day">Domingo</div>
+                    <div class="time">19h</div>
+                    <div class="desc">Culto de Louvor</div>
+                    <span class="tag blue">Música ao vivo</span>
+                </div>
+                <div class="schedule-card fade-up delay-3">
+                    <div class="day">Quarta</div>
+                    <div class="time">20h</div>
+                    <div class="desc">Estudo e Oração</div>
+                    <span class="tag">Intimidade</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== LOCALIZAÇÃO ===== -->
+    <section class="location-section section-padding" id="localizacao">
+        <div class="container">
+            <div class="fade-up">
+                <span style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:12px;color:var(--green);">Onde estamos</span>
+                <h2 class="section-title">Como <span class="highlight">chegar</span></h2>
+                <p class="section-sub">Estamos localizados em um ponto de fácil acesso. Veja como chegar.</p>
+            </div>
+            <div class="location-grid">
+                <div class="location-info fade-up delay-1">
+                    <h3>📍 Nossa localização</h3>
+                    <div class="address">
+                        <span>📌</span>
+                        <span><strong>Av. da Esperança, 123</strong> — Centro, Cidade</span>
+                    </div>
+                    <p style="color:var(--gray-500);font-size:15px;line-height:1.7;margin-bottom:12px;">
+                        Estacionamento gratuito no local. Acesso para cadeirantes e mobilidade reduzida.
+                    </p>
+                    <div class="directions">
+                        <a href="#" class="btn btn-secondary btn-sm">Abrir no Google Maps →</a>
+                        <a href="#cta" class="btn btn-outline btn-sm">Preciso de ajuda</a>
+                    </div>
+                </div>
+                <div class="location-map fade-up delay-2">
+                    <div style="text-align:center;">
+                        <div class="map-pin">📍</div>
+                        <div class="map-label">Av. da Esperança, 123 — Centro</div>
+                        <div style="font-size:12px;color:var(--gray-400);margin-top:4px;">Clique no botão acima para abrir no mapa</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== O QUE ESPERAR ===== -->
+    <section class="expect-section section-padding" id="expect">
+        <div class="container">
+            <div class="fade-up">
+                <span style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:12px;color:var(--green);">Sua experiência</span>
+                <h2 class="section-title">O que <span class="highlight">esperar</span></h2>
+                <p class="section-sub">Tudo que você precisa saber para se sentir em casa desde o primeiro momento.</p>
+            </div>
+            <div class="expect-grid">
+                <div class="expect-card fade-up delay-1">
+                    <span class="icon">👕</span>
+                    <h4>Vestimenta</h4>
+                    <p>Venha como se sentir confortável. Não há código de vestimenta — queremos você, não sua roupa.</p>
+                </div>
+                <div class="expect-card fade-up delay-2">
+                    <span class="icon">🎵</span>
+                    <h4>O culto</h4>
+                    <p>Música ao vivo, mensagem relevante e um ambiente de acolhimento. Duração média: 1h30.</p>
+                </div>
+                <div class="expect-card fade-up delay-3">
+                    <span class="icon">👨‍👩‍👧‍👦</span>
+                    <h4>Famílias</h4>
+                    <p>Temos espaço para crianças e atividades para todas as idades. Sua família é nossa família.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="faq-section section-padding" id="faq">
+        <div class="container">
+            <div class="fade-up">
+                <span style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:12px;color:var(--green);">Dúvidas comuns</span>
+                <h2 class="section-title">Perguntas <span class="highlight">frequentes</span></h2>
+                <p class="section-sub">Tire suas dúvidas antes mesmo de chegar. Tudo pensado para sua tranquilidade.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item fade-up delay-1">
+                    <div class="question" role="button" tabindex="0">
+                        <span>O que acontece quando chego?</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="answer">Uma equipe de boas-vindas estará pronta para te receber, ajudar com assentos e apresentar a comunidade. Não há obrigações — apenas acolhimento.</div>
+                </div>
+                <div class="faq-item fade-up delay-2">
+                    <div class="question" role="button" tabindex="0">
+                        <span>Preciso me identificar?</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="answer">Não. Você pode participar de forma anônima se preferir. Não coletamos dados sem sua autorização.</div>
+                </div>
+                <div class="faq-item fade-up delay-3">
+                    <div class="question" role="button" tabindex="0">
+                        <span>Há estacionamento?</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="answer">Sim, temos estacionamento gratuito no local, com vagas para pessoas com mobilidade reduzida.</div>
+                </div>
+                <div class="faq-item fade-up delay-4">
+                    <div class="question" role="button" tabindex="0">
+                        <span>Como é o culto para crianças?</span>
+                        <span class="icon">+</span>
+                    </div>
+                    <div class="answer">Temos uma equipe preparada com atividades lúdicas e ensino adequado para cada faixa etária, durante todo o culto.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DEPOIMENTOS ===== -->
+    <section class="testimonials-section section-padding" id="depoimentos">
+        <div class="container">
+            <div class="fade-up">
+                <span style="font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:12px;color:var(--green);">Histórias reais</span>
+                <h2 class="section-title">O que dizem <span style="color:var(--green);">quem visitou</span></h2>
+                <p class="section-sub">Pessoas como você que decidiram dar o primeiro passo.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-up delay-1">
+                    <div class="quote">Me senti abraçada desde a entrada. As pessoas sorriem, o ambiente é leve e a mensagem tocou meu coração.</div>
+                    <div class="author">— Ana Lúcia</div>
+                    <div class="role">Primeira visita em fevereiro</div>
+                </div>
+                <div class="testimonial-card fade-up delay-2">
+                    <div class="quote">Cheguei com muitas dúvidas, mas fui acolhido sem julgamento. Hoje sou parte dessa família.</div>
+                    <div class="author">— Carlos Mendes</div>
+                    <div class="role">Visitante há 3 meses</div>
+                </div>
+                <div class="testimonial-card fade-up delay-3">
+                    <div class="quote">Minha família inteira se sentiu em casa. As crianças amaram e nós encontramos paz.</div>
+                    <div class="author">— Mariana e João</div>
+                    <div class="role">Família, visitaram no Domingo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA FINAL ===== -->
+    <section class="cta-section" id="cta">
+        <div class="container">
+            <div class="cta-box fade-up">
+                <h2>Pronto para <span class="highlight">dar o primeiro passo</span>?</h2>
+                <p>Não importa sua história, dúvidas ou expectativas — aqui você é bem-vindo exatamente como é.</p>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-primary btn-lg">Quero visitar este domingo</a>
+                    <a href="#" class="btn btn-outline-white btn-lg">Falar com alguém</a>
+                </div>
+                <div style="margin-top:20px;font-size:14px;color:rgba(255,255,255,0.3);">
+                    Ou se preferir, fale conosco pelo WhatsApp
+                </div>
+                <a href="#" class="btn btn-whatsapp" style="margin-top:14px;display:inline-flex;">
+                    💬 Enviar mensagem
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA PERSISTENTE (WhatsApp) ===== -->
+    <div class="cta-float">
+        <a href="#" class="btn-whatsapp" aria-label="Fale conosco pelo WhatsApp">
+            <span class="icon">💬</span>
+            <span>Fale conosco</span>
+        </a>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p><span class="brand">Plan a <span>Visit</span></span> — Sua primeira visita com tranquilidade. © 2026</p>
+        </div>
+    </footer>
+
+    <script>
+        // ================================================================
+        //  MENU MOBILE
+        // ================================================================
+        const menuToggle = document.getElementById('menuToggle');
+        const headerNav = document.getElementById('headerNav');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = headerNav.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', isOpen);
+            menuToggle.textContent = isOpen ? '✕' : '☰';
+        });
+
+        document.querySelectorAll('.header-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                headerNav.classList.remove('open');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = '☰';
+            });
+        });
+
+        // ================================================================
+        //  ANIMAÇÃO DE ENTRADA
+        // ================================================================
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+        fadeElements.forEach(el => observer.observe(el));
+
+        // ================================================================
+        //  FAQ ACCORDION
+        // ================================================================
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.question');
+            const answer = item.querySelector('.answer');
+            const icon = question.querySelector('.icon');
+
+            question.addEventListener('click', () => {
+                const isOpen = answer.classList.contains('open');
+                // Close all others
+                faqItems.forEach(other => {
+                    if (other !== item) {
+                        other.querySelector('.answer').classList.remove('open');
+                        other.querySelector('.icon').classList.remove('open');
+                    }
+                });
+                answer.classList.toggle('open');
+                icon.classList.toggle('open');
+            });
+
+            // Keyboard support
+            question.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    question.click();
+                }
+            });
+        });
+
+        // ================================================================
+        //  CTA WHATSAPP
+        // ================================================================
+        document.querySelectorAll('.btn-whatsapp, .cta-box .btn-whatsapp').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                alert('💬 WhatsApp: (11) 99999-9999 — Fale conosco!');
+            });
+        });
+
+        // ================================================================
+        //  HEADER SCROLL
+        // ================================================================
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 60) {
+                header.style.boxShadow = '0 2px 24px rgba(0,0,0,0.04)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // ================================================================
+        //  CTAs "Quero visitar" e "Falar com alguém"
+        // ================================================================
+        document.querySelectorAll('.btn-primary, .btn-outline-white, .btn-outline').forEach(btn => {
+            if (btn.textContent.includes('visitar') || btn.textContent.includes('Quero')) {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert('🙌 Que bom! Em breve nossa equipe entrará em contato para te receber com carinho.');
+                });
+            }
+        });
+
+        // ================================================================
+        //  LOG
+        // ================================================================
+        console.log('📍 Plan a Visit — Landing Page de conversão');
+        console.log('📌 Horários, FAQ, depoimentos e CTAs funcionando.');
+    </script>
+
+</body>
+</html>

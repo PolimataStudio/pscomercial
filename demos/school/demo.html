@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Escola Horizonte – Demonstração</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,900&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../../css/tokens.css" />
+  <link rel="stylesheet" href="../../css/base.css" />
+  <link rel="stylesheet" href="../../css/layout.css" />
+  <link rel="stylesheet" href="../../css/components.css" />
+
+  <style>
+    .demo-school {
+      padding: var(--space-6) 0;
+      background: var(--bg);
+    }
+    .demo-school .hero {
+      text-align: center;
+      padding: var(--space-8) 0;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .demo-school .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-2);
+      color: var(--text);
+    }
+    .demo-school .hero p {
+      color: var(--muted);
+    }
+    .demo-school .section-title {
+      font-size: 1.8rem;
+      margin-bottom: var(--space-4);
+    }
+    .demo-school .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+    .demo-school .card-simple {
+      background: var(--surface);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--accent-lime);
+    }
+    .demo-school .card-simple h4 {
+      margin-bottom: var(--space-1);
+    }
+    .demo-school .card-simple p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+    .demo-school .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: var(--space-3);
+    }
+    .demo-school .gallery-grid .gallery-item {
+      background: var(--surface-light);
+      border-radius: var(--radius-md);
+      padding: var(--space-3);
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      .demo-school .grid-2 { grid-template-columns: 1fr; }
+      .demo-school .hero h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-school">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Bem-vindo à Escola Horizonte</h1>
+        <p>Educação com propósito – construindo o futuro com excelência.</p>
+      </div>
+    </section>
+
+    <!-- Agenda -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">📅 Agenda Escolar</h2>
+        <div id="school-calendar" class="grid-2">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Comunicados -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <h2 class="section-title">📢 Comunicados</h2>
+        <div id="school-communications" class="grid-2">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Projetos -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">📌 Projetos em Destaque</h2>
+        <div id="school-projects" class="grid-2">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Biblioteca -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <h2 class="section-title">📚 Biblioteca</h2>
+        <div id="school-library" class="grid-2">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Galeria -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">🖼️ Galeria</h2>
+        <div id="school-gallery" class="gallery-grid">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="section" style="background: var(--surface);">
+      <div class="container">
+        <h2 class="section-title">📞 Contato</h2>
+        <div id="school-contact" style="padding: var(--space-4); background: var(--surface-light); border-radius: var(--radius-md);">
+          <!-- Preenchido via JS -->
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Dados mockados (substituir por fetch se necessário)
+    const data = {
+      calendar: [
+        { month: 'Julho 2026', events: [
+          { date: '10/07/2026', title: 'Prova de Matemática' },
+          { date: '15/07/2026', title: 'Reunião de Pais' },
+          { date: '20/07/2026', title: 'Feriado: Dia do Amigo' }
+        ]}
+      ],
+      communications: [
+        { date: '01/07/2026', title: 'Início do semestre', content: 'Atenção pais, início das aulas.' },
+        { date: '05/07/2026', title: 'Feira Cultural', content: 'Participe da nossa feira cultural.' }
+      ],
+      projects: [
+        { title: 'Projeto Sustentabilidade', description: 'Alunos aprendem sobre reciclagem.', status: 'Em andamento' },
+        { title: 'Clube de Leitura', description: 'Incentivo à leitura literária.', status: 'Finalizado' }
+      ],
+      library: [
+        { title: 'Dom Casmurro', author: 'Machado de Assis' },
+        { title: 'O Pequeno Príncipe', author: 'Saint-Exupéry' }
+      ],
+      gallery: [
+        { title: 'Aula de Ciências' },
+        { title: 'Festival de Dança' }
+      ],
+      contact: {
+        address: 'Av. Educação, 456, Bairro, Cidade',
+        phone: '(11) 88888-8888',
+        email: 'contato@escolahorizonte.com'
+      }
+    };
+
+    function renderCalendar() {
+      const container = document.getElementById('school-calendar');
+      if (!container) return;
+      container.innerHTML = data.calendar.map(monthData => `
+        <div style="background:var(--surface);padding:var(--space-4);border-radius:var(--radius-lg);">
+          <h3 style="color:var(--accent-lime);margin-bottom:var(--space-3);">${monthData.month}</h3>
+          <ul style="list-style:none;padding:0;">
+            ${monthData.events.map(ev => `<li style="padding:var(--space-2) 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;"><span>${ev.date}</span><span>${ev.title}</span></li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+    }
+
+    function renderCommunications() {
+      const container = document.getElementById('school-communications');
+      if (!container) return;
+      container.innerHTML = data.communications.map(item => `
+        <div class="card-simple">
+          <div style="color:var(--muted);font-size:0.85rem;">${item.date}</div>
+          <h4>${item.title}</h4>
+          <p>${item.content}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderProjects() {
+      const container = document.getElementById('school-projects');
+      if (!container) return;
+      container.innerHTML = data.projects.map(item => `
+        <div class="card-simple">
+          <h4>${item.title}</h4>
+          <p>${item.description}</p>
+          <span class="badge">${item.status}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderLibrary() {
+      const container = document.getElementById('school-library');
+      if (!container) return;
+      container.innerHTML = data.library.map(item => `
+        <div class="card-simple">
+          <h4>${item.title}</h4>
+          <p>${item.author}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderGallery() {
+      const container = document.getElementById('school-gallery');
+      if (!container) return;
+      container.innerHTML = data.gallery.map(item => `
+        <div class="gallery-item">🖼️ ${item.title}</div>
+      `).join('');
+    }
+
+    function renderContact() {
+      const container = document.getElementById('school-contact');
+      if (!container) return;
+      container.innerHTML = `
+        <p><strong>Endereço:</strong> ${data.contact.address}</p>
+        <p><strong>Telefone:</strong> ${data.contact.phone}</p>
+        <p><strong>E-mail:</strong> ${data.contact.email}</p>
+      `;
+    }
+
+    renderCalendar();
+    renderCommunications();
+    renderProjects();
+    renderLibrary();
+    renderGallery();
+    renderContact();
+  </script>
+</body>
+</html>

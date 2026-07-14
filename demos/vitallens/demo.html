@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>VitalLens · Showcase</title>
+    <!-- Fonts: Expressiva + Moderna -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ============================================================
+           CSS CUSTOM PROPERTIES — Design System ousado
+           ============================================================ */
+        :root {
+            --color-primary: #0b1a26;
+            --color-primary-light: #1f3a4a;
+            --color-secondary: #e86a58;
+            --color-secondary-light: #f08a7a;
+            --color-accent: #3b8c8c;
+            --color-accent-light: #5ab0b0;
+            --color-gold: #d4a373;
+            --color-bg: #f5f2ee;
+            --color-card: #ffffff;
+            --color-text: #141e28;
+            --color-text-muted: #4f6370;
+            --color-text-light: #8b9ba8;
+            --color-border: #dee4e8;
+            --color-shadow: rgba(11, 26, 38, 0.05);
+            --radius: 28px;
+            --radius-sm: 16px;
+            --radius-xs: 10px;
+            --font-heading: 'Outfit', 'Inter', sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            --max-width: 1200px;
+            --header-height: 72px;
+            --shadow-card: 0 8px 32px rgba(11, 26, 38, 0.04);
+            --shadow-hover: 0 16px 48px rgba(11, 26, 38, 0.08);
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-secondary);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+           HEADER / NAV — com glassmorphism
+           ============================================================ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(11, 26, 38, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #fff;
+        }
+        .logo span {
+            color: var(--color-secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: #fff;
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        .nav-menu a.active {
+            color: #fff;
+            font-weight: 600;
+        }
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           SECTIONS
+           ============================================================ */
+        section {
+            padding: 100px 0 80px;
+            scroll-margin-top: var(--header-height);
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-secondary);
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-title .highlight {
+            color: var(--color-secondary);
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================================
+           HOME — HERO CINEMATOGRÁFICO
+           ============================================================ */
+        #home {
+            padding-top: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--color-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(232, 106, 88, 0.10) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        #home::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 140, 140, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            padding: 2rem 0;
+        }
+
+        .hero-content .hero-badge {
+            display: inline-block;
+            background: var(--color-secondary);
+            color: #fff;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 4px 18px;
+            border-radius: 40px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 3.6rem;
+            font-weight: 800;
+            line-height: 1.05;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--color-secondary);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 460px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 40px;
+            background: var(--color-secondary);
+            color: #fff;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            box-shadow: 0 8px 28px rgba(232, 106, 88, 0.25);
+            letter-spacing: 0.3px;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(232, 106, 88, 0.35);
+            background: #f07a68;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image .hero-placeholder {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 1/1;
+            background: linear-gradient(145deg, #1f3a4a, #0b1a26);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.08);
+            font-size: 5rem;
+            font-weight: 300;
+            border: 2px solid rgba(255, 255, 255, 0.04);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image .hero-placeholder::after {
+            content: '✦';
+            font-size: 8rem;
+            opacity: 0.04;
+            position: absolute;
+            bottom: 5%;
+            right: 8%;
+        }
+
+        .hero-image .hero-placeholder span {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.12);
+            letter-spacing: 4px;
+        }
+
+        /* ============================================================
+           MARCA — Manifesto & provas
+           ============================================================ */
+        .brand-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .brand-text p {
+            margin-bottom: 1.2rem;
+            color: var(--color-text-muted);
+        }
+
+        .brand-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .brand-stat {
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .brand-stat .number {
+            font-family: var(--font-heading);
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--color-secondary);
+            line-height: 1;
+        }
+
+        .brand-stat .label {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .brand-image .placeholder-rect {
+            width: 100%;
+            max-width: 480px;
+            aspect-ratio: 4/3;
+            background: linear-gradient(145deg, #dce4e8, #c8d2d8);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            font-size: 1.2rem;
+            font-weight: 300;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--color-border);
+        }
+
+        /* ============================================================
+           ESPECIALIDADES — com estilo ousado
+           ============================================================ */
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .specialty-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 2rem 1.2rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .specialty-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: transparent;
+        }
+
+        .specialty-card:hover::before {
+            opacity: 1;
+        }
+
+        .specialty-card .icon {
+            font-size: 2.4rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.6rem;
+        }
+
+        .specialty-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .specialty-card p {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+           ESTRUTURA — com selos e diferenciais
+           ============================================================ */
+        .structure-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .structure-item {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 2rem 2rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .structure-item:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .structure-item .icon {
+            font-size: 2rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .structure-item h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .structure-item p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Selos / Diferenciais */
+        .selos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .selo {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .selo:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .selo .icon {
+            font-size: 2.2rem;
+            color: var(--color-accent);
+            margin-bottom: 0.3rem;
+        }
+
+        .selo h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .selo p {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        /* ============================================================
+           EXPERIÊNCIA — Depoimentos + Diferenciais
+           ============================================================ */
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .depoimento {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 2rem 2rem;
+            border-left: 5px solid var(--color-secondary);
+            box-shadow: var(--shadow-card);
+        }
+
+        .depoimento .quote {
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--color-text);
+        }
+
+        .depoimento .author {
+            margin-top: 0.8rem;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .depoimento .author span {
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.85rem;
+        }
+
+        .diferenciais-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        .diferencial {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem 1.5rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .diferencial:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .diferencial .icon {
+            font-size: 1.8rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .diferencial h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .diferencial p {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        /* ============================================================
+           CONTATO — com fundo escuro premium
+           ============================================================ */
+        #contato {
+            background: var(--color-primary);
+            color: #fff;
+        }
+
+        #contato .section-label {
+            color: var(--color-secondary);
+        }
+
+        #contato .section-title {
+            color: #fff;
+        }
+
+        #contato .section-desc {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-info .info-item .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-secondary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .contact-info .info-item .text strong {
+            display: block;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .contact-info .info-item .text span {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 14px 18px;
+            border-radius: var(--radius-sm);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.04);
+            color: #fff;
+            transition: var(--transition);
+            outline: none;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus,
+        .contact-form select:focus {
+            border-color: var(--color-secondary);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 0 0 3px rgba(232, 106, 88, 0.06);
+        }
+
+        .contact-form select {
+            color: #fff;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23e86a58' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+        }
+
+        .contact-form select option {
+            background: var(--color-primary);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            padding: 14px 36px;
+            background: var(--color-secondary);
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-body);
+            letter-spacing: 0.3px;
+            width: 100%;
+            box-shadow: 0 8px 28px rgba(232, 106, 88, 0.15);
+        }
+
+        .contact-form button:hover {
+            background: #f07a68;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 36px rgba(232, 106, 88, 0.25);
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .site-footer {
+            background: #08141c;
+            color: rgba(255, 255, 255, 0.5);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .site-footer .footer-text {
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+        }
+
+        .site-footer .footer-text a {
+            color: rgba(255, 255, 255, 0.6);
+            transition: var(--transition);
+        }
+        .site-footer .footer-text a:hover {
+            color: #fff;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-image .hero-placeholder {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            .brand-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .brand-stats {
+                justify-items: center;
+            }
+            .specialties-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .structure-grid {
+                grid-template-columns: 1fr;
+            }
+            .selos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .experience-grid {
+                grid-template-columns: 1fr;
+            }
+            .diferenciais-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: var(--color-primary);
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+                gap: 1rem;
+            }
+            .nav-menu.open {
+                display: flex;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .specialties-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .selos-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .diferenciais-grid {
+                grid-template-columns: 1fr;
+            }
+            .brand-stats {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            .hero-image .hero-placeholder {
+                max-width: 220px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.6rem;
+            }
+            .specialties-grid {
+                grid-template-columns: 1fr;
+            }
+            .selos-grid {
+                grid-template-columns: 1fr;
+            }
+            .brand-stats {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .hero-cta {
+                width: 100%;
+                justify-content: center;
+            }
+            .contact-form button {
+                width: 100%;
+            }
+        }
+
+        /* ============================================================
+           UTILITÁRIOS
+           ============================================================ */
+        .mt-2 {
+            margin-top: 2rem;
+        }
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn-whatsapp-dark {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #25D366;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-body);
+            margin-top: 0.5rem;
+        }
+        .btn-whatsapp-dark:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.2);
+        }
+
+        /* animação sutil para o hero */
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        .hero-image .hero-placeholder {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="header">
+        <div class="container">
+            <a href="#home" class="logo">Vital<span>Lens</span></a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="active">Marca</a></li>
+                <li><a href="#especialidades">Especialidades</a></li>
+                <li><a href="#estrutura">Estrutura</a></li>
+                <li><a href="#experiencia">Experiência</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    HOME — HERO CINEMATOGRÁFICO
+    ============================================================ -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge"><i class="fas fa-play-circle"></i> VitalLens Studio</div>
+                    <h1>Saúde que <span class="highlight">transforma</span> com <br />visão de futuro</h1>
+                    <p>
+                        Uma clínica onde tecnologia, cuidado e design se encontram para
+                        criar uma experiência de saúde única e memorável.
+                    </p>
+                    <a href="#contato" class="hero-cta">
+                        <i class="fas fa-calendar-check"></i> Agendar consulta
+                    </a>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-placeholder">
+                        <span>Vital</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    MARCA — Manifesto + Provas
+    ============================================================ -->
+    <section id="marca" style="padding-top:60px;">
+        <div class="container">
+            <div class="brand-grid">
+                <div class="brand-text">
+                    <div class="section-label">A marca</div>
+                    <h2 class="section-title">Cuidado com <span class="highlight">propósito</span></h2>
+                    <p>
+                        Na VitalLens, acreditamos que a saúde vai além do diagnóstico.
+                        Construímos uma experiência que integra excelência clínica,
+                        acolhimento humano e um ambiente que inspira bem-estar.
+                    </p>
+                    <p>
+                        Nossa abordagem é centrada na pessoa, com escuta ativa,
+                        protocolos personalizados e acompanhamento contínuo.
+                        Cada detalhe é pensado para que você se sinta seguro e valorizado.
+                    </p>
+                    <div class="brand-stats">
+                        <div class="brand-stat">
+                            <div class="number">10+</div>
+                            <div class="label">Anos de história</div>
+                        </div>
+                        <div class="brand-stat">
+                            <div class="number">8</div>
+                            <div class="label">Especialidades</div>
+                        </div>
+                        <div class="brand-stat">
+                            <div class="number">4.9 ★</div>
+                            <div class="label">Avaliação dos pacientes</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-image">
+                    <div class="placeholder-rect">
+                        <i class="fas fa-clinic-medical" style="font-size:3rem; opacity:0.25; margin-right:8px;"></i>
+                        Espaço VitalLens
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ESPECIALIDADES
+    ============================================================ -->
+    <section id="especialidades" style="background:#f0f3f2;">
+        <div class="container">
+            <div class="section-label text-center">Especialidades</div>
+            <h2 class="section-title text-center">Cuidado <span class="highlight">integrado</span></h2>
+            <p class="section-desc text-center" style="max-width:520px;">
+                Uma equipe multidisciplinar pronta para atender você com excelência.
+            </p>
+
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-user-md"></i></div>
+                    <h4>Clínica Geral</h4>
+                    <p>Prevenção e diagnóstico</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4>Cardiologia</h4>
+                    <p>Saúde cardiovascular</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-female"></i></div>
+                    <h4>Ginecologia</h4>
+                    <p>Saúde da mulher</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-bone"></i></div>
+                    <h4>Ortopedia</h4>
+                    <p>Movimento e qualidade</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-brain"></i></div>
+                    <h4>Psicologia</h4>
+                    <p>Equilíbrio emocional</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-apple-alt"></i></div>
+                    <h4>Nutrição</h4>
+                    <p>Alimentação que transforma</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-allergies"></i></div>
+                    <h4>Dermatologia</h4>
+                    <p>Cuidados com a pele</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-child"></i></div>
+                    <h4>Pediatria</h4>
+                    <p>Saúde infantil</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ESTRUTURA — com selos
+    ============================================================ -->
+    <section id="estrutura">
+        <div class="container">
+            <div class="section-label text-center">Infraestrutura</div>
+            <h2 class="section-title text-center">Um ambiente <span class="highlight">pensado</span> para você</h2>
+            <p class="section-desc text-center" style="max-width:540px;">
+                Conforto, tecnologia e acolhimento em cada detalhe da nossa estrutura.
+            </p>
+
+            <div class="structure-grid">
+                <div class="structure-item">
+                    <div class="icon"><i class="fas fa-building"></i></div>
+                    <h4>Espaço Acolhedor</h4>
+                    <p>Salas amplas, iluminação natural e design que transmite tranquilidade e bem-estar.</p>
+                </div>
+                <div class="structure-item">
+                    <div class="icon"><i class="fas fa-microscope"></i></div>
+                    <h4>Tecnologia Avançada</h4>
+                    <p>Equipamentos de última geração para diagnósticos precisos e tratamentos eficazes.</p>
+                </div>
+                <div class="structure-item">
+                    <div class="icon"><i class="fas fa-clock"></i></div>
+                    <h4>Horário Estendido</h4>
+                    <p>Atendimento de segunda a sábado, com flexibilidade para se adaptar à sua rotina.</p>
+                </div>
+                <div class="structure-item">
+                    <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h4>Cuidado Continuado</h4>
+                    <p>Acompanhamento pós-consulta e programas de prevenção personalizados.</p>
+                </div>
+            </div>
+
+            <!-- Selos de confiança -->
+            <div class="selos-grid">
+                <div class="selo">
+                    <div class="icon"><i class="fas fa-certificate"></i></div>
+                    <h4>Certificação ISO</h4>
+                    <p>Padrão internacional de qualidade</p>
+                </div>
+                <div class="selo">
+                    <div class="icon"><i class="fas fa-user-md"></i></div>
+                    <h4>Equipe Especializada</h4>
+                    <p>Médicos com vasta experiência</p>
+                </div>
+                <div class="selo">
+                    <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Segurança do Paciente</h4>
+                    <p>Protocolos rigorosos de biossegurança</p>
+                </div>
+                <div class="selo">
+                    <div class="icon"><i class="fas fa-star"></i></div>
+                    <h4>Excelência em Serviço</h4>
+                    <p>Reconhecida por nossos pacientes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    EXPERIÊNCIA — Depoimentos + Diferenciais
+    ============================================================ -->
+    <section id="experiencia" style="background:#f0f3f2;">
+        <div class="container">
+            <div class="section-label text-center">Experiência</div>
+            <h2 class="section-title text-center">O que faz a <span class="highlight">diferença</span></h2>
+            <p class="section-desc text-center" style="max-width:540px;">
+                Depoimentos e diferenciais que mostram por que a VitalLens é única.
+            </p>
+
+            <div class="experience-grid">
+                <div>
+                    <div class="depoimento">
+                        <div class="quote">“A VitalLens mudou minha forma de enxergar a saúde. O cuidado com cada detalhe e a equipe atenciosa fazem toda a diferença.”</div>
+                        <div class="author">Mariana Oliveira <span>· Paciente</span></div>
+                    </div>
+                    <div class="depoimento" style="margin-top:1.2rem;">
+                        <div class="quote">“Ambiente moderno, médicos excelentes e um atendimento humanizado como eu nunca vi. Recomendo a todos.”</div>
+                        <div class="author">Carlos Mendes <span>· Paciente</span></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="diferenciais-grid">
+                        <div class="diferencial">
+                            <div class="icon"><i class="fas fa-comment-dots"></i></div>
+                            <h4>Escuta Ativa</h4>
+                            <p>Tempo dedicado para entender suas necessidades.</p>
+                        </div>
+                        <div class="diferencial">
+                            <div class="icon"><i class="fas fa-sync-alt"></i></div>
+                            <h4>Atendimento Ágil</h4>
+                            <p>Menos espera, mais cuidado.</p>
+                        </div>
+                        <div class="diferencial">
+                            <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                            <h4>Canais Diretos</h4>
+                            <p>WhatsApp e telefone para dúvidas e agendamentos.</p>
+                        </div>
+                        <div class="diferencial">
+                            <div class="icon"><i class="fas fa-heart"></i></div>
+                            <h4>Relação de Confiança</h4>
+                            <p>Construída com transparência e respeito.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CONTATO — fundo escuro premium
+    ============================================================ -->
+    <section id="contato">
+        <div class="container">
+            <div class="section-label text-center">Fale conosco</div>
+            <h2 class="section-title text-center">Vamos <span class="highlight">cuidar</span> de você</h2>
+            <p class="section-desc text-center" style="max-width:480px;">
+                Entre em contato e agende sua consulta. Estamos prontos para recebê-lo.
+            </p>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="text">
+                            <strong>Telefone</strong>
+                            <span>(11) 3456-7890</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="text">
+                            <strong>WhatsApp</strong>
+                            <span>(11) 98765-4321</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div class="text">
+                            <strong>E-mail</strong>
+                            <span>contato@vitallens.com</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="text">
+                            <strong>Endereço</strong>
+                            <span>Av. Vital, 300 · São Paulo, SP</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-clock"></i></div>
+                        <div class="text">
+                            <strong>Horário</strong>
+                            <span>Seg–Sex: 8h–20h · Sáb: 8h–14h</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/5511987654321?text=Olá%2C%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" class="btn-whatsapp-dark">
+                        <i class="fab fa-whatsapp"></i> Falar agora no WhatsApp
+                    </a>
+                </div>
+
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensagem enviada! Retornaremos em breve.');">
+                    <input type="text" placeholder="Seu nome" required />
+                    <input type="email" placeholder="Seu e-mail" required />
+                    <input type="tel" placeholder="Telefone" required />
+                    <select>
+                        <option value="">Especialidade desejada</option>
+                        <option>Clínica Geral</option>
+                        <option>Cardiologia</option>
+                        <option>Ginecologia</option>
+                        <option>Ortopedia</option>
+                        <option>Psicologia</option>
+                        <option>Nutrição</option>
+                        <option>Dermatologia</option>
+                        <option>Pediatria</option>
+                    </select>
+                    <textarea placeholder="Como podemos ajudá-lo?"></textarea>
+                    <button type="submit">Enviar mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-text">
+                &copy; 2026 VitalLens Showcase · Todos os direitos reservados.
+                <br />
+                <a href="#home">Marca</a> · <a href="#especialidades">Especialidades</a> · <a href="#contato">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // MOBILE TOGGLE
+            // ============================================================
+            const toggleBtn = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = navMenu.querySelectorAll('a');
+
+            toggleBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('open');
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('open');
+                    const icon = toggleBtn.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                });
+            });
+
+            // ============================================================
+            // SCROLL SPY — active link
+            // ============================================================
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = navLinks;
+
+            function updateActiveLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 90;
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            window.addEventListener('load', updateActiveLink);
+
+            // ============================================================
+            // SMOOTH SCROLL
+            // ============================================================
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // ============================================================
+            // KEYBOARD SHORTCUTS (1-5)
+            // ============================================================
+            document.addEventListener('keydown', (e) => {
+                const num = parseInt(e.key);
+                if (num >= 1 && num <= 5) {
+                    const ids = ['home', 'especialidades', 'estrutura', 'experiencia', 'contato'];
+                    const target = document.getElementById(ids[num - 1]);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+
+            console.log('🔬 VitalLens Showcase — carregado com sucesso.');
+            console.log('📌 Use as teclas 1-5 para navegar pelas seções.');
+
+        })();
+    </script>
+
+</body>
+</html>

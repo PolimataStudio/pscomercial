@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#1B2A3B" />
+    <meta name="description" content="Neighborhood Flow - Sua barbearia de bairro com atendimento educativo e acolhedor. Entenda como funciona, agende com confiança." />
+    <title>Neighborhood Flow · Barbearia de Bairro</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue-dark: #1B2A3B;
+            --blue-dark-light: #2A4058;
+            --green-soft: #5A9B87;
+            --green-soft-light: #E8F5F0;
+            --green-soft-dark: #3D7A65;
+            --sand: #F5E6D3;
+            --sand-light: #FBF3EA;
+            --white: #FFFFFF;
+            --cream: #FDF8F2;
+            --gray-50: #F8F9FA;
+            --gray-100: #EEF0F2;
+            --gray-200: #DCE0E5;
+            --gray-300: #B8BFC8;
+            --gray-400: #8F99A6;
+            --gray-500: #6B7785;
+            --gray-600: #4A5663;
+            --gray-700: #2D3744;
+            --text-primary: #1B2A3B;
+            --text-secondary: #3D3A36;
+            --shadow-sm: 0 2px 8px rgba(27, 42, 59, 0.06);
+            --shadow-md: 0 4px 20px rgba(27, 42, 59, 0.10);
+            --shadow-lg: 0 12px 48px rgba(27, 42, 59, 0.14);
+            --shadow-xl: 0 20px 60px rgba(27, 42, 59, 0.18);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html {
+            font-family: var(--font);
+            background: var(--sand-light);
+            color: var(--text-primary);
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--white);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            box-shadow: 0 0 60px rgba(27, 42, 59, 0.06);
+        }
+
+        /* ============================================================
+                   SCROLLBAR
+                   ============================================================ */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gray-300);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+                   TYPOGRAPHY
+                   ============================================================ */
+        .section-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--blue-dark);
+            letter-spacing: -0.4px;
+            line-height: 1.2;
+        }
+        .section-title .highlight {
+            color: var(--green-soft-dark);
+        }
+        .section-sub {
+            font-size: 15px;
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-top: 6px;
+            max-width: 400px;
+        }
+
+        /* ============================================================
+                   HEADER / NAV
+                   ============================================================ */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 12px 16px 10px;
+            border-bottom: 1px solid rgba(27, 42, 59, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 20px rgba(27, 42, 59, 0.04);
+        }
+
+        .site-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .site-header .logo-icon {
+            width: 34px;
+            height: 34px;
+            background: var(--blue-dark);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+        .site-header .logo-text {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--blue-dark);
+            letter-spacing: -0.3px;
+        }
+        .site-header .logo-text span {
+            color: var(--green-soft-dark);
+        }
+
+        /* Mobile hamburger */
+        .nav-toggle {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            padding: 6px;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2.5px;
+            background: var(--blue-dark);
+            border-radius: 4px;
+            transition: all var(--transition);
+        }
+        .nav-toggle.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav-toggle.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Nav overlay */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(27, 42, 59, 0.50);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 99;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition);
+        }
+        .nav-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            max-width: 80%;
+            height: 100%;
+            background: var(--white);
+            z-index: 101;
+            padding: 60px 24px 30px;
+            transition: right 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: var(--shadow-xl);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            overflow-y: auto;
+        }
+        .nav-menu.open {
+            right: 0;
+        }
+
+        .nav-menu .nav-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: var(--gray-400);
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 15px;
+            color: var(--gray-600);
+            text-decoration: none;
+            transition: all var(--transition);
+            border-left: 3px solid transparent;
+        }
+        .nav-menu a:hover,
+        .nav-menu a:active {
+            background: var(--green-soft-light);
+            color: var(--blue-dark);
+            border-left-color: var(--green-soft-dark);
+        }
+        .nav-menu a .nav-icon {
+            font-size: 20px;
+        }
+
+        /* Desktop nav (hidden on mobile) */
+        .desktop-nav {
+            display: none;
+        }
+
+        /* ============================================================
+                   MAIN CONTENT
+                   ============================================================ */
+        .main-content {
+            padding: 0 16px 80px;
+        }
+
+        /* ============================================================
+                   HERO
+                   ============================================================ */
+        .hero {
+            padding: 28px 0 20px;
+            text-align: center;
+        }
+        .hero .hero-badge {
+            display: inline-block;
+            background: var(--green-soft-light);
+            color: var(--green-soft-dark);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .hero .hero-title {
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--blue-dark);
+            line-height: 1.1;
+            letter-spacing: -0.8px;
+        }
+        .hero .hero-title .highlight {
+            color: var(--green-soft-dark);
+            position: relative;
+        }
+        .hero .hero-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--green-soft-light);
+            border-radius: 4px;
+            z-index: -1;
+        }
+        .hero .hero-sub {
+            font-size: 16px;
+            color: var(--gray-500);
+            line-height: 1.6;
+            margin-top: 10px;
+            max-width: 360px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero .hero-cta {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .hero .hero-cta .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 36px;
+            background: var(--blue-dark);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(27, 42, 59, 0.25);
+            width: 100%;
+            justify-content: center;
+        }
+        .hero .hero-cta .btn-primary:active {
+            transform: scale(0.96);
+            background: var(--blue-dark-light);
+        }
+        .hero .hero-cta .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--gray-500);
+            border: 1.5px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            width: 100%;
+            justify-content: center;
+        }
+        .hero .hero-cta .btn-secondary:active {
+            transform: scale(0.96);
+            background: var(--gray-50);
+        }
+        .hero .hero-trust {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 18px;
+            font-size: 12px;
+            color: var(--gray-400);
+        }
+        .hero .hero-trust span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ============================================================
+                   SECTION: COMO FUNCIONA (STEPS)
+                   ============================================================ */
+        .steps-section {
+            padding: 32px 0 16px;
+        }
+        .steps-section .section-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .steps-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .step-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+            cursor: default;
+        }
+        .step-card:active {
+            transform: scale(0.98);
+        }
+        .step-card .step-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--green-soft-light);
+            color: var(--green-soft-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 16px;
+        }
+        .step-card .step-info {
+            flex: 1;
+        }
+        .step-card .step-info .step-title {
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--blue-dark);
+        }
+        .step-card .step-info .step-desc {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.5;
+            margin-top: 2px;
+        }
+
+        /* ============================================================
+                   SECTION: O QUE ESTÁ INCLUÍDO (BENEFITS)
+                   ============================================================ */
+        .benefits-section {
+            padding: 28px 0 12px;
+        }
+        .benefits-section .section-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .benefit-card {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: var(--radius-md);
+            padding: 16px 14px;
+            text-align: center;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .benefit-card:active {
+            transform: scale(0.96);
+        }
+        .benefit-card .bc-icon {
+            font-size: 28px;
+            margin-bottom: 6px;
+        }
+        .benefit-card .bc-name {
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--blue-dark);
+        }
+        .benefit-card .bc-desc {
+            font-size: 11px;
+            color: var(--gray-400);
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        /* ============================================================
+                   SECTION: PARA QUEM É
+                   ============================================================ */
+        .audience-section {
+            padding: 28px 0 12px;
+        }
+        .audience-section .section-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .audience-card {
+            background: var(--sand-light);
+            border-radius: var(--radius-md);
+            padding: 16px 14px;
+            text-align: center;
+            border: 1px solid rgba(245, 230, 211, 0.4);
+            transition: all var(--transition);
+        }
+        .audience-card:active {
+            transform: scale(0.96);
+        }
+        .audience-card .ac-icon {
+            font-size: 26px;
+            margin-bottom: 4px;
+        }
+        .audience-card .ac-label {
+            font-weight: 600;
+            font-size: 13px;
+            color: var(--blue-dark);
+        }
+        .audience-card .ac-desc {
+            font-size: 11px;
+            color: var(--gray-500);
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        /* ============================================================
+                   SECTION: FAQ
+                   ============================================================ */
+        .faq-section {
+            padding: 28px 0 12px;
+        }
+        .faq-section .section-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition);
+        }
+        .faq-item .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 18px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--blue-dark);
+            transition: all var(--transition);
+            gap: 12px;
+            background: var(--white);
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font);
+            line-height: 1.4;
+        }
+        .faq-item .faq-question:active {
+            background: var(--gray-50);
+        }
+        .faq-item .faq-question .faq-icon {
+            flex-shrink: 0;
+            font-size: 18px;
+            transition: transform var(--transition);
+            color: var(--green-soft-dark);
+        }
+        .faq-item.open .faq-question .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-item .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), padding 0.3s ease;
+            padding: 0 18px;
+            color: var(--gray-500);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 300px;
+            padding: 0 18px 18px;
+        }
+
+        /* ============================================================
+                   SECTION: DEPOIMENTOS
+                   ============================================================ */
+        .testimonials-section {
+            padding: 28px 0 12px;
+        }
+        .testimonials-section .section-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border: 1px solid var(--gray-100);
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 12px;
+            transition: all var(--transition);
+        }
+        .testimonial-card:active {
+            transform: scale(0.98);
+        }
+        .testimonial-card .tc-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .testimonial-card .tc-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--sand);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .testimonial-card .tc-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--blue-dark);
+        }
+        .testimonial-card .tc-role {
+            font-size: 12px;
+            color: var(--gray-400);
+        }
+        .testimonial-card .tc-text {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.6;
+            font-style: italic;
+        }
+        .testimonial-card .tc-stars {
+            color: #F5A623;
+            font-size: 14px;
+            margin-top: 6px;
+            letter-spacing: 2px;
+        }
+
+        /* ============================================================
+                   SECTION: CTA FINAL
+                   ============================================================ */
+        .cta-final {
+            padding: 32px 0 12px;
+            text-align: center;
+        }
+        .cta-final .cta-box {
+            background: var(--blue-dark);
+            border-radius: var(--radius-lg);
+            padding: 32px 20px;
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+        .cta-final .cta-box .cta-title {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+        .cta-final .cta-box .cta-desc {
+            font-size: 14px;
+            opacity: 0.75;
+            margin-top: 6px;
+            line-height: 1.6;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-final .cta-box .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+            padding: 14px 40px;
+            background: var(--green-soft);
+            color: var(--blue-dark);
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: var(--font);
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            width: 100%;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(90, 155, 135, 0.30);
+        }
+        .cta-final .cta-box .cta-btn:active {
+            transform: scale(0.96);
+            background: var(--green-soft-dark);
+            color: white;
+        }
+        .cta-final .cta-box .cta-trust {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 14px;
+            font-size: 12px;
+            opacity: 0.5;
+        }
+        .cta-final .cta-box .cta-trust span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
+        .site-footer {
+            padding: 20px 16px 12px;
+            border-top: 1px solid var(--gray-100);
+            text-align: center;
+            font-size: 12px;
+            color: var(--gray-400);
+            background: var(--white);
+        }
+        .site-footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+        }
+        .site-footer .footer-links a {
+            color: var(--gray-500);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 12px;
+            transition: color var(--transition);
+        }
+        .site-footer .footer-links a:active {
+            color: var(--blue-dark);
+        }
+
+        /* ============================================================
+                   TOAST / MICRO INTERACTION
+                   ============================================================ */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--blue-dark);
+            color: white;
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 14px;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s ease;
+            z-index: 200;
+            max-width: 90%;
+            text-align: center;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (min-width: 481px) {
+            body {
+                border-left: 1px solid var(--gray-100);
+                border-right: 1px solid var(--gray-100);
+            }
+        }
+
+        @media (min-width: 600px) {
+            .benefits-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .audience-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .hero .hero-cta {
+                flex-direction: row;
+                justify-content: center;
+            }
+            .hero .hero-cta .btn-primary,
+            .hero .hero-cta .btn-secondary {
+                width: auto;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero .hero-title {
+                font-size: 26px;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .audience-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .step-card {
+                padding: 14px 12px;
+            }
+        }
+
+        /* ============================================================
+                   UTILITY
+                   ============================================================ */
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+
+        /* Scroll indicator animation for steps */
+        .step-card {
+            animation: fadeUp 0.6s ease both;
+        }
+        .step-card:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+        .step-card:nth-child(2) {
+            animation-delay: 0.12s;
+        }
+        .step-card:nth-child(3) {
+            animation-delay: 0.19s;
+        }
+        .step-card:nth-child(4) {
+            animation-delay: 0.26s;
+        }
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* FAQ icon rotation */
+        .faq-item .faq-icon {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header" id="siteHeader">
+        <a href="#" class="logo" aria-label="Neighborhood Flow">
+            <div class="logo-icon">NF</div>
+            <span class="logo-text">Neighborhood<span>Flow</span></span>
+        </a>
+
+        <!-- Desktop nav (hidden on mobile) -->
+        <nav class="desktop-nav">
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+        <!-- Mobile toggle -->
+        <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+
+    <!-- ==================== NAV OVERLAY & MENU ==================== -->
+    <div class="nav-overlay" id="navOverlay"></div>
+    <nav class="nav-menu" id="navMenu" role="dialog" aria-label="Menu de navegação">
+        <button class="nav-close" id="navClose" aria-label="Fechar menu">✕</button>
+
+        <a href="#sobre" data-nav-link>
+            <span class="nav-icon">📖</span> Sobre
+        </a>
+        <a href="#servicos" data-nav-link>
+            <span class="nav-icon">✂️</span> Serviços
+        </a>
+        <a href="#como-funciona" data-nav-link>
+            <span class="nav-icon">🔄</span> Como funciona
+        </a>
+        <a href="#faq" data-nav-link>
+            <span class="nav-icon">❓</span> FAQ
+        </a>
+        <a href="#contato" data-nav-link>
+            <span class="nav-icon">📬</span> Contato
+        </a>
+
+        <div style="margin-top:auto; padding-top:20px; border-top:1px solid var(--gray-100); font-size:12px; color:var(--gray-400); text-align:center;">
+            <span>📞 (11) 9 9999-9999</span>
+            <br />
+            <span>📍 Rua das Barbearias, 123</span>
+        </div>
+    </nav>
+
+    <!-- ==================== MAIN ==================== -->
+    <main class="main-content">
+
+        <!-- ===== HERO ===== -->
+        <section class="hero" id="sobre">
+            <div class="hero-badge">✦ Barbearia de bairro</div>
+            <h1 class="hero-title">
+                Seu corte com <br /><span class="highlight">confiança</span> e proximidade
+            </h1>
+            <p class="hero-sub">
+                Aqui você entende tudo antes de agendar. Sem surpresas, sem pressa.
+                Educação e acolhimento em cada passo.
+            </p>
+            <div class="hero-cta">
+                <a href="#contato" class="btn-primary">
+                    💬 Quero agendar
+                </a>
+                <a href="#como-funciona" class="btn-secondary">
+                    🔄 Entender como funciona
+                </a>
+            </div>
+            <div class="hero-trust">
+                <span>✅ 200+ clientes atendidos</span>
+                <span>⭐ 4.9 / 5</span>
+                <span>📍 São Paulo</span>
+            </div>
+        </section>
+
+        <!-- ===== COMO FUNCIONA ===== -->
+        <section class="steps-section" id="como-funciona">
+            <div class="section-header">
+                <h2 class="section-title">Como funciona o <span class="highlight">seu primeiro corte</span></h2>
+                <p class="section-sub">Um processo simples, transparente e feito para você se sentir em casa.</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-info">
+                        <div class="step-title">🔍 Escolha o serviço</div>
+                        <div class="step-desc">Corte, barba, hidratação ou combo. Você escolhe o que precisa.</div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-info">
+                        <div class="step-title">📅 Agende pelo WhatsApp</div>
+                        <div class="step-desc">Um clique, algumas mensagens e seu horário está confirmado.</div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-info">
+                        <div class="step-title">✂️ Chegue e seja atendido</div>
+                        <div class="step-desc">Ambiente acolhedor, profissionais preparados e sem pressa.</div>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <div class="step-info">
+                        <div class="step-title">🎯 Acompanhamento pós-corte</div>
+                        <div class="step-desc">Dicas de cuidados e lembretes para sua próxima visita.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== O QUE ESTÁ INCLUÍDO ===== -->
+        <section class="benefits-section" id="servicos">
+            <div class="section-header">
+                <h2 class="section-title">O que está <span class="highlight">incluído</span></h2>
+                <p class="section-sub">Serviços completos para você sair renovado e confiante.</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="bc-icon">✂️</div>
+                    <div class="bc-name">Corte tradicional</div>
+                    <div class="bc-desc">Técnicas clássicas e modernas</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="bc-icon">🧔</div>
+                    <div class="bc-name">Barba completa</div>
+                    <div class="bc-desc">Modelagem, hidratação e acabamento</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="bc-icon">💆</div>
+                    <div class="bc-name">Hidratação capilar</div>
+                    <div class="bc-desc">Tratamento profundo para fios</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="bc-icon">🔄</div>
+                    <div class="bc-name">Combo corte + barba</div>
+                    <div class="bc-desc">Pacote completo com desconto</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="bc-icon">🧴</div>
+                    <div class="bc-name">Produtos de qualidade</div>
+                    <div class="bc-desc">Linha profissional premium</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="bc-icon">☕</div>
+                    <div class="bc-name">Café da casa</div>
+                    <div class="bc-desc">Atendimento com hospitalidade</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PARA QUEM É ===== -->
+        <section class="audience-section">
+            <div class="section-header">
+                <h2 class="section-title">Para quem é <span class="highlight">a Neighborhood Flow</span></h2>
+                <p class="section-sub">Um espaço pensado para todo mundo que valoriza um bom atendimento.</p>
+            </div>
+
+            <div class="audience-grid">
+                <div class="audience-card">
+                    <div class="ac-icon">👨</div>
+                    <div class="ac-label">Homens de todas as idades</div>
+                    <div class="ac-desc">Do jovem ao experiente</div>
+                </div>
+                <div class="audience-card">
+                    <div class="ac-icon">🧔</div>
+                    <div class="ac-label">Quem usa barba</div>
+                    <div class="ac-desc">Cuidados especializados</div>
+                </div>
+                <div class="audience-card">
+                    <div class="ac-icon">🏠</div>
+                    <div class="ac-label">Moradores da região</div>
+                    <div class="ac-desc">Proximidade e conveniência</div>
+                </div>
+                <div class="audience-card">
+                    <div class="ac-icon">📱</div>
+                    <div class="ac-label">Quem busca praticidade</div>
+                    <div class="ac-desc">Agendamento rápido e fácil</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FAQ ===== -->
+        <section class="faq-section" id="faq">
+            <div class="section-header">
+                <h2 class="section-title">Dúvidas <span class="highlight">frequentes</span></h2>
+                <p class="section-sub">Tire suas dúvidas antes de agendar. Transparência é o nosso compromisso.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>💰 Quanto custa um corte?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        O corte tradicional tem valor a partir de R$ 45,00. A barba completa a partir de R$ 35,00.
+                        O combo corte + barba sai por R$ 70,00 (10% de desconto). Consulte pacotes e promoções especiais.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>📅 Como faço para agendar?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        O agendamento é feito diretamente pelo WhatsApp. Basta clicar no botão "Quero agendar"
+                        em qualquer lugar da página, enviar uma mensagem com o serviço desejado e o horário de
+                        preferência. Respondemos em até 15 minutos.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>🚗 A barbearia tem estacionamento?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Sim! A Neighborhood Flow fica em uma rua com estacionamento rotativo gratuito.
+                        Também há opções de estacionamento privado nas proximidades a preços acessíveis.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>👔 Preciso levar algo para o atendimento?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Nada! Oferecemos toalhas, capas e todos os produtos necessários. Se você tiver
+                        um produto de preferência, pode trazer. Nosso objetivo é que você se sinta
+                        confortável e bem cuidado.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>🕐 Qual o tempo médio de atendimento?</span>
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        O corte tradicional leva cerca de 30 minutos. A barba completa em torno de 25 minutos.
+                        O combo corte + barba dura aproximadamente 50 minutos. Tempo suficiente para um bom café e
+                        uma conversa agradável.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DEPOIMENTOS ===== -->
+        <section class="testimonials-section">
+            <div class="section-header">
+                <h2 class="section-title">O que os clientes <span class="highlight">dizem</span></h2>
+                <p class="section-sub">Histórias reais de quem já experimentou a diferença.</p>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="tc-header">
+                    <div class="tc-avatar">👨</div>
+                    <div>
+                        <div class="tc-name">Carlos Souza</div>
+                        <div class="tc-role">Cliente há 6 meses</div>
+                    </div>
+                </div>
+                <div class="tc-text">
+                    “Nunca fui tão bem atendido em uma barbearia. O ambiente é acolhedor e o profissional
+                    entendeu exatamente o que eu queria. Saí com o corte perfeito!”
+                </div>
+                <div class="tc-stars">★★★★★</div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="tc-header">
+                    <div class="tc-avatar">🧔</div>
+                    <div>
+                        <div class="tc-name">Marcelo Lima</div>
+                        <div class="tc-role">Cliente há 3 meses</div>
+                    </div>
+                </div>
+                <div class="tc-text">
+                    “Fui indicado por um amigo e não me arrependo. A barbearia tem uma pegada
+                    educativa que faz toda diferença. Entendi tudo sobre o cuidado da minha barba.”
+                </div>
+                <div class="tc-stars">★★★★★</div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="tc-header">
+                    <div class="tc-avatar">👨</div>
+                    <div>
+                        <div class="tc-name">Rafael Santos</div>
+                        <div class="tc-role">Cliente há 1 ano</div>
+                    </div>
+                </div>
+                <div class="tc-text">
+                    “A Neighborhood Flow virou minha barbearia de confiança. Atendimento impecável,
+                    profissionais super capacitados e um clima de bairro que você não encontra em qualquer lugar.”
+                </div>
+                <div class="tc-stars">★★★★★</div>
+            </div>
+        </section>
+
+        <!-- ===== CTA FINAL ===== -->
+        <section class="cta-final" id="contato">
+            <div class="cta-box">
+                <h3 class="cta-title">Pronto para <br />seu primeiro corte?</h3>
+                <p class="cta-desc">
+                    Agende agora pelo WhatsApp e comece sua jornada com a gente.
+                    Sem burocracia, sem surpresas. Só um bom atendimento.
+                </p>
+                <a href="#" class="cta-btn" id="finalCtaBtn">
+                    💬 Quero agendar agora
+                </a>
+                <div class="cta-trust">
+                    <span>✅ Atendimento humano</span>
+                    <span>⏱️ Resposta rápida</span>
+                    <span>📍 Localização fácil</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer">
+        <div class="footer-links">
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contato">Contato</a>
+        </div>
+        <div style="display:flex; justify-content:center; gap:12px; margin-bottom:8px; font-size:13px; color:var(--gray-400);">
+            <span>📞 (11) 9 9999-9999</span>
+            <span>📍 Rua das Barbearias, 123</span>
+        </div>
+        <p style="font-size:11px; opacity:0.6;">
+            &copy; 2026 Neighborhood Flow · Barbearia de bairro
+        </p>
+    </footer>
+
+    <!-- ==================== TOAST ==================== -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ================================================================
+    SCRIPT
+    ================================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ---------- DOM refs ----------
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navOverlay = document.getElementById('navOverlay');
+            const navClose = document.getElementById('navClose');
+            const navLinks = document.querySelectorAll('[data-nav-link]');
+            const faqItems = document.querySelectorAll('.faq-item');
+            const toast = document.getElementById('toast');
+            let toastTimer = null;
+
+            // ---------- Toast ----------
+            function showToast(msg) {
+                if (toastTimer) clearTimeout(toastTimer);
+                toast.textContent = msg;
+                toast.classList.add('show');
+                toastTimer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2200);
+            }
+
+            // ---------- Mobile nav ----------
+            function toggleNav(open) {
+                const isOpen = open !== undefined ? open : !navMenu.classList.contains('open');
+                navMenu.classList.toggle('open', isOpen);
+                navOverlay.classList.toggle('open', isOpen);
+                navToggle.classList.toggle('open', isOpen);
+                navToggle.setAttribute('aria-expanded', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            navToggle.addEventListener('click', () => toggleNav());
+            navClose.addEventListener('click', () => toggleNav(false));
+            navOverlay.addEventListener('click', () => toggleNav(false));
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleNav(false);
+                    // smooth scroll to target
+                    const targetId = link.getAttribute('href');
+                    if (targetId && targetId.startsWith('#')) {
+                        const target = document.querySelector(targetId);
+                        if (target) {
+                            setTimeout(() => {
+                                target.scrollIntoView({ behavior: 'smooth' });
+                            }, 300);
+                        }
+                    }
+                });
+            });
+
+            // Fechar nav com tecla ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+                    toggleNav(false);
+                }
+            });
+
+            // ---------- FAQ expand/collapse ----------
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', function() {
+                    const isOpen = item.classList.contains('open');
+                    // Fecha todos
+                    faqItems.forEach(f => f.classList.remove('open'));
+                    if (!isOpen) {
+                        item.classList.add('open');
+                    }
+                    if (navigator.vibrate) navigator.vibrate(4);
+                });
+            });
+
+            // ---------- CTA buttons ----------
+            const ctaBtns = document.querySelectorAll('.btn-primary, .cta-btn');
+            ctaBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    showToast('💬 Redirecionando para WhatsApp... (simulado)');
+                    if (navigator.vibrate) navigator.vibrate(8);
+                    // Simula abertura do WhatsApp
+                    // window.open('https://wa.me/5511999999999', '_blank');
+                });
+            });
+
+            // ---------- Smooth scroll para links internos ----------
+            document.querySelectorAll('a[href^="#"]').forEach(a => {
+                a.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth' });
+                        // Fecha mobile nav se estiver aberta
+                        if (navMenu.classList.contains('open')) {
+                            toggleNav(false);
+                        }
+                    }
+                });
+            });
+
+            // ---------- Step cards: micro interação de toque ----------
+            document.querySelectorAll('.step-card, .benefit-card, .audience-card, .testimonial-card').forEach(el => {
+                el.addEventListener('click', function() {
+                    // apenas feedback sutil
+                    if (navigator.vibrate) navigator.vibrate(3);
+                });
+            });
+
+            // ---------- Scroll spy para destacar nav (desktop) ----------
+            const sections = document.querySelectorAll('section[id]');
+            const navLinksDesktop = document.querySelectorAll('.desktop-nav a');
+
+            if (navLinksDesktop.length) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const id = entry.target.id;
+                            navLinksDesktop.forEach(link => {
+                                link.style.color = link.getAttribute('href') === '#' + id ?
+                                    'var(--green-soft-dark)' : '';
+                                link.style.fontWeight = link.getAttribute('href') === '#' + id ?
+                                    '700' : '500';
+                            });
+                        }
+                    });
+                }, { threshold: 0.4 });
+
+                sections.forEach(s => observer.observe(s));
+            }
+
+            // ---------- PWA Install (minimal) ----------
+            let deferredPrompt = null;
+            const installBanner = document.createElement('div');
+            installBanner.style.display = 'none';
+
+            window.addEventListener('beforeinstallprompt', function(e) {
+                e.preventDefault();
+                deferredPrompt = e;
+                // Mostra um banner sutil (opcional)
+                console.log('📲 PWA install disponível');
+            });
+
+            // ---------- Service Worker ----------
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(() => console.log('✅ SW registrado'))
+                    .catch(() => console.log('ℹ️ SW não registrado'));
+            }
+
+            // ---------- Expor para debug ----------
+            console.log('🚀 Neighborhood Flow — Landing Page');
+
+            // ---------- Animação de entrada para cards (interseção) ----------
+            const animateCards = document.querySelectorAll('.step-card, .benefit-card, .audience-card, .testimonial-card, .faq-item');
+            const cardObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            animateCards.forEach(card => {
+                card.style.opacity = '0.6';
+                card.style.transform = 'translateY(8px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                cardObserver.observe(card);
+            });
+
+            // Forçar visibilidade inicial após carregamento
+            setTimeout(() => {
+                animateCards.forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                });
+            }, 200);
+
+        })();
+    </script>
+
+</body>
+</html>

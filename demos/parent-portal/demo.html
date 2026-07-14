@@ -1,0 +1,2046 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parent Portal — Centro de Relacionamento</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --green-soft: #2d8f6f;
+            --green-light: #e6f4ed;
+            --green-bright: #34a87a;
+            --blue-soft: #4a8db7;
+            --blue-light: #e3eef6;
+            --blue-pale: #f0f6fa;
+            --warm: #f8f0e6;
+            --warm-soft: #f5ede3;
+            --white: #ffffff;
+            --gray-50: #f7f9fa;
+            --gray-100: #eef1f3;
+            --gray-200: #dce1e6;
+            --gray-300: #bcc4cc;
+            --gray-400: #8f9aa6;
+            --gray-500: #6a7785;
+            --gray-600: #4a5663;
+            --gray-700: #2d3845;
+            --gray-800: #1a2430;
+            --gray-900: #0d141c;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 16px 56px rgba(0, 0, 0, 0.13);
+            --radius: 14px;
+            --radius-sm: 8px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--gray-50);
+            color: var(--gray-700);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 28px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: inherit;
+            line-height: 1.2;
+        }
+
+        .btn-primary {
+            background: var(--green-soft);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(45, 143, 111, 0.25);
+        }
+        .btn-primary:hover {
+            background: #247a5e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(45, 143, 111, 0.3);
+        }
+
+        .btn-blue {
+            background: var(--blue-soft);
+            color: var(--white);
+            box-shadow: 0 4px 14px rgba(74, 141, 183, 0.25);
+        }
+        .btn-blue:hover {
+            background: #3a7aa0;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(74, 141, 183, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--green-soft);
+            border: 1.5px solid var(--green-soft);
+        }
+        .btn-outline:hover {
+            background: var(--green-soft);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--gray-500);
+            padding: 8px 16px;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+        .btn-ghost:hover {
+            background: var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .btn-sm {
+            padding: 8px 18px;
+            font-size: 0.8rem;
+        }
+
+        /* ===== HEADER ===== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(220, 225, 232, 0.5);
+            transition: var(--transition);
+        }
+
+        .header.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 68px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--gray-800);
+            letter-spacing: -0.3px;
+            flex-shrink: 0;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--green-soft);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--gray-500);
+            transition: var(--transition);
+            padding: 6px 14px;
+            border-radius: 60px;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gray-800);
+            background: var(--gray-100);
+        }
+
+        .nav-links a.active {
+            background: var(--green-light);
+            color: var(--green-soft);
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 2.5px;
+            background: var(--gray-700);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        /* ===== TAB CONTENT ===== */
+        .tab-content {
+            display: none;
+            padding-top: 88px;
+            padding-bottom: 40px;
+            animation: fadeUp 0.5s ease forwards;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== HERO / DASHBOARD ===== */
+        .dashboard-hero {
+            background: linear-gradient(135deg, var(--green-light) 0%, var(--blue-pale) 100%);
+            border-radius: var(--radius);
+            padding: 40px 44px;
+            margin-bottom: 32px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(45, 143, 111, 0.08);
+        }
+
+        .dashboard-hero .greeting h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--gray-800);
+            letter-spacing: -0.02em;
+        }
+
+        .dashboard-hero .greeting p {
+            color: var(--gray-500);
+            font-size: 0.95rem;
+            margin-top: 2px;
+        }
+
+        .dashboard-hero .badge-date {
+            background: var(--white);
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dashboard-hero .badge-date i {
+            color: var(--green-soft);
+        }
+
+        /* ===== QUICK ACCESS ===== */
+        .quick-access {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .quick-item {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 12px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+        }
+
+        .quick-item:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--green-soft);
+        }
+
+        .quick-item .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .quick-item .icon.green {
+            background: var(--green-light);
+            color: var(--green-soft);
+        }
+        .quick-item .icon.blue {
+            background: var(--blue-light);
+            color: var(--blue-soft);
+        }
+        .quick-item .icon.warm {
+            background: var(--warm);
+            color: #b88a5e;
+        }
+        .quick-item .icon.purple {
+            background: #ede7f5;
+            color: #8a6eb8;
+        }
+        .quick-item .icon.orange {
+            background: #f5ede3;
+            color: #d4944a;
+        }
+        .quick-item .icon.teal {
+            background: #e0f0ed;
+            color: #3a9a8a;
+        }
+
+        .quick-item .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .quick-item .sub {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            margin-top: 2px;
+        }
+
+        /* ===== DASHBOARD GRID ===== */
+        .dash-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 28px;
+        }
+
+        .dash-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .dash-card .card-header {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--gray-100);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dash-card .card-header h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .dash-card .card-header .link {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--green-soft);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .dash-card .card-header .link:hover {
+            color: var(--gray-800);
+        }
+
+        .dash-card .card-body {
+            padding: 20px 24px;
+        }
+
+        /* ===== ANNOUNCEMENTS ===== */
+        .announcement-item {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .announcement-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .announcement-item .badge {
+            flex-shrink: 0;
+            width: 6px;
+            border-radius: 4px;
+            background: var(--green-soft);
+            margin-top: 6px;
+        }
+
+        .announcement-item .badge.blue {
+            background: var(--blue-soft);
+        }
+        .announcement-item .badge.orange {
+            background: #d4944a;
+        }
+        .announcement-item .badge.purple {
+            background: #8a6eb8;
+        }
+
+        .announcement-item .content .title {
+            font-weight: 600;
+            color: var(--gray-800);
+            font-size: 0.95rem;
+        }
+
+        .announcement-item .content .desc {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        .announcement-item .content .meta {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+            margin-top: 4px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .announcement-item .content .meta i {
+            margin-right: 4px;
+        }
+
+        /* ===== CALENDAR ===== */
+        .calendar-item {
+            display: flex;
+            gap: 16px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-100);
+            align-items: center;
+        }
+
+        .calendar-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .calendar-item .date-box {
+            width: 52px;
+            height: 52px;
+            background: var(--green-light);
+            border-radius: var(--radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--green-soft);
+            font-weight: 700;
+            font-size: 1.1rem;
+            line-height: 1.2;
+        }
+
+        .calendar-item .date-box .month {
+            font-size: 0.55rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .calendar-item .date-box.blue {
+            background: var(--blue-light);
+            color: var(--blue-soft);
+        }
+        .calendar-item .date-box.orange {
+            background: var(--warm);
+            color: #b88a5e;
+        }
+        .calendar-item .date-box.purple {
+            background: #ede7f5;
+            color: #8a6eb8;
+        }
+
+        .calendar-item .info .title {
+            font-weight: 600;
+            color: var(--gray-800);
+            font-size: 0.9rem;
+        }
+
+        .calendar-item .info .time {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        /* ===== QUICK STATS ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--gray-100);
+        }
+
+        .stat-box .number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--gray-800);
+        }
+
+        .stat-box .label {
+            font-size: 0.7rem;
+            color: var(--gray-500);
+            font-weight: 500;
+        }
+
+        /* ===== MATERIALS ===== */
+        .material-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        .material-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .material-item .icon-file {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-500);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .material-item .icon-file.green {
+            background: var(--green-light);
+            color: var(--green-soft);
+        }
+        .material-item .icon-file.blue {
+            background: var(--blue-light);
+            color: var(--blue-soft);
+        }
+
+        .material-item .info .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gray-800);
+        }
+
+        .material-item .info .size {
+            font-size: 0.7rem;
+            color: var(--gray-400);
+        }
+
+        .material-item .btn-download {
+            margin-left: auto;
+            color: var(--green-soft);
+            font-size: 0.85rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .material-item .btn-download:hover {
+            color: var(--gray-800);
+        }
+
+        /* ===== TAB SPECIFIC SECTIONS ===== */
+
+        /* Comunicados */
+        .comunicados-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .comunicado-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 24px 28px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .comunicado-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .comunicado-card .tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 2px 12px;
+            border-radius: 60px;
+            background: var(--green-light);
+            color: var(--green-soft);
+            margin-bottom: 8px;
+        }
+
+        .comunicado-card .tag.blue {
+            background: var(--blue-light);
+            color: var(--blue-soft);
+        }
+        .comunicado-card .tag.orange {
+            background: var(--warm);
+            color: #b88a5e;
+        }
+
+        .comunicado-card h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        .comunicado-card p {
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            margin-top: 4px;
+            line-height: 1.6;
+        }
+
+        .comunicado-card .meta {
+            margin-top: 10px;
+            font-size: 0.75rem;
+            color: var(--gray-400);
+            display: flex;
+            gap: 16px;
+        }
+
+        /* Agenda */
+        .agenda-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .agenda-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .agenda-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .agenda-card .date-big {
+            width: 64px;
+            height: 64px;
+            border-radius: var(--radius-sm);
+            background: var(--green-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--green-soft);
+            font-weight: 800;
+            font-size: 1.4rem;
+            line-height: 1.2;
+        }
+
+        .agenda-card .date-big .mon {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .agenda-card .date-big.blue {
+            background: var(--blue-light);
+            color: var(--blue-soft);
+        }
+        .agenda-card .date-big.orange {
+            background: var(--warm);
+            color: #b88a5e;
+        }
+        .agenda-card .date-big.purple {
+            background: #ede7f5;
+            color: #8a6eb8;
+        }
+
+        .agenda-card .info .title {
+            font-weight: 700;
+            color: var(--gray-800);
+            font-size: 0.95rem;
+        }
+
+        .agenda-card .info .time {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        .agenda-card .info .desc {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            margin-top: 2px;
+        }
+
+        /* Materiais */
+        .materiais-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .material-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 24px 20px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .material-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .material-card .icon-big {
+            font-size: 2.4rem;
+            color: var(--green-soft);
+            margin-bottom: 10px;
+        }
+
+        .material-card h4 {
+            font-weight: 700;
+            color: var(--gray-800);
+            font-size: 0.95rem;
+        }
+
+        .material-card p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        .material-card .btn {
+            margin-top: 12px;
+            width: 100%;
+        }
+
+        /* Eventos */
+        .eventos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .evento-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .evento-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .evento-card .thumb {
+            height: 140px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-400);
+            font-size: 0.85rem;
+        }
+
+        .evento-card .thumb i {
+            font-size: 2.4rem;
+            color: var(--gray-300);
+            margin-right: 8px;
+        }
+
+        .evento-card .body {
+            padding: 18px 20px 20px;
+        }
+
+        .evento-card .body .date {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--green-soft);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .evento-card .body h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin: 4px 0 6px;
+        }
+
+        .evento-card .body p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        .evento-card .body .btn {
+            margin-top: 12px;
+        }
+
+        /* Portal da família */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .portal-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .portal-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+
+        .portal-card .icon {
+            font-size: 2.2rem;
+            color: var(--green-soft);
+            margin-bottom: 12px;
+        }
+
+        .portal-card h4 {
+            font-weight: 700;
+            color: var(--gray-800);
+            font-size: 1rem;
+        }
+
+        .portal-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin: 6px 0 16px;
+        }
+
+        .portal-card .btn {
+            width: 100%;
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-item .question {
+            padding: 18px 24px;
+            font-weight: 600;
+            color: var(--gray-800);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+
+        .faq-item .question:hover {
+            background: var(--gray-50);
+        }
+
+        .faq-item .question i {
+            color: var(--green-soft);
+            transition: var(--transition);
+        }
+
+        .faq-item .answer {
+            padding: 0 24px 18px;
+            color: var(--gray-500);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-item.open .answer {
+            display: block;
+        }
+
+        .faq-item.open .question i {
+            transform: rotate(180deg);
+        }
+
+        /* Contato */
+        .contato-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contato-info-box {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contato-info-box h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+
+        .contato-info-box p {
+            color: var(--gray-500);
+            margin-bottom: 24px;
+        }
+
+        .contato-info-box .item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .contato-info-box .item .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--green-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--green-soft);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .contato-info-box .item .info h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray-700);
+        }
+
+        .contato-info-box .item .info span {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+        }
+
+        .contato-form-box {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .contato-form-box h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 4px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            transition: var(--transition);
+            background: var(--gray-50);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--green-soft);
+            box-shadow: 0 0 0 3px rgba(45, 143, 111, 0.12);
+            background: var(--white);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+            padding: 32px 0 24px;
+            margin-top: auto;
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer p {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--gray-500);
+            font-size: 0.9rem;
+        }
+
+        .footer-socials a:hover {
+            background: var(--green-light);
+            color: var(--green-soft);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .quick-access {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .dash-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .agenda-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .materiais-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .eventos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .portal-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contato-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header .container {
+                height: 60px;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                padding: 20px 24px;
+                gap: 6px;
+                border-bottom: 1px solid var(--gray-200);
+                box-shadow: var(--shadow-md);
+                align-items: stretch;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 16px;
+                white-space: normal;
+                text-align: left;
+            }
+
+            .nav-cta {
+                display: inline-flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .tab-content {
+                padding-top: 76px;
+            }
+
+            .dashboard-hero {
+                padding: 28px 24px;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .dashboard-hero .greeting h2 {
+                font-size: 1.3rem;
+            }
+
+            .quick-access {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+
+            .quick-item {
+                padding: 14px 8px;
+            }
+
+            .quick-item .icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .quick-item .label {
+                font-size: 0.7rem;
+            }
+            .quick-item .sub {
+                font-size: 0.6rem;
+            }
+
+            .dash-card .card-body {
+                padding: 16px;
+            }
+
+            .materiais-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .eventos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .agenda-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .comunicado-card {
+                padding: 18px 20px;
+            }
+
+            .footer .container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .quick-access {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-hero .badge-date {
+                font-size: 0.75rem;
+                padding: 6px 14px;
+            }
+
+            .contato-info-box,
+            .contato-form-box {
+                padding: 20px 16px;
+            }
+
+            .agenda-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .portal-card {
+                padding: 20px 16px;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .text-center {
+            text-align: center;
+        }
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="#" class="logo" id="logoLink">
+                <span class="logo-icon"><i class="fas fa-user-friends"></i></span>
+                Parent Portal
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" data-tab="home" class="active">Home</a></li>
+                <li><a href="#" data-tab="comunicados">Comunicados</a></li>
+                <li><a href="#" data-tab="agenda">Agenda</a></li>
+                <li><a href="#" data-tab="materiais">Materiais</a></li>
+                <li><a href="#" data-tab="eventos">Eventos</a></li>
+                <li><a href="#" data-tab="portal">Portal da Família</a></li>
+                <li><a href="#" data-tab="faq">FAQ</a></li>
+                <li><a href="#" data-tab="contato">Contato</a></li>
+            </ul>
+
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== TAB: HOME ===== -->
+    <section class="tab-content active" id="tab-home">
+        <div class="container">
+            <!-- Dashboard Hero -->
+            <div class="dashboard-hero">
+                <div class="greeting">
+                    <h2>👋 Olá, famílias!</h2>
+                    <p>Bem-vindos ao Portal de Relacionamento. Aqui você encontra tudo o que precisa.</p>
+                </div>
+                <div class="badge-date">
+                    <i class="fas fa-calendar-day"></i>
+                    <span id="currentDate">Carregando...</span>
+                </div>
+            </div>
+
+            <!-- Quick Access -->
+            <div class="quick-access">
+                <div class="quick-item" onclick="navigateTo('comunicados')">
+                    <div class="icon green"><i class="fas fa-bullhorn"></i></div>
+                    <div class="label">Comunicados</div>
+                    <div class="sub">3 novos</div>
+                </div>
+                <div class="quick-item" onclick="navigateTo('agenda')">
+                    <div class="icon blue"><i class="fas fa-calendar-alt"></i></div>
+                    <div class="label">Agenda</div>
+                    <div class="sub">Próximos eventos</div>
+                </div>
+                <div class="quick-item" onclick="navigateTo('materiais')">
+                    <div class="icon warm"><i class="fas fa-file-alt"></i></div>
+                    <div class="label">Materiais</div>
+                    <div class="sub">Downloads</div>
+                </div>
+                <div class="quick-item" onclick="navigateTo('eventos')">
+                    <div class="icon purple"><i class="fas fa-calendar-check"></i></div>
+                    <div class="label">Eventos</div>
+                    <div class="sub">Veja todos</div>
+                </div>
+                <div class="quick-item" onclick="navigateTo('portal')">
+                    <div class="icon orange"><i class="fas fa-user-lock"></i></div>
+                    <div class="label">Portal</div>
+                    <div class="sub">Área da família</div>
+                </div>
+                <div class="quick-item" onclick="navigateTo('faq')">
+                    <div class="icon teal"><i class="fas fa-question-circle"></i></div>
+                    <div class="label">FAQ</div>
+                    <div class="sub">Dúvidas frequentes</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dash-grid">
+                <!-- Left: Announcements -->
+                <div class="dash-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-bullhorn" style="color:var(--green-soft);margin-right:8px;"></i> Últimos comunicados</h3>
+                        <span class="link" onclick="navigateTo('comunicados')">Ver todos →</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="announcement-item">
+                            <div class="badge"></div>
+                            <div class="content">
+                                <div class="title">Reunião de pais — 2º bimestre</div>
+                                <div class="desc">Convidamos todas as famílias para a reunião de pais do 2º bimestre, no dia 20 de junho, às 19h.</div>
+                                <div class="meta"><span><i class="far fa-clock"></i> 2 dias atrás</span><span><i class="far fa-user"></i> Direção</span></div>
+                            </div>
+                        </div>
+                        <div class="announcement-item">
+                            <div class="badge blue"></div>
+                            <div class="content">
+                                <div class="title">Calendário de provas atualizado</div>
+                                <div class="desc">O calendário de provas do 3º trimestre já está disponível no portal. Confira as datas.</div>
+                                <div class="meta"><span><i class="far fa-clock"></i> 5 dias atrás</span><span><i class="far fa-user"></i> Secretaria</span></div>
+                            </div>
+                        </div>
+                        <div class="announcement-item">
+                            <div class="badge orange"></div>
+                            <div class="content">
+                                <div class="title">Inscrições para atividades extracurriculares</div>
+                                <div class="desc">As inscrições para as atividades do 2º semestre estão abertas. Vagas limitadas.</div>
+                                <div class="meta"><span><i class="far fa-clock"></i> 1 semana atrás</span><span><i class="far fa-user"></i> Coordenação</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Calendar + Stats -->
+                <div>
+                    <div class="dash-card" style="margin-bottom:16px;">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calendar-alt" style="color:var(--blue-soft);margin-right:8px;"></i> Próximos eventos</h3>
+                            <span class="link" onclick="navigateTo('agenda')">Ver agenda →</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="calendar-item">
+                                <div class="date-box">20 <span class="month">Jun</span></div>
+                                <div class="info">
+                                    <div class="title">Reunião de pais</div>
+                                    <div class="time"><i class="far fa-clock"></i> 19:00 · Auditório</div>
+                                </div>
+                            </div>
+                            <div class="calendar-item">
+                                <div class="date-box blue">25 <span class="month">Jun</span></div>
+                                <div class="info">
+                                    <div class="title">Entrega de boletins</div>
+                                    <div class="time"><i class="far fa-clock"></i> 08:00 · Secretaria</div>
+                                </div>
+                            </div>
+                            <div class="calendar-item">
+                                <div class="date-box orange">02 <span class="month">Jul</span></div>
+                                <div class="info">
+                                    <div class="title">Feira do conhecimento</div>
+                                    <div class="time"><i class="far fa-clock"></i> 09:00 · Pátio</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="number">4</div>
+                            <div class="label">Comunicados novos</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">3</div>
+                            <div class="label">Eventos este mês</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">12</div>
+                            <div class="label">Materiais disponíveis</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="number">87%</div>
+                            <div class="label">Famílias conectadas</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: COMUNICADOS ===== -->
+    <section class="tab-content" id="tab-comunicados">
+        <div class="container">
+            <div style="margin-bottom:28px;">
+                <h2 style="font-size:1.8rem;font-weight:800;color:var(--gray-800);letter-spacing:-0.02em;">📢 Comunicados</h2>
+                <p style="color:var(--gray-500);">Fique por dentro de todas as notícias e avisos importantes da escola.</p>
+            </div>
+
+            <div class="comunicados-list">
+                <div class="comunicado-card">
+                    <span class="tag">Importante</span>
+                    <h4>Alteração no horário de saída — 21 de junho</h4>
+                    <p>Devido à manutenção programada da rede elétrica, no dia 21 de junho a saída será antecipada para as 15h. A escola permanecerá com atendimento normal até o horário.</p>
+                    <div class="meta"><span><i class="far fa-clock"></i> 18/06/2026 · 14:30</span><span><i class="far fa-user"></i> Direção</span></div>
+                </div>
+
+                <div class="comunicado-card">
+                    <span class="tag blue">Lembrete</span>
+                    <h4>Vacinação contra gripe — campanha escolar</h4>
+                    <p>No dia 24 de junho, a Secretaria de Saúde estará na escola para vacinar os alunos contra a gripe. Autorização já foi enviada via portal.</p>
+                    <div class="meta"><span><i class="far fa-clock"></i> 17/06/2026 · 10:00</span><span><i class="far fa-user"></i> Saúde Escolar</span></div>
+                </div>
+
+                <div class="comunicado-card">
+                    <span class="tag orange">Novidade</span>
+                    <h4>Lançamento do novo aplicativo Parent Portal</h4>
+                    <p>Nosso novo aplicativo já está disponível para Android e iOS. Baixe e tenha acesso a comunicados, agenda e muito mais na palma da mão.</p>
+                    <div class="meta"><span><i class="far fa-clock"></i> 15/06/2026 · 09:15</span><span><i class="far fa-user"></i> TI</span></div>
+                </div>
+
+                <div class="comunicado-card">
+                    <span class="tag">Comunicado</span>
+                    <h4>Encontro de pais e mestres — resultados do 1º bimestre</h4>
+                    <p>Convidamos todos os responsáveis para o encontro de pais e mestres, onde serão apresentados os resultados do 1º bimestre e as metas para o próximo.</p>
+                    <div class="meta"><span><i class="far fa-clock"></i> 12/06/2026 · 16:00</span><span><i class="far fa-user"></i> Coordenação</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: AGENDA ===== -->
+    <section class="tab-content" id="tab-agenda">
+        <div class="container">
+            <div style="margin-bottom:28px;">
+                <h2 style="font-size:1.8rem;font-weight:800;color:var(--gray-800);letter-spacing:-0.02em;">📅 Agenda escolar</h2>
+                <p style="color:var(--gray-500);">Acompanhe todas as atividades, reuniões e eventos do calendário.</p>
+            </div>
+
+            <div class="agenda-grid">
+                <div class="agenda-card">
+                    <div class="date-big">20 <span class="mon">Jun</span></div>
+                    <div class="info">
+                        <div class="title">Reunião de pais — 2º bimestre</div>
+                        <div class="time"><i class="far fa-clock"></i> 19:00 - 21:00 · Auditório</div>
+                        <div class="desc">Pauta: resultados, atividades e planejamento.</div>
+                    </div>
+                </div>
+                <div class="agenda-card">
+                    <div class="date-big blue">21 <span class="mon">Jun</span></div>
+                    <div class="info">
+                        <div class="title">Saída antecipada (manutenção)</div>
+                        <div class="time"><i class="far fa-clock"></i> Saída às 15:00</div>
+                        <div class="desc">Devido à manutenção da rede elétrica.</div>
+                    </div>
+                </div>
+                <div class="agenda-card">
+                    <div class="date-big orange">24 <span class="mon">Jun</span></div>
+                    <div class="info">
+                        <div class="title">Campanha de vacinação</div>
+                        <div class="time"><i class="far fa-clock"></i> 08:00 - 12:00</div>
+                        <div class="desc">Vacinação contra gripe para alunos.</div>
+                    </div>
+                </div>
+                <div class="agenda-card">
+                    <div class="date-big purple">25 <span class="mon">Jun</span></div>
+                    <div class="info">
+                        <div class="title">Entrega de boletins</div>
+                        <div class="time"><i class="far fa-clock"></i> 08:00 - 17:00 · Secretaria</div>
+                        <div class="desc">Retirada dos boletins do 1º bimestre.</div>
+                    </div>
+                </div>
+                <div class="agenda-card">
+                    <div class="date-big">02 <span class="mon">Jul</span></div>
+                    <div class="info">
+                        <div class="title">Feira do conhecimento</div>
+                        <div class="time"><i class="far fa-clock"></i> 09:00 - 15:00 · Pátio</div>
+                        <div class="desc">Exposição de projetos dos alunos.</div>
+                    </div>
+                </div>
+                <div class="agenda-card">
+                    <div class="date-big blue">05 <span class="mon">Jul</span></div>
+                    <div class="info">
+                        <div class="title">Feriado — Independência</div>
+                        <div class="time"><i class="far fa-clock"></i> Sem atividades</div>
+                        <div class="desc">Ponto facultativo para toda a comunidade.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: MATERIAIS ===== -->
+    <section class="tab-content" id="tab-materiais">
+        <div class="container">
+            <div style="margin-bottom:28px;">
+                <h2 style="font-size:1.8rem;font-weight:800;color:var(--gray-800);letter-spacing:-0.02em;">📂 Materiais e downloads</h2>
+                <p style="color:var(--gray-500);">Acesse documentos, guias e recursos importantes para as famílias.</p>
+            </div>
+
+            <div class="materiais-grid">
+                <div class="material-card">
+                    <div class="icon-big"><i class="fas fa-file-pdf"></i></div>
+                    <h4>Guia do aluno 2026</h4>
+                    <p>Manual completo com informações, regras e horários.</p>
+                    <button class="btn btn-primary btn-sm"><i class="fas fa-download"></i> Baixar PDF</button>
+                </div>
+                <div class="material-card">
+                    <div class="icon-big" style="color:var(--blue-soft);"><i class="fas fa-file-alt"></i></div>
+                    <h4>Calendário anual</h4>
+                    <p>Datas de provas, feriados e eventos ao longo do ano.</p>
+                    <button class="btn btn-blue btn-sm"><i class="fas fa-download"></i> Baixar PDF</button>
+                </div>
+                <div class="material-card">
+                    <div class="icon-big" style="color:#b88a5e;"><i class="fas fa-file-signature"></i></div>
+                    <h4>Autorização de saída</h4>
+                    <p>Formulário para autorizar saída antecipada do aluno.</p>
+                    <button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Baixar</button>
+                </div>
+                <div class="material-card">
+                    <div class="icon-big" style="color:#8a6eb8;"><i class="fas fa-file-invoice"></i></div>
+                    <h4>Boleto escolar</h4>
+                    <p>2ª via do boleto para pagamento das mensalidades.</p>
+                    <button class="btn btn-primary btn-sm"><i class="fas fa-download"></i> Baixar</button>
+                </div>
+                <div class="material-card">
+                    <div class="icon-big" style="color:#d4944a;"><i class="fas fa-file-image"></i></div>
+                    <h4>Ficha de matrícula</h4>
+                    <p>Documento para renovação ou nova matrícula.</p>
+                    <button class="btn btn-outline btn-sm"><i class="fas fa-download"></i> Baixar</button>
+                </div>
+                <div class="material-card">
+                    <div class="icon-big" style="color:var(--green-soft);"><i class="fas fa-file-contract"></i></div>
+                    <h4>Regimento interno</h4>
+                    <p>Normas e diretrizes da comunidade escolar.</p>
+                    <button class="btn btn-primary btn-sm"><i class="fas fa-download"></i> Baixar PDF</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: EVENTOS ===== -->
+    <section class="tab-content" id="tab-eventos">
+        <div class="container">
+            <div style="margin-bottom:28px;">
+                <h2 style="font-size:1.8rem;font-weight:800;color:var(--gray-800);letter-spacing:-0.02em;">🎉 Eventos</h2>
+                <p style="color:var(--gray-500);">Confira todos os eventos programados e participe da nossa comunidade.</p>
+            </div>
+
+            <div class="eventos-grid">
+                <div class="evento-card">
+                    <div class="thumb"><i class="fas fa-users"></i> Reunião</div>
+                    <div class="body">
+                        <div class="date">20 de junho · 19h</div>
+                        <h4>Reunião de pais e mestres</h4>
+                        <p>Discussão sobre o desempenho dos alunos e planejamento do 2º bimestre.</p>
+                        <button class="btn btn-primary btn-sm">Confirmar presença</button>
+                    </div>
+                </div>
+                <div class="evento-card">
+                    <div class="thumb" style="background:var(--blue-light);color:var(--blue-soft);"><i class="fas fa-syringe"></i> Saúde</div>
+                    <div class="body">
+                        <div class="date">24 de junho · 08h</div>
+                        <h4>Campanha de vacinação</h4>
+                        <p>Vacinação contra gripe para todos os alunos com autorização dos responsáveis.</p>
+                        <button class="btn btn-blue btn-sm">Mais informações</button>
+                    </div>
+                </div>
+                <div class="evento-card">
+                    <div class="thumb" style="background:var(--warm);color:#b88a5e;"><i class="fas fa-flask"></i> Ciência</div>
+                    <div class="body">
+                        <div class="date">2 de julho · 09h</div>
+                        <h4>Feira do conhecimento</h4>
+                        <p>Exposição de projetos científicos e culturais desenvolvidos pelos alunos.</p>
+                        <button class="btn btn-outline btn-sm">Ver programação</button>
+                    </div>
+                </div>
+                <div class="evento-card">
+                    <div class="thumb" style="background:#ede7f5;color:#8a6eb8;"><i class="fas fa-music"></i> Cultural</div>
+                    <div class="body">
+                        <div class="date">10 de julho · 18h</div>
+                        <h4>Festival de talentos</h4>
+                        <p>Apresentações musicais, teatrais e de dança dos alunos do Fundamental II.</p>
+                        <button class="btn btn-primary btn-sm">Quero participar</button>
+                    </div>
+                </div>
+                <div class="evento-card">
+                    <div class="thumb" style="background:#f5ede3;color:#d4944a;"><i class="fas fa-futbol"></i> Esporte</div>
+                    <div class="body">
+                        <div class="date">15 de julho · 08h</div>
+                        <h4>Interclasses — competição esportiva</h4>
+                        <p>Jogos de futebol, vôlei e queimada entre as turmas do Fundamental e Médio.</p>
+                        <button class="btn btn-outline btn-sm">Ver inscrições</button>
+                    </div>
+                </div>
+                <div class="evento-card">
+                    <div class="thumb" style="background:var(--green-light);color:var(--green-soft);"><i class="fas fa-graduation-cap"></i> Formatura</div>
+                    <div class="body">
+                        <div class="date">20 de julho · 19h</div>
+                        <h4>Formatura do 3º ano</h4>
+                        <p>Cerimônia de conclusão do Ensino Médio para a turma de 2026.</p>
+                        <button class="btn btn-primary btn-sm">Confirmar presença</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: PORTAL DA FAMÍLIA ===== -->
+    <section class="tab-content" id="tab-portal">
+        <div class="container">
+            <div style="margin-bottom:28px;">
+                <h2 style="font-size:1.8rem;font-weight:800;color:var(--gray-800);letter-spacing:-0.02em;">🔐 Portal da Família</h2>
+                <p style="color:var(--gray-500);">Acesse serviços exclusivos para responsáveis e acompanhe a vida escolar do seu filho.</p>
+            </div>
+
+            <div class="portal-grid">
+                <div class="portal-card">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <h4>Desempenho acadêmico</h4>
+                    <p>Acompanhe as notas, frequência e relatórios de desenvolvimento do aluno.</p>
+                    <button class="btn btn-primary">Acessar</button>
+                </div>
+                <div class="portal-card">
+                    <div class="icon" style="color:var(--blue-soft);"><i class="fas fa-calendar-check"></i></div>
+                    <h4>Agenda personalizada</h4>
+                    <p>Visualize os eventos e compromissos específicos do seu filho.</p>
+                    <button class="btn btn-blue">Acessar</button>
+                </div>
+                <div class="portal-card">
+                    <div class="icon" style="color:#b88a5e;"><i class="fas fa-file-alt"></i></div>
+                    <h4>Documentos e autorizações</h4>
+                    <p>Envie autorizações, acesse boletos e documentos importantes.</p>
+                    <button class="btn btn-outline">Acessar</button>
+                </div>
+                <div class="portal-card">
+                    <div class="icon" style="color:#8a6eb8;"><i class="fas fa-comments"></i></div>
+                    <h4>Comunicação direta</h4>
+                    <p>Envie mensagens para professores e coordenadores de forma rápida.</p>
+                    <button class="btn btn-primary">Acessar</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: FAQ ===== -->
+    <section class="tab-content" id="tab-faq">
+        <div class="container">
+            <div style="margin-bottom:32px;text-align:center;">
+                <h2 style="font-size:1.8rem;font-weight:800;color:var(--gray-800);letter-spacing:-0.02em;">❓ Perguntas frequentes</h2>
+                <p style="color:var(--gray-500);margin-top:4px;">Encontre respostas para as dúvidas mais comuns da comunidade.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item open">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Como faço para acessar o boletim do meu filho?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Os boletins estão disponíveis no Portal da Família, na seção "Desempenho acadêmico". Basta fazer login com seu CPF e senha cadastrados na secretaria.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Qual o horário de funcionamento da secretaria?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">A secretaria funciona de segunda a sexta, das 8h às 17h. Atendimento presencial e por telefone (11) 3456-7890.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Como solicitar a 2ª via do boleto escolar?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">A 2ª via do boleto pode ser emitida diretamente no Portal da Família, na seção "Documentos", ou solicitada na secretaria.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Existe transporte escolar?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Sim, oferecemos transporte escolar com rotas para os principais bairros. Consulte a disponibilidade na secretaria.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Como participar das atividades extracurriculares?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">As inscrições são feitas via Portal da Família ou na coordenação. As vagas são limitadas e divididas por faixa etária.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="question" onclick="toggleFaq(this)">
+                        <span>Posso visitar a escola antes de matricular meu filho?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="answer">Sim! Agende uma visita pelo site ou entre em contato com a secretaria. Teremos prazer em mostrar nossa estrutura.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TAB: CONTATO ===== -->
+    <section class="tab-content" id="tab-contato">
+        <div class="container">
+            <div style="margin-bottom:28px;">
+                <h2 style="font-size:1.8rem;font-weight:800;color:var(--gray-800);letter-spacing:-0.02em;">📬 Contato e atendimento</h2>
+                <p style="color:var(--gray-500);">Tire dúvidas, envie sugestões ou solicite suporte. Estamos aqui para ajudar.</p>
+            </div>
+
+            <div class="contato-wrapper">
+                <div class="contato-info-box">
+                    <h3>Fale com a gente</h3>
+                    <p>Nossa equipe está disponível para atender você nos canais abaixo.</p>
+
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info">
+                            <h4>Endereço</h4>
+                            <span>Rua dos Educadores, 456 — Bairro Escola, São Paulo — SP</span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="info">
+                            <h4>Telefone</h4>
+                            <span>(11) 3456-7890 · (11) 91234-5678</span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div class="info">
+                            <h4>E-mail</h4>
+                            <span>contato@parentportal.edu.br</span>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon"><i class="fas fa-clock"></i></div>
+                        <div class="info">
+                            <h4>Horário de atendimento</h4>
+                            <span>Segunda a sexta, das 8h às 18h</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:16px;display:flex;gap:12px;">
+                        <a href="#" class="btn btn-primary btn-sm"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                        <a href="#" class="btn btn-outline btn-sm"><i class="fas fa-comment"></i> Chat</a>
+                    </div>
+                </div>
+
+                <div class="contato-form-box">
+                    <h3>Envie uma mensagem</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="contatoNome">Nome completo</label>
+                            <input type="text" id="contatoNome" placeholder="Seu nome" />
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contatoEmail">E-mail</label>
+                                <input type="email" id="contatoEmail" placeholder="seu@email.com" />
+                            </div>
+                            <div class="form-group">
+                                <label for="contatoTelefone">Telefone</label>
+                                <input type="tel" id="contatoTelefone" placeholder="(11) 99999-9999" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contatoAssunto">Assunto</label>
+                            <select id="contatoAssunto">
+                                <option value="">Selecione...</option>
+                                <option>Dúvida sobre matrícula</option>
+                                <option>Informações sobre atividades</option>
+                                <option>Problemas com acesso ao portal</option>
+                                <option>Sugestão ou elogio</option>
+                                <option>Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contatoMensagem">Mensagem</label>
+                            <textarea id="contatoMensagem" rows="4" placeholder="Escreva sua mensagem aqui..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%;">Enviar mensagem <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Parent Portal — Todos os direitos reservados.</p>
+            <div class="footer-socials">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ----- DATE -----
+            const dateEl = document.getElementById('currentDate');
+            const now = new Date();
+            const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+            dateEl.textContent = now.toLocaleDateString('pt-BR', options);
+
+            // ----- TABS -----
+            const tabs = document.querySelectorAll('.nav-links a[data-tab]');
+            const contents = {
+                home: document.getElementById('tab-home'),
+                comunicados: document.getElementById('tab-comunicados'),
+                agenda: document.getElementById('tab-agenda'),
+                materiais: document.getElementById('tab-materiais'),
+                eventos: document.getElementById('tab-eventos'),
+                portal: document.getElementById('tab-portal'),
+                faq: document.getElementById('tab-faq'),
+                contato: document.getElementById('tab-contato'),
+            };
+
+            function activateTab(tabId) {
+                // Hide all
+                Object.values(contents).forEach(el => el.classList.remove('active'));
+
+                // Remove active from nav
+                document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+
+                // Show target
+                const target = contents[tabId];
+                if (target) target.classList.add('active');
+
+                // Activate nav link
+                document.querySelectorAll('.nav-links a[data-tab]').forEach(a => {
+                    if (a.dataset.tab === tabId) {
+                        a.classList.add('active');
+                    }
+                });
+
+                // Close mobile menu
+                document.getElementById('navLinks').classList.remove('open');
+
+                // Scroll to top of content
+                const headerHeight = document.getElementById('header').offsetHeight;
+                window.scrollTo({ top: headerHeight, behavior: 'smooth' });
+            }
+
+            // Navigation function exposed globally for quick items
+            window.navigateTo = function(tabId) {
+                activateTab(tabId);
+            };
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.dataset.tab;
+                    activateTab(tabId);
+                });
+            });
+
+            // Logo click goes to home
+            document.getElementById('logoLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                activateTab('home');
+            });
+
+            // ----- HAMBURGER -----
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', function() {
+                navLinks.classList.toggle('open');
+            });
+
+            // Close on link click
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                });
+            });
+
+            // ----- HEADER SCROLL -----
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', function() {
+                const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+                if (currentScroll > 20) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // ----- FAQ TOGGLE -----
+            window.toggleFaq = function(el) {
+                const item = el.closest('.faq-item');
+                if (item) {
+                    item.classList.toggle('open');
+                }
+            };
+
+            // ----- FORM SUBMISSIONS -----
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('✅ Mensagem enviada com sucesso! Nossa equipe responderá em breve.');
+                this.reset();
+            });
+
+        })();
+    </script>
+
+</body>
+</html>

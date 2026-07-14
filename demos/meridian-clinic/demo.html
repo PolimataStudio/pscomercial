@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meridian Clinic Studio · Portfólio</title>
+    <!-- Fonts: serifada + sans-serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Font Awesome (ícones finos) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* ============================================================
+           CSS CUSTOM PROPERTIES — Design System Premium
+           ============================================================ */
+        :root {
+            --color-primary: #0f2a3b;
+            --color-primary-light: #2a4b5e;
+            --color-secondary: #4b7b6e;
+            --color-secondary-light: #8eb3a8;
+            --color-accent: #c9a87c;
+            --color-bg: #faf8f5;
+            --color-card: #ffffff;
+            --color-text: #1e2a36;
+            --color-text-muted: #5e6f7a;
+            --color-text-light: #8c9da8;
+            --color-border: #e6e2db;
+            --color-shadow: rgba(15, 42, 59, 0.05);
+            --radius: 24px;
+            --radius-sm: 12px;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --max-width: 1200px;
+            --header-height: 72px;
+            --shadow-card: 0 4px 24px rgba(15, 42, 59, 0.04);
+            --shadow-hover: 0 12px 40px rgba(15, 42, 59, 0.08);
+        }
+
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ============================================================
+           SCROLLBAR
+           ============================================================ */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-secondary-light);
+            border-radius: 10px;
+        }
+
+        /* ============================================================
+           CONTAINER
+           ============================================================ */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+           HEADER / NAV
+           ============================================================ */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(250, 248, 245, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .logo {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--color-primary);
+        }
+        .logo span {
+            color: var(--color-secondary);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            transition: var(--transition);
+            position: relative;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-secondary);
+            transition: var(--transition);
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .nav-menu a.active {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            cursor: pointer;
+        }
+
+        /* ============================================================
+           SECTIONS — Gerais
+           ============================================================ */
+        section {
+            padding: 80px 0 60px;
+            scroll-margin-top: var(--header-height);
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-text-light);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--color-primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .section-title .highlight {
+            color: var(--color-secondary);
+            font-style: italic;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            color: var(--color-text-muted);
+            max-width: 640px;
+            margin-bottom: 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================================
+           HOME / HERO
+           ============================================================ */
+        #home {
+            padding-top: calc(var(--header-height) + 40px);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(160deg, #faf8f5 0%, #edf0ec 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(75, 123, 110, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content .hero-tagline {
+            font-family: var(--font-serif);
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--color-primary);
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-content .hero-tagline .italic {
+            font-style: italic;
+            color: var(--color-secondary);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--color-text-muted);
+            max-width: 440px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--color-primary);
+            color: #fff;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 16px rgba(15, 42, 59, 0.15);
+        }
+
+        .hero-cta:hover {
+            background: var(--color-primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(15, 42, 59, 0.20);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image .placeholder-img {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 1/1;
+            background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            box-shadow: 0 20px 60px rgba(75, 123, 110, 0.15);
+            position: relative;
+        }
+
+        .hero-image .placeholder-img::after {
+            content: '✦';
+            font-size: 4rem;
+            opacity: 0.15;
+            position: absolute;
+            bottom: 10%;
+            right: 10%;
+        }
+
+        .hero-image .placeholder-img span {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 12px 28px;
+            border-radius: 60px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* ============================================================
+           CLÍNICA (Institucional)
+           ============================================================ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            color: var(--color-text-muted);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .number {
+            font-family: var(--font-serif);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+
+        .stat-item .label {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 4px;
+        }
+
+        .about-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .about-image .placeholder-rect {
+            width: 100%;
+            max-width: 480px;
+            aspect-ratio: 4/3;
+            background: linear-gradient(145deg, #e8ece8, #d5ddd5);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-muted);
+            font-size: 1.2rem;
+            font-weight: 300;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--color-border);
+        }
+
+        /* ============================================================
+           ESPECIALIDADES
+           ============================================================ */
+        .specialties-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .specialty-card {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
+        }
+
+        .specialty-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--color-secondary-light);
+        }
+
+        .specialty-card .icon {
+            font-size: 2.4rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.6rem;
+        }
+
+        .specialty-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .specialty-card p {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        /* ============================================================
+           EQUIPE
+           ============================================================ */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .team-member {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+            box-shadow: var(--shadow-card);
+        }
+
+        .team-member:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-member .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary));
+            margin: 0 auto 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 300;
+            font-family: var(--font-serif);
+        }
+
+        .team-member h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .team-member .role {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            margin-top: 2px;
+        }
+
+        .team-member .bio {
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+            margin-top: 6px;
+        }
+
+        /* ============================================================
+           ESTRUTURA (com depoimentos e diferenciais)
+           ============================================================ */
+        .structure-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .structure-item {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.8rem 2rem;
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+            transition: var(--transition);
+        }
+
+        .structure-item:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .structure-item .icon {
+            font-size: 1.8rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .structure-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .structure-item p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Depoimentos */
+        .testimonials {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0 2.5rem;
+        }
+
+        .testimonial {
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            padding: 1.8rem 2rem;
+            border-left: 4px solid var(--color-secondary);
+            box-shadow: var(--shadow-card);
+        }
+
+        .testimonial .quote {
+            font-style: italic;
+            color: var(--color-text);
+            font-size: 0.95rem;
+        }
+
+        .testimonial .author {
+            margin-top: 0.8rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            font-size: 0.9rem;
+        }
+
+        .testimonial .author span {
+            font-weight: 400;
+            color: var(--color-text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Diferenciais */
+        .differentials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .differential {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--color-card);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            box-shadow: var(--shadow-card);
+        }
+
+        .differential .icon {
+            font-size: 2rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .differential h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .differential p {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+        }
+
+        /* ============================================================
+           CONTATO
+           ============================================================ */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .contact-info .info-item .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--color-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-secondary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .contact-info .info-item .text {
+            font-size: 0.95rem;
+        }
+        .contact-info .info-item .text strong {
+            display: block;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+        .contact-info .info-item .text span {
+            color: var(--color-text-muted);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--color-border);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            background: var(--color-card);
+            transition: var(--transition);
+            outline: none;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 3px rgba(75, 123, 110, 0.08);
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            padding: 12px 32px;
+            background: var(--color-primary);
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+            letter-spacing: 0.3px;
+        }
+
+        .contact-form button:hover {
+            background: var(--color-primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(15, 42, 59, 0.15);
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .site-footer {
+            background: var(--color-primary);
+            color: #fff;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .site-footer .footer-text {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            letter-spacing: 0.5px;
+        }
+
+        .site-footer .footer-text a {
+            color: #fff;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+        .site-footer .footer-text a:hover {
+            opacity: 1;
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-image .placeholder-img {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-stats {
+                justify-items: center;
+            }
+            .specialties-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .structure-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonials {
+                grid-template-columns: 1fr;
+            }
+            .differentials {
+                grid-template-columns: 1fr 1fr;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: var(--color-card);
+                position: absolute;
+                top: var(--header-height);
+                left: 0;
+                width: 100%;
+                padding: 1.5rem 2rem;
+                border-bottom: 1px solid var(--color-border);
+                box-shadow: var(--shadow-card);
+                gap: 1rem;
+            }
+
+            .nav-menu.open {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero-content .hero-tagline {
+                font-size: 2.4rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .specialties-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .differentials {
+                grid-template-columns: 1fr;
+            }
+            .about-stats {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 1rem;
+            }
+            .stat-item .number {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .specialties-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content .hero-tagline {
+                font-size: 2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .hero-image .placeholder-img {
+                max-width: 240px;
+            }
+        }
+
+        /* ============================================================
+           UTILITÁRIOS
+           ============================================================ */
+        .mt-2 {
+            margin-top: 2rem;
+        }
+        .mb-2 {
+            margin-bottom: 2rem;
+        }
+        .flex-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    HEADER
+    ============================================================ -->
+    <header class="site-header" id="header">
+        <div class="container">
+            <a href="#home" class="logo">Meridian<span>Clinic</span></a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="active">Início</a></li>
+                <li><a href="#clinica">Clínica</a></li>
+                <li><a href="#especialidades">Especialidades</a></li>
+                <li><a href="#equipe">Equipe</a></li>
+                <li><a href="#estrutura">Estrutura</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- ============================================================
+    HOME
+    ============================================================ -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-tagline">
+                        Cuidado que <br /><span class="italic">transforma</span> vidas
+                    </div>
+                    <p>
+                        Na Meridian Clinic, unimos excelência técnica e acolhimento humano.
+                        Uma experiência de saúde que vai além do consultório.
+                    </p>
+                    <a href="#contato" class="hero-cta">Agende sua consulta</a>
+                </div>
+                <div class="hero-image">
+                    <div class="placeholder-img">
+                        <span>Meridian</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CLÍNICA
+    ============================================================ -->
+    <section id="clinica">
+        <div class="container">
+            <div class="section-label">Sobre nós</div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="section-title">Uma clínica <span class="highlight">com alma</span></h2>
+                    <p>
+                        Fundada com o propósito de redefinir a experiência em saúde, a Meridian Clinic
+                        combina conhecimento médico de ponta com um ambiente pensado para o bem-estar
+                        integral do paciente.
+                    </p>
+                    <p>
+                        Nossa abordagem é centrada na pessoa, com escuta ativa, plano de cuidado
+                        personalizado e acompanhamento contínuo. Acreditamos que confiança se constrói
+                        com transparência, respeito e resultados.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="number">12+</div>
+                            <div class="label">Anos de experiência</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">8</div>
+                            <div class="label">Especialidades</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">4.9 ★</div>
+                            <div class="label">Avaliação dos pacientes</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="placeholder-rect">
+                        <i class="fas fa-clinic-medical" style="font-size:3rem; opacity:0.3; margin-right:8px;"></i>
+                        Espaço acolhedor
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ESPECIALIDADES
+    ============================================================ -->
+    <section id="especialidades" style="background:#f4f6f3;">
+        <div class="container">
+            <div class="section-label text-center">Nossas áreas</div>
+            <h2 class="section-title text-center">Especialidades <span class="highlight">integradas</span></h2>
+            <p class="section-desc text-center" style="max-width:560px;">
+                Atendimento multidisciplinar com foco na sua saúde completa.
+            </p>
+            <div class="specialties-grid">
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-user-md"></i></div>
+                    <h4>Clínica Geral</h4>
+                    <p>Consultas e prevenção</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4>Cardiologia</h4>
+                    <p>Saúde do coração</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-female"></i></div>
+                    <h4>Ginecologia</h4>
+                    <p>Saúde da mulher</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-bone"></i></div>
+                    <h4>Ortopedia</h4>
+                    <p>Movimento e qualidade de vida</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-brain"></i></div>
+                    <h4>Psicologia</h4>
+                    <p>Equilíbrio emocional</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-apple-alt"></i></div>
+                    <h4>Nutrição</h4>
+                    <p>Alimentação que cura</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-allergies"></i></div>
+                    <h4>Dermatologia</h4>
+                    <p>Cuidados com a pele</p>
+                </div>
+                <div class="specialty-card">
+                    <div class="icon"><i class="fas fa-child"></i></div>
+                    <h4>Pediatria</h4>
+                    <p>Saúde infantil</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    EQUIPE
+    ============================================================ -->
+    <section id="equipe">
+        <div class="container">
+            <div class="section-label text-center">Profissionais</div>
+            <h2 class="section-title text-center">Equipe <span class="highlight">Meridian</span></h2>
+            <p class="section-desc text-center" style="max-width:540px;">
+                Médicos e terapeutas com vasta experiência e dedicação ao cuidado humanizado.
+            </p>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="avatar">DS</div>
+                    <h4>Dra. Daniela Santos</h4>
+                    <div class="role">Clínica Geral · CRM 12345</div>
+                    <div class="bio">15 anos de experiência em medicina preventiva.</div>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">RM</div>
+                    <h4>Dr. Rodrigo Martins</h4>
+                    <div class="role">Cardiologia · CRM 67890</div>
+                    <div class="bio">Especialista em hipertensão e insuficiência cardíaca.</div>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">CL</div>
+                    <h4>Dra. Camila Lima</h4>
+                    <div class="role">Ginecologia · CRM 11223</div>
+                    <div class="bio">Referência em saúde da mulher e reprodução assistida.</div>
+                </div>
+                <div class="team-member">
+                    <div class="avatar">PF</div>
+                    <h4>Dr. Paulo Ferreira</h4>
+                    <div class="role">Ortopedia · CRM 44556</div>
+                    <div class="bio">Especialista em cirurgias minimamente invasivas.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    ESTRUTURA (com depoimentos e diferenciais)
+    ============================================================ -->
+    <section id="estrutura" style="background:#f4f6f3;">
+        <div class="container">
+            <div class="section-label text-center">Infraestrutura</div>
+            <h2 class="section-title text-center">Ambiente pensado <span class="highlight">para você</span></h2>
+            <p class="section-desc text-center" style="max-width:560px;">
+                Conforto, tecnologia e acolhimento em cada detalhe.
+            </p>
+
+            <div class="structure-grid">
+                <div class="structure-item">
+                    <div class="icon"><i class="fas fa-building"></i></div>
+                    <h4>Espaço Acolhedor</h4>
+                    <p>Salas amplas, iluminação natural e design que transmite tranquilidade.</p>
+                </div>
+                <div class="structure-item">
+                    <div class="icon"><i class="fas fa-microscope"></i></div>
+                    <h4>Tecnologia de Ponta</h4>
+                    <p>Equipamentos modernos para diagnóstico preciso e confiável.</p>
+                </div>
+                <div class="structure-item">
+                    <div class="icon"><i class="fas fa-clock"></i></div>
+                    <h4>Horário Estendido</h4>
+                    <p>Atendimento de segunda a sábado, com flexibilidade para sua rotina.</p>
+                </div>
+                <div class="structure-item">
+                    <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h4>Cuidado Continuado</h4>
+                    <p>Acompanhamento pós-consulta e programas de prevenção personalizados.</p>
+                </div>
+            </div>
+
+            <!-- Depoimentos -->
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="quote">“Desde que comecei a ser atendida na Meridian, minha qualidade de vida melhorou muito. A equipe é atenciosa e sempre explica tudo com clareza.”</div>
+                    <div class="author">Mariana Oliveira <span>· Paciente</span></div>
+                </div>
+                <div class="testimonial">
+                    <div class="quote">“O atendimento humanizado e a estrutura impecável fazem toda a diferença. Recomendo a todos que buscam um cuidado de verdade.”</div>
+                    <div class="author">Carlos Eduardo <span>· Paciente</span></div>
+                </div>
+            </div>
+
+            <!-- Diferenciais -->
+            <div class="section-label text-center" style="margin-top:2rem;">Por que escolher a Meridian</div>
+            <div class="differentials">
+                <div class="differential">
+                    <div class="icon"><i class="fas fa-star"></i></div>
+                    <h4>Excelência Reconhecida</h4>
+                    <p>Prêmios e certificações que atestam a qualidade do nosso atendimento.</p>
+                </div>
+                <div class="differential">
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <h4>Equipe Multidisciplinar</h4>
+                    <p>Diferentes especialidades trabalhando em conjunto para o seu bem-estar.</p>
+                </div>
+                <div class="differential">
+                    <div class="icon"><i class="fas fa-comment-dots"></i></div>
+                    <h4>Comunicação Transparente</h4>
+                    <p>Orientações claras e acesso fácil a exames e resultados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    CONTATO
+    ============================================================ -->
+    <section id="contato">
+        <div class="container">
+            <div class="section-label text-center">Fale conosco</div>
+            <h2 class="section-title text-center">Agende sua <span class="highlight">consulta</span></h2>
+            <p class="section-desc text-center" style="max-width:500px;">
+                Estamos prontos para cuidar de você. Entre em contato e agende seu horário.
+            </p>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="text">
+                            <strong>Telefone</strong>
+                            <span>(11) 3456-7890</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="text">
+                            <strong>WhatsApp</strong>
+                            <span>(11) 98765-4321</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div class="text">
+                            <strong>E-mail</strong>
+                            <span>contato@meridianclinic.com</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="text">
+                            <strong>Endereço</strong>
+                            <span>Av. das Clínicas, 500 · São Paulo, SP</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="icon"><i class="fas fa-clock"></i></div>
+                        <div class="text">
+                            <strong>Horário de atendimento</strong>
+                            <span>Seg–Sex: 8h–20h · Sáb: 8h–14h</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Mensagem enviada! Em breve entraremos em contato.');">
+                    <input type="text" placeholder="Seu nome" required />
+                    <input type="email" placeholder="Seu e-mail" required />
+                    <input type="tel" placeholder="Telefone" required />
+                    <textarea placeholder="Como podemos ajudá-lo?"></textarea>
+                    <button type="submit">Enviar mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-text">
+                &copy; 2026 Meridian Clinic Studio · Todos os direitos reservados.
+                <br />
+                <a href="#home">Início</a> · <a href="#clinica">Clínica</a> · <a href="#contato">Contato</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT — Navegação suave e menu mobile
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // MOBILE TOGGLE
+            // ============================================================
+            const toggleBtn = document.getElementById('mobileToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = navMenu.querySelectorAll('a');
+
+            toggleBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('open');
+                const icon = this.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-times');
+            });
+
+            // Fecha o menu ao clicar em um link
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('open');
+                    const icon = toggleBtn.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-times');
+                });
+            });
+
+            // ============================================================
+            // ACTIVE LINK DESTAQUE (scroll spy)
+            // ============================================================
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = navLinks;
+
+            function updateActiveLink() {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    if (window.scrollY >= sectionTop) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navItems.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + current) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateActiveLink);
+            window.addEventListener('load', updateActiveLink);
+
+            // ============================================================
+            // SMOOTH SCROLL (fallback para navegadores antigos)
+            // ============================================================
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    const target = document.querySelector(href);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // ============================================================
+            // KEYBOARD SHORTCUTS (1-6 para navegar)
+            // ============================================================
+            document.addEventListener('keydown', (e) => {
+                const num = parseInt(e.key);
+                if (num >= 1 && num <= 6) {
+                    const ids = ['home', 'clinica', 'especialidades', 'equipe', 'estrutura', 'contato'];
+                    const target = document.getElementById(ids[num - 1]);
+                    if (target) {
+                        e.preventDefault();
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+
+            console.log('✨ Meridian Clinic Studio — Portfólio carregado com sucesso.');
+            console.log('📌 Use as teclas 1-6 para navegar pelas seções.');
+
+        })();
+    </script>
+
+</body>
+</html>

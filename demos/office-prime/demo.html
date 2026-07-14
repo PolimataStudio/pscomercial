@@ -1,0 +1,2440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Office Prime · Consultório Odontológico</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0A2647;
+            --primary-dark: #051525;
+            --primary-light: #1A3A5C;
+            --secondary: #2A9D8F;
+            --secondary-light: #D4F0E8;
+            --accent: #F5A623;
+            --accent-light: #FCE4C8;
+            --white: #FFFFFF;
+            --gray-50: #F8FAFC;
+            --gray-100: #F1F5F9;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            --shadow-sm: 0 2px 12px rgba(10, 38, 71, 0.05);
+            --shadow-md: 0 8px 32px rgba(10, 38, 71, 0.08);
+            --shadow-lg: 0 20px 60px rgba(10, 38, 71, 0.12);
+            --shadow-xl: 0 30px 80px rgba(10, 38, 71, 0.16);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-full: 50px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font: 'Inter', sans-serif;
+            --max-width: 1160px;
+            --nav-height: 72px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+                   TYPOGRAPHY
+                   ============================================================ */
+        .section-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--secondary);
+            background: var(--secondary-light);
+            padding: 4px 16px;
+            border-radius: var(--radius-full);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+        }
+        .section-title span {
+            color: var(--secondary);
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 560px;
+            margin-bottom: 28px;
+        }
+        .section-subtitle.centered {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        .text-center .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================================
+                   BUTTONS
+                   ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 13px 32px;
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--secondary);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(42, 157, 143, 0.30);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.10), transparent 60%);
+            pointer-events: none;
+        }
+        .btn:hover {
+            background: #21867A;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(42, 157, 143, 0.35);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(10, 38, 71, 0.25);
+        }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 8px 32px rgba(10, 38, 71, 0.30);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            box-shadow: none;
+            border: 2px solid var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(10, 38, 71, 0.20);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: none;
+        }
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.30);
+        }
+        .btn-whatsapp:hover {
+            background: #1DA851;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.35);
+        }
+
+        .btn-lg {
+            font-size: 1.05rem;
+            padding: 16px 40px;
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* ============================================================
+                   NAVIGATION – multi-page tabs
+                   ============================================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(10, 38, 71, 0.04);
+            padding: 0 24px;
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--primary);
+            letter-spacing: -0.3px;
+            cursor: pointer;
+        }
+        .nav-logo i {
+            font-size: 1.5rem;
+            color: var(--secondary);
+        }
+        .nav-logo span {
+            color: var(--gray-900);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .nav-links .nav-item {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font);
+        }
+        .nav-links .nav-item:hover {
+            color: var(--primary);
+            background: rgba(10, 38, 71, 0.04);
+        }
+        .nav-links .nav-item.active {
+            color: var(--primary);
+            background: rgba(10, 38, 71, 0.06);
+            font-weight: 600;
+        }
+        .nav-links .nav-item.cta-btn {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 8px 22px;
+        }
+        .nav-links .nav-item.cta-btn:hover {
+            background: #21867A;
+            color: var(--white);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 6px;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--gray-800);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .nav-hamburger.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .nav-hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .nav-hamburger.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* ============================================================
+                   PAGE SYSTEM – multi-page with transitions
+                   ============================================================ */
+        .page {
+            display: none;
+            animation: pageFadeIn 0.5s ease forwards;
+            padding-top: var(--nav-height);
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+                   HERO (HOME)
+                   ============================================================ */
+        .hero-home {
+            padding: 40px 0 60px;
+            background: linear-gradient(165deg, #F0F7FA 0%, #E4EEF5 40%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-home::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(42, 157, 143, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-home::after {
+            content: '';
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(10, 38, 71, 0.03) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-home .container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+        .hero-content h1 span {
+            color: var(--secondary);
+            position: relative;
+        }
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: rgba(42, 157, 143, 0.15);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .hero-content .hero-desc {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 480px;
+            margin-bottom: 24px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px 40px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(10, 38, 71, 0.06);
+        }
+        .hero-stats .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .hero-stats .stat-item .num {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+        .hero-stats .stat-item .label {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            width: 100%;
+            max-width: 420px;
+            transition: var(--transition);
+        }
+        .hero-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .hero-card .hc-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--secondary);
+            background: var(--secondary-light);
+            padding: 4px 14px;
+            border-radius: var(--radius-full);
+            margin-bottom: 12px;
+        }
+        .hero-card .hc-badge i {
+            font-size: 0.6rem;
+        }
+
+        .hero-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .hero-card .hc-sub {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-bottom: 16px;
+        }
+
+        .hero-card .hc-features {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+        .hero-card .hc-features span {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+        .hero-card .hc-features span i {
+            color: var(--secondary);
+            font-size: 0.8rem;
+            width: 18px;
+            text-align: center;
+        }
+
+        /* ============================================================
+                   CREDENTIALS BAR
+                   ============================================================ */
+        .credentials {
+            padding: 32px 0;
+            background: var(--white);
+            border-top: 1px solid var(--gray-200);
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .credentials-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 32px 56px;
+        }
+
+        .cred-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: var(--gray-600);
+        }
+        .cred-item i {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            opacity: 0.7;
+        }
+        .cred-item strong {
+            color: var(--gray-900);
+        }
+
+        /* ============================================================
+                   SERVICES PREVIEW (home)
+                   ============================================================ */
+        .services-preview {
+            padding: 64px 0 72px;
+            background: var(--gray-50);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 28px 20px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-md);
+        }
+        .service-card .sc-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--secondary-light);
+            color: var(--secondary);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        .service-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .service-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+
+        /* ============================================================
+                   PAGE: ABOUT
+                   ============================================================ */
+        .page-about {
+            padding: 40px 0 64px;
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-content .section-title {
+            font-size: 2.2rem;
+        }
+
+        .about-content .about-text {
+            color: var(--gray-600);
+            font-size: 1rem;
+            margin-bottom: 16px;
+        }
+
+        .about-values {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+        .about-values .value-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            padding: 10px 14px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+        }
+        .about-values .value-item i {
+            color: var(--secondary);
+        }
+
+        .about-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--gray-100);
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            color: var(--gray-400);
+            padding: 40px;
+            border: 1px solid var(--gray-200);
+        }
+        .about-image i {
+            font-size: 4rem;
+            color: var(--secondary);
+            opacity: 0.4;
+        }
+
+        /* ============================================================
+                   PAGE: SERVICES (detalhado)
+                   ============================================================ */
+        .page-services {
+            padding: 40px 0 64px;
+            background: var(--white);
+        }
+
+        .services-detailed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .service-detailed-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .service-detailed-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+        .service-detailed-card .sdc-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        .service-detailed-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .service-detailed-card p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-bottom: 12px;
+        }
+        .service-detailed-card .sdc-meta {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .service-detailed-card .sdc-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .service-detailed-card .sdc-meta i {
+            color: var(--secondary);
+        }
+
+        /* ============================================================
+                   PAGE: SCHEDULE / AGENDA
+                   ============================================================ */
+        .page-schedule {
+            padding: 40px 0 64px;
+            background: var(--gray-50);
+        }
+
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .schedule-info .si-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+        .schedule-info .si-item:hover {
+            border-color: var(--secondary);
+        }
+        .schedule-info .si-item i {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            width: 24px;
+            text-align: center;
+        }
+        .schedule-info .si-item .si-text {
+            font-size: 0.95rem;
+            color: var(--gray-700);
+        }
+        .schedule-info .si-item .si-text strong {
+            color: var(--gray-900);
+        }
+
+        .schedule-form {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            border: 1px solid var(--gray-200);
+            box-shadow: var(--shadow-sm);
+        }
+        .schedule-form h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .schedule-form .form-sub {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-bottom: 20px;
+        }
+        .schedule-form .form-group {
+            margin-bottom: 14px;
+        }
+        .schedule-form .form-group input,
+        .schedule-form .form-group select,
+        .schedule-form .form-group textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.95rem;
+            color: var(--gray-800);
+            background: var(--gray-50);
+            transition: var(--transition);
+            outline: none;
+        }
+        .schedule-form .form-group input:focus,
+        .schedule-form .form-group select:focus,
+        .schedule-form .form-group textarea:focus {
+            border-color: var(--secondary);
+            background: var(--white);
+            box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.08);
+        }
+        .schedule-form .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .schedule-form .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        /* ============================================================
+                   PAGE: TESTIMONIALS
+                   ============================================================ */
+        .page-testimonials {
+            padding: 40px 0 64px;
+            background: var(--white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .testimonial-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .testimonial-card:hover {
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+        .testimonial-card .stars {
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+        .testimonial-card blockquote {
+            font-size: 0.95rem;
+            color: var(--gray-700);
+            font-style: italic;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .testimonial-card .author .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gray-300);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .testimonial-card .author .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gray-900);
+        }
+        .testimonial-card .author .role {
+            font-size: 0.75rem;
+            color: var(--gray-400);
+        }
+
+        /* ============================================================
+                   PAGE: FAQ
+                   ============================================================ */
+        .page-faq {
+            padding: 40px 0 64px;
+            background: var(--gray-50);
+        }
+
+        .faq-list {
+            max-width: 780px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .faq-item:hover {
+            border-color: var(--gray-300);
+        }
+        .faq-item.active {
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 24px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--gray-900);
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font);
+            gap: 16px;
+            transition: var(--transition);
+        }
+        .faq-question:hover {
+            color: var(--secondary);
+        }
+        .faq-question i {
+            font-size: 0.9rem;
+            color: var(--gray-400);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--secondary);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s ease;
+            padding: 0 24px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 24px 24px;
+        }
+        .faq-answer p {
+            color: var(--gray-600);
+            font-size: 0.92rem;
+            margin: 0;
+        }
+
+        /* ============================================================
+                   PAGE: CONTACT
+                   ============================================================ */
+        .page-contact {
+            padding: 40px 0 64px;
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-info .ci-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+        .contact-info .ci-item:hover {
+            border-color: var(--secondary);
+        }
+        .contact-info .ci-item i {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            width: 24px;
+            text-align: center;
+        }
+        .contact-info .ci-item .ci-text {
+            font-size: 0.95rem;
+            color: var(--gray-700);
+        }
+        .contact-info .ci-item .ci-text strong {
+            color: var(--gray-900);
+        }
+
+        .contact-map {
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            min-height: 220px;
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 8px;
+            color: var(--gray-400);
+            padding: 30px;
+            margin-top: 16px;
+        }
+        .contact-map i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            opacity: 0.5;
+        }
+
+        .contact-form {
+            background: var(--gray-50);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            border: 1px solid var(--gray-200);
+        }
+        .contact-form h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .contact-form .form-sub {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-bottom: 20px;
+        }
+        .contact-form .form-group {
+            margin-bottom: 14px;
+        }
+        .contact-form .form-group input,
+        .contact-form .form-group textarea {
+            width: 100%;
+            padding: 13px 16px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.95rem;
+            color: var(--gray-800);
+            background: var(--white);
+            transition: var(--transition);
+            outline: none;
+        }
+        .contact-form .form-group input:focus,
+        .contact-form .form-group textarea:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(42, 157, 143, 0.08);
+        }
+        .contact-form .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
+        .footer {
+            background: var(--primary);
+            color: rgba(255, 255, 255, 0.60);
+            padding: 32px 0 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-brand {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-brand i {
+            color: var(--secondary);
+        }
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        .footer-links .nav-item {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.50);
+            transition: var(--transition);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font);
+        }
+        .footer-links .nav-item:hover {
+            color: var(--white);
+        }
+        .footer-copy {
+            font-size: 0.75rem;
+            width: 100%;
+            text-align: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.35);
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-home .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+            }
+            .hero-content .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .hero-card {
+                margin: 0 auto;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-values {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .schedule-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --nav-height: 64px;
+            }
+
+            .navbar {
+                padding: 0 16px;
+                height: var(--nav-height);
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 16px 20px;
+                gap: 2px;
+                transform: translateY(-120%);
+                transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                box-shadow: var(--shadow-md);
+                border-bottom: 1px solid var(--gray-200);
+            }
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            .nav-links .nav-item {
+                width: 100%;
+                padding: 10px 16px;
+                font-size: 0.95rem;
+                text-align: left;
+            }
+            .nav-links .nav-item.cta-btn {
+                text-align: center;
+                margin-top: 4px;
+            }
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .hero-home {
+                padding: 24px 0 40px;
+                min-height: auto;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .hero-content .hero-desc {
+                font-size: 1rem;
+            }
+            .hero-card {
+                padding: 24px 18px;
+            }
+            .hero-stats .stat-item .num {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .about-values {
+                grid-template-columns: 1fr;
+            }
+
+            .schedule-form .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .credentials-grid {
+                gap: 16px 32px;
+            }
+            .cred-item {
+                font-size: 0.75rem;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .page {
+                padding-top: var(--nav-height);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.7rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+            .service-card {
+                padding: 20px 14px;
+            }
+            .service-card .sc-icon {
+                width: 44px;
+                height: 44px;
+                font-size: 1rem;
+            }
+
+            .services-detailed {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 20px 16px;
+            }
+            .schedule-form {
+                padding: 20px 16px;
+            }
+
+            .hero-card .hc-features span {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* ============================================================
+                   REVEAL ANIMATIONS
+                   ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.08s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.16s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.24s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.32s;
+        }
+
+        /* ============================================================
+                   WHATSAPP FLOATING BUTTON
+                   ============================================================ */
+        .wa-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .wa-float .wa-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            color: var(--white);
+            font-size: 1.8rem;
+            box-shadow: 0 4px 28px rgba(37, 211, 102, 0.40);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            animation: waPulse 2.5s infinite;
+        }
+        .wa-float .wa-btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 48px rgba(37, 211, 102, 0.50);
+        }
+
+        @keyframes waPulse {
+            0%,
+            100% {
+                box-shadow: 0 4px 28px rgba(37, 211, 102, 0.40);
+            }
+            50% {
+                box-shadow: 0 4px 48px rgba(37, 211, 102, 0.60);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .wa-float {
+                bottom: 16px;
+                right: 16px;
+            }
+            .wa-float .wa-btn {
+                width: 52px;
+                height: 52px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* ============================================================
+                   BACK TO TOP
+                   ============================================================ */
+        .back-top {
+            position: fixed;
+            bottom: 100px;
+            right: 28px;
+            z-index: 998;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        .back-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .back-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 640px) {
+            .back-top {
+                bottom: 80px;
+                right: 20px;
+                width: 38px;
+                height: 38px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    WHATSAPP FLOATING
+    ============================================================ -->
+    <div class="wa-float">
+        <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" class="wa-btn" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- ============================================================
+    BACK TO TOP
+    ============================================================ -->
+    <button class="back-top" id="backTop" aria-label="Voltar ao topo">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Navegação">
+        <div class="nav-inner">
+            <div class="nav-logo" data-page="home">
+                <i class="fas fa-tooth"></i>
+                Office<span>Prime</span>
+            </div>
+
+            <div class="nav-links" id="navLinks">
+                <button class="nav-item active" data-page="home">Início</button>
+                <button class="nav-item" data-page="about">Sobre</button>
+                <button class="nav-item" data-page="services">Serviços</button>
+                <button class="nav-item" data-page="schedule">Agenda</button>
+                <button class="nav-item" data-page="testimonials">Depoimentos</button>
+                <button class="nav-item" data-page="faq">FAQ</button>
+                <button class="nav-item" data-page="contact">Contato</button>
+                <button class="nav-item cta-btn" data-page="schedule">
+                    <i class="fas fa-calendar-check"></i> Agendar
+                </button>
+            </div>
+
+            <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    PAGE: HOME
+    ============================================================ -->
+    <section class="page active" id="page-home" role="tabpanel">
+        <!-- Hero -->
+        <div class="hero-home">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="section-tag"><i class="fas fa-star"></i> Excelência em odontologia</span>
+                    <h1>Cuidado que <span>transforma</span> sorrisos</h1>
+                    <p class="hero-desc">
+                        Um consultório moderno, com equipe especializada e tecnologia de ponta
+                        para oferecer o melhor tratamento odontológico com acolhimento e precisão.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button class="btn btn-primary btn-lg" data-page="schedule">
+                            <i class="fas fa-calendar-check"></i> Agendar consulta
+                        </button>
+                        <a href="https://wa.me/5511999999999?text=Olá!%20Gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="num">+2.800</span>
+                            <span class="label">Pacientes atendidos</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="num">4.9</span>
+                            <span class="label">Avaliação média</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="num">12</span>
+                            <span class="label">Anos de experiência</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="num">98%</span>
+                            <span class="label">Satisfação dos pacientes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-card">
+                        <div class="hc-badge">
+                            <i class="fas fa-circle" style="font-size:0.4rem;"></i> Atendimento humanizado
+                        </div>
+                        <h3>Pronto para cuidar de você</h3>
+                        <p class="hc-sub">Agendamento rápido, sem burocracia e com total transparência.</p>
+                        <div class="hc-features">
+                            <span><i class="fas fa-check"></i> Equipe especializada</span>
+                            <span><i class="fas fa-check"></i> Tecnologia moderna</span>
+                            <span><i class="fas fa-check"></i> Ambiente acolhedor</span>
+                            <span><i class="fas fa-check"></i> Planos e convênios</span>
+                        </div>
+                        <button class="btn btn-primary btn-block" data-page="schedule">
+                            <i class="fas fa-calendar-check"></i> Marcar horário
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Credentials -->
+        <div class="credentials">
+            <div class="container">
+                <div class="credentials-grid">
+                    <span class="cred-item"><i class="fas fa-certificate"></i> <strong>Especialistas</strong> qualificados</span>
+                    <span class="cred-item"><i class="fas fa-microscope"></i> <strong>Tecnologia</strong> de ponta</span>
+                    <span class="cred-item"><i class="fas fa-hand-holding-heart"></i> <strong>Atendimento</strong> humanizado</span>
+                    <span class="cred-item"><i class="fas fa-clock"></i> <strong>Horários</strong> flexíveis</span>
+                    <span class="cred-item"><i class="fas fa-shield-alt"></i> <strong>Segurança</strong> e confiança</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Preview -->
+        <div class="services-preview">
+            <div class="container">
+                <div class="text-center reveal">
+                    <span class="section-tag"><i class="fas fa-tooth"></i> Especialidades</span>
+                    <h2 class="section-title">Nossos <span>serviços</span></h2>
+                    <p class="section-subtitle centered">
+                        Oferecemos uma ampla gama de tratamentos para cuidar da sua saúde bucal.
+                    </p>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-card reveal reveal-delay-1">
+                        <div class="sc-icon"><i class="fas fa-stethoscope"></i></div>
+                        <h4>Avaliação completa</h4>
+                        <p>Diagnóstico preciso e plano personalizado</p>
+                    </div>
+                    <div class="service-card reveal reveal-delay-2">
+                        <div class="sc-icon"><i class="fas fa-spa"></i></div>
+                        <h4>Limpeza &amp; profilaxia</h4>
+                        <p>Prevenção e manutenção da saúde bucal</p>
+                    </div>
+                    <div class="service-card reveal reveal-delay-3">
+                        <div class="sc-icon"><i class="fas fa-sun"></i></div>
+                        <h4>Clareamento dental</h4>
+                        <p>Dentes mais brancos e sorriso renovado</p>
+                    </div>
+                    <div class="service-card reveal reveal-delay-4">
+                        <div class="sc-icon"><i class="fas fa-crown"></i></div>
+                        <h4>Implantes e próteses</h4>
+                        <p>Recuperação estética e funcional</p>
+                    </div>
+                    <div class="service-card reveal reveal-delay-1">
+                        <div class="sc-icon"><i class="fas fa-bolt"></i></div>
+                        <h4>Ortodontia</h4>
+                        <p>Aparelhos fixos e removíveis</p>
+                    </div>
+                    <div class="service-card reveal reveal-delay-2">
+                        <div class="sc-icon"><i class="fas fa-heartbeat"></i></div>
+                        <h4>Urgência odontológica</h4>
+                        <p>Atendimento rápido para emergências</p>
+                    </div>
+                    <div class="service-card reveal reveal-delay-3">
+                        <div class="sc-icon"><i class="fas fa-baby"></i></div>
+                        <h4>Odontopediatria</h4>
+                        <p>Atendimento especializado para crianças</p>
+                    </div>
+                    <div class="service-card reveal reveal-delay-4">
+                        <div class="sc-icon"><i class="fas fa-smile"></i></div>
+                        <h4>Harmonização facial</h4>
+                        <p>Equilíbrio e estética do sorriso</p>
+                    </div>
+                </div>
+
+                <div class="text-center" style="margin-top:32px;">
+                    <button class="btn btn-primary" data-page="services">
+                        <i class="fas fa-arrow-right"></i> Ver todos os serviços
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: ABOUT
+    ============================================================ -->
+    <section class="page page-about" id="page-about" role="tabpanel">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content reveal">
+                    <span class="section-tag"><i class="fas fa-info-circle"></i> Quem somos</span>
+                    <h2 class="section-title">Um consultório que <span>cuida</span> de você</h2>
+                    <p class="about-text">
+                        O Office Prime nasceu da paixão por transformar sorrisos e proporcionar
+                        experiências odontológicas humanizadas. Nossa missão é oferecer tratamentos
+                        de excelência com acolhimento, transparência e tecnologia de ponta.
+                    </p>
+                    <p class="about-text">
+                        Com mais de 12 anos de experiência, nossa equipe é formada por profissionais
+                        dedicados que acreditam que um sorriso saudável é a base da autoestima e
+                        da qualidade de vida.
+                    </p>
+
+                    <div class="about-values">
+                        <div class="value-item"><i class="fas fa-heart"></i> Empatia</div>
+                        <div class="value-item"><i class="fas fa-hand-holding-heart"></i> Acolhimento</div>
+                        <div class="value-item"><i class="fas fa-flask"></i> Inovação</div>
+                        <div class="value-item"><i class="fas fa-shield-alt"></i> Confiança</div>
+                        <div class="value-item"><i class="fas fa-users"></i> Respeito</div>
+                        <div class="value-item"><i class="fas fa-star"></i> Excelência</div>
+                    </div>
+                </div>
+
+                <div class="about-image reveal reveal-delay-2">
+                    <i class="fas fa-tooth"></i>
+                    <h4 style="color:var(--gray-700);font-size:1.1rem;">Espaço moderno e acolhedor</h4>
+                    <p style="color:var(--gray-500);font-size:0.9rem;max-width:280px;text-align:center;">
+                        Ambientes planejados para seu conforto e bem-estar.
+                    </p>
+                    <div style="display:flex;gap:8px;margin-top:4px;">
+                        <span style="background:var(--secondary-light);color:var(--secondary);padding:4px 14px;border-radius:50px;font-size:0.7rem;font-weight:600;">
+                            <i class="fas fa-check"></i> 4 consultórios
+                        </span>
+                        <span style="background:var(--secondary-light);color:var(--secondary);padding:4px 14px;border-radius:50px;font-size:0.7rem;font-weight:600;">
+                            <i class="fas fa-check"></i> Raio-X digital
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: SERVICES (detalhado)
+    ============================================================ -->
+    <section class="page page-services" id="page-services" role="tabpanel">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag"><i class="fas fa-list"></i> Tratamentos</span>
+                <h2 class="section-title">Nossos <span>serviços</span> em detalhe</h2>
+                <p class="section-subtitle centered">
+                    Conheça cada um dos nossos tratamentos e descubra como podemos transformar seu sorriso.
+                </p>
+            </div>
+
+            <div class="services-detailed">
+                <div class="service-detailed-card reveal reveal-delay-1">
+                    <div class="sdc-icon"><i class="fas fa-stethoscope"></i></div>
+                    <h4>Avaliação odontológica</h4>
+                    <p>Diagnóstico completo com exames clínicos e radiográficos para um plano de tratamento personalizado.</p>
+                    <div class="sdc-meta">
+                        <span><i class="fas fa-clock"></i> 50 min</span>
+                        <span><i class="fas fa-user-md"></i> Especialista</span>
+                    </div>
+                </div>
+
+                <div class="service-detailed-card reveal reveal-delay-2">
+                    <div class="sdc-icon"><i class="fas fa-spa"></i></div>
+                    <h4>Limpeza e profilaxia</h4>
+                    <p>Remoção de tártaro e placas bacterianas, com polimento e orientação de higiene bucal.</p>
+                    <div class="sdc-meta">
+                        <span><i class="fas fa-clock"></i> 40 min</span>
+                        <span><i class="fas fa-calendar"></i> Semestral</span>
+                    </div>
+                </div>
+
+                <div class="service-detailed-card reveal reveal-delay-3">
+                    <div class="sdc-icon"><i class="fas fa-sun"></i></div>
+                    <h4>Clareamento dental</h4>
+                    <p>Procedimento seguro e eficaz com tecnologia de última geração para dentes mais brancos.</p>
+                    <div class="sdc-meta">
+                        <span><i class="fas fa-clock"></i> 2 sessões</span>
+                        <span><i class="fas fa-star"></i> Resultado imediato</span>
+                    </div>
+                </div>
+
+                <div class="service-detailed-card reveal reveal-delay-4">
+                    <div class="sdc-icon"><i class="fas fa-crown"></i></div>
+                    <h4>Implantes dentários</h4>
+                    <p>Recuperação estética e funcional com implantes de titânio de alta qualidade e durabilidade.</p>
+                    <div class="sdc-meta">
+                        <span><i class="fas fa-clock"></i> 2-4 meses</span>
+                        <span><i class="fas fa-percent"></i> 98% de sucesso</span>
+                    </div>
+                </div>
+
+                <div class="service-detailed-card reveal reveal-delay-1">
+                    <div class="sdc-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Ortodontia</h4>
+                    <p>Aparelhos fixos, removíveis e alinhadores transparentes para corrigir o alinhamento dental.</p>
+                    <div class="sdc-meta">
+                        <span><i class="fas fa-clock"></i> 12-24 meses</span>
+                        <span><i class="fas fa-check-circle"></i> Acompanhamento</span>
+                    </div>
+                </div>
+
+                <div class="service-detailed-card reveal reveal-delay-2">
+                    <div class="sdc-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4>Urgência odontológica</h4>
+                    <p>Atendimento rápido para dores agudas, fraturas, abscessos e outras emergências.</p>
+                    <div class="sdc-meta">
+                        <span><i class="fas fa-clock"></i> Atendimento imediato</span>
+                        <span><i class="fas fa-phone"></i> Ligue agora</span>
+                    </div>
+                </div>
+
+                <div class="service-detailed-card reveal reveal-delay-3">
+                    <div class="sdc-icon"><i class="fas fa-baby"></i></div>
+                    <h4>Odontopediatria</h4>
+                    <p>Atendimento lúdico e especializado para crianças, com foco em prevenção e conforto.</p>
+                    <div class="sdc-meta">
+                        <span><i class="fas fa-clock"></i> 30-40 min</span>
+                        <span><i class="fas fa-smile"></i> Ambiente acolhedor</span>
+                    </div>
+                </div>
+
+                <div class="service-detailed-card reveal reveal-delay-4">
+                    <div class="sdc-icon"><i class="fas fa-smile"></i></div>
+                    <h4>Harmonização orofacial</h4>
+                    <p>Procedimentos estéticos para equilíbrio do sorriso e harmonia facial com resultados naturais.</p>
+                    <div class="sdc-meta">
+                        <span><i class="fas fa-clock"></i> 1-2 sessões</span>
+                        <span><i class="fas fa-star"></i> Resultados naturais</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: SCHEDULE
+    ============================================================ -->
+    <section class="page page-schedule" id="page-schedule" role="tabpanel">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag"><i class="fas fa-calendar-check"></i> Agendamento</span>
+                <h2 class="section-title">Marque sua <span>consulta</span></h2>
+                <p class="section-subtitle centered">
+                    Agende seu horário de forma rápida e prática. Nossa equipe retorna em até 2 horas.
+                </p>
+            </div>
+
+            <div class="schedule-grid">
+                <div class="schedule-info reveal">
+                    <div class="si-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="si-text">
+                            <strong>Horário de funcionamento</strong><br />
+                            Seg–Sex: 8h – 20h · Sáb: 8h – 14h
+                        </div>
+                    </div>
+                    <div class="si-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="si-text">
+                            <strong>Telefone</strong><br />
+                            (11) 99999-9999
+                        </div>
+                    </div>
+                    <div class="si-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div class="si-text">
+                            <strong>WhatsApp</strong><br />
+                            (11) 99999-9999
+                        </div>
+                    </div>
+                    <div class="si-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="si-text">
+                            <strong>Endereço</strong><br />
+                            Rua dos Sorrisos, 123 · Jardim Paulista, SP
+                        </div>
+                    </div>
+
+                    <div style="margin-top:16px;padding:16px 20px;background:var(--secondary-light);border-radius:var(--radius-sm);border:1px solid rgba(42,157,143,0.15);">
+                        <p style="font-size:0.9rem;color:var(--gray-700);">
+                            <i class="fas fa-info-circle" style="color:var(--secondary);"></i>
+                            <strong>Retorno em até 2 horas</strong> · Confirmamos seu horário rapidamente.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="schedule-form reveal reveal-delay-2">
+                    <h3>📋 Solicitar agendamento</h3>
+                    <p class="form-sub">Preencha os campos e nossa equipe entrará em contato.</p>
+
+                    <form id="scheduleForm" novalidate>
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu nome completo" required />
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="tel" placeholder="Telefone" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="E-mail" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Selecione o serviço</option>
+                                <option value="avaliacao">Avaliação completa</option>
+                                <option value="limpeza">Limpeza / Profilaxia</option>
+                                <option value="clareamento">Clareamento dental</option>
+                                <option value="implante">Implante dentário</option>
+                                <option value="ortodontia">Ortodontia</option>
+                                <option value="urgencia">Urgência odontológica</option>
+                                <option value="pediatria">Odontopediatria</option>
+                                <option value="harmonizacao">Harmonização orofacial</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Mensagem ou observações (opcional)"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                            <i class="fas fa-paper-plane"></i> Solicitar agendamento
+                        </button>
+                        <p style="font-size:0.7rem;color:var(--gray-400);text-align:center;margin-top:10px;">
+                            <i class="fas fa-lock"></i> Seus dados estão seguros. Não compartilhamos com terceiros.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: TESTIMONIALS
+    ============================================================ -->
+    <section class="page page-testimonials" id="page-testimonials" role="tabpanel">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag"><i class="fas fa-quote-right"></i> Depoimentos</span>
+                <h2 class="section-title">O que nossos <span>pacientes</span> dizem</h2>
+                <p class="section-subtitle centered">
+                    Histórias reais de quem confiou seu sorriso ao Office Prime.
+                </p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Atendimento impecável! Fui muito bem acolhida desde a primeira consulta. O resultado do clareamento superou minhas expectativas.”</blockquote>
+                    <div class="author">
+                        <div class="avatar">FC</div>
+                        <div>
+                            <div class="name">Fernanda Costa</div>
+                            <div class="role">Clareamento dental</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Profissionais muito atenciosos e explicam cada etapa. Meu implante ficou perfeito e me sinto muito mais confiante.”</blockquote>
+                    <div class="author">
+                        <div class="avatar">RM</div>
+                        <div>
+                            <div class="name">Ricardo Mendes</div>
+                            <div class="role">Implante dentário</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-3">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Levei minha filha para uma consulta e foi incrível! A equipe é super paciente e a clínica é muito acolhedora. Recomendo a todos.”</blockquote>
+                    <div class="author">
+                        <div class="avatar">AS</div>
+                        <div>
+                            <div class="name">Ana Silva</div>
+                            <div class="role">Odontopediatria</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-4">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Excelente atendimento de urgência! Estava com dor forte e fui atendido rapidamente. Profissionais muito competentes.”</blockquote>
+                    <div class="author">
+                        <div class="avatar">PL</div>
+                        <div>
+                            <div class="name">Paulo Lima</div>
+                            <div class="role">Urgência odontológica</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-1">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“Fiz a harmonização facial e adorei o resultado. A Dra. foi muito atenta e explicou todo o processo. Me sinto mais bonita e confiante!”</blockquote>
+                    <div class="author">
+                        <div class="avatar">JM</div>
+                        <div>
+                            <div class="name">Juliana M.</div>
+                            <div class="role">Harmonização facial</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal reveal-delay-2">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <blockquote>“O Office Prime é referência em odontologia. Atendimento de excelência, instalações modernas e equipe muito preparada.”</blockquote>
+                    <div class="author">
+                        <div class="avatar">CR</div>
+                        <div>
+                            <div class="name">Carlos R.</div>
+                            <div class="role">Ortodontia</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: FAQ
+    ============================================================ -->
+    <section class="page page-faq" id="page-faq" role="tabpanel">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag"><i class="fas fa-question-circle"></i> Dúvidas</span>
+                <h2 class="section-title">Perguntas <span>frequentes</span></h2>
+                <p class="section-subtitle centered">
+                    Respostas para as principais dúvidas dos nossos pacientes.
+                </p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item active reveal reveal-delay-1">
+                    <button class="faq-question">
+                        <span>Como funciona o primeiro atendimento?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>No primeiro atendimento, realizamos uma conversa detalhada para entender suas necessidades, seguida de uma avaliação clínica completa. Após exames, apresentamos um diagnóstico claro e um plano de tratamento personalizado.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal reveal-delay-2">
+                    <button class="faq-question">
+                        <span>Vocês aceitam planos de saúde?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim, trabalhamos com os principais planos de saúde odontológicos. Entre em contato para verificar a cobertura do seu plano e quais procedimentos estão inclusos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal reveal-delay-3">
+                    <button class="faq-question">
+                        <span>O tratamento é doloroso?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Utilizamos técnicas modernas de anestesia e sedação para garantir o máximo de conforto. Nossa equipe está treinada para minimizar qualquer desconforto durante os procedimentos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal reveal-delay-4">
+                    <button class="faq-question">
+                        <span>Quanto tempo dura uma consulta de avaliação?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>A consulta de avaliação dura em média 50 minutos, incluindo a conversa inicial, exames clínicos e radiográficos, e a apresentação do plano de tratamento.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal reveal-delay-1">
+                    <button class="faq-question">
+                        <span>Como agendar uma consulta de urgência?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Para urgências, entre em contato pelo telefone (11) 99999-9999 ou pelo WhatsApp. Nossa equipe está preparada para atender emergências com agilidade.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item reveal reveal-delay-2">
+                    <button class="faq-question">
+                        <span>Vocês têm estacionamento?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim, oferecemos estacionamento conveniado para nossos pacientes. Fique tranquilo, você terá facilidade para estacionar durante sua consulta.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: CONTACT
+    ============================================================ -->
+    <section class="page page-contact" id="page-contact" role="tabpanel">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-tag"><i class="fas fa-envelope"></i> Contato</span>
+                <h2 class="section-title">Fale <span>conosco</span></h2>
+                <p class="section-subtitle centered">
+                    Estamos aqui para responder suas dúvidas e agendar sua consulta.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="ci-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="ci-text">
+                            <strong>Telefone</strong><br />
+                            (11) 99999-9999
+                        </div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div class="ci-text">
+                            <strong>WhatsApp</strong><br />
+                            (11) 99999-9999
+                        </div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="ci-text">
+                            <strong>E-mail</strong><br />
+                            contato@officeprime.com.br
+                        </div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="ci-text">
+                            <strong>Endereço</strong><br />
+                            Rua dos Sorrisos, 123 · Jardim Paulista<br />
+                            São Paulo, SP · CEP 01234-567
+                        </div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="ci-text">
+                            <strong>Horário de funcionamento</strong><br />
+                            Seg–Sex: 8h – 20h · Sáb: 8h – 14h
+                        </div>
+                    </div>
+
+                    <div class="contact-map">
+                        <i class="fas fa-map"></i>
+                        <span style="font-weight:500;color:var(--gray-600);">📍 Nossa localização</span>
+                        <span style="font-size:0.8rem;color:var(--gray-400);">Clique para abrir no Google Maps</span>
+                        <div style="display:flex;gap:8px;margin-top:4px;">
+                            <a href="#" style="background:var(--primary);color:var(--white);padding:6px 18px;border-radius:50px;font-size:0.7rem;font-weight:600;">Abrir no Maps</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form reveal reveal-delay-2">
+                    <h3>📩 Envie uma mensagem</h3>
+                    <p class="form-sub">Respondemos em até 2 horas.</p>
+
+                    <form id="contactForm" novalidate>
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu nome" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Seu e-mail" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Telefone (opcional)" />
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Sua mensagem" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                            <i class="fas fa-paper-plane"></i> Enviar mensagem
+                        </button>
+                        <p style="font-size:0.7rem;color:var(--gray-400);text-align:center;margin-top:10px;">
+                            <i class="fas fa-lock"></i> Seus dados estão seguros.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <i class="fas fa-tooth"></i>
+                    OfficePrime
+                </div>
+                <div class="footer-links">
+                    <button class="nav-item" data-page="home">Início</button>
+                    <button class="nav-item" data-page="about">Sobre</button>
+                    <button class="nav-item" data-page="services">Serviços</button>
+                    <button class="nav-item" data-page="schedule">Agenda</button>
+                    <button class="nav-item" data-page="testimonials">Depoimentos</button>
+                    <button class="nav-item" data-page="faq">FAQ</button>
+                    <button class="nav-item" data-page="contact">Contato</button>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2026 Office Prime · Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // PAGE NAVIGATION SYSTEM
+            // ============================================================
+            const pages = {
+                home: document.getElementById('page-home'),
+                about: document.getElementById('page-about'),
+                services: document.getElementById('page-services'),
+                schedule: document.getElementById('page-schedule'),
+                testimonials: document.getElementById('page-testimonials'),
+                faq: document.getElementById('page-faq'),
+                contact: document.getElementById('page-contact')
+            };
+
+            const navButtons = document.querySelectorAll('.nav-item[data-page]');
+            const footerNavButtons = document.querySelectorAll('.footer-links .nav-item');
+            const logo = document.querySelector('.nav-logo');
+
+            let currentPage = 'home';
+
+            function navigateTo(pageId) {
+                if (!pageId || !pages[pageId]) return;
+
+                // Hide all pages
+                Object.keys(pages).forEach(key => {
+                    pages[key].classList.remove('active');
+                });
+
+                // Show target page
+                pages[pageId].classList.add('active');
+                currentPage = pageId;
+
+                // Update nav links
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.page === pageId) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Update footer nav links
+                footerNavButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.page === pageId) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Close mobile menu
+                navLinks.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Update URL hash
+                if (pageId === 'home') {
+                    history.pushState(null, '', window.location.pathname);
+                } else {
+                    history.pushState(null, '', '#' + pageId);
+                }
+            }
+
+            // Event listeners for nav buttons
+            navButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    navigateTo(this.dataset.page);
+                });
+            });
+
+            footerNavButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    navigateTo(this.dataset.page);
+                });
+            });
+
+            logo.addEventListener('click', function() {
+                navigateTo('home');
+            });
+
+            // Handle back/forward browser buttons
+            window.addEventListener('popstate', function() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && pages[hash]) {
+                    navigateTo(hash);
+                } else {
+                    navigateTo('home');
+                }
+            });
+
+            // Handle initial hash on load
+            window.addEventListener('DOMContentLoaded', function() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && pages[hash]) {
+                    navigateTo(hash);
+                } else {
+                    navigateTo('home');
+                }
+            });
+
+            // ============================================================
+            // NAVBAR SCROLL
+            // ============================================================
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // ============================================================
+            // HAMBURGER MENU
+            // ============================================================
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', function() {
+                const isOpen = navLinks.classList.toggle('open');
+                hamburger.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', isOpen);
+            });
+
+            // ============================================================
+            // BACK TO TOP
+            // ============================================================
+            const backTop = document.getElementById('backTop');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    backTop.classList.add('visible');
+                } else {
+                    backTop.classList.remove('visible');
+                }
+            });
+
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ============================================================
+            // FAQ ACCORDION
+            // ============================================================
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                if (question) {
+                    question.addEventListener('click', function() {
+                        const isActive = item.classList.contains('active');
+                        // Close all in the same page
+                        const parent = item.closest('.faq-list');
+                        if (parent) {
+                            parent.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                        }
+                        if (!isActive) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+
+            // ============================================================
+            // FORMS
+            // ============================================================
+            const scheduleForm = document.getElementById('scheduleForm');
+            if (scheduleForm) {
+                scheduleForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = this.querySelector('button[type="submit"]');
+                    const original = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                    btn.disabled = true;
+
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-check"></i> Solicitação enviada!';
+                        btn.style.background = '#2A9D8F';
+                        btn.style.boxShadow = '0 4px 20px rgba(42,157,143,0.4)';
+                        this.reset();
+
+                        setTimeout(() => {
+                            btn.innerHTML = original;
+                            btn.style.background = '';
+                            btn.style.boxShadow = '';
+                            btn.disabled = false;
+                        }, 3000);
+                    }, 1500);
+                });
+            }
+
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = this.querySelector('button[type="submit"]');
+                    const original = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                    btn.disabled = true;
+
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-check"></i> Mensagem enviada!';
+                        btn.style.background = '#2A9D8F';
+                        btn.style.boxShadow = '0 4px 20px rgba(42,157,143,0.4)';
+                        this.reset();
+
+                        setTimeout(() => {
+                            btn.innerHTML = original;
+                            btn.style.background = '';
+                            btn.style.boxShadow = '';
+                            btn.disabled = false;
+                        }, 3000);
+                    }, 1500);
+                });
+            }
+
+            // ============================================================
+            // REVEAL ON SCROLL (Intersection Observer)
+            // ============================================================
+            const revealElements = document.querySelectorAll('.reveal');
+
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.10,
+                rootMargin: '0px 0px -20px 0px'
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            // ============================================================
+            // KEYBOARD: ESC close menu
+            // ============================================================
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.focus();
+                }
+            });
+
+            console.log('🚀 Office Prime — Website carregado com sucesso!');
+        })();
+    </script>
+
+</body>
+</html>

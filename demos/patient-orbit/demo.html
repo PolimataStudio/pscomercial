@@ -1,0 +1,2221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Patient Orbit · Cuidado centrado em você</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ============================================================
+                   RESET & BASE – acolhedor e fluido
+                   ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1A6B8A;
+            --primary-dark: #0F4A62;
+            --primary-light: #4A9BBF;
+            --secondary: #5CB8A4;
+            --secondary-light: #D4F0E8;
+            --accent: #F2A65A;
+            --accent-light: #FCE4C8;
+            --warm-bg: #FFF8F0;
+            --white: #FFFFFF;
+            --gray-50: #F7FAFC;
+            --gray-100: #EDF2F7;
+            --gray-200: #E2E8F0;
+            --gray-300: #CBD5E1;
+            --gray-400: #94A3B8;
+            --gray-500: #64748B;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1E293B;
+            --gray-900: #0F172A;
+            --shadow-sm: 0 2px 12px rgba(26, 107, 138, 0.05);
+            --shadow-md: 0 8px 32px rgba(26, 107, 138, 0.08);
+            --shadow-lg: 0 20px 60px rgba(26, 107, 138, 0.10);
+            --shadow-xl: 0 30px 80px rgba(26, 107, 138, 0.14);
+            --radius: 20px;
+            --radius-sm: 12px;
+            --radius-full: 50px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font: 'Inter', sans-serif;
+            --max-width: 1160px;
+            --nav-height: 72px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--white);
+            color: var(--gray-800);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ============================================================
+                   TYPOGRAPHY – amigável e acolhedora
+                   ============================================================ */
+        .section-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--primary);
+            background: rgba(26, 107, 138, 0.06);
+            padding: 4px 16px;
+            border-radius: var(--radius-full);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.15;
+            color: var(--gray-900);
+            margin-bottom: 10px;
+        }
+        .section-title span {
+            color: var(--primary);
+            position: relative;
+        }
+        .section-title span::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: rgba(26, 107, 138, 0.12);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--gray-500);
+            max-width: 560px;
+            margin-bottom: 28px;
+        }
+        .section-subtitle.centered {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+        .text-center .section-subtitle {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============================================================
+                   BUTTONS – suaves e acolhedores
+                   ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 14px 32px;
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(26, 107, 138, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.10), transparent 60%);
+            pointer-events: none;
+        }
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(26, 107, 138, 0.30);
+        }
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(92, 184, 164, 0.25);
+        }
+        .btn-secondary:hover {
+            background: #4AA08E;
+            box-shadow: 0 8px 32px rgba(92, 184, 164, 0.30);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            box-shadow: none;
+            border: 2px solid var(--primary);
+        }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(26, 107, 138, 0.20);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            color: var(--gray-900);
+            box-shadow: 0 4px 20px rgba(242, 166, 90, 0.25);
+        }
+        .btn-accent:hover {
+            background: #E8953E;
+            box-shadow: 0 8px 32px rgba(242, 166, 90, 0.30);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255, 255, 255, 0.20);
+            box-shadow: none;
+        }
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .btn-lg {
+            font-size: 1.05rem;
+            padding: 16px 40px;
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.25);
+        }
+        .btn-whatsapp:hover {
+            background: #1DA851;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.30);
+        }
+
+        /* ============================================================
+                   NAVBAR – suave e acolhedora
+                   ============================================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border-bottom: 1px solid rgba(26, 107, 138, 0.04);
+            padding: 0 24px;
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-inner {
+            max-width: var(--max-width);
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--primary);
+            letter-spacing: -0.3px;
+            cursor: pointer;
+        }
+        .nav-logo i {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        .nav-logo span {
+            color: var(--gray-900);
+            font-weight: 300;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        .nav-links .nav-item {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-600);
+            padding: 8px 16px;
+            border-radius: var(--radius-full);
+            transition: var(--transition);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font);
+            position: relative;
+        }
+        .nav-links .nav-item:hover {
+            color: var(--primary);
+            background: rgba(26, 107, 138, 0.04);
+        }
+        .nav-links .nav-item.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        .nav-links .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 18px;
+            height: 3px;
+            border-radius: 4px;
+            background: var(--primary);
+        }
+        .nav-links .nav-item.cta-btn {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 8px 22px;
+        }
+        .nav-links .nav-item.cta-btn::after {
+            display: none;
+        }
+        .nav-links .nav-item.cta-btn:hover {
+            background: #4AA08E;
+            color: var(--white);
+        }
+
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 6px;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 26px;
+            height: 2.5px;
+            background: var(--gray-800);
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .nav-hamburger.active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .nav-hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .nav-hamburger.active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* ============================================================
+                   PAGE SYSTEM
+                   ============================================================ */
+        .page {
+            display: none;
+            animation: pageIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            padding-top: var(--nav-height);
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================================
+                   HERO – acolhedor e humano
+                   ============================================================ */
+        .hero-home {
+            padding: 40px 0 60px;
+            background: linear-gradient(165deg, #F0F7FA 0%, #E8F2F5 30%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+            min-height: 85vh;
+            display: flex;
+            align-items: center;
+        }
+        .hero-home::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(92, 184, 164, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-home::after {
+            content: '';
+            position: absolute;
+            bottom: -15%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(242, 166, 90, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-home .container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--gray-900);
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+        .hero-content h1 span {
+            color: var(--primary);
+            position: relative;
+        }
+        .hero-content h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: rgba(26, 107, 138, 0.12);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .hero-content .hero-desc {
+            font-size: 1.1rem;
+            color: var(--gray-600);
+            max-width: 480px;
+            margin-bottom: 20px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            align-items: center;
+        }
+
+        .hero-trust {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 32px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(26, 107, 138, 0.06);
+        }
+        .hero-trust span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+        .hero-trust span i {
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+
+        /* Decision Map – componente exclusivo */
+        .decision-map {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 32px 28px;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            width: 100%;
+            max-width: 440px;
+            transition: var(--transition);
+            margin-left: auto;
+        }
+        .decision-map:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .decision-map .dm-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--gray-700);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .decision-map .dm-title i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .decision-map .dm-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .decision-map .dm-option {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            background: var(--gray-50);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            font-weight: 500;
+        }
+        .decision-map .dm-option:hover {
+            border-color: var(--secondary);
+            background: var(--secondary-light);
+            transform: translateX(4px);
+        }
+        .decision-map .dm-option .dm-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(26, 107, 138, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .decision-map .dm-option .dm-arrow {
+            margin-left: auto;
+            color: var(--gray-300);
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        .decision-map .dm-option:hover .dm-arrow {
+            color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        /* ============================================================
+                   PAGE: COMEÇE AQUI (intenções)
+                   ============================================================ */
+        .page-start {
+            padding: 40px 0 60px;
+            background: var(--white);
+        }
+
+        .intent-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .intent-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            padding: 32px 24px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            text-align: center;
+        }
+        .intent-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-md);
+        }
+        .intent-card .ic-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(26, 107, 138, 0.06);
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+        .intent-card h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .intent-card p {
+            font-size: 0.9rem;
+            color: var(--gray-500);
+            margin-bottom: 16px;
+        }
+
+        /* ============================================================
+                   PAGE: SERVIÇOS
+                   ============================================================ */
+        .page-services {
+            padding: 40px 0 60px;
+            background: var(--gray-50);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 28px 22px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-md);
+        }
+        .service-card .sc-icon {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 8px;
+        }
+        .service-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 2px;
+        }
+        .service-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin: 0 0 10px;
+        }
+        .service-card .sc-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: rgba(26, 107, 138, 0.06);
+            padding: 2px 14px;
+            border-radius: var(--radius-full);
+        }
+
+        /* ============================================================
+                   PAGE: DÚVIDAS (FAQ + orientações)
+                   ============================================================ */
+        .page-faq {
+            padding: 40px 0 60px;
+            background: var(--white);
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .faq-item {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .faq-item:hover {
+            border-color: var(--gray-300);
+        }
+        .faq-item.active {
+            border-color: var(--secondary);
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--gray-900);
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: var(--font);
+            gap: 12px;
+            transition: var(--transition);
+        }
+        .faq-question:hover {
+            color: var(--primary);
+        }
+        .faq-question i {
+            font-size: 0.8rem;
+            color: var(--gray-400);
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+            color: var(--primary);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), padding 0.3s ease;
+            padding: 0 20px;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 20px 20px;
+        }
+        .faq-answer p {
+            color: var(--gray-600);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .faq-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-sidebar .fs-card {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            padding: 24px 22px;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .faq-sidebar .fs-card:hover {
+            border-color: var(--secondary);
+        }
+        .faq-sidebar .fs-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .faq-sidebar .fs-card p {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 12px;
+        }
+
+        /* ============================================================
+                   PAGE: EQUIPE
+                   ============================================================ */
+        .page-team {
+            padding: 40px 0 60px;
+            background: var(--gray-50);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .team-card {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 24px 16px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .team-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--secondary);
+            box-shadow: var(--shadow-sm);
+        }
+        .team-card .tc-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gray-200);
+            margin: 0 auto 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--gray-500);
+        }
+        .team-card h4 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .team-card p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+        .team-card .tc-tag {
+            display: inline-block;
+            margin-top: 6px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: var(--secondary);
+            background: var(--secondary-light);
+            padding: 2px 12px;
+            border-radius: var(--radius-full);
+        }
+
+        /* ============================================================
+                   PAGE: FALE CONOSCO
+                   ============================================================ */
+        .page-contact {
+            padding: 40px 0 60px;
+            background: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-info .ci-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            margin-bottom: 10px;
+            transition: var(--transition);
+        }
+        .contact-info .ci-item:hover {
+            border-color: var(--secondary);
+        }
+        .contact-info .ci-item i {
+            font-size: 1rem;
+            color: var(--secondary);
+            width: 22px;
+            text-align: center;
+        }
+        .contact-info .ci-item .ci-text {
+            font-size: 0.9rem;
+            color: var(--gray-700);
+        }
+        .contact-info .ci-item .ci-text strong {
+            color: var(--gray-900);
+        }
+
+        .contact-map {
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+            background: var(--gray-100);
+            min-height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 6px;
+            color: var(--gray-400);
+            padding: 20px;
+            margin-top: 10px;
+        }
+        .contact-map i {
+            font-size: 2rem;
+            color: var(--secondary);
+            opacity: 0.5;
+        }
+
+        .contact-form {
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+            padding: 28px 24px;
+            border: 1px solid var(--gray-200);
+        }
+        .contact-form h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+        }
+        .contact-form .form-sub {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            margin-bottom: 18px;
+        }
+        .contact-form .form-group {
+            margin-bottom: 12px;
+        }
+        .contact-form .form-group input,
+        .contact-form .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 0.9rem;
+            color: var(--gray-800);
+            background: var(--white);
+            transition: var(--transition);
+            outline: none;
+        }
+        .contact-form .form-group input:focus,
+        .contact-form .form-group textarea:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 4px rgba(92, 184, 164, 0.08);
+        }
+        .contact-form .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        /* ============================================================
+                   BLOCO "O QUE ESPERAR" – componente exclusivo
+                   ============================================================ */
+        .expect-block {
+            background: var(--warm-bg);
+            border-radius: var(--radius);
+            padding: 40px 36px;
+            border: 1px solid rgba(242, 166, 90, 0.10);
+            margin: 32px 0;
+        }
+
+        .expect-block .expect-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .expect-block .expect-title i {
+            color: var(--accent);
+        }
+
+        .expect-block .expect-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .expect-block .expect-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px 18px;
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--gray-200);
+            transition: var(--transition);
+        }
+        .expect-block .expect-item:hover {
+            border-color: var(--secondary);
+        }
+        .expect-block .expect-item .ei-icon {
+            font-size: 1.1rem;
+            color: var(--secondary);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .expect-block .expect-item .ei-text h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+        .expect-block .expect-item .ei-text p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+            margin: 0;
+        }
+
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
+        .footer {
+            background: var(--gray-900);
+            color: rgba(255, 255, 255, 0.50);
+            padding: 32px 0 20px;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-brand {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-brand i {
+            color: var(--accent);
+        }
+        .footer-links {
+            display: flex;
+            gap: 16px;
+        }
+        .footer-links .nav-item {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.40);
+            transition: var(--transition);
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: var(--font);
+        }
+        .footer-links .nav-item:hover {
+            color: var(--white);
+        }
+        .footer-copy {
+            font-size: 0.7rem;
+            width: 100%;
+            text-align: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            color: rgba(255, 255, 255, 0.25);
+        }
+
+        /* ============================================================
+                   WHATSAPP FLOATING
+                   ============================================================ */
+        .wa-float {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+        }
+        .wa-float a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25D366;
+            color: var(--white);
+            font-size: 1.6rem;
+            box-shadow: 0 4px 28px rgba(37, 211, 102, 0.30);
+            transition: var(--transition);
+        }
+        .wa-float a:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 48px rgba(37, 211, 102, 0.40);
+        }
+
+        @media (max-width: 640px) {
+            .wa-float {
+                bottom: 16px;
+                right: 16px;
+            }
+            .wa-float a {
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+            }
+        }
+
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
+        @media (max-width: 1024px) {
+            .hero-home .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 32px;
+            }
+            .hero-content .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .hero-trust {
+                justify-content: center;
+            }
+            .decision-map {
+                margin: 0 auto;
+            }
+
+            .intent-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .expect-block .expect-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --nav-height: 64px;
+            }
+
+            .navbar {
+                padding: 0 16px;
+                height: var(--nav-height);
+            }
+
+            .nav-links {
+                position: fixed;
+                top: var(--nav-height);
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 16px 20px;
+                gap: 2px;
+                transform: translateY(-120%);
+                transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                box-shadow: var(--shadow-md);
+                border-bottom: 1px solid var(--gray-200);
+            }
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            .nav-links .nav-item {
+                width: 100%;
+                padding: 10px 16px;
+                font-size: 0.95rem;
+                text-align: left;
+            }
+            .nav-links .nav-item.active::after {
+                left: 16px;
+                transform: none;
+                width: 16px;
+            }
+            .nav-links .nav-item.cta-btn {
+                text-align: center;
+                margin-top: 4px;
+            }
+            .nav-hamburger {
+                display: flex;
+            }
+
+            .hero-home {
+                padding: 24px 0 40px;
+                min-height: auto;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .hero-content .hero-desc {
+                font-size: 1rem;
+            }
+            .decision-map {
+                padding: 24px 18px;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .intent-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 14px;
+            }
+
+            .expect-block {
+                padding: 28px 20px;
+            }
+            .expect-block .expect-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page {
+                padding-top: var(--nav-height);
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-links {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 1.7rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-actions .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .intent-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .decision-map .dm-option {
+                font-size: 0.8rem;
+                padding: 10px 14px;
+            }
+
+            .contact-form {
+                padding: 20px 16px;
+            }
+
+            .expect-block .expect-item {
+                padding: 12px 14px;
+            }
+        }
+
+        /* ============================================================
+                   REVEAL ANIMATIONS
+                   ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 {
+            transition-delay: 0.06s;
+        }
+        .reveal-delay-2 {
+            transition-delay: 0.12s;
+        }
+        .reveal-delay-3 {
+            transition-delay: 0.18s;
+        }
+        .reveal-delay-4 {
+            transition-delay: 0.24s;
+        }
+
+        /* ============================================================
+                   BACK TO TOP
+                   ============================================================ */
+        .back-top {
+            position: fixed;
+            bottom: 90px;
+            right: 28px;
+            z-index: 99;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+        .back-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .back-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 640px) {
+            .back-top {
+                bottom: 76px;
+                right: 20px;
+                width: 36px;
+                height: 36px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================================
+    WHATSAPP FLOATING
+    ============================================================ -->
+    <div class="wa-float">
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+    </div>
+
+    <!-- ============================================================
+    BACK TO TOP
+    ============================================================ -->
+    <button class="back-top" id="backTop" aria-label="Voltar ao topo">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ============================================================
+    NAVBAR
+    ============================================================ -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Navegação">
+        <div class="nav-inner">
+            <div class="nav-logo" data-page="home">
+                <i class="fas fa-smile"></i>
+                Patient<span>Orbit</span>
+            </div>
+
+            <div class="nav-links" id="navLinks">
+                <button class="nav-item active" data-page="home">Comece Aqui</button>
+                <button class="nav-item" data-page="services">Serviços</button>
+                <button class="nav-item" data-page="faq">Dúvidas</button>
+                <button class="nav-item" data-page="team">Equipe</button>
+                <button class="nav-item" data-page="contact">Fale Conosco</button>
+                <button class="nav-item cta-btn" data-page="contact">
+                    <i class="fas fa-calendar-check"></i> Agendar
+                </button>
+            </div>
+
+            <button class="nav-hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+    PAGE: HOME (Comece Aqui)
+    ============================================================ -->
+    <section class="page active" id="page-home" role="tabpanel">
+
+        <!-- Hero -->
+        <div class="hero-home">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="section-tag"><i class="fas fa-heart" style="color:var(--accent);"></i> Cuidado que acolhe</span>
+                    <h1>Entendemos sua <span>jornada</span> para um sorriso saudável</h1>
+                    <p class="hero-desc">
+                        Um espaço onde suas dúvidas são ouvidas, suas preocupações são acolhidas
+                        e cada passo é explicado com clareza e carinho.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button class="btn btn-secondary btn-lg" data-page="contact">
+                            <i class="fas fa-calendar-check"></i> Começar agora
+                        </button>
+                        <button class="btn btn-outline btn-lg" data-page="faq">
+                            <i class="fas fa-question-circle"></i> Tirar dúvidas
+                        </button>
+                    </div>
+
+                    <div class="hero-trust">
+                        <span><i class="fas fa-check-circle"></i> +2.400 pacientes</span>
+                        <span><i class="fas fa-star"></i> 4.9 · 280 avaliações</span>
+                        <span><i class="fas fa-shield-alt"></i> 10 anos de experiência</span>
+                        <span><i class="fas fa-heart"></i> Atendimento humanizado</span>
+                    </div>
+                </div>
+
+                <!-- Decision Map – componente exclusivo -->
+                <div class="decision-map">
+                    <div class="dm-title">
+                        <i class="fas fa-compass"></i>
+                        Mapa de decisão · Por onde começar?
+                    </div>
+                    <div class="dm-options">
+                        <div class="dm-option" data-page="services">
+                            <div class="dm-icon"><i class="fas fa-tooth"></i></div>
+                            <span>Quero conhecer os tratamentos</span>
+                            <span class="dm-arrow"><i class="fas fa-chevron-right"></i></span>
+                        </div>
+                        <div class="dm-option" data-page="faq">
+                            <div class="dm-icon"><i class="fas fa-question"></i></div>
+                            <span>Tenho dúvidas sobre o processo</span>
+                            <span class="dm-arrow"><i class="fas fa-chevron-right"></i></span>
+                        </div>
+                        <div class="dm-option" data-page="team">
+                            <div class="dm-icon"><i class="fas fa-users"></i></div>
+                            <span>Quero conhecer a equipe</span>
+                            <span class="dm-arrow"><i class="fas fa-chevron-right"></i></span>
+                        </div>
+                        <div class="dm-option" data-page="contact">
+                            <div class="dm-icon"><i class="fas fa-calendar-check"></i></div>
+                            <span>Já sei que quero agendar</span>
+                            <span class="dm-arrow"><i class="fas fa-chevron-right"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloco "O que esperar" – componente exclusivo -->
+        <div class="container">
+            <div class="expect-block reveal">
+                <div class="expect-title">
+                    <i class="fas fa-clock"></i>
+                    O que esperar da sua primeira consulta
+                </div>
+                <div class="expect-grid">
+                    <div class="expect-item">
+                        <div class="ei-icon"><i class="fas fa-comment"></i></div>
+                        <div class="ei-text">
+                            <h4>1. Conversa acolhedora</h4>
+                            <p>Vamos ouvir suas queixas, medos e expectativas com atenção e respeito.</p>
+                        </div>
+                    </div>
+                    <div class="expect-item">
+                        <div class="ei-icon"><i class="fas fa-stethoscope"></i></div>
+                        <div class="ei-text">
+                            <h4>2. Avaliação cuidadosa</h4>
+                            <p>Exames clínicos e radiográficos realizados com conforto e transparência.</p>
+                        </div>
+                    </div>
+                    <div class="expect-item">
+                        <div class="ei-icon"><i class="fas fa-file-medical"></i></div>
+                        <div class="ei-text">
+                            <h4>3. Plano personalizado</h4>
+                            <p>Apresentamos o tratamento ideal, com prazos, custos e todas as opções.</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:16px;">
+                    <button class="btn btn-secondary" data-page="contact">
+                        <i class="fas fa-arrow-right"></i> Quero agendar minha consulta
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Intenções (Comece Aqui) -->
+        <div style="padding:40px 0 60px;background:var(--gray-50);">
+            <div class="container">
+                <div class="text-center reveal">
+                    <span class="section-tag"><i class="fas fa-route"></i> Escolha seu caminho</span>
+                    <h2 class="section-title">O que você <span>precisa</span> agora?</h2>
+                    <p class="section-subtitle centered">
+                        Seja para entender melhor, conhecer a equipe ou marcar sua consulta,
+                        estamos aqui para guiar cada passo.
+                    </p>
+                </div>
+
+                <div class="intent-grid">
+                    <div class="intent-card reveal reveal-delay-1" data-page="services">
+                        <div class="ic-icon"><i class="fas fa-tooth"></i></div>
+                        <h4>Conhecer os serviços</h4>
+                        <p>Entenda todos os tratamentos disponíveis e como cada um pode ajudar você.</p>
+                        <button class="btn btn-outline btn-sm" data-page="services">
+                            Explorar <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="intent-card reveal reveal-delay-2" data-page="faq">
+                        <div class="ic-icon"><i class="fas fa-question-circle"></i></div>
+                        <h4>Tirar dúvidas</h4>
+                        <p>Respostas para as perguntas mais comuns sobre procedimentos, cuidados e mais.</p>
+                        <button class="btn btn-outline btn-sm" data-page="faq">
+                            Ver perguntas <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div class="intent-card reveal reveal-delay-3" data-page="contact">
+                        <div class="ic-icon"><i class="fas fa-calendar-check"></i></div>
+                        <h4>Agendar consulta</h4>
+                        <p>Marque seu horário de forma rápida e nossa equipe retorna em até 2 horas.</p>
+                        <button class="btn btn-secondary btn-sm" data-page="contact">
+                            Agendar agora <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer interno -->
+        <div class="container">
+            <div class="page-footer" style="padding:16px 0 8px;border-top:1px solid var(--gray-200);font-size:0.75rem;color:var(--gray-400);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+                <span>© 2026 Patient Orbit · Todos os direitos reservados.</span>
+                <span>Cuidado centrado em você</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: SERVIÇOS
+    ============================================================ -->
+    <section class="page page-services" id="page-services" role="tabpanel">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag"><i class="fas fa-tooth"></i> Especialidades</span>
+                <h2 class="section-title">Nossos <span>serviços</span></h2>
+                <p class="section-subtitle">
+                    Tratamentos odontológicos com excelência, tecnologia moderna e cuidado humano.
+                </p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="sc-icon"><i class="fas fa-stethoscope"></i></div>
+                    <h4>Avaliação completa</h4>
+                    <p>Diagnóstico preciso com exames clínicos e radiográficos.</p>
+                    <span class="sc-tag">50 min</span>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="sc-icon"><i class="fas fa-spa"></i></div>
+                    <h4>Limpeza &amp; profilaxia</h4>
+                    <p>Remoção de tártaro, polimento e orientação de higiene.</p>
+                    <span class="sc-tag">40 min</span>
+                </div>
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="sc-icon"><i class="fas fa-sun"></i></div>
+                    <h4>Clareamento dental</h4>
+                    <p>Procedimento seguro e eficaz para dentes mais brancos.</p>
+                    <span class="sc-tag">2 sessões</span>
+                </div>
+                <div class="service-card reveal reveal-delay-4">
+                    <div class="sc-icon"><i class="fas fa-crown"></i></div>
+                    <h4>Implantes dentários</h4>
+                    <p>Recuperação estética e funcional com implantes de titânio.</p>
+                    <span class="sc-tag">2-4 meses</span>
+                </div>
+                <div class="service-card reveal reveal-delay-1">
+                    <div class="sc-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Ortodontia</h4>
+                    <p>Aparelhos fixos, removíveis e alinhadores transparentes.</p>
+                    <span class="sc-tag">12-24 meses</span>
+                </div>
+                <div class="service-card reveal reveal-delay-2">
+                    <div class="sc-icon"><i class="fas fa-heartbeat"></i></div>
+                    <h4>Urgência odontológica</h4>
+                    <p>Atendimento rápido para dores e emergências.</p>
+                    <span class="sc-tag">Atendimento imediato</span>
+                </div>
+                <div class="service-card reveal reveal-delay-3">
+                    <div class="sc-icon"><i class="fas fa-baby"></i></div>
+                    <h4>Odontopediatria</h4>
+                    <p>Atendimento lúdico e especializado para crianças.</p>
+                    <span class="sc-tag">30-40 min</span>
+                </div>
+                <div class="service-card reveal reveal-delay-4">
+                    <div class="sc-icon"><i class="fas fa-smile"></i></div>
+                    <h4>Harmonização orofacial</h4>
+                    <p>Equilíbrio estético do sorriso e harmonia facial.</p>
+                    <span class="sc-tag">1-2 sessões</span>
+                </div>
+            </div>
+
+            <!-- Bloco "O que esperar" adaptado para serviços -->
+            <div class="expect-block reveal" style="margin-top:40px;">
+                <div class="expect-title">
+                    <i class="fas fa-heart" style="color:var(--accent);"></i>
+                    Cada tratamento com cuidado e transparência
+                </div>
+                <p style="color:var(--gray-600);margin-bottom:16px;">
+                    Nossa abordagem é explicar cada etapa do tratamento, para que você se sinta
+                    seguro e confiante em cada decisão.
+                </p>
+                <div style="display:flex;gap:16px;flex-wrap:wrap;">
+                    <span style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--gray-700);background:var(--white);padding:8px 18px;border-radius:var(--radius-full);border:1px solid var(--gray-200);">
+                        <i class="fas fa-check-circle" style="color:var(--secondary);"></i> Diagnóstico claro
+                    </span>
+                    <span style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--gray-700);background:var(--white);padding:8px 18px;border-radius:var(--radius-full);border:1px solid var(--gray-200);">
+                        <i class="fas fa-check-circle" style="color:var(--secondary);"></i> Plano personalizado
+                    </span>
+                    <span style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--gray-700);background:var(--white);padding:8px 18px;border-radius:var(--radius-full);border:1px solid var(--gray-200);">
+                        <i class="fas fa-check-circle" style="color:var(--secondary);"></i> Acompanhamento contínuo
+                    </span>
+                </div>
+            </div>
+
+            <div class="page-footer" style="padding:16px 0 8px;border-top:1px solid var(--gray-200);font-size:0.75rem;color:var(--gray-400);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:24px;">
+                <span>© 2026 Patient Orbit</span>
+                <span>8 especialidades</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: DÚVIDAS (FAQ)
+    ============================================================ -->
+    <section class="page page-faq" id="page-faq" role="tabpanel">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag"><i class="fas fa-question-circle"></i> Perguntas frequentes</span>
+                <h2 class="section-title">Dúvidas <span>comuns</span></h2>
+                <p class="section-subtitle">
+                    Respostas para as perguntas que mais recebemos. Se sua dúvida não estiver aqui,
+                    fale conosco.
+                </p>
+            </div>
+
+            <div class="faq-grid">
+                <div class="faq-list reveal">
+                    <div class="faq-item active">
+                        <button class="faq-question">
+                            <span>Como funciona o primeiro atendimento?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>No primeiro atendimento, fazemos uma escuta ativa das suas necessidades, seguida de uma avaliação clínica completa. Após o diagnóstico, elaboramos um plano de tratamento personalizado e tiramos todas as suas dúvidas.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Vocês aceitam planos de saúde?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sim, trabalhamos com os principais planos odontológicos. Entre em contato para verificar se o seu plano é aceito e quais procedimentos estão cobertos.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>O tratamento é doloroso?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Utilizamos técnicas modernas de anestesia e sedação para garantir o máximo de conforto. Nossa equipe está treinada para minimizar qualquer desconforto durante os procedimentos.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Quanto tempo dura uma consulta de avaliação?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>A consulta de avaliação dura em média 50 minutos, incluindo a conversa inicial, exames e a apresentação do plano de tratamento.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Como agendar uma consulta de urgência?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Para urgências, entre em contato pelo telefone (11) 99999-9999 ou pelo WhatsApp. Nossa equipe está preparada para atender emergências com agilidade.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-sidebar reveal reveal-delay-2">
+                    <div class="fs-card" style="background:var(--secondary-light);border-color:rgba(92,184,164,0.15);">
+                        <h4><i class="fas fa-comment" style="color:var(--secondary);"></i> Fale conosco</h4>
+                        <p>Não encontrou sua resposta? Nossa equipe está disponível para ajudar.</p>
+                        <button class="btn btn-secondary btn-block" data-page="contact">
+                            <i class="fas fa-paper-plane"></i> Enviar mensagem
+                        </button>
+                    </div>
+                    <div class="fs-card">
+                        <h4><i class="fas fa-book-open" style="color:var(--accent);"></i> Orientações</h4>
+                        <p>Guias completos sobre cuidados pós-tratamento e preparação para consultas.</p>
+                        <button class="btn btn-outline btn-block" data-page="home">
+                            <i class="fas fa-arrow-right"></i> Ver orientações
+                        </button>
+                    </div>
+                    <div class="fs-card" style="background:var(--warm-bg);border-color:rgba(242,166,90,0.10);">
+                        <h4><i class="fas fa-heart" style="color:var(--accent);"></i> Dica importante</h4>
+                        <p style="font-size:0.8rem;">A maioria das dúvidas está relacionada a ansiedade. Conte conosco para tornar sua experiência mais tranquila.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer" style="padding:16px 0 8px;border-top:1px solid var(--gray-200);font-size:0.75rem;color:var(--gray-400);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:24px;">
+                <span>© 2026 Patient Orbit</span>
+                <span>5 perguntas frequentes</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: EQUIPE
+    ============================================================ -->
+    <section class="page page-team" id="page-team" role="tabpanel">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag"><i class="fas fa-users"></i> Profissionais</span>
+                <h2 class="section-title">Nossa <span>equipe</span></h2>
+                <p class="section-subtitle">
+                    Especialistas dedicados a cuidar do seu sorriso com excelência,
+                    empatia e atenção a cada detalhe.
+                </p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card reveal reveal-delay-1">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dra. Renata Lima</h4>
+                    <p>CEO · Implantodontia</p>
+                    <span class="tc-tag">12 anos</span>
+                </div>
+                <div class="team-card reveal reveal-delay-2">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dr. Carlos Mendes</h4>
+                    <p>Ortodontia &amp; Harmonização</p>
+                    <span class="tc-tag">9 anos</span>
+                </div>
+                <div class="team-card reveal reveal-delay-3">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dra. Beatriz Torres</h4>
+                    <p>Odontopediatria</p>
+                    <span class="tc-tag">7 anos</span>
+                </div>
+                <div class="team-card reveal reveal-delay-4">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dr. Felipe Andrade</h4>
+                    <p>Próteses &amp; Estética</p>
+                    <span class="tc-tag">10 anos</span>
+                </div>
+                <div class="team-card reveal reveal-delay-1">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dra. Marina Costa</h4>
+                    <p>Endodontia</p>
+                    <span class="tc-tag">6 anos</span>
+                </div>
+                <div class="team-card reveal reveal-delay-2">
+                    <div class="tc-avatar"><i class="fas fa-user-md"></i></div>
+                    <h4>Dr. André Oliveira</h4>
+                    <p>Periodontia</p>
+                    <span class="tc-tag">8 anos</span>
+                </div>
+            </div>
+
+            <!-- Bloco de confiança -->
+            <div class="expect-block reveal" style="margin-top:32px;">
+                <div class="expect-title">
+                    <i class="fas fa-hand-holding-heart" style="color:var(--secondary);"></i>
+                    Por que confiar na nossa equipe?
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+                    <div style="background:var(--white);border-radius:var(--radius-sm);padding:16px 18px;border:1px solid var(--gray-200);text-align:center;">
+                        <i class="fas fa-certificate" style="color:var(--secondary);font-size:1.4rem;margin-bottom:6px;"></i>
+                        <h4 style="font-size:0.9rem;font-weight:700;color:var(--gray-900);">Especialistas</h4>
+                        <p style="font-size:0.8rem;color:var(--gray-500);margin:0;">Títulos e pós-graduações</p>
+                    </div>
+                    <div style="background:var(--white);border-radius:var(--radius-sm);padding:16px 18px;border:1px solid var(--gray-200);text-align:center;">
+                        <i class="fas fa-heart" style="color:var(--accent);font-size:1.4rem;margin-bottom:6px;"></i>
+                        <h4 style="font-size:0.9rem;font-weight:700;color:var(--gray-900);">Humanização</h4>
+                        <p style="font-size:0.8rem;color:var(--gray-500);margin:0;">Cuidado com empatia</p>
+                    </div>
+                    <div style="background:var(--white);border-radius:var(--radius-sm);padding:16px 18px;border:1px solid var(--gray-200);text-align:center;">
+                        <i class="fas fa-star" style="color:var(--accent);font-size:1.4rem;margin-bottom:6px;"></i>
+                        <h4 style="font-size:0.9rem;font-weight:700;color:var(--gray-900);">Excelência</h4>
+                        <p style="font-size:0.8rem;color:var(--gray-500);margin:0;">Atualização constante</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer" style="padding:16px 0 8px;border-top:1px solid var(--gray-200);font-size:0.75rem;color:var(--gray-400);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:24px;">
+                <span>© 2026 Patient Orbit</span>
+                <span>6 profissionais</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    PAGE: FALE CONOSCO
+    ============================================================ -->
+    <section class="page page-contact" id="page-contact" role="tabpanel">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag"><i class="fas fa-envelope"></i> Contato</span>
+                <h2 class="section-title">Fale <span>conosco</span></h2>
+                <p class="section-subtitle">
+                    Estamos aqui para responder suas perguntas, ouvir suas preocupações
+                    e agendar sua consulta com todo o cuidado que você merece.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <div class="ci-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="ci-text"><strong>Telefone</strong><br />(11) 99999-9999</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <div class="ci-text"><strong>WhatsApp</strong><br />(11) 99999-9999</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="ci-text"><strong>E-mail</strong><br />contato@patientorbit.com.br</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="ci-text"><strong>Endereço</strong><br />Rua dos Sorrisos, 123 · São Paulo, SP</div>
+                    </div>
+                    <div class="ci-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="ci-text"><strong>Horário</strong><br />Seg–Sex: 8h–20h · Sáb: 8h–14h</div>
+                    </div>
+
+                    <div class="contact-map">
+                        <i class="fas fa-map"></i>
+                        <span style="font-weight:500;color:var(--gray-600);">📍 Nossa localização</span>
+                        <span style="font-size:0.75rem;color:var(--gray-400);">Clique para abrir no Google Maps</span>
+                        <div style="display:flex;gap:8px;margin-top:4px;">
+                            <a href="#" style="background:var(--primary);color:var(--white);padding:6px 18px;border-radius:50px;font-size:0.7rem;font-weight:600;">Abrir no Maps</a>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:12px;padding:14px 18px;background:var(--secondary-light);border-radius:var(--radius-sm);border:1px solid rgba(92,184,164,0.15);">
+                        <p style="font-size:0.85rem;color:var(--gray-700);margin:0;">
+                            <i class="fas fa-info-circle" style="color:var(--secondary);"></i>
+                            <strong>Retorno garantido</strong> em até 2 horas úteis.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="contact-form reveal reveal-delay-2">
+                    <h3>✉️ Envie uma mensagem</h3>
+                    <p class="form-sub">Sua dúvida é importante. Respondemos com atenção e carinho.</p>
+
+                    <form id="contactForm" novalidate>
+                        <div class="form-group">
+                            <input type="text" placeholder="Seu nome" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Seu e-mail" required />
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Telefone (opcional)" />
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Como podemos ajudar você?" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-secondary btn-block">
+                            <i class="fas fa-paper-plane"></i> Enviar mensagem
+                        </button>
+                        <p style="font-size:0.7rem;color:var(--gray-400);text-align:center;margin-top:10px;">
+                            <i class="fas fa-lock"></i> Seus dados estão seguros.
+                        </p>
+                    </form>
+
+                    <div style="margin-top:16px;padding:14px 18px;background:var(--warm-bg);border-radius:var(--radius-sm);border:1px solid rgba(242,166,90,0.10);">
+                        <p style="font-size:0.8rem;color:var(--gray-600);margin:0;">
+                            <i class="fas fa-heart" style="color:var(--accent);"></i>
+                            Prefere um atendimento mais rápido? <strong>Fale conosco pelo WhatsApp</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-footer" style="padding:16px 0 8px;border-top:1px solid var(--gray-200);font-size:0.75rem;color:var(--gray-400);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-top:24px;">
+                <span>© 2026 Patient Orbit</span>
+                <span>Disponível 24/7 via WhatsApp</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <i class="fas fa-smile"></i>
+                    PatientOrbit
+                </div>
+                <div class="footer-links">
+                    <button class="nav-item" data-page="home">Comece Aqui</button>
+                    <button class="nav-item" data-page="services">Serviços</button>
+                    <button class="nav-item" data-page="faq">Dúvidas</button>
+                    <button class="nav-item" data-page="team">Equipe</button>
+                    <button class="nav-item" data-page="contact">Fale Conosco</button>
+                </div>
+                <div class="footer-copy">
+                    &copy; 2026 Patient Orbit · Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    SCRIPTS
+    ============================================================ -->
+    <script>
+        (function() {
+            'use strict';
+
+            // ============================================================
+            // PAGE NAVIGATION SYSTEM
+            // ============================================================
+            const pageMap = {
+                home: document.getElementById('page-home'),
+                services: document.getElementById('page-services'),
+                faq: document.getElementById('page-faq'),
+                team: document.getElementById('page-team'),
+                contact: document.getElementById('page-contact')
+            };
+
+            const navButtons = document.querySelectorAll('.nav-item[data-page]');
+            const allNavItems = document.querySelectorAll('[data-page]');
+            const logo = document.querySelector('.nav-logo');
+            const footerNavButtons = document.querySelectorAll('.footer-links .nav-item');
+
+            let currentPage = 'home';
+
+            function navigateTo(pageId) {
+                if (!pageId || !pageMap[pageId]) return;
+
+                // Hide all pages
+                Object.keys(pageMap).forEach(key => {
+                    if (pageMap[key]) pageMap[key].classList.remove('active');
+                });
+
+                // Show target
+                pageMap[pageId].classList.add('active');
+                currentPage = pageId;
+
+                // Update nav buttons
+                navButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.page === pageId) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Update footer nav
+                footerNavButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.page === pageId) {
+                        btn.classList.add('active');
+                    }
+                });
+
+                // Close mobile menu
+                navLinks.classList.remove('open');
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Update URL hash
+                if (pageId === 'home') {
+                    history.pushState(null, '', window.location.pathname);
+                } else {
+                    history.pushState(null, '', '#' + pageId);
+                }
+
+                // Trigger reveal animations on new page
+                setTimeout(() => {
+                    const reveals = pageMap[pageId].querySelectorAll('.reveal');
+                    reveals.forEach(el => {
+                        void el.offsetWidth;
+                        el.classList.add('visible');
+                    });
+                }, 150);
+            }
+
+            // Event listeners
+            allNavItems.forEach(el => {
+                el.addEventListener('click', function(e) {
+                    const page = this.dataset.page;
+                    if (page) {
+                        e.preventDefault();
+                        navigateTo(page);
+                    }
+                });
+            });
+
+            logo.addEventListener('click', function() {
+                navigateTo('home');
+            });
+
+            // ============================================================
+            // BROWSER BACK/FORWARD
+            // ============================================================
+            window.addEventListener('popstate', function() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && pageMap[hash]) {
+                    navigateTo(hash);
+                } else {
+                    navigateTo('home');
+                }
+            });
+
+            // ============================================================
+            // INITIAL LOAD
+            // ============================================================
+            window.addEventListener('DOMContentLoaded', function() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && pageMap[hash]) {
+                    navigateTo(hash);
+                } else {
+                    navigateTo('home');
+                }
+            });
+
+            // ============================================================
+            // NAVBAR SCROLL
+            // ============================================================
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 20) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // ============================================================
+            // HAMBURGER
+            // ============================================================
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+
+            hamburger.addEventListener('click', function() {
+                const isOpen = navLinks.classList.toggle('open');
+                hamburger.classList.toggle('active');
+                hamburger.setAttribute('aria-expanded', isOpen);
+            });
+
+            // Close menu on nav click
+            document.querySelectorAll('.nav-links .nav-item').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    navLinks.classList.remove('open');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                });
+            });
+
+            // ============================================================
+            // BACK TO TOP
+            // ============================================================
+            const backTop = document.getElementById('backTop');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    backTop.classList.add('visible');
+                } else {
+                    backTop.classList.remove('visible');
+                }
+            });
+
+            backTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ============================================================
+            // FAQ ACCORDION
+            // ============================================================
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                if (question) {
+                    question.addEventListener('click', function() {
+                        const isActive = item.classList.contains('active');
+                        const parent = item.closest('.faq-list');
+                        if (parent) {
+                            parent.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                        }
+                        if (!isActive) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+
+            // ============================================================
+            // FORMS
+            // ============================================================
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = this.querySelector('button[type="submit"]');
+                    const original = btn.innerHTML;
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                    btn.disabled = true;
+
+                    setTimeout(() => {
+                        btn.innerHTML = '<i class="fas fa-check"></i> Mensagem enviada!';
+                        btn.style.background = '#4AA08E';
+                        this.reset();
+
+                        setTimeout(() => {
+                            btn.innerHTML = original;
+                            btn.style.background = '';
+                            btn.disabled = false;
+                        }, 3000);
+                    }, 1500);
+                });
+            }
+
+            // ============================================================
+            // REVEAL ON SCROLL
+            // ============================================================
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.08,
+                rootMargin: '0px 0px -20px 0px'
+            });
+
+            document.querySelectorAll('.reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // ============================================================
+            // KEYBOARD: ESC close menu
+            // ============================================================
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+                    navLinks.classList.remove('open');
+                    hamburger.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.focus();
+                }
+            });
+
+            console.log('🚀 Patient Orbit — Website centrado no paciente carregado com sucesso!');
+            console.log('💛 Navegação orientada por intenção e decisão.');
+
+        })();
+    </script>
+
+</body>
+</html>

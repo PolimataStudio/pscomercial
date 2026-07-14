@@ -1,0 +1,2238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#1a1a1a" />
+    <meta name="description" content="Pulse Book - Agendamento premium para barbearias" />
+    <title>Pulse Book · Agendamento Premium</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome (ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #1a1a1a;
+            --black-light: #2a2a2a;
+            --gold: #c9a84c;
+            --gold-light: #e8d5b5;
+            --gold-glow: rgba(201, 168, 76, 0.25);
+            --off-white: #f5f0eb;
+            --warm-gray: #8a827a;
+            --warm-gray-light: #d5cfc8;
+            --warm-gray-bg: #f0ebe6;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.10);
+            --shadow-lg: 0 16px 56px rgba(0, 0, 0, 0.16);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-full: 999px;
+            --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font-serif: 'Playfair Display', serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--off-white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 4px;
+        }
+
+        /* ===== APP SHELL ===== */
+        #app {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            height: 100dvh;
+            max-width: 480px;
+            margin: 0 auto;
+            background: var(--off-white);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.08);
+        }
+
+        /* ===== HEADER ===== */
+        .app-header {
+            flex-shrink: 0;
+            padding: 16px 20px 12px;
+            background: var(--white);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+            position: relative;
+        }
+
+        .app-header .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .app-header .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 18px;
+            font-weight: 700;
+            font-family: var(--font-serif);
+            letter-spacing: -0.5px;
+        }
+
+        .app-header .logo-text {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--black);
+            letter-spacing: -0.3px;
+        }
+
+        .app-header .logo-text span {
+            color: var(--gold);
+        }
+
+        .app-header .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .app-header .header-actions button {
+            width: 38px;
+            height: 38px;
+            border: none;
+            background: var(--off-white);
+            border-radius: 50%;
+            color: var(--black);
+            font-size: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-header .header-actions button:hover {
+            background: var(--gold-light);
+        }
+
+        .app-header .header-actions .badge-dot {
+            position: relative;
+        }
+        .app-header .header-actions .badge-dot::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: 2px solid var(--white);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 0 0 8px 0;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+        }
+
+        /* ===== VIEWS ===== */
+        .view {
+            display: none;
+            padding: 16px 20px 100px;
+            animation: fadeUp 0.4s ease forwards;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== BOTTOM NAV ===== */
+        .bottom-nav {
+            flex-shrink: 0;
+            display: flex;
+            align-items: stretch;
+            background: var(--white);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 4px 0 env(safe-area-inset-bottom, 8px) 0;
+            z-index: 20;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.04);
+            position: relative;
+        }
+
+        .bottom-nav .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            padding: 8px 0 6px;
+            border: none;
+            background: transparent;
+            color: var(--warm-gray);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            text-decoration: none;
+            font-family: var(--font-sans);
+            border-radius: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .bottom-nav .nav-item i {
+            font-size: 20px;
+            transition: var(--transition);
+        }
+
+        .bottom-nav .nav-item span {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.7;
+        }
+
+        .bottom-nav .nav-item.active {
+            color: var(--black);
+        }
+
+        .bottom-nav .nav-item.active i {
+            color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        .bottom-nav .nav-item.active span {
+            color: var(--gold);
+            opacity: 1;
+        }
+
+        .bottom-nav .nav-item .nav-badge {
+            position: absolute;
+            top: 4px;
+            right: 50%;
+            transform: translateX(calc(50% + 16px));
+            background: var(--gold);
+            color: var(--white);
+            font-size: 8px;
+            font-weight: 700;
+            padding: 1px 6px;
+            border-radius: 10px;
+            min-width: 16px;
+            text-align: center;
+            line-height: 14px;
+        }
+
+        .bottom-nav .nav-item.book-cta {
+            background: var(--black);
+            color: var(--white);
+            border-radius: var(--radius-full);
+            margin: 2px 4px;
+            padding: 6px 0 4px;
+            flex: 1.2;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .bottom-nav .nav-item.book-cta i {
+            color: var(--gold);
+            font-size: 18px;
+        }
+        .bottom-nav .nav-item.book-cta span {
+            color: var(--white);
+            opacity: 0.9;
+        }
+        .bottom-nav .nav-item.book-cta.active {
+            background: var(--gold);
+            color: var(--black);
+        }
+        .bottom-nav .nav-item.book-cta.active i {
+            color: var(--black);
+        }
+        .bottom-nav .nav-item.book-cta.active span {
+            color: var(--black);
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        .heading-serif {
+            font-family: var(--font-serif);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            line-height: 1.15;
+        }
+
+        .heading-serif-sm {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            line-height: 1.2;
+        }
+
+        .gold-text {
+            color: var(--gold);
+        }
+
+        .text-muted {
+            color: var(--warm-gray);
+            font-size: 0.875rem;
+        }
+
+        .text-sm {
+            font-size: 0.8rem;
+        }
+
+        .text-xs {
+            font-size: 0.7rem;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border: none;
+            border-radius: var(--radius-full);
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            min-height: 52px;
+            -webkit-tap-highlight-color: transparent;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--black);
+            box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(201, 168, 76, 0.35);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--black);
+            border: 1.5px solid var(--black);
+        }
+
+        .btn-outline:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .btn-sm {
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            min-height: 40px;
+            width: auto;
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-service {
+            padding: 0;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .card-service.selected {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px var(--gold-glow), var(--shadow-md);
+        }
+
+        .card-service .card-img {
+            width: 100%;
+            height: 140px;
+            background: var(--warm-gray-light);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-service .card-img .card-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: var(--black);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .card-service .card-img .card-badge.gold {
+            background: var(--gold);
+            color: var(--black);
+        }
+
+        .card-service .card-body {
+            padding: 16px 18px 18px;
+        }
+
+        .card-service .card-body h4 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        .card-service .card-body .meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.8rem;
+            color: var(--warm-gray);
+            margin-top: 6px;
+        }
+
+        .card-service .card-body .meta i {
+            width: 16px;
+            font-size: 0.75rem;
+        }
+
+        .card-service .card-body .price {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--black);
+            margin-top: 8px;
+        }
+
+        /* ===== BARBER CARD ===== */
+        .card-barber {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 14px 18px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .card-barber.selected {
+            border-color: var(--gold);
+            background: var(--gold-light);
+            box-shadow: 0 0 0 3px var(--gold-glow);
+        }
+
+        .card-barber .avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--warm-gray-light);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--black);
+            font-family: var(--font-serif);
+            background: linear-gradient(135deg, var(--gold-light), var(--off-white));
+        }
+
+        .card-barber .info h4 {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .card-barber .info p {
+            font-size: 0.8rem;
+            color: var(--warm-gray);
+            margin-top: 1px;
+        }
+
+        .card-barber .check {
+            margin-left: auto;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid var(--warm-gray-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 12px;
+            color: transparent;
+        }
+
+        .card-barber.selected .check {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--white);
+        }
+
+        /* ===== TIME SLOTS ===== */
+        .time-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .time-slot {
+            padding: 10px 4px;
+            border-radius: var(--radius-sm);
+            border: 1.5px solid var(--warm-gray-light);
+            background: var(--white);
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-sans);
+            -webkit-tap-highlight-color: transparent;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .time-slot:hover {
+            border-color: var(--gold);
+            background: var(--gold-light);
+        }
+
+        .time-slot.selected {
+            border-color: var(--gold);
+            background: var(--gold);
+            color: var(--white);
+            box-shadow: 0 4px 16px var(--gold-glow);
+        }
+
+        .time-slot.unavailable {
+            opacity: 0.3;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        .time-slot.unavailable:hover {
+            border-color: var(--warm-gray-light);
+            background: transparent;
+        }
+
+        /* ===== BOOKING STEPS ===== */
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 24px;
+            padding: 0 4px;
+        }
+
+        .step-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--warm-gray-light);
+            transition: var(--transition);
+        }
+
+        .step-dot.active {
+            background: var(--gold);
+            width: 28px;
+            border-radius: 4px;
+        }
+
+        .step-dot.done {
+            background: var(--gold);
+            opacity: 0.5;
+        }
+
+        .step-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            color: var(--warm-gray);
+            margin-bottom: 4px;
+        }
+
+        .step-title {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .step-sub {
+            color: var(--warm-gray);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        /* ===== SUMMARY STICKY ===== */
+        .summary-sticky {
+            position: sticky;
+            bottom: 0;
+            background: var(--white);
+            padding: 16px 20px 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.06);
+            margin: 16px -20px -16px;
+            border-radius: var(--radius) var(--radius) 0 0;
+            display: none;
+            z-index: 5;
+        }
+
+        .summary-sticky.visible {
+            display: block;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .summary-sticky .row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .summary-sticky .row .left {
+            font-size: 0.8rem;
+            color: var(--warm-gray);
+        }
+
+        .summary-sticky .row .right {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .summary-sticky .btn {
+            margin-top: 12px;
+        }
+
+        /* ===== CONFIRMATION MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.open {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-box {
+            background: var(--white);
+            border-radius: var(--radius);
+            max-width: 380px;
+            width: 100%;
+            padding: 40px 28px 32px;
+            text-align: center;
+            animation: scaleIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-box .icon {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: var(--gold-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 32px;
+            color: var(--gold);
+        }
+
+        .modal-box h3 {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .modal-box p {
+            color: var(--warm-gray);
+            font-size: 0.9rem;
+            margin-top: 6px;
+        }
+
+        .modal-box .details {
+            margin: 16px 0 20px;
+            padding: 16px;
+            background: var(--off-white);
+            border-radius: var(--radius-sm);
+            text-align: left;
+            font-size: 0.85rem;
+        }
+
+        .modal-box .details .line {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+        }
+
+        .modal-box .details .line .label {
+            color: var(--warm-gray);
+        }
+
+        .modal-box .btn {
+            margin-top: 4px;
+        }
+
+        /* ===== HOME HERO ===== */
+        .hero {
+            padding: 8px 0 16px;
+            position: relative;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: var(--gold-light);
+            color: var(--black);
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 4px 14px;
+            border-radius: var(--radius-full);
+            margin-bottom: 12px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--gold);
+            position: relative;
+        }
+
+        .hero p {
+            color: var(--warm-gray);
+            font-size: 0.95rem;
+            margin-top: 10px;
+            max-width: 90%;
+        }
+
+        .hero .hero-cta {
+            margin-top: 20px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero .hero-cta .btn {
+            width: auto;
+            flex: 1;
+            min-width: 140px;
+        }
+
+        /* ===== DIFFERENTIATORS ===== */
+        .diff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .diff-item {
+            background: var(--white);
+            padding: 16px 14px;
+            border-radius: var(--radius-sm);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .diff-item i {
+            font-size: 24px;
+            color: var(--gold);
+            margin-bottom: 6px;
+        }
+
+        .diff-item h5 {
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .diff-item p {
+            font-size: 0.7rem;
+            color: var(--warm-gray);
+            margin-top: 2px;
+        }
+
+        /* ===== SECTION ===== */
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 24px 0 14px;
+        }
+
+        .section-title h3 {
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .section-title a {
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* ===== SERVICE LIST (grid) ===== */
+        .service-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .service-grid .card-service .card-img {
+            height: 100px;
+        }
+
+        .service-grid .card-service .card-body {
+            padding: 12px 14px 14px;
+        }
+
+        .service-grid .card-service .card-body h4 {
+            font-size: 0.9rem;
+        }
+
+        .service-grid .card-service .card-body .meta {
+            font-size: 0.7rem;
+            gap: 8px;
+        }
+
+        .service-grid .card-service .card-body .price {
+            font-size: 0.95rem;
+        }
+
+        /* ===== PROFESSIONALS GRID ===== */
+        .pros-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        /* ===== BOOKINGS LIST ===== */
+        .booking-item {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 16px 18px;
+            margin-bottom: 10px;
+            box-shadow: var(--shadow-sm);
+            border-left: 3px solid var(--gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .booking-item .info h5 {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .booking-item .info p {
+            font-size: 0.8rem;
+            color: var(--warm-gray);
+            margin-top: 2px;
+        }
+
+        .booking-item .status {
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            background: var(--gold-light);
+            color: var(--black);
+        }
+
+        .booking-item .status.confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .booking-item .status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        /* ===== HELP ===== */
+        .faq-item {
+            background: var(--white);
+            border-radius: var(--radius-sm);
+            padding: 16px 18px;
+            margin-bottom: 8px;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .faq-item .q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .faq-item .q i {
+            transition: var(--transition);
+            color: var(--gold);
+        }
+
+        .faq-item .a {
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            color: var(--warm-gray);
+        }
+
+        .faq-item.open .a {
+            max-height: 120px;
+            padding-top: 10px;
+        }
+
+        .faq-item.open .q i {
+            transform: rotate(180deg);
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            color: var(--warm-gray-light);
+            margin-bottom: 12px;
+        }
+
+        .empty-state h4 {
+            font-family: var(--font-serif);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .empty-state p {
+            color: var(--warm-gray);
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .service-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .service-grid .card-service .card-img {
+                height: 80px;
+            }
+            .time-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .diff-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .diff-item {
+                padding: 12px 10px;
+            }
+            .modal-box {
+                padding: 28px 20px 24px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+            .time-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .bottom-nav .nav-item span {
+                font-size: 7px;
+            }
+            .bottom-nav .nav-item i {
+                font-size: 17px;
+            }
+            .app-header .logo-text {
+                font-size: 17px;
+            }
+        }
+
+        /* ===== UTILITY ===== */
+        .mt-8 {
+            margin-top: 8px;
+        }
+        .mt-12 {
+            margin-top: 12px;
+        }
+        .mt-16 {
+            margin-top: 16px;
+        }
+        .mt-20 {
+            margin-top: 20px;
+        }
+        .mb-8 {
+            margin-bottom: 8px;
+        }
+        .mb-12 {
+            margin-bottom: 12px;
+        }
+        .mb-16 {
+            margin-bottom: 16px;
+        }
+        .gap-8 {
+            gap: 8px;
+        }
+        .gap-12 {
+            gap: 12px;
+        }
+        .flex {
+            display: flex;
+        }
+        .flex-col {
+            flex-direction: column;
+        }
+        .items-center {
+            align-items: center;
+        }
+        .justify-between {
+            justify-content: space-between;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        /* ===== BOOKING STEP CONTAINER ===== */
+        .booking-step {
+            display: none;
+            animation: fadeUp 0.35s ease forwards;
+        }
+
+        .booking-step.active {
+            display: block;
+        }
+
+        .booking-step .step-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .booking-step .step-actions .btn {
+            flex: 1;
+        }
+
+        .booking-step .step-actions .btn-outline {
+            flex: 0.6;
+        }
+
+        /* ===== SEARCH / FILTER ===== */
+        .search-box {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 44px;
+            border-radius: var(--radius-full);
+            border: 1.5px solid var(--warm-gray-light);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            background: var(--white);
+            transition: var(--transition);
+            outline: none;
+        }
+
+        .search-box input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 4px var(--gold-glow);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--warm-gray);
+        }
+
+        /* ===== PWA INSTALL BANNER ===== */
+        .install-banner {
+            display: none;
+            background: var(--black);
+            color: var(--white);
+            padding: 12px 18px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 16px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .install-banner.show {
+            display: flex;
+        }
+
+        .install-banner .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.85rem;
+        }
+
+        .install-banner .left i {
+            font-size: 24px;
+            color: var(--gold);
+        }
+
+        .install-banner .btn-sm {
+            background: var(--gold);
+            color: var(--black);
+            border: none;
+            font-weight: 600;
+            padding: 6px 18px;
+            border-radius: var(--radius-full);
+            font-size: 0.75rem;
+            cursor: pointer;
+            font-family: var(--font-sans);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        <!-- ===== HEADER ===== -->
+        <header class="app-header">
+            <a href="#" class="logo" onclick="navigateTo('home')">
+                <div class="logo-icon">P</div>
+                <span class="logo-text">Pulse <span>Book</span></span>
+            </a>
+            <div class="header-actions">
+                <button class="badge-dot" onclick="navigateTo('bookings')" aria-label="Minhas reservas">
+                    <i class="fas fa-calendar-check"></i>
+                </button>
+                <button onclick="navigateTo('help')" aria-label="Ajuda">
+                    <i class="fas fa-question-circle"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <main class="main-content" id="mainContent">
+
+            <!-- ===== VIEW: HOME ===== -->
+            <section class="view active" id="view-home">
+                <!-- Install Banner -->
+                <div class="install-banner" id="installBanner">
+                    <div class="left">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Instale o Pulse Book no seu celular</span>
+                    </div>
+                    <button class="btn-sm" id="installBtn">Instalar</button>
+                </div>
+
+                <!-- Hero -->
+                <div class="hero">
+                    <span class="badge"><i class="fas fa-star" style="margin-right:4px;"></i> Premium</span>
+                    <h1>
+                        Corte com<br />
+                        <span class="highlight">estilo &amp; confiança</span>
+                    </h1>
+                    <p>Agende seu horário em segundos. Experiência premium para quem valoriza o melhor.</p>
+                    <div class="hero-cta">
+                        <button class="btn btn-gold" onclick="navigateTo('booking')">
+                            <i class="fas fa-calendar-plus"></i> Reservar
+                        </button>
+                        <button class="btn btn-outline" onclick="navigateTo('services')">
+                            Ver serviços
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Differentiators -->
+                <div class="diff-grid">
+                    <div class="diff-item">
+                        <i class="fas fa-clock"></i>
+                        <h5>Agendamento Rápido</h5>
+                        <p>Em menos de 1 minuto</p>
+                    </div>
+                    <div class="diff-item">
+                        <i class="fas fa-user-check"></i>
+                        <h5>Escolha o Profissional</h5>
+                        <p>Especialistas em cada estilo</p>
+                    </div>
+                    <div class="diff-item">
+                        <i class="fas fa-bell"></i>
+                        <h5>Lembretes Inteligentes</h5>
+                        <p>Nunca mais perca um horário</p>
+                    </div>
+                    <div class="diff-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h5>Confirmação Instantânea</h5>
+                        <p>Reserva garantida na hora</p>
+                    </div>
+                </div>
+
+                <!-- Featured Services -->
+                <div class="section-title">
+                    <h3>Serviços em destaque</h3>
+                    <a onclick="navigateTo('services')">Ver todos →</a>
+                </div>
+                <div class="service-grid" id="featuredServices">
+                    <!-- rendered by JS -->
+                </div>
+
+                <!-- CTA -->
+                <div style="margin: 24px 0 8px; text-align:center;">
+                    <button class="btn btn-primary" onclick="navigateTo('booking')" style="max-width:280px; margin:0 auto;">
+                        <i class="fas fa-calendar-plus"></i> Fazer uma reserva
+                    </button>
+                </div>
+            </section>
+
+            <!-- ===== VIEW: SERVICES ===== -->
+            <section class="view" id="view-services">
+                <h2 class="heading-serif" style="font-size:1.5rem; margin-bottom:4px;">Nossos serviços</h2>
+                <p class="text-muted" style="margin-bottom:16px;">Escolha o que melhor combina com você</p>
+
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="serviceSearch" placeholder="Buscar serviço..." oninput="filterServices()" />
+                </div>
+
+                <div class="service-grid" id="allServices">
+                    <!-- rendered by JS -->
+                </div>
+            </section>
+
+            <!-- ===== VIEW: BOOKING ===== -->
+            <section class="view" id="view-booking">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:4px;">
+                    <button onclick="navigateTo('home')" style="background:none; border:none; font-size:20px; cursor:pointer; color:var(--black);">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2 class="heading-serif" style="font-size:1.5rem;">Reservar</h2>
+                </div>
+
+                <!-- Step indicator -->
+                <div class="step-indicator" id="stepIndicator">
+                    <span class="step-dot active" data-step="1"></span>
+                    <span class="step-dot" data-step="2"></span>
+                    <span class="step-dot" data-step="3"></span>
+                    <span class="step-dot" data-step="4"></span>
+                </div>
+
+                <!-- Step 1: Service -->
+                <div class="booking-step active" data-step="1">
+                    <div class="step-label">Passo 1</div>
+                    <div class="step-title">Escolha o serviço</div>
+                    <div class="step-sub">Selecione o que deseja fazer</div>
+                    <div class="service-grid" id="bookingServices">
+                        <!-- rendered by JS -->
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-primary" id="step1Next" disabled onclick="goToStep(2)">
+                            Próximo <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Barber -->
+                <div class="booking-step" data-step="2">
+                    <div class="step-label">Passo 2</div>
+                    <div class="step-title">Escolha o profissional</div>
+                    <div class="step-sub">Quem vai cuidar de você?</div>
+                    <div class="pros-grid" id="bookingBarbers">
+                        <!-- rendered by JS -->
+                    </div>
+                    <div class="step-actions">
+                        <button class="btn btn-outline" onclick="goToStep(1)"><i class="fas fa-arrow-left"></i> Voltar</button>
+                        <button class="btn btn-primary" id="step2Next" disabled onclick="goToStep(3)">
+                            Próximo <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Date/Time -->
+                <div class="booking-step" data-step="3">
+                    <div class="step-label">Passo 3</div>
+                    <div class="step-title">Escolha o horário</div>
+                    <div class="step-sub">Disponibilidade para hoje</div>
+
+                    <div style="background:var(--white); border-radius:var(--radius-sm); padding:14px 16px; margin-bottom:14px; box-shadow:var(--shadow-sm);">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-weight:600;" id="selectedServiceDisplay">Nenhum serviço selecionado</span>
+                            <span style="font-size:0.8rem; color:var(--warm-gray);" id="selectedBarberDisplay"></span>
+                        </div>
+                    </div>
+
+                    <div class="time-grid" id="timeSlots">
+                        <!-- rendered by JS -->
+                    </div>
+
+                    <div class="step-actions">
+                        <button class="btn btn-outline" onclick="goToStep(2)"><i class="fas fa-arrow-left"></i> Voltar</button>
+                        <button class="btn btn-gold" id="step3Next" disabled onclick="goToStep(4)">
+                            Revisar <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Summary -->
+                <div class="booking-step" data-step="4">
+                    <div class="step-label">Passo 4</div>
+                    <div class="step-title">Confirme sua reserva</div>
+                    <div class="step-sub">Verifique os detalhes</div>
+
+                    <div class="card" style="margin-bottom:12px;">
+                        <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(0,0,0,0.04);">
+                            <span style="color:var(--warm-gray);">Serviço</span>
+                            <span style="font-weight:600;" id="summaryService">—</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(0,0,0,0.04);">
+                            <span style="color:var(--warm-gray);">Profissional</span>
+                            <span style="font-weight:600;" id="summaryBarber">—</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(0,0,0,0.04);">
+                            <span style="color:var(--warm-gray);">Data/Hora</span>
+                            <span style="font-weight:600;" id="summaryTime">—</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:6px 0;">
+                            <span style="color:var(--warm-gray);">Duração</span>
+                            <span style="font-weight:600;" id="summaryDuration">—</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; padding:8px 0 0; border-top:2px solid var(--gold); margin-top:4px; font-size:1.1rem;">
+                            <span style="font-weight:600;">Total</span>
+                            <span style="font-weight:700; color:var(--gold);" id="summaryPrice">—</span>
+                        </div>
+                    </div>
+
+                    <div class="step-actions">
+                        <button class="btn btn-outline" onclick="goToStep(3)"><i class="fas fa-arrow-left"></i> Voltar</button>
+                        <button class="btn btn-gold" id="confirmBookingBtn" onclick="confirmBooking()">
+                            <i class="fas fa-check-circle"></i> Confirmar reserva
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sticky summary (mobile) -->
+                <div class="summary-sticky" id="stickySummary">
+                    <div class="row">
+                        <span class="left" id="stickySummaryText">Nenhum serviço selecionado</span>
+                        <span class="right" id="stickySummaryPrice">—</span>
+                    </div>
+                    <button class="btn btn-gold btn-sm" onclick="goToStep(4)">
+                        Revisar reserva <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- ===== VIEW: PROFESSIONALS ===== -->
+            <section class="view" id="view-professionals">
+                <h2 class="heading-serif" style="font-size:1.5rem; margin-bottom:4px;">Nossos profissionais</h2>
+                <p class="text-muted" style="margin-bottom:16px;">Especialistas prontos para cuidar de você</p>
+                <div class="pros-grid" id="allProfessionals">
+                    <!-- rendered by JS -->
+                </div>
+            </section>
+
+            <!-- ===== VIEW: BOOKINGS ===== -->
+            <section class="view" id="view-bookings">
+                <h2 class="heading-serif" style="font-size:1.5rem; margin-bottom:4px;">Minhas reservas</h2>
+                <p class="text-muted" style="margin-bottom:16px;">Acompanhe seus agendamentos</p>
+                <div id="bookingsList">
+                    <!-- rendered by JS -->
+                </div>
+            </section>
+
+            <!-- ===== VIEW: HELP ===== -->
+            <section class="view" id="view-help">
+                <h2 class="heading-serif" style="font-size:1.5rem; margin-bottom:4px;">Ajuda &amp; FAQ</h2>
+                <p class="text-muted" style="margin-bottom:16px;">Tire suas dúvidas rapidamente</p>
+
+                <div class="faq-item" onclick="this.classList.toggle('open')">
+                    <div class="q">Como faço uma reserva? <i class="fas fa-chevron-down"></i></div>
+                    <div class="a">Escolha o serviço, o profissional e o horário. Confirme e pronto! Você receberá um lembrete.</div>
+                </div>
+                <div class="faq-item" onclick="this.classList.toggle('open')">
+                    <div class="q">Posso remarcar meu horário? <i class="fas fa-chevron-down"></i></div>
+                    <div class="a">Sim! Acesse "Minhas reservas" e clique em "Remarcar" para escolher um novo horário.</div>
+                </div>
+                <div class="faq-item" onclick="this.classList.toggle('open')">
+                    <div class="q">Como funciona a lista de espera? <i class="fas fa-chevron-down"></i></div>
+                    <div class="a">Se não houver horário disponível, você pode entrar na lista de espera. Avise quando abrir uma vaga.</div>
+                </div>
+                <div class="faq-item" onclick="this.classList.toggle('open')">
+                    <div class="q">Recebo lembrete da reserva? <i class="fas fa-chevron-down"></i></div>
+                    <div class="a">Sim! Enviamos um lembrete por push (se ativado) e por e-mail antes do seu horário.</div>
+                </div>
+                <div class="faq-item" onclick="this.classList.toggle('open')">
+                    <div class="q">O Pulse Book é gratuito? <i class="fas fa-chevron-down"></i></div>
+                    <div class="a">Sim, o agendamento é gratuito. Você paga apenas pelo serviço na barbearia.</div>
+                </div>
+
+                <div style="margin-top:24px; padding:16px; background:var(--white); border-radius:var(--radius-sm); text-align:center; box-shadow:var(--shadow-sm);">
+                    <i class="fas fa-headset" style="font-size:28px; color:var(--gold);"></i>
+                    <h5 style="margin-top:8px; font-weight:600;">Fale conosco</h5>
+                    <p style="font-size:0.85rem; color:var(--warm-gray);">(11) 99999-9999 · suporte@pulsebook.com</p>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ===== BOTTOM NAV ===== -->
+        <nav class="bottom-nav" id="bottomNav">
+            <button class="nav-item active" data-view="home" onclick="navigateTo('home')">
+                <i class="fas fa-home"></i>
+                <span>Início</span>
+            </button>
+            <button class="nav-item book-cta" data-view="booking" onclick="navigateTo('booking')">
+                <i class="fas fa-calendar-plus"></i>
+                <span>Reservar</span>
+            </button>
+            <button class="nav-item" data-view="services" onclick="navigateTo('services')">
+                <i class="fas fa-cut"></i>
+                <span>Serviços</span>
+            </button>
+            <button class="nav-item" data-view="professionals" onclick="navigateTo('professionals')">
+                <i class="fas fa-users"></i>
+                <span>Profissionais</span>
+            </button>
+            <button class="nav-item" data-view="bookings" onclick="navigateTo('bookings')">
+                <i class="fas fa-calendar-check"></i>
+                <span>Reservas</span>
+                <span class="nav-badge" id="bookingBadge">0</span>
+            </button>
+        </nav>
+
+        <!-- ===== CONFIRMATION MODAL ===== -->
+        <div class="modal-overlay" id="confirmationModal">
+            <div class="modal-box">
+                <div class="icon"><i class="fas fa-check"></i></div>
+                <h3>Reserva confirmada!</h3>
+                <p>Sua reserva foi realizada com sucesso.</p>
+                <div class="details" id="confirmationDetails">
+                    <!-- filled by JS -->
+                </div>
+                <button class="btn btn-primary" onclick="closeConfirmation()">
+                    <i class="fas fa-thumbs-up"></i> Ótimo!
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        //  DATA
+        // ============================================================
+        const SERVICES = [{
+            id: 1,
+            name: 'Corte Clássico',
+            description: 'Corte tradicional com acabamento impecável.',
+            duration: 45,
+            price: 60,
+            icon: 'fa-scissors',
+            image: 'linear-gradient(135deg, #2d2d2d, #1a1a1a)',
+            featured: true
+        }, {
+            id: 2,
+            name: 'Corte Degradê',
+            description: 'Degradê moderno com técnica americana.',
+            duration: 60,
+            price: 80,
+            icon: 'fa-cut',
+            image: 'linear-gradient(135deg, #3d3d3d, #1a1a1a)',
+            featured: true
+        }, {
+            id: 3,
+            name: 'Barba Completa',
+            description: 'Modelagem e acabamento de barba com toalha quente.',
+            duration: 30,
+            price: 50,
+            icon: 'fa-beard',
+            image: 'linear-gradient(135deg, #4d4d4d, #2a2a2a)',
+            featured: true
+        }, {
+            id: 4,
+            name: 'Corte + Barba',
+            description: 'Combo completo com corte e barba.',
+            duration: 90,
+            price: 110,
+            icon: 'fa-people-arrows',
+            image: 'linear-gradient(135deg, #5d5d5d, #1a1a1a)',
+            featured: true
+        }, {
+            id: 5,
+            name: 'Pigmentação',
+            description: 'Pigmentação capilar para cobertura de falhas.',
+            duration: 45,
+            price: 90,
+            icon: 'fa-paint-brush',
+            image: 'linear-gradient(135deg, #6d6d6d, #2a2a2a)',
+            featured: false
+        }, {
+            id: 6,
+            name: 'Hidratação Capilar',
+            description: 'Tratamento intensivo com ativos naturais.',
+            duration: 40,
+            price: 70,
+            icon: 'fa-water',
+            image: 'linear-gradient(135deg, #7d7d7d, #1a1a1a)',
+            featured: false
+        }];
+
+        const BARBERS = [{
+            id: 1,
+            name: 'Rafael Silva',
+            specialty: 'Cortes clássicos e barba',
+            emoji: '👨‍🦱'
+        }, {
+            id: 2,
+            name: 'Miguel Santos',
+            specialty: 'Degradê e tendências',
+            emoji: '👨‍🦰'
+        }, {
+            id: 3,
+            name: 'Lucas Oliveira',
+            specialty: 'Barba e pigmentação',
+            emoji: '🧔'
+        }, {
+            id: 4,
+            name: 'Gabriel Costa',
+            specialty: 'Pigmentação e hidratação',
+            emoji: '👨‍🦳'
+        }];
+
+        const TIME_SLOTS = [
+            '09:00', '09:30', '10:00', '10:30',
+            '11:00', '11:30', '13:00', '13:30',
+            '14:00', '14:30', '15:00', '15:30',
+            '16:00', '16:30', '17:00', '17:30',
+            '18:00', '18:30'
+        ];
+
+        // Mock unavailable slots (simulate some taken)
+        const UNAVAILABLE_SLOTS = ['10:00', '14:30', '16:00'];
+
+        // ============================================================
+        //  STATE
+        // ============================================================
+        const state = {
+            currentView: 'home',
+            booking: {
+                step: 1,
+                serviceId: null,
+                barberId: null,
+                time: null,
+            },
+            bookings: [
+                { id: 1, serviceId: 1, barberId: 1, time: '11:00', date: '2026-07-11', status: 'confirmed',
+                serviceName: 'Corte Clássico', barberName: 'Rafael Silva' },
+                { id: 2, serviceId: 3, barberId: 3, time: '15:30', date: '2026-07-12', status: 'pending',
+                    serviceName: 'Barba Completa', barberName: 'Lucas Oliveira' },
+            ],
+            bookingCounter: 3,
+        };
+
+        // ============================================================
+        //  DOM REFS
+        // ============================================================
+        const $ = (sel) => document.querySelector(sel);
+        const $$ = (sel) => document.querySelectorAll(sel);
+
+        const mainContent = $('#mainContent');
+        const views = {
+            home: $('#view-home'),
+            services: $('#view-services'),
+            booking: $('#view-booking'),
+            professionals: $('#view-professionals'),
+            bookings: $('#view-bookings'),
+            help: $('#view-help'),
+        };
+        const navItems = $$('.bottom-nav .nav-item');
+        const stepDots = $$('.step-dot');
+        const stepContainers = $$('.booking-step');
+
+        // ============================================================
+        //  RENDER FUNCTIONS
+        // ============================================================
+
+        function renderFeaturedServices() {
+            const container = $('#featuredServices');
+            const featured = SERVICES.filter(s => s.featured);
+            container.innerHTML = featured.map(s => serviceCardHTML(s)).join('');
+            // Attach click events
+            container.querySelectorAll('.card-service').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = parseInt(el.dataset.id);
+                    selectService(id);
+                });
+            });
+        }
+
+        function renderAllServices(filter = '') {
+            const container = $('#allServices');
+            const filtered = SERVICES.filter(s =>
+                s.name.toLowerCase().includes(filter.toLowerCase()) ||
+                s.description.toLowerCase().includes(filter.toLowerCase())
+            );
+            if (filtered.length === 0) {
+                container.innerHTML =
+                `<div class="empty-state"><i class="fas fa-search"></i><h4>Nenhum serviço encontrado</h4><p>Tente outro termo</p></div>`;
+                return;
+            }
+            container.innerHTML = filtered.map(s => serviceCardHTML(s)).join('');
+            container.querySelectorAll('.card-service').forEach(el => {
+                el.addEventListener('click', () => {
+                    const id = parseInt(el.dataset.id);
+                    selectService(id);
+                    navigateTo('booking');
+                });
+            });
+        }
+
+        function serviceCardHTML(s) {
+            return `
+                <div class="card card-service" data-id="${s.id}">
+                    <div class="card-img" style="background:${s.image};">
+                        <span class="card-badge gold">${s.duration}min</span>
+                    </div>
+                    <div class="card-body">
+                        <h4>${s.name}</h4>
+                        <p style="font-size:0.75rem; color:var(--warm-gray); margin-top:2px;">${s.description}</p>
+                        <div class="meta">
+                            <span><i class="far fa-clock"></i> ${s.duration}min</span>
+                            <span><i class="fas fa-tag"></i> R$${s.price}</span>
+                        </div>
+                        <div class="price">R$ ${s.price}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderBookingServices() {
+            const container = $('#bookingServices');
+            container.innerHTML = SERVICES.map(s => `
+                <div class="card card-service ${state.booking.serviceId === s.id ? 'selected' : ''}" data-id="${s.id}" onclick="selectService(${s.id})">
+                    <div class="card-img" style="background:${s.image}; height:80px;">
+                        <span class="card-badge gold">${s.duration}min</span>
+                    </div>
+                    <div class="card-body" style="padding:10px 12px 12px;">
+                        <h4 style="font-size:0.85rem;">${s.name}</h4>
+                        <div class="meta" style="font-size:0.65rem;">
+                            <span><i class="far fa-clock"></i> ${s.duration}min</span>
+                            <span><i class="fas fa-tag"></i> R$${s.price}</span>
+                        </div>
+                        <div class="price" style="font-size:0.9rem;">R$ ${s.price}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderBookingBarbers() {
+            const container = $('#bookingBarbers');
+            container.innerHTML = BARBERS.map(b => `
+                <div class="card card-barber ${state.booking.barberId === b.id ? 'selected' : ''}" data-id="${b.id}" onclick="selectBarber(${b.id})">
+                    <div class="avatar">${b.emoji}</div>
+                    <div class="info">
+                        <h4>${b.name}</h4>
+                        <p>${b.specialty}</p>
+                    </div>
+                    <div class="check"><i class="fas fa-check"></i></div>
+                </div>
+            `).join('');
+        }
+
+        function renderTimeSlots() {
+            const container = $('#timeSlots');
+            const selected = state.booking.time;
+            container.innerHTML = TIME_SLOTS.map(t => {
+                const unavailable = UNAVAILABLE_SLOTS.includes(t);
+                const classes = `time-slot${selected === t ? ' selected' : ''}${unavailable ? ' unavailable' : ''}`;
+                return `<button class="${classes}" data-time="${t}" ${unavailable ? 'disabled' : ''} onclick="selectTime('${t}')">
+                    ${t}
+                </button>`;
+            }).join('');
+        }
+
+        function renderProfessionals() {
+            const container = $('#allProfessionals');
+            container.innerHTML = BARBERS.map(b => `
+                <div class="card card-barber" style="cursor:default;">
+                    <div class="avatar">${b.emoji}</div>
+                    <div class="info">
+                        <h4>${b.name}</h4>
+                        <p>${b.specialty}</p>
+                    </div>
+                    <div style="margin-left:auto; font-size:0.7rem; color:var(--warm-gray);">
+                        <i class="fas fa-star" style="color:var(--gold);"></i> 4.9
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderBookings() {
+            const container = $('#bookingsList');
+            const list = state.bookings;
+            const badge = $('#bookingBadge');
+            badge.textContent = list.length;
+
+            if (list.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-plus"></i>
+                        <h4>Nenhuma reserva ainda</h4>
+                        <p>Faça sua primeira reserva agora mesmo.</p>
+                        <button class="btn btn-gold btn-sm" style="margin-top:12px; width:auto;" onclick="navigateTo('booking')">
+                            <i class="fas fa-calendar-plus"></i> Reservar
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = list.map(b => {
+                const statusClass = b.status === 'confirmed' ? 'confirmed' : 'pending';
+                const statusLabel = b.status === 'confirmed' ? 'Confirmada' : 'Pendente';
+                return `
+                    <div class="booking-item">
+                        <div class="info">
+                            <h5>${b.serviceName}</h5>
+                            <p><i class="far fa-user"></i> ${b.barberName} · ${b.time}h</p>
+                            <p style="font-size:0.7rem; color:var(--warm-gray);">${b.date}</p>
+                        </div>
+                        <div style="display:flex; flex-direction:column; align-items:flex-end; gap:4px;">
+                            <span class="status ${statusClass}">${statusLabel}</span>
+                            <button class="btn btn-outline btn-sm" style="padding:4px 12px; font-size:0.6rem; min-height:28px; width:auto;" onclick="rescheduleBooking(${b.id})">
+                                <i class="fas fa-sync-alt"></i> Remarcar
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function updateStepUI() {
+            const step = state.booking.step;
+            stepDots.forEach((dot, i) => {
+                const num = i + 1;
+                dot.classList.toggle('active', num === step);
+                dot.classList.toggle('done', num < step);
+            });
+            stepContainers.forEach((el, i) => {
+                el.classList.toggle('active', i + 1 === step);
+            });
+
+            // Update sticky summary visibility
+            const sticky = $('#stickySummary');
+            const hasSelection = state.booking.serviceId !== null;
+            sticky.classList.toggle('visible', hasSelection && state.booking.step < 4);
+
+            if (hasSelection) {
+                const svc = SERVICES.find(s => s.id === state.booking.serviceId);
+                if (svc) {
+                    $('#stickySummaryText').textContent = svc.name;
+                    $('#stickySummaryPrice').textContent = `R$ ${svc.price}`;
+                }
+            }
+
+            // Update step buttons
+            const step1Next = $('#step1Next');
+            step1Next.disabled = state.booking.serviceId === null;
+
+            const step2Next = $('#step2Next');
+            step2Next.disabled = state.booking.barberId === null;
+
+            const step3Next = $('#step3Next');
+            step3Next.disabled = state.booking.time === null;
+
+            // Update step 3 display
+            if (state.booking.serviceId) {
+                const svc = SERVICES.find(s => s.id === state.booking.serviceId);
+                $('#selectedServiceDisplay').textContent = svc ? svc.name : '—';
+            }
+            if (state.booking.barberId) {
+                const bar = BARBERS.find(b => b.id === state.booking.barberId);
+                $('#selectedBarberDisplay').textContent = bar ? `👤 ${bar.name}` : '';
+            }
+        }
+
+        function updateSummary() {
+            const svc = SERVICES.find(s => s.id === state.booking.serviceId);
+            const bar = BARBERS.find(b => b.id === state.booking.barberId);
+            const time = state.booking.time;
+
+            $('#summaryService').textContent = svc ? svc.name : '—';
+            $('#summaryBarber').textContent = bar ? bar.name : '—';
+            $('#summaryTime').textContent = time ? time : '—';
+            $('#summaryDuration').textContent = svc ? `${svc.duration}min` : '—';
+            $('#summaryPrice').textContent = svc ? `R$ ${svc.price}` : '—';
+        }
+
+        // ============================================================
+        //  ACTIONS
+        // ============================================================
+
+        function selectService(id) {
+            state.booking.serviceId = id;
+            state.booking.step = 1;
+            renderBookingServices();
+            updateStepUI();
+            // Update booking services selection visually
+            $$('#bookingServices .card-service').forEach(el => {
+                el.classList.toggle('selected', parseInt(el.dataset.id) === id);
+            });
+            // Scroll to top of booking view
+            mainContent.scrollTop = 0;
+        }
+
+        function selectBarber(id) {
+            state.booking.barberId = id;
+            renderBookingBarbers();
+            updateStepUI();
+            $$('#bookingBarbers .card-barber').forEach(el => {
+                el.classList.toggle('selected', parseInt(el.dataset.id) === id);
+            });
+        }
+
+        function selectTime(time) {
+            if (UNAVAILABLE_SLOTS.includes(time)) return;
+            state.booking.time = time;
+            renderTimeSlots();
+            updateStepUI();
+        }
+
+        function goToStep(step) {
+            if (step === 2 && state.booking.serviceId === null) return;
+            if (step === 3 && state.booking.barberId === null) return;
+            if (step === 4 && state.booking.time === null) return;
+            state.booking.step = step;
+            updateStepUI();
+            updateSummary();
+            mainContent.scrollTop = 0;
+
+            // Render time slots if step 3
+            if (step === 3) renderTimeSlots();
+            if (step === 4) updateSummary();
+        }
+
+        function confirmBooking() {
+            const svc = SERVICES.find(s => s.id === state.booking.serviceId);
+            const bar = BARBERS.find(b => b.id === state.booking.barberId);
+            const time = state.booking.time;
+
+            if (!svc || !bar || !time) return;
+
+            // Add to bookings
+            const newBooking = {
+                id: state.bookingCounter++,
+                serviceId: svc.id,
+                barberId: bar.id,
+                time: time,
+                date: new Date().toISOString().slice(0, 10),
+                status: 'confirmed',
+                serviceName: svc.name,
+                barberName: bar.name,
+            };
+            state.bookings.unshift(newBooking);
+
+            // Show confirmation modal
+            const modal = $('#confirmationModal');
+            const details = $('#confirmationDetails');
+            details.innerHTML = `
+                <div class="line"><span class="label">Serviço</span><span>${svc.name}</span></div>
+                <div class="line"><span class="label">Profissional</span><span>${bar.name}</span></div>
+                <div class="line"><span class="label">Horário</span><span>${time}h</span></div>
+                <div class="line"><span class="label">Duração</span><span>${svc.duration}min</span></div>
+                <div class="line" style="font-weight:700; color:var(--gold);"><span class="label">Total</span><span>R$ ${svc.price}</span></div>
+            `;
+            modal.classList.add('open');
+
+            // Reset booking state
+            state.booking.serviceId = null;
+            state.booking.barberId = null;
+            state.booking.time = null;
+            state.booking.step = 1;
+
+            renderBookingServices();
+            renderBookingBarbers();
+            renderTimeSlots();
+            updateStepUI();
+            renderBookings();
+            updateSummary();
+
+            // Update badge
+            $('#bookingBadge').textContent = state.bookings.length;
+        }
+
+        function closeConfirmation() {
+            $('#confirmationModal').classList.remove('open');
+            navigateTo('bookings');
+        }
+
+        function rescheduleBooking(id) {
+            const booking = state.bookings.find(b => b.id === id);
+            if (!booking) return;
+
+            // Remove from list
+            state.bookings = state.bookings.filter(b => b.id !== id);
+
+            // Pre-fill booking state
+            state.booking.serviceId = booking.serviceId;
+            state.booking.barberId = booking.barberId;
+            state.booking.time = null;
+            state.booking.step = 2;
+
+            renderBookings();
+            renderBookingServices();
+            renderBookingBarbers();
+            renderTimeSlots();
+            updateStepUI();
+            updateSummary();
+            navigateTo('booking');
+            // Go to step 2 (barber selection)
+            goToStep(2);
+        }
+
+        function filterServices() {
+            const query = $('#serviceSearch').value;
+            renderAllServices(query);
+        }
+
+        // ============================================================
+        //  NAVIGATION
+        // ============================================================
+
+        function navigateTo(view) {
+            const validViews = ['home', 'services', 'booking', 'professionals', 'bookings', 'help'];
+            if (!validViews.includes(view)) view = 'home';
+
+            state.currentView = view;
+
+            // Show/hide views
+            Object.keys(views).forEach(key => {
+                views[key].classList.toggle('active', key === view);
+            });
+
+            // Update nav
+            navItems.forEach(item => {
+                const v = item.dataset.view;
+                item.classList.toggle('active', v === view);
+            });
+
+            // Scroll to top
+            mainContent.scrollTop = 0;
+
+            // Render specific views
+            if (view === 'home') renderFeaturedServices();
+            if (view === 'services') renderAllServices();
+            if (view === 'professionals') renderProfessionals();
+            if (view === 'bookings') renderBookings();
+            if (view === 'booking') {
+                renderBookingServices();
+                renderBookingBarbers();
+                renderTimeSlots();
+                updateStepUI();
+                updateSummary();
+                // Reset step to 1 if nothing selected
+                if (!state.booking.serviceId) {
+                    state.booking.step = 1;
+                    updateStepUI();
+                }
+            }
+        }
+
+        // ============================================================
+        //  PWA — Service Worker & Manifest (inline)
+        // ============================================================
+
+        function registerSW() {
+            if ('serviceWorker' in navigator) {
+                // Create a minimal service worker from a blob
+                const swCode = `
+                    self.addEventListener('install', e => {
+                        e.waitUntil(
+                            caches.open('pulsebook-v1').then(cache => {
+                                return cache.addAll([
+                                    '/',
+                                    '/index.html'
+                                ]);
+                            })
+                        );
+                        self.skipWaiting();
+                    });
+                    self.addEventListener('activate', e => {
+                        e.waitUntil(clients.claim());
+                    });
+                    self.addEventListener('fetch', e => {
+                        e.respondWith(
+                            caches.match(e.request).then(res => res || fetch(e.request))
+                        );
+                    });
+                `;
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                const swUrl = URL.createObjectURL(blob);
+                navigator.serviceWorker.register(swUrl, { scope: '/' })
+                    .then(() => console.log('🔧 SW registrado'))
+                    .catch(() => console.log('⚠️ SW não registrado (demo)'));
+            }
+        }
+
+        function setupPWAInstall() {
+            let deferredPrompt;
+            const banner = $('#installBanner');
+            const btn = $('#installBtn');
+
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                banner.classList.add('show');
+            });
+
+            btn.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const result = await deferredPrompt.userChoice;
+                    if (result.outcome === 'accepted') {
+                        banner.classList.remove('show');
+                    }
+                    deferredPrompt = null;
+                } else {
+                    // Fallback: show instructions
+                    alert('Para instalar, abra o menu do navegador e selecione "Adicionar à tela inicial".');
+                }
+            });
+
+            window.addEventListener('appinstalled', () => {
+                banner.classList.remove('show');
+            });
+        }
+
+        // ============================================================
+        //  INIT
+        // ============================================================
+
+        function init() {
+            renderFeaturedServices();
+            renderAllServices();
+            renderProfessionals();
+            renderBookings();
+            renderBookingServices();
+            renderBookingBarbers();
+            renderTimeSlots();
+            updateStepUI();
+            updateSummary();
+
+            // Set default nav
+            navigateTo('home');
+
+            // PWA
+            registerSW();
+            setupPWAInstall();
+
+            // Close modal on overlay click
+            $('#confirmationModal').addEventListener('click', function(e) {
+                if (e.target === this) closeConfirmation();
+            });
+
+            console.log('🚀 Pulse Book iniciado');
+        }
+
+        // Make functions globally accessible
+        window.navigateTo = navigateTo;
+        window.selectService = selectService;
+        window.selectBarber = selectBarber;
+        window.selectTime = selectTime;
+        window.goToStep = goToStep;
+        window.confirmBooking = confirmBooking;
+        window.closeConfirmation = closeConfirmation;
+        window.rescheduleBooking = rescheduleBooking;
+        window.filterServices = filterServices;
+
+        // Init on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    </script>
+
+</body>
+</html>
