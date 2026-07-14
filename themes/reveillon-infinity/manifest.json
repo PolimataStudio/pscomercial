@@ -1,0 +1,22 @@
+// /themes/reveillon-infinity/manifest.json
+{
+  "id": "reveillon-infinity",
+  "name": "Réveillon Infinity",
+  "author": "Polímata Studio",
+  "version": "1.0.0",
+  "description": "Tema Dark Premium Cinematográfico inspirado na passagem do Ano Novo. Transmite renovação, esperança, prosperidade e elegância, com atmosfera luxuosa e tecnológica. Ideal para empresas, startups e plataformas que desejam celebrar novos ciclos com sofisticação.",
+  "compatibility": {
+    "desktop": true,
+    "tablet": true,
+    "mobile": true,
+    "githubPages": true,
+    "pwa": true
+  },
+  "tokens": {
+    "colors": true,
+    "typography": true,
+    "spacing": true,
+    "borders": true,
+    "shadows": true
+  }
+}

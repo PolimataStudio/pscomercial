@@ -1,0 +1,21 @@
+{
+  "id": "blackfriday",
+  "name": "Black Infinity",
+  "author": "Polímata Studio",
+  "version": "1.0.0",
+  "description": "Tema premium para Black Friday inspirado em luxo, tecnologia e vitrines de alto padrão. Dark, cinematográfico, com acentos dourados, reflexos metálicos e efeitos holográficos sutis.",
+  "compatibility": {
+    "desktop": true,
+    "tablet": true,
+    "mobile": true,
+    "githubPages": true,
+    "pwa": true
+  },
+  "tokens": {
+    "colors": true,
+    "typography": true,
+    "spacing": true,
+    "borders": true,
+    "shadows": true
+  }
+}

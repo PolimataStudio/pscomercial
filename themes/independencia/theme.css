@@ -1,0 +1,1320 @@
+/* ============================================================
+   TEMA: Independência
+   Polímata Studio – Tema Institucional Sazonal
+   ============================================================ */
+
+/* --------------------------------------------
+   0. IMPORTAÇÃO DE FONTES
+   -------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* --------------------------------------------
+   1. TOKENS VISUAIS (sobrescrita completa)
+   -------------------------------------------- */
+:root {
+  /* Cores obrigatórias */
+  --bg: #081F4A;                /* Azul República Escuro */
+  --surface: #0B6B3A;           /* Verde Bandeira Profundo */
+  --surface-light: #1C8C55;     /* Verde Esmeralda */
+  --text: #F7F9FB;              /* Branco Marfim */
+  --muted: #B8C2CC;             /* Cinza Prata */
+  --accent-lime: #F2C94C;       /* Dourado Nacional */
+  --accent-pink: #27AE60;       /* Verde Vibrante (substitui rosa) */
+  --accent-blue: #0A3D91;       /* Azul República */
+  --border: #355B4A;            /* Verde Acinzentado */
+
+  /* Tipografia */
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Inter', sans-serif;   /* Títulos em Inter (peso 700-800) */
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Espaçamento (escala de 4 a 96px) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.5rem;    /* 24px */
+  --space-6: 2rem;      /* 32px */
+  --space-7: 3rem;      /* 48px */
+  --space-8: 4rem;      /* 64px */
+  --space-9: 6rem;      /* 96px */
+
+  /* Raio de bordas */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Sombras com tonalidade azul-escura */
+  --shadow-sm: 0 1px 3px rgba(8, 31, 74, 0.4);
+  --shadow-md: 0 4px 12px rgba(8, 31, 74, 0.5);
+  --shadow-lg: 0 8px 24px rgba(8, 31, 74, 0.6);
+
+  /* Movimento */
+  --duration-fast: 150ms;
+  --duration-medium: 300ms;
+  --duration-slow: 500ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.4, 0, 0.6, 1);
+
+  /* Tokens adicionais para efeitos especiais */
+  --glass-bg: rgba(11, 107, 58, 0.45);
+  --glass-border: rgba(242, 201, 76, 0.12);
+  --glow-gold: 0 0 20px rgba(242, 201, 76, 0.2);
+  --glow-green: 0 0 20px rgba(39, 174, 96, 0.25);
+}
+
+/* --------------------------------------------
+   2. ESTILOS BASE & VINHETA
+   -------------------------------------------- */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Vinheta sutil nas extremidades para profundidade */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(8, 31, 74, 0.5) 100%);
+  z-index: 9999;
+}
+
+/* Headings em Inter com pesos mais altos */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+p  { font-size: 1rem; }
+
+strong {
+  font-weight: 700;
+}
+
+a {
+  color: var(--accent-blue);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+a:hover {
+  color: var(--accent-lime);
+}
+
+/* --------------------------------------------
+   3. SCROLLBAR E SELECTION
+   -------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--accent-lime);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-lime);
+  border-color: var(--surface);
+}
+
+::selection {
+  background: var(--accent-blue);
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* --------------------------------------------
+   4. NAVBAR (glassmorphism + institucional)
+   -------------------------------------------- */
+.navbar {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: var(--space-4) var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+
+.navbar .logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-lime);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+.navbar .logo:hover {
+  color: var(--text);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: var(--space-5);
+  align-items: center;
+}
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--duration-fast) var(--ease-standard);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--accent-lime);
+  transition: width var(--duration-medium) var(--ease-standard);
+}
+.nav-links a:hover {
+  color: var(--text);
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.cta-nav .btn {
+  background: var(--accent-lime);
+  color: var(--bg);
+  border: none;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.875rem;
+  box-shadow: var(--glow-gold);
+  transition: all var(--duration-medium) var(--ease-standard);
+}
+.cta-nav .btn:hover {
+  background: #F4D76A;
+  box-shadow: 0 0 30px rgba(242, 201, 76, 0.4);
+  transform: scale(1.02);
+}
+
+/* --------------------------------------------
+   5. FOOTER
+   -------------------------------------------- */
+.footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: var(--space-7) var(--space-6) var(--space-5);
+  margin-top: var(--space-7);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-grid h4 {
+  font-family: var(--font-display);
+  color: var(--accent-lime);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+
+.footer-grid a {
+  color: var(--muted);
+  text-decoration: none;
+  display: block;
+  margin-bottom: var(--space-2);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+.footer-grid a:hover {
+  color: var(--accent-lime);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* --------------------------------------------
+   6. HERO (impacto visual com iluminação radial)
+   -------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-9) var(--space-6);
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 30%, rgba(11, 107, 58, 0.3), var(--bg) 80%);
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Iluminação radial discreta ao centro */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(242, 201, 76, 0.04) 0%, transparent 70%);
+  z-index: 0;
+}
+
+/* Linhas diagonais quase imperceptíveis (faixas cívicas) */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    rgba(242, 201, 76, 0.02) 40px,
+    rgba(242, 201, 76, 0.02) 42px
+  );
+  z-index: 0;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--text);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  margin-bottom: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+.hero h1 span {
+  color: var(--accent-lime);
+}
+.hero p {
+  font-size: 1.25rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto var(--space-6);
+  position: relative;
+  z-index: 1;
+}
+
+.cta-group {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Micro partículas luminosas (progresso e inovação) */
+.hero .particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.hero .particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--accent-lime);
+  border-radius: 50%;
+  opacity: 0.15;
+  animation: floatParticle 20s linear infinite;
+}
+.hero .particles span:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+.hero .particles span:nth-child(2) { top: 30%; left: 80%; animation-delay: 4s; }
+.hero .particles span:nth-child(3) { top: 60%; left: 10%; animation-delay: 8s; }
+.hero .particles span:nth-child(4) { top: 80%; left: 70%; animation-delay: 12s; }
+.hero .particles span:nth-child(5) { top: 50%; left: 50%; animation-delay: 16s; }
+.hero .particles span:nth-child(6) { top: 15%; left: 60%; animation-delay: 2s; }
+.hero .particles span:nth-child(7) { top: 70%; left: 30%; animation-delay: 6s; }
+.hero .particles span:nth-child(8) { top: 40%; left: 90%; animation-delay: 10s; }
+
+@keyframes floatParticle {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+  50% { transform: translate(20px, -30px) scale(1.5); opacity: 0.3; }
+  100% { transform: translate(-10px, -60px) scale(0.8); opacity: 0.1; }
+}
+
+/* --------------------------------------------
+   7. CARDS (painéis tecnológicos com elevação)
+   -------------------------------------------- */
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(242, 201, 76, 0.04);
+  transition: all var(--duration-medium) var(--ease-standard);
+  position: relative;
+  overflow: hidden;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(242, 201, 76, 0.06);
+  border-color: rgba(242, 201, 76, 0.2);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  color: var(--accent-lime);
+  margin-bottom: var(--space-3);
+  display: block;
+}
+.card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+.card p {
+  color: var(--muted);
+  margin-bottom: var(--space-4);
+}
+.card-cta .btn {
+  background: transparent;
+  color: var(--accent-lime);
+  border: 1px solid var(--accent-lime);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: all var(--duration-medium) var(--ease-standard);
+}
+.card-cta .btn:hover {
+  background: var(--accent-lime);
+  color: var(--bg);
+  box-shadow: var(--glow-gold);
+}
+
+/* --------------------------------------------
+   8. BOTÕES (robustos e institucionais)
+   -------------------------------------------- */
+.btn {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: all var(--duration-medium) var(--ease-standard);
+  font-family: var(--font-sans);
+}
+
+.btn-primary {
+  background: var(--accent-lime);
+  color: var(--bg);
+  box-shadow: var(--glow-gold);
+}
+.btn-primary:hover {
+  background: #F4D76A;
+  box-shadow: 0 0 35px rgba(242, 201, 76, 0.4);
+  transform: scale(1.03);
+}
+
+.btn-secondary {
+  background: var(--accent-pink);
+  color: #FFFFFF;
+  box-shadow: var(--glow-green);
+}
+.btn-secondary:hover {
+  background: #2ECC71;
+  box-shadow: 0 0 35px rgba(39, 174, 96, 0.4);
+  transform: scale(1.03);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.btn-outline:hover {
+  color: var(--text);
+  border-color: var(--accent-lime);
+  background: rgba(242, 201, 76, 0.05);
+}
+
+/* --------------------------------------------
+   9. BADGES
+   -------------------------------------------- */
+.badge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--accent-pink);
+  color: #FFFFFF;
+  box-shadow: var(--glow-green);
+}
+.badge--gold {
+  background: var(--accent-lime);
+  color: var(--bg);
+  box-shadow: var(--glow-gold);
+}
+.badge--outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+/* --------------------------------------------
+   10. FORMULÁRIOS
+   -------------------------------------------- */
+.form-group {
+  margin-bottom: var(--space-4);
+}
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  color: var(--text);
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 0 3px rgba(242, 201, 76, 0.15);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* --------------------------------------------
+   11. SPM — APENAS IDENTIDADE VISUAL
+   (A arquitetura completa é fornecida pelo pages.css)
+   -------------------------------------------- */
+.spm-controls {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md);
+}
+
+.spm-controls button {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
+}
+
+.spm-controls button:hover {
+  color: var(--accent-lime);
+  transform: scale(1.1);
+}
+
+#spm-overlay {
+  background: rgba(8, 31, 74, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  /* Demais propriedades estruturais (position, inset, z-index, display, etc.) são do pages.css */
+}
+
+.spm-expanded {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(242, 201, 76, 0.04);
+  color: var(--text);
+}
+
+.spm-expanded .close-btn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.spm-expanded .close-btn:hover {
+  color: var(--accent-pink);
+}
+
+/* --------------------------------------------
+   12. RESPONSIVIDADE
+   -------------------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --space-9: 4rem;
+    --space-8: 3rem;
+  }
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.25rem; }
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 1rem; }
+  .navbar {
+    padding: var(--space-3) var(--space-4);
+    flex-wrap: wrap;
+  }
+  .nav-links {
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .cta-group {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    padding: var(--space-4);
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--space-7) var(--space-4);
+    min-height: 50vh;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .navbar .logo {
+    font-size: 1.2rem;
+  }
+  .nav-links a {
+    font-size: 0.875rem;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .spm-expanded {
+    padding: var(--space-4);
+    width: 95%;
+  }
+  .hero .particles span {
+    display: none; /* reduz partículas em mobile */
+  }
+}
+
+/* --------------------------------------------
+   13. ANIMAÇÕES E PREFERS-REDUCED-MOTION
+   -------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .hero .particles span {
+    display: none;
+  }
+  .hero::before,
+  .hero::after {
+    animation: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   INDEPENDÊNCIA ENHANCEMENT LAYER
+   Camada complementar de refinamento visual
+   ============================================================ */
+
+/* --------------------------------------------
+   1. BACKGROUND DINÂMICO (formas abstratas sutis)
+   -------------------------------------------- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 10% 20%, rgba(242, 201, 76, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 80%, rgba(11, 107, 58, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(10, 61, 145, 0.02) 0%, transparent 70%);
+  animation: bgPulse 20s ease-in-out infinite alternate;
+}
+
+@keyframes bgPulse {
+  0% { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
+/* --------------------------------------------
+   2. TEXTURA PREMIUM (micro noise)
+   -------------------------------------------- */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* --------------------------------------------
+   3. HALO DOURADO (atrás do Hero)
+   -------------------------------------------- */
+.hero::before {
+  /* mantemos o gradiente existente e adicionamos o halo */
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at center, rgba(242, 201, 76, 0.06) 0%, transparent 60%),
+    radial-gradient(circle at 50% 30%, rgba(242, 201, 76, 0.03) 0%, transparent 70%);
+  filter: blur(20px);
+}
+
+/* --------------------------------------------
+   4. LINHAS ARQUITETÔNICAS (Hero e Footer)
+   -------------------------------------------- */
+.hero::after {
+  /* mantemos as linhas diagonais e adicionamos linhas geométricas */
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    /* linhas diagonais existentes */
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(242, 201, 76, 0.02) 40px,
+      rgba(242, 201, 76, 0.02) 42px
+    ),
+    /* linhas verticais arquitetônicas */
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 120px,
+      rgba(255, 255, 255, 0.02) 120px,
+      rgba(255, 255, 255, 0.02) 121px
+    ),
+    /* linhas horizontais sutis */
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 80px,
+      rgba(242, 201, 76, 0.015) 80px,
+      rgba(242, 201, 76, 0.015) 81px
+    );
+}
+
+/* Linhas arquitetônicas no Footer */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 100px,
+      rgba(242, 201, 76, 0.03) 100px,
+      rgba(242, 201, 76, 0.03) 101px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 60px,
+      rgba(255, 255, 255, 0.015) 60px,
+      rgba(255, 255, 255, 0.015) 61px
+    );
+  z-index: 0;
+}
+
+.footer {
+  position: relative;
+  overflow: hidden;
+}
+
+/* --------------------------------------------
+   5. FAixas INSTITUCIONAIS (diagonais em fundos amplos)
+   -------------------------------------------- */
+.navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    repeating-linear-gradient(
+      -30deg,
+      transparent,
+      transparent 200px,
+      rgba(242, 201, 76, 0.02) 200px,
+      rgba(242, 201, 76, 0.02) 202px
+    ),
+    repeating-linear-gradient(
+      30deg,
+      transparent,
+      transparent 180px,
+      rgba(11, 107, 58, 0.015) 180px,
+      rgba(11, 107, 58, 0.015) 182px
+    );
+  opacity: 0.5;
+}
+
+/* --------------------------------------------
+   6. ELEMENTOS GEOMÉTRICOS (losangos e retângulos)
+   -------------------------------------------- */
+.hero .particles::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  border: 1px solid rgba(242, 201, 76, 0.04);
+  transform: rotate(45deg);
+  opacity: 0.4;
+}
+
+.hero .particles::after {
+  content: '';
+  position: absolute;
+  bottom: 20%;
+  left: 5%;
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  border: 1px solid rgba(242, 201, 76, 0.03);
+  transform: rotate(15deg);
+  opacity: 0.3;
+}
+
+/* Retângulos alongados no Footer */
+.footer-grid::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 2%;
+  width: 120px;
+  height: 2px;
+  background: rgba(242, 201, 76, 0.08);
+  pointer-events: none;
+}
+
+.footer-grid::after {
+  content: '';
+  position: absolute;
+  bottom: 15%;
+  left: 3%;
+  width: 80px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+
+/* --------------------------------------------
+   7. MICRO PARTÍCULAS (progresso e inovação)
+   -------------------------------------------- */
+/* Novo conjunto de partículas via background */
+.hero .particles::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(242, 201, 76, 0.06) 0, transparent 2px),
+    radial-gradient(circle at 30% 70%, rgba(242, 201, 76, 0.04) 0, transparent 3px),
+    radial-gradient(circle at 60% 15%, rgba(255, 255, 255, 0.03) 0, transparent 2px),
+    radial-gradient(circle at 80% 60%, rgba(242, 201, 76, 0.05) 0, transparent 2px),
+    radial-gradient(circle at 20% 40%, rgba(11, 107, 58, 0.04) 0, transparent 3px),
+    radial-gradient(circle at 70% 80%, rgba(242, 201, 76, 0.03) 0, transparent 2px),
+    radial-gradient(circle at 40% 90%, rgba(255, 255, 255, 0.02) 0, transparent 2px);
+  background-size: 200px 200px;
+  background-repeat: repeat;
+  animation: particleDrift 30s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes particleDrift {
+  0% { background-position: 0 0; }
+  100% { background-position: 200px 200px; }
+}
+
+/* --------------------------------------------
+   8. DESTAQUES METÁLICOS (reflexos em botões e badges)
+   -------------------------------------------- */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.05) 45%,
+    transparent 50%
+  );
+  pointer-events: none;
+  animation: metalShine 6s ease-in-out infinite;
+  opacity: 0;
+}
+.btn-primary:hover::after {
+  opacity: 1;
+}
+
+@keyframes metalShine {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(100%) rotate(25deg); }
+}
+
+/* Reflexo metálico em badges */
+.badge {
+  position: relative;
+  overflow: hidden;
+}
+.badge::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.05) 48%,
+    transparent 51%
+  );
+  pointer-events: none;
+  animation: metalShine 8s ease-in-out infinite;
+  opacity: 0;
+}
+.badge:hover::after {
+  opacity: 1;
+}
+
+/* --------------------------------------------
+   9. PROFUNDIDADE (sombras refinadas e iluminação indireta)
+   -------------------------------------------- */
+.card {
+  transition: transform var(--duration-medium) var(--ease-standard),
+              box-shadow var(--duration-medium) var(--ease-standard);
+  box-shadow: var(--shadow-md),
+              0 0 0 1px rgba(242, 201, 76, 0.04),
+              inset 0 0 60px rgba(255, 255, 255, 0.01);
+}
+.card:hover {
+  box-shadow: var(--shadow-lg),
+              0 0 30px rgba(242, 201, 76, 0.06),
+              inset 0 0 80px rgba(255, 255, 255, 0.02);
+  transform: translateY(-8px);
+}
+
+/* Iluminação indireta nos cards */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 201, 76, 0.1), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-medium) var(--ease-standard);
+}
+.card:hover::before {
+  opacity: 1;
+}
+
+/* --------------------------------------------
+   10. NAVBAR PREMIUM (iluminação inferior e blur refinado)
+   -------------------------------------------- */
+.navbar {
+  background: rgba(11, 107, 58, 0.35);
+  backdrop-filter: blur(16px) saturate(1.2);
+  -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3),
+              inset 0 -1px 0 rgba(242, 201, 76, 0.05);
+}
+
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(242, 201, 76, 0.05) 20%,
+    rgba(242, 201, 76, 0.08) 50%,
+    rgba(242, 201, 76, 0.05) 80%,
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* --------------------------------------------
+   11. FOOTER PREMIUM (iluminação superior e acabamento)
+   -------------------------------------------- */
+.footer {
+  border-top: none;
+  position: relative;
+}
+.footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(242, 201, 76, 0.02) 0%, transparent 5%);
+  z-index: 0;
+}
+
+.footer-bottom {
+  border-top-color: rgba(242, 201, 76, 0.08);
+  position: relative;
+}
+.footer-bottom::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 20%;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(242, 201, 76, 0.05), transparent);
+}
+
+/* --------------------------------------------
+   12. CARDS – ACABAMENTO PREMIUM (reflexo e brilho nas bordas)
+   -------------------------------------------- */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  padding: 1px;
+  background: linear-gradient(135deg,
+    rgba(242, 201, 76, 0.05),
+    transparent 50%,
+    rgba(242, 201, 76, 0.02)
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-medium) var(--ease-standard);
+}
+.card:hover::after {
+  opacity: 1;
+}
+
+/* --------------------------------------------
+   13. SCROLLBAR REFINADA (gradiente e hover)
+   -------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--surface), var(--accent-lime));
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg);
+  transition: all var(--duration-fast) var(--ease-standard);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-lime);
+  border-color: var(--surface);
+}
+
+/* --------------------------------------------
+   14. SELECTION MELHORADO
+   -------------------------------------------- */
+::selection {
+  background: var(--accent-blue);
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* --------------------------------------------
+   15. MICROINTERAÇÕES (hover, brilho, elevação)
+   -------------------------------------------- */
+.nav-links a {
+  transition: color var(--duration-fast) var(--ease-standard),
+              transform var(--duration-fast) var(--ease-standard);
+}
+.nav-links a:hover {
+  transform: translateY(-1px);
+}
+
+.cta-nav .btn {
+  transition: all var(--duration-medium) var(--ease-emphasized);
+}
+.cta-nav .btn:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn {
+  transition: all var(--duration-medium) var(--ease-emphasized);
+  position: relative;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  box-shadow: 0 4px 16px rgba(242, 201, 76, 0.2);
+}
+.btn-primary:hover {
+  box-shadow: 0 6px 24px rgba(242, 201, 76, 0.35);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.btn-secondary {
+  box-shadow: 0 4px 16px rgba(39, 174, 96, 0.15);
+}
+.btn-secondary:hover {
+  box-shadow: 0 6px 24px rgba(39, 174, 96, 0.3);
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* --------------------------------------------
+   16. HERO INSTITUCIONAL ENRIQUECIDO
+   -------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+.hero .particles {
+  z-index: 0;
+}
+.hero h1, .hero p, .cta-group {
+  z-index: 1;
+  position: relative;
+}
+.hero {
+  background:
+    /* gradiente base */
+    radial-gradient(ellipse at 50% 30%, rgba(11, 107, 58, 0.3), var(--bg) 80%),
+    /* formas desfocadas */
+    radial-gradient(circle at 20% 70%, rgba(242, 201, 76, 0.02) 0%, transparent 40%),
+    radial-gradient(circle at 80% 40%, rgba(10, 61, 145, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(242, 201, 76, 0.015) 0%, transparent 30%);
+}
+
+/* --------------------------------------------
+   17. FORMAS GEOMÉTRICAS DESFOCADAS NO HERO (abstratas)
+   -------------------------------------------- */
+.hero .particles {
+  position: relative;
+}
+.hero .particles::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle, rgba(242, 201, 76, 0.02) 0%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+/* --------------------------------------------
+   18. DIVISORES E ACABAMENTOS
+   -------------------------------------------- */
+/* Divisor sutil entre seções */
+section:not(:last-of-type)::after {
+  content: '';
+  display: block;
+  width: 60%;
+  max-width: 200px;
+  height: 1px;
+  margin: var(--space-7) auto;
+  background: linear-gradient(90deg, transparent, rgba(242, 201, 76, 0.06), transparent);
+}
+
+/* Aplicar apenas quando existir uma seção anterior */
+.hero + *::before {
+  content: '';
+  display: block;
+  width: 80%;
+  max-width: 400px;
+  height: 1px;
+  margin: 0 auto var(--space-5);
+  background: linear-gradient(90deg, transparent, rgba(242, 201, 76, 0.04), transparent);
+}
+
+/* --------------------------------------------
+   PREFERS-REDUCED-MOTION
+   -------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after,
+  .hero::before,
+  .hero::after,
+  .navbar::before,
+  .footer::before,
+  .footer::after,
+  .card::before,
+  .card::after,
+  .btn-primary::after,
+  .badge::after,
+  .hero .particles::after,
+  .hero .particles span {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hero .particles span {
+    display: none;
+  }
+  .card:hover {
+    transform: none !important;
+  }
+  .btn:hover {
+    transform: none !important;
+  }
+  .navbar .logo:hover,
+  .nav-links a:hover {
+    transform: none !important;
+  }
+  body::after {
+    opacity: 0.01; /* reduz noise */
+  }
+}
+
+/* --------------------------------------------
+   RESPONSIVIDADE – ajustes para telas pequenas
+   -------------------------------------------- */
+@media (max-width: 768px) {
+  .hero .particles::before {
+    width: 60px;
+    height: 60px;
+    right: 2%;
+  }
+  .hero .particles::after {
+    background-size: 150px 150px;
+  }
+  .footer-grid::before,
+  .footer-grid::after {
+    display: none;
+  }
+  .hero + *::before {
+    width: 60%;
+    margin: var(--space-4) auto;
+  }
+  .navbar::before {
+    opacity: 0.3;
+  }
+  section:not(:last-of-type)::after {
+    width: 40%;
+    margin: var(--space-5) auto;
+  }
+  .hero .particles span:nth-child(n+5) {
+    display: none; /* reduz partículas em tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero .particles::before,
+  .hero .particles::after {
+    display: none; /* oculta formas geométricas em mobile */
+  }
+  .hero .particles span {
+    display: none !important; /* oculta todas as partículas em mobile */
+  }
+  .navbar::before {
+    opacity: 0.15;
+  }
+  .btn-primary::after,
+  .badge::after {
+    animation: none;
+  }
+  section:not(:last-of-type)::after {
+    width: 30%;
+    margin: var(--space-4) auto;
+  }
+  .hero + *::before {
+    display: none;
+  }
+}

@@ -1,0 +1,298 @@
+/* ============================================================
+   POLÍMATA SKIN LAYER™ — TEMA AURORA
+   Versão 1.0 — Sprint 0 (Validação de Infraestrutura)
+   ============================================================ */
+
+/* --------------------------------------------
+   1. TOKENS VISUAIS (Sobrescrita)
+   -------------------------------------------- */
+.theme-aurora {
+  /* Cores Base */
+  --bg: #0B0F1A;
+  --surface: #141B2B;
+  --surface-light: #1E2740;
+  --text: #F0F4FF;
+  --muted: #A5B4D9;
+  --border: #2D3A5A;
+
+  /* Acentos Aurora */
+  --accent-lime: #88E6FF;      /* Ciano claro (substituto do lime) */
+  --accent-pink: #D4A0FF;      /* Violeta claro (substituto do pink) */
+  --accent-blue: #4A8CFF;      /* Azul vibrante (mantido) */
+
+  /* Sombras com tons azulados */
+  --shadow-sm: 0 2px 8px rgba(10, 20, 50, 0.4);
+  --shadow-md: 0 8px 32px rgba(10, 20, 50, 0.6);
+  --shadow-lg: 0 16px 64px rgba(10, 20, 50, 0.8);
+
+  /* Gradientes Aurora */
+  --gradient-hero: linear-gradient(180deg, #0B0F1A 0%, #141B2B 60%, #1E2740 100%);
+  --gradient-card: linear-gradient(145deg, rgba(20, 27, 43, 0.9) 0%, rgba(30, 39, 64, 0.8) 100%);
+  --gradient-cta: linear-gradient(135deg, #88E6FF 0%, #4A8CFF 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(136, 230, 255, 0.08) 0%, rgba(74, 140, 255, 0.05) 100%);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(20, 27, 43, 0.75);
+  --glass-border: rgba(136, 230, 255, 0.15);
+  --glass-blur: 20px;
+}
+
+/* --------------------------------------------
+   2. FUNDOS E SUPERFÍCIES
+   -------------------------------------------- */
+.theme-aurora body {
+  background: var(--bg);
+  background-image: radial-gradient(ellipse at 20% 50%, rgba(74, 140, 255, 0.05) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 20%, rgba(136, 230, 255, 0.03) 0%, transparent 50%);
+}
+
+.theme-aurora .hero {
+  background: var(--gradient-hero);
+}
+
+.theme-aurora .card {
+  background: var(--gradient-card);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-aurora .card:hover {
+  border-color: var(--accent-lime);
+  box-shadow: var(--shadow-md);
+}
+
+.theme-aurora .navbar,
+.theme-aurora .footer {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.theme-aurora .demo-cta-fixed {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+/* --------------------------------------------
+   3. TIPOGRAFIA
+   -------------------------------------------- */
+.theme-aurora h1,
+.theme-aurora h2,
+.theme-aurora h3,
+.theme-aurora h4,
+.theme-aurora h5,
+.theme-aurora h6 {
+  color: var(--text);
+}
+
+.theme-aurora p {
+  color: var(--muted);
+}
+
+.theme-aurora p strong {
+  color: var(--text);
+}
+
+.theme-aurora .text-muted {
+  color: var(--muted);
+}
+
+.theme-aurora .text-accent {
+  color: var(--accent-lime);
+}
+
+.theme-aurora a {
+  color: var(--accent-blue);
+}
+
+.theme-aurora a:hover {
+  color: var(--accent-lime);
+}
+
+/* --------------------------------------------
+   4. BOTÕES E CTAS
+   -------------------------------------------- */
+.theme-aurora .btn-primary {
+  background: var(--gradient-cta);
+  color: var(--bg);
+  border-color: transparent;
+}
+
+.theme-aurora .btn-primary:hover {
+  background: linear-gradient(135deg, #66DDFF 0%, #3A7AE8 100%);
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(74, 140, 255, 0.25);
+}
+
+.theme-aurora .btn-secondary {
+  color: var(--text);
+  border-color: var(--border);
+  background: transparent;
+}
+
+.theme-aurora .btn-secondary:hover {
+  border-color: var(--accent-lime);
+  background: rgba(136, 230, 255, 0.06);
+}
+
+.theme-aurora .btn-outline {
+  color: var(--accent-lime);
+  border-color: var(--accent-lime);
+  background: transparent;
+}
+
+.theme-aurora .btn-outline:hover {
+  background: var(--accent-lime);
+  color: var(--bg);
+}
+
+/* --------------------------------------------
+   5. BADGES E TAGS
+   -------------------------------------------- */
+.theme-aurora .badge {
+  background: var(--accent-pink);
+  color: var(--bg);
+}
+
+/* --------------------------------------------
+   6. INPUTS E FORMS
+   -------------------------------------------- */
+.theme-aurora .form-group input,
+.theme-aurora .form-group textarea {
+  background: var(--surface-light);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.theme-aurora .form-group input:focus,
+.theme-aurora .form-group textarea:focus {
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 0 3px rgba(136, 230, 255, 0.15);
+  outline: none;
+}
+
+/* --------------------------------------------
+   7. SCROLLBAR (NOVO)
+   -------------------------------------------- */
+.theme-aurora ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.theme-aurora ::-webkit-scrollbar-track {
+  background: var(--surface);
+  border-radius: 8px;
+}
+
+.theme-aurora ::-webkit-scrollbar-thumb {
+  background: var(--accent-blue);
+  border-radius: 8px;
+  border: 2px solid var(--surface);
+}
+
+.theme-aurora ::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-lime);
+}
+
+/* Firefox */
+.theme-aurora * {
+  scrollbar-color: var(--accent-blue) var(--surface);
+  scrollbar-width: thin;
+}
+
+/* --------------------------------------------
+   8. SELECTION (NOVO)
+   -------------------------------------------- */
+.theme-aurora ::selection {
+  background: var(--accent-lime);
+  color: var(--bg);
+}
+
+.theme-aurora ::-moz-selection {
+  background: var(--accent-lime);
+  color: var(--bg);
+}
+
+/* --------------------------------------------
+   9. GLASSMORPHISM (SPM, MODAIS, ETC.)
+   -------------------------------------------- */
+.theme-aurora #spm-overlay {
+  background: rgba(11, 15, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.theme-aurora .spm-controls {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+/* --------------------------------------------
+   10. SOMBRAS E BORDAS (REAJUSTADAS)
+   -------------------------------------------- */
+.theme-aurora .demo-showcase {
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 60px rgba(136, 230, 255, 0.08);
+}
+
+.theme-aurora .demo-showcase:hover {
+  box-shadow: 0 0 80px rgba(136, 230, 255, 0.15);
+}
+
+/* --------------------------------------------
+   11. LINKS DO FOOTER E NAVBAR
+   -------------------------------------------- */
+.theme-aurora .nav-links a {
+  color: var(--muted);
+}
+
+.theme-aurora .nav-links a:hover {
+  color: var(--text);
+}
+
+.theme-aurora .nav-links .cta-nav {
+  background: var(--gradient-cta);
+  color: var(--bg);
+}
+
+.theme-aurora .nav-links .cta-nav:hover {
+  background: linear-gradient(135deg, #66DDFF 0%, #3A7AE8 100%);
+}
+
+.theme-aurora .footer ul a {
+  color: var(--muted);
+}
+
+.theme-aurora .footer ul a:hover {
+  color: var(--accent-lime);
+}
+
+/* --------------------------------------------
+   12. HERO E SEÇÕES ESPECIAIS
+   -------------------------------------------- */
+.theme-aurora .section[style*="background: var(--surface);"] {
+  background: var(--surface) !important;
+}
+
+.theme-aurora .section[style*="background: var(--surface-light);"] {
+  background: var(--surface-light) !important;
+}
+
+/* --------------------------------------------
+   13. DEMONSTRAÇÕES E CATÁLOGO
+   -------------------------------------------- */
+.theme-aurora .demo-card-simple {
+  background: var(--surface);
+  border-left-color: var(--accent-lime);
+}
+
+.theme-aurora .category-card-front {
+  background: var(--surface);
+}
+
+.theme-aurora .category-card:hover .category-card-front {
+  background: rgba(20, 27, 43, 0.92);
+}

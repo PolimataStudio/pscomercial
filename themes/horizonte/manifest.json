@@ -1,0 +1,22 @@
+// /themes/horizonte/manifest.json
+{
+  "id": "horizonte",
+  "name": "Horizonte",
+  "author": "Polímata Studio",
+  "version": "1.0.0",
+  "description": "Tema premium inspirado no amanhecer e na transição entre estações, simbolizando renovação, planejamento e novos começos. Ideal para empresas, startups, instituições e plataformas que buscam uma identidade visual moderna, serena e corporativa.",
+  "compatibility": {
+    "desktop": true,
+    "tablet": true,
+    "mobile": true,
+    "githubPages": true,
+    "pwa": true
+  },
+  "tokens": {
+    "colors": true,
+    "typography": true,
+    "spacing": true,
+    "borders": true,
+    "shadows": true
+  }
+}

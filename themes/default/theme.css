@@ -1,0 +1,170 @@
+/* ============================================================
+   POLÍMATA THEME — DEFAULT
+   Tema Base Oficial
+   ============================================================ */
+
+/* --------------------------------------------
+   TOKENS VISUAIS
+   -------------------------------------------- */
+:root {
+  /* Cores Base */
+  --bg: #070A0F;
+  --surface: #0E1219;
+  --surface-light: #181E26;
+  --text: #E6E8EE;
+  --muted: #8B92A1;
+  --border: #2A313C;
+
+  /* Acentos */
+  --accent-lime: #B6FF3B;
+  --accent-pink: #FF3BD4;
+  --accent-blue: #3B7BFF;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.4);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.6);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,0.8);
+}
+
+/* --------------------------------------------
+   FUNDOS E SUPERFÍCIES
+   -------------------------------------------- */
+body {
+  background: var(--bg);
+}
+
+.hero {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+}
+
+.card,
+.navbar,
+.footer,
+.demo-cta-fixed {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+/* --------------------------------------------
+   TIPOGRAFIA
+   -------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text);
+}
+
+p {
+  color: var(--muted);
+}
+
+p strong {
+  color: var(--text);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.text-accent {
+  color: var(--accent-lime);
+}
+
+a {
+  color: var(--accent-blue);
+}
+
+a:hover {
+  color: var(--accent-lime);
+}
+
+/* --------------------------------------------
+   BOTÕES
+   -------------------------------------------- */
+.btn-primary {
+  background: var(--accent-lime);
+  color: var(--bg);
+}
+
+.btn-primary:hover {
+  background: #a0e032;
+  transform: scale(1.02);
+}
+
+.btn-secondary {
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-secondary:hover {
+  border-color: var(--text);
+  background: var(--surface-light);
+}
+
+.btn-outline {
+  color: var(--accent-lime);
+  border-color: var(--accent-lime);
+}
+
+.btn-outline:hover {
+  background: var(--accent-lime);
+  color: var(--bg);
+}
+
+/* --------------------------------------------
+   BADGES
+   -------------------------------------------- */
+.badge {
+  background: var(--accent-pink);
+  color: var(--bg);
+}
+
+/* --------------------------------------------
+   FORMS
+   -------------------------------------------- */
+.form-group input,
+.form-group textarea {
+  background: var(--surface-light);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent-lime);
+}
+
+/* --------------------------------------------
+   SCROLLBAR E SELECTION
+   -------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-blue);
+  border-radius: 8px;
+  border: 2px solid var(--surface);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-lime);
+}
+
+* {
+  scrollbar-color: var(--accent-blue) var(--surface);
+  scrollbar-width: thin;
+}
+
+::selection {
+  background: var(--accent-lime);
+  color: var(--bg);
+}
+
+::-moz-selection {
+  background: var(--accent-lime);
+  color: var(--bg);
+}

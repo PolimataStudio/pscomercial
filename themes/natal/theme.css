@@ -1,0 +1,1079 @@
+/* ============================================================
+   TEMA: Natal
+   Polímata Studio – Tema Premium Sazonal
+   ============================================================ */
+
+/* --------------------------------------------
+   0. IMPORTAÇÃO DE FONTES
+   -------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* --------------------------------------------
+   1. TOKENS VISUAIS (sobrescrita completa)
+   -------------------------------------------- */
+:root {
+  /* Cores obrigatórias */
+  --bg: #0B1623;                /* Azul Noite Invernal */
+  --surface: #123524;           /* Verde Pinheiro */
+  --surface-light: #1C4A34;     /* Verde Pinheiro Iluminado */
+  --text: #F8F5F0;              /* Marfim Neve */
+  --muted: #B8C2C8;             /* Cinza Claro (texto secundário) */
+  --accent-lime: #D4AF37;       /* Dourado Champagne (CTA, destaques) */
+  --accent-pink: #B22222;       /* Vermelho Noel (CTAs principais, badges) */
+  --accent-blue: #5FA8D3;       /* Azul Gelo (links, informações técnicas) */
+  --border: #38424D;            /* Cinza Ardósia (bordas) */
+
+  /* Tipografia */
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Cinzel', serif;   /* Títulos com personalidade natalina */
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Espaçamento (escala de 4 a 96px) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.5rem;    /* 24px */
+  --space-6: 2rem;      /* 32px */
+  --space-7: 3rem;      /* 48px */
+  --space-8: 4rem;      /* 64px */
+  --space-9: 6rem;      /* 96px */
+
+  /* Raio de bordas */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Sombras (tonalidade verde-escura) */
+  --shadow-sm: 0 1px 3px rgba(11, 22, 35, 0.4);
+  --shadow-md: 0 4px 12px rgba(11, 22, 35, 0.5);
+  --shadow-lg: 0 8px 24px rgba(11, 22, 35, 0.6);
+
+  /* Movimento */
+  --duration-fast: 150ms;
+  --duration-medium: 300ms;
+  --duration-slow: 500ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.4, 0, 0.6, 1);
+
+  /* Tokens adicionais para efeitos especiais */
+  --glass-bg: rgba(18, 53, 36, 0.55);
+  --glass-border: rgba(212, 175, 55, 0.15);
+  --glow-gold: 0 0 20px rgba(212, 175, 55, 0.25);
+  --glow-red: 0 0 20px rgba(178, 34, 34, 0.3);
+}
+
+/* --------------------------------------------
+   2. ESTILOS BASE & VINHETA
+   -------------------------------------------- */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Vinheta sutil nas extremidades */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(11, 22, 35, 0.7) 100%);
+  z-index: 9999;
+}
+
+/* Headings com fonte display */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+p  { font-size: 1rem; }
+
+strong {
+  font-weight: 700;
+}
+
+a {
+  color: var(--accent-blue);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+a:hover {
+  color: var(--accent-lime);
+}
+
+/* --------------------------------------------
+   3. SCROLLBAR E SELECTION
+   -------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--accent-lime);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-lime);
+  border-color: var(--surface);
+}
+
+::selection {
+  background: var(--accent-pink);
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* --------------------------------------------
+   4. NAVBAR (glassmorphism + premium)
+   -------------------------------------------- */
+.navbar {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: var(--space-4) var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+
+.navbar .logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-lime);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+.navbar .logo:hover {
+  color: var(--text);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: var(--space-5);
+  align-items: center;
+}
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--duration-fast) var(--ease-standard);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--accent-lime);
+  transition: width var(--duration-medium) var(--ease-standard);
+}
+.nav-links a:hover {
+  color: var(--text);
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.cta-nav .btn {
+  background: var(--accent-pink);
+  color: #FFFFFF;
+  border: none;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: var(--glow-red);
+  transition: all var(--duration-medium) var(--ease-standard);
+}
+.cta-nav .btn:hover {
+  background: #CC3333;
+  box-shadow: 0 0 30px rgba(178, 34, 34, 0.5);
+  transform: scale(1.02);
+}
+
+/* --------------------------------------------
+   5. FOOTER
+   -------------------------------------------- */
+.footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: var(--space-7) var(--space-6) var(--space-5);
+  margin-top: var(--space-7);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-grid h4 {
+  font-family: var(--font-display);
+  color: var(--accent-lime);
+  font-size: 1rem;
+  margin-bottom: var(--space-3);
+}
+
+.footer-grid a {
+  color: var(--muted);
+  text-decoration: none;
+  display: block;
+  margin-bottom: var(--space-2);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+.footer-grid a:hover {
+  color: var(--accent-lime);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--border);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* --------------------------------------------
+   6. HERO (atmosfera acolhedora + bokeh)
+   -------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-9) var(--space-6);
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 30%, rgba(18, 53, 36, 0.6), var(--bg) 80%);
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Partículas bokeh (desfocadas) */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(178, 34, 34, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 40% 90%, rgba(95, 168, 211, 0.05) 0%, transparent 35%);
+  animation: bokehFloat 20s ease-in-out infinite alternate;
+}
+
+@keyframes bokehFloat {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+  100% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+}
+
+/* Micro partículas luminosas (pisca-pisca elegante) */
+.hero .sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.hero .sparkles span {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--accent-lime);
+  border-radius: 50%;
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.3);
+  animation: sparkle 4s ease-in-out infinite;
+}
+.hero .sparkles span:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+.hero .sparkles span:nth-child(2) { top: 30%; left: 80%; animation-delay: 1.2s; width: 6px; height: 6px; }
+.hero .sparkles span:nth-child(3) { top: 60%; left: 10%; animation-delay: 2.4s; }
+.hero .sparkles span:nth-child(4) { top: 80%; left: 70%; animation-delay: 0.8s; width: 3px; height: 3px; }
+.hero .sparkles span:nth-child(5) { top: 50%; left: 50%; animation-delay: 3.2s; width: 5px; height: 5px; }
+.hero .sparkles span:nth-child(6) { top: 15%; left: 60%; animation-delay: 1.8s; }
+.hero .sparkles span:nth-child(7) { top: 70%; left: 30%; animation-delay: 0.4s; width: 4px; height: 4px; }
+.hero .sparkles span:nth-child(8) { top: 40%; left: 90%; animation-delay: 2.0s; }
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  color: var(--text);
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  margin-bottom: var(--space-4);
+  position: relative;
+  z-index: 2;
+}
+.hero h1 span {
+  color: var(--accent-lime);
+}
+.hero p {
+  font-size: 1.25rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto var(--space-6);
+  position: relative;
+  z-index: 2;
+}
+
+.cta-group {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------
+   7. CARDS (ornamentos sofisticados)
+   -------------------------------------------- */
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(212, 175, 55, 0.05);
+  transition: all var(--duration-medium) var(--ease-standard);
+  position: relative;
+  overflow: hidden;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  color: var(--accent-lime);
+  margin-bottom: var(--space-3);
+  display: block;
+}
+.card h3 {
+  font-family: var(--font-display);
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+.card p {
+  color: var(--muted);
+  margin-bottom: var(--space-4);
+}
+.card-cta .btn {
+  background: transparent;
+  color: var(--accent-lime);
+  border: 1px solid var(--accent-lime);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: all var(--duration-medium) var(--ease-standard);
+}
+.card-cta .btn:hover {
+  background: var(--accent-lime);
+  color: var(--bg);
+  box-shadow: var(--glow-gold);
+}
+
+/* --------------------------------------------
+   8. BOTÕES
+   -------------------------------------------- */
+.btn {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: all var(--duration-medium) var(--ease-standard);
+  font-family: var(--font-sans);
+}
+
+.btn-primary {
+  background: var(--accent-pink);
+  color: #FFFFFF;
+  box-shadow: var(--glow-red);
+}
+.btn-primary:hover {
+  background: #CC3333;
+  box-shadow: 0 0 35px rgba(178, 34, 34, 0.5);
+  transform: scale(1.03);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--accent-lime);
+  border: 1px solid var(--accent-lime);
+}
+.btn-secondary:hover {
+  background: var(--accent-lime);
+  color: var(--bg);
+  box-shadow: var(--glow-gold);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.btn-outline:hover {
+  color: var(--text);
+  border-color: var(--text);
+  background: rgba(255,255,255,0.05);
+}
+
+/* --------------------------------------------
+   9. BADGES
+   -------------------------------------------- */
+.badge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--accent-pink);
+  color: #FFFFFF;
+  box-shadow: var(--glow-red);
+}
+.badge--gold {
+  background: var(--accent-lime);
+  color: var(--bg);
+  box-shadow: var(--glow-gold);
+}
+.badge--outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+/* --------------------------------------------
+   10. FORMULÁRIOS
+   -------------------------------------------- */
+.form-group {
+  margin-bottom: var(--space-4);
+}
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  color: var(--text);
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* --------------------------------------------
+   11. SPM — APENAS IDENTIDADE VISUAL
+   (A arquitetura completa é fornecida pelo pages.css)
+   -------------------------------------------- */
+.spm-controls {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-md);
+}
+
+.spm-controls button {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
+}
+
+.spm-controls button:hover {
+  color: var(--accent-lime);
+  transform: scale(1.1);
+}
+
+#spm-overlay {
+  background: rgba(11, 22, 35, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  /* Demais propriedades estruturais (position, inset, z-index, display, etc.) são do pages.css */
+}
+
+.spm-expanded {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(212, 175, 55, 0.05);
+  color: var(--text);
+}
+
+.spm-expanded .close-btn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+.spm-expanded .close-btn:hover {
+  color: var(--accent-pink);
+}
+
+/* --------------------------------------------
+   12. RESPONSIVIDADE
+   -------------------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --space-9: 4rem;
+    --space-8: 3rem;
+  }
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.25rem; }
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 1rem; }
+  .navbar {
+    padding: var(--space-3) var(--space-4);
+    flex-wrap: wrap;
+  }
+  .nav-links {
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .cta-group {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    padding: var(--space-4);
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--space-7) var(--space-4);
+    min-height: 50vh;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .navbar .logo {
+    font-size: 1.2rem;
+  }
+  .nav-links a {
+    font-size: 0.875rem;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .spm-expanded {
+    padding: var(--space-4);
+    width: 95%;
+  }
+}
+
+/* --------------------------------------------
+   13. ANIMAÇÕES E PREFERS-REDUCED-MOTION
+   -------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .hero .sparkles span {
+    display: none;
+  }
+  .hero::before {
+    animation: none;
+  }
+  .card:hover {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   CHRISTMAS ENHANCEMENT LAYER
+   Elementos decorativos natalinos premium
+   ============================================================ */
+
+/* --------------------------------------------
+   1. BRILHO AMBIENTE (iluminação indireta)
+   -------------------------------------------- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(212, 175, 55, 0.04) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(178, 34, 34, 0.03) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+  animation: ambientGlow 12s ease-in-out infinite alternate;
+}
+
+@keyframes ambientGlow {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* --------------------------------------------
+   2. NEVE (partículas sutis com queda lenta)
+   -------------------------------------------- */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.25) 1px, transparent 1px),
+    radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 70% 40%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 90% 50%, rgba(255, 255, 255, 0.25) 1px, transparent 1px),
+    radial-gradient(circle at 15% 60%, rgba(255, 255, 255, 0.15) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 45% 70%, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 75% 80%, rgba(255, 255, 255, 0.1) 2px, transparent 2px),
+    radial-gradient(circle at 95% 90%, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+  background-size: 200px 200px;
+  background-position: 0 0;
+  animation: snowfall 40s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes snowfall {
+  0% { background-position: 0 0, 20px 20px, 40px 40px, 60px 60px, 80px 80px, 10px 10px, 30px 30px, 50px 50px, 70px 70px; }
+  100% { background-position: 200px 200px, 220px 220px, 240px 240px, 260px 260px, 280px 280px, 210px 210px, 230px 230px, 250px 250px, 270px 270px; }
+}
+
+/* --------------------------------------------
+   3. LUA NO HERO (crescente suave)
+   -------------------------------------------- */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 8%;
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle at 60% 40%, rgba(255, 248, 230, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 60px rgba(255, 248, 230, 0.05);
+  animation: moonGlow 8s ease-in-out infinite alternate;
+}
+@keyframes moonGlow {
+  0% { opacity: 0.6; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
+/* --------------------------------------------
+   4. ESTRELAS CINTILANTES (douradas e discretas)
+   -------------------------------------------- */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 20% 15%, rgba(212, 175, 55, 0.2) 0, transparent 2px),
+    radial-gradient(circle at 80% 25%, rgba(212, 175, 55, 0.15) 0, transparent 3px),
+    radial-gradient(circle at 40% 60%, rgba(212, 175, 55, 0.1) 0, transparent 2px),
+    radial-gradient(circle at 70% 75%, rgba(212, 175, 55, 0.2) 0, transparent 2px),
+    radial-gradient(circle at 10% 85%, rgba(212, 175, 55, 0.15) 0, transparent 3px);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+@keyframes twinkle {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.9; }
+}
+
+/* --------------------------------------------
+   5. SILHUETA DE RENAS (watermark no Hero)
+   -------------------------------------------- */
+.hero .sparkles::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  width: 120px;
+  height: 60px;
+  pointer-events: none;
+  z-index: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cpath d='M30,50 Q40,20 60,30 Q70,10 90,20 Q110,10 130,20 Q150,30 160,50 Q170,70 150,80 Q130,90 110,80 Q90,90 70,80 Q50,70 30,50' fill='rgba(255,255,255,0.04)'/%3E%3C/svg%3E") no-repeat center/contain;
+  opacity: 0.3;
+}
+
+/* --------------------------------------------
+   6. TRENÓ (silhueta no canto superior do Hero)
+   -------------------------------------------- */
+.hero .sparkles::before {
+  content: '';
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 100px;
+  height: 50px;
+  pointer-events: none;
+  z-index: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100'%3E%3Cpath d='M40,70 L160,70 L180,80 L20,80 Z M60,50 L140,50 L150,70 L50,70 Z M80,30 L120,30 L130,50 L70,50 Z' fill='rgba(212,175,55,0.06)'/%3E%3C/svg%3E") no-repeat center/contain;
+  opacity: 0.4;
+}
+
+/* --------------------------------------------
+   7. BOKEH NATALINO (partículas desfocadas adicionais)
+   -------------------------------------------- */
+.hero {
+  background: 
+    radial-gradient(ellipse at 50% 30%, rgba(18, 53, 36, 0.6), var(--bg) 80%),
+    radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.06) 0%, transparent 60px),
+    radial-gradient(circle at 80% 70%, rgba(178, 34, 34, 0.04) 0%, transparent 80px),
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50px),
+    radial-gradient(circle at 10% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 70px),
+    radial-gradient(circle at 90% 40%, rgba(95, 168, 211, 0.03) 0%, transparent 60px);
+}
+
+/* --------------------------------------------
+   8. GUIRLANDA NO LOGO (próximo ao logo)
+   -------------------------------------------- */
+.navbar .logo::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  right: -30px;
+  width: 40px;
+  height: 30px;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 80'%3E%3Cpath d='M10,40 Q30,10 50,40 Q70,10 90,40 Q70,70 50,40 Q30,70 10,40' fill='none' stroke='%23D4AF37' stroke-width='1.5' opacity='0.4'/%3E%3Ccircle cx='30' cy='30' r='3' fill='%23B22222' opacity='0.3'/%3E%3Ccircle cx='50' cy='20' r='3' fill='%23D4AF37' opacity='0.3'/%3E%3Ccircle cx='70' cy='30' r='3' fill='%23B22222' opacity='0.3'/%3E%3C/svg%3E") no-repeat center/contain;
+  opacity: 0.6;
+  animation: guirlandaFloat 6s ease-in-out infinite alternate;
+}
+@keyframes guirlandaFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-3px); }
+}
+
+/* --------------------------------------------
+   9. GORRO DE PAPAI NOEL NO LOGO
+   -------------------------------------------- */
+.navbar .logo::before {
+  content: '';
+  position: absolute;
+  top: -18px;
+  left: -12px;
+  width: 40px;
+  height: 35px;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 80'%3E%3Cpath d='M20,40 L50,10 L80,40 L70,50 L30,50 Z' fill='%23B22222' opacity='0.5'/%3E%3Ccircle cx='50' cy='10' r='8' fill='%23F8F5F0' opacity='0.4'/%3E%3C/svg%3E") no-repeat center/contain;
+  opacity: 0.5;
+}
+
+/* --------------------------------------------
+   10. RAMOS DE PINHEIRO (cantos do Hero)
+   -------------------------------------------- */
+.hero::before {
+  /* combinamos com os estilos de estrelas já existentes */
+  background-image: 
+    radial-gradient(circle at 20% 15%, rgba(212, 175, 55, 0.2) 0, transparent 2px),
+    radial-gradient(circle at 80% 25%, rgba(212, 175, 55, 0.15) 0, transparent 3px),
+    radial-gradient(circle at 40% 60%, rgba(212, 175, 55, 0.1) 0, transparent 2px),
+    radial-gradient(circle at 70% 75%, rgba(212, 175, 55, 0.2) 0, transparent 2px),
+    radial-gradient(circle at 10% 85%, rgba(212, 175, 55, 0.15) 0, transparent 3px),
+    /* Ramos de pinheiro nos cantos superiores */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M10,10 L30,5 L50,15 L30,25 L10,10' fill='rgba(18,53,36,0.3)'/%3E%3C/svg%3E") no-repeat top left / 60px 60px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M90,10 L70,5 L50,15 L70,25 L90,10' fill='rgba(18,53,36,0.3)'/%3E%3C/svg%3E") no-repeat top right / 60px 60px;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0, 0 0, 100% 0;
+  background-size: auto, auto, auto, auto, auto, 60px 60px, 60px 60px;
+  background-repeat: no-repeat;
+}
+
+/* --------------------------------------------
+   11. ORNAMENTOS (bolas no Hero e Footer)
+   -------------------------------------------- */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: 10%;
+  width: 30px;
+  height: 30px;
+  pointer-events: none;
+  background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.3), rgba(212, 175, 55, 0.05) 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+}
+.footer::after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: 15%;
+  width: 25px;
+  height: 25px;
+  pointer-events: none;
+  background: radial-gradient(circle at 30% 30%, rgba(178, 34, 34, 0.25), rgba(178, 34, 34, 0.05) 70%);
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(178, 34, 34, 0.1);
+}
+
+/* bolas decorativas no Hero */
+.hero {
+  background-image: 
+    radial-gradient(ellipse at 50% 30%, rgba(18, 53, 36, 0.6), var(--bg) 80%),
+    radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.06) 0%, transparent 60px),
+    radial-gradient(circle at 80% 70%, rgba(178, 34, 34, 0.04) 0%, transparent 80px),
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50px),
+    radial-gradient(circle at 10% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 70px),
+    radial-gradient(circle at 90% 40%, rgba(95, 168, 211, 0.03) 0%, transparent 60px),
+    /* bolas decorativas */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='12' fill='%23B22222' opacity='0.15'/%3E%3C/svg%3E") no-repeat 15% 20% / 30px 30px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='12' fill='%23D4AF37' opacity='0.12'/%3E%3C/svg%3E") no-repeat 85% 40% / 25px 25px;
+  background-blend-mode: normal, normal, normal, normal, normal, normal, normal, normal;
+}
+
+/* --------------------------------------------
+   12. PRESENTES (caixas no Footer)
+   -------------------------------------------- */
+.footer-grid {
+  position: relative;
+}
+.footer-grid::before {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  right: 5%;
+  width: 50px;
+  height: 40px;
+  pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 80'%3E%3Crect x='10' y='30' width='80' height='50' fill='rgba(212,175,55,0.08)'/%3E%3Crect x='10' y='30' width='80' height='10' fill='rgba(178,34,34,0.1)'/%3E%3Crect x='45' y='10' width='10' height='70' fill='rgba(212,175,55,0.06)'/%3E%3C/svg%3E") no-repeat center/contain;
+  opacity: 0.4;
+}
+
+/* --------------------------------------------
+   13. RIBBON DECORATIVA (fita no topo do Hero)
+   -------------------------------------------- */
+.hero::after {
+  /* já usado para lua, então combinamos */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background: 
+    /* lua */
+    radial-gradient(circle at 60% 40%, rgba(255, 248, 230, 0.15) 0%, transparent 70%),
+    /* fita */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20'%3E%3Cpath d='M0,10 L200,10' stroke='%23D4AF37' stroke-width='2' opacity='0.15'/%3E%3C/svg%3E") repeat-x 0 5% / 200px 20px;
+  background-blend-mode: normal;
+  animation: ribbonSlide 20s linear infinite;
+}
+@keyframes ribbonSlide {
+  0% { background-position: 0 0, 0 5%; }
+  100% { background-position: 0 0, 200px 5%; }
+}
+
+/* --------------------------------------------
+   14. CONFETES DE NEVE (partículas extras)
+   -------------------------------------------- */
+.hero {
+  background-image: 
+    radial-gradient(ellipse at 50% 30%, rgba(18, 53, 36, 0.6), var(--bg) 80%),
+    radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.06) 0%, transparent 60px),
+    radial-gradient(circle at 80% 70%, rgba(178, 34, 34, 0.04) 0%, transparent 80px),
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50px),
+    radial-gradient(circle at 10% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 70px),
+    radial-gradient(circle at 90% 40%, rgba(95, 168, 211, 0.03) 0%, transparent 60px),
+    /* bolas */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='12' fill='%23B22222' opacity='0.15'/%3E%3C/svg%3E") no-repeat 15% 20% / 30px 30px,
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='12' fill='%23D4AF37' opacity='0.12'/%3E%3C/svg%3E") no-repeat 85% 40% / 25px 25px,
+    /* confetes */
+    radial-gradient(circle at 25% 15%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 70% 10%, rgba(255, 255, 255, 0.06) 1.5px, transparent 1.5px),
+    radial-gradient(circle at 40% 85%, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.05) 2px, transparent 2px);
+  background-size: auto, auto, auto, auto, auto, auto, 30px 30px, 25px 25px, 100px 100px, 150px 150px, 120px 120px, 180px 180px;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat, repeat, repeat;
+  background-position: center, 20% 30%, 80% 70%, 50% 20%, 10% 80%, 90% 40%, 15% 20%, 85% 40%, 0 0, 0 0, 0 0, 0 0;
+}
+
+/* --------------------------------------------
+   15. PISCA-PISCAS (luzes pulsantes)
+   -------------------------------------------- */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  pointer-events: none;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(212, 175, 55, 0.2) 5%, 
+    transparent 10%, 
+    rgba(178, 34, 34, 0.15) 15%, 
+    transparent 20%, 
+    rgba(212, 175, 55, 0.2) 25%, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.1) 35%, 
+    transparent 40%, 
+    rgba(178, 34, 34, 0.15) 45%, 
+    transparent 50%, 
+    rgba(212, 175, 55, 0.2) 55%, 
+    transparent 60%, 
+    rgba(255, 255, 255, 0.1) 65%, 
+    transparent 70%, 
+    rgba(212, 175, 55, 0.15) 75%, 
+    transparent 80%, 
+    rgba(178, 34, 34, 0.2) 85%, 
+    transparent 90%, 
+    rgba(212, 175, 55, 0.2) 95%, 
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: blinkLights 4s ease-in-out infinite;
+}
+@keyframes blinkLights {
+  0%, 100% { opacity: 0.3; background-position: 0 0; }
+  50% { opacity: 0.7; background-position: 100% 0; }
+}
+
+/* --------------------------------------------
+   PREFERS-REDUCED-MOTION
+   -------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after,
+  .hero::before,
+  .hero::after,
+  .navbar .logo::after,
+  .navbar::after,
+  .footer-grid::before,
+  .hero .sparkles::before,
+  .hero .sparkles::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  body::after {
+    background-image: none; /* remove neve */
+  }
+  .navbar::after {
+    background: none;
+  }
+  .hero .sparkles span {
+    display: none; /* remove sparkles existentes */
+  }
+}
+
+/* --------------------------------------------
+   RESPONSIVIDADE – ajustes para telas pequenas
+   -------------------------------------------- */
+@media (max-width: 768px) {
+  .navbar .logo::before,
+  .navbar .logo::after {
+    display: none; /* esconde gorro e guirlanda em mobile para não poluir */
+  }
+  .hero::after {
+    width: 50px;
+    height: 50px;
+    top: 5%;
+    right: 5%;
+  }
+  .hero .sparkles::before,
+  .hero .sparkles::after {
+    width: 60px;
+    height: 30px;
+  }
+  .footer::before,
+  .footer::after {
+    display: none;
+  }
+  .footer-grid::before {
+    width: 30px;
+    height: 24px;
+    right: 2%;
+  }
+  .navbar::after {
+    height: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero .sparkles::before,
+  .hero .sparkles::after {
+    display: none;
+  }
+  .hero::before {
+    background-image: radial-gradient(circle at 20% 15%, rgba(212, 175, 55, 0.2) 0, transparent 2px),
+                      radial-gradient(circle at 80% 25%, rgba(212, 175, 55, 0.15) 0, transparent 3px) !important; /* simplifica */
+  }
+}

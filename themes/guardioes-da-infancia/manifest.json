@@ -1,0 +1,22 @@
+// /themes/guardioes-da-infancia/manifest.json
+{
+  "id": "guardioes-da-infancia",
+  "name": "Guardiões da Infância",
+  "author": "Polímata Studio",
+  "version": "1.0.0",
+  "description": "Tema Dark Premium Human Centered para o Maio Laranja, transmitindo proteção, esperança e acolhimento. Ideal para instituições públicas, escolas, ONGs e empresas que desejam promover conscientização com elegância e responsabilidade social.",
+  "compatibility": {
+    "desktop": true,
+    "tablet": true,
+    "mobile": true,
+    "githubPages": true,
+    "pwa": true
+  },
+  "tokens": {
+    "colors": true,
+    "typography": true,
+    "spacing": true,
+    "borders": true,
+    "shadows": true
+  }
+}

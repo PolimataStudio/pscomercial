@@ -1,0 +1,1908 @@
+/* ============================================================
+   TEMA: Equinócio
+   Polímata Studio – Renovação, Equilíbrio e Natureza
+   ============================================================ */
+
+/* --------------------------------------------
+   0. IMPORTAÇÃO DE FONTES
+   -------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+/* --------------------------------------------
+   1. TOKENS VISUAIS (sobrescrita completa)
+   -------------------------------------------- */
+:root {
+  /* Cores obrigatórias */
+  --bg: #111822;                /* Grafite Natural */
+  --surface: #1E2F2A;           /* Verde Floresta Escuro */
+  --surface-light: #2F855A;     /* Verde Musgo */
+  --text: #F8FBFC;              /* Branco Neblina */
+  --muted: #B7C4BE;             /* Cinza Sálvia */
+  --accent-lime: #39B66A;       /* Verde Aurora */
+  --accent-pink: #F4C542;       /* Dourado Solar */
+  --accent-blue: #3B82F6;       /* Azul Horizonte */
+  --border: #5C756C;            /* Verde Acinzentado */
+
+  /* Tipografia */
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Manrope', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Espaçamento */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Raio de bordas */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Sombras com tons naturais */
+  --shadow-sm: 0 1px 3px rgba(17, 24, 34, 0.5);
+  --shadow-md: 0 4px 12px rgba(17, 24, 34, 0.6);
+  --shadow-lg: 0 8px 24px rgba(17, 24, 34, 0.7);
+
+  /* Movimento */
+  --duration-fast: 150ms;
+  --duration-medium: 300ms;
+  --duration-slow: 500ms;
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.4, 0, 0.6, 1);
+
+  /* Tokens adicionais para efeitos especiais */
+  --glass-bg: rgba(30, 47, 42, 0.35);
+  --glass-border: rgba(57, 182, 106, 0.06);
+  --glow-green: 0 0 20px rgba(57, 182, 106, 0.15);
+  --glow-gold: 0 0 20px rgba(244, 197, 66, 0.15);
+  --glow-blue: 0 0 20px rgba(59, 130, 246, 0.12);
+  --glow-nature: 0 0 30px rgba(57, 182, 106, 0.06);
+}
+
+/* --------------------------------------------
+   2. ESTILOS BASE & VINHETA
+   -------------------------------------------- */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  margin: 0;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Vinheta cinematográfica suave – agora sem filter para não interferir no SPM */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(17, 24, 34, 0.4) 100%);
+  z-index: 9999;
+}
+
+/* Headings com Manrope */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text);
+}
+h1 { font-size: 3rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+p  { font-size: 1rem; }
+strong { font-weight: 700; }
+
+a {
+  color: var(--accent-blue);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+a:hover {
+  color: var(--accent-lime);
+}
+
+/* --------------------------------------------
+   3. SCROLLBAR E SELECTION
+   -------------------------------------------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--accent-lime), var(--accent-blue), var(--accent-pink));
+  border-radius: var(--radius-full);
+  border: 2px solid var(--bg);
+  transition: all var(--duration-medium) var(--ease-standard);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-lime);
+  border-color: var(--accent-pink);
+  box-shadow: 0 0 20px rgba(57, 182, 106, 0.2);
+}
+
+::selection {
+  background: var(--accent-lime);
+  color: var(--bg);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* --------------------------------------------
+   4. NAVBAR (vidro acetinado)
+   -------------------------------------------- */
+.navbar {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px) saturate(1.05);
+  -webkit-backdrop-filter: blur(16px) saturate(1.05);
+  border-bottom: 1px solid var(--glass-border);
+  padding: var(--space-4) var(--space-6);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3), inset 0 -1px 0 rgba(57, 182, 106, 0.04);
+}
+
+.navbar .logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-lime);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--ease-standard);
+  text-shadow: 0 0 30px rgba(57, 182, 106, 0.05);
+}
+.navbar .logo:hover {
+  color: var(--text);
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: var(--space-5);
+  align-items: center;
+}
+.nav-links a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--duration-medium) var(--ease-standard), transform var(--duration-fast) var(--ease-standard);
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-lime), var(--accent-pink));
+  transition: width var(--duration-medium) var(--ease-standard);
+}
+.nav-links a:hover {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.cta-nav .btn {
+  background: var(--accent-lime);
+  color: var(--bg);
+  border: none;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.875rem;
+  box-shadow: var(--glow-green);
+  transition: all var(--duration-medium) var(--ease-emphasized);
+}
+.cta-nav .btn:hover {
+  background: #4DCD7C;
+  box-shadow: 0 0 30px rgba(57, 182, 106, 0.3);
+  transform: scale(1.02) translateY(-2px);
+}
+
+/* --------------------------------------------
+   5. FOOTER
+   -------------------------------------------- */
+.footer {
+  background: var(--surface);
+  border-top: none;
+  padding: var(--space-7) var(--space-6) var(--space-5);
+  margin-top: var(--space-7);
+  position: relative;
+  box-shadow: inset 0 1px 0 rgba(57, 182, 106, 0.04);
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  width: 80%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(57, 182, 106, 0.05), transparent);
+  pointer-events: none;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-6);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.footer-grid h4 {
+  font-family: var(--font-display);
+  color: var(--accent-lime);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+.footer-grid a {
+  color: var(--muted);
+  text-decoration: none;
+  display: block;
+  margin-bottom: var(--space-2);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+.footer-grid a:hover {
+  color: var(--accent-pink);
+}
+.footer-bottom {
+  border-top: 1px solid rgba(57, 182, 106, 0.06);
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+/* --------------------------------------------
+   6. HERO – PAISAGEM ABSTRATA DO AMANHECER
+   -------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-9) var(--space-6);
+  text-align: center;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  isolation: isolate;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(244, 197, 66, 0.06) 0%, transparent 40%),
+    radial-gradient(circle at 30% 60%, rgba(57, 182, 106, 0.04) 0%, transparent 35%),
+    radial-gradient(ellipse at 50% 50%, rgba(30, 47, 42, 0.2), var(--bg) 80%);
+}
+
+/* Aurora Natural – removido filter que poderia interferir no SPM */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(135deg,
+      transparent 20%,
+      rgba(57, 182, 106, 0.015) 30%,
+      rgba(244, 197, 66, 0.02) 40%,
+      rgba(59, 130, 246, 0.015) 50%,
+      rgba(57, 182, 106, 0.01) 60%,
+      transparent 70%
+    ),
+    linear-gradient(225deg,
+      transparent 25%,
+      rgba(59, 130, 246, 0.012) 35%,
+      rgba(57, 182, 106, 0.018) 45%,
+      rgba(244, 197, 66, 0.012) 55%,
+      transparent 65%
+    );
+  background-size: 200% 200%;
+  animation: natureAurora 200s ease-in-out infinite alternate;
+  filter: blur(35px);
+}
+
+@keyframes natureAurora {
+  0% { background-position: 0% 0%; opacity: 0.3; transform: rotate(0deg); }
+  25% { background-position: 25% 15%; opacity: 0.7; transform: rotate(0.5deg); }
+  50% { background-position: 50% 30%; opacity: 0.5; transform: rotate(-0.5deg); }
+  75% { background-position: 75% 10%; opacity: 0.8; transform: rotate(0.5deg); }
+  100% { background-position: 100% 100%; opacity: 0.4; transform: rotate(0deg); }
+}
+
+/* Halo Solar */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60vw;
+  height: 60vw;
+  max-width: 800px;
+  max-height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 197, 66, 0.025) 0%, transparent 60%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  animation: solarPulse 25s ease-in-out infinite alternate;
+}
+
+@keyframes solarPulse {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.3; }
+  100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.7; }
+}
+
+/* Tipografia Hero: "EQUINÓCIO" em segundo plano */
+.hero .cta-group::before {
+  content: 'EQUINÓCIO';
+  position: absolute;
+  top: -200%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  font-family: var(--font-display);
+  font-size: min(24vw, 260px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: rgba(57, 182, 106, 0.025);
+  text-shadow: 0 0 80px rgba(57, 182, 106, 0.01);
+  filter: blur(2px);
+  white-space: nowrap;
+  opacity: 0.9;
+  animation: heroTitleFloatEqui 5s ease-in-out infinite alternate;
+}
+
+@keyframes heroTitleFloatEqui {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+  100% { transform: translate(-50%, -50%) scale(1.02); opacity: 1; }
+}
+
+/* Subtítulo "NOVOS HORIZONTES" */
+.hero .cta-group::after {
+  content: 'NOVOS HORIZONTES';
+  position: absolute;
+  top: 160%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  font-family: var(--font-display);
+  font-size: min(10vw, 100px);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(244, 197, 66, 0.015);
+  filter: blur(3px);
+  white-space: nowrap;
+  opacity: 0.3;
+  animation: heroSubtitleFloatEqui 5s ease-in-out infinite alternate;
+}
+
+@keyframes heroSubtitleFloatEqui {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+  100% { transform: translate(-50%, -50%) scale(1.03); opacity: 1; }
+}
+
+/* Raios do Amanhecer */
+.hero .sparkles::before {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  left: -5%;
+  width: 110%;
+  height: 50%;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(75deg,
+      transparent,
+      rgba(244, 197, 66, 0.015) 20%,
+      rgba(57, 182, 106, 0.01) 40%,
+      transparent 60%
+    ),
+    linear-gradient(-65deg,
+      transparent,
+      rgba(59, 130, 246, 0.01) 30%,
+      rgba(244, 197, 66, 0.015) 50%,
+      transparent 70%
+    );
+  filter: blur(25px);
+  animation: sunrays 120s linear infinite;
+  opacity: 0.3;
+}
+
+@keyframes sunrays {
+  0% { transform: translateX(0) rotate(0deg); opacity: 0.2; }
+  50% { transform: translateX(30px) rotate(1deg); opacity: 0.5; }
+  100% { transform: translateX(-30px) rotate(-1deg); opacity: 0.2; }
+}
+
+/* Névoa Atmosférica */
+.hero .bokeh::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(183, 196, 190, 0.03) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 70%, rgba(183, 196, 190, 0.02) 0%, transparent 35%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+  animation: fogDrift 90s linear infinite;
+  opacity: 0.4;
+}
+
+@keyframes fogDrift {
+  0% { transform: translateX(0) scale(1); opacity: 0.3; }
+  50% { transform: translateX(50px) scale(1.02); opacity: 0.6; }
+  100% { transform: translateX(0) scale(1); opacity: 0.3; }
+}
+
+/* Folhas Abstratas */
+.hero .leaves {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .leaves span {
+  position: absolute;
+  background: radial-gradient(circle at 30% 30%, rgba(57, 182, 106, 0.02), rgba(57, 182, 106, 0.005));
+  clip-path: polygon(50% 0%, 80% 30%, 70% 70%, 50% 100%, 30% 70%, 20% 30%);
+  filter: blur(8px);
+  animation: leafFloat 50s linear infinite;
+}
+.hero .leaves span:nth-child(1) { top: 8%; left: 5%; width: 120px; height: 160px; transform: rotate(20deg); animation-delay: 0s; }
+.hero .leaves span:nth-child(2) { top: 15%; right: 5%; width: 100px; height: 140px; transform: rotate(-15deg); animation-delay: 12s; background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.015), transparent); }
+.hero .leaves span:nth-child(3) { bottom: 10%; left: 8%; width: 80px; height: 110px; transform: rotate(10deg); animation-delay: 24s; }
+.hero .leaves span:nth-child(4) { bottom: 15%; right: 8%; width: 140px; height: 180px; transform: rotate(-25deg); animation-delay: 36s; background: radial-gradient(circle at 30% 30%, rgba(244, 197, 66, 0.012), transparent); }
+
+@keyframes leafFloat {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
+  50% { transform: translate(25px, -35px) rotate(5deg); opacity: 0.3; }
+  100% { transform: translate(-15px, -70px) rotate(-5deg); opacity: 0.1; }
+}
+
+/* Ondas do Vento */
+.hero .bokeh::after {
+  content: '';
+  position: absolute;
+  top: 5%;
+  left: 3%;
+  width: 350px;
+  height: 180px;
+  border-radius: 50% 30% 70% 20%;
+  background: radial-gradient(circle, rgba(57, 182, 106, 0.015) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: windWave 35s ease-in-out infinite alternate;
+}
+.hero .sparkles::after {
+  content: '';
+  position: absolute;
+  bottom: 8%;
+  right: 3%;
+  width: 400px;
+  height: 200px;
+  border-radius: 30% 60% 20% 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.012) 0%, transparent 70%);
+  filter: blur(45px);
+  animation: windWave 40s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes windWave {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.2; }
+  50% { transform: translate(30px, -20px) rotate(3deg) scale(1.05); opacity: 0.5; }
+  100% { transform: translate(-15px, -40px) rotate(-3deg) scale(0.95); opacity: 0.3; }
+}
+
+/* Partículas Naturais */
+.hero .particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.hero .particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  opacity: 0.05;
+  animation: naturalParticle 45s linear infinite;
+}
+.hero .particles span:nth-child(1) { top: 8%; left: 10%; animation-delay: 0s; width: 4px; height: 4px; background: var(--accent-pink); }
+.hero .particles span:nth-child(2) { top: 20%; left: 65%; animation-delay: 6s; width: 2px; height: 2px; background: var(--text); }
+.hero .particles span:nth-child(3) { top: 45%; left: 5%; animation-delay: 12s; width: 3px; height: 3px; background: var(--accent-lime); }
+.hero .particles span:nth-child(4) { top: 60%; left: 70%; animation-delay: 18s; width: 5px; height: 5px; background: var(--accent-pink); }
+.hero .particles span:nth-child(5) { top: 35%; left: 40%; animation-delay: 24s; width: 2px; height: 2px; background: var(--text); }
+.hero .particles span:nth-child(6) { top: 12%; left: 35%; animation-delay: 30s; width: 3px; height: 3px; background: var(--accent-blue); }
+.hero .particles span:nth-child(7) { top: 72%; left: 15%; animation-delay: 36s; width: 4px; height: 4px; background: var(--accent-lime); }
+.hero .particles span:nth-child(8) { top: 48%; left: 80%; animation-delay: 42s; width: 2px; height: 2px; background: var(--accent-pink); }
+.hero .particles span:nth-child(9) { top: 25%; left: 20%; animation-delay: 48s; width: 3px; height: 3px; background: var(--text); }
+.hero .particles span:nth-child(10) { top: 55%; left: 50%; animation-delay: 54s; width: 4px; height: 4px; background: var(--accent-blue); }
+
+@keyframes naturalParticle {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.02; }
+  50% { transform: translate(20px, -30px) scale(1.5); opacity: 0.1; }
+  100% { transform: translate(-10px, -60px) scale(0.5); opacity: 0.02; }
+}
+
+/* Orvalho Digital */
+.hero .dew {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .dew span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent);
+  filter: blur(2px);
+  animation: dewGlow 20s ease-in-out infinite alternate;
+}
+.hero .dew span:nth-child(1) { top: 12%; left: 18%; animation-delay: 0s; }
+.hero .dew span:nth-child(2) { top: 28%; right: 15%; animation-delay: 5s; width: 4px; height: 4px; }
+.hero .dew span:nth-child(3) { bottom: 22%; left: 22%; animation-delay: 10s; width: 5px; height: 5px; }
+.hero .dew span:nth-child(4) { bottom: 35%; right: 20%; animation-delay: 15s; width: 3px; height: 3px; }
+@keyframes dewGlow {
+  0% { opacity: 0.05; transform: scale(0.8); }
+  100% { opacity: 0.2; transform: scale(1.2); }
+}
+
+/* Fluxo de Energia Verde */
+.hero .flow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .flow::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background:
+    repeating-linear-gradient(
+      5deg,
+      transparent,
+      transparent 80px,
+      rgba(57, 182, 106, 0.006) 80px,
+      rgba(57, 182, 106, 0.006) 82px
+    ),
+    repeating-linear-gradient(
+      -3deg,
+      transparent,
+      transparent 100px,
+      rgba(59, 130, 246, 0.004) 100px,
+      rgba(59, 130, 246, 0.004) 102px
+    );
+  animation: energyFlow 90s linear infinite;
+  opacity: 0.3;
+}
+@keyframes energyFlow {
+  0% { background-position: 0 0; opacity: 0.2; }
+  50% { opacity: 0.5; }
+  100% { background-position: 150px 150px; opacity: 0.2; }
+}
+
+/* Bokeh Orgânico */
+.hero .particles::after {
+  content: '';
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(57, 182, 106, 0.012) 0%, transparent 70%);
+  filter: blur(35px);
+  animation: bokehOrganic 55s ease-in-out infinite alternate;
+}
+@keyframes bokehOrganic {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+  50% { transform: translate(15px, -10px) scale(1.2); opacity: 0.5; }
+  100% { transform: translate(-10px, -20px) scale(0.8); opacity: 0.3; }
+}
+
+/* Hero principal (títulos e botões) */
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--text);
+  text-shadow: 0 2px 30px rgba(0,0,0,0.3), 0 0 60px rgba(57, 182, 106, 0.02);
+  margin-bottom: var(--space-4);
+  position: relative;
+  z-index: 1;
+}
+.hero h1 span {
+  color: var(--accent-pink);
+  text-shadow: 0 0 40px rgba(244, 197, 66, 0.05);
+}
+.hero p {
+  font-size: 1.25rem;
+  color: var(--muted);
+  max-width: 600px;
+  margin: 0 auto var(--space-6);
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 10px rgba(0,0,0,0.1);
+}
+.cta-group {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------------------------
+   7. CARDS (vidro fosco com reflexos orgânicos)
+   -------------------------------------------- */
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px) saturate(1.05);
+  -webkit-backdrop-filter: blur(12px) saturate(1.05);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md), 0 0 0 1px rgba(57, 182, 106, 0.02);
+  transition: all var(--duration-medium) var(--ease-emphasized);
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(255,255,255,0.015) 0%, transparent 40%, transparent 60%, rgba(57,182,106,0.01) 100%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-medium) var(--ease-standard);
+}
+.card::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 15%;
+  width: 70%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(57,182,106,0.05), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-medium) var(--ease-standard);
+}
+.card:hover {
+  transform: translateY(-8px) scale(1.005);
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(57, 182, 106, 0.03), 0 0 60px rgba(244, 197, 66, 0.02);
+  border-color: rgba(57, 182, 106, 0.12);
+}
+.card:hover::before,
+.card:hover::after {
+  opacity: 1;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  color: var(--accent-lime);
+  margin-bottom: var(--space-3);
+  display: block;
+}
+.card h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: var(--space-2);
+}
+.card p {
+  color: var(--muted);
+  margin-bottom: var(--space-4);
+}
+.card-cta .btn {
+  background: transparent;
+  color: var(--accent-lime);
+  border: 1px solid var(--accent-lime);
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  transition: all var(--duration-medium) var(--ease-standard);
+}
+.card-cta .btn:hover {
+  background: var(--accent-lime);
+  color: var(--bg);
+  box-shadow: var(--glow-green);
+}
+
+/* --------------------------------------------
+   8. BOTÕES
+   -------------------------------------------- */
+.btn {
+  display: inline-block;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: all var(--duration-medium) var(--ease-emphasized);
+  font-family: var(--font-sans);
+  letter-spacing: 0.01em;
+  position: relative;
+}
+.btn:hover {
+  transform: translateY(-3px);
+}
+
+.btn-primary {
+  background: var(--accent-lime);
+  color: var(--bg);
+  box-shadow: var(--glow-green);
+}
+.btn-primary:hover {
+  background: #4DCD7C;
+  box-shadow: 0 0 35px rgba(57, 182, 106, 0.3);
+  transform: scale(1.03) translateY(-3px);
+}
+
+.btn-secondary {
+  background: var(--accent-blue);
+  color: var(--text);
+  box-shadow: var(--glow-blue);
+}
+.btn-secondary:hover {
+  background: #5B91F8;
+  box-shadow: 0 0 35px rgba(59, 130, 246, 0.25);
+  transform: scale(1.03) translateY(-3px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.btn-outline:hover {
+  color: var(--text);
+  border-color: var(--accent-lime);
+  background: rgba(57, 182, 106, 0.04);
+}
+
+/* Reflexos da Água em botões primários */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.04) 35%,
+    rgba(244, 197, 66, 0.05) 40%,
+    transparent 45%
+  );
+  pointer-events: none;
+  animation: waterShine 10s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity var(--duration-medium) var(--ease-standard);
+}
+.btn-primary:hover::after {
+  opacity: 1;
+}
+
+@keyframes waterShine {
+  0% { transform: translateX(-100%) rotate(25deg); opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateX(100%) rotate(25deg); opacity: 0; }
+}
+
+/* --------------------------------------------
+   9. BADGES
+   -------------------------------------------- */
+.badge {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: var(--accent-blue);
+  color: #FFFFFF;
+  box-shadow: var(--glow-blue);
+}
+.badge--gold {
+  background: var(--accent-pink);
+  color: var(--bg);
+  box-shadow: var(--glow-gold);
+}
+.badge--green {
+  background: var(--accent-lime);
+  color: var(--bg);
+  box-shadow: var(--glow-green);
+}
+.badge--outline {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+/* --------------------------------------------
+   10. FORMULÁRIOS
+   -------------------------------------------- */
+.form-group {
+  margin-bottom: var(--space-4);
+}
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  color: var(--text);
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition: border-color var(--duration-fast) var(--ease-standard), box-shadow var(--duration-fast) var(--ease-standard);
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-lime);
+  box-shadow: 0 0 0 3px rgba(57, 182, 106, 0.12);
+}
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* --------------------------------------------
+   EQUINÓCIO SIGNATURE LAYER™
+   Bio-Digital Premium Extension
+   -------------------------------------------- */
+
+/* --------------------------------------------
+   1. AURORA DA PRIMAVERA™ & MORNING MIST™
+   Auroras, névoa e iluminação ambiente
+   -------------------------------------------- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(57, 182, 106, 0.04) 0%, transparent 45%),
+    radial-gradient(circle at 30% 60%, rgba(59, 130, 246, 0.025) 0%, transparent 40%),
+    radial-gradient(circle at 70% 30%, rgba(244, 197, 66, 0.02) 0%, transparent 35%),
+    radial-gradient(ellipse at 20% 50%, rgba(183, 196, 190, 0.02) 0%, transparent 30%),
+    radial-gradient(ellipse at 80% 70%, rgba(183, 196, 190, 0.015) 0%, transparent 25%);
+  animation: equinoxPulse 300s ease-in-out infinite alternate;
+}
+
+@keyframes equinoxPulse {
+  0% { opacity: 0.5; }
+  25% { opacity: 0.8; }
+  50% { opacity: 0.6; }
+  75% { opacity: 0.9; }
+  100% { opacity: 0.5; }
+}
+
+/* --------------------------------------------
+   2. SUNRISE BLOOM™ (raios largos de luz)
+   -------------------------------------------- */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    linear-gradient(80deg,
+      transparent 10%,
+      rgba(244, 197, 66, 0.015) 20%,
+      rgba(57, 182, 106, 0.01) 30%,
+      rgba(59, 130, 246, 0.008) 40%,
+      transparent 50%
+    ),
+    linear-gradient(100deg,
+      transparent 20%,
+      rgba(244, 197, 66, 0.012) 30%,
+      rgba(57, 182, 106, 0.008) 40%,
+      transparent 50%
+    );
+  filter: blur(30px);
+  animation: sunriseBloom 240s ease-in-out infinite alternate;
+}
+
+@keyframes sunriseBloom {
+  0% { transform: translateX(-5%) rotate(0deg); opacity: 0.2; }
+  33% { transform: translateX(10%) rotate(0.5deg); opacity: 0.6; }
+  66% { transform: translateX(-10%) rotate(-0.5deg); opacity: 0.4; }
+  100% { transform: translateX(5%) rotate(0deg); opacity: 0.2; }
+}
+
+/* --------------------------------------------
+   3. LIVING CANOPY™ (assinatura exclusiva do tema)
+   Copas abstratas acima do Hero
+   -------------------------------------------- */
+.hero .canopy {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.hero .canopy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(57, 182, 106, 0.015) 0%, transparent 50%),
+    radial-gradient(ellipse at 35% 10%, rgba(59, 130, 246, 0.01) 0%, transparent 40%),
+    radial-gradient(ellipse at 55% 25%, rgba(244, 197, 66, 0.012) 0%, transparent 45%),
+    radial-gradient(ellipse at 75% 15%, rgba(57, 182, 106, 0.01) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 20%, rgba(59, 130, 246, 0.008) 0%, transparent 35%);
+  clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
+  filter: blur(40px);
+  animation: canopySway 200s ease-in-out infinite alternate;
+}
+.hero .canopy::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  width: 90%;
+  height: 60%;
+  background:
+    radial-gradient(ellipse at 10% 80%, rgba(57, 182, 106, 0.008) 0%, transparent 40%),
+    radial-gradient(ellipse at 30% 70%, rgba(244, 197, 66, 0.006) 0%, transparent 35%),
+    radial-gradient(ellipse at 50% 90%, rgba(59, 130, 246, 0.005) 0%, transparent 30%),
+    radial-gradient(ellipse at 70% 75%, rgba(57, 182, 106, 0.007) 0%, transparent 35%),
+    radial-gradient(ellipse at 90% 85%, rgba(244, 197, 66, 0.005) 0%, transparent 30%);
+  clip-path: polygon(0% 100%, 100% 100%, 90% 0%, 10% 0%);
+  filter: blur(50px);
+  animation: canopySway 220s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes canopySway {
+  0% { transform: translateX(0) rotate(0deg); opacity: 0.3; }
+  33% { transform: translateX(3%) rotate(0.3deg); opacity: 0.7; }
+  66% { transform: translateX(-3%) rotate(-0.3deg); opacity: 0.5; }
+  100% { transform: translateX(0) rotate(0deg); opacity: 0.3; }
+}
+
+/* Aplicar a assinatura no Footer também */
+.footer .canopy {
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  opacity: 0.15;
+}
+.footer .canopy::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 10% 100%, rgba(57, 182, 106, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 80%, rgba(59, 130, 246, 0.02) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 100%, rgba(244, 197, 66, 0.025) 0%, transparent 45%),
+    radial-gradient(ellipse at 70% 90%, rgba(57, 182, 106, 0.02) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 100%, rgba(59, 130, 246, 0.015) 0%, transparent 35%);
+  clip-path: polygon(0% 100%, 100% 100%, 85% 0%, 15% 0%);
+  filter: blur(30px);
+  animation: canopySway 200s ease-in-out infinite alternate;
+}
+
+/* --------------------------------------------
+   4. BIOFLOW™ (curvas orgânicas)
+   -------------------------------------------- */
+.hero .bioflow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .bioflow span {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(57, 182, 106, 0.01) 0%, transparent 70%);
+  filter: blur(25px);
+  animation: bioflowDrift 60s linear infinite;
+}
+.hero .bioflow span:nth-child(1) {
+  top: 10%;
+  left: 5%;
+  width: 300px;
+  height: 200px;
+  transform: rotate(15deg);
+  animation-delay: 0s;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.008) 0%, transparent 70%);
+}
+.hero .bioflow span:nth-child(2) {
+  bottom: 15%;
+  right: 3%;
+  width: 350px;
+  height: 180px;
+  transform: rotate(-10deg);
+  animation-delay: 15s;
+  background: radial-gradient(circle, rgba(244, 197, 66, 0.007) 0%, transparent 70%);
+}
+.hero .bioflow span:nth-child(3) {
+  top: 40%;
+  left: 60%;
+  width: 250px;
+  height: 220px;
+  transform: rotate(20deg);
+  animation-delay: 30s;
+  background: radial-gradient(circle, rgba(57, 182, 106, 0.006) 0%, transparent 70%);
+}
+.hero .bioflow span:nth-child(4) {
+  bottom: 40%;
+  left: 10%;
+  width: 200px;
+  height: 250px;
+  transform: rotate(-25deg);
+  animation-delay: 45s;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.005) 0%, transparent 70%);
+}
+
+@keyframes bioflowDrift {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.1; }
+  33% { transform: translate(30px, -20px) rotate(5deg) scale(1.1); opacity: 0.3; }
+  66% { transform: translate(-20px, -40px) rotate(-3deg) scale(0.9); opacity: 0.2; }
+  100% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 0.1; }
+}
+
+/* --------------------------------------------
+   5. LEAF SHADOWS™ & FRACTAL GROWTH™
+   Sombras abstratas e geometrias naturais
+   -------------------------------------------- */
+.hero .leafshadows {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .leafshadows span {
+  position: absolute;
+  background: radial-gradient(circle at 30% 30%, rgba(57, 182, 106, 0.008), transparent);
+  clip-path: polygon(50% 0%, 65% 25%, 90% 20%, 80% 45%, 100% 60%, 75% 70%, 85% 90%, 50% 80%, 15% 90%, 25% 70%, 0% 60%, 20% 45%, 10% 20%, 35% 25%);
+  filter: blur(10px);
+  animation: leafShadowDrift 90s linear infinite;
+}
+.hero .leafshadows span:nth-child(1) {
+  top: 5%;
+  left: 3%;
+  width: 150px;
+  height: 180px;
+  opacity: 0.15;
+  transform: rotate(20deg);
+  animation-delay: 0s;
+}
+.hero .leafshadows span:nth-child(2) {
+  bottom: 10%;
+  right: 2%;
+  width: 200px;
+  height: 220px;
+  opacity: 0.1;
+  transform: rotate(-15deg);
+  animation-delay: 20s;
+  background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.006), transparent);
+}
+.hero .leafshadows span:nth-child(3) {
+  top: 30%;
+  right: 15%;
+  width: 120px;
+  height: 150px;
+  opacity: 0.08;
+  transform: rotate(40deg);
+  animation-delay: 40s;
+  background: radial-gradient(circle at 30% 30%, rgba(244, 197, 66, 0.005), transparent);
+}
+.hero .leafshadows span:nth-child(4) {
+  bottom: 30%;
+  left: 15%;
+  width: 180px;
+  height: 200px;
+  opacity: 0.12;
+  transform: rotate(-30deg);
+  animation-delay: 60s;
+}
+
+@keyframes leafShadowDrift {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0.05; }
+  33% { transform: translate(15px, -10px) rotate(3deg); opacity: 0.2; }
+  66% { transform: translate(-10px, -20px) rotate(-2deg); opacity: 0.1; }
+  100% { transform: translate(0, 0) rotate(0deg); opacity: 0.05; }
+}
+
+/* Fractal Growth™ (linhas suaves inspiradas em crescimento) */
+.hero .fractal {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .fractal::before {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  width: 40%;
+  height: 60%;
+  background:
+    repeating-linear-gradient(
+      85deg,
+      transparent,
+      transparent 50px,
+      rgba(57, 182, 106, 0.004) 50px,
+      rgba(57, 182, 106, 0.004) 51px
+    ),
+    repeating-linear-gradient(
+      95deg,
+      transparent,
+      transparent 70px,
+      rgba(59, 130, 246, 0.003) 70px,
+      rgba(59, 130, 246, 0.003) 71px
+    );
+  clip-path: polygon(0% 100%, 100% 100%, 80% 0%, 20% 0%);
+  animation: fractalGrow 120s linear infinite;
+  opacity: 0.15;
+}
+@keyframes fractalGrow {
+  0% { background-position: 0 0; opacity: 0.1; transform: scaleY(1); }
+  50% { opacity: 0.3; transform: scaleY(1.05); }
+  100% { background-position: 100px 100px; opacity: 0.1; transform: scaleY(1); }
+}
+
+/* --------------------------------------------
+   6. POLLEN LIGHT™ (partículas microscópicas)
+   -------------------------------------------- */
+.hero .pollen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.hero .pollen span {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--text);
+  opacity: 0.03;
+  animation: pollenFloat 70s linear infinite;
+}
+.hero .pollen span:nth-child(1) { top: 5%; left: 8%; animation-delay: 0s; width: 3px; height: 3px; background: var(--accent-lime); }
+.hero .pollen span:nth-child(2) { top: 15%; left: 60%; animation-delay: 8s; width: 2px; height: 2px; background: var(--text); }
+.hero .pollen span:nth-child(3) { top: 35%; left: 3%; animation-delay: 16s; width: 3px; height: 3px; background: var(--accent-pink); }
+.hero .pollen span:nth-child(4) { top: 50%; left: 70%; animation-delay: 24s; width: 4px; height: 4px; background: var(--text); }
+.hero .pollen span:nth-child(5) { top: 70%; left: 5%; animation-delay: 32s; width: 2px; height: 2px; background: var(--accent-blue); }
+.hero .pollen span:nth-child(6) { top: 80%; left: 50%; animation-delay: 40s; width: 3px; height: 3px; background: var(--accent-lime); }
+.hero .pollen span:nth-child(7) { top: 45%; left: 85%; animation-delay: 48s; width: 2px; height: 2px; background: var(--text); }
+.hero .pollen span:nth-child(8) { top: 25%; left: 40%; animation-delay: 56s; width: 3px; height: 3px; background: var(--accent-pink); }
+.hero .pollen span:nth-child(9) { top: 60%; left: 20%; animation-delay: 64s; width: 2px; height: 2px; background: var(--accent-blue); }
+
+@keyframes pollenFloat {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.01; }
+  50% { transform: translate(15px, -25px) scale(1.5); opacity: 0.07; }
+  100% { transform: translate(-10px, -50px) scale(0.5); opacity: 0.01; }
+}
+
+/* --------------------------------------------
+   7. DEW REFLECTION™ & WATER REFLECTION™
+   Brilhos de orvalho e reflexos aquáticos
+   -------------------------------------------- */
+.hero .dew {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .dew span {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent);
+  filter: blur(1px);
+  animation: dewGlow 25s ease-in-out infinite alternate;
+}
+.hero .dew span:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; }
+.hero .dew span:nth-child(2) { top: 25%; right: 12%; animation-delay: 6s; width: 4px; height: 4px; }
+.hero .dew span:nth-child(3) { bottom: 20%; left: 18%; animation-delay: 12s; width: 6px; height: 6px; }
+.hero .dew span:nth-child(4) { bottom: 35%; right: 15%; animation-delay: 18s; width: 3px; height: 3px; }
+@keyframes dewGlow {
+  0% { opacity: 0.03; transform: scale(0.8); }
+  100% { opacity: 0.15; transform: scale(1.3); }
+}
+
+/* Water Reflection™ (reflexos ondulados) */
+.navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  width: 90%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(57, 182, 106, 0.015) 20%,
+    rgba(59, 130, 246, 0.02) 40%,
+    rgba(244, 197, 66, 0.025) 50%,
+    rgba(59, 130, 246, 0.02) 60%,
+    rgba(57, 182, 106, 0.015) 80%,
+    transparent
+  );
+  filter: blur(1px);
+  animation: waterRipple 180s ease-in-out infinite alternate;
+}
+@keyframes waterRipple {
+  0% { transform: scaleX(0.9) scaleY(1); opacity: 0.2; }
+  50% { transform: scaleX(1.1) scaleY(1.2); opacity: 0.6; }
+  100% { transform: scaleX(0.9) scaleY(1); opacity: 0.2; }
+}
+
+/* Aplicar no Footer também */
+.footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 5%;
+  width: 90%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(57, 182, 106, 0.01) 20%,
+    rgba(59, 130, 246, 0.015) 40%,
+    rgba(244, 197, 66, 0.02) 50%,
+    rgba(59, 130, 246, 0.015) 60%,
+    rgba(57, 182, 106, 0.01) 80%,
+    transparent
+  );
+  filter: blur(1px);
+  animation: waterRipple 180s ease-in-out infinite alternate;
+  opacity: 0.3;
+}
+
+/* --------------------------------------------
+   8. HALO SOLAR™ & HORIZON GLOW™
+   Halo dourado e linha de horizonte
+   -------------------------------------------- */
+.hero .sparkles::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw;
+  height: 70vw;
+  max-width: 900px;
+  max-height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 197, 66, 0.02) 0%, rgba(57, 182, 106, 0.01) 40%, transparent 70%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: solarHalo 180s ease-in-out infinite alternate;
+}
+@keyframes solarHalo {
+  0% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.2; }
+  33% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.6; }
+  66% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.4; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+}
+
+/* Horizon Glow™ - linha distante */
+.hero .sparkles::after {
+  content: '';
+  position: absolute;
+  bottom: 20%;
+  left: 5%;
+  width: 90%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(183, 196, 190, 0.02) 15%,
+    rgba(57, 182, 106, 0.03) 30%,
+    rgba(59, 130, 246, 0.04) 50%,
+    rgba(57, 182, 106, 0.03) 70%,
+    rgba(183, 196, 190, 0.02) 85%,
+    transparent
+  );
+  filter: blur(3px);
+  pointer-events: none;
+  z-index: 0;
+  animation: horizonGlow 200s ease-in-out infinite alternate;
+}
+@keyframes horizonGlow {
+  0% { opacity: 0.1; transform: scaleY(1); }
+  50% { opacity: 0.4; transform: scaleY(1.5); }
+  100% { opacity: 0.1; transform: scaleY(1); }
+}
+
+/* --------------------------------------------
+   9. BOKEH NATURAL™ (círculos desfocados)
+   -------------------------------------------- */
+.hero .natural-bokeh {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .natural-bokeh span {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.01) 0%, transparent 70%);
+  filter: blur(40px);
+  animation: bokehNatural 90s ease-in-out infinite alternate;
+}
+.hero .natural-bokeh span:nth-child(1) {
+  top: 8%;
+  right: 5%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(57, 182, 106, 0.01) 0%, transparent 70%);
+  animation-delay: 0s;
+}
+.hero .natural-bokeh span:nth-child(2) {
+  bottom: 12%;
+  left: 3%;
+  width: 250px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.008) 0%, transparent 70%);
+  animation-delay: 25s;
+}
+.hero .natural-bokeh span:nth-child(3) {
+  top: 40%;
+  right: 15%;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(244, 197, 66, 0.006) 0%, transparent 70%);
+  animation-delay: 50s;
+}
+@keyframes bokehNatural {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+  50% { transform: translate(20px, -15px) scale(1.2); opacity: 0.3; }
+  100% { transform: translate(-10px, -25px) scale(0.8); opacity: 0.15; }
+}
+
+/* --------------------------------------------
+   10. LIGHT ROOTS™ (linhas de raízes luminosas)
+   -------------------------------------------- */
+.hero .lightroots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .lightroots::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 30%;
+  height: 40%;
+  background:
+    repeating-linear-gradient(
+      105deg,
+      transparent,
+      transparent 30px,
+      rgba(57, 182, 106, 0.004) 30px,
+      rgba(57, 182, 106, 0.004) 31px
+    ),
+    repeating-linear-gradient(
+      115deg,
+      transparent,
+      transparent 45px,
+      rgba(59, 130, 246, 0.003) 45px,
+      rgba(59, 130, 246, 0.003) 46px
+    );
+  clip-path: polygon(0% 100%, 100% 100%, 60% 0%, 30% 0%);
+  animation: rootsGrow 150s linear infinite;
+  opacity: 0.12;
+}
+.hero .lightroots::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+  width: 25%;
+  height: 35%;
+  background:
+    repeating-linear-gradient(
+      75deg,
+      transparent,
+      transparent 35px,
+      rgba(57, 182, 106, 0.004) 35px,
+      rgba(57, 182, 106, 0.004) 36px
+    ),
+    repeating-linear-gradient(
+      65deg,
+      transparent,
+      transparent 50px,
+      rgba(59, 130, 246, 0.003) 50px,
+      rgba(59, 130, 246, 0.003) 51px
+    );
+  clip-path: polygon(0% 100%, 100% 100%, 80% 0%, 50% 0%);
+  animation: rootsGrow 150s linear infinite;
+  animation-delay: 30s;
+  opacity: 0.1;
+}
+@keyframes rootsGrow {
+  0% { transform: scaleY(0.5); opacity: 0.05; }
+  50% { transform: scaleY(1.1); opacity: 0.2; }
+  100% { transform: scaleY(1); opacity: 0.1; }
+}
+
+/* --------------------------------------------
+   11. REFLEXOS PREMIUM & BORDAS VIVAS
+   -------------------------------------------- */
+/* Reflexos em cards */
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.02) 0%,
+    transparent 30%,
+    transparent 60%,
+    rgba(57, 182, 106, 0.012) 80%,
+    rgba(59, 130, 246, 0.008) 100%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-medium) var(--ease-standard);
+}
+.card:hover::before {
+  opacity: 1;
+}
+
+/* Bordas Vivas (definidas pela luz) */
+.navbar,
+.footer,
+.card,
+.spm-expanded {
+  border-color: rgba(57, 182, 106, 0.02);
+  box-shadow: inset 0 0 0 1px rgba(57, 182, 106, 0.01), 0 0 20px rgba(57, 182, 106, 0.01);
+}
+
+.navbar:hover,
+.card:hover {
+  box-shadow: inset 0 0 0 1px rgba(57, 182, 106, 0.03), 0 0 30px rgba(57, 182, 106, 0.02);
+}
+
+/* --------------------------------------------
+   12. HERO MULTICAMADAS (planos visuais)
+   -------------------------------------------- */
+.hero .depth-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero .depth-layer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(57, 182, 106, 0.005) 0%, transparent 40%),
+    radial-gradient(ellipse at 80% 70%, rgba(59, 130, 246, 0.004) 0%, transparent 35%),
+    radial-gradient(ellipse at 50% 10%, rgba(244, 197, 66, 0.003) 0%, transparent 30%);
+  filter: blur(50px);
+  animation: depthShift 180s ease-in-out infinite alternate;
+}
+@keyframes depthShift {
+  0% { transform: scale(1) translateX(0); opacity: 0.3; }
+  50% { transform: scale(1.05) translateX(5%); opacity: 0.6; }
+  100% { transform: scale(1) translateX(0); opacity: 0.3; }
+}
+
+/* --------------------------------------------
+   13. BOTÕES PREMIUM (iluminação superior e lateral)
+   -------------------------------------------- */
+.btn-primary {
+  position: relative;
+  overflow: visible;
+  box-shadow: 0 0 20px rgba(57, 182, 106, 0.08), var(--glow-green);
+}
+.btn-primary:hover {
+  box-shadow: 0 0 40px rgba(57, 182, 106, 0.12), 0 6px 24px rgba(57, 182, 106, 0.15);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Iluminação superior */
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  filter: blur(1px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--duration-medium) var(--ease-standard);
+}
+.btn-primary:hover::before {
+  opacity: 1;
+}
+
+/* Reflexo lateral */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.04) 35%,
+    rgba(244, 197, 66, 0.05) 40%,
+    transparent 45%
+  );
+  pointer-events: none;
+  animation: premiumShine 10s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity var(--duration-medium) var(--ease-standard);
+}
+.btn-primary:hover::after {
+  opacity: 1;
+}
+@keyframes premiumShine {
+  0% { transform: translateX(-100%) rotate(25deg); opacity: 0; }
+  30% { opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translateX(100%) rotate(25deg); opacity: 0; }
+}
+
+/* --------------------------------------------
+   14. MICROINTERAÇÕES REFINADAS
+   -------------------------------------------- */
+.nav-links a {
+  transition: color var(--duration-medium) var(--ease-emphasized),
+              transform var(--duration-fast) var(--ease-standard),
+              text-shadow var(--duration-fast) var(--ease-standard);
+}
+.nav-links a:hover {
+  text-shadow: 0 0 20px rgba(57, 182, 106, 0.05);
+  transform: translateY(-2px);
+}
+
+.card {
+  transition: all var(--duration-medium) var(--ease-emphasized);
+}
+.card:hover {
+  transform: translateY(-8px) scale(1.005);
+}
+
+.btn {
+  transition: all var(--duration-medium) var(--ease-emphasized);
+}
+
+/* --------------------------------------------
+   15. EQUINOX PULSE™ (sincronia de todos os elementos)
+   A "alma" do tema - natureza viva em ciclos longos
+   -------------------------------------------- */
+body::before {
+  animation: equinoxPulse 300s ease-in-out infinite alternate;
+}
+.hero::before {
+  animation: sunriseBloom 240s ease-in-out infinite alternate;
+}
+.hero .canopy::before {
+  animation: canopySway 200s ease-in-out infinite alternate;
+}
+.hero .canopy::after {
+  animation: canopySway 220s ease-in-out infinite alternate-reverse;
+}
+.navbar::after {
+  animation: waterRipple 180s ease-in-out infinite alternate;
+}
+
+/* --------------------------------------------
+   RESPONSIVIDADE – ajustes para tablets e mobile
+   -------------------------------------------- */
+@media (max-width: 768px) {
+  :root {
+    --space-9: 4rem;
+    --space-8: 3rem;
+  }
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.25rem; }
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 1rem; }
+  .navbar {
+    padding: var(--space-3) var(--space-4);
+    flex-wrap: wrap;
+  }
+  .nav-links {
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .cta-group {
+    flex-direction: column;
+    align-items: center;
+  }
+  .card {
+    padding: var(--space-4);
+  }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .hero .cta-group::before {
+    font-size: min(32vw, 130px);
+    letter-spacing: 0.04em;
+  }
+  .hero .cta-group::after {
+    font-size: min(15vw, 60px);
+    letter-spacing: 0.1em;
+    top: 76%;
+  }
+  .hero .leaves span {
+    width: 70px;
+    height: 90px;
+  }
+  .hero .leaves span:nth-child(2) { width: 60px; height: 80px; }
+  .hero .leaves span:nth-child(4) { width: 80px; height: 100px; }
+  .hero .canopy {
+    height: 25%;
+    top: -5%;
+  }
+  .hero .canopy::before,
+  .hero .canopy::after {
+    clip-path: polygon(0% 0%, 100% 0%, 90% 100%, 10% 100%);
+  }
+  .hero .bioflow span {
+    width: 150px;
+    height: 100px;
+  }
+  .hero .bioflow span:nth-child(2) {
+    width: 180px;
+    height: 90px;
+  }
+  .hero .bioflow span:nth-child(3) {
+    width: 120px;
+    height: 110px;
+  }
+  .hero .bioflow span:nth-child(4) {
+    width: 100px;
+    height: 120px;
+  }
+  .hero .leafshadows span {
+    width: 80px;
+    height: 100px;
+  }
+  .hero .leafshadows span:nth-child(2) {
+    width: 100px;
+    height: 120px;
+  }
+  .hero .leafshadows span:nth-child(4) {
+    width: 90px;
+    height: 110px;
+  }
+  .hero .pollen span {
+    display: none;
+  }
+  .hero .dew span {
+    display: none;
+  }
+  .hero .natural-bokeh span {
+    width: 120px;
+    height: 120px;
+  }
+  .hero .natural-bokeh span:nth-child(2) {
+    width: 150px;
+    height: 100px;
+  }
+  .hero .sparkles::before {
+    max-width: 500px;
+    max-height: 500px;
+  }
+  .hero .lightroots::before,
+  .hero .lightroots::after {
+    opacity: 0.05;
+  }
+  .footer .canopy {
+    height: 60px;
+    opacity: 0.08;
+  }
+  .hero .bokeh::before {
+    opacity: 0.2;
+  }
+  .hero .particles::after {
+    width: 120px;
+    height: 120px;
+  }
+  .hero .flow::before {
+    opacity: 0.15;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--space-7) var(--space-4);
+    min-height: 50vh;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .navbar .logo {
+    font-size: 1.2rem;
+  }
+  .nav-links a {
+    font-size: 0.875rem;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero .cta-group::before {
+    font-size: min(42vw, 80px);
+    letter-spacing: 0.02em;
+    filter: blur(1px);
+  }
+  .hero .cta-group::after {
+    display: none;
+  }
+  .hero .canopy,
+  .hero .bioflow span,
+  .hero .leafshadows span,
+  .hero .fractal::before,
+  .hero .natural-bokeh span,
+  .hero .lightroots::before,
+  .hero .lightroots::after,
+  .hero .depth-layer::before,
+  .footer .canopy,
+  .hero .leaves span,
+  .hero .particles span,
+  .hero .particles::after,
+  .hero .bokeh::before,
+  .hero .bokeh::after,
+  .hero .sparkles::before,
+  .hero .sparkles::after,
+  .hero .flow::before {
+    display: none !important;
+  }
+  .hero .sparkles::before {
+    max-width: 300px;
+    max-height: 300px;
+  }
+  .hero .sparkles::after {
+    bottom: 15%;
+  }
+  .navbar::after,
+  .footer::after {
+    opacity: 0.15;
+  }
+  .hero .dew span {
+    display: none;
+  }
+}
+
+/* --------------------------------------------
+   PREFERS-REDUCED-MOTION
+   -------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  body::before,
+  .hero::before,
+  .hero .canopy::before,
+  .hero .canopy::after,
+  .hero .bioflow span,
+  .hero .leafshadows span,
+  .hero .fractal::before,
+  .hero .pollen span,
+  .hero .dew span,
+  .navbar::after,
+  .footer::after,
+  .hero .sparkles::before,
+  .hero .sparkles::after,
+  .hero .natural-bokeh span,
+  .hero .lightroots::before,
+  .hero .lightroots::after,
+  .hero .depth-layer::before,
+  .btn-primary::after,
+  .btn-primary::before {
+    animation: none !important;
+    display: none !important;
+  }
+  .hero .canopy {
+    display: none !important;
+  }
+  .hero {
+    background: radial-gradient(circle at 50% 45%, rgba(244,197,66,0.04) 0%, transparent 40%),
+                radial-gradient(circle at 30% 60%, rgba(57,182,106,0.03) 0%, transparent 35%),
+                radial-gradient(ellipse at 50% 50%, rgba(30,47,42,0.2), var(--bg) 80%);
+  }
+  .card:hover,
+  .btn:hover {
+    transform: none !important;
+  }
+  .navbar .logo:hover,
+  .nav-links a:hover {
+    transform: none !important;
+  }
+  body {
+    filter: none !important;
+  }
+  .hero {
+    filter: none !important;
+  }
+}

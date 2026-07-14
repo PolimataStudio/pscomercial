@@ -1,0 +1,22 @@
+// /themes/independencia/manifest.json
+{
+  "id": "independencia",
+  "name": "Independência",
+  "author": "Polímata Studio",
+  "version": "1.0.0",
+  "description": "Tema institucional premium inspirado na celebração da Independência do Brasil, reinterpretando os símbolos nacionais com linguagem visual moderna, elegante e tecnológica. Ideal para órgãos públicos, universidades, empresas e plataformas que desejam transmitir confiança, progresso e patriotismo elegante.",
+  "compatibility": {
+    "desktop": true,
+    "tablet": true,
+    "mobile": true,
+    "githubPages": true,
+    "pwa": true
+  },
+  "tokens": {
+    "colors": true,
+    "typography": true,
+    "spacing": true,
+    "borders": true,
+    "shadows": true
+  }
+}

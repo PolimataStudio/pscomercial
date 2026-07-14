@@ -1,0 +1,21 @@
+{
+  "id": "equinocio",
+  "name": "Equinócio",
+  "author": "Polímata Studio",
+  "version": "1.0.0",
+  "description": "Tema Dark Premium Bio-Inspired para o mês de março, simbolizando o equinócio, o equilíbrio entre luz e sombra, renovação e novos ciclos. Ideal para empresas, universidades e plataformas que buscam transmitir serenidade, inovação e crescimento.",
+  "compatibility": {
+    "desktop": true,
+    "tablet": true,
+    "mobile": true,
+    "githubPages": true,
+    "pwa": true
+  },
+  "tokens": {
+    "colors": true,
+    "typography": true,
+    "spacing": true,
+    "borders": true,
+    "shadows": true
+  }
+}

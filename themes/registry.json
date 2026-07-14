@@ -1,0 +1,80 @@
+{
+  "active": "default",
+  "themes": {
+    "default": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/default/"
+    },
+    "aurora": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/aurora/"
+    },
+    "reveillon-infinity": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/reveillon-infinity/"
+    },
+    "carnaval-royale": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/carnaval-royale/"
+    },
+    "equinocio": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/equinocio/"
+    },
+    "aurora-pascal": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/aurora-pascal/"
+    },
+    "guardioes-da-infancia": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/guardioes-da-infancia/"
+    },
+    "arraia-imperial": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/arraia-imperial/"
+    },
+    "noites-do-sertao": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/noites-do-sertao/"
+    },
+    "horizonte": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/horizonte/"
+    },
+    "independencia": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/independencia/"
+    },
+    "aurora-rosa": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/aurora-rosa/"
+    },
+    "horizonte-azul": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/horizonte-azul/"
+    },
+    "blackfriday": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/blackfriday/"
+    },
+    "natal": {
+      "version": "1.0.0",
+      "enabled": true,
+      "path": "themes/natal/"
+    }
+  }
+}
